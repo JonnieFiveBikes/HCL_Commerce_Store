@@ -1,0 +1,133 @@
+LICENSE INFORMATION
+
+The Programs listed below are licensed under the following License Information terms and conditions in addition to the Program license terms previously agreed to by Customer and HCL.
+
+Program Name: HCL Commerce Enterprise Developer Version 9.1
+
+The following standard terms apply to Licensee's use of the Program.
+
+Limited use right
+
+As described in the HCL Master License Agreement (the “MLA”) and this License Information, HCL grants Licensee a limited right to use the Program.  This right is limited to the level of Authorized Use, such as a Processor Value Unit ("PVU"), a Resource Value Unit ("RVU"), a Value Unit ("VU"), or other specified level of use, paid for by Licensee as evidenced in the Proof of Entitlement. Licensee's use may also be limited to a specified machine, or only as a Supporting Program, or subject to other restrictions. As Licensee has not paid for all of the economic value of the Program, no other use is permitted without the payment of additional fees. In addition, Licensee is not authorized to use the Program to provide commercial IT services to any third party, to provide commercial hosting or timesharing, or to sublicense, rent, or lease the Program unless expressly provided for in the applicable agreements under which Licensee obtains authorizations to use the Program. Additional rights may be available to Licensee subject to the payment of additional fees or under different or supplementary terms. HCL reserves the right to determine whether to make such additional rights available to Licensee.
+
+Specifications
+
+Program's specifications can be found in the collective Description and Technical Information sections of the Program's Announcement Letters.
+
+Prohibited Uses
+
+Licensee may not use or authorize others to use the Program, alone or in combination with other services or products, in support of any of the following high risk activities: design, construction, control, or maintenance of nuclear facilities, mass transit systems, air traffic control systems, automotive control systems, weapons systems, or aircraft navigation or communications, or any other activity where program failure could give rise to a material threat of death or serious personal injury.
+
+Supporting Programs
+
+Licensee is authorized to install and use the Supporting Programs identified below. Licensee is authorized to install and use such Supporting Programs only to support Licensee's use of the Principal Program under this Agreement. The phrase "to support Licensee's use" would only include those uses that are necessary or otherwise directly related to a licensed use of the Principal Program or another Supporting Program. The Supporting Programs may not be used for any other purpose. A Supporting Program may be accompanied by license terms, and those terms, if any, apply to Licensee's use of that Supporting Program. In the event of conflict, the terms in this License Information document supersede the Supporting Program's terms. Licensee must obtain sufficient entitlements to the Program, as a whole, to cover Licensee's installation and use of all of the Supporting Programs, unless separate entitlements are provided within this License Information document. For example, if this Program were licensed on a PVU (Processor Value Unit) basis and Licensee were to install the Principal Program or a Supporting Program on a 100 PVU machine (physical or virtual) and another Supporting Program on a second 100 PVU machine, Licensee would be required to obtain 200 PVU entitlements to the Program.
+
+Supporting Programs:
+IBM Rational Application Developer for WebSphere Software 9.6
+IBM WebSphere Application Server V9.0 FP 9.0.5.3
+IBM WebSphere Application Server Liberty 20.0
+IBM Db2 Advanced Workgroup Server Edition 11.5
+
+Prohibited Components
+
+Notwithstanding any provision in the Agreement, Licensee is not authorized to use any of the following components or functions of the Program:
+pureScale clustering technology (of IBM Db2 Advanced Workgroup Server Edition)
+Db2 Connect (of IBM Db2 Advanced Workgroup Server Edition)
+Federation with Db2 for IBM i and Db2 for z/OS® data sources (of IBM Db2 Advanced Workgroup Server Edition)
+Federation with all other data sources, including Oracle (of IBM Db2 Advanced Workgroup Server Edition)
+IBM(r) Db2 Merge Backup (of IBM Db2 Advanced Workgroup Server Edition)
+IBM(r) Db2 Recovery Expert (of IBM Db2 Advanced Workgroup Server Edition)
+IBM InfoSphere® Change Data Capture for Db2 (of IBM Db2 Advanced Workgroup Server Edition)
+IBM InfoSphere CDC Access Server (of IBM Db2 Advanced Workgroup Server Edition)
+IBM InfoSphere CDC Management Console (of IBM Db2 Advanced Workgroup Server Edition)
+IBM InfoSphere Data Architect (of IBM Db2 Advanced Workgroup Server Edition)
+IBM Cognos Analytics 11.0 (of IBM Db2 Advanced Workgroup Server Edition)
+IBM WebSphere MQ 9.0 (of IBM Db2 Advanced Workgroup Server Edition)
+IBM Data Server Manager Enterprise Edition 2.1 (of IBM Db2 Advanced Workgroup Server Edition)
+
+Redistributables
+
+If the Program includes components that are Redistributable, they will be identified in the REDIST file that accompanies the Program. In addition to the license rights granted in the Agreement, Licensee may distribute the Redistributables subject to the following terms:
+1) Redistribution must be in object code form only and must conform to all directions, instruction and specifications in the Program's accompanying REDIST or documentation;
+2) If the Program's accompanying documentation expressly allows Licensee to modify the Redistributables, such modification must conform to all directions, instruction and specifications in that documentation and these modifications, if any, must be treated as Redistributables;
+3) Redistributables may be distributed only as part of Licensee's application that was developed using the Program ("Licensee's Application") and only to support Licensee's customers in connection with their use of Licensee's Application. Licensee's Application must constitute significant value add such that the Redistributables are not a substantial motivation for the acquisition by end users of Licensee's software product;
+4) If the Redistributables include a Java Runtime Environment, Licensee must also include other non-Java Redistributables with Licensee's Application, unless the Application is designed to run only on general computer devices (for example, laptops, desktops and servers) and not on handheld or other pervasive devices (i.e., devices that contain a microprocessor but do not have computing as their primary purpose);
+5) Licensee may not remove any copyright or notice files contained in the Redistributables;
+6) Licensee must hold HCL, its suppliers or distributors harmless from and against any claim arising out of the use or distribution of Licensee's Application;
+7) Licensee may not use the same path name as the original Redistributable files/modules;
+8) Licensee may not use HCL's, its suppliers or distributors names or trademarks in connection with the marketing of Licensee's Application without HCL's or that supplier's or distributor's prior written consent;
+9) HCL, its suppliers and distributors provide the Redistributables and related documentation without obligation of support and "AS IS", WITH NO WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING THE WARRANTY OF TITLE, NON-INFRINGEMENT OR NON-INTERFERENCE AND THE IMPLIED WARRANTIES AND CONDITIONS OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
+10) Licensee is responsible for all technical assistance for Licensee's Application and any modifications to the Redistributables; and
+11) Licensee's license agreement with the end user of Licensee's Application must notify the end user that the Redistributables or their modifications may not be i) used for any purpose other than to enable Licensee's Application, ii) copied (except for backup purposes), iii) further distributed or transferred without Licensee's Application or iv) reverse assembled, reverse compiled, or otherwise translated except as specifically permitted by law and without the possibility of a contractual waiver. Furthermore, Licensee's license agreement must be at least as protective of HCL as the terms of this Agreement.
+
+Source Components and Sample Materials
+
+The Program may include some components in source code form ("Source Components") and other materials identified as Sample Materials. Licensee may copy and modify Source Components and Sample Materials for internal use only provided such use is within the limits of the license rights under this Agreement, provided however that Licensee may not alter or delete any copyright information or notices contained in the Source Components or Sample Materials. HCL provides the Source Components and Sample Materials without obligation of support and "AS IS", WITH NO WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING THE WARRANTY OF TITLE, NON-INFRINGEMENT OR NON-INTERFERENCE AND THE IMPLIED WARRANTIES AND CONDITIONS OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+
+For Source Components and Sample Materials listed in a Program's REDIST file, Licensee may redistribute modified versions of those Source Components or Sample Materials consistent with the terms of this license and any instructions in the REDIST file.
+
+Export and Import Restrictions
+
+This Program may contain cryptography. Transfer to, or use by, users of the Program may be prohibited or subject to export or import laws, regulations or policies, including those of the United States Export Administration Regulations. Licensee assumes all responsibility for complying with all applicable laws, regulations, and policies regarding the export, import, or use of this Program, including but not limited to, U.S. restrictions on exports or reexports. To obtain the export classification of this Program refer to: https://www.ibm.com/products/exporting/.
+
+Third Party Data and Services
+
+The Program may contain links to or be used to access third party data services, databases, web services, software, or other third party content (all, "content"). Access to this content is provided "AS-IS", WITH NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING THE WARRANTY OF TITLE, NON-INFRINGEMENT OR NON-INTERFERENCE AND THE IMPLIED WARRANTIES AND CONDITIONS OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. Access can be terminated by the relevant third parties at their sole discretion at any time. Licensee may be required to enter into separate agreements with the third parties for the access to or use of such content. HCL is not a party to any such separate agreements and as an express condition of this license Licensee agrees to comply with the terms of such separate agreements.
+
+The following units of measure may apply to Licensee's use of the Program.
+
+Authorized User
+
+Authorized User is a unit of measure by which the Program can be licensed. An Authorized User is a unique person who is given access to the Program. The Program may be installed on any number of computers or servers and each Authorized User may have simultaneous access to any number of instances of the Program at one time. Licensee must obtain separate, dedicated entitlements for each Authorized User given access to the Program in any manner directly or indirectly (for example: via a multiplexing program, device, or application server) through any means. An entitlement for an Authorized User is unique to that Authorized User and may not be shared, nor may it be reassigned other than for the permanent transfer of the Authorized User entitlement to another person.
+
+In addition to the above, the following terms apply to Licensee's use of the Program.
+
+1.0 Definitions
+
+The following terms are defined for the purposes of this license:
+
+Store - A storefront deployed in HCL Commerce that is accessible to customers for online business through any channel and/or touchpoint including, but limited not to, web, mobile devices, call centers, kiosks, and in-store solutions. A Store can be identified and counted by a unique STORE_ID key in the STORE table in HCL Commerce database, and by a value of B2C in the STORETYPE column of the STORE table.
+
+Production - Use of a HCL Commerce server program to operate one or more live Stores
+
+Staging - Use of a HCL Commerce server program in which Store information and business content like catalog and promotions are managed in a separate environment from a Production server, and where incremental changes/updates are made, tested with fully developed application in preparation for promotion to the Production utilizing staging server utilities including but not limited to stagingprop, stagingcopy, and fileprop. Staging is meant for final review and end user sign off on the fully developed solution prior to promoting to Production.
+
+Test - Use of a HCL Commerce server program for testing of a HCL Commerce solution, including but not limited to functional, integration, system, performance, and load testing. Testing does not include Staging, provided that Testing may include testing of Staging server utilities and functions.
+
+2.0 Authorized Use
+
+Licensee may use the Program for development and Testing purposes only, and may not use the Program for Production or Staging purposes.
+
+Licensee may only use HCL Commerce Developer Enterprise to develop or Test HCL Commerce assets (such as Stores, Store features or services) for Production use on HCL Commerce Enterprise and not for other HCL Commerce editions.
+
+2.1 ADDITIONAL TERMS FOR SAMPLE MATERIALS
+
+Sample Material included with the Program include Starter Stores. "Starter Store" means a functional sample online Store provided in a store archive format with the Program, and are samples designed to be used as a base from which a customized online Stores can be created. Starter Store sample materials may include the names of individuals, companies, brands and products in order to illustrate concepts as completely as possible. All of these names are fictitious and any similarity to the names and addresses used by actual persons or business enterprises is entirely coincidental. Starter Store sample materials may also contain text, images and/or similar content that are the copyrighted materials of HCL or third parties ("Sample Content"). Notwithstanding the "Sample Materials" section of this License Information, Sample Content is provided for illustrative purposes only and Licensee is not permitted to copy, display, retransmit or otherwise use or re-use the Sample Content (including, but not limited to, in Licensee's production Store(s)).
+
+Other Sample Materials included with the Program include code or script samples to illustrate HCL Commerce functions and they located in [install]\samples directory where [install] is the user-specified or the default Program install directory.
+
+Notwithstanding Section 3 under "Redistributables" in this License Information, any Redistributables identified in the accompanying REDIST file (in original or modified form as permitted in this Agreement) may be distributed by Licensee only to licensed customers of HCL Commerce and only for use by such customers in their licensed HCL Commerce environment. Licensee may also provide any Redistributables in source code form to service providers acting on Licensee's behalf in connection with Licensee's authorized use of the Redistributables, provided that Licensee ensures that such service providers only use the Redistributables for the purpose of Licensee's authorized use and comply with this Agreement.
+
+3.0 Program-unique Terms for Supporting Programs
+
+3.1 IBM Rational Application Developer for WebSphere Software
+
+The Program is accompanied by Rational Application Developer (RAD) for WebSphere Software components. Licensee is authorized to install and use only one copy of RAD for WebSphere Software in association with licensed use of the Program. Licensee is authorized to install and use RAD for WebSphere Software only with and on the same machine as the Program. This is a restricted use RAD license for development associated with the Licensee's use of the Program. Licensee's use of RAD is limited to a single developer license; if Licensee requires additional licenses, they must be purchased separately from HCL.
+
+3.1.1 WebSphere Application Server
+
+The Program is accompanied by multiple copies of WebSphere Application Server, including copies of WebSphere Application Server included in the Program's "unit test environment". Licensee is authorized to install each component of these copies of the WebSphere Application Server on the same machine as the remainder of the Program for use by a single developer for purposes of "unit testing", which is limited to testing of code written or generated by such developer to confirm that such code functions as designed. Licensee is not authorized to use copies of the WebSphere Application Server components installed and used under Unit Test Proofs of Entitlement for the following purposes: testing applications on servers separate from the developer's machine; or simulating production workloads or testing scalability of any code, application or system. The WebSphere Application Server components cannot be used for production purposes.
+
+3.2 IBM DB2
+- Entitlement: No Metric
+- Use Limitations: Use by Principal Program
+
+"No Metric" means this Supporting Program may be installed on as many machines and used by as many persons as is reasonably necessary within the use limitations that apply to this Supporting Program.
+
+"Use by Principal Program" means that the Supporting Program is provided exclusively for use by the Principal Program. Neither Licensee nor any application, program or device is authorized to directly use or access the services of the Supporting Program except Licensee may access the Supporting Program to perform administrative functions for the Supporting Program such as backup, recovery and authorized configuration
+
+Additional Supporting Program Details
+
+The Supporting Program may use a maximum of 16 processor cores and 128 GB of memory on each physical or virtual server; however, if the Supporting Program is used on a cluster of servers configured to work together using database partitioning or other permitted clustering technology, the Supporting Program may use a maximum of 16 processor cores and 128 GB of memory across all virtual or physical servers in that cluster.
+
+

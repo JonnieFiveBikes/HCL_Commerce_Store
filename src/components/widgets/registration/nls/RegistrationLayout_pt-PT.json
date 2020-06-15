@@ -1,0 +1,16 @@
+{
+  "RegistrationLayout": {
+    "NewCustomer": "Novo cliente?",
+    "FirstName": "Primeiro nome",
+    "LastName": "Apelido",
+    "Email": "Email",
+    "Phone": "Telefone (opcional)",
+    "Password": "Palavra-passe",
+    "VerifyPassword": "Verify Password",
+    "TextContent": "Receber ideias de design de interiores enviadas para a sua caixa de entrada",
+    "Register": "Registar-se",
+    "Msgs": {
+      "InvalidFormat": "Invalid format"
+    }
+  }
+}

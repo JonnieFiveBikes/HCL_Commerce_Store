@@ -1,0 +1,37 @@
+{
+  "lastName": "Lucas",
+  "firstName": "David",
+  "country": "US",
+  "zipCode": "dfa",
+  "registrationStatus": "RegisteredPerson",
+  "preferredLanguage": "en_US",
+  "resourceId": "https://localhost:443/wcs/resources/store/12/person/@self",
+  "city": "fda",
+  "distinguishedName": "uid=tester@hcl.com,o=root organization",
+  "orgizationId": "-2001",
+  "addressId": "3074457354533283623",
+  "accountStatus": "Enabled",
+  "profileType": "Business",
+  "state": "dfas",
+  "nickName": "tester@hcl.com",
+  "addressType": "ShippingAndBilling",
+  "resourceName": "person",
+  "addressLine": ["dfas", "", ""],
+  "checkoutProfileUrl": "https://localhost:443/wcs/resources/store/12/person/@self/checkoutProfile",
+  "userId": "5005",
+  "bestCallingTime": "Daytime",
+  "registrationDateTime": "2020-04-25T14:38:20.328Z",
+  "organizationDistinguishedName": "o=root organization",
+  "logonId": "tester@hcl.com",
+  "lastUpdate": "2020-04-25T14:38:20.328Z",
+  "registrationApprovalStatus": "Approved",
+  "contactUrl": "https://localhost:443/wcs/resources/store/12/person/@self/contact",
+  "attributes": [
+    {
+      "bProfileAttrValue": "-2001",
+      "bProfileAttrKey": "organizationId"
+    }
+  ],
+  "passwordExpired": "false",
+  "primary": "true"
+}

@@ -1,0 +1,253 @@
+{
+  "breadCrumbTrailEntryView": [
+    {
+      "label": "Living Room",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "10501",
+      "seo": {
+        "href": "/living-room"
+      }
+    },
+    {
+      "label": "Furniture",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "10502",
+      "seo": {
+        "href": "/furniture"
+      }
+    }
+  ],
+  "facets": [
+    {
+      "value": "price_USD",
+      "name": "OfferPrice_USD",
+      "entry": [
+        {
+          "count": 0,
+          "label": "({* TO 100])",
+          "value": "price_USD%3A%28%7B*+TO+100%5D%29",
+          "extendedData": {
+            "id": "1121141059910195858368584012342328479324948489341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({100 TO 200])",
+          "value": "price_USD%3A%28%7B100+TO+200%5D%29",
+          "extendedData": {
+            "id": "11211410599101958583685840123494848328479325048489341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({200 TO 300])",
+          "value": "price_USD%3A%28%7B200+TO+300%5D%29",
+          "extendedData": {
+            "id": "11211410599101958583685840123504848328479325148489341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({300 TO 400])",
+          "value": "price_USD%3A%28%7B300+TO+400%5D%29",
+          "extendedData": {
+            "id": "11211410599101958583685840123514848328479325248489341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({400 TO 500])",
+          "value": "price_USD%3A%28%7B400+TO+500%5D%29",
+          "extendedData": {
+            "id": "11211410599101958583685840123524848328479325348489341"
+          }
+        },
+        {
+          "count": 1,
+          "label": "({500 TO *})",
+          "value": "price_USD%3A%28%7B500+TO+*%7D%29",
+          "extendedData": {
+            "id": "11211410599101958583685840123534848328479324212541"
+          }
+        }
+      ]
+    },
+    {
+      "value": "mfName_ntk_cs",
+      "entry": [
+        {
+          "label": "Home Design",
+          "value": "mfName_ntk_cs%3A%22Home+Design%22",
+          "count": "1",
+          "extendedData": {
+            "id": "-1002721111091013268101115105103110"
+          }
+        },
+        {
+          "label": "Stockholm",
+          "value": "mfName_ntk_cs%3A%22Stockholm%22",
+          "count": "1",
+          "extendedData": {
+            "id": "-10028311611199107104111108109"
+          }
+        }
+      ],
+      "name": "ManufacturerName",
+      "extendedData": {
+        "allowMultipleValueSelection": true,
+        "maximumValuesToDisplay": 6,
+        "groupId": "0",
+        "allValuesReturned": true,
+        "fname": "Brand",
+        "keyword_search": "1",
+        "propertyname": "facet",
+        "propertyvalue": "mfName_ntk_cs",
+        "displayable": "1",
+        "facet_id": "-1000",
+        "srchattr_id": "-1002",
+        "zero_display": 0,
+        "selection": "1",
+        "group_id": "0",
+        "displaySequence": "0.0",
+        "storeent_id": "0",
+        "sortorder": "1",
+        "max_display": 6,
+        "fdesc": "The manufacturer",
+        "srchattridentifier": "_cat.ManufacturerName"
+      }
+    },
+    {
+      "value": "ads_f_color_ntk_cs",
+      "entry": [
+        {
+          "label": "Blonde",
+          "value": "ads_f_color_ntk_cs%3A%22Blonde%22",
+          "count": "1",
+          "extendedData": {
+            "id": "1000166108111110100101",
+            "sequence": "5.0",
+            "image1": "/images/catalog/swatches/sw_blonde.png",
+            "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+            "unitID": "C62",
+            "unitOfMeasure": "one"
+          },
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png"
+        },
+        {
+          "label": "Cedar",
+          "value": "ads_f_color_ntk_cs%3A%22Cedar%22",
+          "count": "1",
+          "extendedData": {
+            "id": "100016710110097114",
+            "sequence": "10.0",
+            "image1": "/images/catalog/swatches/sw_cedar.png",
+            "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_cedar.png",
+            "unitID": "C62",
+            "unitOfMeasure": "one"
+          },
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_cedar.png"
+        },
+        {
+          "label": "Coffee",
+          "value": "ads_f_color_ntk_cs%3A%22Coffee%22",
+          "count": "1",
+          "extendedData": {
+            "id": "1000167111102102101101",
+            "sequence": "9.0",
+            "image1": "/images/catalog/swatches/sw_coffee.png",
+            "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_coffee.png",
+            "unitID": "C62",
+            "unitOfMeasure": "one"
+          },
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_coffee.png"
+        }
+      ],
+      "name": "Color",
+      "extendedData": {
+        "allowMultipleValueSelection": false,
+        "maximumValuesToDisplay": 20,
+        "groupId": "0",
+        "allValuesReturned": true,
+        "keyword_search": "1",
+        "propertyname": "facet",
+        "propertyvalue": "ads_f_color_ntk_cs",
+        "displayable": "1",
+        "facet_id": "10001",
+        "srchattr_id": "10001",
+        "zero_display": 0,
+        "selection": "0",
+        "group_id": "0",
+        "displaySequence": "1.0",
+        "storeent_id": "12001",
+        "sortorder": "0",
+        "max_display": 20,
+        "srchattridentifier": "_cat.Color"
+      }
+    }
+  ],
+  "contents": [
+    {
+      "hasSingleSKU": false,
+      "buyable": "true",
+      "shortDescription": "A sturdy wooden angled chair that welcomes every guest into your living space in style. Includes a matching movable leg rest.",
+      "parentCatalogGroupID": "/10501/10502",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_350.jpg",
+      "storeID": "12101",
+      "name": "Wooden Angled Chair",
+      "manufacturer": "Home Design",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "800.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "10005",
+          "description": "I",
+          "currency": "USD",
+          "value": "749.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "blonde",
+              "sequence": "5.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "image1": "/images/catalog/swatches/sw_blonde.png",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+              "value": "Blonde",
+              "id": "7000000000000003005"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "0.0",
+          "name": "Color",
+          "facetable": "true",
+          "comparable": "true",
+          "key": "color",
+          "id": "7000000000000000501",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14018",
+      "partNumber": "LR-FNTR-0001",
+      "seo": {
+        "href": "/wooden-angled-chair-lr-fntr-0001"
+      }
+    }
+  ],
+  "metaData": {
+    "price": "1"
+  },
+  "total": 1
+}

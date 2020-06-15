@@ -1,0 +1,20 @@
+{
+  "AddressForm": {
+    "Msgs": {
+      "InvalidFormat": "Formato no válido"
+    },
+    "Labels": {
+      "FirstName": "Nombre",
+      "LastName": "Apellidos",
+      "Address1": "Dirección (línea 1)",
+      "Address2": "Dirección (línea 2)",
+      "City": "Ciudad",
+      "Country": "País",
+      "State": "Estado/Provincia",
+      "ZipCode": "Código postal",
+      "Phone": "Número de teléfono",
+      "Email": "Correo electrónico",
+      "NickName": "Alias de dirección"
+    }
+  }
+}

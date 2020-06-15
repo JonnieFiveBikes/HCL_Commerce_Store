@@ -1,0 +1,10 @@
+{
+  "ReviewOrderSection": {
+    "Title": "Review Order",
+    "Actions": {
+      "Back": "Back to Payment Details",
+      "Next": "Place Order",
+      "NextRecurringOrder": "Place Recurring Order"
+    }
+  }
+}

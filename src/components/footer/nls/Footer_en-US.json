@@ -1,0 +1,19 @@
+{
+  "Footer": {
+    "CompanyLinks": {
+      "Label": "Company",
+      "OurStory": "Our Story",
+      "Careers": "Careers"
+    },
+    "Copyright": "Copyright HCL Technologies Limited 2020. All rights reserved.",
+    "CustomerService": {
+      "Label": "Customer Service",
+      "ContactUs": "Contact Us",
+      "ContactUsDescription": "Contact Us",
+      "PrivacyPolicy": "Privacy Policy"
+    },
+    "FollowUs": "Follow Us",
+    "Description": "This sample storefront is built on React and HCL Commerce. HCL Commerce makes agile commerce @ scale a reality.",
+    "DisabledMessage": "Sorry, this page is still in development."
+  }
+}

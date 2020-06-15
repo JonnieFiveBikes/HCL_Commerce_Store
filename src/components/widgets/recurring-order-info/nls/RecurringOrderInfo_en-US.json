@@ -1,0 +1,12 @@
+{
+  "RecurringOrderInfo": {
+    "Title": "Recurring Order Details",
+    "Labels": {
+      "RecurringOrderNumber": "Recurring Order Number",
+      "OrderSchedule": "Order Schedule",
+      "StartDate": "Start Date",
+      "NextDelivery": "Next Scheduled Order",
+      "OrderHistoryButton": "Order history for {{orderId}}"
+    }
+  }
+}

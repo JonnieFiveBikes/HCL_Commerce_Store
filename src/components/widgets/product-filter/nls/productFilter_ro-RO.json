@@ -1,0 +1,15 @@
+{
+  "ProductFilter": {
+    "Labels": {
+      "filterBy": "Filtrare după",
+      "price": "Price",
+      "minPrice": "min",
+      "maxPrice": "max"
+    },
+    "Actions": {
+      "showMore": "Afişare mai mult",
+      "showLess": "Afişare mai puţin",
+      "Go": "Pornire"
+    }
+  }
+}

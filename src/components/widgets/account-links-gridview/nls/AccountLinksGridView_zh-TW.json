@@ -1,0 +1,11 @@
+{
+  "AccountLinksGridView": {
+    "Title": "網格佈置",
+    "AddressBookText": "通訊錄",
+    "AddressBookDescription": "管理及編輯儲存的地址",
+    "OrderHistoryText": "訂單歷程",
+    "OrderHistoryDescription": "檢視已下的訂單及擱置核准的訂單，以及個別訂單詳細資料",
+    "WishListText": "希望清單",
+    "WishListDescription": "希望清單"
+  }
+}

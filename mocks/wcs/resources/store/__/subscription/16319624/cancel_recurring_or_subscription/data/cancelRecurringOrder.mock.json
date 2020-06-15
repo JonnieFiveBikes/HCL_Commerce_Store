@@ -1,0 +1,5 @@
+{
+  "subscriptionType": ["RecurringOrder"],
+  "state": ["PendingCancel"],
+  "subscriptionId": ["1009"]
+}

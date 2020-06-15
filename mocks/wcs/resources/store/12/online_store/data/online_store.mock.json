@@ -1,0 +1,424 @@
+{
+  "recordSetCount": 1,
+  "resourceId": "https://localhost:443/wcs/resources/store/12/online_store",
+  "recordSetStartNumber": 0,
+  "resourceName": "store",
+  "resultList": [
+    {
+      "identifier": "Sapphire",
+      "locationInfo": [
+        {
+          "address": {
+            "country": "CA",
+            "city": "Clothesville",
+            "zipOrPostalCode": "Lxx 1xx",
+            "addressLine": ["12xx Martindale Avenue", "Suite 9xx", null],
+            "stateOrProvinceName": "ON"
+          },
+          "languageId": "-1",
+          "emailAddress1": "info@Sapphire.xxx",
+          "telephone1": "1-800-555-1234",
+          "contactInfoIdentifier": {
+            "contactPersonNickName": "Sapphire location_en_US",
+            "contactInfoId": "14002"
+          },
+          "fax1": "1-800-555-4321",
+          "contactPersonBusinessTitle": "Sapphire"
+        }
+      ],
+      "relatedStores": [
+        {
+          "relationshipType": "-34",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-34",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-33",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-33",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-32",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-32",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-31",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-31",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-29",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-29",
+          "relatedStoreId": "10501",
+          "relationshipSequence": "2.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-29",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-26",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-26",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-25",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-25",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-24",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-24",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-23",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-23",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-22",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-22",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-21",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-21",
+          "relatedStoreId": "10501",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-20",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-20",
+          "relatedStoreId": "10501",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-19",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-19",
+          "relatedStoreId": "10501",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-18",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-18",
+          "relatedStoreId": "10501",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-17",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-17",
+          "relatedStoreId": "10501",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-16",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-16",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-14",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-14",
+          "relatedStoreId": "10501",
+          "relationshipSequence": "2.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-14",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-11",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-11",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-10",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-10",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-9",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-9",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-7",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-7",
+          "relatedStoreId": "10501",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-5",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-5",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-4",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-4",
+          "relatedStoreId": "10501",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-3",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-3",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-2",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-2",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-1",
+          "relatedStoreId": "12",
+          "relationshipSequence": "0.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-1",
+          "relatedStoreId": "10501",
+          "relationshipSequence": "1.0",
+          "state": "1"
+        },
+        {
+          "relationshipType": "-1",
+          "relatedStoreId": "13001",
+          "relationshipSequence": "2.0",
+          "state": "1"
+        }
+      ],
+      "storeType": "BMH",
+      "userData": {
+        "wc.price.variant": "enabled"
+      },
+      "contactInfo": [
+        {
+          "address": {
+            "country": "CA",
+            "city": "Clothesville",
+            "zipOrPostalCode": "Lxx 1xx",
+            "addressLine": ["12xx Martindale Avenue", "Suite 9xx", null],
+            "stateOrProvinceName": "ON"
+          },
+          "languageId": "-1",
+          "emailAddress1": "info@Sapphire.xxx",
+          "telephone1": "1-800-555-1234",
+          "contactInfoIdentifier": {
+            "contactPersonNickName": "Sapphire contact_en_US",
+            "contactPersonId": "-11001",
+            "contactInfoId": "14001"
+          },
+          "fax1": "1-800-555-4321",
+          "contactPersonBusinessTitle": "Sapphire"
+        }
+      ],
+      "description": [
+        {
+          "displayName": "Sapphire",
+          "languageId": "-1",
+          "description": "Commerce Model Store entity"
+        }
+      ],
+      "defaultCatalog": [
+        {
+          "userData": {
+            "userDataField": []
+          },
+          "catalogIdentifier": {
+            "externalIdentifier": null,
+            "uniqueID": "10501"
+          },
+          "storeIdentifier": {
+            "externalIdentifier": null,
+            "uniqueID": "12"
+          },
+          "uniqueID": "11501"
+        }
+      ],
+      "storeId": "12",
+      "ownerId": "-11001",
+      "supportedCurrencies": {
+        "supportedCurrencies": ["USD"],
+        "defaultCurrency": "USD"
+      },
+      "supportedLanguages": {
+        "supportedLanguages": ["-1"],
+        "defaultLanguageId": "-1"
+      },
+      "state": "open"
+    }
+  ],
+  "recordSetTotal": 1,
+  "recordSetComplete": true
+}

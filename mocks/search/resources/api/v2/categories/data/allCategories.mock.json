@@ -1,0 +1,87 @@
+{
+  "contents": [
+    {
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/category/dep_livingroom.jpg",
+      "name": "Living Room",
+      "identifier": "LivingRoom",
+      "storeID": "12101",
+      "id": "10501",
+      "sequence": 1.0,
+      "description": "Bring your living space together with comfort and style",
+      "seo": {
+        "href": "/living-room"
+      },
+      "children": [
+        "/search/resources/api/v2/categories?storeId=12101&id=10502",
+        "/search/resources/api/v2/categories?storeId=12101&id=10503",
+        "/search/resources/api/v2/categories?storeId=12101&id=10504"
+      ]
+    },
+    {
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/diningroom/category/dep_diningroom.jpg",
+      "name": "Dining Room",
+      "identifier": "DiningRoom",
+      "storeID": "12101",
+      "id": "10505",
+      "sequence": 2.0,
+      "description": "Entertain your guests with dining room furniture and decor that fits any space",
+      "seo": {
+        "href": "/dining-room"
+      },
+      "children": [
+        "/search/resources/api/v2/categories?storeId=12101&id=10506",
+        "/search/resources/api/v2/categories?storeId=12101&id=10507",
+        "/search/resources/api/v2/categories?storeId=12101&id=10508"
+      ]
+    },
+    {
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/bathroom/category/dep_bathroom.jpg",
+      "name": "Bath",
+      "identifier": "Bath",
+      "storeID": "12101",
+      "id": "10509",
+      "sequence": 3.0,
+      "description": "Modernize your bath space with a variety of vanity fixtures and lighting options",
+      "seo": {
+        "href": "/bath"
+      },
+      "children": [
+        "/search/resources/api/v2/categories?storeId=12101&id=10510",
+        "/search/resources/api/v2/categories?storeId=12101&id=10511",
+        "/search/resources/api/v2/categories?storeId=12101&id=10512"
+      ]
+    },
+    {
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/bedroom/category/dep_bedroom.jpg",
+      "name": "Bedroom",
+      "identifier": "Bedroom",
+      "storeID": "12101",
+      "id": "10513",
+      "sequence": 4.0,
+      "description": "Furnish your bedrooms in style and make them your own",
+      "seo": {
+        "href": "/bedroom"
+      },
+      "children": [
+        "/search/resources/api/v2/categories?storeId=12101&id=10514",
+        "/search/resources/api/v2/categories?storeId=12101&id=10515"
+      ]
+    },
+    {
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/kitchen/category/dep_kitchen.jpg",
+      "name": "Kitchen",
+      "identifier": "Kitchen",
+      "storeID": "12101",
+      "id": "10516",
+      "sequence": 5.0,
+      "description": "Create a kitchen that suits your needs and fits your lifestyle",
+      "seo": {
+        "href": "/kitchen"
+      },
+      "children": [
+        "/search/resources/api/v2/categories?storeId=12101&id=10517",
+        "/search/resources/api/v2/categories?storeId=12101&id=10518"
+      ]
+    }
+  ]
+}

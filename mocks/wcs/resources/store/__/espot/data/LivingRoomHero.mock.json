@@ -1,0 +1,51 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "defaultContentDisplaySequence": [
+        {
+          "resultId": "12059",
+          "resultFormat": "MarketingContent",
+          "displaySequence": "1.0"
+        }
+      ],
+      "marketingSpotIdentifier": "13059",
+      "behavior": "0",
+      "eSpotName": "LivingRoomHero",
+      "baseMarketingSpotActivityData": [
+        {
+          "contentFormatName": "Text",
+          "baseMarketingSpotActivityName": "LivingRoomHeroContent",
+          "contentClickAction": "Single",
+          "contentId": "12059",
+          "baseMarketingSpotActivityID": "12059",
+          "contentName": "LivingRoomHeroContent",
+          "baseMarketingSpotDataType": "MarketingContent",
+          "contentUrl": "/furniture",
+          "activityIdentifierID": "0",
+          "MarketingContentDescription": [{}],
+          "marketingContentDescription": [
+            {
+              "marketingText": "<div class=\"MuiGrid-root MuiGrid-container marketing-content marketing-backgroundImage marketing-heroImage LivingRoomHeroContent\" style=\"background-image: url('/EmeraldSAS/images/rooms/livingroom.jpg');\"><div class=\"MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8 MuiGrid-grid-md-6 MuiGrid-grid-lg-5 marketing-text marketing-text-vertical-center\" ><h2 class=\"MuiTypography-root MuiTypography-h2 bottom-margin-1\">Living Room</h2><h5 class=\"MuiTypography-root MuiTypography-h5 bottom-margin-2\">Bring your living space together with comfort and style.</h5><a href=\"/sign-in\"><button class=\"marketing-button\" tabindex=\"0\" type=\"text\"><span class=\"MuiButton-label\">Shop Furniture</span></button></a></div></div>",
+              "language": "-1"
+            }
+          ],
+          "contentFormatId": "2",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingKey": "mktActivityDescription"
+            },
+            {
+              "baseMarketingValue": "1.0",
+              "baseMarketingKey": "displaySequence"
+            }
+          ],
+          "contentStoreId": "12051"
+        }
+      ]
+    }
+  ],
+  "resourceId": "http://localhost:80/wcs/resources/store/12101/espot/LivingRoomHero?catalogId=11051&name=LivingRoomHero",
+  "resourceName": "espot"
+}

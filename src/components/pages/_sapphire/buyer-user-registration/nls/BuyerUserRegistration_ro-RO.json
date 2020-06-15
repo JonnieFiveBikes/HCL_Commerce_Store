@@ -1,0 +1,31 @@
+{
+  "BuyerUserRegistration": {
+    "Title": "Înregistra?i-vã ca un cumpãrãtor în organiza?ia dvs.",
+    "Description": "Dacã organiza?ia dvs. are deja un cont la acest magazin, înregistra?i-vã singur pentru a putea cumpãra din cont ?i plasa comenzi. Atunci când înregistrarea se aprobã, vã pute?i autentifica în magazin ?i pute?i cumpãra.",
+    "OrgName": "Organiza?ie",
+    "Email": "E-mail",
+    "Address1": "Adresã stradã - Linia 1",
+    "Address2": "Adresã stradã - Linia 2",
+    "City": "Ora?",
+    "Country": "?arã",
+    "State": "Stat",
+    "ZipCode": "Cod zip",
+    "FirstName": "Prenume",
+    "LastName": "Nume de familie",
+    "LogonId": "Id conectare",
+    "Phone": "Telefon",
+    "Password": "Parolã",
+    "Password2": "Verificare parolã",
+    "Language": "Limbã preferatã",
+    "Currency": "Valutã preferatã",
+    "Submit": "Trimitere",
+    "Clear": "Golire",
+    "USD": "Dolar SUA",
+    "USEnglish": "Englezã SUA",
+    "Success": "Solicitarea de activare a contului dvs. a fost primitã. Activa?i-vã contul pentru conectare.",
+    "OK": "OK",
+    "Msgs": {
+      "InvalidFormat": "Invalid format"
+    }
+  }
+}

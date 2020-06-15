@@ -1,0 +1,8 @@
+{
+  "OrderBillingInfo": {
+    "Title": "账单",
+    "Labels": {
+      "BillAddress": "Billing Address"
+    }
+  }
+}

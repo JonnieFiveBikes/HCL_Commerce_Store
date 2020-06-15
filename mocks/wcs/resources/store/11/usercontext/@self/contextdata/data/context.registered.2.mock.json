@@ -1,0 +1,33 @@
+{
+  "audit": {
+    "personalizationId": "1587149102186-16"
+  },
+  "globalization": {
+    "preferredCurrency": "USD",
+    "languageId": -1,
+    "currency": "USD",
+    "preferredLanguageId": -1
+  },
+  "bcsversion": {
+    "lastUpdateTime": "1588274018268"
+  },
+  "resourceName": "usercontext",
+  "entitlement": {
+    "eligibleTradingAgreementIds": [-11005],
+    "hostingContractId": -11004,
+    "currentTradingAgreementIds": [-11005],
+    "activeOrganizationId": -2000,
+    "sessionTradingAgreementIds": null
+  },
+  "activityToken": {
+    "activityId": 10109
+  },
+  "isPartiallyAuthenticated": false,
+  "basicInfo": {
+    "runAsId": 2,
+    "callerId": 2,
+    "registerType": "R",
+    "storeId": 11,
+    "channelId": -4
+  }
+}

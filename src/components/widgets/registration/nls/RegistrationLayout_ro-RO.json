@@ -1,0 +1,16 @@
+{
+  "RegistrationLayout": {
+    "NewCustomer": "Client nou?",
+    "FirstName": "Prenume",
+    "LastName": "Nume de familie",
+    "Email": "Email",
+    "Phone": "Telefon (opțional)",
+    "Password": "Parolă",
+    "VerifyPassword": "Verify Password",
+    "TextContent": "Primiți idei de design pentru locuință în inboxul dvs.",
+    "Register": "Înregistrare",
+    "Msgs": {
+      "InvalidFormat": "Invalid format"
+    }
+  }
+}

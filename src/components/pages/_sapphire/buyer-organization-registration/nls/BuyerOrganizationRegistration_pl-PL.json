@@ -1,0 +1,34 @@
+{
+  "BuyerOrganizationRegistration": {
+    "Title": "Zarejestruj swoj¹ organizacjê",
+    "Description": "Zarejestruj swoj¹ organizacjê, aby rozpocz¹æ proces konfiguracji konta w tym sklepie. Po zatwierdzeniu rejestracji administrator z Twojej organizacji bêdzie móg³ siê zalogowaæ i zarejestrowaæ kupuj¹cych. Kupuj¹cy bêd¹ mogli równie¿ zarejestrowaæ siê sami.",
+    "OrgDetails": "Podaj dane swojej organizacji",
+    "UserDetails": "Podaj dane osoby, która bêdzie administratorem organizacji i bêdzie zarz¹dza³a kupuj¹cymi",
+    "OrgName": "Nazwa organizacji",
+    "Email": "Adres e-mail",
+    "Address1": "1. wiersz adresu (ulica)",
+    "Address2": "2. wiersz adresu (ulica)",
+    "City": "Miejscowoœæ",
+    "Country": "Kraj",
+    "State": "Województwo",
+    "ZipCode": "Kod pocztowy",
+    "FirstName": "Imiê",
+    "LastName": "Nazwisko",
+    "LogonId": "Identyfikator logowania",
+    "Phone": "Telefon",
+    "Password": "Has³o",
+    "Password2": "PotwierdŸ has³o",
+    "Language": "Preferowany jêzyk",
+    "Currency": "Preferowana waluta",
+    "UseOrg": "U¿yj adresu organizacji",
+    "Submit": "Wyœlij",
+    "Clear": "Wyczyœæ",
+    "USD": "USD",
+    "USEnglish": "Angielski - Stany Zjednoczone",
+    "Success": "Otrzymano Twoje ¿¹danie rejestracji. Twoje konto oczekuje na zatwierdzenie. Do czasu zatwierdzenia konta nie mo¿esz siê zalogowaæ.",
+    "OK": "OK",
+    "Msgs": {
+      "InvalidFormat": "Invalid format"
+    }
+  }
+}

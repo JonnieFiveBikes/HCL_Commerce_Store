@@ -1,0 +1,11 @@
+{
+  "AccountLinks": {
+    "Title": "Kontoeinstellungen",
+    "PersonalInformationText": "Persönliche Informationen",
+    "PersonalInformationDescription": "Persönliche Kontoinformationen anzeigen und bearbeiten",
+    "AddressBookText": "Adressbuch",
+    "AddressBookDescription": "Ihre gespeicherten Adresse verwalten und bearbeiten",
+
+    "DisabledMessage": "Sorry, this page is still in development."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "contents": [
+    {
+      "id": 11004,
+      "identifier": "decoration",
+      "status": 1,
+      "tokenName": "CategoryToken",
+      "tokenValue": "10504",
+      "tokenExternalValue": "Decoration",
+      "storeId": "12101",
+      "language": "en_US",
+      "redirect": "",
+      "page": {
+        "name": "CATEGORY_PAGE",
+        "type": "ProductListPage",
+        "layout": "",
+        "title": "Decoration | Emerald",
+        "metaKeyword": "rugs, lamps, art, candles",
+        "metaDescription": "Versatile pieces to accent all your surfaces and walls",
+        "imageAlternateDescription": "Image for Decoration from Emerald"
+      }
+    }
+  ]
+}

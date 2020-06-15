@@ -1,0 +1,15 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+{
+   "resultList": [
+      {
+         "inventorySystem": -2,
+         "defaultCurrency": "USD",
+         "storeName": "Sapphire",
+         "defaultLanguageId": "-1",
+         "storeId": "12",
+         "defaultCatalogId": "10501"
+      }
+   ]
+}

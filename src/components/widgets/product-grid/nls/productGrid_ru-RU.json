@@ -1,0 +1,19 @@
+{
+  "ProductGrid": {
+    "Labels": {
+      "filteredBy": "Отфильтровано по:",
+      "productFound": "{{count}} продукт найден по",
+      "productFound_plural": "{{count}} прод. найдено по",
+      "productSearchFound": "{{count}} продукт найден по запросу \"{{searchTerm}}\"",
+      "productSearchFound_plural": "{{count}} прод. найдено по запросу \"{{searchTerm}}\"",
+      "noMatches": "0 совпадений по запросу \"{{searchTerm}}\".",
+      "searchAgain": "По вашему запросу \"{{searchTerm}}\" результаты не найдены. Попробуйте выполнить поиск с другими условиями.",
+      "suggestion": "Возможно, вы имели ввиду: ",
+      "noProductsFound": "Для поиска по запросу <b>{{keyword}}</b> совпадений не обнаружено. <br/>Повторите поиск с другим условием или просмотрите наши рекомендации",
+      "noProductsFoundForFilter": "Не найдено результатов для выбранного фильтра."
+    },
+    "Actions": {
+      "clearAll": "Очистить все"
+    }
+  }
+}

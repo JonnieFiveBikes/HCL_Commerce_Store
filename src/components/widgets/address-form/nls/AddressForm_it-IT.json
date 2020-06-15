@@ -1,0 +1,20 @@
+{
+  "AddressForm": {
+    "Msgs": {
+      "InvalidFormat": "Formato non valido"
+    },
+    "Labels": {
+      "FirstName": "Nome",
+      "LastName": "Cognome",
+      "Address1": "Riga 1 indirizzo",
+      "Address2": "Riga 2 indirizzo",
+      "City": "Città",
+      "Country": "Paese",
+      "State": "Stato/Provincia",
+      "ZipCode": "CAP/Codice postale",
+      "Phone": "Numero di telefono",
+      "Email": "E-mail",
+      "NickName": "Nome alternativo indirizzo"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "AddressForm": {
+    "Msgs": {
+      "InvalidFormat": "無效格式"
+    },
+    "Labels": {
+      "FirstName": "名字",
+      "LastName": "姓氏",
+      "Address1": "地址行 1",
+      "Address2": "地址行 2",
+      "City": "城市",
+      "Country": "國家/地區",
+      "State": "州/省（縣/市）",
+      "ZipCode": "郵遞區號",
+      "Phone": "電話號碼",
+      "Email": "電子郵件",
+      "NickName": "地址暱稱"
+    }
+  }
+}

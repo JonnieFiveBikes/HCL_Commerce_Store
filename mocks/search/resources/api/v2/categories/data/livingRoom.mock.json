@@ -1,0 +1,25 @@
+{
+  "contents": [
+    {
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/category/dep_livingroom.jpg",
+      "seo": {
+        "href": "/living-room"
+      },
+      "name": "Living Room",
+      "identifier": "LivingRoom",
+      "storeID": "11",
+      "id": "10501",
+      "links": {
+        "children": [
+          "href: /search/resources/api/v2/categories?storeId=11&id=10502",
+          "href: /search/resources/api/v2/categories?storeId=11&id=10503",
+          "href: /search/resources/api/v2/categories?storeId=11&id=10504"
+        ],
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10501"
+        }
+      },
+      "description": "Bring your living space together with comfort and style"
+    }
+  ]
+}

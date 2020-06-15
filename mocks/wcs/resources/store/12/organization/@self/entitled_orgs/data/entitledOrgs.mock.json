@@ -1,0 +1,26 @@
+{
+  "entitledOrganizations": [
+    {
+      "organizationId": -2001,
+      "organizationName": "Root Organization",
+      "displayName": "Root Organization",
+      "distinguishedName": "o=root organization",
+      "memberId": -2001
+    },
+    {
+      "organizationId": 7000000000000003001,
+      "organizationName": "Buyer A Organization",
+      "displayName": "Buyer A Organization",
+      "distinguishedName": "o=buyer a organization,o=root organization",
+      "memberId": 7000000000000003001
+    },
+    {
+      "organizationId": 7000000000000003002,
+      "organizationName": "Buyer B Organization",
+      "displayName": "Buyer B Organization",
+      "distinguishedName": "o=buyer b organization,o=root organization",
+      "memberId": 7000000000000003002
+    }
+  ],
+  "accountCheck": true
+}

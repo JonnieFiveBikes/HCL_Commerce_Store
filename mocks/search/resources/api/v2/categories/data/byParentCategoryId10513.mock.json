@@ -1,0 +1,44 @@
+{
+  "contents": [
+    {
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/bedroom/category/beds.jpg",
+      "seo": {
+        "href": "/beds"
+      },
+      "name": "Beds",
+      "identifier": "Beds",
+      "storeID": "11",
+      "sequence": "1.0",
+      "id": "10514",
+      "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10513"
+        },
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10514"
+        }
+      },
+      "description": "Functional and space-saving beds to extend any sleeping space"
+    },
+    {
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/bedroom/category/dressers.jpg",
+      "seo": {
+        "href": "/dressers"
+      },
+      "name": "Dressers",
+      "identifier": "Dressers",
+      "storeID": "11",
+      "sequence": "2.0",
+      "id": "10515",
+      "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10513"
+        },
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10515"
+        }
+      },
+      "description": "Highly-functional dressers that maximize both storage space and function"
+    }
+  ]
+}

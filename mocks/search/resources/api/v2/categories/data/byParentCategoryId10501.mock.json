@@ -1,0 +1,64 @@
+{
+  "contents": [
+    {
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/category/furniture.jpg",
+      "seo": {
+        "href": "/furniture"
+      },
+      "name": "Furniture",
+      "identifier": "LivingRoomFurniture",
+      "storeID": "11",
+      "sequence": "1.0",
+      "id": "10502",
+      "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10501"
+        },
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10502"
+        }
+      },
+      "description": "Beautiful chairs, couches and tables that fit any decor"
+    },
+    {
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/category/livingroom-lighting.jpg",
+      "seo": {
+        "href": "/lighting-livingroomlighting"
+      },
+      "name": "Lighting",
+      "identifier": "LivingRoomLighting",
+      "storeID": "11",
+      "sequence": "2.0",
+      "id": "10503",
+      "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10501"
+        },
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10503"
+        }
+      },
+      "description": "Illuminate your living room with a variety of pendant lights and chandeliers"
+    },
+    {
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/category/decoration.jpg",
+      "seo": {
+        "href": "/decoration"
+      },
+      "name": "Decoration",
+      "identifier": "Decoration",
+      "storeID": "11",
+      "sequence": "3.0",
+      "id": "10504",
+      "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10501"
+        },
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10504"
+        }
+      },
+      "description": "Versatile pieces to accent all your surfaces and walls"
+    }
+  ]
+}

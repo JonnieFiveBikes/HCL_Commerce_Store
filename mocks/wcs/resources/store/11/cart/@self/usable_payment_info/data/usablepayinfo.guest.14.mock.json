@@ -1,0 +1,71 @@
+{
+  "resourceId": "https://localhost:443/wcs/resources/store/11/cart/@self/usable_payment_info?langId=-1",
+  "orderId": "7307966",
+  "resourceName": "cart",
+  "usablePaymentInformation": [
+    {
+      "xumet_policyId": "-12001",
+      "paymentTermConditionId": "",
+      "description": "Apple Pay",
+      "xumet_attrPageName": "SimplePunchout",
+      "language": "-1",
+      "paymentMethodName": "ApplePay"
+    },
+    {
+      "xumet_policyId": "14506",
+      "paymentTermConditionId": "",
+      "description": "Cash on delivery",
+      "xumet_attrPageName": "StandardCOD",
+      "language": "-1",
+      "paymentMethodName": "COD"
+    },
+    {
+      "xumet_policyId": "14504",
+      "paymentTermConditionId": "",
+      "description": "Bill me later",
+      "xumet_attrPageName": "StandardBillMeLater",
+      "language": "-1",
+      "paymentMethodName": "BillMeLater"
+    },
+    {
+      "xumet_policyId": "14507",
+      "paymentTermConditionId": "",
+      "description": "MasterCard Credit Card",
+      "xumet_attrPageName": "StandardMasterCard",
+      "language": "-1",
+      "paymentMethodName": "Master Card"
+    },
+    {
+      "xumet_policyId": "14508",
+      "paymentTermConditionId": "",
+      "description": "Pay later",
+      "xumet_attrPageName": "StandardPayLater",
+      "language": "-1",
+      "paymentMethodName": "PayLater"
+    },
+    {
+      "xumet_policyId": "14509",
+      "paymentTermConditionId": "",
+      "description": "VISA Credit Card",
+      "xumet_attrPageName": "StandardVisa",
+      "language": "-1",
+      "paymentMethodName": "VISA"
+    },
+    {
+      "xumet_policyId": "14505",
+      "paymentTermConditionId": "",
+      "description": "Check",
+      "xumet_attrPageName": "StandardCheck",
+      "language": "-1",
+      "paymentMethodName": "Check"
+    },
+    {
+      "xumet_policyId": "14503",
+      "paymentTermConditionId": "",
+      "description": "American Express Credit Card",
+      "xumet_attrPageName": "StandardAmex",
+      "language": "-1",
+      "paymentMethodName": "AMEX"
+    }
+  ]
+}

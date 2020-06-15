@@ -1,0 +1,47 @@
+{
+  "Order": [
+    {
+      "orderTypeCode": "REC",
+      "totalShippingCharge": "0.00000",
+      "orderId": "8074503",
+      "lastUpdateDate": "2020-05-07T05:00:01.411Z",
+      "channel": {
+        "channelIdentifer": { "channelName": "Telesales", "uniqueID": "-4" },
+        "userData": null,
+        "description": {
+          "language": "-1",
+          "value": "Used when operations performed by a telesales representative."
+        }
+      },
+      "orderStatus": "M",
+      "x_isPurchaseOrderNumberRequired": "false",
+      "totalShippingChargeCurrency": "USD",
+      "buyerId": "44",
+      "grandTotalCurrency": "USD",
+      "buyerDistinguishedName": "uid=derek.xu@hcl.ca,o=default organization,o=root organization",
+      "x_isPersonalAddressesAllowedForShipping": "true",
+      "storeNameIdentifier": "Sapphire",
+      "totalProductPriceCurrency": "USD",
+      "totalProductPrice": "8.20000",
+      "locked": "false",
+      "placedDate": "2020-05-07T05:00:01.406Z",
+      "totalAdjustmentCurrency": "USD",
+      "totalSalesTaxCurrency": "USD",
+      "totalSalesTax": "0.00000",
+      "grandTotal": "8.20000",
+      "storeUniqueID": "12",
+      "shipAsComplete": "true",
+      "x_trackingIds": "",
+      "totalShippingTax": "0.00000",
+      "prepareIndicator": "true",
+      "totalShippingTaxCurrency": "USD",
+      "totalAdjustment": "0.00000"
+    }
+  ],
+  "recordSetCount": "1",
+  "resourceId": "https://10.190.66.159:5443/wcs/resources/store/12/order?orderId=1059485520&pageNumber=1&pageSize=5&q=findByParentOrderId&langId=-1",
+  "recordSetStartNumber": "0",
+  "resourceName": "order",
+  "recordSetTotal": "1",
+  "recordSetComplete": "true"
+}

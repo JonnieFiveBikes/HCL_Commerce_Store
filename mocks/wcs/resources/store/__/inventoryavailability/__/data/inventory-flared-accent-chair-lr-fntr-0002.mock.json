@@ -1,0 +1,14 @@
+{
+  "InventoryAvailability": [
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Stockholm",
+      "productId": "14024",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "onlineStoreId": "12101"
+    }
+  ],
+  "resourceId": "https://localhost:443/wcs/resources/store/12101/inventoryavailability/14024?physicalStoreId=",
+  "resourceName": "inventoryavailability"
+}

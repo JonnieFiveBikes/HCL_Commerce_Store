@@ -1,0 +1,44 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "marketingSpotIdentifier": "13016",
+      "behavior": "0",
+      "eSpotName": "Home_CategoryRec",
+      "baseMarketingSpotActivityData": [
+        {
+          "baseMarketingSpotDataType": "CatalogGroupId",
+          "baseMarketingSpotActivityName": "10516",
+          "activityIdentifierID": "11004",
+          "activityFormat": "web",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingValue": "Display category recommendations on the home page.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "activityIdentifierName": "Home recommended categories",
+          "baseMarketingSpotActivityID": "10516"
+        },
+        {
+          "baseMarketingSpotDataType": "CatalogGroupId",
+          "baseMarketingSpotActivityName": "10501",
+          "activityIdentifierID": "11004",
+          "activityFormat": "web",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingValue": "Display category recommendations on the home page.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "activityIdentifierName": "Home recommended categories",
+          "baseMarketingSpotActivityID": "10501"
+        }
+      ]
+    }
+  ],
+  "resourceId": "https://10.190.66.159:5443/wcs/resources/store/11/espot/Home_CategoryRec?catalogId=11501&name=Home_CategoryRec&langId=-1&DM_ReturnCatalogGroupId=true&DM_ReturnCatalogEntryId=true",
+  "resourceName": "espot"
+}

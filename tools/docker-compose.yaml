@@ -1,0 +1,27 @@
+---
+#==================================================
+# Licensed Materials - Property of HCL Technologies
+#
+# HCL Commerce
+#
+# (C) Copyright HCL Technologies Limited 2020
+#
+#==================================================
+#
+# sample docker compose file for developer
+# run docker-compose pull && docker-compose up -d to ensure latest image.
+version: "2.1"
+services:
+  store-web:
+    image: comlnx94.prod.hclpnp.com/9.1/store-web:v9-latest
+    hostname: store_web
+    environment:
+      - LICENSE=accept
+      - TXN_HOST=10.190.66.159
+      - SEARCH_HOST=10.190.66.159
+    ports:
+      - 6443:6443
+    # volumes:
+    #   - .config:/SETUP/config
+    healthcheck:
+      test: curl -f -k -sS https://localhost:6443/.healthcheck

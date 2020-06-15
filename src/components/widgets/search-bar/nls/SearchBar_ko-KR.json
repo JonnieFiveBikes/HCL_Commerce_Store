@@ -1,0 +1,9 @@
+{
+  "SearchBar": {
+    "SearchField": "검색",
+    "KeywordTitle": "키워드",
+    "CategoryTitle": "CATEGORY",
+    "BrandTitle": "BRAND",
+    "Clear": "Clear search"
+  }
+}

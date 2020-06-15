@@ -1,0 +1,19 @@
+{
+  "ProductGrid": {
+    "Labels": {
+      "filteredBy": "篩選依據：",
+      "productFound": "搜尋「<b>{{searchTerm}}</b>」找到 {{count}} 項產品",
+      "productFound_plural": "搜尋「<b>{{searchTerm}}</b>」找到 {{count}} 項產品",
+      "productSearchFound": "搜尋「<b>{{searchTerm}}</b>」找到 {{count}} 項產品",
+      "productSearchFound_plural": "搜尋「<b>{{searchTerm}}</b>」找到 {{count}} 項產品",
+      "noMatches": "搜尋「{{searchTerm}}」找到 0 個相符的項目。",
+      "searchAgain": "很抱歉，搜尋「{{searchTerm}}」未能傳回任何結果。請嘗試搜尋其他字詞。",
+      "suggestion": "您指的是： ",
+      "noProductsFound": "搜尋「<b>{{keyword}}</b>」未能傳回任何符合度高的結果。<br/>請嘗試使用其他字詞再搜尋一次，或瀏覽我們的推薦商品",
+      "noProductsFoundForFilter": "抱歉，選取的篩選器找不到任何結果。"
+    },
+    "Actions": {
+      "clearAll": "全部清除"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "associatedPromotions": [
+    {
+      "code": "Furniture Category Discount",
+      "endDate": "2999-12-31 23:59:59.0",
+      "description": {
+        "longDescription": "Save 20% on all Furniture items! No restrictions!",
+        "shortDescription": "Save 20% on Furniture!",
+        "langId": "-1"
+      },
+      "associatePromotionId": "11511",
+      "startDate": "2004-01-01 00:00:00.0"
+    }
+  ]
+}

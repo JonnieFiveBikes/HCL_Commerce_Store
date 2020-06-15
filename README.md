@@ -201,6 +201,18 @@ To develop a B2B store:
    - In `src/configs/routes.ts` update `ROUTE_CONFIG` so that B2B and B2C have different a component in route.
    - Use `useSite` hook to get site information, a `isB2B` flag is available once the site info is ready. This flag can be used in the components to separate B2B and B2C logic.
 
+### Storybook
+
+We are using [Storybook](https://storybook.js.org/docs/basics/introduction/) as developer documentation for UI components. To view Storybook, run `npm run storybook`.
+
+### Material Table
+
+We use the [Material Table](https://material-table.com/#/docs/get-started/) as a reusable table component.
+
+### Styled Components
+
+We use [styled-components](https://styled-components.com/) is used as the primary way of applying CSS to React components.
+
 ## Start docker container
 
 1. The docker image is based on IHS base docker image and packaged the dist asset built from this project.
@@ -238,16 +250,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
-## Storybook
-
-### Run Storybook `npm run storybook`
-
-## Setup Notes
-
-[Setting up Storybook with Material UI and Styled Components](https://medium.com/encode/setting-up-storybook-with-material-ui-and-styled-components-5bdacb6db866)
-
-## Material Table
-
-[Props documentation](https://material-table.com/#/docs/all-props)
-[material-table/README.md](https://github.com/mbrn/material-table/blob/master/README.md)

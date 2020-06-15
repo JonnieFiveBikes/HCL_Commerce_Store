@@ -35,6 +35,10 @@ const mockPathRewrite = (path, req) => {
     /contractId=[-]*\d+/,
     "contractId=4000000000000000503"
   );
+  newPath = newPath.replace(
+    /activeOrgId=[-]*\d+/,
+    "activeOrgId=7000000000000003002"
+  );
   newPath = newPath.replace(/orderId=\d+/, "orderId=mockOrderId");
   newPath = newPath.replace(/pageSize=\d+/, "pageSize=5");
   newPath = newPath.replace(/pageNumber=\d+/, "pageNumber=1");
@@ -78,6 +82,7 @@ const transactionProxyContext = useMock()
   ? {
       target: MOCK_HOST,
       ...options,
+      pathRewrite: mockPathRewrite,
     }
   : {
       target: TRANSACTION_HOST,

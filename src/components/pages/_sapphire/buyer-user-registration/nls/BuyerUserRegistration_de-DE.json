@@ -1,0 +1,31 @@
+{
+  "BuyerUserRegistration": {
+    "Title": "Als Käufer in Ihrer Organisation registrieren",
+    "Description": "Wenn Ihre Organisation bereits ein Konto bei diesem Geschäft hat, registrieren Sie sich selbst, damit Sie unter dem Konto einkaufen und Bestellungen aufgeben können. Wenn Ihre Registrierung genehmigt wurde, können Sie sich im Geschäft anmelden und einkaufen.",
+    "OrgName": "Organisation",
+    "Email": "E-Mail-Adresse",
+    "Address1": "Straßenadresse Zeile 1",
+    "Address2": "Straßenadresse Zeile 2",
+    "City": "Stadt",
+    "Country": "Land",
+    "State": "Bundesland",
+    "ZipCode": "Postleitzahl",
+    "FirstName": "Vorname",
+    "LastName": "Nachname",
+    "LogonId": "Anmelde-ID",
+    "Phone": "Telefon",
+    "Password": "Kennwort",
+    "Password2": "Kennwort bestätigen",
+    "Language": "Bevorzugte Sprache",
+    "Currency": "Bevorzugte Währung",
+    "Submit": "Senden",
+    "Clear": "Löschen",
+    "USD": "US-Dollar",
+    "USEnglish": "US-Englisch",
+    "Success": "Ihre Kontoaktivierungsanfrage wurde empfangen. Aktivieren Sie Ihr Konto, um sich anzumelden.",
+    "OK": "OK",
+    "Msgs": {
+      "InvalidFormat": "Invalid format"
+    }
+  }
+}

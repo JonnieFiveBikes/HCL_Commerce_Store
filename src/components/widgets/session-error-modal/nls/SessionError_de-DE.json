@@ -1,0 +1,15 @@
+{
+   "SessionError":{
+      "TimeoutTitle":"Zeitlimit der Sitzung überschritten",
+      "InvalidTitle":"Fehler ungültige Sitzung",
+      "GenericTitle":"Generischer Fehler",
+      "TimeoutMsg":"Ihre Sitzung ist abgelaufen und Sie wurden erfolgreich abgemeldet. Melden Sie sich erneut an, um auf Ihre Filiale zuzugreifen.",
+      "InvalidMsg":"Ihre Anmelde-ID wurde möglicherweise an einem anderen Standort verwendet. Melden Sie sich erneut an, um auf Ihre Filiale zuzugreifen.",
+      "Email":"E-Mail-Adresse",
+      "Password":"Kennwort",
+      "SubmitButton":"Anmelden",
+      "CancelButton":"Abbrechen",
+      "ActionIncomplete":"Ihre Anfrage wurde nicht abgeschlossen, da Ihre Anmelde-ID möglicherweise an einem anderen Standort verwendet wird. Melden Sie sich erneut an, um fortzufahren."
+   
+}
+}

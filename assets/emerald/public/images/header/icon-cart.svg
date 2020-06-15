@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==================================================
+ Licensed Materials - Property of HCL Technologies
+
+ HCL Commerce
+
+ (C) Copyright HCL Technologies Limited 2020
+
+==================================================
+-->
+<svg width="38px" height="38px" viewBox="0 0 38 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>icn/cart</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M18.9141879,28.5858121 C19.6952707,29.3668949 19.6952707,30.6331645 18.9141879,31.4142473 C18.1331051,32.1952509 16.8668355,32.1952509 16.0857527,31.4142473 C15.3047491,30.6331645 15.3047491,29.3668949 16.0857527,28.5858121 C16.8668355,27.8047293 18.1331051,27.8047293 18.9141879,28.5858121 Z M31.4141879,28.5858121 C32.1952707,29.3668949 32.1952707,30.6331645 31.4141879,31.4142473 C30.6331051,32.1952509 29.3668355,32.1952509 28.5857527,31.4142473 C27.8047491,30.6331645 27.8047491,29.3668949 28.5857527,28.5858121 C29.3668355,27.8047293 30.6331051,27.8047293 31.4141879,28.5858121 Z M16.22299,24 L31.2419219,24 L34.6750074,12 L12.04005,12 L16.22299,24 Z M37.3274266,10 L32.7499791,26 L14.8021222,26 L8.17913391,7 L1,7 L1,5 L9.60000166,5 L11.3428933,10 L37.3274266,10 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icn/cart">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#232323" fill-rule="nonzero" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

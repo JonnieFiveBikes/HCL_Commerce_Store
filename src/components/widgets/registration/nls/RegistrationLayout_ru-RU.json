@@ -1,0 +1,16 @@
+{
+  "RegistrationLayout": {
+    "NewCustomer": "Новый клиент?",
+    "FirstName": "Имя",
+    "LastName": "Фамилияe",
+    "Email": "Email",
+    "Phone": "Телефон (необязательно)",
+    "Password": "Пароль",
+    "VerifyPassword": "Verify Password",
+    "TextContent": "Получать идеи интерьера по электронной почте",
+    "Register": "Зарегистрируйтесь",
+    "Msgs": {
+      "InvalidFormat": "Invalid format"
+    }
+  }
+}

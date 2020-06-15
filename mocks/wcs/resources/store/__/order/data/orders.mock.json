@@ -1,0 +1,62 @@
+{
+  "Order": [
+    {
+      "orderTypeCode": "ORD",
+      "totalShippingCharge": "0.00000",
+      "resourceId": "https://localhost:443/wcs/resources/store/2/order/8074503",
+      "orgUniqueID": "-2001",
+      "orgDistinguishedName": "o=root organization",
+      "orderId": "8074503",
+      "lastUpdateDate": "2020-04-25T15:18:51.425Z",
+      "channel": {
+        "channelIdentifer": { "channelName": "Telesales", "uniqueID": "-4" },
+        "userData": null,
+        "description": {
+          "language": "-1",
+          "value": "Used when operations performed by a telesales representative."
+        }
+      },
+      "orderStatus": "M",
+      "x_isPurchaseOrderNumberRequired": "false",
+      "totalShippingChargeCurrency": "USD",
+      "buyerId": "2",
+      "grandTotalCurrency": "USD",
+      "buyerDistinguishedName": "uid=derek.xu@hcl.com,o=root organization",
+      "x_isPersonalAddressesAllowedForShipping": "true",
+      "storeNameIdentifier": "AuroraB2BESite",
+      "totalProductPriceCurrency": "USD",
+      "totalProductPrice": "44.50000",
+      "locked": "false",
+      "placedDate": "2020-04-25T15:18:51.390Z",
+      "totalAdjustmentCurrency": "USD",
+      "totalSalesTaxCurrency": "USD",
+      "totalSalesTax": "0.00000",
+      "grandTotal": "40.05000",
+      "storeUniqueID": "2",
+      "shipAsComplete": "true",
+      "x_trackingIds": "",
+      "totalShippingTax": "0.00000",
+      "prepareIndicator": "true",
+      "totalShippingTaxCurrency": "USD",
+      "adjustment": [
+        {
+          "amount": "-4.45000",
+          "code": "Save 10% on all orders today",
+          "displayLevel": "Order",
+          "usage": "Discount",
+          "xadju_calUsageId": "-1",
+          "descriptionLanguage": "-1",
+          "description": "Save 10% on all orders",
+          "currency": "USD"
+        }
+      ],
+      "totalAdjustment": "-4.45000"
+    }
+  ],
+  "recordSetCount": "1",
+  "resourceId": "https://localhost:443/wcs/resources/store/2/order/byStatus/N,M,A,B,C,R,S,D,F,G,L,W?pageNumber=1&pageSize=20&langId=-1",
+  "recordSetStartNumber": "0",
+  "resourceName": "order",
+  "recordSetTotal": "1",
+  "recordSetComplete": "true"
+}

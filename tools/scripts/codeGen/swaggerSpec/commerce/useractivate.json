@@ -1,0 +1,242 @@
+{
+  "models": {
+    "com.ibm.commerce.member.facade.server.commands.UserRegistrationEmailActivateCmd": {
+      "description": "",
+      "id": "com.ibm.commerce.member.facade.server.commands.UserRegistrationEmailActivateCmd",
+      "properties": {}
+    },
+    "Empty": {
+      "description": "Empty model. Used as default value when no model is specified.",
+      "id": "Empty",
+      "properties": {}
+    },
+    "com.ibm.commerce.member.facade.server.commands.UserRegistrationEmailActivateResendCmd": {
+      "description": "",
+      "id": "com.ibm.commerce.member.facade.server.commands.UserRegistrationEmailActivateResendCmd",
+      "properties": {}
+    },
+    "com.ibm.commerce.rest.member.handler.UserActivateHandler$ActiveUserRequestBody": {
+      "description": "Request body to activate the user account.",
+      "id": "com.ibm.commerce.rest.member.handler.UserActivateHandler$ActiveUserRequestBody",
+      "properties": {
+        "logonId": {
+          "name": "logonId",
+          "description": "The user's logon ID.",
+          "type": "string",
+          "required": true
+        },
+        "validationCode": {
+          "name": "validationCode",
+          "description": "The account validation code.",
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "com.ibm.commerce.rest.member.handler.UserActivateHandler$ResendActiveUserRequestBody": {
+      "description": "Request body for resend user account activation email.",
+      "id": "com.ibm.commerce.rest.member.handler.UserActivateHandler$ResendActiveUserRequestBody",
+      "properties": {
+        "logonId": {
+          "name": "logonId",
+          "description": "The user's logon ID.",
+          "type": "string",
+          "required": true
+        },
+        "logonPassword": {
+          "name": "logonPassword",
+          "description": "The user's logon password.",
+          "type": "string",
+          "required": true
+        },
+        "email1": {
+          "name": "email1",
+          "description": "An alternative email that the user account activation email can be sent to.",
+          "type": "string",
+          "required": false
+        }
+      }
+    }
+  },
+  "apiVersion": "WC.TOOLKIT Enterprise Version : 8 Fix Pack : 0",
+  "swaggerVersion": "1.2",
+  "basePath": "https:\/\/@idc.host\/wcs\/resources",
+  "apis": [
+    {
+      "path": "\/store\/{storeId}\/useractivate\/emailactivate",
+      "operations": [
+        {
+          "summary": "Active user by LogonId",
+          "notes": "",
+          "method": "PUT",
+          "responseClass": "com.ibm.commerce.member.facade.server.commands.UserRegistrationEmailActivateCmd",
+          "secureCallMandatory": false,
+          "partialAuthenticationAllowed": false,
+          "nickname": "activeUser",
+          "produces": [
+            "application\/json",
+            "application\/xml",
+            "application\/xhtml+xml",
+            "application\/atom+xml"
+          ],
+          "type": "com.ibm.commerce.member.facade.server.commands.UserRegistrationEmailActivateCmd",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "storeId",
+              "description": "The store identifier.",
+              "type": "string",
+              "required": true,
+              "enum": [
+                "0",
+                "10001",
+                "10501",
+                "11001",
+                "1",
+                "11501",
+                "12001",
+                "11",
+                "12501",
+                "12551"
+              ]
+            },
+            {
+              "paramType": "query",
+              "allowMultiple": false,
+              "name": "responseFormat",
+              "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \"json\" and \"xml\" without the quotes. If the responseFormat isn't specified, the \"accept\" HTTP header shall be used to determine the format of the response. If the \"accept\" HTTP header isn't specified as well, the default response format shall be in json.",
+              "type": "string",
+              "required": false,
+              "enum": [
+                "xml",
+                "json"
+              ]
+            },
+            {
+              "paramType": "body",
+              "name": "body",
+              "description": "Request body to activate the user account.",
+              "type": "com.ibm.commerce.rest.member.handler.UserActivateHandler$ActiveUserRequestBody",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "The requested completed successfully."
+            },
+            {
+              "code": 400,
+              "message": "Bad request. Some of the inputs provided to the request aren't valid."
+            },
+            {
+              "code": 401,
+              "message": "Not authenticated. The user session isn't valid."
+            },
+            {
+              "code": 403,
+              "message": "The user isn't authorized to perform the specified request."
+            },
+            {
+              "code": 404,
+              "message": "The specified resource couldn't be found."
+            },
+            {
+              "code": 500,
+              "message": "Internal server error. Additional details will be contained on the server logs."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "\/store\/{storeId}\/useractivate\/resendemail",
+      "operations": [
+        {
+          "summary": "Resend active user by LogonId",
+          "notes": "",
+          "method": "POST",
+          "responseClass": "com.ibm.commerce.member.facade.server.commands.UserRegistrationEmailActivateResendCmd",
+          "secureCallMandatory": false,
+          "partialAuthenticationAllowed": false,
+          "nickname": "resendActiveUser",
+          "produces": [
+            "application\/json",
+            "application\/xml",
+            "application\/xhtml+xml",
+            "application\/atom+xml"
+          ],
+          "type": "com.ibm.commerce.member.facade.server.commands.UserRegistrationEmailActivateResendCmd",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "storeId",
+              "description": "The store identifier.",
+              "type": "string",
+              "required": true,
+              "enum": [
+                "0",
+                "10001",
+                "10501",
+                "11001",
+                "1",
+                "11501",
+                "12001",
+                "11",
+                "12501",
+                "12551"
+              ]
+            },
+            {
+              "paramType": "query",
+              "allowMultiple": false,
+              "name": "responseFormat",
+              "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \"json\" and \"xml\" without the quotes. If the responseFormat isn't specified, the \"accept\" HTTP header shall be used to determine the format of the response. If the \"accept\" HTTP header isn't specified as well, the default response format shall be in json.",
+              "type": "string",
+              "required": false,
+              "enum": [
+                "xml",
+                "json"
+              ]
+            },
+            {
+              "paramType": "body",
+              "name": "body",
+              "description": "Request body for resend user account activation email.",
+              "type": "com.ibm.commerce.rest.member.handler.UserActivateHandler$ResendActiveUserRequestBody",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "The requested completed successfully."
+            },
+            {
+              "code": 400,
+              "message": "Bad request. Some of the inputs provided to the request aren't valid."
+            },
+            {
+              "code": 401,
+              "message": "Not authenticated. The user session isn't valid."
+            },
+            {
+              "code": 403,
+              "message": "The user isn't authorized to perform the specified request."
+            },
+            {
+              "code": 404,
+              "message": "The specified resource couldn't be found."
+            },
+            {
+              "code": 500,
+              "message": "Internal server error. Additional details will be contained on the server logs."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resourcePath": "store\/{storeId}\/useractivate",
+  "description": ""
+}

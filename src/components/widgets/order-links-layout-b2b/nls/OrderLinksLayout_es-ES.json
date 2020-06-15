@@ -1,0 +1,15 @@
+{
+  "OrderLinks": {
+    "Title": "Gestión de pedidos",
+    "OrderHistoryText": "Historial de pedidos",
+    "OrderHistoryDescription": "Gestione y edite direcciones guardadas.",
+    "SavedOrdersText": "Pedidos guardados",
+    "SavedOrdersDescription": "Visualice y gestione pedidos guardados",
+    "RecurringOrdersText": "Pedidos recurrentes",
+    "RecurringOrdersDescription": "Visualice y gestione la lista de pedidos recurrentes",
+    "ApproveOrdersText": "Aprobar pedidos",
+    "ApproveOrdersDescription": "Aprobar o rechazar pedidos",
+    "RequisitionListsText": "Listas de requisitos",
+    "RequisitionListsDescription": "Ver, gestionar y crear listas de requisitos"
+  }
+}

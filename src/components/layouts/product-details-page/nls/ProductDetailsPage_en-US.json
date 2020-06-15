@@ -1,0 +1,23 @@
+{
+  "productDetail": {
+    "Quantity": "Quantity",
+    "QtyError": "Quantity must be greater or equal to 1.",
+    "Availability": "Availability",
+    "AddToCart": "Add to cart",
+    "Description": "Description",
+    "ProductDetails": "Product Details",
+    "InStock": "In Stock",
+    "OutofStock": "Out of Stock",
+    "PricePending": "Price pending",
+    "addToCartErrorMsg": "The values in the Quantity fields are invalid or empty. Ensure the values are positive integers and try again.",
+    "any": "Any",
+    "showAttributes": "Show Attributes",
+    "attributeFilter": "Attribute Filter",
+    "addToCurrentOrder": "Add to Current Order",
+    "SignIn": "Please Sign In to Shop",
+    "noproductsToDisplay": "No products to display. Please change the Attribute Filter and try again.",
+    "SKU": "SKU",
+    "Price": "Price",
+    "Online_Availability": "Online Availability"
+  }
+}

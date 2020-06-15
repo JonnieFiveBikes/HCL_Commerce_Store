@@ -1,0 +1,9 @@
+{
+  "Confirmation": {
+    "ScheduleOrderCancel": "Se cancelarán todos los envíos futuros de este pedido.",
+    "ScheduleOrderCancelNotification": "Es necesario una antelación de 12 horas para poder cancelar un pedido. Todos los pedidos futuros se cancelarán excepto el pedido de {{next}}, que se enviará conforme a lo planeado. ¿Está seguro de que desea cancelar?",
+    "CancelRecurringOrder": "Cancelar pedido recurrente",
+    "SubmitButton": "Aceptar",
+    "CancelButton": "Cancelar"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "PaymentSection": {
+    "Title": {
+      "ShipMethod": "Delivery Method",
+      "PayMethod": "Payment Method"
+    },
+    "Msgs": {
+      "CreditCard": "Safe payment online. Accepted credit cards: {{cards}}",
+      "CVV": "Last three digits on signature strip",
+      "InvalidCardNumber": "Invalid card number or type",
+      "InvalidFormat": "Invalid format"
+    },
+    "Labels": {
+      "COD": "Cash on Delivery",
+      "CreditCard": "Credit Card",
+      "CCNumber": "Credit Card Number",
+      "ExpiryDate": "Expiry Date",
+      "CVV": "CVV Code"
+    },
+    "Actions": {
+      "Back": "Back to Shipping and Billing",
+      "Next": "Continue to Review Order"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "ProductFilter": {
+    "Labels": {
+      "filterBy": "Отфильтровать по",
+      "price": "Price",
+      "minPrice": "минимальная",
+      "maxPrice": "максимальная"
+    },
+    "Actions": {
+      "showMore": "Показать еще",
+      "showLess": "Показать меньше",
+      "Go": "Открыть"
+    }
+  }
+}

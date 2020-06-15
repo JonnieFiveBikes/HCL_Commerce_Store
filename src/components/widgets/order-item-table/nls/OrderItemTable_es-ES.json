@@ -1,0 +1,18 @@
+{
+  "OrderItemTable": {
+    "Title": "Artículos del pedido",
+    "Labels": {
+      "ItemDetails": "Detalles del artículo",
+      "SKU": "SKU",
+      "Status": "Estado",
+      "Quantity": "Cantidad",
+      "Price": "Precio",
+      "Actions": "Acciones",
+      "Gift": "Regalo gratuito",
+      "NonRecurring": "Non-recurring item"
+    },
+    "Actions": {
+      "Delete": "Suprimir"
+    }
+  }
+}

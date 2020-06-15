@@ -1,0 +1,11 @@
+{
+  "AccountLinks": {
+    "Title": "Configuración de la cuenta",
+    "PersonalInformationText": "Información personal",
+    "PersonalInformationDescription": "Ver y editar información personal de la cuenta",
+    "AddressBookText": "Libreta de direcciones",
+    "AddressBookDescription": "Gestione y edite sus direcciones guardadas",
+
+    "DisabledMessage": "Sorry, this page is still in development."
+  }
+}

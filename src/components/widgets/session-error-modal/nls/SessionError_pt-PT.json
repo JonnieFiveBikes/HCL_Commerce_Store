@@ -1,0 +1,15 @@
+{
+   "SessionError":{
+      "TimeoutTitle":"Sessão expirada",
+      "InvalidTitle":"Erro de sessão inválido",
+      "GenericTitle":"Erro genérico",
+      "TimeoutMsg":"A sua sessão expirou e foi encerrada com êxito. Inicie sessão novamente para aceder à loja.",
+      "InvalidMsg":"O seu ID de início de sessão foi utilizado noutra localização. Inicie sessão novamente para aceder à loja.",
+      "Email":"E-mail",
+      "Password":"Palavra-passe",
+      "SubmitButton":"Iniciar sessão",
+      "CancelButton":"Cancelar",
+      "ActionIncomplete":"O seu pedido não foi concluído porque o seu ID de início de sessão poderá estar em uso noutra localização. Inicie sessão novamente para continuar."
+   
+}
+}

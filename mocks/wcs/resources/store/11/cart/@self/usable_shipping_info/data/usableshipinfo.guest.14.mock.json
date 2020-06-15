@@ -1,0 +1,67 @@
+{
+  "resourceId": "https://localhost:443/wcs/resources/store/11/cart/@self/usable_shipping_info?langId=-1",
+  "orderId": "7307966",
+  "orderItem": [
+    {
+      "usableShippingMode": [
+        {
+          "carrier": "Mail",
+          "shipModeCode": "Mail",
+          "description": "Mail",
+          "shipModeId": "14001",
+          "language": "-1"
+        },
+        {
+          "carrier": "Express",
+          "shipModeCode": "Express",
+          "description": "Express",
+          "shipModeId": "13502",
+          "language": "-1"
+        },
+        {
+          "carrier": "International Carrier",
+          "shipModeCode": "International Priority",
+          "description": "International Priority",
+          "shipModeId": "14504",
+          "language": "-1"
+        },
+        {
+          "carrier": "International Carrier",
+          "shipModeCode": "International Regular",
+          "description": "International Regular",
+          "shipModeId": "14505",
+          "language": "-1"
+        },
+        {
+          "shipModeCode": "PickupInStore",
+          "description": "Pickup in store",
+          "shipModeId": "13501",
+          "language": "-1"
+        },
+        {
+          "carrier": "XYZ Carrier",
+          "shipModeCode": "US - 2-Day Express Delivery",
+          "description": "US - 2-Day Express Delivery",
+          "shipModeId": "14503",
+          "language": "-1"
+        },
+        {
+          "carrier": "XYZ Carrier",
+          "shipModeCode": "US - Overnight Delivery",
+          "description": "US - Overnight Delivery",
+          "shipModeId": "14502",
+          "language": "-1"
+        },
+        {
+          "carrier": "XYZ Carrier",
+          "shipModeCode": "US Regular Delivery",
+          "description": "US - Regular Delivery",
+          "shipModeId": "14501",
+          "language": "-1"
+        }
+      ],
+      "orderItemId": "10023"
+    }
+  ],
+  "resourceName": "cart"
+}

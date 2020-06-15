@@ -1,0 +1,9 @@
+{
+  "OrderShippingInfo": {
+    "Title": "Shipping",
+    "Labels": {
+      "ShipAddress": "Shipping Address",
+      "ShipMethod": "Shipping Method"
+    }
+  }
+}

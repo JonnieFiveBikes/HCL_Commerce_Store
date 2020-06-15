@@ -1,0 +1,13 @@
+{
+  "SignIn": {
+    "ReturningCustomer": "Cliente abituale",
+    "Password": "Password",
+    "RememberMe": "Ricordami",
+    "SignInButton": "Accesso",
+    "ForgotPassword": "Password dimenticata",
+    "Label": {
+      "B2B": "Logon ID",
+      "Email": "Indirizzo e-mail"
+    }
+  }
+}

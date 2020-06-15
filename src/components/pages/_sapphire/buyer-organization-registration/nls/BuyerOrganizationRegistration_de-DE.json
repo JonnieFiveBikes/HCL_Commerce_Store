@@ -1,0 +1,34 @@
+{
+  "BuyerOrganizationRegistration": {
+    "Title": "Ihre Organisation registrieren",
+    "Description": "Registrieren Sie Ihre Organisation, um den Prozess der Einrichtung eines Kontos bei diesem Geschäft zu beginnen. Nachdem wir Ihre Registrierung genehmigt haben, kann sich der Administrator Ihrer Organisation anmelden und Käufer registrieren, und Käufer können sich selbst registrieren.",
+    "OrgDetails": "Details zu Ihrer Organisation eingeben",
+    "UserDetails": "Details über die Person eingeben, die Ihre Organisation und Ihre Käufer verwalten wird",
+    "OrgName": "Organisationsname",
+    "Email": "E-Mail-Adresse",
+    "Address1": "Straßenadresse Zeile 1",
+    "Address2": "Straßenadresse Zeile 2",
+    "City": "Stadt",
+    "Country": "Land",
+    "State": "Bundesland",
+    "ZipCode": "Postleitzahl",
+    "FirstName": "Vorname",
+    "LastName": "Nachname",
+    "LogonId": "Anmelde-ID",
+    "Phone": "Telefon",
+    "Password": "Kennwort",
+    "Password2": "Kennwort bestätigen",
+    "Language": "Bevorzugte Sprache",
+    "Currency": "Bevorzugte Währung",
+    "UseOrg": "Dieselbe Adresse wie Organisation verwenden",
+    "Submit": "Senden",
+    "Clear": "Löschen",
+    "USD": "US-Dollar",
+    "USEnglish": "US-Englisch",
+    "Success": "Ihre Registrierunganfrage wurde empfangen. Ihr Konto wartet auf Genehmigung. Sie können sich erst anmelden, wenn Ihr Konto genehmigt wurde.",
+    "OK": "OK",
+    "Msgs": {
+      "InvalidFormat": "Invalid format"
+    }
+  }
+}

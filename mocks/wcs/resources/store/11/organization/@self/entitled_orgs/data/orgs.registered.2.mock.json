@@ -1,0 +1,12 @@
+{
+  "entitledOrganizations": [
+    {
+      "organizationId": -2000,
+      "organizationName": "Default Organization",
+      "displayName": "Default Organization",
+      "distinguishedName": "o=default organization,o=root organization",
+      "memberId": -2000
+    }
+  ],
+  "accountCheck": true
+}

@@ -1,8 +1,0 @@
-{
-  "OrderPaymentInfo": {
-    "Title": "Pago",
-    "Labels": {
-      "BillMethod": "Payment Method"
-    }
-  }
-}

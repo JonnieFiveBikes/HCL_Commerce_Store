@@ -1,0 +1,16 @@
+node_modules/
+build/
+dist/
+**/.history/
+public/
+!assets/**/public/
+tools/.config/
+.storybook/dist/
+.vscode/launch.json
+coverage/
+.env.production
+.env.development
+.env.development.local
+.env.development.local.template
+tools/docker-compose.yaml
+tools/source-map-explorer*

@@ -1,9 +1,0 @@
-{
-  "Confirmation": {
-    "ScheduleOrderCancel": "Wszystkie przysz³e wysy³ki do tego zamówienia zostan¹ anulowane.",
-    "ScheduleOrderCancelNotification": "Zamówienie mo¿na anulowaæ z co najmniej 12-godzinnym wyprzedzeniem. Wszystkie przysz³e zamówienia zostan¹ anulowane. Wyj¹tek stanowi zamówienie na {{next}}, które zostanie wys³ane zgodnie z planem. Czy na pewno chcesz anulowaæ?",
-    "CancelRecurringOrder": "Anuluj zamówienie cykliczne",
-    "SubmitButton": "OK",
-    "CancelButton": "Anuluj"
-  }
-}

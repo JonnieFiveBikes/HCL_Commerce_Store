@@ -1,9 +1,0 @@
-{
-  "ConfirmationSection": {
-    "Title": "Order Confirmation",
-    "Msgs": {
-      "ThankYou": "Thank you for your order.",
-      "Details": "Your order number is #{{orderId}}. We have emailed your order confirmation, and will send you an update when your order has shipped."
-    }
-  }
-}

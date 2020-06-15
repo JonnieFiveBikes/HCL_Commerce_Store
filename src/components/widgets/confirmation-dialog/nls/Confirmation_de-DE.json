@@ -1,9 +1,0 @@
-{
-  "Confirmation": {
-    "ScheduleOrderCancel": "Alle zukünftigen Zustellungen für diese Bestellung werden storniert.",
-    "ScheduleOrderCancelNotification": "Die Stornierung einer Bestellung muss zwölf Stunden im Voraus erfolgen. Alle zukünftigen Bestellungen werden storniert, außer die Bestellung für {{next}}, die wie geplant versendet wird. Möchten Sie wirklich stornieren?",
-    "CancelRecurringOrder": "Wiederkehrende Bestellung stornieren",
-    "SubmitButton": "OK",
-    "CancelButton": "Abbrechen"
-  }
-}

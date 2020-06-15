@@ -1,0 +1,78 @@
+{
+  "usableShippingMode": [
+    {
+      "carrier": "XYZ Carrier",
+      "shipModeCode": "US Regular Delivery",
+      "shippingChargeCurrency": "USD",
+      "description": "US - Regular Delivery",
+      "shipModeId": "14501",
+      "language": "-1",
+      "shippingCharge": "5.00000"
+    },
+    {
+      "carrier": "XYZ Carrier",
+      "shipModeCode": "US - Overnight Delivery",
+      "shippingChargeCurrency": "USD",
+      "description": "US - Overnight Delivery",
+      "shipModeId": "14502",
+      "language": "-1",
+      "shippingCharge": "22.94000"
+    },
+    {
+      "carrier": "XYZ Carrier",
+      "shipModeCode": "US - 2-Day Express Delivery",
+      "shippingChargeCurrency": "USD",
+      "description": "US - 2-Day Express Delivery",
+      "shipModeId": "14503",
+      "language": "-1",
+      "shippingCharge": "14.94000"
+    },
+    {
+      "carrier": "Mail",
+      "shipModeCode": "Mail",
+      "shippingChargeCurrency": "USD",
+      "description": "Mail",
+      "shipModeId": "14001",
+      "language": "-1",
+      "shippingCharge": "0"
+    },
+    {
+      "carrier": "Express",
+      "shipModeCode": "Express",
+      "shippingChargeCurrency": "USD",
+      "description": "Express",
+      "shipModeId": "13502",
+      "language": "-1",
+      "shippingCharge": "0"
+    },
+    {
+      "carrier": "International Carrier",
+      "shipModeCode": "International Priority",
+      "shippingChargeCurrency": "USD",
+      "description": "International Priority",
+      "shipModeId": "14504",
+      "language": "-1",
+      "shippingCharge": "0"
+    },
+    {
+      "carrier": "International Carrier",
+      "shipModeCode": "International Regular",
+      "shippingChargeCurrency": "USD",
+      "description": "International Regular",
+      "shipModeId": "14505",
+      "language": "-1",
+      "shippingCharge": "0"
+    },
+    {
+      "shipModeCode": "PickupInStore",
+      "shippingChargeCurrency": "USD",
+      "description": "Pickup in store",
+      "shipModeId": "13501",
+      "language": "-1",
+      "shippingCharge": "0"
+    }
+  ],
+  "resourceId": "https://localhost:443/wcs/resources/store/11/cart/@self/usable_shipping_mode?langId=-1",
+  "orderId": "7307966",
+  "resourceName": "cart"
+}

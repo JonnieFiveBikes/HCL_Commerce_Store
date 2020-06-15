@@ -1,0 +1,19 @@
+{
+  "ProductGrid": {
+    "Labels": {
+      "filteredBy": "Filtrer par :",
+      "productFound": "{{count}} produit trouvé",
+      "productFound_plural": "{{count}} produit trouvés",
+      "productSearchFound": "{{count}} produit trouvés pour \"{{searchTerm}}\"",
+      "productSearchFound_plural": "{{count}} produits trouvés pour \"{{searchTerm}}\"",
+      "noMatches": "0 correspondance pour \"{{searchTerm}}\".",
+      "searchAgain": "Désolé, votre recherche pour \"{{searchTerm}}\" n'a pas renvoyé de résultats. Essayez une autre recherche.",
+      "suggestion": "Vouliez-vous dire : ",
+      "noProductsFound": "La recherche pour <b>{{keyword}}</b> ne renvoie aucune correspondance valide. <br/>Essayez de rechercher à nouveau en utilisant un autre terme ou parcourez nos recommandations",
+      "noProductsFoundForFilter": "Nous sommes désolés, aucun résultat n'a été trouvé pour le filtre sélectionné."
+    },
+    "Actions": {
+      "clearAll": "Tout effacer"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "OrderBillingInfo": {
+    "Title": "Rozliczenia",
+    "Labels": {
+      "BillAddress": "Billing Address"
+    }
+  }
+}

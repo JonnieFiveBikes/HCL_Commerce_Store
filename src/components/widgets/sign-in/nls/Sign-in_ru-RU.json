@@ -1,0 +1,13 @@
+{
+  "SignIn": {
+    "ReturningCustomer": "Зарегистрированный клиент",
+    "Password": "Пароль",
+    "RememberMe": "Запомнить меня",
+    "SignInButton": "Войти",
+    "ForgotPassword": "Забыли пароль",
+    "Label": {
+      "B2B": "Logon ID",
+      "Email": "Адрес электронной почты"
+    }
+  }
+}

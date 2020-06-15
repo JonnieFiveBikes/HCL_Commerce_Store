@@ -1,0 +1,59 @@
+{
+  "recordSetCount": 9,
+  "resourceId": "https://localhost:443/wcs/resources/store/2/subscription?buyerId=2&profileName=IBM_Store_Summary&q=byBuyerIdAndSubscriptionType&subscriptionTypeCode=RecurringOrder&langId=-1",
+  "recordSetStartNumber": 0,
+  "resourceName": "subscription",
+  "resultList": [
+    {
+      "subscriptionInfo": {
+        "userData": null,
+        "fulfillmentSchedule": {
+          "startInfo": {
+            "userData": null,
+            "startDate": "2020-04-25T15:23:08.744Z"
+          },
+          "userData": null,
+          "frequencyInfo": {
+            "nextOccurence": "2020-04-25T15:23:08.744Z",
+            "userData": null,
+            "remainingOccurrences": null,
+            "completedOccurrences": null,
+            "frequency": { "uom": "DAY             ", "value": 1.0 }
+          },
+          "endInfo": {
+            "duration": null,
+            "totalOccurrences": null,
+            "userData": null,
+            "endDate": "9999-12-31T05:00:00.000Z"
+          }
+        },
+        "paymentSchedule": {
+          "startInfo": null,
+          "userData": { "userDataField": [] },
+          "frequencyInfo": {
+            "nextOccurence": "2020-04-25T15:23:08.744Z",
+            "userData": null,
+            "remainingOccurrences": null,
+            "completedOccurrences": null,
+            "frequency": { "uom": "DAY             ", "value": 1.0 }
+          },
+          "endInfo": null
+        },
+        "paymentInfo": {
+          "userData": { "userDataField": [] },
+          "amountPaid": null,
+          "amountToCharge": null,
+          "totalCost": { "currency": "USD", "value": 40.05 }
+        }
+      },
+      "state": "Active",
+      "purchaseDetails": {
+        "userData": { "userDataField": [] },
+        "parentOrderIdentifier": { "parentOrderId": "8074503" }
+      },
+      "subscriptionIdentifier": { "subscriptionId": "1009" }
+    }
+  ],
+  "recordSetTotal": 9,
+  "recordSetComplete": true
+}

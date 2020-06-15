@@ -1,0 +1,507 @@
+{
+  "models": {
+    "Empty": {
+      "description": "Empty model. Used as default value when no model is specified.",
+      "id": "Empty",
+      "properties": {
+      }
+    },
+    "com.ibm.commerce.marketingcenter.events.runtime.ClickMonitorCommand": {
+      "description": "",
+      "id": "com.ibm.commerce.marketingcenter.events.runtime.ClickMonitorCommand",
+      "properties": {
+      }
+    },
+    "com.ibm.commerce.rest.marketing.handler.EventHandler$MarketingTrackingConsent": {
+      "description": "Marketing tracking consent parameters.",
+      "id": "com.ibm.commerce.rest.marketing.handler.EventHandler$MarketingTrackingConsent",
+      "properties": {
+        "marketingTrackingConsent": {
+          "name": "marketingTrackingConsent",
+          "format": "int32",
+          "description": "Marketing tracking consent, value can be 0 or 1.",
+          "type": "integer",
+          "required": true
+        }
+      }
+    },
+    "com.ibm.commerce.rest.marketing.handler.EventHandler$EventTrigger": {
+      "description": "Marketing event trigger. Note : all parameters specified beyond the schema are sent to the marketing event.",
+      "id": "com.ibm.commerce.rest.marketing.handler.EventHandler$EventTrigger",
+      "properties": {
+        "activityId": {
+          "name": "activityId",
+          "description": "Activity identifier.",
+          "type": "string",
+          "required": true
+        },
+        "baseMarketingSpotDataType": {
+          "name": "baseMarketingSpotDataType",
+          "description": "Marketing spot data type. Example : \"MarketingContent\".",
+          "type": "string",
+          "required": true
+        },
+        "experimentResultId": {
+          "name": "experimentResultId",
+          "description": "Experiment result identifier.",
+          "type": "string",
+          "required": true
+        },
+        "searchTerm": {
+          "name": "searchTerm",
+          "description": "Search term. Stored in a comma-separated list of search strings.",
+          "type": "string",
+          "required": false
+        },
+        "productId": {
+          "name": "productId",
+          "description": "Product identifier.",
+          "type": "string",
+          "required": false
+        },
+        "personalizationID": {
+          "name": "personalizationID",
+          "description": "Personalization identifier.",
+          "type": "string",
+          "required": true
+        },
+        "DM_ReqCmd": {
+          "name": "DM_ReqCmd",
+          "description": "Requested command.",
+          "type": "string",
+          "required": false
+        },
+        "eMarketingSpotId": {
+          "name": "eMarketingSpotId",
+          "description": "Marketing spot identifier.",
+          "type": "string",
+          "required": true
+        },
+        "experimentResultTestElementId": {
+          "name": "experimentResultTestElementId",
+          "description": "Experiment result test element identifier.",
+          "type": "string",
+          "required": true
+        },
+        "categoryId": {
+          "name": "categoryId",
+          "description": "Category identifier.",
+          "type": "string",
+          "required": false
+        },
+        "baseMarketingSpotActivityID": {
+          "name": "baseMarketingSpotActivityID",
+          "description": "Base marketing spot activity identifier.",
+          "type": "string",
+          "required": true
+        }
+      }
+    }
+  },
+  "apiVersion": "WC.TOOLKIT Enterprise Version : 8 Fix Pack : 0",
+  "swaggerVersion": "1.2",
+  "basePath": "https:\/\/@wcsolr74.torolab.ibm.com:5443\/wcs\/resources",
+  "apis": [
+    {
+      "path": "\/store\/{storeId}\/event\/click_info",
+      "operations": [
+        {
+          "summary": "Handle click info",
+          "notes": "",
+          "method": "POST",
+          "responseClass": "com.ibm.commerce.marketingcenter.events.runtime.ClickMonitorCommand",
+          "secureCallMandatory": false,
+          "partialAuthenticationAllowed": true,
+          "nickname": "handleClickInfo",
+          "produces": [
+            "application\/json",
+            "application\/xml",
+            "application\/xhtml+xml",
+            "application\/atom+xml"
+          ],
+          "type": "com.ibm.commerce.marketingcenter.events.runtime.ClickMonitorCommand",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "storeId",
+              "description": "The store identifier.",
+              "type": "string",
+              "required": true,
+              "enum": [
+                "0",
+                "10001",
+                "10501",
+                "11001",
+                "1"
+              ]
+            },
+            {
+              "paramType": "query",
+              "allowMultiple": false,
+              "name": "responseFormat",
+              "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \"json\" and \"xml\" without the quotes. If the responseFormat isn't specified, the \"accept\" HTTP header shall be used to determine the format of the response. If the \"accept\" HTTP header isn't specified as well, the default response format shall be in json.",
+              "type": "string",
+              "required": false,
+              "enum": [
+                "xml",
+                "json"
+              ]
+            },
+            {
+              "paramType": "body",
+              "name": "body",
+              "description": "Marketing evaluate trigger body.",
+              "type": "com.ibm.commerce.rest.marketing.handler.EventHandler$EventTrigger",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "The requested completed successfully."
+            },
+            {
+              "code": 400,
+              "message": "Bad request. Some of the inputs provided to the request aren't valid."
+            },
+            {
+              "code": 401,
+              "message": "Not authenticated. The user session isn't valid."
+            },
+            {
+              "code": 403,
+              "message": "The user isn't authorized to perform the specified request."
+            },
+            {
+              "code": 404,
+              "message": "The specified resource couldn't be found."
+            },
+            {
+              "code": 500,
+              "message": "Internal server error. Additional details will be contained on the server logs."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "\/store\/{storeId}\/event\/update_marketing_tracking_consent",
+      "operations": [
+        {
+          "summary": "Update the marketing tracking consent for a user for the store.",
+          "notes": "",
+          "method": "POST",
+          "responseClass": "Empty",
+          "secureCallMandatory": false,
+          "partialAuthenticationAllowed": true,
+          "nickname": "updateMarketingTrackingConsent",
+          "produces": [
+            "application\/json",
+            "application\/xml",
+            "application\/xhtml+xml",
+            "application\/atom+xml"
+          ],
+          "type": "Empty",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "storeId",
+              "description": "The store identifier.",
+              "type": "string",
+              "required": true,
+              "enum": [
+                "0",
+                "10001",
+                "10501",
+                "11001",
+                "1"
+              ]
+            },
+            {
+              "paramType": "query",
+              "allowMultiple": false,
+              "name": "responseFormat",
+              "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \"json\" and \"xml\" without the quotes. If the responseFormat isn't specified, the \"accept\" HTTP header shall be used to determine the format of the response. If the \"accept\" HTTP header isn't specified as well, the default response format shall be in json.",
+              "type": "string",
+              "required": false,
+              "enum": [
+                "xml",
+                "json"
+              ]
+            },
+            {
+              "paramType": "body",
+              "name": "body",
+              "description": "Update the marketing tracking consent body.",
+              "type": "com.ibm.commerce.rest.marketing.handler.EventHandler$MarketingTrackingConsent",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "The requested completed successfully."
+            },
+            {
+              "code": 400,
+              "message": "Bad request. Some of the inputs provided to the request aren't valid."
+            },
+            {
+              "code": 401,
+              "message": "Not authenticated. The user session isn't valid."
+            },
+            {
+              "code": 403,
+              "message": "The user isn't authorized to perform the specified request."
+            },
+            {
+              "code": 404,
+              "message": "The specified resource couldn't be found."
+            },
+            {
+              "code": 500,
+              "message": "Internal server error. Additional details will be contained on the server logs."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "\/store\/{storeId}\/event\/behavior_rules",
+      "operations": [
+        {
+          "summary": "Gets user behavior rules.",
+          "notes": "",
+          "method": "GET",
+          "responseClass": "Empty",
+          "secureCallMandatory": false,
+          "partialAuthenticationAllowed": true,
+          "nickname": "getBehaviorRules",
+          "produces": [
+            "application\/json",
+            "application\/xml",
+            "application\/xhtml+xml",
+            "application\/atom+xml"
+          ],
+          "type": "Empty",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "storeId",
+              "description": "The store identifier.",
+              "type": "string",
+              "required": true,
+              "enum": [
+                "0",
+                "10001",
+                "10501",
+                "11001",
+                "1"
+              ]
+            },
+            {
+              "paramType": "query",
+              "allowMultiple": false,
+              "name": "responseFormat",
+              "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \"json\" and \"xml\" without the quotes. If the responseFormat isn't specified, the \"accept\" HTTP header shall be used to determine the format of the response. If the \"accept\" HTTP header isn't specified as well, the default response format shall be in json.",
+              "type": "string",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "The requested completed successfully."
+            },
+            {
+              "code": 400,
+              "message": "Bad request. Some of the inputs provided to the request aren't valid."
+            },
+            {
+              "code": 401,
+              "message": "Not authenticated. The user session isn't valid."
+            },
+            {
+              "code": 403,
+              "message": "The user isn't authorized to perform the specified request."
+            },
+            {
+              "code": 404,
+              "message": "The specified resource couldn't be found."
+            },
+            {
+              "code": 500,
+              "message": "Internal server error. Additional details will be contained on the server logs."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "\/store\/{storeId}\/event",
+      "operations": [
+        {
+          "summary": "Triggers marketing based on certain events. ",
+          "notes": "",
+          "method": "POST",
+          "responseClass": "Empty",
+          "secureCallMandatory": false,
+          "partialAuthenticationAllowed": true,
+          "nickname": "triggerMarketing",
+          "produces": [
+            "application\/json",
+            "application\/xml",
+            "application\/xhtml+xml",
+            "application\/atom+xml"
+          ],
+          "type": "Empty",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "storeId",
+              "description": "The store identifier.",
+              "type": "string",
+              "required": true,
+              "enum": [
+                "0",
+                "10001",
+                "10501",
+                "11001",
+                "1"
+              ]
+            },
+            {
+              "paramType": "query",
+              "allowMultiple": false,
+              "name": "responseFormat",
+              "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \"json\" and \"xml\" without the quotes. If the responseFormat isn't specified, the \"accept\" HTTP header shall be used to determine the format of the response. If the \"accept\" HTTP header isn't specified as well, the default response format shall be in json.",
+              "type": "string",
+              "required": false,
+              "enum": [
+                "xml",
+                "json"
+              ]
+            },
+            {
+              "paramType": "body",
+              "name": "body",
+              "description": "Marketing event trigger body.",
+              "type": "com.ibm.commerce.rest.marketing.handler.EventHandler$EventTrigger",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "The requested completed successfully."
+            },
+            {
+              "code": 400,
+              "message": "Bad request. Some of the inputs provided to the request aren't valid."
+            },
+            {
+              "code": 401,
+              "message": "Not authenticated. The user session isn't valid."
+            },
+            {
+              "code": 403,
+              "message": "The user isn't authorized to perform the specified request."
+            },
+            {
+              "code": 404,
+              "message": "The specified resource couldn't be found."
+            },
+            {
+              "code": 500,
+              "message": "Internal server error. Additional details will be contained on the server logs."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "\/store\/{storeId}\/event\/evaluate_triggers",
+      "operations": [
+        {
+          "summary": "Evaluate potential triggers passed from store",
+          "notes": "",
+          "method": "POST",
+          "responseClass": "Empty",
+          "secureCallMandatory": false,
+          "partialAuthenticationAllowed": true,
+          "nickname": "evaluateTriggers",
+          "produces": [
+            "application\/json",
+            "application\/xml",
+            "application\/xhtml+xml",
+            "application\/atom+xml"
+          ],
+          "type": "Empty",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "storeId",
+              "description": "The store identifier.",
+              "type": "string",
+              "required": true,
+              "enum": [
+                "0",
+                "10001",
+                "10501",
+                "11001",
+                "1"
+              ]
+            },
+            {
+              "paramType": "query",
+              "allowMultiple": false,
+              "name": "responseFormat",
+              "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \"json\" and \"xml\" without the quotes. If the responseFormat isn't specified, the \"accept\" HTTP header shall be used to determine the format of the response. If the \"accept\" HTTP header isn't specified as well, the default response format shall be in json.",
+              "type": "string",
+              "required": false,
+              "enum": [
+                "xml",
+                "json"
+              ]
+            },
+            {
+              "paramType": "body",
+              "name": "body",
+              "description": "Marketing evaluate trigger body.",
+              "type": "com.ibm.commerce.rest.marketing.handler.EventHandler$EventTrigger",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "The requested completed successfully."
+            },
+            {
+              "code": 400,
+              "message": "Bad request. Some of the inputs provided to the request aren't valid."
+            },
+            {
+              "code": 401,
+              "message": "Not authenticated. The user session isn't valid."
+            },
+            {
+              "code": 403,
+              "message": "The user isn't authorized to perform the specified request."
+            },
+            {
+              "code": 404,
+              "message": "The specified resource couldn't be found."
+            },
+            {
+              "code": 500,
+              "message": "Internal server error. Additional details will be contained on the server logs."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resourcePath": "store\/{storeId}\/event",
+  "description": "This class provides RESTful services to trigger marketing based on certain types of events. For example, CategoryDisplay, ProductDisplay, or Search."
+}

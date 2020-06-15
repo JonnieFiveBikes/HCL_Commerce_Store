@@ -1,0 +1,28 @@
+{
+  "Header": {
+    "Actions": {
+      "SignIn": "Sign In",
+      "SignInRegister": "Sign In / Register",
+      "Welcome": " Welcome, {{firstName}}"
+    },
+    "AccountPopover": {
+      "Welcome": "Welcome, {{firstName}} {{lastName}}",
+      "Organization": "Organization",
+      "Contract": "Contract",
+      "Edit": "Edit",
+      "AccountSetting": "Account settings",
+      "SignOut": "Sign out",
+      "Cart": "Cart ({{count}} item)",
+      "Cart_plural": "Cart ({{count}} items)"
+    }
+  },
+  "MegaMenu": {
+    "Title": "Products",
+    "Actions": {
+      "ViewAll": "View all"
+    }
+  },
+  "MiniCart": {
+    "Items": "Items"
+  }
+}

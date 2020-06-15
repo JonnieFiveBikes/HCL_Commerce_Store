@@ -1,0 +1,15 @@
+{
+  "associatedPromotions": [
+    {
+      "code": "Offer Offer-725829884",
+      "endDate": "9999-12-31 23:59:59.999",
+      "description": {
+        "longDescription": "<p>Check out our expanded Fasteners category - 10 % off - Rush Rush</p>\n",
+        "shortDescription": "Check out our expanded Fasteners category - 10 % off - Rush Rush",
+        "langId": "-1"
+      },
+      "associatePromotionId": "715840884",
+      "startDate": "2020-05-08 00:00:00.0"
+    }
+  ]
+}

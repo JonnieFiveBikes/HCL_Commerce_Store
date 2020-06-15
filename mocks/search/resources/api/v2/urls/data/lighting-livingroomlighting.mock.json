@@ -1,0 +1,24 @@
+{
+  "contents": [
+    {
+      "id": 11003,
+      "identifier": "lighting-livingroomlighting",
+      "status": 1,
+      "tokenName": "CategoryToken",
+      "tokenValue": "10503",
+      "tokenExternalValue": "LivingRoomLighting",
+      "storeId": "12101",
+      "language": "en_US",
+      "redirect": "",
+      "page": {
+        "name": "CATEGORY_PAGE",
+        "type": "ProductListPage",
+        "layout": "",
+        "title": "Lighting | Emerald",
+        "metaKeyword": "light fixtures, accent lighting, bright, pendant, chandeliers",
+        "metaDescription": "Illuminate your living room with a variety of pendant lights and chandeliers",
+        "imageAlternateDescription": "Image for Lighting from Emerald"
+      }
+    }
+  ]
+}

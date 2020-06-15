@@ -1,0 +1,15 @@
+{
+  "ProductFilter": {
+    "Labels": {
+      "filterBy": "Filtern nach",
+      "price": "Preis",
+      "minPrice": "min.",
+      "maxPrice": "max."
+    },
+    "Actions": {
+      "showMore": "Mehr anzeigen",
+      "showLess": "Weniger anzeigen",
+      "Go": "Los"
+    }
+  }
+}

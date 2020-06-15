@@ -1,0 +1,34 @@
+{
+  "BuyerOrganizationRegistration": {
+    "Title": "登錄您的組織",
+    "Description": "登錄您的組織以開始設定具有此商店之帳戶的程序。當我們核准了您的登錄時，來自您組織的管理員可以登入並登錄買方，而且買方可以自行登錄。",
+    "OrgDetails": "提供有關您組織的詳細資料",
+    "UserDetails": "提供有關將管理您組織及管理您買方之人員的詳細資料",
+    "OrgName": "組織名稱",
+    "Email": "電子郵件",
+    "Address1": "街道地址行 1",
+    "Address2": "街道地址行 2",
+    "City": "城市",
+    "Country": "國家/地區",
+    "State": "州",
+    "ZipCode": "郵遞區號",
+    "FirstName": "名字",
+    "LastName": "姓氏",
+    "LogonId": "登入 ID",
+    "Phone": "電話",
+    "Password": "密碼",
+    "Password2": "驗證密碼",
+    "Language": "偏好語言",
+    "Currency": "偏好貨幣",
+    "UseOrg": "使用與組織相同的地址",
+    "Submit": "提交",
+    "Clear": "清除",
+    "USD": "美元",
+    "USEnglish": "美式英文",
+    "Success": "已收到您的登錄要求。您的帳戶等待核准。直到核准您的帳戶後，您才能登入。",
+    "OK": "確定",
+    "Msgs": {
+      "InvalidFormat": "Invalid format"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "OrderBillingInfo": {
+    "Title": "Fatturazione",
+    "Labels": {
+      "BillAddress": "Billing Address"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "AccountLinks": {
+    "Title": "Setãri cont",
+
+    "PersonalInformationText": "Informa?ii personale",
+    "PersonalInformationDescription": "Vizualiza?i ?i edita?i informa?iile personale ale contului",
+
+    "AddressBookText": "Agendã",
+    "AddressBookDescription": "Gestiona?i ?i edita?i adresele salvate",
+
+    "DisabledMessage": "Sorry, this page is still in development."
+  }
+}

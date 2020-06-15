@@ -1,0 +1,558 @@
+{
+  "models": {
+      "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext": {
+          "description": "User context.",
+          "id": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext",
+          "properties": {
+              "preview": {
+                  "name": "preview",
+                  "description": "The user's preview information. Available under store preview.",
+                  "$ref": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Preview",
+                  "required": false
+              },
+              "workspace": {
+                  "name": "workspace",
+                  "description": "The user's workspace information. Available under store preview.",
+                  "$ref": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Workspace",
+                  "required": false
+              },
+              "globalization": {
+                  "name": "globalization",
+                  "description": "The user's globalization context.",
+                  "$ref": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Globalization",
+                  "required": true
+              },
+              "catalog": {
+                  "name": "catalog",
+                  "description": "The user's globalization context.",
+                  "$ref": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Catalog",
+                  "required": true
+              },
+              "entitlement": {
+                  "name": "entitlement",
+                  "description": "The user's entitlement information.",
+                  "$ref": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Entitlement",
+                  "required": true
+              },
+              "isPartiallyAuthenticated": {
+                  "name": "isPartiallyAuthenticated",
+                  "description": "Is the user partially authenticated.",
+                  "type": "boolean",
+                  "required": true
+              },
+              "basicInfo": {
+                  "name": "basicInfo",
+                  "description": "The user's basic information.",
+                  "$ref": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$BasicInfo",
+                  "required": true
+              }
+          }
+      },
+      "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Preview": {
+          "description": "User's preview information.",
+          "id": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Preview",
+          "properties": {
+              "static": {
+                  "name": "static",
+                  "description": "Is the preview session time static.",
+                  "type": "boolean",
+                  "required": false
+              },
+              "initialtimeDiff": {
+                  "name": "initialtimeDiff",
+                  "format": "int64",
+                  "description": "The initial time difference when preview started.",
+                  "type": "integer",
+                  "required": false
+              },
+              "timestamp": {
+                  "name": "timestamp",
+                  "description": "The preview timestamp.",
+                  "type": "string",
+                  "required": false
+              },
+              "previewProperties": {
+                  "name": "previewProperties",
+                  "description": "The user's preview properties information. Available under store preview.",
+                  "$ref": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Preview$PreviewProperties",
+                  "required": false
+              }
+          }
+      },
+      "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Globalization": {
+          "description": "User's globalization context.",
+          "id": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Globalization",
+          "properties": {
+              "preferredCurrency": {
+                  "name": "preferredCurrency",
+                  "description": "The user preferred currency.",
+                  "type": "string",
+                  "required": true
+              },
+              "languageId": {
+                  "name": "languageId",
+                  "format": "int64",
+                  "description": "The user language identifier.",
+                  "type": "integer",
+                  "required": true
+              },
+              "currency": {
+                  "name": "currency",
+                  "description": "The user currency.",
+                  "type": "string",
+                  "required": true
+              },
+              "preferredLanguageId": {
+                  "name": "preferredLanguageId",
+                  "format": "int64",
+                  "description": "The user preferred language identifier.",
+                  "type": "integer",
+                  "required": true
+              }
+          }
+      },
+      "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$BasicInfo": {
+          "description": "User's basic information.",
+          "id": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$BasicInfo",
+          "properties": {
+              "runAsId": {
+                  "name": "runAsId",
+                  "format": "int64",
+                  "description": "The user identifier this session is acting upon.",
+                  "type": "integer",
+                  "required": true
+              },
+              "callerId": {
+                  "name": "callerId",
+                  "format": "int64",
+                  "description": "The user's caller identifier.",
+                  "type": "integer",
+                  "required": true
+              },
+              "storeId": {
+                  "name": "storeId",
+                  "format": "int64",
+                  "description": "The user's store identifier.",
+                  "type": "integer",
+                  "required": true
+              },
+              "channelId": {
+                  "name": "channelId",
+                  "format": "int64",
+                  "description": "The user's channel identifier.",
+                  "type": "integer",
+                  "required": true
+              }
+          }
+      },
+      "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Entitlement": {
+          "description": "User's entitlement information.",
+          "id": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Entitlement",
+          "properties": {
+              "eligibleTradingAgreementIds": {
+                  "name": "eligibleTradingAgreementIds",
+                  "description": "The user's eligible trading agreement identifiers.",
+                  "type": "array",
+                  "items": {
+                      "format": "int64",
+                      "type": "integer"
+                  },
+                  "required": false
+              },
+              "hostingContractId": {
+                  "name": "hostingContractId",
+                  "format": "int64",
+                  "description": "The user's hosting contract identifier.",
+                  "type": "integer",
+                  "required": false
+              },
+              "currentTradingAgreementIds": {
+                  "name": "currentTradingAgreementIds",
+                  "description": "The user's trading agreement identifiers.",
+                  "type": "array",
+                  "items": {
+                      "format": "int64",
+                      "type": "integer"
+                  },
+                  "required": false
+              },
+              "activeOrganizationId": {
+                  "name": "activeOrganizationId",
+                  "format": "int64",
+                  "description": "The user's active organization identifier.",
+                  "type": "integer",
+                  "required": true
+              },
+              "sessionTradingAgreementIds": {
+                  "name": "sessionTradingAgreementIds",
+                  "description": "The user's session trading agreement identifiers.",
+                  "type": "array",
+                  "items": {
+                      "format": "int64",
+                      "type": "integer"
+                  },
+                  "required": false
+              }
+          }
+      },
+      "Empty": {
+          "description": "Empty model. Used as default value when no model is specified.",
+          "id": "Empty",
+          "properties": {}
+      },
+      "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Preview$PreviewProperties": {
+          "description": "User's preview properties information.",
+          "id": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Preview$PreviewProperties",
+          "properties": {
+              "previewHost": {
+                  "name": "previewHost",
+                  "description": "The preview host name and port.",
+                  "type": "string",
+                  "required": false
+              },
+              "previewPath": {
+                  "name": "previewPath",
+                  "description": "The store preview URI.",
+                  "type": "string",
+                  "required": false
+              },
+              "previewInventory": {
+                  "name": "previewInventory",
+                  "description": "The inventory preview mode.",
+                  "type": "string",
+                  "required": false
+              },
+              "previewRestURI": {
+                  "name": "previewRestURI",
+                  "description": "The preview REST URI.",
+                  "type": "string",
+                  "required": false
+              }
+          }
+      },
+      "com.ibm.commerce.rest.member.handler.UserContextHandler$PersonalizationIdentifier": {
+          "description": "Personalization identitifier.",
+          "id": "com.ibm.commerce.rest.member.handler.UserContextHandler$PersonalizationIdentifier",
+          "properties": {
+              "personalizationID": {
+                  "name": "personalizationID",
+                  "description": "The personalization identifier.",
+                  "type": "string",
+                  "required": true
+              }
+          }
+      },
+      "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Catalog": {
+          "description": "User's catalog.",
+          "id": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Catalog",
+          "properties": {
+              "catalogId": {
+                  "name": "catalogId",
+                  "format": "int64",
+                  "description": "The user's catalog identifier.",
+                  "type": "integer",
+                  "required": true
+              },
+              "masterCatalog": {
+                  "name": "masterCatalog",
+                  "description": "The user preferred currency.",
+                  "type": "boolean",
+                  "required": true
+              }
+          }
+      },
+      "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Workspace": {
+          "description": "User's workspace information.",
+          "id": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext$Workspace",
+          "properties": {
+              "task": {
+                  "name": "task",
+                  "description": "The user's active task name.",
+                  "type": "string",
+                  "required": false
+              },
+              "workspaceName": {
+                  "name": "workspaceName",
+                  "description": "The user's active workspace name.",
+                  "type": "string",
+                  "required": false
+              },
+              "taskGroup": {
+                  "name": "taskGroup",
+                  "description": "The user's active task group name.",
+                  "type": "string",
+                  "required": false
+              }
+          }
+      }
+  },
+  "apiVersion": "WC.TOOLKIT Enterprise Version : 9 Fix Pack : 10",
+  "swaggerVersion": "1.2",
+  "basePath": "http://@localhost/wcs/resources",
+  "apis": [
+      {
+          "path": "/store/{storeId}/usercontext/personalizationId",
+          "operations": [
+              {
+                  "summary": "Gets or generates the Personalization ID of the current session.",
+                  "notes": "If WCToken is passed in the HTTP header, it returns the personalization ID based on WCToken. Otherwise, it returns a personalization ID for a generic user (guest shopper). For a generic user, the UUID of the persistent session is the personalization ID.",
+                  "method": "GET",
+                  "responseClass": "com.ibm.commerce.rest.member.handler.UserContextHandler$PersonalizationIdentifier",
+                  "secureCallMandatory": false,
+                  "partialAuthenticationAllowed": true,
+                  "nickname": "getPersonalizationID",
+                  "produces": [
+                      "application/json",
+                      "application/xml",
+                      "application/xhtml+xml",
+                      "application/atom+xml"
+                  ],
+                  "type": "com.ibm.commerce.rest.member.handler.UserContextHandler$PersonalizationIdentifier",
+                  "parameters": [
+                      {
+                          "paramType": "path",
+                          "name": "storeId",
+                          "description": "The store identifier.",
+                          "type": "string",
+                          "required": true,
+                          "enum": [
+                              "0",
+                              "10001",
+                              "10501",
+                              "11001",
+                              "1",
+                              "11501",
+                              "2",
+                              "12001",
+                              "12501",
+                              "11",
+                              "13001",
+                              "12",
+                              "715841384",
+                              "715841434",
+                              "715841484"
+                          ]
+                      },
+                      {
+                          "paramType": "query",
+                          "allowMultiple": false,
+                          "name": "responseFormat",
+                          "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \"json\" and \"xml\" without the quotes. If the responseFormat isn't specified, the \"accept\" HTTP header shall be used to determine the format of the response. If the \"accept\" HTTP header isn't specified as well, the default response format shall be in json.",
+                          "type": "string",
+                          "required": false,
+                          "enum": [
+                              "xml",
+                              "json"
+                          ]
+                      }
+                  ],
+                  "responseMessages": [
+                      {
+                          "code": 200,
+                          "message": "The requested completed successfully."
+                      },
+                      {
+                          "code": 400,
+                          "message": "Bad request. Some of the inputs provided to the request aren't valid."
+                      },
+                      {
+                          "code": 401,
+                          "message": "Not authenticated. The user session isn't valid."
+                      },
+                      {
+                          "code": 403,
+                          "message": "The user isn't authorized to perform the specified request."
+                      },
+                      {
+                          "code": 404,
+                          "message": "The specified resource couldn't be found."
+                      },
+                      {
+                          "code": 500,
+                          "message": "Internal server error. Additional details will be contained on the server logs."
+                      }
+                  ]
+              }
+          ]
+      },
+      {
+          "path": "/store/{storeId}/usercontext/@self/contextdata",
+          "operations": [
+              {
+                  "summary": "Gets the context data by the cookies and tokens sent with the request. ",
+                  "notes": "If no token or cookie for user session is sent, the context data are returned as generic user data, otherwise, the context data are returned as those associated with the user session cookie or token.If preview token is sent, the preview context data are returned as those associated with the preview token, otherwise, the preview context data are returned as those associated with the user session cookie or token.",
+                  "method": "GET",
+                  "responseClass": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext",
+                  "secureCallMandatory": false,
+                  "partialAuthenticationAllowed": true,
+                  "nickname": "getContextData",
+                  "produces": [
+                      "application/json",
+                      "application/xml",
+                      "application/xhtml+xml",
+                      "application/atom+xml"
+                  ],
+                  "type": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext",
+                  "parameters": [
+                      {
+                          "paramType": "path",
+                          "name": "storeId",
+                          "description": "The store identifier.",
+                          "type": "string",
+                          "required": true,
+                          "enum": [
+                              "0",
+                              "10001",
+                              "10501",
+                              "11001",
+                              "1",
+                              "11501",
+                              "2",
+                              "12001",
+                              "12501",
+                              "11",
+                              "13001",
+                              "12",
+                              "715841384",
+                              "715841434",
+                              "715841484"
+                          ]
+                      },
+                      {
+                          "paramType": "query",
+                          "allowMultiple": false,
+                          "name": "responseFormat",
+                          "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \"json\" and \"xml\" without the quotes. If the responseFormat isn't specified, the \"accept\" HTTP header shall be used to determine the format of the response. If the \"accept\" HTTP header isn't specified as well, the default response format shall be in json.",
+                          "type": "string",
+                          "required": false,
+                          "enum": [
+                              "xml",
+                              "json"
+                          ]
+                      }
+                  ],
+                  "responseMessages": [
+                      {
+                          "code": 200,
+                          "message": "The requested completed successfully."
+                      },
+                      {
+                          "code": 400,
+                          "message": "Bad request. Some of the inputs provided to the request aren't valid."
+                      },
+                      {
+                          "code": 401,
+                          "message": "Not authenticated. The user session isn't valid."
+                      },
+                      {
+                          "code": 403,
+                          "message": "The user isn't authorized to perform the specified request."
+                      },
+                      {
+                          "code": 404,
+                          "message": "The specified resource couldn't be found."
+                      },
+                      {
+                          "code": 500,
+                          "message": "Internal server error. Additional details will be contained on the server logs."
+                      }
+                  ]
+              }
+          ]
+      },
+      {
+          "path": "/store/{storeId}/usercontext/contextversion/{activityId}",
+          "operations": [
+              {
+                  "summary": "Gets the context version by the activity token. ",
+                  "notes": "",
+                  "method": "GET",
+                  "responseClass": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext",
+                  "secureCallMandatory": false,
+                  "partialAuthenticationAllowed": true,
+                  "nickname": "getContextVersion",
+                  "produces": [
+                      "application/json",
+                      "application/xml",
+                      "application/xhtml+xml",
+                      "application/atom+xml"
+                  ],
+                  "type": "com.ibm.commerce.rest.member.handler.UserContextHandler$UserContext",
+                  "parameters": [
+                      {
+                          "paramType": "path",
+                          "name": "storeId",
+                          "description": "The store identifier.",
+                          "type": "string",
+                          "required": true,
+                          "enum": [
+                              "0",
+                              "10001",
+                              "10501",
+                              "11001",
+                              "1",
+                              "11501",
+                              "2",
+                              "12001",
+                              "12501",
+                              "11",
+                              "13001",
+                              "12",
+                              "715841384",
+                              "715841434",
+                              "715841484"
+                          ]
+                      },
+                      {
+                          "paramType": "path",
+                          "name": "activityId",
+                          "description": "The activity token's GUID.",
+                          "type": "string",
+                          "required": true
+                      },
+                      {
+                          "paramType": "query",
+                          "allowMultiple": false,
+                          "name": "responseFormat",
+                          "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \"json\" and \"xml\" without the quotes. If the responseFormat isn't specified, the \"accept\" HTTP header shall be used to determine the format of the response. If the \"accept\" HTTP header isn't specified as well, the default response format shall be in json.",
+                          "type": "string",
+                          "required": false,
+                          "enum": [
+                              "xml",
+                              "json"
+                          ]
+                      }
+                  ],
+                  "responseMessages": [
+                      {
+                          "code": 200,
+                          "message": "The requested completed successfully."
+                      },
+                      {
+                          "code": 400,
+                          "message": "Bad request. Some of the inputs provided to the request aren't valid."
+                      },
+                      {
+                          "code": 401,
+                          "message": "Not authenticated. The user session isn't valid."
+                      },
+                      {
+                          "code": 403,
+                          "message": "The user isn't authorized to perform the specified request."
+                      },
+                      {
+                          "code": 404,
+                          "message": "The specified resource couldn't be found."
+                      },
+                      {
+                          "code": 500,
+                          "message": "Internal server error. Additional details will be contained on the server logs."
+                      }
+                  ]
+              }
+          ]
+      }
+  ],
+  "resourcePath": "store/{storeId}/usercontext",
+  "description": "This class provides RESTful services to get the user context of a shopper. For example, PersonalizationId."
+}

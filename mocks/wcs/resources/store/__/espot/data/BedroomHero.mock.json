@@ -1,0 +1,50 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "defaultContentDisplaySequence": [
+        {
+          "resultId": "12511",
+          "resultFormat": "MarketingContent",
+          "displaySequence": "1.0"
+        }
+      ],
+      "marketingSpotIdentifier": "13011",
+      "behavior": "0",
+      "eSpotName": "BedroomHero",
+      "baseMarketingSpotActivityData": [
+        {
+          "contentFormatName": "Text",
+          "baseMarketingSpotActivityName": "BedroomHeroContent",
+          "contentClickAction": "None",
+          "contentId": "12511",
+          "baseMarketingSpotActivityID": "12511",
+          "contentName": "BedroomHeroContent",
+          "baseMarketingSpotDataType": "MarketingContent",
+          "activityIdentifierID": "0",
+          "MarketingContentDescription": [{}],
+          "marketingContentDescription": [
+            {
+              "marketingText": "<div class=\"MuiGrid-root MuiGrid-container marketing-content marketing-backgroundImage marketing-heroImage BedroomHeroContent\" style=\"background-image: url('/EmeraldSAS/images/rooms/bedroom.jpg');\"><div class=\"MuiGrid-root MuiGrid-item MuiGrid-grid-xs-9 MuiGrid-grid-md-6 MuiGrid-grid-lg-4 marketing-text marketing-text-vertical-center\"><h2 class=\"MuiTypography-root MuiTypography-h2 bottom-margin-1\">Bedroom</h2><h5 class=\"MuiTypography-root MuiTypography-h5\">Furnish your bedrooms in style and make them your own.</h5></div></div>",
+              "language": "-1"
+            }
+          ],
+          "contentFormatId": "2",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingKey": "mktActivityDescription"
+            },
+            {
+              "baseMarketingValue": "1.0",
+              "baseMarketingKey": "displaySequence"
+            }
+          ],
+          "contentStoreId": "12501"
+        }
+      ]
+    }
+  ],
+  "resourceId": "https://localhost:443/wcs/resources/store/11/espot/BedroomHero?catalogId=11501&name=BedroomHero&langId=-1",
+  "resourceName": "espot"
+}

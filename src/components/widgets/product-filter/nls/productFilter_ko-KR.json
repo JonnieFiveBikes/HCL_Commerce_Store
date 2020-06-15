@@ -1,0 +1,15 @@
+{
+  "ProductFilter": {
+    "Labels": {
+      "filterBy": "필터링 기준",
+      "price": "Price",
+      "minPrice": "최소",
+      "maxPrice": "최대"
+    },
+    "Actions": {
+      "showMore": "자세히 표시",
+      "showLess": "간단히 표시",
+      "Go": "이동"
+    }
+  }
+}

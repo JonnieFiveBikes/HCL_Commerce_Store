@@ -12,6 +12,7 @@ module.exports = {
   DIST_FOLDER: "dist/",
   BUILD_FOLDER: "build/",
   ALL_APP: "Emerald,Sapphire",
+  DEFAULT_APP: "Emerald",
   MODE: {
     PREVIEW: "preview",
     MOCK: "mock",

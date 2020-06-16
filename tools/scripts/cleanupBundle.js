@@ -11,20 +11,20 @@
 const minimist = require("minimist");
 const fs = require("fs-extra");
 
-const { DIST_FOLDER, BUILD_FOLDER } = require("./buildConstant");
+const { DIST_FOLDER, BUILD_FOLDER, DEFAULT_APP } = require("./buildConstant");
 
 const opts = {
   //defaults
   string: ["appName"],
   default: {
-    appName: "Emerald",
+    appName: DEFAULT_APP,
   },
 };
 
 const cmdArgs = minimist(process.argv.slice(2), opts);
 
 if (cmdArgs.appName.trim() === "") {
-  cmdArgs.appName = "Emerald";
+  cmdArgs.appName = DEFAULT_APP;
 }
 
 fs.removeSync(`${DIST_FOLDER}${cmdArgs.appName}`);

@@ -20,7 +20,7 @@ const fs = require("fs-extra");
 const find = require("find");
 const minimist = require("minimist");
 
-const { MODE } = require("./buildConstant");
+const { MODE, DEFAULT_APP } = require("./buildConstant");
 
 const ASSET_FOLDER = "assets/";
 const COMMON_ASSET_FOLDER = `${ASSET_FOLDER}common/`;
@@ -34,7 +34,7 @@ let opts = {
   //defaults
   string: ["appName", "allApp", "mode", "port", "https"],
   default: {
-    appName: "Emerald",
+    appName: DEFAULT_APP,
     allApp: "",
     mode: MODE.DEFAULT,
     port: 3000,
@@ -50,7 +50,7 @@ if (cmdArgs.mode !== MODE.DEFAULT) {
 }
 
 if (cmdArgs.appName.trim() === "") {
-  cmdArgs.appName = "Emerald";
+  cmdArgs.appName = DEFAULT_APP;
 }
 
 const appName = cmdArgs.appName;

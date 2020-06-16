@@ -11,20 +11,20 @@
 const minimist = require("minimist");
 const runAll = require("npm-run-all");
 
-const { MODE } = require("./buildConstant");
+const { DEFAULT_APP } = require("./buildConstant");
 
 const opts = {
   //defaults
   string: ["appName"],
   default: {
-    appName: "Emerald",
+    appName: DEFAULT_APP,
   },
 };
 
 const cmdArgs = minimist(process.argv.slice(2), opts);
 
 if (cmdArgs.appName.trim() === "") {
-  cmdArgs.appName = "Emerald";
+  cmdArgs.appName = DEFAULT_APP;
 }
 
 const runSOption = {

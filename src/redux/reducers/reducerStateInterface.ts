@@ -44,15 +44,15 @@ export interface OrderReducerState {
   orderItems: any[]; //Stores order items in cart with catentry details added
   catentries: any; //Stores the additional catentry details need for order items in cart
   isCheckoutDisabled: boolean;
-  shipAddresses: any | null;
+  shipInfos: any | null;
   shipModes: any[];
   payMethods: any[];
-  checkoutActiveStep: number;
   isRecurringOrder: boolean;
   recurringOrderFrequency: string;
   recurringOrderStartDate: Date | null;
   isRecurringOrderDisabled: boolean;
   isFetching?: boolean;
+  miniCartItems: any[]; //Stores the last N items to be shown in minicart only
 }
 
 export interface UserReducerState {

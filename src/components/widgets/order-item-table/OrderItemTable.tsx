@@ -19,6 +19,7 @@ import { useSite } from "../../../_foundation/hooks/useSite";
 //Custom libraries
 import FormattedPriceDisplay from "../formatted-price-display";
 import { INVENTORY_STATUS } from "../../../constants/order";
+import { PAGINATION_CONFIGS } from "../../../configs/order";
 //Redux
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 import * as orderActions from "../../../redux/actions/order";
@@ -27,6 +28,7 @@ import { loginStatusSelector } from "../../../redux/selectors/user";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import {
   StyledAvatar,
+  StyledGrid,
   StyledNumberInput,
   StyledTable,
   StyledTypography,
@@ -38,6 +40,8 @@ interface OrderItemTableProps {
   title?: string;
   readOnly?: boolean;
   options?: any;
+  miniCartView?: boolean;
+  handleMiniCartClose?: Function;
 }
 
 /**
@@ -62,7 +66,37 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
 
   const title = props.title !== undefined ? props.title : "";
   const readOnly = props.readOnly !== undefined ? props.readOnly : true;
+  const miniCartView =
+    props.miniCartView !== undefined ? props.miniCartView : false;
+  const handleMiniCartClose =
+    props.handleMiniCartClose !== undefined ? props.handleMiniCartClose : null;
   const [quantityList, setQuantityList] = useState<any>(initQuantityData());
+
+  const localization = {
+    pagination: {
+      labelRowsSelect: t("OrderItemTable.Labels.PageSizeLabel"),
+      labelDisplayedRows: t("OrderItemTable.Labels.RowCount"),
+      firstTooltip: t("OrderItemTable.Labels.FirstPage"),
+      previousTooltip: t("OrderItemTable.Labels.PreviousPage"),
+      nextTooltip: t("OrderItemTable.Labels.NextPage"),
+      lastTooltip: t("OrderItemTable.Labels.LastPage"),
+    },
+  };
+
+  const QuantityDisplay = (props: any) => (
+    <StyledTypography>
+      {quantityList[props.rowData.orderItemId]}
+    </StyledTypography>
+  );
+
+  const OrderItemPrice = (props: any) => (
+    <StyledTypography align={miniCartView ? "right" : "inherit"}>
+      <FormattedPriceDisplay
+        min={parseFloat(props.rowData.orderItemPrice)}
+        currency={props.rowData.currency}
+      />
+    </StyledTypography>
+  );
 
   const defaultColumnData = [
     {
@@ -73,7 +107,9 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
       render: (rowData) => (
         <>
           {rowData.seo && rowData.seo.href ? (
-            <Link to={rowData.seo?.href}>
+            <Link
+              to={rowData.seo?.href}
+              onClick={handleMiniCartClose ? handleMiniCartClose : null}>
               <StyledAvatar alt={rowData.name} src={rowData.thumbnail} />
             </Link>
           ) : (
@@ -89,7 +125,9 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
         <>
           <StyledTypography variant="body2">
             {rowData.seo && rowData.seo.href ? (
-              <Link to={rowData.seo.href}>
+              <Link
+                to={rowData.seo?.href}
+                onClick={handleMiniCartClose ? handleMiniCartClose : null}>
                 {rowData.name ? rowData.name : rowData.partNumber}
               </Link>
             ) : rowData.name ? (
@@ -99,9 +137,11 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
             )}
           </StyledTypography>
           <StyledTypography variant="body1">
-            {t("OrderItemTable.Labels.SKU")}: {rowData.partNumber}
+            {!miniCartView && t("OrderItemTable.Labels.SKU")}
+            {rowData.partNumber}
           </StyledTypography>
-          {rowData.attributes &&
+          {!miniCartView &&
+            rowData.attributes &&
             rowData.attributes.map((attribute: any, index: number) =>
               attribute.values.map((value: any, index: number) => (
                 <StyledTypography variant="body1" key={value.id}>
@@ -114,12 +154,23 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
               {t("OrderItemTable.Labels.Gift")}
             </StyledTypography>
           )}
-          {isRecurringOrderFeatureEnabled &&
+          {!miniCartView &&
+            isRecurringOrderFeatureEnabled &&
             rowData.disallowRecurringOrder === "1" && (
               <StyledTypography variant="overline" color="textSecondary">
                 {t("OrderItemTable.Labels.NonRecurring")}
               </StyledTypography>
             )}
+          {miniCartView && (
+            <StyledGrid container className="qty-price-section">
+              <StyledGrid item xs={6}>
+                <QuantityDisplay rowData={rowData} />
+              </StyledGrid>
+              <StyledGrid item xs={6}>
+                <OrderItemPrice rowData={rowData} />
+              </StyledGrid>
+            </StyledGrid>
+          )}
         </>
       ),
     },
@@ -137,6 +188,7 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
           : rowData.orderItemInventoryStatus !== INVENTORY_STATUS.backordered
           ? t("CommerceEnvironment.inventoryStatus.Available")
           : t("CommerceEnvironment.inventoryStatus.Backordered"),
+      hidden: miniCartView,
     },
 
     {
@@ -152,9 +204,7 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
       },
       render: (rowData: any) =>
         readOnly ? (
-          <StyledTypography>
-            {quantityList[rowData.orderItemId]}
-          </StyledTypography>
+          <QuantityDisplay rowData={rowData} />
         ) : (
           <StyledNumberInput
             mobile
@@ -169,6 +219,7 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
             strict
           />
         ),
+      hidden: miniCartView,
     },
     {
       title: t("OrderItemTable.Labels.Price"),
@@ -181,14 +232,8 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
       cellStyle: {
         textAlign: "left",
       },
-      render: (rowData: any) => (
-        <StyledTypography>
-          <FormattedPriceDisplay
-            min={parseFloat(rowData.orderItemPrice)}
-            currency={rowData.currency}
-          />
-        </StyledTypography>
-      ),
+      render: (rowData: any) => <OrderItemPrice rowData={rowData} />,
+      hidden: miniCartView,
     },
   ];
   const actions = [
@@ -201,7 +246,10 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
   ];
   const defaultOptions = {
     toolbar: false,
-    paging: false,
+    header: !miniCartView,
+    paging: !miniCartView,
+    pageSize: PAGINATION_CONFIGS.pageLimit,
+    pageSizeOptions: PAGINATION_CONFIGS.pageSizeOptions,
     actionsColumnIndex: -1,
     fixedColumns: {
       left: 0,
@@ -276,12 +324,13 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
     let payload = {
       ...payloadBase,
       orderItemId: orderItemId,
+      fetchCatentries: true,
     };
     dispatch(orderActions.REMOVE_ITEM_ACTION(payload));
   }
 
   /**
-   * Dispatch quantity update actino for order item
+   * Dispatch quantity update action for order item
    * @param item The selected order item
    */
   function onQuantityUpdate(quantityString: string, item: any) {
@@ -308,8 +357,10 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
       columns={columnData}
       data={data}
       title={title}
+      localization={localization}
       options={options}
       actions={readOnly ? [] : actions}
+      className={miniCartView ? "mini-cart-table" : "order-item-table"}
     />
   );
 };

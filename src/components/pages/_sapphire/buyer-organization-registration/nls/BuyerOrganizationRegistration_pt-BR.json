@@ -6,16 +6,16 @@
     "UserDetails": "Forneça detalhes sobre a pessoa que vai administrar sua organização e gerenciar seus compradores",
     "OrgName": "Nome da organização",
     "Email": "E-mail",
-    "Address1": "Endereço linha 1",
-    "Address2": "Endereço linha 2",
+    "Address1": "Linha 1 do endereço",
+    "Address2": "Linha de endereço 2 (opcional)",
     "City": "Cidade",
     "Country": "País",
     "State": "Estado",
-    "ZipCode": "CEP",
+    "ZipCode": "CEP/código postal",
     "FirstName": "Nome",
     "LastName": "Sobrenome",
     "LogonId": "ID de logon",
-    "Phone": "Telefone",
+    "Phone": "Telefone (opcional)",
     "Password": "Senha",
     "Password2": "Confirmar senha",
     "Language": "Idioma de preferência",
@@ -23,12 +23,10 @@
     "UseOrg": "Use o mesmo endereço que a organização",
     "Submit": "Enviar",
     "Clear": "Limpar",
-    "USD": "Dólar americano",
-    "USEnglish": "Inglês (EUA)",
     "Success": "Sua solicitação de registro foi recebida. Sua conta está aguardando aprovação. Até que sua conta seja aprovada, não será possível fazer logon.",
     "OK": "OK",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "Formato inválido"
     }
   }
 }

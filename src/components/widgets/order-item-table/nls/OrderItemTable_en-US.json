@@ -3,13 +3,19 @@
     "Title": "Order Items",
     "Labels": {
       "ItemDetails": "Item Details",
-      "SKU": "SKU",
+      "SKU": "SKU: ",
       "Status": "Status",
       "Quantity": "Quantity",
       "Price": "Price",
       "Actions": "Actions",
       "Gift": "Free gift",
-      "NonRecurring": "Non-recurring item"
+      "NonRecurring": "Non-recurring item",
+      "PageSizeLabel": "rows",
+      "FirstPage": "First Page",
+      "LastPage": "Last Page",
+      "PreviousPage": "Previous Page",
+      "NextPage": "Next Page",
+      "RowCount": "Showing {from} to {to} of {count}"
     },
     "Actions": {
       "Delete": "Delete"

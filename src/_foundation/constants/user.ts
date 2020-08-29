@@ -8,6 +8,5 @@
  *
  *==================================================
  */
-export const CURRENT_USER = "currentUser";
 export const PERSONALIZATION_ID = "personalizationID";
 export const INITIATED_FROM_STORAGE = "initiatedFromStorage";

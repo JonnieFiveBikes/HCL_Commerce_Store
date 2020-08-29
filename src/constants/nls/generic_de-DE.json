@@ -1,0 +1,78 @@
+{
+  "CommerceEnvironment": {
+    "listSettings": {
+      "relevance": "Relevanz",
+      "brands": "Marken",
+      "name": "Name",
+      "priceLowToHigh": "Preis (aufsteigend)",
+      "priceHighToLow": "Preis (absteigend)"
+    },
+    "inventoryStatus": {
+      "Available": "Verfügbar",
+      "Allocated": "Verfügbar",
+      "Unallocated": "Nicht zugewiesen",
+      "Backordered": "Rückständig",
+      "OOS": "Nicht vorrätig",
+      "NA": "Nicht verfügbar"
+    },
+    "recurringOrderFrequency": {
+      "Everyday": "Täglich",
+      "EveryWeek": "Wöchentlich",
+      "EveryTwoWeeks": "Alle 2 Wochen",
+      "EveryThreeWeeks": "Alle 3 Wochen",
+      "EveryFourWeeks": "Alle 4 Wochen"
+    },
+    "currency": {
+      "ROL": "Rumänischer Leu",
+      "RON": "Rumänischer Leu",
+      "ARS": "Argentinischer Peso",
+      "ATS": "Österreichischer Schilling",
+      "AUD": "Australischer Dollar",
+      "BEF": "Belgischer Franc",
+      "BRL": "Brasilianischer Real",
+      "CAD": "Kanadischer Dollar",
+      "CNY": "Chinesischer Yuan",
+      "DEM": "Deutsche Mark",
+      "ESP": "Spanische Peseta",
+      "EUR": "Euro-G",
+      "FRF": "Französischer Franc",
+      "GBP": "Britisches Pfund",
+      "HKD": "Hongkong-Dollar",
+      "ITL": "Italienische Lira",
+      "JPY": "Japanischer Yen",
+      "KRW": "Südkoreanischer Won",
+      "SGD": "Singapur-Dollar",
+      "TWD": "Taiwan-Dollar",
+      "USD": "US-Dollar",
+      "ZAR": "Südafrikanischer Rand",
+      "FIM": "Finnische Mark",
+      "IEP": "Irisches Pfund",
+      "LUF": "Luxemburgischer Franc",
+      "NLG": "Holländischer Gulden",
+      "PTE": "Portugiesischer Escudo",
+      "NOK": "Norwegische Krone",
+      "SEK": "Schwedische Krone",
+      "DKK": "Dänische Krone",
+      "CHF": "Schweizer Franc",
+      "PLN": "Polnischer Zloty",
+      "RUB": "Russischer Rubel",
+      "EGP": "Ägyptisches Pfund"
+    },
+    "language": {
+      "-1": "US-Englisch",
+      "-2": "Französisch",
+      "-3": "Deutsch",
+      "-4": "Italienisch",
+      "-5": "Spanisch",
+      "-6": "Brasilianisches Portugiesisch",
+      "-7": "Chinesisch (vereinfacht)",
+      "-8": "Chinesisch (traditionell)",
+      "-10": "Japanisch",
+      "-21": "Rumänisch",
+      "-20": "Russisch",
+      "-9": "Koreanisch",
+      "-22": "Polnisch",
+      "-23": "Arabisch"
+    }
+  }
+}

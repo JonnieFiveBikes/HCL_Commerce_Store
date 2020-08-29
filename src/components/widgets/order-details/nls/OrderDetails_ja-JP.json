@@ -1,10 +1,10 @@
 {
   "OrderDetails": {
-    "Title": "Order Details",
+    "Title": "オーダー詳細情報",
     "Actions": {
-      "Back": "Back to Payment Details",
-      "Next": "Place Order",
-      "NextRecurringOrder": "Place Recurring Order"
+      "Back": "支払いの詳細情報に戻る",
+      "Next": "オーダーの発行",
+      "NextRecurringOrder": "定期オーダーの発行"
     }
   }
 }

@@ -2,9 +2,9 @@
   "ProductGrid": {
     "Labels": {
       "filteredBy": "Filtrado por:",
-      "productFound": "{{count}}  produto encontrado",
+      "productFound": "{{count}} produto encontrado",
       "productFound_plural": "{{count}} produtos encontrados",
-      "productSearchFound": "{{count}}  produto encontrado para \"{{searchTerm}}\"",
+      "productSearchFound": "{{count}} produto encontrado para \"{{searchTerm}}\"",
       "productSearchFound_plural": "{{count}} produtos encontrados para \"{{searchTerm}}\"",
       "noMatches": "0 correspondências para \"{{searchTerm}}\".",
       "searchAgain": "Lamentamos, mas a sua procura de \"{{searchTerm}}\" não devolveu quaisquer resultados.Tente outra procura.",

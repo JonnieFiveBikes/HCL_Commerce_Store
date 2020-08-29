@@ -9,16 +9,14 @@
  *---------------------------------------------------
  */
 //Standard libraries
-import { call, put, select } from "redux-saga/effects";
+import { call, put } from "redux-saga/effects";
 import { AnyAction } from "redux";
 //Foundation libraries
 import cartService from "../../../_foundation/apis/transaction/cart.service";
 import shippingInfoService from "../../../_foundation/apis/transaction/shippingInfo.service";
-import paymentInstructionService from "../../../_foundation/apis/transaction/paymentInstruction.service";
-import subscriptionService from "../../../_foundation/apis/transaction/subscription.service";
 //Custom libraries
-import { ORDER_CONFIGS } from "../../../configs/order";
-import { PAYMENT } from "../../../constants/order";
+import { ORDER_CONFIGS, MINICART_CONFIGS } from "../../../configs/order";
+import { SUCCESS_MSG_PREFIX } from "../../../constants/common";
 //Redux
 import * as ACTIONS from "../../action-types/order";
 import { HANDLE_SUCCESS_MESSAGE_ACTION } from "../../actions/success";
@@ -27,7 +25,6 @@ import {
   COPY_CART_SUCCESS_ACTION,
   COPY_CART_ERROR_ACTION,
 } from "../../actions/order";
-import { cartSelector } from "../../selectors/order";
 import { fetchOrderItemDetailsByIds } from "./orderDetails";
 
 export function* copyCart(action: AnyAction) {
@@ -47,10 +44,10 @@ export function* copyCart(action: AnyAction) {
       })
     );
     const successMessage = {
-      key: "success-message." + COPY_CART_SUCCESS_ACTION.type,
+      key: SUCCESS_MSG_PREFIX + COPY_CART_SUCCESS_ACTION.type,
       link: {
         url: CART,
-        textKey: "success-message.ViewCart",
+        textKey: SUCCESS_MSG_PREFIX + "ViewCart",
       },
     };
     yield put(HANDLE_SUCCESS_MESSAGE_ACTION(successMessage));
@@ -65,6 +62,16 @@ export function* copyCart(action: AnyAction) {
 export function* addItem(action: any) {
   try {
     const payload = action.payload;
+    const cartPayload = {
+      contractId: payload.contractId,
+      pageNumber: 1,
+      pageSize: MINICART_CONFIGS.maxItemsToShow,
+      updateMiniCartOnly: true,
+      $queryParameters: {
+        sortOrder: "DESC",
+      },
+    };
+
     const _orderItems: any[] = [];
     let catentryIds: string[] = [];
     let partnumbers: string[] = [];
@@ -117,11 +124,15 @@ export function* addItem(action: any) {
       response: response.data,
       payload: payload,
     });
+
+    const cartAction = { ...action, payload: cartPayload };
+    yield call(fetchCart, cartAction);
+
     const successMessage = {
-      key: "success-message." + ACTIONS.ITEM_ADD_SUCCESS,
+      key: SUCCESS_MSG_PREFIX + ACTIONS.ITEM_ADD_SUCCESS,
       link: {
         url: CART,
-        textKey: "success-message.ViewCart",
+        textKey: SUCCESS_MSG_PREFIX + "ViewCart",
       },
     };
     yield put(HANDLE_SUCCESS_MESSAGE_ACTION(successMessage));
@@ -194,7 +205,7 @@ export function* fetchCart(action: any) {
     const payload = action.payload;
     const parameters = {
       ...payload,
-      sortOrderItemBy: "orderItemID",
+      sortOrderItemBy: ORDER_CONFIGS.sortOrderItemBy,
     };
 
     const fetchCatentries: boolean = payload.fetchCatentries
@@ -203,6 +214,11 @@ export function* fetchCart(action: any) {
     const checkInventory: boolean = payload.checkInventory
       ? payload.checkInventory
       : false;
+    //only update minicart related states in redux if true
+    const updateMiniCartOnly: boolean = payload.updateMiniCartOnly
+      ? payload.updateMiniCartOnly
+      : false;
+
     const responseCart = yield call(cartService.getCart, { ...parameters });
 
     let catentries: any = null;
@@ -212,12 +228,25 @@ export function* fetchCart(action: any) {
       if (cart) {
         const orderItems = cart.orderItem;
 
-        if (orderItems && orderItems.length > 0 && fetchCatentries) {
+        if (orderItems && orderItems.length > 0) {
           let catentryIdList: string[] = [];
 
-          orderItems.forEach((item: any, index: number) => {
-            catentryIdList.push(item.productId);
-          });
+          if (
+            fetchCatentries ||
+            orderItems.length <= MINICART_CONFIGS.maxItemsToShow
+          ) {
+            //get product info for all items
+            orderItems.forEach((item: any, index: number) => {
+              catentryIdList.push(item.productId);
+            });
+          } else {
+            //get product info for mini cart only
+            orderItems
+              .slice(MINICART_CONFIGS.maxItemsToShow * -1)
+              .forEach((item: any, index: number) => {
+                catentryIdList.push(item.productId);
+              });
+          }
 
           if (catentryIdList.length > 0) {
             catentryIdList = [...new Set(catentryIdList)];
@@ -259,18 +288,20 @@ export function* fetchCart(action: any) {
         }
       }
     }
-    if (fetchCatentries && catentries != null) {
+    if (catentries != null) {
       yield put({
         type: ACTIONS.CART_GET_SUCCESS,
         response: responseCart.data,
         catentries: catentries,
         checkInventory: checkInventory,
+        updateMiniCartOnly: updateMiniCartOnly,
       });
     } else {
       yield put({
         type: ACTIONS.CART_GET_SUCCESS,
         response: responseCart.data,
         checkInventory: checkInventory,
+        updateMiniCartOnly: updateMiniCartOnly,
       });
     }
   } catch (error) {
@@ -291,37 +322,6 @@ export function* fetchShipInfo(action: any) {
     yield put({ type: ACTIONS.SHIPINFO_GET_SUCCESS, response: response.data });
   } catch (error) {
     yield put({ type: ACTIONS.SHIPINFO_GET_ERROR, error });
-  }
-}
-
-/**
- * Saga worker to invoke update ship info API
- */
-export function* updateShipInfo(action: any) {
-  try {
-    const payload = action.payload;
-    const body = {
-      body: {
-        x_calculateOrder: ORDER_CONFIGS.calculateOrder,
-        x_calculationUsage: ORDER_CONFIGS.calculationUsage,
-        x_allocate: ORDER_CONFIGS.allocate,
-        x_backorder: ORDER_CONFIGS.backOrder,
-        x_remerge: ORDER_CONFIGS.remerge,
-        x_check: ORDER_CONFIGS.check,
-        orderId: ".",
-        addressId: payload.addressId,
-      },
-    };
-    const response = yield call(
-      shippingInfoService.updateOrderShippingInfo,
-      body
-    );
-    yield put({
-      type: ACTIONS.SHIPINFO_UPDATE_SUCCESS,
-      response: response.data,
-    });
-  } catch (error) {
-    yield put({ type: ACTIONS.SHIPINFO_UPDATE_ERROR, error });
   }
 }
 
@@ -353,7 +353,7 @@ export function* updateShipMode(action: any) {
       x_check: ORDER_CONFIGS.check,
       orderId: ".",
       shipModeId: payload.shipModeId,
-      addressId: payload.shipAddressId,
+      //addressId: payload.shipAddressId,
       orderItem: [], //bypass defect HC-2784
     },
   };
@@ -380,102 +380,5 @@ export function* fetchPayMethods(action: any) {
     });
   } catch (error) {
     yield put({ type: ACTIONS.PAYMETHODS_GET_ERROR, error });
-  }
-}
-
-/**
- * Saga worker to invoke add payment instruction API
- */
-export function* addPI(action: any) {
-  try {
-    const payload = action.payload;
-    const cart = yield select(cartSelector);
-    const payMethodId = payload.payMethodId;
-    let body: any = {
-      piAmount: cart.grandTotal,
-      billing_address_id: payload.billAddressId,
-      payMethodId: payMethodId,
-    };
-    if (
-      payMethodId === PAYMENT.paymentMethodName.visa ||
-      payMethodId === PAYMENT.paymentMethodName.mc ||
-      payMethodId === PAYMENT.paymentMethodName.amex
-    ) {
-      body = {
-        ...body,
-        account: payload.account,
-        expire_month: payload.expire_month,
-        expire_year: payload.expire_year,
-        cc_cvc: payload.cc_cvc,
-        cc_brand: payMethodId,
-      };
-    }
-    const responseDelete = yield call(
-      paymentInstructionService.deleteAllPaymentInstructions,
-      payload
-    );
-    const responseAdd = yield call(
-      paymentInstructionService.addPaymentInstruction,
-      { body }
-    );
-    yield put({ type: ACTIONS.PI_ADD_SUCCESS, response: responseAdd.data });
-  } catch (error) {
-    yield put({ type: ACTIONS.PI_ADD_ERROR, error });
-  }
-}
-
-/**
- * Saga worker to invoke precheckout and cart submit API
- */
-export function* placeOrder(action: any) {
-  try {
-    const payload = action.payload;
-    const responsePco = yield call(cartService.preCheckout, payload);
-    const response = yield call(cartService.checkOut, payload);
-    yield put({ type: ACTIONS.ORDER_PLACE_SUCCESS, response: response.data });
-  } catch (error) {
-    yield put({ type: ACTIONS.ORDER_PLACE_ERROR, error });
-  }
-}
-
-/**
- * Saga worker to invoke update shipmode and delete then add PI
- */
-export function* updateShipModeFetchCartAndAddPI(action: any) {
-  try {
-    yield call(updateShipMode, action);
-    yield call(fetchCart, action);
-    yield call(addPI, action);
-  } catch (error) {
-    yield put({ type: ACTIONS.SHIPMODE_UPDATE_AND_PI_ADD_ERROR, error });
-  }
-}
-
-/**
- * Saga worker to invoke recurring order submit API
- */
-export function* placeRecurringOrder(action: any) {
-  try {
-    const payload = action.payload;
-    const params: any = {
-      orderId: payload.orderId,
-      body: {
-        fulfillmentInterval: payload.fulfillmentInterval,
-        fulfillmentIntervalUOM: payload.fulfillmentIntervalUOM,
-        startDate: payload.startDate,
-      },
-    };
-
-    const responsePco = yield call(cartService.preCheckout, payload);
-    const response = yield call(
-      subscriptionService.submitRecurringOrSubscription,
-      params
-    );
-    yield put({
-      type: ACTIONS.RECURRINGORDER_PLACE_SUCCESS,
-      response: response.data,
-    });
-  } catch (error) {
-    yield put({ type: ACTIONS.RECURRINGORDER_PLACE_ERROR, error });
   }
 }

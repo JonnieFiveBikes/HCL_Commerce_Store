@@ -1,0 +1,20 @@
+{
+  "Cart": {
+    "Title": "購物車",
+    "Msgs": {
+      "Empty": "您的購物車是空的。請立即購物！",
+      "PromoCode": "輸入您的促銷代碼"
+    },
+    "Labels": {
+      "PromoCode": "促銷代碼",
+      "RecurringOrder": "將此排程為重複訂單",
+      "Frequency": "頻率",
+      "StartDate": "開始日期",
+      "OrderSummary": "訂單摘要"
+    },
+    "Actions": {
+      "Checkout": "結帳",
+      "Apply": "套用"
+    }
+  }
+}

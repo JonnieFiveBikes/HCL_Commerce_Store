@@ -21,6 +21,10 @@ const StyledSelect = styled(({ ...props }) => <Select {...props} />)`
       height: ${dimensions.inputFields.height}px;
       line-height: ${dimensions.inputFields.height}px;
       color: ${theme.palette.text.primary};
+      &.Mui-disabled {
+        color: ${theme.palette.action.disabled};
+        background:  ${theme.palette.action.disabledBackground};;
+      }
     }
 
     .MuiSelect-icon {

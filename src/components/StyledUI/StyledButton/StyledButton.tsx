@@ -12,9 +12,11 @@ import React from "react";
 import styled from "styled-components";
 import MatButton from "@material-ui/core/Button";
 
-const CustomMatButton = (props: any) => (
-  <MatButton {...props} variant={props.variant || "contained"} />
-);
+const CustomMatButton = React.forwardRef((props: any, ref: any) => {
+  return (
+    <MatButton {...props} ref={ref} variant={props.variant || "contained"} />
+  );
+});
 
 const StyledButton = styled(CustomMatButton)`
   ${({ theme }) => `
@@ -45,6 +47,30 @@ const StyledButton = styled(CustomMatButton)`
     color: ${theme.palette.primary.main};
     background: none;
   }
+
+  &.left-border-solid  {
+  &.MuiButton-outlinedSizeSmall {
+    font-weight: bold;
+    float: left;
+    border: 1.35px solid;
+  }
+  }
+
+  &.confirm-action-button,
+  &.cancel-action-button {
+    background-color: ${theme.palette.background.paper};
+    font-weight: 600;   
+  }
+
+  &.confirm-action-button {
+    border: ${theme.spacing(0.25)}px solid ${theme.palette.border.alert};
+    color: ${theme.palette.text.alert};
+  }
+
+  &.cancel-action-button {
+    border: ${theme.spacing(0.25)}px solid;
+  }
+
   `}
 `;
 

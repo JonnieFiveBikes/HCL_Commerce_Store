@@ -1,0 +1,2155 @@
+{
+  "contents": [
+    {
+      "hasSingleSKU": false,
+      "shortDescription": "A long cozy double sofa for lounges.",
+      "parentCatalogGroupID": "/10501/10502",
+      "seo": {
+        "href": "/blue-color-sofa-lr-fntr-co-0011"
+      },
+      "storeID": "11",
+      "longDescription": "This smooth synthetic is perfect for lounge environment, and is stain proof. It as easy as wiping stain off it with a wipe, thus reducing maintenance. It is built tough so that it does not tear or break easily.",
+      "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_a1_600.jpg",
+      "buyable": "true",
+      "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_a1_350.jpg",
+      "partNumber": "LR-FNTR-CO-0011",
+      "name": "Supreme LoungeStyle Double Sofa",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "600.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "549.99"
+        }
+      ],
+      "numberOfSKUs": 10,
+      "type": "variant",
+      "id": "3074457345616681169",
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "grey",
+              "sequence": "1.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003003",
+              "image1": "/images/catalog/swatches/sw_grey.png",
+              "value": "Grey",
+              "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_grey.png"
+            },
+            {
+              "identifier": "seaweed",
+              "sequence": "1.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003014",
+              "image1": "/images/catalog/swatches/sw_seaweed.png",
+              "value": "Seaweed",
+              "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_seaweed.png"
+            },
+            {
+              "identifier": "blue",
+              "sequence": "1.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003011",
+              "image1": "/images/catalog/swatches/sw_blue.png",
+              "value": "Blue",
+              "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_blue.png"
+            },
+            {
+              "identifier": "darkgrey",
+              "sequence": "1.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003010",
+              "image1": "/images/catalog/swatches/sw_darkgrey.png",
+              "value": "Dark Grey",
+              "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_darkgrey.png"
+            },
+            {
+              "identifier": "crimson",
+              "sequence": "1.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003015",
+              "image1": "/images/catalog/swatches/sw_crimson.png",
+              "value": "Crimson",
+              "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_crimson.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "0.0",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "color",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Size",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": "2.0",
+              "identifier": "48x6x48",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003024",
+              "value": "48\"x6\"x48\""
+            },
+            {
+              "sequence": "2.0",
+              "identifier": "52x6x52",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003025",
+              "value": "52\"x6\"x52\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "0.0",
+          "name": "Size",
+          "facetable": "true",
+          "id": "7000000000000000502",
+          "comparable": "true",
+          "key": "size",
+          "swatchable": "false"
+        }
+      ],
+      "merchandisingAssociations": [
+        {
+          "buyable": "true",
+          "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/ctable3_a1_350.jpg",
+          "shortDescription": "A modern styled coffee table that is suited towards open-concept areas, providing plenty of space for your refreshments and decor.",
+          "parentCatalogGroupID": "/10501/10502",
+          "storeID": "11",
+          "numberOfSKUs": 1,
+          "hasSingleSKU": false,
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "155.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "145.0"
+            }
+          ],
+          "name": "Abstract Glass Coffee Table",
+          "partNumber": "LR-FNTR-TB-0003",
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "identifier": "tan",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003017",
+                  "image1": "/images/catalog/swatches/sw_tan.png",
+                  "value": "Tan",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_tan.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "color",
+              "swatchable": "false"
+            }
+          ],
+          "id": "14154",
+          "seo": {
+            "href": "/abstract-glass-coffee-table-lr-fntr-tb-0003"
+          },
+          "items": [
+            {
+              "hasSingleSKU": false,
+              "buyable": "true",
+              "shortDescription": "A modern styled coffee table that is suited towards open-concept areas, providing plenty of space for your refreshments and decor.",
+              "parentCatalogGroupID": "/10501/10502",
+              "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/ctable3_a1_350.jpg",
+              "seo": {
+                "href": "/abstract-glass-coffee-table-lr-fntr-tb-0003-0001"
+              },
+              "partNumber": "LR-FNTR-TB-0003-0001",
+              "storeID": "11",
+              "name": "Abstract Glass Coffee Table",
+              "parentCatalogEntryID": "14154",
+              "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/ctable3_a1_600.jpg",
+              "price": [
+                {
+                  "usage": "Display",
+                  "description": "L",
+                  "currency": "USD",
+                  "value": "155.0"
+                },
+                {
+                  "usage": "Offer",
+                  "contractId": "-11005",
+                  "description": "I",
+                  "currency": "USD",
+                  "value": "145.0"
+                }
+              ],
+              "attributes": [
+                {
+                  "identifier": "Color",
+                  "usage": "Defining",
+                  "values": [
+                    {
+                      "identifier": "tan",
+                      "sequence": "1.0",
+                      "unitOfMeasure": "one",
+                      "unitID": "C62",
+                      "id": "7000000000000003017",
+                      "image1": "/images/catalog/swatches/sw_tan.png",
+                      "value": "Tan",
+                      "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_tan.png"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Color",
+                  "facetable": "true",
+                  "id": "7000000000000000501",
+                  "comparable": "true",
+                  "key": "color",
+                  "swatchable": "false"
+                }
+              ],
+              "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+              "id": "14155",
+              "type": "item"
+            }
+          ]
+        },
+        {
+          "buyable": "true",
+          "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/ctable4_a1_350.jpg",
+          "shortDescription": "A compact pub-style coffee table that provides modern styling and room for all types of refreshments.",
+          "parentCatalogGroupID": "/10501/10502",
+          "storeID": "11",
+          "type": "variant",
+          "numberOfSKUs": 1,
+          "hasSingleSKU": false,
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "155.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "145.0"
+            }
+          ],
+          "name": "Pub-style Coffee Table",
+          "partNumber": "LR-FNTR-TB-0004",
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "identifier": "toffee",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003008",
+                  "image1": "/images/catalog/swatches/sw_toffee.png",
+                  "value": "Toffee",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_toffee.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "color",
+              "swatchable": "false"
+            }
+          ],
+          "id": "14156",
+          "seo": {
+            "href": "/pub-style-coffee-table-lr-fntr-tb-0004"
+          },
+          "items": [
+            {
+              "hasSingleSKU": false,
+              "buyable": "true",
+              "shortDescription": "A compact pub-style coffee table that provides modern styling and room for all types of refreshments.",
+              "parentCatalogGroupID": "/10501/10502",
+              "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/ctable4_a1_350.jpg",
+              "seo": {
+                "href": "/pub-style-coffee-table-lr-fntr-tb-0004-0001"
+              },
+              "partNumber": "LR-FNTR-TB-0004-0001",
+              "storeID": "11",
+              "name": "Pub-style Coffee Table",
+              "parentCatalogEntryID": "14156",
+              "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/ctable4_a1_600.jpg",
+              "price": [
+                {
+                  "usage": "Display",
+                  "description": "L",
+                  "currency": "USD",
+                  "value": "155.0"
+                },
+                {
+                  "usage": "Offer",
+                  "contractId": "-11005",
+                  "description": "I",
+                  "currency": "USD",
+                  "value": "145.0"
+                }
+              ],
+              "attributes": [
+                {
+                  "identifier": "Color",
+                  "usage": "Defining",
+                  "values": [
+                    {
+                      "identifier": "toffee",
+                      "sequence": "1.0",
+                      "unitOfMeasure": "one",
+                      "unitID": "C62",
+                      "id": "7000000000000003008",
+                      "image1": "/images/catalog/swatches/sw_toffee.png",
+                      "value": "Toffee",
+                      "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_toffee.png"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Color",
+                  "facetable": "true",
+                  "id": "7000000000000000501",
+                  "comparable": "true",
+                  "key": "color",
+                  "swatchable": "false"
+                }
+              ],
+              "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+              "id": "14157",
+              "type": "item"
+            }
+          ]
+        },
+        {
+          "buyable": "true",
+          "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/lighting/light1_a1_350.jpg",
+          "parentCatalogGroupID": "/10501/10503",
+          "shortDescription": "A versatile pendant light that creates a modern atmosphere in your living room.",
+          "storeID": "11",
+          "type": "variant",
+          "numberOfSKUs": 1,
+          "hasSingleSKU": false,
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "140.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "135.0"
+            }
+          ],
+          "name": "Modern Pendant Light",
+          "partNumber": "LR-LITB-0001",
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "identifier": "grey",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003003",
+                  "image1": "/images/catalog/swatches/sw_grey.png",
+                  "value": "Grey",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_grey.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "color",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "ItemWeight",
+              "usage": "Descriptive",
+              "values": [
+                {
+                  "sequence": "2.0",
+                  "identifier": "6lbs",
+                  "unitID": "LBR",
+                  "id": "7000000000000003102",
+                  "value": "6 lbs"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Item Weight",
+              "facetable": "true",
+              "id": "7000000000000000511",
+              "comparable": "true",
+              "key": "itemweight",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "Materials",
+              "usage": "Descriptive",
+              "values": [
+                {
+                  "sequence": "3.0",
+                  "identifier": "metal_glass",
+                  "id": "7000000000000003030",
+                  "value": "Metal, Glass"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Material",
+              "facetable": "true",
+              "id": "7000000000000000503",
+              "comparable": "true",
+              "key": "materials",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "NumberOfBulbs",
+              "usage": "Descriptive",
+              "values": [
+                {
+                  "sequence": "4.0",
+                  "identifier": "1bulb",
+                  "id": "7000000000000003109",
+                  "value": "1"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "false",
+              "searchable": "false",
+              "sequence": "0.0",
+              "name": "Number of Light Bulbs",
+              "facetable": "false",
+              "id": "7000000000000000513",
+              "comparable": "true",
+              "key": "numberofbulbs",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "ProductDimensions",
+              "usage": "Descriptive",
+              "values": [
+                {
+                  "sequence": "1.0",
+                  "identifier": "10x24x12",
+                  "id": "7000000000000003082",
+                  "value": "10\"x24\"x12\""
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Product Dimensions",
+              "facetable": "true",
+              "id": "7000000000000000510",
+              "comparable": "true",
+              "key": "productdimensions",
+              "swatchable": "false"
+            }
+          ],
+          "id": "14173",
+          "seo": {
+            "href": "/modern-pendant-light-lr-litb-0001"
+          },
+          "items": [
+            {
+              "hasSingleSKU": false,
+              "parentCatalogGroupID": "/10501/10503",
+              "storeID": "11",
+              "parentCatalogEntryID": "14173",
+              "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/lighting/light1_a1_600.jpg",
+              "buyable": "true",
+              "shortDescription": "A versatile pendant light that creates a modern atmosphere in your living room.",
+              "seo": {
+                "href": "/modern-pendant-light-lr-litb-0001-0001"
+              },
+              "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/lighting/light1_a1_350.jpg",
+              "partNumber": "LR-LITB-0001-0001",
+              "name": "Modern Pendant Light",
+              "price": [
+                {
+                  "usage": "Display",
+                  "description": "L",
+                  "currency": "USD",
+                  "value": "140.0"
+                },
+                {
+                  "usage": "Offer",
+                  "contractId": "-11005",
+                  "description": "I",
+                  "currency": "USD",
+                  "value": "135.0"
+                }
+              ],
+              "attributes": [
+                {
+                  "identifier": "Color",
+                  "usage": "Defining",
+                  "values": [
+                    {
+                      "identifier": "grey",
+                      "sequence": "1.0",
+                      "unitOfMeasure": "one",
+                      "unitID": "C62",
+                      "id": "7000000000000003003",
+                      "image1": "/images/catalog/swatches/sw_grey.png",
+                      "value": "Grey",
+                      "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_grey.png"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Color",
+                  "facetable": "true",
+                  "id": "7000000000000000501",
+                  "comparable": "true",
+                  "key": "color",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "ItemWeight",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "sequence": "2.0",
+                      "identifier": "6lbs",
+                      "unitID": "LBR",
+                      "id": "7000000000000003102",
+                      "value": "6 lbs"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Item Weight",
+                  "facetable": "true",
+                  "id": "7000000000000000511",
+                  "comparable": "true",
+                  "key": "itemweight",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "Materials",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "sequence": "3.0",
+                      "identifier": "metal_glass",
+                      "id": "7000000000000003030",
+                      "value": "Metal, Glass"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Material",
+                  "facetable": "true",
+                  "id": "7000000000000000503",
+                  "comparable": "true",
+                  "key": "materials",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "NumberOfBulbs",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "sequence": "4.0",
+                      "identifier": "1bulb",
+                      "id": "7000000000000003109",
+                      "value": "1"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "false",
+                  "searchable": "false",
+                  "sequence": "0.0",
+                  "name": "Number of Light Bulbs",
+                  "facetable": "false",
+                  "id": "7000000000000000513",
+                  "comparable": "true",
+                  "key": "numberofbulbs",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "ProductDimensions",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "sequence": "1.0",
+                      "identifier": "10x24x12",
+                      "id": "7000000000000003082",
+                      "value": "10\"x24\"x12\""
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Product Dimensions",
+                  "facetable": "true",
+                  "id": "7000000000000000510",
+                  "comparable": "true",
+                  "key": "productdimensions",
+                  "swatchable": "false"
+                }
+              ],
+              "parent": "/search/resources/api/v2/categories?storeId=11&id=10503",
+              "id": "14174",
+              "type": "item"
+            }
+          ]
+        },
+        {
+          "buyable": "true",
+          "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/decoration/rug2_a1_350.jpg",
+          "parentCatalogGroupID": "/10501/10504",
+          "shortDescription": "A stylish hand-crafted accent rug that features a pointed braided texture to accent your living space in a warm, welcoming way.",
+          "storeID": "11",
+          "type": "variant",
+          "numberOfSKUs": 3,
+          "hasSingleSKU": false,
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "200.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "200.0"
+            }
+          ],
+          "name": "Braided Accent Rug",
+          "partNumber": "LR-DECO-0004",
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "identifier": "seaweed",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003014",
+                  "image1": "/images/catalog/swatches/sw_seaweed.png",
+                  "value": "Seaweed",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_seaweed.png"
+                },
+                {
+                  "identifier": "blue",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003011",
+                  "image1": "/images/catalog/swatches/sw_blue.png",
+                  "value": "Blue",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_blue.png"
+                },
+                {
+                  "identifier": "crimson",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003015",
+                  "image1": "/images/catalog/swatches/sw_crimson.png",
+                  "value": "Crimson",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_crimson.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "color",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "ItemWeight",
+              "usage": "Descriptive",
+              "values": [
+                {
+                  "sequence": "2.0",
+                  "identifier": "15lbs",
+                  "unitID": "LBR",
+                  "id": "7000000000000003098",
+                  "value": "15 lbs"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Item Weight",
+              "facetable": "true",
+              "id": "7000000000000000511",
+              "comparable": "true",
+              "key": "itemweight",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "Materials",
+              "usage": "Descriptive",
+              "values": [
+                {
+                  "sequence": "3.0",
+                  "identifier": "vinyl-wool",
+                  "id": "7000000000000003049",
+                  "value": "Vinyl, Wool"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Material",
+              "facetable": "true",
+              "id": "7000000000000000503",
+              "comparable": "true",
+              "key": "materials",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "Pattern",
+              "usage": "Descriptive",
+              "values": [
+                {
+                  "identifier": "Braided",
+                  "sequence": "4.0",
+                  "id": "7000000000000003108",
+                  "value": "Braided"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Pattern",
+              "facetable": "true",
+              "id": "7000000000000000512",
+              "comparable": "true",
+              "key": "pattern",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "ProductDimensions",
+              "usage": "Descriptive",
+              "values": [
+                {
+                  "sequence": "1.0",
+                  "identifier": "60x40x1",
+                  "id": "7000000000000003091",
+                  "value": "60\"x40\"x1\""
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Product Dimensions",
+              "facetable": "true",
+              "id": "7000000000000000510",
+              "comparable": "true",
+              "key": "productdimensions",
+              "swatchable": "false"
+            }
+          ],
+          "id": "14009",
+          "seo": {
+            "href": "/braided-accent-rug-lr-deco-0004"
+          },
+          "items": [
+            {
+              "hasSingleSKU": false,
+              "parentCatalogGroupID": "/10501/10504",
+              "storeID": "11",
+              "parentCatalogEntryID": "14009",
+              "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/decoration/rug2_a1_600.jpg",
+              "buyable": "true",
+              "shortDescription": "A stylish hand-crafted accent rug that features a pointed braided texture to accent your living space in a warm, welcoming way.",
+              "seo": {
+                "href": "/braided-accent-rug-lr-deco-0004-0001"
+              },
+              "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/decoration/rug2_a1_350.jpg",
+              "partNumber": "LR-DECO-0004-0001",
+              "name": "Braided Accent Rug",
+              "price": [
+                {
+                  "usage": "Display",
+                  "description": "L",
+                  "currency": "USD",
+                  "value": "200.0"
+                },
+                {
+                  "usage": "Offer",
+                  "contractId": "-11005",
+                  "description": "I",
+                  "currency": "USD",
+                  "value": "200.0"
+                }
+              ],
+              "attributes": [
+                {
+                  "identifier": "Color",
+                  "usage": "Defining",
+                  "values": [
+                    {
+                      "identifier": "crimson",
+                      "sequence": "1.0",
+                      "unitOfMeasure": "one",
+                      "unitID": "C62",
+                      "id": "7000000000000003015",
+                      "image1": "/images/catalog/swatches/sw_crimson.png",
+                      "value": "Crimson",
+                      "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_crimson.png"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Color",
+                  "facetable": "true",
+                  "id": "7000000000000000501",
+                  "comparable": "true",
+                  "key": "color",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "ItemWeight",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "sequence": "2.0",
+                      "identifier": "15lbs",
+                      "unitID": "LBR",
+                      "id": "7000000000000003098",
+                      "value": "15 lbs"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Item Weight",
+                  "facetable": "true",
+                  "id": "7000000000000000511",
+                  "comparable": "true",
+                  "key": "itemweight",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "Materials",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "sequence": "3.0",
+                      "identifier": "vinyl-wool",
+                      "id": "7000000000000003049",
+                      "value": "Vinyl, Wool"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Material",
+                  "facetable": "true",
+                  "id": "7000000000000000503",
+                  "comparable": "true",
+                  "key": "materials",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "Pattern",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "identifier": "Braided",
+                      "sequence": "4.0",
+                      "id": "7000000000000003108",
+                      "value": "Braided"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Pattern",
+                  "facetable": "true",
+                  "id": "7000000000000000512",
+                  "comparable": "true",
+                  "key": "pattern",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "ProductDimensions",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "sequence": "1.0",
+                      "identifier": "60x40x1",
+                      "id": "7000000000000003091",
+                      "value": "60\"x40\"x1\""
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Product Dimensions",
+                  "facetable": "true",
+                  "id": "7000000000000000510",
+                  "comparable": "true",
+                  "key": "productdimensions",
+                  "swatchable": "false"
+                }
+              ],
+              "parent": "/search/resources/api/v2/categories?storeId=11&id=10504",
+              "id": "14010",
+              "type": "item"
+            },
+            {
+              "hasSingleSKU": false,
+              "parentCatalogGroupID": "/10501/10504",
+              "storeID": "11",
+              "parentCatalogEntryID": "14009",
+              "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/decoration/rug2_c1_600.jpg",
+              "buyable": "true",
+              "shortDescription": "A stylish hand-crafted accent rug that features a pointed braided texture to accent your living space in a warm, welcoming way.",
+              "seo": {
+                "href": "/braided-accent-rug-lr-deco-0004-0003"
+              },
+              "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/decoration/rug2_c1_350.jpg",
+              "partNumber": "LR-DECO-0004-0003",
+              "name": "Braided Accent Rug",
+              "price": [
+                {
+                  "usage": "Display",
+                  "description": "L",
+                  "currency": "USD",
+                  "value": "200.0"
+                },
+                {
+                  "usage": "Offer",
+                  "contractId": "-11005",
+                  "description": "I",
+                  "currency": "USD",
+                  "value": "200.0"
+                }
+              ],
+              "attributes": [
+                {
+                  "identifier": "Color",
+                  "usage": "Defining",
+                  "values": [
+                    {
+                      "identifier": "blue",
+                      "sequence": "1.0",
+                      "unitOfMeasure": "one",
+                      "unitID": "C62",
+                      "id": "7000000000000003011",
+                      "image1": "/images/catalog/swatches/sw_blue.png",
+                      "value": "Blue",
+                      "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_blue.png"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Color",
+                  "facetable": "true",
+                  "id": "7000000000000000501",
+                  "comparable": "true",
+                  "key": "color",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "ItemWeight",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "sequence": "2.0",
+                      "identifier": "15lbs",
+                      "unitID": "LBR",
+                      "id": "7000000000000003098",
+                      "value": "15 lbs"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Item Weight",
+                  "facetable": "true",
+                  "id": "7000000000000000511",
+                  "comparable": "true",
+                  "key": "itemweight",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "Materials",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "sequence": "3.0",
+                      "identifier": "vinyl-wool",
+                      "id": "7000000000000003049",
+                      "value": "Vinyl, Wool"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Material",
+                  "facetable": "true",
+                  "id": "7000000000000000503",
+                  "comparable": "true",
+                  "key": "materials",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "Pattern",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "identifier": "Braided",
+                      "sequence": "4.0",
+                      "id": "7000000000000003108",
+                      "value": "Braided"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Pattern",
+                  "facetable": "true",
+                  "id": "7000000000000000512",
+                  "comparable": "true",
+                  "key": "pattern",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "ProductDimensions",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "sequence": "1.0",
+                      "identifier": "60x40x1",
+                      "id": "7000000000000003091",
+                      "value": "60\"x40\"x1\""
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Product Dimensions",
+                  "facetable": "true",
+                  "id": "7000000000000000510",
+                  "comparable": "true",
+                  "key": "productdimensions",
+                  "swatchable": "false"
+                }
+              ],
+              "parent": "/search/resources/api/v2/categories?storeId=11&id=10504",
+              "id": "14012",
+              "type": "item"
+            },
+            {
+              "hasSingleSKU": false,
+              "parentCatalogGroupID": "/10501/10504",
+              "storeID": "11",
+              "parentCatalogEntryID": "14009",
+              "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/decoration/rug2_b1_600.jpg",
+              "buyable": "true",
+              "shortDescription": "A stylish hand-crafted accent rug that features a pointed braided texture to accent your living space in a warm, welcoming way.",
+              "seo": {
+                "href": "/braided-accent-rug-lr-deco-0004-0002"
+              },
+              "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/decoration/rug2_b1_350.jpg",
+              "partNumber": "LR-DECO-0004-0002",
+              "name": "Braided Accent Rug",
+              "price": [
+                {
+                  "usage": "Display",
+                  "description": "L",
+                  "currency": "USD",
+                  "value": "200.0"
+                },
+                {
+                  "usage": "Offer",
+                  "contractId": "-11005",
+                  "description": "I",
+                  "currency": "USD",
+                  "value": "200.0"
+                }
+              ],
+              "attributes": [
+                {
+                  "identifier": "Color",
+                  "usage": "Defining",
+                  "values": [
+                    {
+                      "identifier": "seaweed",
+                      "sequence": "1.0",
+                      "unitOfMeasure": "one",
+                      "unitID": "C62",
+                      "id": "7000000000000003014",
+                      "image1": "/images/catalog/swatches/sw_seaweed.png",
+                      "value": "Seaweed",
+                      "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_seaweed.png"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Color",
+                  "facetable": "true",
+                  "id": "7000000000000000501",
+                  "comparable": "true",
+                  "key": "color",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "ItemWeight",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "sequence": "2.0",
+                      "identifier": "15lbs",
+                      "unitID": "LBR",
+                      "id": "7000000000000003098",
+                      "value": "15 lbs"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Item Weight",
+                  "facetable": "true",
+                  "id": "7000000000000000511",
+                  "comparable": "true",
+                  "key": "itemweight",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "Materials",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "sequence": "3.0",
+                      "identifier": "vinyl-wool",
+                      "id": "7000000000000003049",
+                      "value": "Vinyl, Wool"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Material",
+                  "facetable": "true",
+                  "id": "7000000000000000503",
+                  "comparable": "true",
+                  "key": "materials",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "Pattern",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "identifier": "Braided",
+                      "sequence": "4.0",
+                      "id": "7000000000000003108",
+                      "value": "Braided"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Pattern",
+                  "facetable": "true",
+                  "id": "7000000000000000512",
+                  "comparable": "true",
+                  "key": "pattern",
+                  "swatchable": "false"
+                },
+                {
+                  "identifier": "ProductDimensions",
+                  "usage": "Descriptive",
+                  "values": [
+                    {
+                      "sequence": "1.0",
+                      "identifier": "60x40x1",
+                      "id": "7000000000000003091",
+                      "value": "60\"x40\"x1\""
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "0.0",
+                  "name": "Product Dimensions",
+                  "facetable": "true",
+                  "id": "7000000000000000510",
+                  "comparable": "true",
+                  "key": "productdimensions",
+                  "swatchable": "false"
+                }
+              ],
+              "parent": "/search/resources/api/v2/categories?storeId=11&id=10504",
+              "id": "14011",
+              "type": "item"
+            }
+          ]
+        }
+      ],
+      "items": [
+        {
+          "hasSingleSKU": false,
+          "shortDescription": "A long cozy double sofa for lounges.",
+          "parentCatalogGroupID": "/10501/10502",
+          "seo": {
+            "href": "/supreme-loungestyle-double-sofa-lr-fntr-co-0010-0009"
+          },
+          "storeID": "11",
+          "parentCatalogEntryID": "14128",
+          "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_d1_600.jpg",
+          "buyable": "true",
+          "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_d1_350.jpg",
+          "partNumber": "LR-FNTR-CO-0010-0009",
+          "name": "Supreme LoungeStyle Double Sofa",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "600.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "589.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "identifier": "blue",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003011",
+                  "image1": "/images/catalog/swatches/sw_blue.png",
+                  "value": "Blue",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_blue.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "color",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "Size",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "2.0",
+                  "identifier": "52x6x52",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003025",
+                  "value": "52\"x6\"x52\""
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Size",
+              "facetable": "true",
+              "id": "7000000000000000502",
+              "comparable": "true",
+              "key": "size",
+              "swatchable": "false"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14137",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "shortDescription": "A long cozy double sofa for lounges.",
+          "parentCatalogGroupID": "/10501/10502",
+          "seo": {
+            "href": "/supreme-loungestyle-double-sofa-lr-fntr-co-0010-0006"
+          },
+          "storeID": "11",
+          "parentCatalogEntryID": "14128",
+          "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_a1_600.jpg",
+          "buyable": "true",
+          "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_a1_350.jpg",
+          "partNumber": "LR-FNTR-CO-0010-0006",
+          "name": "Supreme LoungeStyle Double Sofa",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "600.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "589.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "identifier": "crimson",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003015",
+                  "image1": "/images/catalog/swatches/sw_crimson.png",
+                  "value": "Crimson",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_crimson.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "color",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "Size",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "2.0",
+                  "identifier": "52x6x52",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003025",
+                  "value": "52\"x6\"x52\""
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Size",
+              "facetable": "true",
+              "id": "7000000000000000502",
+              "comparable": "true",
+              "key": "size",
+              "swatchable": "false"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14134",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "shortDescription": "A long cozy double sofa for lounges.",
+          "parentCatalogGroupID": "/10501/10502",
+          "seo": {
+            "href": "/supreme-loungestyle-double-sofa-lr-fntr-co-0010-0007"
+          },
+          "storeID": "11",
+          "parentCatalogEntryID": "14128",
+          "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_b1_600.jpg",
+          "buyable": "true",
+          "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_b1_350.jpg",
+          "partNumber": "LR-FNTR-CO-0010-0007",
+          "name": "Supreme LoungeStyle Double Sofa",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "600.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "589.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "identifier": "grey",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003003",
+                  "image1": "/images/catalog/swatches/sw_grey.png",
+                  "value": "Grey",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_grey.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "color",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "Size",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "2.0",
+                  "identifier": "52x6x52",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003025",
+                  "value": "52\"x6\"x52\""
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Size",
+              "facetable": "true",
+              "id": "7000000000000000502",
+              "comparable": "true",
+              "key": "size",
+              "swatchable": "false"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14135",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "shortDescription": "A long cozy double sofa for lounges.",
+          "parentCatalogGroupID": "/10501/10502",
+          "seo": {
+            "href": "/supreme-loungestyle-double-sofa-lr-fntr-co-0010-0005"
+          },
+          "storeID": "11",
+          "parentCatalogEntryID": "14128",
+          "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_e1_600.jpg",
+          "buyable": "true",
+          "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_e1_350.jpg",
+          "partNumber": "LR-FNTR-CO-0010-0005",
+          "name": "Supreme LoungeStyle Double Sofa",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "600.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "579.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "identifier": "seaweed",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003014",
+                  "image1": "/images/catalog/swatches/sw_seaweed.png",
+                  "value": "Seaweed",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_seaweed.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "color",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "Size",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "2.0",
+                  "identifier": "48x6x48",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003024",
+                  "value": "48\"x6\"x48\""
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Size",
+              "facetable": "true",
+              "id": "7000000000000000502",
+              "comparable": "true",
+              "key": "size",
+              "swatchable": "false"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14133",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "shortDescription": "A long cozy double sofa for lounges.",
+          "parentCatalogGroupID": "/10501/10502",
+          "seo": {
+            "href": "/supreme-loungestyle-double-sofa-lr-fntr-co-0010-0010"
+          },
+          "storeID": "11",
+          "parentCatalogEntryID": "14128",
+          "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_e1_600.jpg",
+          "buyable": "true",
+          "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_e1_350.jpg",
+          "partNumber": "LR-FNTR-CO-0010-0010",
+          "name": "Supreme LoungeStyle Double Sofa",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "600.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "589.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "identifier": "seaweed",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003014",
+                  "image1": "/images/catalog/swatches/sw_seaweed.png",
+                  "value": "Seaweed",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_seaweed.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "color",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "Size",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "2.0",
+                  "identifier": "52x6x52",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003025",
+                  "value": "52\"x6\"x52\""
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Size",
+              "facetable": "true",
+              "id": "7000000000000000502",
+              "comparable": "true",
+              "key": "size",
+              "swatchable": "false"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14138",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "shortDescription": "A long cozy double sofa for lounges.",
+          "parentCatalogGroupID": "/10501/10502",
+          "seo": {
+            "href": "/supreme-loungestyle-double-sofa-lr-fntr-co-0010-0004"
+          },
+          "storeID": "11",
+          "parentCatalogEntryID": "14128",
+          "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_d1_600.jpg",
+          "buyable": "true",
+          "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_d1_350.jpg",
+          "partNumber": "LR-FNTR-CO-0010-0004",
+          "name": "Supreme LoungeStyle Double Sofa",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "600.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "579.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "identifier": "blue",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003011",
+                  "image1": "/images/catalog/swatches/sw_blue.png",
+                  "value": "Blue",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_blue.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "color",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "Size",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "2.0",
+                  "identifier": "48x6x48",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003024",
+                  "value": "48\"x6\"x48\""
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Size",
+              "facetable": "true",
+              "id": "7000000000000000502",
+              "comparable": "true",
+              "key": "size",
+              "swatchable": "false"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14132",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "shortDescription": "A long cozy double sofa for lounges.",
+          "parentCatalogGroupID": "/10501/10502",
+          "seo": {
+            "href": "/supreme-loungestyle-double-sofa-lr-fntr-co-0010-0008"
+          },
+          "storeID": "11",
+          "parentCatalogEntryID": "14128",
+          "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_c1_600.jpg",
+          "buyable": "true",
+          "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_c1_350.jpg",
+          "partNumber": "LR-FNTR-CO-0010-0008",
+          "name": "Supreme LoungeStyle Double Sofa",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "600.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "589.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "identifier": "darkgrey",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003010",
+                  "image1": "/images/catalog/swatches/sw_darkgrey.png",
+                  "value": "Dark Grey",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_darkgrey.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "color",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "Size",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "2.0",
+                  "identifier": "52x6x52",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003025",
+                  "value": "52\"x6\"x52\""
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Size",
+              "facetable": "true",
+              "id": "7000000000000000502",
+              "comparable": "true",
+              "key": "size",
+              "swatchable": "false"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14136",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "shortDescription": "A long cozy double sofa for lounges.",
+          "parentCatalogGroupID": "/10501/10502",
+          "seo": {
+            "href": "/supreme-loungestyle-double-sofa-lr-fntr-co-0010-0001"
+          },
+          "storeID": "11",
+          "parentCatalogEntryID": "14128",
+          "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_a1_600.jpg",
+          "buyable": "true",
+          "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_a1_350.jpg",
+          "partNumber": "LR-FNTR-CO-0010-0001",
+          "name": "Supreme LoungeStyle Double Sofa",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "600.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "549.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "identifier": "crimson",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003015",
+                  "image1": "/images/catalog/swatches/sw_crimson.png",
+                  "value": "Crimson",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_crimson.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "color",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "Size",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "2.0",
+                  "identifier": "48x6x48",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003024",
+                  "value": "48\"x6\"x48\""
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Size",
+              "facetable": "true",
+              "id": "7000000000000000502",
+              "comparable": "true",
+              "key": "size",
+              "swatchable": "false"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14129",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "shortDescription": "A long cozy double sofa for lounges.",
+          "parentCatalogGroupID": "/10501/10502",
+          "seo": {
+            "href": "/supreme-loungestyle-double-sofa-lr-fntr-co-0010-0003"
+          },
+          "storeID": "11",
+          "parentCatalogEntryID": "14128",
+          "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_c1_600.jpg",
+          "buyable": "true",
+          "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_c1_350.jpg",
+          "partNumber": "LR-FNTR-CO-0010-0003",
+          "name": "Supreme LoungeStyle Double Sofa",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "600.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "569.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "identifier": "darkgrey",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003010",
+                  "image1": "/images/catalog/swatches/sw_darkgrey.png",
+                  "value": "Dark Grey",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_darkgrey.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "color",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "Size",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "2.0",
+                  "identifier": "48x6x48",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003024",
+                  "value": "48\"x6\"x48\""
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Size",
+              "facetable": "true",
+              "id": "7000000000000000502",
+              "comparable": "true",
+              "key": "size",
+              "swatchable": "false"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14131",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "shortDescription": "A long cozy double sofa for lounges.",
+          "parentCatalogGroupID": "/10501/10502",
+          "seo": {
+            "href": "/supreme-loungestyle-double-sofa-lr-fntr-co-0010-0002"
+          },
+          "storeID": "11",
+          "parentCatalogEntryID": "14128",
+          "fullImage": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_b1_600.jpg",
+          "buyable": "true",
+          "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_b1_350.jpg",
+          "partNumber": "LR-FNTR-CO-0010-0002",
+          "name": "Supreme LoungeStyle Double Sofa",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "600.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "569.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "identifier": "grey",
+                  "sequence": "1.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003003",
+                  "image1": "/images/catalog/swatches/sw_grey.png",
+                  "value": "Grey",
+                  "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_grey.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "color",
+              "swatchable": "false"
+            },
+            {
+              "identifier": "Size",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "2.0",
+                  "identifier": "48x6x48",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003024",
+                  "value": "48\"x6\"x48\""
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "0.0",
+              "name": "Size",
+              "facetable": "true",
+              "id": "7000000000000000502",
+              "comparable": "true",
+              "key": "size",
+              "swatchable": "false"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14130",
+          "type": "item"
+        }
+      ]
+    }
+  ],
+  "total": 1
+}

@@ -12,8 +12,13 @@
 import React from "react";
 
 const TitleLayout = (props: any) => {
-  const { Title: title, cid } = props;
-  return <h2 id={cid}>{title}</h2>;
+  const title = props.title;
+  const cid = props.cid;
+  return (
+    <h3 className="top-margin-expanded-menu" id={cid}>
+      {title}
+    </h3>
+  );
 };
 
 export { TitleLayout };

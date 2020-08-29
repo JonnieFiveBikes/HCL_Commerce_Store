@@ -1,0 +1,19 @@
+{
+  "Payment": {
+    "Title": "Payment Details",
+    "Msgs": {
+      "InvalidFormat": "无效格式"
+    },
+    "Labels": {
+      "UseMultiple": "Use multiple payment methods",
+      "PaymentMethod": "付款方式 {{number}}",
+      "AddNewAddress": "Add new address",
+      "BillingAddress": "账单地址"
+    },
+    "Actions": {
+      "Back": "Back to Shipping Details",
+      "Next": "继续“查看订单”",
+      "SaveAndAdd": "Save and add another payment method"
+    }
+  }
+}

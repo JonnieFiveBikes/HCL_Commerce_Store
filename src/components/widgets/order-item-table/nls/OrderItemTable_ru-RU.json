@@ -1,18 +1,24 @@
 {
   "OrderItemTable": {
-    "Title": "Order Items",
+    "Title": "Позиции заказа",
     "Labels": {
-      "ItemDetails": "Item Details",
-      "SKU": "SKU",
-      "Status": "Status",
-      "Quantity": "Quantity",
-      "Price": "Price",
-      "Actions": "Actions",
-      "Gift": "Free gift",
-      "NonRecurring": "Non-recurring item"
+      "ItemDetails": "Сведения о позиции",
+      "SKU": "Артикул: ",
+      "Status": "Статус",
+      "Quantity": "Количество",
+      "Price": "Цена",
+      "Actions": "Действия",
+      "Gift": "Подарок",
+      "NonRecurring": "Нерегулярная позиция",
+      "PageSizeLabel": "строки",
+      "FirstPage": "Первая страница",
+      "LastPage": "Последняя страница",
+      "PreviousPage": "Предыдущая страница",
+      "NextPage": "Следующая страница",
+      "RowCount": "Показано от {from} до {to} из {count}"
     },
     "Actions": {
-      "Delete": "Delete"
+      "Delete": "На удаление"
     }
   }
 }

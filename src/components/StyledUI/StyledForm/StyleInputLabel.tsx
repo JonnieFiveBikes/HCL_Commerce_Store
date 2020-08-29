@@ -18,6 +18,9 @@ const StyledInputLabel = styled(({ ...props }) => <InputLabel {...props} />)`
     &.MuiInputLabel-shrink{
       transform: none;
     }
+    &.Mui-disabled {
+      color: ${theme.palette.text.disabled};
+    }
     position: relative;
     margin-bottom: ${theme.spacing(1)}px;
     font-weight: 500;

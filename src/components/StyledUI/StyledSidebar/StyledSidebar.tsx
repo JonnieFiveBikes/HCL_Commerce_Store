@@ -25,11 +25,20 @@ import StyledPaper from "../StyledPaper/StyledPaper";
 import StyledLink from "../StyledLink/StyledLink";
 import StyledSidebarAppBar from "./StyledSidebarAppBar";
 
-const StyledSidebarWrapper = styled(({ ...props }) => (
-  <StyledPaper {...props} />
-))`
+const StyledSidebarWrapper = styled((props: any) => {
+  const { scrollable, className, ...other } = props;
+  return (
+    <StyledPaper
+      className={className + (scrollable ? " scrollable" : "")}
+      {...other}
+    />
+  );
+})`
   ${({ theme }) => `
-    padding: 0;
+ 
+    &.product-filter{
+      margin-top:${theme.spacing(3)}px;
+    }
 
     .MuiList-root {
       padding: 0;
@@ -102,14 +111,21 @@ const StyledNavigationHeader = styled(({ ...props }) => (
   `}
 `;
 
-function StyledSidebar({ title, sidebarContent, linkTo, breakpoint }: any) {
+function StyledSidebar({
+  title,
+  sidebarContent,
+  linkTo,
+  breakpoint,
+  className,
+  scrollable,
+}: any) {
   const theme = useTheme();
   const [open, setOpen] = useState<boolean>(false);
   const mobileBreakpoint = breakpoint ? breakpoint : "sm";
   const isMobile = !useMediaQuery(theme.breakpoints.up(mobileBreakpoint));
 
   const sidebarElement = (
-    <StyledSidebarWrapper>
+    <StyledSidebarWrapper className={className} scrollable={scrollable}>
       <StyledNavigationHeader className="section-title section-heading">
         {linkTo ? (
           <StyledLink to={linkTo}>
@@ -153,6 +169,8 @@ StyledSidebar.propTypes = {
   sidebarContent: PropTypes.any.isRequired,
   linkTo: PropTypes.string,
   breakpoint: PropTypes.string,
+  className: PropTypes.string,
+  scrollable: PropTypes.bool,
 };
 
 export default StyledSidebar;

@@ -1,20 +1,25 @@
 {
   "AddressForm": {
     "Msgs": {
-      "InvalidFormat": "Format nevalid"
+      "InvalidFormat": "Format nevalid",
+      "InvalidAddressName": "Numele adresei poate conține doar caractere alfanumerice (A-Z, a-z, 0-9) și spații goale."
     },
     "Labels": {
       "FirstName": "Prenume",
       "LastName": "Nume de familie",
-      "Address1": "Adresã - Linia 1",
-      "Address2": "Adresã - Linia 2",
-      "City": "Ora?",
-      "Country": "?arã",
+      "Address1": "Adresă - Linia 1",
+      "Address2": "Linie adresă 2 (opțional)",
+      "City": "Oraș",
+      "Country": "Țară",
       "State": "Stat / Provincie",
-      "ZipCode": "Cod zip / po?tal",
-      "Phone": "Numãr de telefon",
+      "ZipCode": "Cod zip / poștal",
+      "Phone": "Telefon (opțional)",
       "Email": "E-mail",
-      "NickName": "Denumire adresã"
+      "NickName": "Nume adresă",
+      "AddressType": "Tip adresă",
+      "Shipping": "Livrare",
+      "Billing": "Facturare",
+      "ShippingAndBilling": "Livrare și facturare"
     }
   }
 }

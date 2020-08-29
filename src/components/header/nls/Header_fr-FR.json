@@ -1,0 +1,43 @@
+{
+  "Header": {
+    "Actions": {
+      "SignIn": "Se connecter",
+      "SignInRegister": "Se connecter / S'inscrire",
+      "WelcomeFirstname": "Bienvenue, {{firstName}}",
+      "WelcomeNoFirstname": "Bienvenue, {{lastName}}",
+      "WishList": "Liste de présélection",
+      "YourAccount": "Votre compte",
+      "Account": "Compte"
+    },
+    "AccountPopper": {
+      "Welcome": "Bienvenue, {{firstName}} {{lastName}}",
+      "Organization": "Organisation",
+      "Contract": "Contrat",
+      "Edit": "Modifier",
+      "AccountSetting": "Paramètres du compte",
+      "SignOut": "Se déconnecter",
+      "Cart": "Panier ({{count}} article)",
+      "Cart_plural": "Panier ({{count}} articles)"
+    }
+  },
+  "MegaMenu": {
+    "Title": "Produits",
+    "Actions": {
+      "ViewAll": "Tout afficher"
+    }
+  },
+  "AllCategoriesExpandedMenu": {
+    "AllCategoriesLabel": "Toutes les catégories"
+  },
+  "MiniCart": {
+    "Items": "{{count}} article",
+    "Items_plural": "{{count}} articles",
+    "Title": "Votre commande en cours",
+    "Subtotal": "Sous-total pour {{count}} article",
+    "Subtotal_plural": "Sous-total pour {{count}} articles",
+    "Empty": "Votre panier ne contient aucun article.",
+    "Actions": {
+      "Cart": "Afficher le panier complet"
+    }
+  }
+}

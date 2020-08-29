@@ -20,14 +20,12 @@ export const catentriesSelector = (state: RootReducerState) =>
   state.order.catentries;
 export const isCheckoutDisabledSelector = (state: RootReducerState) =>
   state.order.isCheckoutDisabled;
-export const shipAddressesSelector = (state: RootReducerState) =>
-  state.order.shipAddresses;
+export const shipInfosSelector = (state: RootReducerState) =>
+  state.order.shipInfos;
 export const shipModesSelector = (state: RootReducerState) =>
   state.order.shipModes;
 export const payMethodsSelector = (state: RootReducerState) =>
   state.order.payMethods;
-export const checkoutActiveStepSelector = (state: RootReducerState) =>
-  state.order.checkoutActiveStep;
 export const isRecurringOrderSelector = (state: RootReducerState) =>
   state.order.isRecurringOrder;
 export const recurringOrderFrequencySelector = (state: RootReducerState) =>
@@ -37,4 +35,6 @@ export const recurringOrderStartDateSelector = (state: RootReducerState) =>
 export const isRecurringOrderDisabledSelector = (state: RootReducerState) =>
   state.order.isRecurringOrderDisabled;
 export const isFetchingSelector = (state: RootReducerState) =>
-  state.order.isFetching || false;
+  state.order.isFetching;
+export const miniCartItemsSelector = (state: RootReducerState) =>
+  state.order.miniCartItems;

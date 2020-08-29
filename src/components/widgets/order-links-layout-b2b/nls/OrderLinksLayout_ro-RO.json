@@ -1,18 +1,15 @@
 {
   "OrderLinks": {
-    "Title": "Order Management",
-
-    "OrderHistoryText": "Order History",
-    "OrderHistoryDescription": "Manage and edit saved addresses.",
-    "SavedOrdersText": "Saved Orders",
-    "SavedOrdersDescription": "View and manage saved orders",
-
-    "RecurringOrdersText": "Recurring Orders",
-    "RecurringOrdersDescription": "View and manage list of recurring orders",
-    "ApproveOrdersText": "Approve Orders",
-    "ApproveOrdersDescription": "Approve or reject orders",
-
-    "RequisitionListsText": "Requisition Lists",
-    "RequisitionListsDescription": "View, manage and create requisition lists"
+    "Title": "Gestionare comandă",
+    "OrderHistoryText": "Istoric comandă",
+    "OrderHistoryDescription": "Vizualizați comenzile plasate și comenzile în așteptarea aprobării și detaliile individuale ale comenzii.",
+    "SavedOrdersText": "Comenzi salvate",
+    "SavedOrdersDescription": "Vizualizați și gestionați comenzile salvate",
+    "RecurringOrdersText": "Comenzi recursive",
+    "RecurringOrdersDescription": "Vizualizați și gestionați lista cu comenzi recursive",
+    "ApproveOrdersText": "Aprobare comenzi",
+    "ApproveOrdersDescription": "Aprobați sau respingeți comenzile",
+    "RequisitionListsText": "Listele de rechiziție",
+    "RequisitionListsDescription": "Vizualizați, gestionați și creați liste de rechiziție"
   }
 }

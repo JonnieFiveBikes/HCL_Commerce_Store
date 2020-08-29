@@ -28,8 +28,14 @@ function RadioGroupWrapper({
   const { t } = useTranslation();
   let defaultSelected: string = "";
   let currentSelectedAttributes: any;
+  let attributeChangeMap: Map<any, any>;
   if (props.isB2B) {
-    defaultSelected = t("productDetail.any");
+    attributeChangeMap = props.attributeState
+      ? props.attributeState
+      : new Map();
+    defaultSelected = attributeChangeMap.get(id)
+      ? attributeChangeMap.get(id)
+      : t("productDetail.any");
   } else {
     currentSelectedAttributes = props.currentSelection.selectedAttributes
       ? props.currentSelection.selectedAttributes

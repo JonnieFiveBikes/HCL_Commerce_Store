@@ -1,0 +1,19 @@
+{
+  "Footer": {
+    "CompanyLinks": {
+      "Label": "Società",
+      "OurStory": "La nostra storia",
+      "Careers": "Carriere"
+    },
+    "Copyright": "Copyright HCL Technologies Limited 2020. Tutti i diritti riservati.",
+    "CustomerService": {
+      "Label": "Servizio clienti",
+      "ContactUs": "Contattaci",
+      "ContactUsDescription": "Contattaci",
+      "PrivacyPolicy": "Politica sulla privacy"
+    },
+    "FollowUs": "Seguici",
+    "Description": "Questa vetrina di esempio è realizzata su React and HCL Commerce. HCL Commerce trasforma il commercio agile su scala in realtà.",
+    "DisabledMessage": "Pagina in fase di sviluppo."
+  }
+}

@@ -3,14 +3,14 @@
     "NewCustomer": "はじめてご利用になる場合",
     "FirstName": "名",
     "LastName": "姓",
-    "Email": "Email",
+    "Email": "E メール",
     "Phone": "電話番号 (任意)",
     "Password": "パスワード",
-    "VerifyPassword": "Verify Password",
+    "VerifyPassword": "パスワードの確認",
     "TextContent": "ホーム・デザインのアイデアを受信トレイで受け取る",
     "Register": "登録",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "無効な形式です"
     }
   }
 }

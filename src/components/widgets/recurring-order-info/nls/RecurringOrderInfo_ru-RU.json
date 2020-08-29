@@ -1,0 +1,12 @@
+{
+  "RecurringOrderInfo": {
+    "Title": "Сведения о регулярном заказе",
+    "Labels": {
+      "RecurringOrderNumber": "Номер регулярного заказа",
+      "OrderSchedule": "График заказа",
+      "StartDate": "Дата начала",
+      "NextDelivery": "Следующий запланированный заказ",
+      "OrderHistoryButton": "История заказа {{orderId}}"
+    }
+  }
+}

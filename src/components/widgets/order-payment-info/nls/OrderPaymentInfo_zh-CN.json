@@ -1,8 +1,8 @@
 {
   "OrderPaymentInfo": {
-    "Title": "Payment",
+    "Title": "付款信息",
     "Labels": {
-      "BillMethod": "Payment Method"
+      "BillMethod": "付款方式"
     }
   }
 }

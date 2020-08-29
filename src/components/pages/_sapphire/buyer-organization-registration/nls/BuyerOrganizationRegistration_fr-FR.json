@@ -6,16 +6,16 @@
     "UserDetails": "Fournir des informations sur la personne qui gérera votre organisation et vos acheteurs",
     "OrgName": "Nom de l'organisation",
     "Email": "Adresse électronique",
-    "Address1": "Rue et numéro - ligne 1",
-    "Address2": "Rue et numéro - ligne 2",
+    "Address1": "Adresse - ligne 1",
+    "Address2": "Adresse - ligne 2 (facultatif)",
     "City": "Ville",
     "Country": "Pays",
-    "State": "Etat",
+    "State": "Département/région",
     "ZipCode": "Code postal",
     "FirstName": "Prénom",
     "LastName": "Nom",
     "LogonId": "ID de connexion",
-    "Phone": "Téléphone",
+    "Phone": "Téléphone (facultatif)",
     "Password": "Mot de passe",
     "Password2": "Confirmer le mot de passe",
     "Language": "Langue préférée",
@@ -23,12 +23,10 @@
     "UseOrg": "Utiliser la même adresse que l'organisation",
     "Submit": "Envoyer",
     "Clear": "Effacer",
-    "USD": "Dollar américain",
-    "USEnglish": "Anglais des Etats-Unis",
     "Success": "Votre demande d'enregistrement a été reçue. Votre compte est en attente d'autorisation. Vous devez attendre que votre compte soit approuvé pour pouvoir vous connecter.",
     "OK": "OK",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "Format non valide"
     }
   }
 }

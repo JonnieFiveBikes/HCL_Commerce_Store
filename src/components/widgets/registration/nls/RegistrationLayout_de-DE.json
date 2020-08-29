@@ -3,14 +3,14 @@
     "NewCustomer": "Neuer Kunde?",
     "FirstName": "Vorname",
     "LastName": "Nachname",
-    "Email": "Email",
-    "Phone": "Telefon (option)",
+    "Email": "E-Mail-Adresse",
+    "Phone": "Telefon (optional)",
     "Password": "Kennwort",
-    "VerifyPassword": "Verify Password",
+    "VerifyPassword": "Kennwort bestätigen",
     "TextContent": "Erhalten Sie Ideen für das Wohndesign, die an Ihren Posteingang gesendet werden.",
     "Register": "Registrieren",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "Ungültiges Format"
     }
   }
 }

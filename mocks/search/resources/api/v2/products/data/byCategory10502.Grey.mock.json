@@ -1285,6 +1285,90 @@
     },
     {
       "hasSingleSKU": false,
+      "shortDescription": "A long cozy double sofa for lounges.",
+      "parentCatalogGroupID": "/10501/10502",
+      "storeID": "12101",
+      "buyable": "true",
+      "thumbnail": "/hclstore/EmeraldCAS//images/catalog/livingroom/furniture/couch10_d1_350.jpg",
+      "prices.offer_usd": "589.99",
+      "name": "Supreme LoungeStyle Double Sofa",
+      "manufacturer": "Stockholm",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "600.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "10005",
+          "description": "I",
+          "currency": "USD",
+          "value": "589.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "blue",
+              "sequence": "1.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003011",
+              "image1": "/images/catalog/swatches/sw_blue.png",
+              "value": "Blue",
+              "image1path": "/hclstore/EmeraldCAS//images/catalog/swatches/sw_blue.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "0.0",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "color",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Size",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": "2.0",
+              "identifier": "52x6x52",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003025",
+              "value": "52\"x6\"x52\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "0.0",
+          "name": "Size",
+          "facetable": "true",
+          "id": "7000000000000000502",
+          "comparable": "true",
+          "key": "size",
+          "swatchable": "false"
+        }
+      ],
+      "type": "variant",
+      "id": "14128",
+      "partNumber": "LR-FNTR-CO-0011",
+      "seo": {
+        "href": "/blue-color-sofa-lr-fntr-co-0011"
+      }
+    },
+    {
+      "hasSingleSKU": false,
       "shortDescription": "A simple and modern casual sofa that offers comfort and contemporary styling to accent your home's living room.",
       "parentCatalogGroupID": "/10501/10502",
       "storeID": "12101",

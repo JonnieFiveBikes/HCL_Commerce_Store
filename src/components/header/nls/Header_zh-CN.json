@@ -1,0 +1,43 @@
+{
+  "Header": {
+    "Actions": {
+      "SignIn": "登录",
+      "SignInRegister": "登录/注册",
+      "WelcomeFirstname": "欢迎您，{{firstName}}",
+      "WelcomeNoFirstname": "欢迎您，{{lastName}}",
+      "WishList": "愿望清单",
+      "YourAccount": "您的帐户",
+      "Account": "帐户"
+    },
+    "AccountPopper": {
+      "Welcome": "欢迎您，{{firstName}} {{lastName}}",
+      "Organization": "组织",
+      "Contract": "合同",
+      "Edit": "编辑",
+      "AccountSetting": "帐户设置",
+      "SignOut": "退出",
+      "Cart": "购物车（{{count}} 件商品）",
+      "Cart_plural": "购物车（{{count}} 件商品）"
+    }
+  },
+  "MegaMenu": {
+    "Title": "产品",
+    "Actions": {
+      "ViewAll": "查看全部"
+    }
+  },
+  "AllCategoriesExpandedMenu": {
+    "AllCategoriesLabel": "所有类别"
+  },
+  "MiniCart": {
+    "Items": "{{count}} 件商品",
+    "Items_plural": "{{count}} 件商品",
+    "Title": "您当前的订单",
+    "Subtotal": "{{count}} 件商品的小计",
+    "Subtotal_plural": "{{count}} 件商品的小计",
+    "Empty": "购物车中没有商品。",
+    "Actions": {
+      "Cart": "查看完整的购物车"
+    }
+  }
+}

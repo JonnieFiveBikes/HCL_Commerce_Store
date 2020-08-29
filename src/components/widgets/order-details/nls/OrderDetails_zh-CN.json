@@ -1,10 +1,10 @@
 {
   "OrderDetails": {
-    "Title": "Order Details",
+    "Title": "订单详细信息",
     "Actions": {
-      "Back": "Back to Payment Details",
-      "Next": "Place Order",
-      "NextRecurringOrder": "Place Recurring Order"
+      "Back": "返回“付款详细信息”",
+      "Next": "下订单",
+      "NextRecurringOrder": "下循环订单"
     }
   }
 }

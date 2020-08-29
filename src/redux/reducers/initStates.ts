@@ -42,14 +42,14 @@ const orderDefaultState: OrderReducerState = {
   orderItems: [],
   catentries: null,
   isCheckoutDisabled: false,
-  shipAddresses: null,
+  shipInfos: null,
   shipModes: [],
   payMethods: [],
-  checkoutActiveStep: 0,
   isRecurringOrder: false,
   recurringOrderFrequency: "0",
   recurringOrderStartDate: null,
   isRecurringOrderDisabled: false,
+  miniCartItems: [],
 };
 const errorDefaultState: ErrorReducerState = {
   errorKey: null,

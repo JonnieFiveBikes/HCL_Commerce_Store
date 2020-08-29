@@ -6,16 +6,16 @@
     "UserDetails": "提供有关将负责管理贵组织和买家的人员的详细信息",
     "OrgName": "组织名称",
     "Email": "电子邮件",
-    "Address1": "街道地址行 1",
-    "Address2": "街道地址行 2",
+    "Address1": "地址行 1",
+    "Address2": "地址行 2（可选）",
     "City": "城市",
     "Country": "国家/地区",
     "State": "州/省",
-    "ZipCode": "邮政编码",
+    "ZipCode": "邮政编码/邮编",
     "FirstName": "名字",
     "LastName": "姓氏",
     "LogonId": "登录标识",
-    "Phone": "电话",
+    "Phone": "电话（可选）",
     "Password": "密码",
     "Password2": "验证密码",
     "Language": "首选语言",
@@ -23,12 +23,10 @@
     "UseOrg": "使用与组织相同的地址",
     "Submit": "提交",
     "Clear": "清除",
-    "USD": "美元",
-    "USEnglish": "美国英语",
     "Success": "已收到您的注册请求。您的帐户正在等待审批。在帐户获批准前，您无法登录。",
     "OK": "确定",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "无效格式"
     }
   }
 }

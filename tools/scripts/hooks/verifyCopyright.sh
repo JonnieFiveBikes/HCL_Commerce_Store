@@ -14,16 +14,16 @@ IFS=$'\n'
 files_without_header_inScope=()
 files_without_header=()
 for newly_added_file in `git diff --name-only --diff-filter=ACMR --staged "*.js" "*.jsx" "*.ts" "*.tsx" "*.html" "*.yaml" "*.yml"`; do
-    files_without_header_inScope+=($(grep -L "(C) Copyright" $newly_added_file))
+    files_without_header_inScope+=($(grep -L "(C) Copyright HCL Technologies Limited" $newly_added_file))
 done
 
 for newly_updated_file in `git diff --name-only --diff-filter=ACMR --staged`; do
-    files_without_header+=($(grep -L "(C) Copyright" $newly_updated_file))
+    files_without_header+=($(grep -L "(C) Copyright HCL Technologies Limited" $newly_updated_file))
 done
 
 if [ -n "$files_without_header_inScope" ]
 then
-    echo -e "\e[1m\e[31mERROR:\e[39m\e[0m \e[41m(C) Copyright \e[49m\e[1m\e[31m license header not found in the following newly updated files:\e[39m\e[0m"
+    echo -e "\e[1m\e[31mERROR:\e[39m\e[0m \e[41m(C) Copyright HCL Technologies Limited \e[49m\e[1m\e[31m license header not found in the following newly updated files:\e[39m\e[0m"
     
     for file in "${files_without_header_inScope[@]}"
     do

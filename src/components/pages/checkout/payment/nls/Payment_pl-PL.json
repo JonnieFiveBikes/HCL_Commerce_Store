@@ -1,0 +1,19 @@
+{
+  "Payment": {
+    "Title": "Payment Details",
+    "Msgs": {
+      "InvalidFormat": "Nieprawidłowy format"
+    },
+    "Labels": {
+      "UseMultiple": "Use multiple payment methods",
+      "PaymentMethod": "Forma płatności {{number}}",
+      "AddNewAddress": "Add new address",
+      "BillingAddress": "Adres do faktury"
+    },
+    "Actions": {
+      "Back": "Back to Shipping Details",
+      "Next": "Przejdź do kroku Przegląd zamówienia",
+      "SaveAndAdd": "Save and add another payment method"
+    }
+  }
+}

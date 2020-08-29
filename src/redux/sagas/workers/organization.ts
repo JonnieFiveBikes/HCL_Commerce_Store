@@ -21,7 +21,7 @@ import {
 } from "../../actions/organization";
 import { USER_CONTEXT_REQUEST_ACTION } from "../../actions/context";
 import { FETCH_CONTRACT_REQUESTED_ACTION } from "../../actions/contract";
-import { GET_CART_ACTION } from "../../actions/order";
+import { FETCHING_CART_ACTION } from "../../actions/order";
 
 export function* getEntitledOrg(action: any) {
   try {
@@ -38,7 +38,7 @@ export function* getEntitledOrg(action: any) {
 export function* switchOrg(action: any) {
   try {
     yield call(switchOrganizationService.changeOrganization, action.payload);
-    yield put(GET_CART_ACTION({}));
+    yield put(FETCHING_CART_ACTION({}));
     yield put(USER_CONTEXT_REQUEST_ACTION());
     yield put(FETCH_CONTRACT_REQUESTED_ACTION());
   } catch (e) {

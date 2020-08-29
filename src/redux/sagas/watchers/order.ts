@@ -13,7 +13,11 @@ import { takeLatest, call } from "redux-saga/effects";
 //Redux
 import * as ACTIONS from "../../action-types/order";
 import * as WORKERS from "../workers/order";
-import { GET_CART_ACTION, COPY_CART_SUCCESS_ACTION } from "../../actions/order";
+import {
+  FETCHING_CART_ACTION,
+  COPY_CART_SUCCESS_ACTION,
+  GET_CART_ACTION,
+} from "../../actions/order";
 import {
   LOGIN_SUCCESS_ACTION,
   LOGOUT_SUCCESS_ACTION,
@@ -31,6 +35,7 @@ export function* watchSaga() {
   yield takeLatest(ACTIONS.ITEM_REMOVE_REQUESTED, removeItemAndFetchCart);
   yield takeLatest(
     [
+      FETCHING_CART_ACTION,
       GET_CART_ACTION,
       LOGIN_SUCCESS_ACTION,
       LOGOUT_SUCCESS_ACTION,
@@ -44,24 +49,13 @@ export function* watchSaga() {
     WORKERS.initFromStorageFetchCart
   );
   yield takeLatest(ACTIONS.ITEM_UPDATE_REQUESTED, updateItemAndFetchCart);
-  yield takeLatest(ACTIONS.SHIPINFO_GET_REQUESTED, WORKERS.fetchShipInfo);
-  yield takeLatest(ACTIONS.SHIPINFO_UPDATE_REQUESTED, WORKERS.updateShipInfo);
-  yield takeLatest(ACTIONS.SHIPMODES_GET_REQUESTED, WORKERS.fetchShipModes);
+  yield takeLatest([ACTIONS.SHIPINFO_GET_REQUESTED], WORKERS.fetchShipInfo);
+  yield takeLatest([ACTIONS.SHIPMODES_GET_REQUESTED], WORKERS.fetchShipModes);
   yield takeLatest(
     ACTIONS.SHIPMODE_UPDATE_REQUESTED,
     updateShipModeAndFetchCart
   );
-  yield takeLatest(
-    ACTIONS.SHIPMODE_UPDATE_AND_PI_ADD_REQUESTED,
-    WORKERS.updateShipModeFetchCartAndAddPI
-  );
   yield takeLatest(ACTIONS.PAYMETHODS_GET_REQUESTED, WORKERS.fetchPayMethods);
-  yield takeLatest(ACTIONS.PI_ADD_REQUESTED, WORKERS.addPI);
-  yield takeLatest(ACTIONS.ORDER_PLACE_REQUESTED, WORKERS.placeOrder);
-  yield takeLatest(
-    ACTIONS.RECURRINGORDER_PLACE_REQUESTED,
-    WORKERS.placeRecurringOrder
-  );
 }
 
 function* removeItemAndFetchCart(action: any) {

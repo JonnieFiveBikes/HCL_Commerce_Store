@@ -45,6 +45,7 @@ const accountReducer = createReducer(initStates.account, (builder) => {
           newPerson = {
             ...person,
             contactMap,
+            contactList,
           };
         }
         state.address = newPerson;

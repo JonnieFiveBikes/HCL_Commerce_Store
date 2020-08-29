@@ -27,6 +27,7 @@ export const PAYMENT = {
     visa: "Visa",
     amex: "American Express",
   },
+  payOptions: { cod: "COD", cc: "CC" },
 };
 
 export const RECURRING_ORDER_OPTIONS = [

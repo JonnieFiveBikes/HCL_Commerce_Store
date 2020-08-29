@@ -3,13 +3,19 @@
     "Title": "Artikel bestellen",
     "Labels": {
       "ItemDetails": "Artikeldetails",
-      "SKU": "Artikelposition",
+      "SKU": "Artikelposition: ",
       "Status": "Status",
       "Quantity": "Menge",
       "Price": "Preis",
       "Actions": "Aktionen",
       "Gift": "Kostenloses Geschenk",
-	  "NonRecurring": "Non-recurring item"								  
+      "NonRecurring": "Sonderartikel",
+      "PageSizeLabel": "Zeilen",
+      "FirstPage": "Erste Seite",
+      "LastPage": "Letzte Seite",
+      "PreviousPage": "Vorherige Seite",
+      "NextPage": "Nächste Seite",
+      "RowCount": "Anzeige von {from} bis {to} von {count}"
     },
     "Actions": {
       "Delete": "Löschen"

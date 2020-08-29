@@ -6,16 +6,16 @@
     "UserDetails": "Details über die Person eingeben, die Ihre Organisation und Ihre Käufer verwalten wird",
     "OrgName": "Organisationsname",
     "Email": "E-Mail-Adresse",
-    "Address1": "Straßenadresse Zeile 1",
-    "Address2": "Straßenadresse Zeile 2",
+    "Address1": "Adresszeile 1",
+    "Address2": "Adresszeile 2 (optional)",
     "City": "Stadt",
     "Country": "Land",
-    "State": "Bundesland",
+    "State": "Bundesland/Provinz",
     "ZipCode": "Postleitzahl",
     "FirstName": "Vorname",
     "LastName": "Nachname",
     "LogonId": "Anmelde-ID",
-    "Phone": "Telefon",
+    "Phone": "Telefon (optional)",
     "Password": "Kennwort",
     "Password2": "Kennwort bestätigen",
     "Language": "Bevorzugte Sprache",
@@ -23,12 +23,10 @@
     "UseOrg": "Dieselbe Adresse wie Organisation verwenden",
     "Submit": "Senden",
     "Clear": "Löschen",
-    "USD": "US-Dollar",
-    "USEnglish": "US-Englisch",
     "Success": "Ihre Registrierunganfrage wurde empfangen. Ihr Konto wartet auf Genehmigung. Sie können sich erst anmelden, wenn Ihr Konto genehmigt wurde.",
     "OK": "OK",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "Ungültiges Format"
     }
   }
 }

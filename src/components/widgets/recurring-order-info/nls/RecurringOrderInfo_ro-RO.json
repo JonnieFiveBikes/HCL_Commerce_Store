@@ -1,0 +1,12 @@
+{
+  "RecurringOrderInfo": {
+    "Title": "Detalii comandă recurentă",
+    "Labels": {
+      "RecurringOrderNumber": "Număr comandă recurentă",
+      "OrderSchedule": "Programare comandă",
+      "StartDate": "Dată pornire",
+      "NextDelivery": "Următoarea comandă programată",
+      "OrderHistoryButton": "Istoricul comenzii pentru {{orderId}}"
+    }
+  }
+}

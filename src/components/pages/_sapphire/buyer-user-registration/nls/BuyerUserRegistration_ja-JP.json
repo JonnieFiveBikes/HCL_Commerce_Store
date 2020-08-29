@@ -5,7 +5,7 @@
     "OrgName": "組織",
     "Email": "E メール",
     "Address1": "住所行 1",
-    "Address2": "住所行 2",
+    "Address2": "住所行 2 (オプション)",
     "City": "市区町村",
     "Country": "国",
     "State": "都道府県",
@@ -13,19 +13,17 @@
     "FirstName": "名",
     "LastName": "姓",
     "LogonId": "ログイン ID",
-    "Phone": "電話",
+    "Phone": "電話番号 (任意)",
     "Password": "パスワード",
     "Password2": "パスワードの確認",
     "Language": "使用言語",
     "Currency": "優先通貨",
     "Submit": "送信",
     "Clear": "クリア",
-    "USD": "米国ドル",
-    "USEnglish": "英語 (米国)",
     "Success": "アカウントのアクティブ化要求が受信されました。アカウントをアクティブ化してログオンしてください。",
     "OK": "OK",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "無効な形式です"
     }
   }
 }

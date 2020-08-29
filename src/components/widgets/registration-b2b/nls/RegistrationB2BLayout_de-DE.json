@@ -1,0 +1,9 @@
+{
+  "RegistrationB2BLayout": {
+    "Title": "Neuer Kunde?",
+    "Actions": {
+      "BuyerReg": "Käuferregistrierung",
+      "OrgReg": "Organisationsregistrierung"
+    }
+  }
+}

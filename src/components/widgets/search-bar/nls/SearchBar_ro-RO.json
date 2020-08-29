@@ -1,9 +1,9 @@
 {
   "SearchBar": {
-    "SearchField": "Cãutare",
+    "SearchField": "Căutare",
     "KeywordTitle": "CUVINTE CHEIE",
-    "CategoryTitle": "CATEGORY",
-    "BrandTitle": "BRAND",
-    "Clear": "Clear search"
+    "CategoryTitle": "CATEGORIE",
+    "BrandTitle": "MARCĂ",
+    "Clear": "Golire căutare"
   }
 }

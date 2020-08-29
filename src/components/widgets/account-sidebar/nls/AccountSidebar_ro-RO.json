@@ -1,0 +1,22 @@
+{
+  "MyAccount": {
+    "Title": "Contul meu",
+    "AccountSettings": "Setări cont",
+    "PersonalInformation": "Informații personale",
+    "AddressBook": "Agendă",
+    "OrderHistory": "Istoric comandă",
+    "Wishlists": "Liste de dorințe"
+  },
+  "Dashboard": {
+    "Title": "Panou de bord",
+    "AccountSettings": "Setări cont",
+    "PersonalInformation": "Informații personale",
+    "AddressBook": "Agendă",
+    "OrderManagement": "Gestionare comandă",
+    "OrderHistory": "Istoric comandă",
+    "RecurringOrders": "Comenzi recursive",
+    "RequisitionLists": "Listele de rechiziție",
+    "SavedOrders": "Comenzi salvate",
+    "ApproveOrders": "Aprobare comenzi"
+  }
+}

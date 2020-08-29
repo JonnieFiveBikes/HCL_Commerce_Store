@@ -104,7 +104,7 @@ function PersonalInformationLayout() {
             ].map(
               (item: string, index: number) =>
                 item && (
-                  <StyledTypography variant="body1" key={index}>
+                  <StyledTypography variant="body1" component="div" key={index}>
                     {item}
                   </StyledTypography>
                 )

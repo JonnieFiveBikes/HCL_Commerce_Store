@@ -1,0 +1,43 @@
+{
+  "Header": {
+    "Actions": {
+      "SignIn": "Войти",
+      "SignInRegister": "Войти/зарегистрироваться",
+      "WelcomeFirstname": "Здравствуйте, {{firstName}}!",
+      "WelcomeNoFirstname": "Здравствуйте, {{lastName}}!",
+      "WishList": "Список желаний",
+      "YourAccount": "Ваша учетная запись",
+      "Account": "Учетная запись"
+    },
+    "AccountPopper": {
+      "Welcome": "Здравствуйте, {{firstName}} {{lastName}}!",
+      "Organization": "Организация",
+      "Contract": "Контракт",
+      "Edit": "Изменить",
+      "AccountSetting": "Настройки учетной записи",
+      "SignOut": "Выход",
+      "Cart": "Корзина ({{count}} товар)",
+      "Cart_plural": "Корзина (товаров: {{count}})"
+    }
+  },
+  "MegaMenu": {
+    "Title": "Товары",
+    "Actions": {
+      "ViewAll": "Показать все"
+    }
+  },
+  "AllCategoriesExpandedMenu": {
+    "AllCategoriesLabel": "Все категории"
+  },
+  "MiniCart": {
+    "Items": "{{count}} товар",
+    "Items_plural": "Товаров: {{count}}",
+    "Title": "Ваш текущий заказ",
+    "Subtotal": "Промежуточный итог для {{count}} товара",
+    "Subtotal_plural": "Промежуточный итог для товаров: {{count}}",
+    "Empty": "В корзине нет товаров.",
+    "Actions": {
+      "Cart": "Показать всю корзину"
+    }
+  }
+}

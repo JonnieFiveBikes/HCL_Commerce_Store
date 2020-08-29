@@ -2,8 +2,8 @@
   "ProductFilter": {
     "Labels": {
       "filterBy": "필터링 기준",
-      "price": "Price",
-      "minPrice": "최소",
+      "price": "가격",
+      "minPrice": "min",
       "maxPrice": "최대"
     },
     "Actions": {

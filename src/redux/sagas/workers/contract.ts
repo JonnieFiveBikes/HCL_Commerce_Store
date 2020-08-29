@@ -20,7 +20,10 @@ import {
   CONTRACT_SWITCH_ERROR_ACTION,
 } from "../../actions/contract";
 import { USER_CONTEXT_REQUEST_ACTION } from "../../actions/context";
-import { contractSelector } from "../../selectors/contract";
+import {
+  contractSelector,
+  currentEntitledContractsSelector,
+} from "../../selectors/contract";
 import { loginStatusSelector } from "../../selectors/user";
 
 export function* fetchContract(action: any) {
@@ -46,8 +49,11 @@ export function* preSelectContract(action: any) {
   try {
     //fetch first entitled contract and explicitly set it to entitled contract.
     const contracts = yield select(contractSelector);
+    const entitledContracts: string[] = yield select(
+      currentEntitledContractsSelector
+    );
     const isLogin = yield select(loginStatusSelector);
-    if (isLogin) {
+    if (isLogin && entitledContracts.length !== 1) {
       const contract = Object.keys(contracts)[0];
       yield call(switchContractService.changeContract, {
         $queryParameters: { contractId: String(contract) },

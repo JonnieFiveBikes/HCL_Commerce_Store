@@ -2,7 +2,7 @@
   "ProductFilter": {
     "Labels": {
       "filterBy": "Filtrare după",
-      "price": "Price",
+      "price": "Preț",
       "minPrice": "min",
       "maxPrice": "max"
     },

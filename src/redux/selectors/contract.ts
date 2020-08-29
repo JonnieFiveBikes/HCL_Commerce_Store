@@ -21,4 +21,12 @@ const currentContractIdSelector = (state: RootReducerState) => {
   }
   return contractId ? String(contractId) : contractId;
 };
-export { contractSelector, currentContractIdSelector };
+
+const currentEntitledContractsSelector = (state: RootReducerState) => {
+  return state.context.entitlement?.currentTradingAgreementIds || [];
+};
+export {
+  contractSelector,
+  currentContractIdSelector,
+  currentEntitledContractsSelector,
+};

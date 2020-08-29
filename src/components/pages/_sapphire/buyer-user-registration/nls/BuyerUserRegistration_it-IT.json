@@ -4,28 +4,26 @@
     "Description": "Se l'organizzazione dispone già di un presso questo negozio, effettuare la registrazione in modo da poter effettuare acquisti con tale account ed emettere ordini. Quando la registrazione è approvata, è possibile effettuare l'accesso al negozio e fare acquisti.",
     "OrgName": "Organizzazione",
     "Email": "E-mail",
-    "Address1": "Riga 1 indirizzo postale",
-    "Address2": "Riga 2 indirizzo postale",
+    "Address1": "Riga 1 indirizzo",
+    "Address2": "Riga 2 indirizzo (opzionale)",
     "City": "Città",
     "Country": "Paese",
     "State": "Stato/Provincia",
-    "ZipCode": "CAP",
+    "ZipCode": "CAP/Codice postale",
     "FirstName": "Nome",
     "LastName": "Cognome",
     "LogonId": "ID di accesso",
-    "Phone": "Telefono",
+    "Phone": "Telefono (opzionale)",
     "Password": "Password",
     "Password2": "Verifica password",
     "Language": "Lingua preferita",
     "Currency": "Valuta preferita",
     "Submit": "Invia",
     "Clear": "Cancella",
-    "USD": "Dollaro USA",
-    "USEnglish": "Inglese USA",
     "Success": "La richiesta di attivazione dell'account è stata ricevuta. Per effettuare l'accesso, attivare l'account.",
     "OK": "OK",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "Formato non valido"
     }
   }
 }

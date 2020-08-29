@@ -2,9 +2,9 @@
   "Checkout": {
     "Title": "Checkout",
     "Labels": {
-      "ShippingBilling": "Shipping and Billing",
-      "PaymentDetails": "Payment and Delivery",
-      "ReviewOrder": "Review Order"
+      "shipping": "Shipping",
+      "payment": "Payment",
+      "review": "Review Order"
     },
     "Actions": {
       "ReturnCart": "Return to Cart",

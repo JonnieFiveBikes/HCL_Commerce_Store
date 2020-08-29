@@ -14,7 +14,7 @@ import { storiesOf } from "@storybook/react";
 import Typography from "@material-ui/core/Typography";
 
 const divStyle = {
-  padding: "15px 20px"
+  padding: "15px 20px",
 };
 
 function HelloWorldComponent() {

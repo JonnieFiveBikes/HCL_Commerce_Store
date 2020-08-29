@@ -1,0 +1,18 @@
+{
+  "AddressBook": {
+    "AddrMsg": "Neue Adresse hinzufügen",
+    "AddButton": "Adresse hinzufügen",
+    "Title": "Adressbuch",
+    "FilterLabel": "Nach Adresstyp filtern",
+    "NoAddrMsg": "Es sind keine Adressen gespeichert.",
+    "NoAddrForFilterMsg": "Es sind keine Adressen mit diesem Filtertyp vorhanden.",
+    "ShowAllLabel": "Alle anzeigen",
+    "ShippingLabel": "Versand",
+    "BillingLabel": "Abrechnung",
+    "ShippingBillingLabel": "Versand und Abrechnung",
+    "CreateAddress": "Adresse erstellen",
+    "SaveChanges": "Änderungen speichern",
+    "Cancel": "Abbrechen",
+    "EditAddress": "Adresse bearbeiten"
+  }
+}

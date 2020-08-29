@@ -3,12 +3,12 @@
     "Labels": {
       "filterBy": "Filtrar por",
       "price": "Preço",
-      "minPrice": "mín.",
+      "minPrice": "min",
       "maxPrice": "máx."
     },
     "Actions": {
-      "showMore": "Mostrar Mais",
-      "showLess": "Mostrar Menos",
+      "showMore": "Mostrar mais",
+      "showLess": "Mostrar menos",
       "Go": "Ir"
     }
   }

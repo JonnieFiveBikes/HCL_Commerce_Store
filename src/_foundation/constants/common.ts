@@ -12,3 +12,6 @@
 export const WC_PREVIEW_TOKEN = "WCPreviewToken";
 export const NEW_PREVIEW_SESSION = "newPreviewSession";
 export const STORE_ID = "STORE_ID";
+export const CURRENT_USER = "currentUser";
+export const WINDOW_COUNTER = "windowCounter";
+export const WINDOW_ID = "windowId";

@@ -1,11 +1,11 @@
 {
   "AccountLinksGridView": {
-    "Title": "Aspect grilã",
-    "AddressBookText": "Agendã",
-    "AddressBookDescription": "Gestiona?i ?i edita?i adresele salvate",
-    "OrderHistoryText": "Istoric comandã",
-    "OrderHistoryDescription": "Vizualiza?i comenzile plasate ?i comenzile în a?teptarea aprobãrii ?i detaliile individuale ale comenzii",
-    "WishListText": "Listã de dorin?e",
-    "WishListDescription": "Listã de dorin?e"
+    "Title": "Instrumentele contului meu",
+    "AddressBookText": "Agendă",
+    "AddressBookDescription": "Gestionați și editați adresele salvate",
+    "OrderHistoryText": "Istoric comandă",
+    "OrderHistoryDescription": "Vizualizați comenzile plasate și comenzile în așteptarea aprobării și detaliile individuale ale comenzii",
+    "WishListText": "Listă de dorințe",
+    "WishListDescription": "Listă de dorințe"
   }
 }

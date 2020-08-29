@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { OK } from "http-status-codes";
 import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, useLocation } from "react-router-dom";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import siteContentService from "../../../_foundation/apis/search/siteContent.service";
@@ -57,6 +57,7 @@ const SearchBar: React.FC = (props: any) => {
   );
   const { t } = useTranslation();
   const history = useHistory();
+  const location = useLocation();
 
   const searchField = t("SearchBar.SearchField");
   const keywordTitle = t("SearchBar.KeywordTitle");
@@ -79,8 +80,6 @@ const SearchBar: React.FC = (props: any) => {
   );
 
   const [inputDisabled, setinputDisabled] = React.useState(true);
-
-  const url = window.location.href;
 
   const clearSuggestions = () => {
     setIndex(0);
@@ -113,7 +112,7 @@ const SearchBar: React.FC = (props: any) => {
     dispatch(searchActions.KEYWORDS_UPDATED_ACTION(list));
   };
   const CancelToken = Axios.CancelToken;
-  let cancel: Canceler;
+  let cancels: Canceler[] = [];
 
   useEffect(() => {
     if (mySite) {
@@ -125,7 +124,7 @@ const SearchBar: React.FC = (props: any) => {
         contractId: contractId,
         catalogId: catalogId,
         cancelToken: new CancelToken(function executor(c) {
-          cancel = c;
+          cancels.push(c);
         }),
       };
       siteContentService
@@ -143,19 +142,19 @@ const SearchBar: React.FC = (props: any) => {
         .catch((e) => {});
     }
 
-    const queryString = window.location.search;
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+  }, [mySite]);
+
+  useEffect(() => {
+    const queryString = location.search;
     const params = new URLSearchParams(queryString);
     const searchTermValue = params.get(SEARCHTERM);
     if (searchTermValue == null) {
       setInput("");
     }
-
-    return () => {
-      if (cancel) {
-        cancel();
-      }
-    };
-  }, [mySite, url]);
+  }, [location.pathname]);
 
   const generateCategoriesList = (categoriesResponse: any[]) => {
     const lists: string[] = [];
@@ -206,6 +205,7 @@ const SearchBar: React.FC = (props: any) => {
           contractId: contractId,
           catalogId: catalogId,
         };
+
         siteContentService
           .findKeywordSuggestionsByTerm(parameters)
           .then((res) => {
@@ -421,17 +421,25 @@ const SearchBar: React.FC = (props: any) => {
                 onChange={(e) => handleLookAheadSearch(e, "searchTerm")}
                 onKeyDown={onKeyDown}
                 InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon onClick={toggleSearchBar} />
-                    </InputAdornment>
-                  ),
                   endAdornment: (
-                    <InputAdornment position="end">
-                      <StyledIconButton onClick={clearSuggestionsAndInputField}>
-                        <CloseIcon titleAccess={t("SearchBar.Clear")} />
-                      </StyledIconButton>
-                    </InputAdornment>
+                    <>
+                      {showKeywords || showCategories || showBrands ? (
+                        <>
+                          <InputAdornment position="end">
+                            <StyledIconButton
+                              onClick={clearSuggestionsAndInputField}>
+                              <CloseIcon titleAccess={t("SearchBar.Clear")} />
+                            </StyledIconButton>
+                          </InputAdornment>
+                        </>
+                      ) : (
+                        <>
+                          <InputAdornment position="start">
+                            <SearchIcon onClick={toggleSearchBar} />
+                          </InputAdornment>
+                        </>
+                      )}
+                    </>
                   ),
                 }}
               />

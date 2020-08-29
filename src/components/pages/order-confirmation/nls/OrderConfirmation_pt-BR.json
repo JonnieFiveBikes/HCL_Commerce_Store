@@ -1,0 +1,11 @@
+{
+  "OrderConfirmation": {
+    "Title": "Confirmação do pedido",
+    "Msgs": {
+      "Heading": "We've received your order",
+      "OrderNumber": "Order #{{orderId}}",
+      "Details": "A copy of your receipt has been sent to {{emails}}",
+      "ThankYou": "Thank you for shopping at {{storeName}}"
+    }
+  }
+}

@@ -1,15 +1,14 @@
 {
-   "SessionError":{
-      "TimeoutTitle":"Sessão Expirada",
-      "InvalidTitle":"Erro de Sessão Inválida",
-      "GenericTitle":"Erro Genérico",
-      "TimeoutMsg":"Sua sessão expirou e você foi desconectado com sucesso. Entre novamente para acessar sua loja.",
-      "InvalidMsg":"Seu ID de logon pode ter sido usado em outro local. Entre novamente para acessar sua loja.",
-      "Email":"E-mail",
-      "Password":"Senha",
-      "SubmitButton":"Entrar",
-      "CancelButton":"Cancelar",
-      "ActionIncomplete":"Sua solicitação não foi concluída porque seu ID de logon pode estar em uso em outro local. Entre novamente para continuar."
-   
-}
+  "SessionError": {
+    "TimeoutTitle": "Sessão expirada",
+    "InvalidTitle": "Erro de sessão inválida",
+    "GenericTitle": "Erro genérico",
+    "TimeoutMsg": "Sua sessão expirou e você foi desconectado com sucesso. Entre novamente para acessar sua loja.",
+    "InvalidMsg": "Seu ID de logon pode ter sido usado em outro local. Entre novamente para acessar sua loja.",
+    "Email": "E-mail",
+    "Password": "Senha",
+    "SubmitButton": "Entrar",
+    "CancelButton": "Cancelar",
+    "ActionIncomplete": "Sua solicitação não foi concluída porque seu ID de logon pode estar em uso em outro local. Entre novamente para continuar."
+  }
 }

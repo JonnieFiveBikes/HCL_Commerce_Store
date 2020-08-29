@@ -1,0 +1,22 @@
+{
+  "MyAccount": {
+    "Title": "マイ・アカウント",
+    "AccountSettings": "アカウントの設定",
+    "PersonalInformation": "個人情報",
+    "AddressBook": "アドレス帳",
+    "OrderHistory": "オーダー履歴",
+    "Wishlists": "買い物候補リスト"
+  },
+  "Dashboard": {
+    "Title": "ダッシュボード",
+    "AccountSettings": "アカウントの設定",
+    "PersonalInformation": "個人情報",
+    "AddressBook": "アドレス帳",
+    "OrderManagement": "オーダー管理",
+    "OrderHistory": "オーダー履歴",
+    "RecurringOrders": "定期オーダー",
+    "RequisitionLists": "要求リスト",
+    "SavedOrders": "保存済みオーダー",
+    "ApproveOrders": "オーダーの承認"
+  }
+}

@@ -3,14 +3,14 @@
     "NewCustomer": "Nouveau client ?",
     "FirstName": "Prénom",
     "LastName": "Nom",
-    "Email": "Email",
+    "Email": "Adresse électronique",
     "Phone": "Téléphone (facultatif)",
     "Password": "Mot de passe",
-    "ReTypePassword": "Re-type Password",
+    "VerifyPassword": "Confirmer le mot de passe",
     "TextContent": "Recevez des idées de conception de maison dans votre boîte de réception",
     "Register": "S'inscrire",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "Format non valide"
     }
   }
 }

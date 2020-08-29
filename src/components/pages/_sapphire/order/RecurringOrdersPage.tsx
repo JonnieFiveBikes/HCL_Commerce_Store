@@ -13,7 +13,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from "@reduxjs/toolkit";
-import cloneDeep from "lodash-es/cloneDeep";
+import cloneDeep from "lodash/cloneDeep";
 //Custom libraries
 import FormattedPriceDisplay from "../../../widgets/formatted-price-display";
 import {
@@ -21,7 +21,7 @@ import {
   ORDER_DETAILS,
   DASHBOARD,
 } from "../../../../constants/routes";
-import Dashboard from "../../../widgets/dashboard/Dashboard";
+import AccountSidebar from "../../../widgets/account-sidebar/AccountSidebar";
 //Redux
 import { COPY_CART_ACTION } from "../../../../redux/actions/order";
 import { recurringOrderSelector } from "../../../../redux/selectors/recurringOrder";
@@ -41,7 +41,6 @@ import {
   StyledContainer,
   StyledGrid,
   StyledProgressPlaceholder,
-  StyledSidebar,
 } from "../../../StyledUI";
 const useRecurringOrderTable = () => {
   const { t, i18n } = useTranslation();
@@ -273,12 +272,7 @@ function RecurringOrders(props: any) {
       </StyledTypography>
       <StyledGrid container spacing={2}>
         <StyledGrid item xs={12} md={3} className="sidebar">
-          <StyledSidebar
-            title={t("Dashboard.Title")}
-            sidebarContent={<Dashboard />}
-            linkTo={DASHBOARD}
-            breakpoint="md"
-          />
+          <AccountSidebar />
         </StyledGrid>
         <StyledGrid item xs={12} md={9}>
           {orders !== null ? (

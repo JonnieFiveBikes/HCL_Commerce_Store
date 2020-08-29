@@ -12,11 +12,10 @@
 import { createReducer, AnyAction } from "@reduxjs/toolkit";
 //Foundation libraries
 import {
-  sessionStorageUtil,
   localStorageUtil,
+  storageSessionHandler,
 } from "../../_foundation/utils/storageUtil";
 import {
-  CURRENT_USER,
   PERSONALIZATION_ID,
   INITIATED_FROM_STORAGE,
 } from "../../_foundation/constants/user";
@@ -61,7 +60,7 @@ const userReducer = createReducer(initStates.user, (builder) => {
         userLoggedIn: true,
         isGuest: false,
       });
-      sessionStorageUtil.set(CURRENT_USER, state);
+      storageSessionHandler.saveCurrentUser(state);
       //set personalizationID to localStorage
       const { personalizationID } = action.payload;
       localStorageUtil.set(
@@ -101,7 +100,7 @@ const userReducer = createReducer(initStates.user, (builder) => {
     LOGOUT_SUCCESS_ACTION,
     (state: UserReducerState | any, action: AnyAction) => {
       clearUserState(state);
-      sessionStorageUtil.remove(CURRENT_USER);
+      storageSessionHandler.removeCurrentUser();
     }
   );
   builder.addCase(
@@ -116,7 +115,7 @@ const userReducer = createReducer(initStates.user, (builder) => {
         personalizationID,
         PERMANENT_STORE_DAYS
       );
-      sessionStorageUtil.set(CURRENT_USER, state);
+      storageSessionHandler.saveCurrentUser(state);
     }
   );
   builder.addCase(
@@ -126,7 +125,7 @@ const userReducer = createReducer(initStates.user, (builder) => {
       state.userRegistration = true;
       state.userLoggedIn = true;
       state.isGuest = false;
-      sessionStorageUtil.set(CURRENT_USER, state);
+      storageSessionHandler.saveCurrentUser(state);
       const { personalizationID } = state;
       localStorageUtil.set(
         PERSONALIZATION_ID,
@@ -149,7 +148,7 @@ const userReducer = createReducer(initStates.user, (builder) => {
     FETCH_USER_DETAILS_SUCCESS_ACTION,
     (state: UserReducerState | any, action: AnyAction) => {
       Object.assign(state, { details: action.payload });
-      sessionStorageUtil.set(CURRENT_USER, state);
+      storageSessionHandler.saveCurrentUser(state);
     }
   );
 });

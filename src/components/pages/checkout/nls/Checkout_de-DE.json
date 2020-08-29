@@ -1,0 +1,16 @@
+{
+  "Checkout": {
+    "Title": "Checkout",
+    "Labels": {
+      "shipping": "Versand und Abrechnung",
+      "payment": "Zahlung und Zustellung",
+      "review": "Bestellüberprüfung"
+    },
+    "Actions": {
+      "ReturnCart": "Zurück zum Warenkorb",
+      "BackTo": "Zurück zu {{step}}",
+      "ContinueTo": "Weiter zu {{step}}",
+      "PlaceOrder": "Bestellung aufgeben"
+    }
+  }
+}

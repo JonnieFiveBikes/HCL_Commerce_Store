@@ -1,0 +1,8 @@
+{
+  "CheckoutAddress": {
+    "Actions": {
+      "Submit": "Save and select this address",
+      "Cancel": "Abbrechen"
+    }
+  }
+}

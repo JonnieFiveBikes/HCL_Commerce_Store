@@ -1,0 +1,19 @@
+{
+  "Payment": {
+    "Title": "Payment Details",
+    "Msgs": {
+      "InvalidFormat": "Format nevalid"
+    },
+    "Labels": {
+      "UseMultiple": "Use multiple payment methods",
+      "PaymentMethod": "Metodă de plată {{number}}",
+      "AddNewAddress": "Add new address",
+      "BillingAddress": "Adresă de facturare"
+    },
+    "Actions": {
+      "Back": "Back to Shipping Details",
+      "Next": "Continuați cu Revizuirea comenzii",
+      "SaveAndAdd": "Save and add another payment method"
+    }
+  }
+}

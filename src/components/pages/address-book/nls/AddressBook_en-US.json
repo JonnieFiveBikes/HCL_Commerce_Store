@@ -1,0 +1,18 @@
+{
+  "AddressBook": {
+    "AddrMsg": "Add a new address",
+    "AddButton": "Add Address",
+    "Title": "Address Book",
+    "FilterLabel": "Filter By Address Type",
+    "NoAddrMsg": "You have no saved addresses.",
+    "NoAddrForFilterMsg": "There are no addresses with this filter type.",
+    "ShowAllLabel": "Show All",
+    "ShippingLabel": "Shipping",
+    "BillingLabel": "Billing",
+    "ShippingBillingLabel": "Shipping And Billing",
+    "CreateAddress": "Create Address",
+    "SaveChanges": "Save Changes",
+    "Cancel": "Cancel",
+    "EditAddress": "Edit Address"
+  }
+}

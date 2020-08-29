@@ -1,0 +1,20 @@
+{
+  "Cart": {
+    "Title": "Carrinho de compras",
+    "Msgs": {
+      "Empty": "O seu carrinho de compras está vazio. Compre agora!",
+      "PromoCode": "Introduzir código promocional"
+    },
+    "Labels": {
+      "PromoCode": "Código promocional",
+      "RecurringOrder": "Agendar como pedido recorrente",
+      "Frequency": "Frequência",
+      "StartDate": "Data de início",
+      "OrderSummary": "Resumo do pedido"
+    },
+    "Actions": {
+      "Checkout": "Pagamento",
+      "Apply": "Aplicar"
+    }
+  }
+}

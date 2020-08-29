@@ -1,0 +1,78 @@
+{
+  "CommerceEnvironment": {
+    "listSettings": {
+      "relevance": "相關性",
+      "brands": "品牌",
+      "name": "名稱",
+      "priceLowToHigh": "價格（由低到高）",
+      "priceHighToLow": "價格（由高到低）"
+    },
+    "inventoryStatus": {
+      "Available": "可用",
+      "Allocated": "可用",
+      "Unallocated": "未配置",
+      "Backordered": "延期交貨",
+      "OOS": "缺貨",
+      "NA": "無法使用"
+    },
+    "recurringOrderFrequency": {
+      "Everyday": "每天",
+      "EveryWeek": "每週",
+      "EveryTwoWeeks": "每 2 週",
+      "EveryThreeWeeks": "每 3 週",
+      "EveryFourWeeks": "每 4 週"
+    },
+    "currency": {
+      "ROL": "羅馬尼亞列伊",
+      "RON": "羅馬尼亞列伊",
+      "ARS": "阿根廷披索",
+      "ATS": "奧地利先令",
+      "AUD": "澳幣",
+      "BEF": "比利時法郎",
+      "BRL": "巴西小銀幣",
+      "CAD": "加拿大幣",
+      "CNY": "中國人民幣",
+      "DEM": "德國馬克",
+      "ESP": "西班牙披塞塔",
+      "EUR": "歐元",
+      "FRF": "法國法郎",
+      "GBP": "英鎊",
+      "HKD": "港幣",
+      "ITL": "義大利里拉",
+      "JPY": "日幣",
+      "KRW": "南韓圜",
+      "SGD": "新加坡幣",
+      "TWD": "新台幣",
+      "USD": "美元",
+      "ZAR": "南非幣",
+      "FIM": "芬蘭馬克",
+      "IEP": "愛爾蘭 Punt",
+      "LUF": "盧森堡法郎",
+      "NLG": "荷蘭基爾德",
+      "PTE": "葡萄牙埃斯庫多",
+      "NOK": "挪威 kroner",
+      "SEK": "瑞典 Svenske kroner",
+      "DKK": "丹麥 Danske kroner",
+      "CHF": "瑞士法郎",
+      "PLN": "波蘭斯洛第",
+      "RUB": "俄羅斯盧布",
+      "EGP": "埃及鎊"
+    },
+    "language": {
+      "-1": "美式英文",
+      "-2": "法文",
+      "-3": "德文",
+      "-4": "義大利文",
+      "-5": "西班牙文",
+      "-6": "巴西葡萄牙文",
+      "-7": "簡體中文",
+      "-8": "繁體中文",
+      "-10": "日文",
+      "-21": "羅馬尼亞文",
+      "-20": "俄羅斯文",
+      "-9": "韓文",
+      "-22": "波蘭文",
+      "-23": "阿拉伯文"
+    }
+  }
+}

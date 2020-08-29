@@ -5,7 +5,6 @@
     "PersonalInformationDescription": "Ver y editar información personal de la cuenta",
     "AddressBookText": "Libreta de direcciones",
     "AddressBookDescription": "Gestione y edite sus direcciones guardadas",
-
-    "DisabledMessage": "Sorry, this page is still in development."
+    "DisabledMessage": "Lo sentimos, esta página aún está en desarrollo."
   }
 }

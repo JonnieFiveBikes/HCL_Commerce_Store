@@ -2,8 +2,8 @@
   "ProductFilter": {
     "Labels": {
       "filterBy": "Filtruj według",
-      "price": "Price",
-      "minPrice": "minimum",
+      "price": "Cena",
+      "minPrice": "min",
       "maxPrice": "maksimum"
     },
     "Actions": {

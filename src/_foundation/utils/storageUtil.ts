@@ -9,20 +9,65 @@
  *==================================================
  */
 //Standard libraries
-import attempt from "lodash-es/attempt";
-import isError from "lodash-es/isError";
-import { STORE_ID } from "../constants/common";
+import attempt from "lodash/attempt";
+import isError from "lodash/isError";
+import * as constants from "../constants/common";
+
+const basename = process.env.REACT_APP_ROUTER_BASENAME || "";
+const KEY_PREFIX = `HCS${basename}-`;
+//base name scope storeId and session
 
 const getLocalStorageUtil = () => {
   const EXPIRATION_SUFFIX = "STORAGEUTIL-EXPIREKEY";
   const EXPIRATION_DAY: number = 24 * 60 * 60 * 1000;
-  const KEY_PREFIX = "HCS-";
   let STORAGE_KEYS = `${KEY_PREFIX}KEYS`;
   let storeName = "";
 
+  /**
+   * Set StoreId to localStorage
+   */
+  const setStoreId = (value: any): void => {
+    localStorage.setItem(
+      `${KEY_PREFIX}${constants.STORE_ID}`,
+      JSON.stringify(value)
+    );
+  };
+
+  /**
+   * Get storeId from localStorage
+   */
+  const getStoreId = (): any => {
+    const r = localStorage.getItem(`${KEY_PREFIX}${constants.STORE_ID}`);
+    let result = r === null ? null : attempt(JSON.parse, r);
+    if (isError(result)) {
+      result = r;
+    }
+    return result;
+  };
+
+  /**
+   * Remove storeId from localStorage
+   */
+  const removeStoreId = (): any => {
+    localStorage.removeItem(`${KEY_PREFIX}${constants.STORE_ID}`);
+  };
+
+  /**
+   * Initialize storage scope/namespace using store identifier
+   * @param _storeName
+   */
   const setStoreName = (_storeName: string) => {
     storeName = _storeName;
     invalidateAllIfExpired();
+  };
+
+  const _get = (storeNameKey: string): any | null => {
+    const r = localStorage.getItem(`${KEY_PREFIX}${storeNameKey}`);
+    let result = r == null ? null : attempt(JSON.parse, r);
+    if (isError(result)) {
+      result = r;
+    }
+    return result;
   };
   /**
    * Gets the item from localStorage.
@@ -30,12 +75,8 @@ const getLocalStorageUtil = () => {
    * @returns {any | null}
    */
   const get = (key: string): any | null => {
-    const r = localStorage.getItem(`${KEY_PREFIX}${storeName}-${key}`);
-    let result = r == null ? null : attempt(JSON.parse, r);
-    if (isError(result)) {
-      result = r;
-    }
-    return result;
+    const storeNameKey = `${storeName}-${key}`;
+    return _get(storeNameKey);
   };
 
   /**
@@ -119,15 +160,41 @@ const getLocalStorageUtil = () => {
 
   const getStorageKeys = (): string[] => {
     const r = localStorage.getItem(STORAGE_KEYS);
+    const storeNamePrefix = `${storeName}-`;
     let storageKeys = r == null ? [] : attempt(JSON.parse, r);
     if (isError(storageKeys)) {
       storageKeys = [];
     }
-    return storageKeys;
+    const keys2return = storageKeys
+      .filter((k) => k.indexOf(storeNamePrefix) === 0)
+      .map((k: string) => k.substr(storeNamePrefix.length));
+    return keys2return;
+  };
+
+  const getAllWindowCountStorageKeys = (): string[] => {
+    const r = localStorage.getItem(STORAGE_KEYS);
+    let storageKeys = r == null ? [] : attempt(JSON.parse, r);
+    if (isError(storageKeys)) {
+      storageKeys = [];
+    }
+    const keys2return = storageKeys.filter((k: string) =>
+      k.endsWith(constants.WINDOW_COUNTER)
+    );
+    return keys2return;
   };
 
   const saveStorageKeys = (keys: string[]) => {
-    setItem(STORAGE_KEYS, keys);
+    const storeNamePrefix = `${storeName}-`;
+    const r = localStorage.getItem(STORAGE_KEYS);
+    let storageKeys = r == null ? [] : attempt(JSON.parse, r);
+    if (isError(storageKeys)) {
+      storageKeys = [];
+    }
+    const keys2save = storageKeys.filter(
+      (k) => k.indexOf(storeNamePrefix) !== 0
+    );
+    const _keys = keys.map((k) => `${storeName}-${k}`);
+    setItem(STORAGE_KEYS, _keys.concat(keys2save));
   };
 
   const setItem = (key, value) => {
@@ -138,16 +205,31 @@ const getLocalStorageUtil = () => {
     }
   };
 
+  const getTotalWindowCount = (): number => {
+    let _count = 0;
+    const keys = getAllWindowCountStorageKeys();
+    keys.forEach((k) => {
+      const v: string[] = _get(k);
+      if (v) {
+        _count = _count + v.length;
+      }
+    });
+    return _count;
+  };
+
   return {
     setStoreName,
     get,
     set,
     remove,
+    setStoreId,
+    getStoreId,
+    removeStoreId,
+    getTotalWindowCount,
   };
 };
 
 const getSessionStorageUtil = () => {
-  const KEY_PREFIX = "HCS";
   let storeName = "";
 
   /**
@@ -188,14 +270,17 @@ const getSessionStorageUtil = () => {
    * Set StoreId to sessionStorage
    */
   const setStoreId = (value: any): void => {
-    sessionStorage.setItem(`${KEY_PREFIX}-${STORE_ID}`, JSON.stringify(value));
+    sessionStorage.setItem(
+      `${KEY_PREFIX}${constants.STORE_ID}`,
+      JSON.stringify(value)
+    );
   };
 
   /**
    * Get storeId from sessionStorage
    */
   const getStoreId = (): any => {
-    const r = sessionStorage.getItem(`${KEY_PREFIX}-${STORE_ID}`);
+    const r = sessionStorage.getItem(`${KEY_PREFIX}${constants.STORE_ID}`);
     let result = r === null ? null : attempt(JSON.parse, r);
     if (isError(result)) {
       result = r;
@@ -207,7 +292,7 @@ const getSessionStorageUtil = () => {
    * Remove storeId from sessionStorage
    */
   const removeStoreId = (): any => {
-    sessionStorage.removeItem(`${KEY_PREFIX}-${STORE_ID}`);
+    sessionStorage.removeItem(`${KEY_PREFIX}${constants.STORE_ID}`);
   };
 
   /**
@@ -244,6 +329,195 @@ const getSessionStorageUtil = () => {
   };
 };
 
-const localStorageUtil = getLocalStorageUtil();
-const sessionStorageUtil = getSessionStorageUtil();
-export { localStorageUtil, sessionStorageUtil };
+const _localStorageUtil = getLocalStorageUtil();
+const _sessionStorageUtil = getSessionStorageUtil();
+
+const storageSessionHandler = {
+  /**
+   * Save current user to storage
+   */
+  saveCurrentUser: (currentUser: any) => {
+    _localStorageUtil.set(constants.CURRENT_USER, currentUser);
+    //sessionStorageUtil.set(constants.CURRENT_USER, currentUser);
+  },
+  /**
+   * Remove current user from storage.
+   */
+  removeCurrentUser: () => {
+    _localStorageUtil.remove(constants.CURRENT_USER);
+    _sessionStorageUtil.remove(constants.CURRENT_USER);
+  },
+  /**
+   * Get current user from storage
+   */
+  getCurrentUser: (): any => {
+    //handle refresh use both session and local
+    const lCurrentUser = _localStorageUtil.get(constants.CURRENT_USER);
+    const sCurrentUser = _sessionStorageUtil.get(constants.CURRENT_USER);
+    // if (lCurrentUser && sCurrentUser === null) {
+    //   _sessionStorageUtil.set(constants.CURRENT_USER, lCurrentUser);
+    // }
+    if (lCurrentUser === null && sCurrentUser) {
+      _localStorageUtil.set(constants.CURRENT_USER, sCurrentUser);
+      _sessionStorageUtil.remove(constants.CURRENT_USER);
+    }
+    return _localStorageUtil.get(constants.CURRENT_USER);
+  },
+  /**
+   * Save previewToken to storage
+   */
+  savePreviewToken: (currentUser: any) => {
+    _localStorageUtil.set(constants.WC_PREVIEW_TOKEN, currentUser);
+  },
+  /**
+   * Remove previewToke to storage
+   */
+  removePreviewToken: () => {
+    _localStorageUtil.remove(constants.WC_PREVIEW_TOKEN);
+    _sessionStorageUtil.remove(constants.WC_PREVIEW_TOKEN);
+  },
+  /**
+   * Get previewToken from storage.
+   */
+  getPreviewToken: (): any => {
+    //handle refresh use both session and local
+    const lToken = _localStorageUtil.get(constants.WC_PREVIEW_TOKEN);
+    const sToken = _sessionStorageUtil.get(constants.WC_PREVIEW_TOKEN);
+    if (lToken === null && sToken) {
+      _localStorageUtil.set(constants.WC_PREVIEW_TOKEN, sToken);
+      _sessionStorageUtil.remove(constants.WC_PREVIEW_TOKEN);
+    }
+    return _localStorageUtil.get(constants.WC_PREVIEW_TOKEN);
+  },
+  /**
+   * Replicate session info from LocalStorage to SessionStorage to
+   * handle refresh last open tab scenario
+   */
+  replicateSession: () => {
+    const currentUser = _localStorageUtil.get(constants.CURRENT_USER);
+    if (currentUser) {
+      _sessionStorageUtil.set(constants.CURRENT_USER, currentUser);
+    }
+    const previewToken = _localStorageUtil.get(constants.WC_PREVIEW_TOKEN);
+    if (previewToken) {
+      _sessionStorageUtil.set(constants.WC_PREVIEW_TOKEN, previewToken);
+    }
+  },
+  clearLocalStorageSessionInfo: () => {
+    _localStorageUtil.remove(constants.WC_PREVIEW_TOKEN);
+    _localStorageUtil.remove(constants.CURRENT_USER);
+  },
+};
+
+const windowRegistryHandler = {
+  /**
+   * Add new window/tab to window counter.
+   */
+  registerWindow: () => {
+    const windowId: string = Date.now().toString();
+    _sessionStorageUtil.set(constants.WINDOW_ID, windowId);
+    const windowCounter: string[] =
+      _localStorageUtil.get(constants.WINDOW_COUNTER) || [];
+    windowCounter.push(windowId);
+    _localStorageUtil.set(constants.WINDOW_COUNTER, windowCounter);
+  },
+  /**
+   * Remove window counter from window counter upon window unload,
+   * if the window counter is less than 2, remove the counter
+   * and also the current user.
+   */
+  unRegisterWindow: () => {
+    const windowCounter: string[] =
+      _localStorageUtil.get(constants.WINDOW_COUNTER) || [];
+    storageSessionHandler.replicateSession();
+    if (windowCounter.length < 2) {
+      //only one tab is open
+      _localStorageUtil.remove(constants.WINDOW_COUNTER);
+      //only remove from localStorage, sessionStorage is handled by browser
+      storageSessionHandler.clearLocalStorageSessionInfo();
+      if (_localStorageUtil.getTotalWindowCount() === 0) {
+        //remove storeId from storage upon all windows/tab close
+        //so that new window open will start a new store session
+        //using default store or the storeId in url.
+        _localStorageUtil.removeStoreId();
+      }
+    } else {
+      const windowId: string = _sessionStorageUtil.get(constants.WINDOW_ID);
+      const index: number = windowCounter.findIndex((wid) => {
+        return wid === windowId;
+      });
+      windowCounter.splice(index, 1);
+      _localStorageUtil.set(constants.WINDOW_COUNTER, windowCounter);
+    }
+    _sessionStorageUtil.remove(constants.WINDOW_ID);
+  },
+};
+
+const storageStoreIdHandler = {
+  /**
+   * Sets storeId to storage.
+   */
+  setStoreId: (storeId: string) => {
+    _localStorageUtil.setStoreId(storeId);
+    _sessionStorageUtil.setStoreId(storeId);
+  },
+  /**
+   * Gets store Id for initialization of App
+   */
+  getStoreId4Initialization: (): string | null => {
+    return _sessionStorageUtil.getStoreId() || _localStorageUtil.getStoreId();
+  },
+  /**
+   * Gets storeId for current tab(sessionStorage)
+   */
+  getStoreId: (): string | null => {
+    return _sessionStorageUtil.getStoreId();
+  },
+  /**
+   * Remove storeId from localStorage.
+   */
+  removeStoreId: () => {
+    _localStorageUtil.removeStoreId();
+  },
+
+  /**
+   * Verify currently active store and save it to localStorage.
+   * It is called each time a service request issued and while user
+   * trying to open contextmenu.
+   */
+  verifyActiveStoreId: () => {
+    const _lStoreId: string = _localStorageUtil.getStoreId();
+    const _sStoreId = _sessionStorageUtil.getStoreId();
+    if (_lStoreId !== _sStoreId) {
+      _localStorageUtil.setStoreId(_sStoreId);
+    }
+  },
+};
+
+const sessionStorageUtil = (() => {
+  const { setStoreName, set, get, remove, clear } = _sessionStorageUtil;
+  return {
+    setStoreName,
+    set,
+    get,
+    remove,
+    clear,
+  };
+})();
+const localStorageUtil = (() => {
+  const { setStoreName, get, set, remove } = _localStorageUtil;
+  return {
+    setStoreName,
+    get,
+    set,
+    remove,
+  };
+})();
+
+export {
+  localStorageUtil,
+  sessionStorageUtil,
+  storageSessionHandler,
+  storageStoreIdHandler,
+  windowRegistryHandler,
+};

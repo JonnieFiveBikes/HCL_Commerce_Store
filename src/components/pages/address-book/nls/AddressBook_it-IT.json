@@ -1,0 +1,18 @@
+{
+  "AddressBook": {
+    "AddrMsg": "Aggiungi nuovo indirizzo",
+    "AddButton": "Aggiungi indirizzo",
+    "Title": "Rubrica",
+    "FilterLabel": "Filtra per tipo di indirizzo",
+    "NoAddrMsg": "Non sono presenti indirizzi salvati.",
+    "NoAddrForFilterMsg": "Non sono presenti indirizzi con questo tipo di filtro.",
+    "ShowAllLabel": "Mostra tutto",
+    "ShippingLabel": "Spedizione",
+    "BillingLabel": "Fatturazione",
+    "ShippingBillingLabel": "Spedizione e fatturazione",
+    "CreateAddress": "Crea indirizzo",
+    "SaveChanges": "Salva modifiche",
+    "Cancel": "Annulla",
+    "EditAddress": "Modifica indirizzo"
+  }
+}

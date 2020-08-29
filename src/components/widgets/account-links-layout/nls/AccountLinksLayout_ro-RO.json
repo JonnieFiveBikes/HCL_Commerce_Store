@@ -1,13 +1,10 @@
 {
   "AccountLinks": {
-    "Title": "Setãri cont",
-
-    "PersonalInformationText": "Informa?ii personale",
-    "PersonalInformationDescription": "Vizualiza?i ?i edita?i informa?iile personale ale contului",
-
-    "AddressBookText": "Agendã",
-    "AddressBookDescription": "Gestiona?i ?i edita?i adresele salvate",
-
-    "DisabledMessage": "Sorry, this page is still in development."
+    "Title": "Setări cont",
+    "PersonalInformationText": "Informații personale",
+    "PersonalInformationDescription": "Vizualizați și editați informațiile personale ale contului",
+    "AddressBookText": "Agendă",
+    "AddressBookDescription": "Gestionați și editați adresele salvate",
+    "DisabledMessage": "Ne pare rău, această pagină este încă în dezvoltare."
   }
 }

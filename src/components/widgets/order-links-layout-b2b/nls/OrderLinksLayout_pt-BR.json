@@ -2,7 +2,7 @@
   "OrderLinks": {
     "Title": "Gerenciamento de pedidos",
     "OrderHistoryText": "Histórico de pedidos",
-    "OrderHistoryDescription": "Gerenciar e editar endereços salvos.",
+    "OrderHistoryDescription": "Visualize os pedidos inseridos, os pedidos que precisam ser aprovados e os detalhes de cada pedido.",
     "SavedOrdersText": "Pedidos salvos",
     "SavedOrdersDescription": "Visualizar e gerenciar pedidos salvos",
     "RecurringOrdersText": "Pedidos recorrentes",

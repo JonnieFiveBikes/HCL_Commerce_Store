@@ -50,7 +50,7 @@ const StyledTextField = styled(CustomTextField)`
   .MuiInputLabel-outlined {
     transform: none;
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: ${theme.spacing(1)}px;
     font-weight: 500;
     color: ${theme.palette.text.secondary};
     z-index: unset;
@@ -58,6 +58,10 @@ const StyledTextField = styled(CustomTextField)`
 
     &.Mui-focused {
       color: ${theme.palette.text.primary};
+    }
+
+    &.Mui-disabled {
+      color: ${theme.palette.text.disabled};
     }
   }
 
@@ -73,7 +77,6 @@ const StyledTextField = styled(CustomTextField)`
         border-color: ${theme.palette.text.disabled};
       }
     }
-    
 
     .MuiOutlinedInput-input {
       color: ${theme.palette.text.disabled};

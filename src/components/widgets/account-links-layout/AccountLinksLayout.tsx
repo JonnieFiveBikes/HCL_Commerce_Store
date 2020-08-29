@@ -34,7 +34,6 @@ function AccountLinksLayout() {
       description={t("AccountLinks.AddressBookDescription")}
       url={ROUTES.ADDRESS_BOOK}
       icon={<LibraryBooksIcon />}
-      disabled
     />,
   ];
 

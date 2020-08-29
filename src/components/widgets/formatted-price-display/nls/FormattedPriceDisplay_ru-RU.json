@@ -1,7 +1,7 @@
 {
   "PriceDisplay": {
     "Labels": {
-      "Pending": "Price Pending"
+      "Pending": "Цена еще не установлена"
     }
   }
 }

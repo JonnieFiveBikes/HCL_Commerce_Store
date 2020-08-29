@@ -5,7 +5,6 @@
     "PersonalInformationDescription": "Persönliche Kontoinformationen anzeigen und bearbeiten",
     "AddressBookText": "Adressbuch",
     "AddressBookDescription": "Ihre gespeicherten Adresse verwalten und bearbeiten",
-
-    "DisabledMessage": "Sorry, this page is still in development."
+    "DisabledMessage": "Diese Seite ist leider noch in Bearbeitung."
   }
 }

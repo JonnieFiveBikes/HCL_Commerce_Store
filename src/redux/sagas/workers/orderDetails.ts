@@ -10,7 +10,7 @@
  */
 //Standard libraries
 import { call, put } from "redux-saga/effects";
-import chunk from "lodash-es/chunk";
+import chunk from "lodash/chunk";
 //Foundation libraries
 import orderService from "../../../_foundation/apis/transaction/order.service";
 import productsService from "../../../_foundation/apis/search/products.service";

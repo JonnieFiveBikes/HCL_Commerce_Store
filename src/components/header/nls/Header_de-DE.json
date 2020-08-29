@@ -1,0 +1,43 @@
+{
+  "Header": {
+    "Actions": {
+      "SignIn": "Anmelden",
+      "SignInRegister": "Anmelden / Registrieren",
+      "WelcomeFirstname": "Willkommen, {{firstName}}",
+      "WelcomeNoFirstname": "Willkommen, {{lastName}}",
+      "WishList": "Wunschliste",
+      "YourAccount": "Ihr Konto",
+      "Account": "Konto"
+    },
+    "AccountPopper": {
+      "Welcome": "Willkommen, {{firstName}} {{lastName}}",
+      "Organization": "Organisation",
+      "Contract": "Vertrag",
+      "Edit": "Bearbeiten",
+      "AccountSetting": "Kontoeinstellungen",
+      "SignOut": "Abmelden",
+      "Cart": "Warenkorb ({{count}} Artikel)",
+      "Cart_plural": "Warenkorb ({{count}} Artikel)"
+    }
+  },
+  "MegaMenu": {
+    "Title": "Produkte",
+    "Actions": {
+      "ViewAll": "Alle anzeigen"
+    }
+  },
+  "AllCategoriesExpandedMenu": {
+    "AllCategoriesLabel": "Alle Kategorien"
+  },
+  "MiniCart": {
+    "Items": "{{count}} Artikel",
+    "Items_plural": "{{count}} Artikel",
+    "Title": "Ihre aktuelle Bestellung",
+    "Subtotal": "Zwischensumme für {{count}} Arikel",
+    "Subtotal_plural": "Zwischensumme für {{count}} Artikel",
+    "Empty": "Ihr Warenkorb ist leer.",
+    "Actions": {
+      "Cart": "Vollständigen Warenkorb anzeigen"
+    }
+  }
+}

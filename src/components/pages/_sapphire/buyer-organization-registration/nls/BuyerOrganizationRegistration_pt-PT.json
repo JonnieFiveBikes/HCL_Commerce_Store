@@ -7,15 +7,15 @@
     "OrgName": "Nome de organização",
     "Email": "E-mail",
     "Address1": "Linha de endereço 1",
-    "Address2": "Linha de endereço 2",
+    "Address2": "Linha de endereço 2 (opcional)",
     "City": "Cidade",
     "Country": "País",
-    "State": "Estado",
+    "State": "Estado/Província",
     "ZipCode": "Código postal",
     "FirstName": "Primeiro nome",
     "LastName": "Apelido",
     "LogonId": "ID de início de sessão",
-    "Phone": "Telefone",
+    "Phone": "Telefone (opcional)",
     "Password": "Palavra-passe",
     "Password2": "Verificar palavra-passe",
     "Language": "Idioma preferido",
@@ -23,12 +23,10 @@
     "UseOrg": "Utilizar o mesmo endereço que a organização",
     "Submit": "Submeter",
     "Clear": "Limpar",
-    "USD": "Dólar americano",
-    "USEnglish": "Inglês (EUA)",
     "Success": "O seu pedido de registo foi recebido. A conta aguarda aprovação. Até a conta ser aprovada, não pode iniciar sessão.",
     "OK": "OK",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "Formato inválido"
     }
   }
 }

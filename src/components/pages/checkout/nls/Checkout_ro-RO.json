@@ -1,0 +1,16 @@
+{
+  "Checkout": {
+    "Title": "Finalizare comandă",
+    "Labels": {
+      "shipping": "Livrare și facturare",
+      "payment": "Plată și livrare",
+      "review": "Revizuire comandă"
+    },
+    "Actions": {
+      "ReturnCart": "Revenire la coș",
+      "BackTo": "Înapoi la {{step}}",
+      "ContinueTo": "Continuare cu {{step}}",
+      "PlaceOrder": "Plasare comandă"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "Payment": {
+    "Title": "Payment Details",
+    "Msgs": {
+      "InvalidFormat": "올바르지 않은 형식"
+    },
+    "Labels": {
+      "UseMultiple": "Use multiple payment methods",
+      "PaymentMethod": "지불 방법 {{number}}",
+      "AddNewAddress": "Add new address",
+      "BillingAddress": "지불 청구 주소"
+    },
+    "Actions": {
+      "Back": "Back to Shipping Details",
+      "Next": "주문 검토로 넘어가기",
+      "SaveAndAdd": "Save and add another payment method"
+    }
+  }
+}

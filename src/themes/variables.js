@@ -12,24 +12,29 @@ export const dimensions = {
   header: {
     height: {
       desktop: 70,
-      mobile: 50
-    }
+      mobile: 50,
+    },
   },
-  searchBar: {
-    width: 300,
+  menu: {
     height: {
       desktop: 40,
-      mobile: 40
-    }
+    },
+  },
+  searchBar: {
+    width: 340,
+    height: {
+      desktop: 40,
+      mobile: 40,
+    },
   },
   productCard: {
     swatch: 20,
-    thumbnail: 140
+    thumbnail: 140,
   },
   pagination: {
-    button: 40
+    button: 40,
   },
   inputFields: {
-    height: 45
-  }
+    height: 45,
+  },
 };

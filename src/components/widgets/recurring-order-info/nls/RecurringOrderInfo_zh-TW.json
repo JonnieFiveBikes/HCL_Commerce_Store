@@ -1,0 +1,12 @@
+{
+  "RecurringOrderInfo": {
+    "Title": "重複訂單詳細資料",
+    "Labels": {
+      "RecurringOrderNumber": "重複訂單號碼",
+      "OrderSchedule": "訂單排程",
+      "StartDate": "開始日期",
+      "NextDelivery": "下一個排程的訂單",
+      "OrderHistoryButton": "{{orderId}} 的訂單歷程"
+    }
+  }
+}

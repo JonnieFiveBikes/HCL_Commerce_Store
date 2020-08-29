@@ -62,7 +62,7 @@ const catalogReducer = createReducer(initStates.catalog, (builder) => {
         state.selectedSortOption = "0";
       }
 
-      if (response["facets"]) {
+      if (response["facets"] && response["facets"].length > 0) {
         let newFacetPrice = null;
         response["facets"].forEach((facet: any) => {
           if (facet.value.startsWith("price_")) {
@@ -115,7 +115,9 @@ const catalogReducer = createReducer(initStates.catalog, (builder) => {
         payload.parameters.productName !== undefined &&
         state.breadcrumbs.length > 0
       ) {
-        state.breadcrumbs.push({ label: payload.parameters.productName });
+        state.breadcrumbs = state.breadcrumbs.concat({
+          label: payload.parameters.productName,
+        });
       }
     }
   );

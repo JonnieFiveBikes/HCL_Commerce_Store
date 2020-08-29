@@ -1,8 +1,8 @@
 {
   "OrderBillingInfo": {
-    "Title": "지불 청구",
+    "Title": "지불 청구 정보",
     "Labels": {
-      "BillAddress": "Billing Address"
+      "BillAddress": "지불 청구 주소"
     }
   }
 }

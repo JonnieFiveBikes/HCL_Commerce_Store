@@ -1,9 +1,9 @@
 {
   "SearchBar": {
     "SearchField": "Szukaj",
-    "KeywordTitle": "S£OWA KLUCZOWE",
-    "CategoryTitle": "CATEGORY",
-    "BrandTitle": "BRAND",
-    "Clear": "Clear search"
+    "KeywordTitle": "SŁOWA KLUCZOWE",
+    "CategoryTitle": "KATEGORIA",
+    "BrandTitle": "MARKA",
+    "Clear": "Wyczyść wyszukiwanie"
   }
 }

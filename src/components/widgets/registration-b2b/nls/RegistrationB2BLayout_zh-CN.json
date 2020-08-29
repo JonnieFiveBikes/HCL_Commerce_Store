@@ -1,0 +1,9 @@
+{
+  "RegistrationB2BLayout": {
+    "Title": "新客户？",
+    "Actions": {
+      "BuyerReg": "买家注册",
+      "OrgReg": "组织注册"
+    }
+  }
+}

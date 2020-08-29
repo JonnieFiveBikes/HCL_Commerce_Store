@@ -49,11 +49,14 @@ import {
   StyledFormHelperText,
 } from "./StyledForm";
 import StyledGrid from "./StyledGrid/StyledGrid";
-import StyledHeader from "./StyledHeader/StyledHeader";
-import { StyledHeaderIcon } from "./StyledHeader/StyledHeader";
+import StyledHeader, { StyledHeaderIcon } from "./StyledHeader/StyledHeader";
+import StyledHeaderActions from "./StyledHeaderActions/StyledHeaderActions";
+import StyledIcon from "./StyledIcon/StyledIcon";
 import StyledIconButton from "./StyledIconButton/StyledIconButton";
+import StyledIconLabel from "./StyledIconLabel/StyledIconLabel";
 import StyledLink from "./StyledLink/StyledLink";
 import StyledLinkBox from "./StyledLinkBox/StyledLinkBox";
+import StyledButtonBox from "./StyledButtonBox/StyledButtonBox";
 import {
   StyledList,
   StyledListItem,
@@ -64,14 +67,15 @@ import {
   StyledListItemSecondaryAction,
 } from "./StyledList";
 import StyledMenuItem from "./StyledMenuItem/StyledMenuItem";
-import { StyledMiniCart } from "./StyledMiniCart";
+import StyledMiniCartContent from "./StyledMiniCartContent/StyledMiniCartContent";
 import StyledPagination from "./StyledPagination/StyledPagination";
 import StyledPaper from "./StyledPaper/StyledPaper";
 import StyledPDPContainer from "./StyledPDPContainer/StyledPDPContainer";
 import StyledKeyboardDatePicker from "./StyledPickers/StyledKeyboardDatePicker";
 import StyledMuiPickersUtilsProvider from "./StyledPickers/StyledMuiPickersUtilsProvider";
 import StyledPopover from "./StyledPopover/StyledPopover";
-import StyledAccountPopover from "./StyledPopover/StyledAccountPopover";
+import StyledPopper from "./StyledPopper/StyledPopper";
+import StyledAccountPopper from "./StyledPopper/StyledAccountPopper";
 import StyledProductImage from "./StyledProductImage/StyledProductImage";
 import PureReactSlider from "./StyledProductRecommendationSlider/PureReactSlider";
 import StyledRadio from "./StyledRadio/StyledRadio";
@@ -88,6 +92,7 @@ import StyledSnackbar from "./StyledSnackbar/StyledSnackbar";
 import { StyledStep, StyledStepLabel, StyledStepper } from "./StyledStepper";
 import StyledSwatchRadioGroup from "./StyledSwatchRadioGroup/StyledSwatchRadioGroup";
 import StyledSwipeableDrawer from "./StyledSwipeableDrawer/StyledSwipeableDrawer";
+import { StyledSwitch } from "./StyledSwitch";
 import StyledTable, { StyledTableIcons } from "./StyledTable/StyledTable";
 import StyledMTableFilterRow from "./StyledTable/StyledMTableFilterRow.js";
 import StyledTabs, { ITabs as ITabsInterface } from "./StyledTabs/StyledTabs";
@@ -136,10 +141,14 @@ export {
 };
 export { StyledGrid };
 export { StyledHeader };
+export { StyledHeaderActions };
 export { StyledHeaderIcon };
+export { StyledIcon };
 export { StyledIconButton };
+export { StyledIconLabel };
 export { StyledLink };
 export { StyledLinkBox };
+export { StyledButtonBox };
 export {
   StyledList,
   StyledListItem,
@@ -149,7 +158,7 @@ export {
   StyledListItemText,
   StyledListItemSecondaryAction,
 };
-export { StyledMiniCart };
+export { StyledMiniCartContent };
 export { StyledMenuItem };
 export { StyledPagination };
 export { StyledPaper };
@@ -157,7 +166,8 @@ export { StyledPDPContainer };
 export { StyledKeyboardDatePicker };
 export { StyledMuiPickersUtilsProvider };
 export { StyledNumberInput };
-export { StyledPopover, StyledAccountPopover };
+export { StyledPopover };
+export { StyledPopper, StyledAccountPopper };
 export { StyledProductImage };
 export { PureReactSlider };
 export { StyledRadio };
@@ -169,6 +179,7 @@ export { StyledSnackbar };
 export { StyledStep, StyledStepLabel, StyledStepper };
 export { StyledSwatchRadioGroup };
 export { StyledSwipeableDrawer };
+export { StyledSwitch };
 export { StyledTable, StyledTableIcons, StyledMTableFilterRow };
 export { StyledTabs };
 export type ITabs = ITabsInterface;

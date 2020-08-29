@@ -1,18 +1,24 @@
 {
   "OrderItemTable": {
-    "Title": "Order Items",
+    "Title": "Elementi ordine",
     "Labels": {
-      "ItemDetails": "Item Details",
-      "SKU": "SKU",
-      "Status": "Status",
-      "Quantity": "Quantity",
-      "Price": "Price",
-      "Actions": "Actions",
-      "Gift": "Free gift",
-      "NonRecurring": "Non-recurring item"
+      "ItemDetails": "Dettagli elemento",
+      "SKU": "SKU: ",
+      "Status": "Avanzamento",
+      "Quantity": "Quantità",
+      "Price": "Prezzo",
+      "Actions": "Azioni",
+      "Gift": "Regalo",
+      "NonRecurring": "Elemento non ricorrente",
+      "PageSizeLabel": "righe",
+      "FirstPage": "Prima pagina",
+      "LastPage": "Ultima pagina",
+      "PreviousPage": "Pagina precedente",
+      "NextPage": "Pagina successiva",
+      "RowCount": "Visualizzazione in corso {from} a {to} di {count}"
     },
     "Actions": {
-      "Delete": "Delete"
+      "Delete": "Elimina"
     }
   }
 }

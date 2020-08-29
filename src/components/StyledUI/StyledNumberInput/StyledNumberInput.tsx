@@ -74,9 +74,6 @@ function NumberInputWrapper(props: any) {
 
 const StyledNumberInput = styled(NumberInputWrapper)`
   ${({ theme }) => `
-  display: inline-block;
-  min-width: 80px;
-
   &:hover:not(.disabled) {
     input:not(.error) {
       border-color: ${theme.palette.text.secondary};

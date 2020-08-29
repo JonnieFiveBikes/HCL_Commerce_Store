@@ -2,10 +2,10 @@
   "ProductGrid": {
     "Labels": {
       "filteredBy": "Filtrer par :",
-      "productFound": "{{count}} produit trouvé",
-      "productFound_plural": "{{count}} produit trouvés",
-      "productSearchFound": "{{count}} produit trouvés pour \"{{searchTerm}}\"",
-      "productSearchFound_plural": "{{count}} produits trouvés pour \"{{searchTerm}}\"",
+      "productFound": "{{count}} produit trouvé",
+      "productFound_plural": "{{count}} produits trouvés",
+      "productSearchFound": "{{count}} produit trouvé pour \"{{searchTerm}}\"",
+      "productSearchFound_plural": "{{count}} produits trouvés pour \"{{searchTerm}}\"",
       "noMatches": "0 correspondance pour \"{{searchTerm}}\".",
       "searchAgain": "Désolé, votre recherche pour \"{{searchTerm}}\" n'a pas renvoyé de résultats. Essayez une autre recherche.",
       "suggestion": "Vouliez-vous dire : ",

@@ -9,11 +9,10 @@
  *==================================================
  */
 //Standard libraries
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 //UI
 import {
-  StyledGrid,
   StyledTypography,
   StyledSwatchRadioGroup,
   StyledExpansionPanel,
@@ -29,45 +28,51 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
  * @param onChangeHandler
  * @returns any
  */
-function ProductB2BAttributes({ attributeList, onChangeHandler }: any) {
+function ProductB2BAttributes({
+  isMobile,
+  attributeList,
+  onChangeHandler,
+  attributeState,
+}: any) {
+  const [isActiveAttrId, setIsActiveAttrId] = useState<string>("");
+
   return (
     <>
-      {attributeList.map(function (attr: any, index: number) {
-        const useSwatches = attr.values[0].image1path ? true : false;
-
-        const productAttributeTabContent = (
-          <StyledExpansionPanel defaultExpanded={true} key={index}>
-            <StyledExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon />}
-              key={index}>
-              <StyledTypography variant="body2" key={index}>
-                <strong key={index}>{attr.name}</strong>
-              </StyledTypography>
-            </StyledExpansionPanelSummary>
-            <StyledExpansionPanelDetails key={index}>
-              <StyledSwatchRadioGroup
-                values={attr.values}
-                name={attr.name}
-                id={attr.identifier}
-                onChangeHandler={onChangeHandler}
-                useSwatches={useSwatches}
-                key={index}
-                isB2B={true}
-              />
-            </StyledExpansionPanelDetails>
-          </StyledExpansionPanel>
-        );
-
-        return (
-          <StyledGrid item xs={12} key={index}>
-            <ProductB2BAttribute
+      {attributeList.map((attr: any, index: number) => (
+        <StyledExpansionPanel
+          defaultExpanded={!isMobile}
+          key={attr.identifier}
+          expanded={!isMobile || isActiveAttrId === attr.identifier}
+          onClick={() => {
+            if (isMobile) {
+              if (isActiveAttrId === attr.identifier) {
+                setIsActiveAttrId("");
+              } else {
+                setIsActiveAttrId(attr.identifier);
+              }
+            }
+          }}>
+          <StyledExpansionPanelSummary
+            expandIcon={isMobile ? <ExpandMoreIcon /> : null}
+            key={index}>
+            <StyledTypography variant="body2" key={index}>
+              <strong key={index}>{attr.name}</strong>
+            </StyledTypography>
+          </StyledExpansionPanelSummary>
+          <StyledExpansionPanelDetails key={index}>
+            <StyledSwatchRadioGroup
+              values={attr.values}
+              name={attr.name}
+              id={attr.identifier}
+              onChangeHandler={onChangeHandler}
+              useSwatches={attr.values[0].image1path ? true : false}
               key={index}
-              title={attr.name}
-              element={productAttributeTabContent}
+              isB2B={true}
+              attributeState={attributeState}
             />
-          </StyledGrid>
-        );
-      })}
+          </StyledExpansionPanelDetails>
+        </StyledExpansionPanel>
+      ))}
     </>
   );
 }
@@ -75,15 +80,8 @@ function ProductB2BAttributes({ attributeList, onChangeHandler }: any) {
 ProductB2BAttributes.propTypes = {
   attributeList: PropTypes.array.isRequired,
   onChangeHandler: PropTypes.any.isRequired,
+  isMobile: PropTypes.bool.isRequired,
+  attributeState: PropTypes.instanceOf(Map).isRequired,
 };
 
 export default ProductB2BAttributes;
-
-function ProductB2BAttribute({ title, element, ...props }: any) {
-  return <>{element}</>;
-}
-
-ProductB2BAttribute.propTypes = {
-  title: PropTypes.string.isRequired,
-  element: PropTypes.any.isRequired,
-};

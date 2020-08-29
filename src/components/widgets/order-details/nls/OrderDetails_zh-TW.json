@@ -1,10 +1,10 @@
 {
   "OrderDetails": {
-    "Title": "Order Details",
+    "Title": "訂單詳細資料",
     "Actions": {
-      "Back": "Back to Payment Details",
-      "Next": "Place Order",
-      "NextRecurringOrder": "Place Recurring Order"
+      "Back": "回到付款詳細資料",
+      "Next": "訂購",
+      "NextRecurringOrder": "重複訂購"
     }
   }
 }

@@ -4,9 +4,9 @@
     "Password": "密碼",
     "RememberMe": "記住我",
     "SignInButton": "登入",
-    "ForgotPassword": "忘記密碼了嗎",
+    "ForgotPassword": "忘記密碼",
     "Label": {
-      "B2B": "Logon ID",
+      "B2B": "登入 ID",
       "Email": "電子郵件地址"
     }
   }

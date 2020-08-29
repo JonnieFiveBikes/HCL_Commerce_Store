@@ -6,7 +6,7 @@
     "SignInButton": "登录",
     "ForgotPassword": "忘记密码",
     "Label": {
-      "B2B": "Logon ID",
+      "B2B": "登录标识",
       "Email": "电子邮件地址"
     }
   }

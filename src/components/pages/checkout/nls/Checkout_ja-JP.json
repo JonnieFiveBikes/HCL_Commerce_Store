@@ -1,0 +1,16 @@
+{
+  "Checkout": {
+    "Title": "チェックアウト",
+    "Labels": {
+      "shipping": "配送先および請求先",
+      "payment": "支払いおよび配送",
+      "review": "オーダーのレビュー"
+    },
+    "Actions": {
+      "ReturnCart": "カートに戻る",
+      "BackTo": "{{step}} に戻る",
+      "ContinueTo": "{{step}} を続ける",
+      "PlaceOrder": "オーダーの発行"
+    }
+  }
+}

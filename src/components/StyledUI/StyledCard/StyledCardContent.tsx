@@ -13,7 +13,13 @@ import styled from "styled-components";
 import CardContent from "@material-ui/core/CardContent";
 
 const StyledCardContent = styled(({ ...props }) => <CardContent {...props} />)`
-  padding: 0;
+  ${({ theme }) => `
+    padding: 0;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  `}
 `;
 
 export default StyledCardContent;

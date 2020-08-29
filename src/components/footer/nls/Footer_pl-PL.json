@@ -1,0 +1,19 @@
+{
+  "Footer": {
+    "CompanyLinks": {
+      "Label": "Firma",
+      "OurStory": "O nas",
+      "Careers": "Kariera zawodowa"
+    },
+    "Copyright": "Copyright HCL Technologies Limited 2020. All rights reserved.",
+    "CustomerService": {
+      "Label": "Obsługa klienta",
+      "ContactUs": "Skontaktuj się z nami",
+      "ContactUsDescription": "Skontaktuj się z nami",
+      "PrivacyPolicy": "Strategia ochrony prywatności"
+    },
+    "FollowUs": "Śledź nas",
+    "Description": "Ta przykładowa witryna sklepowa została zbudowana z wykorzystaniem produktów React i HCL Commerce. HCL Commerce umożliwia sprawny handel w dowolnej skali.",
+    "DisabledMessage": "Niestety ta strona jest nadal w trakcie tworzenia."
+  }
+}

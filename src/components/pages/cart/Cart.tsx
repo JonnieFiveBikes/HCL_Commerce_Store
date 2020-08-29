@@ -152,7 +152,7 @@ const Cart: React.FC = (props: any) => {
         fetchCatentries: true,
       };
 
-      dispatch(orderActions.GET_CART_ACTION(payload));
+      dispatch(orderActions.FETCHING_CART_ACTION(payload));
     }
 
     return () => {
@@ -200,7 +200,7 @@ const Cart: React.FC = (props: any) => {
             ...payloadBase,
             fetchCatentries: true,
           };
-          dispatch(orderActions.GET_CART_ACTION(payload));
+          dispatch(orderActions.FETCHING_CART_ACTION(payload));
           setPromoCodeError(false);
           setPromoCode("");
         })
@@ -253,7 +253,7 @@ const Cart: React.FC = (props: any) => {
             ...payloadBase,
             fetchCatentries: true,
           };
-          dispatch(orderActions.GET_CART_ACTION(payload));
+          dispatch(orderActions.FETCHING_CART_ACTION(payload));
         })
         .catch((e) => {
           console.log("Could not remove promo code");
@@ -297,7 +297,6 @@ const Cart: React.FC = (props: any) => {
    */
   function checkout() {
     if (canContinue()) {
-      dispatch(orderActions.RESET_CHECKOUTSTEP_ACTION());
       history.push(CHECKOUT);
     }
   }

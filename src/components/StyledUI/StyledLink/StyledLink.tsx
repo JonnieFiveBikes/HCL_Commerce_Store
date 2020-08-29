@@ -16,17 +16,17 @@ const LinkWrapper = (props: any) => <Link {...props} />;
 
 const StyledLink = styled(LinkWrapper)`
   ${({ theme }) => `
-    color: ${theme.palette.primary.dark};
+    color: ${theme.palette.primary.main};
 
     svg {
-      color: ${theme.palette.primary.dark};
+      color: ${theme.palette.primary.main};
     }
 
     &:hover {
-      color: ${theme.palette.primary.main};
+      color: ${theme.palette.primary.dark};
       
       svg {
-        color: ${theme.palette.primary.main};
+        color: ${theme.palette.primary.dark};
       }
     }
   `}

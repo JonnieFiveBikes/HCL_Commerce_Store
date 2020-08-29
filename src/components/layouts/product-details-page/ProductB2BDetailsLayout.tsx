@@ -28,12 +28,15 @@ import { SIGNIN } from "../../../constants/routes";
 import FormattedPriceDisplay from "../../widgets/formatted-price-display";
 import ProductB2BImage from "./ProductB2BImage";
 import ProductB2BAttributes from "./ProductB2BAttributes";
+import ReactHtmlParser from "react-html-parser";
 //Redux
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 import { loginStatusSelector } from "../../../redux/selectors/user";
 import * as orderActions from "../../../redux/actions/order";
 import * as errorActions from "../../../redux/actions/error";
 //UI
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
 import {
   StyledGrid,
   StyledTypography,
@@ -84,6 +87,10 @@ function ProductB2BDetailsLayout({
   const contract = useSelector(currentContractIdSelector);
   const loginStatus = useSelector(loginStatusSelector);
   const dispatch = useDispatch();
+  const theme = useTheme();
+
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   let uniqueSkus: any[] = [];
   let inventoryMap = new Map();
   let currentSelection: any = {
@@ -133,7 +140,6 @@ function ProductB2BDetailsLayout({
   const [disabledButtonFlag, setDisabledButtonFlag] = React.useState<boolean>(
     false
   );
-  const [addToCartErrorMsg, setAddToCartErrorMsg] = React.useState<string>("");
   const [skuAndQuantities, setSkuAndQuantities] = React.useState<Map<any, any>>(
     addToCartMap
   );
@@ -753,7 +759,7 @@ function ProductB2BDetailsLayout({
     const descriptionElement = (
       <>
         <StyledTypography variant="body1">
-          {product.longDescription}
+          {ReactHtmlParser(product.longDescription)}
         </StyledTypography>
       </>
     );
@@ -868,10 +874,13 @@ function ProductB2BDetailsLayout({
               <StyledSidebar
                 title={t("productDetail.attributeFilter")}
                 breakpoint="md"
+                scrollable={true}
                 sidebarContent={
                   <ProductB2BAttributes
                     attributeList={definingAttributeList}
                     onChangeHandler={onAttributeChange}
+                    isMobile={isMobile}
+                    attributeState={attributeState}
                   />
                 }
               />

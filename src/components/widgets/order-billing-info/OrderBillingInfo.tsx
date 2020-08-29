@@ -39,7 +39,12 @@ const OrderBillingInfo: React.FC<OrderBillingInfoProps> = (props: any) => {
           <StyledTypography variant="overline" gutterBottom>
             {t("OrderBillingInfo.Labels.BillAddress")}
           </StyledTypography>
-          <AddressCard addressId={billingInfo.billing_address_id} />
+          <AddressCard
+            addressId={billingInfo.billing_address_id}
+            addressData={billingInfo}
+            nickName={billingInfo.nickName}
+            readOnly={true}
+          />
         </>
       )}
     </>

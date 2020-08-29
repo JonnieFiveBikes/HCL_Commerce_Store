@@ -1,8 +1,8 @@
 {
   "OrderBillingInfo": {
-    "Title": "Выставление счетов",
+    "Title": "Сведения о выставлении счетов",
     "Labels": {
-      "BillAddress": "Billing Address"
+      "BillAddress": "Адрес выставления счета"
     }
   }
 }

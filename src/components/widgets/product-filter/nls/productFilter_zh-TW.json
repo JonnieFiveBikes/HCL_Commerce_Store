@@ -2,8 +2,8 @@
   "ProductFilter": {
     "Labels": {
       "filterBy": "篩選依據",
-      "price": "Price",
-      "minPrice": "最低",
+      "price": "價格",
+      "minPrice": "分鐘",
       "maxPrice": "最高"
     },
     "Actions": {

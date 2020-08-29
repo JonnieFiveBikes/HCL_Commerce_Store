@@ -8,12 +8,12 @@
       "productSearchFound_plural": "{{count}} produse găsite pentru \"{{searchTerm}}\"",
       "noMatches": "0 rezultate pentru \"{{searchTerm}}\".",
       "searchAgain": "Ne pare rău, căutarea pentru \"{{searchTerm}}\" nu a returnat niciun rezultat. Încercați o altă căutare.",
-      "suggestion": "Aţi vrut: ",
+      "suggestion": "Aţi vrut:",
       "noProductsFound": "Căutarea pentru <b>{{keyword}}</b> nu a avut niciun rezultat. <br/>Încercați din nou să căutați cu un termen diferit sau să răsfoiți recomandările noastre",
-      "noProductsFoundForFilter": "Ne pare rãu, nu s-a gãsit niciun rezultat pentru filtrul selectat."
+      "noProductsFoundForFilter": "Ne pare rău, nu s-a găsit niciun rezultat pentru filtrul selectat."
     },
     "Actions": {
-      "clearAll": "Clear All"
+      "clearAll": "Curăţare tot"
     }
   }
 }

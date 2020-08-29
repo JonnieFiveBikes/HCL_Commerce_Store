@@ -6,8 +6,8 @@
     "UserDetails": "Proporcione información acerca de la persona que vaya a administrar su organización y gestionar sus compradores",
     "OrgName": "Nombre de la organización",
     "Email": "Correo electrónico",
-    "Address1": "Dirección postal (línea 1)",
-    "Address2": "Dirección postal (línea 2)",
+    "Address1": "Dirección (línea 1)",
+    "Address2": "2ª línea de dirección (opcional)",
     "City": "Ciudad",
     "Country": "País",
     "State": "Estado/Provincia",
@@ -15,7 +15,7 @@
     "FirstName": "Nombre",
     "LastName": "Apellidos",
     "LogonId": "ID de inicio de sesión",
-    "Phone": "Teléfono",
+    "Phone": "Teléfono (opcional)",
     "Password": "Contraseña",
     "Password2": "Verificar contraseña",
     "Language": "Idioma preferido",
@@ -23,12 +23,10 @@
     "UseOrg": "Usar la misma dirección como organización",
     "Submit": "Enviar",
     "Clear": "Borrar",
-    "USD": "Dólar estadounidense",
-    "USEnglish": "Inglés de Estados Unidos",
     "Success": "Se ha recibido su solicitud de registro. Su cuenta está a la espera de ser aprobada. No podrá iniciar sesión hasta que se apruebe su cuenta.",
     "OK": "Aceptar",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "Formato no válido"
     }
   }
 }

@@ -16,12 +16,12 @@ const searchBarHeight = dimensions.searchBar.height.desktop;
 const mobileSearchBarHeight = dimensions.searchBar.height.mobile;
 const headerHeight = dimensions.header.height.desktop;
 const mobileHeaderHeight = dimensions.header.height.mobile;
+const menuHeight = dimensions.menu.height.desktop;
 
 const StyledSearchBar = styled.div`
   ${({ theme }) => `
   position: relative;
   display: inline-block;
-  margin-right: ${theme.spacing(2)}px;
 
   ${theme.breakpoints.down("sm")} {
     display: none;
@@ -52,7 +52,7 @@ const StyledSearchBar = styled.div`
     background-color: ${theme.palette.background.paper};
     box-shadow: 0px 3px 4px 0px ${theme.palette.text.disabled};
     padding: ${theme.spacing(1)}px 0;
-
+    
     ${theme.breakpoints.down("sm")} {
       top: ${
         (mobileHeaderHeight - mobileSearchBarHeight) * 0.5 + mobileHeaderHeight

@@ -2,10 +2,10 @@
   "ProductGrid": {
     "Labels": {
       "filteredBy": "Отфильтровано по:",
-      "productFound": "{{count}} продукт найден по",
-      "productFound_plural": "{{count}} прод. найдено по",
-      "productSearchFound": "{{count}} продукт найден по запросу \"{{searchTerm}}\"",
-      "productSearchFound_plural": "{{count}} прод. найдено по запросу \"{{searchTerm}}\"",
+      "productFound": "Найден {{count}} товар",
+      "productFound_plural": "Найдено товаров: {{count}}",
+      "productSearchFound": "{{count}} товар найден по запросу \"{{searchTerm}}\"",
+      "productSearchFound_plural": "По запросу \"{{searchTerm}}\" найдено товаров: {{count}}",
       "noMatches": "0 совпадений по запросу \"{{searchTerm}}\".",
       "searchAgain": "По вашему запросу \"{{searchTerm}}\" результаты не найдены. Попробуйте выполнить поиск с другими условиями.",
       "suggestion": "Возможно, вы имели ввиду: ",

@@ -1,8 +1,8 @@
 {
   "OrderBillingInfo": {
-    "Title": "帳單",
+    "Title": "帳單資訊",
     "Labels": {
-      "BillAddress": "Billing Address"
+      "BillAddress": "帳單地址"
     }
   }
 }

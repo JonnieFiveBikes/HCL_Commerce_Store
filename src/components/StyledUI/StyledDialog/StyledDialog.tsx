@@ -12,7 +12,7 @@ import styled from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
 import React from "react";
 
-const StyledDialog = styled(props => <Dialog {...props} />)`
+const StyledDialog = styled((props) => <Dialog {...props} />)`
   && {
   }
 `;

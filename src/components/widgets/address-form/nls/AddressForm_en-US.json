@@ -1,10 +1,11 @@
 {
   "AddressForm": {
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "Invalid format",
+      "InvalidAddressName": "The Address Name can contain only alphanumeric characters (A-Z, a-z, 0-9) and white spaces."
     },
     "Labels": {
-      "FirstName": "First name (optional)",
+      "FirstName": "First name",
       "LastName": "Last name",
       "Address1": "Address line 1",
       "Address2": "Address line 2 (optional)",
@@ -12,9 +13,13 @@
       "Country": "Country",
       "State": "State / Province",
       "ZipCode": "Zip / Postal code",
-      "Phone": "Phone number (optional)",
+      "Phone": "Phone (optional)",
       "Email": "Email",
-      "NickName": "Address Nickname"
+      "NickName": "Address Name",
+      "AddressType": "Address Type",
+      "Shipping": "Shipping",
+      "Billing": "Billing",
+      "ShippingAndBilling": "Shipping and Billing"
     }
   }
 }

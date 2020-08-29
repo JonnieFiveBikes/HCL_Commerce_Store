@@ -1,18 +1,24 @@
 {
   "OrderItemTable": {
-    "Title": "Order Items",
+    "Title": "オーダー商品",
     "Labels": {
-      "ItemDetails": "Item Details",
-      "SKU": "SKU",
-      "Status": "Status",
-      "Quantity": "Quantity",
-      "Price": "Price",
-      "Actions": "Actions",
-      "Gift": "Free gift",
-      "NonRecurring": "Non-recurring item"
+      "ItemDetails": "商品の詳細",
+      "SKU": "SKU:",
+      "Status": "状況",
+      "Quantity": "数量",
+      "Price": "価格",
+      "Actions": "アクション",
+      "Gift": "無料ギフト",
+      "NonRecurring": "定期オーダーではない商品",
+      "PageSizeLabel": "行",
+      "FirstPage": "最初のページ",
+      "LastPage": "最後のページ",
+      "PreviousPage": "前のページ",
+      "NextPage": "次のページ",
+      "RowCount": "{from} ～ {to}/{count} を表示しています"
     },
     "Actions": {
-      "Delete": "Delete"
+      "Delete": "削除"
     }
   }
 }

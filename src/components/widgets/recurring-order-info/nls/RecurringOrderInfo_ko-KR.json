@@ -1,0 +1,12 @@
+{
+  "RecurringOrderInfo": {
+    "Title": "반복 주문 정보",
+    "Labels": {
+      "RecurringOrderNumber": "반복 주문 번호",
+      "OrderSchedule": "주문 스케줄",
+      "StartDate": "시작 날짜",
+      "NextDelivery": "다음 스케줄링된 주문",
+      "OrderHistoryButton": "{{orderId}}의 주문 기록"
+    }
+  }
+}

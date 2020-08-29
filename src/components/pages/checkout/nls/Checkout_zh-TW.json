@@ -1,0 +1,16 @@
+{
+  "Checkout": {
+    "Title": "結帳",
+    "Labels": {
+      "shipping": "運送與帳單",
+      "payment": "付款與遞送",
+      "review": "檢閱訂單"
+    },
+    "Actions": {
+      "ReturnCart": "返回購物車",
+      "BackTo": "回到 {{step}}",
+      "ContinueTo": "繼續進行 {{step}}",
+      "PlaceOrder": "訂購"
+    }
+  }
+}

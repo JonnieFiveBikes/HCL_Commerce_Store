@@ -4,9 +4,9 @@
     "Password": "Пароль",
     "RememberMe": "Запомнить меня",
     "SignInButton": "Войти",
-    "ForgotPassword": "Забыли пароль",
+    "ForgotPassword": "Забыли пароль?",
     "Label": {
-      "B2B": "Logon ID",
+      "B2B": "ИД пользователя",
       "Email": "Адрес электронной почты"
     }
   }

@@ -4,28 +4,26 @@
     "Description": "如果您的組織已有包含此商店的帳戶，請自行登錄，以便您可以在此帳戶下購物以及下訂單。當您的登錄被核准時，您就可以登入商店並購物。",
     "OrgName": "組織",
     "Email": "電子郵件",
-    "Address1": "街道地址行 1",
-    "Address2": "街道地址行 2",
+    "Address1": "地址行 1",
+    "Address2": "地址行 2（選用）",
     "City": "城市",
     "Country": "國家/地區",
-    "State": "州",
+    "State": "州/省（縣/市）",
     "ZipCode": "郵遞區號",
     "FirstName": "名字",
     "LastName": "姓氏",
     "LogonId": "登入 ID",
-    "Phone": "電話",
+    "Phone": "電話號碼（選用）",
     "Password": "密碼",
     "Password2": "驗證密碼",
     "Language": "偏好語言",
     "Currency": "偏好貨幣",
     "Submit": "提交",
     "Clear": "清除",
-    "USD": "美元",
-    "USEnglish": "美式英文",
     "Success": "已收到您的帳戶啟動要求。請啟動您的帳戶來登入。",
     "OK": "確定",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "無效格式"
     }
   }
 }

@@ -34,6 +34,7 @@ const StyledHeader = styled.header`
   box-shadow: 0px 3px 4px 0px ${theme.palette.text.disabled};
   position: relative;
   z-index: 20;
+  margin-bottom: ${theme.spacing(2.5)}px;
 
   ${theme.breakpoints.down("sm")} {
     height: ${mobileHeaderHeight}px;
@@ -44,7 +45,15 @@ const StyledHeader = styled.header`
     width: 100%;
   }
 
-  .header-accountPopoverButton {
+  .header-accountPopperButton {
+    height: ${headerHeight}px;
+
+    ${theme.breakpoints.down("sm")} {
+      height: ${mobileHeaderHeight}px;
+    }
+  }
+
+  .header-actionsButton {
     height: ${headerHeight}px;
 
     ${theme.breakpoints.down("sm")} {
@@ -75,7 +84,7 @@ const StyledHeader = styled.header`
     }
 
     @media (max-width: 450px) {
-      margin-left: ${theme.spacing(1)}px;
+      margin-left: 0px;
 
       img {
         height: ${theme.spacing(2)}px;
@@ -93,6 +102,8 @@ const StyledHeader = styled.header`
   .menu-hamburger {
     background: none;
     border: 0;
+    margin: 0;
+    padding: 0;
 
     &:hover {
       color: ${theme.palette.primary.dark};
@@ -109,6 +120,20 @@ const StyledHeader = styled.header`
 
     &.open {
       display: flex;
+    }
+  }
+
+  .expanded-menu-container{
+    background-color: ${theme.palette.primary.main};
+    line-height:${theme.spacing(5)}px;
+    position:relative;
+    color:${theme.palette.text.expandedMenu};
+    text-align:left;
+    z-index:-1;
+    &.hover {
+      .MuiBox-root {
+        background-color:${theme.palette.background.paper};
+      }
     }
   }
 

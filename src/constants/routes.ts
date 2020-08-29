@@ -14,6 +14,10 @@ export const HOME = "/";
 //Order
 export const CART = "/cart";
 export const CHECKOUT = "/checkout";
+export const CHECKOUT_SHIPPING = `${CHECKOUT}/shipping`;
+export const CHECKOUT_PAYMENT = `${CHECKOUT}/payment`;
+export const CHECKOUT_REVIEW = `${CHECKOUT}/review`;
+export const ORDER_CONFIRMATION = "/order-confirmation";
 export const ORDER_HISTORY = "/order-history";
 export const WISH_LIST = "/wish-list";
 export const RECURRING_ORDERS = "/recurring-orders";
@@ -26,6 +30,10 @@ export const ORDER_DETAILS_ROUTE = `${ORDER_DETAILS}${ORDER_ID_PARAM}`;
 
 //User
 export const ADDRESS_BOOK = "/address-book";
+export const ADD_ADDRESS = "/add-address";
+export const EDIT_ADDRESS = "/edit-address";
+export const ADDRESS_ID_PARAM = "/:addressId";
+export const EDIT_ADDRESS_ROUTE = `${EDIT_ADDRESS}${ADDRESS_ID_PARAM}`;
 export const PERSONAL_INFORMATION = "/personal-information";
 
 //Account

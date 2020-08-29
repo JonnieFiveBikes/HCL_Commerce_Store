@@ -1,3 +1,5 @@
 {
-  "ChildPimCategories": { "title": "모든 {{name}}" }
+  "ChildPimCategories": {
+    "title": "모든 {{name}}"
+  }
 }

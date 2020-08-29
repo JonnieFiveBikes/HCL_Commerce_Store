@@ -46,7 +46,6 @@ function AccountLinksGridViewLayout() {
       description={linkAddressBookDescription}
       url={linkAddressBookURL}
       icon={<LibraryBooksIcon />}
-      disabled
     />,
     <StyledLinkBox
       title={linkOrderHistoryText}

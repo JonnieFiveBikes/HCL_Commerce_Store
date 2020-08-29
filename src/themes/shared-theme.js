@@ -18,90 +18,97 @@ export const sharedOverrides = {
     underline: {
       "&:hover:not($disabled):not($focused):not($error):before": {
         backgroundColor: "rgba(255, 0, 0, 0.7)",
-        borderBottomColor: "#ffffff"
-      }
-    }
+        borderBottomColor: "#ffffff",
+      },
+    },
   },
   typography: {
-    pxToRem: size => `${(size / htmlFontSize) * coef}rem`,
+    pxToRem: (size) => `${(size / htmlFontSize) * coef}rem`,
     fontFamily: ["Roboto", '"Helvetica Neue"', "Arial", "sans-serif"].join(","),
     h1: {
       fontSize: 72,
-      fontWeight: 700
+      fontWeight: 700,
     },
     h2: {
       fontSize: 52,
-      fontWeight: 300
+      fontWeight: 300,
     },
     h3: {
       fontSize: 32,
-      fontWeight: 300
+      fontWeight: 300,
     },
     h4: {
       fontSize: 26,
-      fontWeight: 300
+      fontWeight: 300,
     },
     h5: {
       fontSize: 20,
-      fontWeight: 400
+      fontWeight: 400,
     },
     h6: {
       fontSize: 18,
-      fontWeight: 500
+      fontWeight: 500,
     },
     subtitle1: {
       fontSize: 18,
-      fontWeight: 500
+      fontWeight: 500,
     },
     subtitle2: {
       fontSize: 18,
-      fontWeight: 400
+      fontWeight: 400,
     },
     body1: {
       fontSize: 14,
-      fontWeight: 400
+      fontWeight: 400,
     },
     body2: {
       fontSize: 14,
-      fontWeight: 500
+      fontWeight: 500,
     },
     button: {
       fontSize: 15,
       fontWeight: 400,
-      textTransform: "none"
+      textTransform: "none",
     },
     caption: {
-      fontSize: 12,
-      fontWeight: 400
+      fontSize: 13,
+      fontWeight: 400,
     },
     overline: {
       fontSize: 13,
       textTransform: "uppercase",
       fontWeight: 600,
-      letterSpacing: 1
-    }
+      letterSpacing: 1,
+    },
   },
   palette: {
     text: {
       primary: palette.text.primary,
       secondary: palette.text.secondary,
       disabled: palette.text.disabled,
-      highlight: palette.text.highlight
+      highlight: palette.text.highlight,
+      alert: palette.text.alert,
+      expandedMenu: palette.text.expandedMenu,
     },
     action: {
       active: palette.border.main,
       hover: palette.border.hover,
       disabled: palette.text.disabled,
-      disabledBackground: palette.disabled.background
+      disabledBackground: palette.disabled.background,
     },
     background: {
       default: palette.background.default,
-      paper: palette.background.paper
+      paper: palette.background.paper,
+      transparency: palette.background.transparency,
     },
-    divider: palette.text.disabled
+    divider: palette.text.disabled,
+    border: {
+      dark: palette.divider.dark,
+      alert: palette.border.alert,
+    },
   },
   shape: {
-    borderRadius: 6
+    borderRadius: 6,
   },
   shadows: [
     "none",
@@ -128,14 +135,14 @@ export const sharedOverrides = {
     "none",
     "none",
     "none",
-    "none"
-  ]
+    "none",
+  ],
 };
 
 export const merge = (...args) => {
   let target = {};
   // Merge the object into the target object
-  let merger = obj => {
+  let merger = (obj) => {
     for (let prop in obj) {
       if (obj.hasOwnProperty(prop)) {
         if (Object.prototype.toString.call(obj[prop]) === "[object Object]") {

@@ -25,7 +25,7 @@ import {
   DASHBOARD,
 } from "../../../../constants/routes";
 import { REG_EX } from "../../../../constants/common";
-import Dashboard from "../../../widgets/dashboard/Dashboard";
+import AccountSidebar from "../../../widgets/account-sidebar/AccountSidebar";
 //Redux
 import * as errorActions from "../../../../redux/actions/error";
 //UI
@@ -38,14 +38,13 @@ import {
   StyledTable,
   StyledTableIcons,
   StyledTypography,
-  StyledSidebar,
   StyledLink,
   StyledMTableFilterRow,
 } from "../../../StyledUI";
 const useOrderHistoryTable = () => {
   const { t, i18n } = useTranslation();
   const history = useHistory();
-  const [options, setOptions] = useState<Options>({
+  const [options, setOptions] = useState<Options<any>>({
     filtering: false,
     actionsColumnIndex: -1,
     showTitle: false,
@@ -344,12 +343,7 @@ function OrderHistory(props: any) {
       </StyledTypography>
       <StyledGrid container spacing={2}>
         <StyledGrid item xs={12} md={3} className="sidebar">
-          <StyledSidebar
-            title={t("Dashboard.Title")}
-            sidebarContent={<Dashboard />}
-            linkTo={DASHBOARD}
-            breakpoint="md"
-          />
+          <AccountSidebar />
         </StyledGrid>
         <StyledGrid item xs={12} md={9}>
           <StyledTable

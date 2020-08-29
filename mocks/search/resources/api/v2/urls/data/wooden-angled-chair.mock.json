@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "wooden-angled-chair-lr-fntr-0001",
+      "tokenName": "ProductToken",
+      "tokenExternalValue": "LR-FNTR-0001",
+      "language": "en_US",
+      "id": 56625,
+      "page": {
+        "imageAlternateDescription": "Image for Wooden Angled Chair from Emerald",
+        "name": "PRODUCT_PAGE",
+        "title": "Wooden Angled Chair | Emerald",
+        "type": "ProductPage",
+        "metaDescription": "A sturdy wooden angled chair that welcomes every guest into your living space in style. Includes a matching movable leg rest.",
+        "metaKeyword": " Home Design"
+      },
+      "storeId": "11",
+      "tokenValue": "14018",
+      "status": 1
+    }
+  ]
+}

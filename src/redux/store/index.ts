@@ -9,7 +9,8 @@
  *==================================================
  */
 //Standard libraries
-import { createStore, applyMiddleware, compose } from "redux";
+import { compose } from "redux";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
 //Redux
 import rootReducer from "../reducers/index";
@@ -17,7 +18,7 @@ import rootSaga from "../sagas/index";
 import initStates from "../reducers/initStates";
 
 const sagaMiddleware = createSagaMiddleware();
-const storeEnhancers =
+const devTools =
   (process.env.NODE_ENV !== "production" &&
     (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
     (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -26,11 +27,22 @@ const storeEnhancers =
     })) ||
   compose;
 
-const store = createStore(
-  rootReducer,
-  initStates,
-  storeEnhancers(applyMiddleware(sagaMiddleware))
-);
+const middleware = [
+  ...getDefaultMiddleware({
+    thunk: false,
+    immutableCheck: true,
+    serializableCheck: false,
+  }),
+  sagaMiddleware,
+];
+
+const store = configureStore({
+  reducer: rootReducer,
+  middleware,
+  devTools,
+  preloadedState: initStates,
+  enhancers: [],
+});
 
 sagaMiddleware.run(rootSaga);
 

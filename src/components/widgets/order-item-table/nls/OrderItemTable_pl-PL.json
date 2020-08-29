@@ -1,18 +1,24 @@
 {
   "OrderItemTable": {
-    "Title": "Order Items",
+    "Title": "Pozycje zamówienia",
     "Labels": {
-      "ItemDetails": "Item Details",
-      "SKU": "SKU",
+      "ItemDetails": "Szczegóły pozycji",
+      "SKU": "Kod SKU: ",
       "Status": "Status",
-      "Quantity": "Quantity",
-      "Price": "Price",
-      "Actions": "Actions",
-      "Gift": "Free gift",
-      "NonRecurring": "Non-recurring item"
+      "Quantity": "Ilość",
+      "Price": "Cena",
+      "Actions": "Akcje",
+      "Gift": "Darmowy prezent",
+      "NonRecurring": "Pozycja niecykliczna",
+      "PageSizeLabel": "wiersze",
+      "FirstPage": "Pierwsza strona",
+      "LastPage": "Ostatnia strona",
+      "PreviousPage": "Poprzednia strona",
+      "NextPage": "Następna strona",
+      "RowCount": "Wyświetlanie od {from} do {to} z {count}"
     },
     "Actions": {
-      "Delete": "Delete"
+      "Delete": "Usuwanie"
     }
   }
 }

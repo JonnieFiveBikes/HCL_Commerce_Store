@@ -26,11 +26,11 @@ const StyledGrid = styled(ComponentWrapper)`
       ${theme.breakpoints.down("sm")} {
         .MuiGrid-item {
           width: 100%;
-  
+
           .MuiButton-root {
             width: 100%;
           }
-  
+
           &:last-child {
             margin-top:  ${theme.spacing(2)}px;
           }

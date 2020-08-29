@@ -12,9 +12,25 @@
 import { REG_EX } from "../constants/common";
 
 const addressUtil = {
-  optionalAddressFields: ["firstName", "addressLine2", "phone1"],
+  optionalAddressFields: ["addressLine2", "phone1"],
+  addressFormFields: [
+    "firstName",
+    "lastName",
+    "addressLine1",
+    "addressLine2",
+    "city",
+    "country",
+    "state",
+    "zipCode",
+    "phone1",
+    "nickName",
+    "email1",
+    "addressType",
+  ],
 
-  validateAddressForm: (formData: any) => {
+  validateAddressForm: (formData: any, edit?: boolean) => {
+    const editVal = edit ? edit : false;
+
     for (let key in formData) {
       if (!addressUtil.optionalAddressFields.includes(key)) {
         if (formData[key] !== undefined && formData[key].trim() === "") {
@@ -27,6 +43,10 @@ const addressUtil = {
       return false;
     }
     if (!addressUtil.validateEmail(formData.email1)) {
+      return false;
+    }
+
+    if (!editVal && !addressUtil.validateNickName(formData.nickName)) {
       return false;
     }
 
@@ -44,7 +64,39 @@ const addressUtil = {
 
   validateEmail: (email: string) => {
     const EMAIL = REG_EX.EMAIL;
-    return email.trim() === "" || EMAIL.test(email);
+    return email === undefined || email.trim() === "" || EMAIL.test(email);
+  },
+
+  validateNickName: (nickName: string) => {
+    const NICKNAME_ALPHA_NUMERIC_SPECIAL_CHAR =
+      REG_EX.NICKNAME_ALPHA_NUMERIC_SPECIAL_CHAR;
+    return (
+      nickName === undefined ||
+      nickName.trim() === "" ||
+      NICKNAME_ALPHA_NUMERIC_SPECIAL_CHAR.test(nickName)
+    );
+  },
+
+  removeLeadingTrailingWhiteSpace: (formData: any): any => {
+    let result: any = {};
+    // remove leading and trailing white space from all form input fields.
+    if (formData !== undefined && formData !== null) {
+      Object.keys(formData).forEach((key) => {
+        let value = formData[key].trim();
+        result[key] = value;
+      });
+    }
+    return result;
+  },
+
+  removeIgnorableAddressFormFields: (formData: any): any => {
+    let result: any = { ...formData };
+    for (let key in result) {
+      if (!addressUtil.addressFormFields.includes(key)) {
+        delete result[key];
+      }
+    }
+    return result;
   },
 };
 

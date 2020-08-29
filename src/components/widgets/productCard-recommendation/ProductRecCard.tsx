@@ -10,7 +10,7 @@
  */
 //Standard libraries
 import React from "react";
-import isEmpty from "lodash-es/isEmpty";
+import isEmpty from "lodash/isEmpty";
 import { useDispatch } from "react-redux";
 import LazyLoadComponent from "react-intersection-observer-lazy-load";
 //Custom libraries

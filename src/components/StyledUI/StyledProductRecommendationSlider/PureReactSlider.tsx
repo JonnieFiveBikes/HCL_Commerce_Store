@@ -68,6 +68,7 @@ const StyledSlide = styled(({ ...props }) => <Slide {...props} />)`
     max-width: 245px;
     min-width: 225px;
     display: inline-block;
+    max-height: 330px;
   }
 `;
 
@@ -83,6 +84,7 @@ const StyledStaticSlideList = styled.div`
       max-width: 245px;
       min-width: 225px;
       display: inline-block;
+      max-height: 330px;
       margin-right: ${theme.spacing(3)}px;
     }
   `}

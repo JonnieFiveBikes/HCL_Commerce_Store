@@ -2,8 +2,8 @@
   "SearchBar": {
     "SearchField": "검색",
     "KeywordTitle": "키워드",
-    "CategoryTitle": "CATEGORY",
-    "BrandTitle": "BRAND",
-    "Clear": "Clear search"
+    "CategoryTitle": "카테고리",
+    "BrandTitle": "브랜드",
+    "Clear": "검색 지우기"
   }
 }

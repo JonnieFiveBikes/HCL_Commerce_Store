@@ -2,11 +2,11 @@
   "SignIn": {
     "ReturningCustomer": "Zarejestrowany klient",
     "Password": "Hasło",
-    "RememberMe": "Zapamiêtaj mnie",
+    "RememberMe": "Zapamiętaj mnie",
     "SignInButton": "Zaloguj się",
-    "ForgotPassword": "Nie pamiętasz hasła",
+    "ForgotPassword": "Nie pamiętam hasła",
     "Label": {
-      "B2B": "Logon ID",
+      "B2B": "Identyfikator logowania",
       "Email": "Adres e-mail"
     }
   }

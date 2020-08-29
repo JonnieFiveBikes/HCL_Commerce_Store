@@ -1,18 +1,15 @@
 {
   "OrderLinks": {
-    "Title": "Order Management",
-
-    "OrderHistoryText": "Order History",
-    "OrderHistoryDescription": "Manage and edit saved addresses.",
-    "SavedOrdersText": "Saved Orders",
-    "SavedOrdersDescription": "View and manage saved orders",
-
-    "RecurringOrdersText": "Recurring Orders",
-    "RecurringOrdersDescription": "View and manage list of recurring orders",
-    "ApproveOrdersText": "Approve Orders",
-    "ApproveOrdersDescription": "Approve or reject orders",
-
-    "RequisitionListsText": "Requisition Lists",
-    "RequisitionListsDescription": "View, manage and create requisition lists"
+    "Title": "Gestão de pedidos",
+    "OrderHistoryText": "Histórico de pedidos",
+    "OrderHistoryDescription": "Veja pedidos efetuados e pedidos com aprovação pendente, bem como dados de pedidos individuais.",
+    "SavedOrdersText": "Pedidos guardados",
+    "SavedOrdersDescription": "Ver e gerir pedidos guardados",
+    "RecurringOrdersText": "Pedidos recorrentes",
+    "RecurringOrdersDescription": "Ver e gerir lista de pedidos recorrentes",
+    "ApproveOrdersText": "Aprovar pedidos",
+    "ApproveOrdersDescription": "Aprovar ou rejeitar pedidos",
+    "RequisitionListsText": "Listas de requisição",
+    "RequisitionListsDescription": "Ver, gerir e criar listas de requisição"
   }
 }

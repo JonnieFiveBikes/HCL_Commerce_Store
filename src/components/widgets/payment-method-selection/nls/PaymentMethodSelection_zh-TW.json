@@ -1,0 +1,18 @@
+{
+  "PaymentMethodSelection": {
+    "Title": "付款方法",
+    "Msgs": {
+      "CreditCard": "安全的線上付款。已接受的信用卡：{{cards}}",
+      "CVV": "簽章條上的末三碼。",
+      "InvalidCardNumber": "無效的卡片號碼或類型",
+      "InvalidFormat": "無效格式"
+    },
+    "Labels": {
+      "COD": "交貨時付現",
+      "CreditCard": "信用卡",
+      "CCNumber": "信用卡號碼",
+      "ExpiryDate": "到期日",
+      "CVV": "CVV 碼"
+    }
+  }
+}

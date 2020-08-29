@@ -1,20 +1,25 @@
 {
   "AddressForm": {
     "Msgs": {
-      "InvalidFormat": "Formato non valido"
+      "InvalidFormat": "Formato non valido",
+      "InvalidAddressName": "Il nome indirizzo può contenere solo caratteri alfanumerici (A-Z, a-z, 0-9) e spazi."
     },
     "Labels": {
       "FirstName": "Nome",
       "LastName": "Cognome",
       "Address1": "Riga 1 indirizzo",
-      "Address2": "Riga 2 indirizzo",
+      "Address2": "Riga 2 indirizzo (opzionale)",
       "City": "Città",
       "Country": "Paese",
       "State": "Stato/Provincia",
       "ZipCode": "CAP/Codice postale",
-      "Phone": "Numero di telefono",
+      "Phone": "Telefono (opzionale)",
       "Email": "E-mail",
-      "NickName": "Nome alternativo indirizzo"
+      "NickName": "Nome indirizzo",
+      "AddressType": "Tipo di indirizzo",
+      "Shipping": "Spedizione",
+      "Billing": "Fatturazione",
+      "ShippingAndBilling": "Spedizione e fatturazione"
     }
   }
 }

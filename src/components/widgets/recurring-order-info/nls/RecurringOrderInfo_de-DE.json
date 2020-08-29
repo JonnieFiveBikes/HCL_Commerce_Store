@@ -1,0 +1,12 @@
+{
+  "RecurringOrderInfo": {
+    "Title": "Details zur wiederkehrenden Bestellung",
+    "Labels": {
+      "RecurringOrderNumber": "Wiederkehrende Bestellnummer",
+      "OrderSchedule": "Bestellzeitplan",
+      "StartDate": "Startdatum",
+      "NextDelivery": "Nächste geplante Bestellung",
+      "OrderHistoryButton": "Bestellverlauf für {{orderId}}"
+    }
+  }
+}

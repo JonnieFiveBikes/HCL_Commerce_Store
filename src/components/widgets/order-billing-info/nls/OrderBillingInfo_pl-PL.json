@@ -1,8 +1,8 @@
 {
   "OrderBillingInfo": {
-    "Title": "Rozliczenia",
+    "Title": "Informacje rozliczeniowe",
     "Labels": {
-      "BillAddress": "Billing Address"
+      "BillAddress": "Adres do faktury"
     }
   }
 }

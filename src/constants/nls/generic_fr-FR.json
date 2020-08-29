@@ -1,0 +1,78 @@
+{
+  "CommerceEnvironment": {
+    "listSettings": {
+      "relevance": "Pertinence",
+      "brands": "Marques",
+      "name": "Nom",
+      "priceLowToHigh": "Prix (du plus bas au plus élevé)",
+      "priceHighToLow": "Prix (du plus élevé au plus bas)"
+    },
+    "inventoryStatus": {
+      "Available": "Disponible",
+      "Allocated": "Disponible",
+      "Unallocated": "Non attribué",
+      "Backordered": "Commande en amont",
+      "OOS": "Rupture de stock",
+      "NA": "Indisponible"
+    },
+    "recurringOrderFrequency": {
+      "Everyday": "Tous les jours",
+      "EveryWeek": "Toutes les semaines",
+      "EveryTwoWeeks": "Toutes les 2 semaines",
+      "EveryThreeWeeks": "Toutes les 3 semaines",
+      "EveryFourWeeks": "Toutes les 4 semaines"
+    },
+    "currency": {
+      "ROL": "Leu roumain",
+      "RON": "Leu roumain",
+      "ARS": "Peso argentin",
+      "ATS": "Schilling autrichien",
+      "AUD": "Dollar australien",
+      "BEF": "Franc belge",
+      "BRL": "Real brésilien",
+      "CAD": "Dollar canadien",
+      "CNY": "Yuan chinois",
+      "DEM": "Mark allemand",
+      "ESP": "Peseta espagnole",
+      "EUR": "Euro g",
+      "FRF": "Franc français",
+      "GBP": "Livre sterling",
+      "HKD": "Dollar de Hong Kong",
+      "ITL": "Lire italienne",
+      "JPY": "Yen japonais",
+      "KRW": "Won sud-coréen",
+      "SGD": "Dollar de Singapour",
+      "TWD": "Dollar taïwanais",
+      "USD": "Dollar américain",
+      "ZAR": "Rand sud-africain",
+      "FIM": "Mark finlandais",
+      "IEP": "Livre irlandaise",
+      "LUF": "Franc luxembourgeois",
+      "NLG": "Florin néerlandais",
+      "PTE": "Escudo portugais",
+      "NOK": "Couronne norvégienne",
+      "SEK": "Couronne suédoise",
+      "DKK": "Couronne danoise",
+      "CHF": "Franc suisse",
+      "PLN": "Zloty polonais",
+      "RUB": "Rouble russe",
+      "EGP": "Livre égyptienne"
+    },
+    "language": {
+      "-1": "Anglais (Etats-Unis)",
+      "-2": "Français",
+      "-3": "Allemand",
+      "-4": "Italien",
+      "-5": "Espagnol",
+      "-6": "Portugais du Brésil",
+      "-7": "Chinois simplifié",
+      "-8": "Chinois traditionnel",
+      "-10": "Japonais",
+      "-21": "Roumain",
+      "-20": "Russe",
+      "-9": "Coréen",
+      "-22": "Polonais",
+      "-23": "Arabe"
+    }
+  }
+}

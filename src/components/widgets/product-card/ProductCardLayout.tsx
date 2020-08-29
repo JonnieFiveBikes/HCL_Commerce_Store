@@ -9,7 +9,16 @@
  *---------------------------------------------------
  */
 //Standard libraries
-import React from "react";
+import React, { useEffect, useState, MouseEvent } from "react";
+import Axios, { Canceler } from "axios";
+import { useSelector } from "react-redux";
+//Foundation libraries
+import { useSite } from "../../../_foundation/hooks/useSite";
+import productsService from "../../../_foundation/apis/search/products.service";
+//Custom libraries
+import { DEFINING, OFFER } from "../../../constants/common";
+//Redux
+import { currentContractIdSelector } from "../../../redux/selectors/contract";
 //UI
 import { StyledProductCard, StyledSwatch } from "../../StyledUI";
 
@@ -23,6 +32,8 @@ interface ProductCardProps {
  * @param props
  */
 export default function ProductCard(props: ProductCardProps) {
+  const contract = useSelector(currentContractIdSelector);
+
   const product: any = props.product;
   const catentryId: string = product.id;
   const name: string = product.name;
@@ -30,12 +41,26 @@ export default function ProductCard(props: ProductCardProps) {
   const productAttributes: any = product.attributes ? product.attributes : [];
   const seoUrl: string = product.seo ? product.seo.href : "";
 
+  const [productData, setProductData] = useState<any>(null);
+  const [skuThumbnail, setSkuThumbnail] = useState<string>(thumbnail);
+  const [thumbnailLoading, setThumbnailLoading] = useState<boolean>(false);
+
   let swatches: any[] = [];
+
+  const mySite: any = useSite();
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+
+  useEffect(() => {
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+  }, []);
 
   function getOfferPrice(prices: any[]) {
     let offerPrice: number | null = null;
     prices.forEach((price: any, index: number) => {
-      if (price.usage === "Offer") {
+      if (price.usage === OFFER) {
         if (price.value !== "") {
           offerPrice = parseFloat(price.value);
         }
@@ -44,8 +69,65 @@ export default function ProductCard(props: ProductCardProps) {
     return offerPrice;
   }
 
+  function onSwatchClick(
+    event: MouseEvent<HTMLButtonElement>,
+    attrValueId: string
+  ) {
+    event.preventDefault();
+    setThumbnailLoading(true);
+    if (productData == null) {
+      getProductInfo(attrValueId);
+    } else {
+      changeProductImage(attrValueId, productData);
+    }
+  }
+
+  function getProductInfo(attrValueId: string) {
+    const parameters: any = {
+      storeId: mySite.storeID,
+      catalogId: mySite.catalogID,
+      id: catentryId,
+      contractId: contract ? contract : "",
+      cancelToken: new CancelToken(function executor(c) {
+        cancels.push(c);
+      }),
+    };
+    productsService
+      .findProductsUsingGET(parameters)
+      .then((productData: any) => {
+        const contents = productData.data.contents;
+        if (contents && contents.length > 0) {
+          const product = contents[0];
+          const skus = product.items;
+
+          changeProductImage(attrValueId, product);
+          setProductData(product);
+        }
+      })
+      .catch((e) => {
+        console.log("Could not retrieve product details page information", e);
+      });
+  }
+
+  function changeProductImage(attrValueId: string, product: any) {
+    if (product) {
+      if (product.items) {
+        product.items.map((sku: any, index: number) => {
+          sku.attributes.map((attribute: any, index2: number) => {
+            attribute.values.map((value: any, index3: number) => {
+              if (value.id === attrValueId) {
+                setThumbnailLoading(false);
+                setSkuThumbnail(sku.thumbnail);
+              }
+            });
+          });
+        });
+      }
+    }
+  }
+
   productAttributes.map((attribute: any, index: number) => {
-    if (attribute.usage === "Defining") {
+    if (attribute.usage === DEFINING) {
       attribute.values.map((attributeValue: any, index2: number) => {
         if (
           attributeValue.image1path !== undefined &&
@@ -58,8 +140,9 @@ export default function ProductCard(props: ProductCardProps) {
                 style={{
                   backgroundImage: `url("${imagePath}")`,
                 }}
-                key={`${attributeValue.id}_${index2}_${index3}`}
-                alt={attributeValue.value}
+                key={`${attributeValue.id[index3]}_${index2}_${index3}`}
+                alt={attributeValue.value[index3]}
+                onClick={(e) => onSwatchClick(e, attributeValue.id[index3])}
               />
             );
           });
@@ -74,6 +157,7 @@ export default function ProductCard(props: ProductCardProps) {
               }}
               key={attributeValue.id}
               alt={attributeValue.value}
+              onClick={(e) => onSwatchClick(e, attributeValue.id)}
             />
           );
         }
@@ -88,7 +172,8 @@ export default function ProductCard(props: ProductCardProps) {
       seoUrl={seoUrl}
       catentryId={catentryId}
       swatches={swatches}
-      thumbnail={thumbnail}
+      thumbnail={skuThumbnail}
+      thumbnailLoading={thumbnailLoading}
       name={name}
       price={getOfferPrice(product.price)}
       className="product-grid"

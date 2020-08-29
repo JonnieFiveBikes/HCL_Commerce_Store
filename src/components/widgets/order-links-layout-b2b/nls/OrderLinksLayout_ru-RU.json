@@ -1,18 +1,15 @@
 {
   "OrderLinks": {
-    "Title": "Order Management",
-
-    "OrderHistoryText": "Order History",
-    "OrderHistoryDescription": "Manage and edit saved addresses.",
-    "SavedOrdersText": "Saved Orders",
-    "SavedOrdersDescription": "View and manage saved orders",
-
-    "RecurringOrdersText": "Recurring Orders",
-    "RecurringOrdersDescription": "View and manage list of recurring orders",
-    "ApproveOrdersText": "Approve Orders",
-    "ApproveOrdersDescription": "Approve or reject orders",
-
-    "RequisitionListsText": "Requisition Lists",
-    "RequisitionListsDescription": "View, manage and create requisition lists"
+    "Title": "Управление заказами",
+    "OrderHistoryText": "История заказов",
+    "OrderHistoryDescription": "Просмотреть размещенные и ожидающие утверждения заказы, а также сведения об отдельных заказах.",
+    "SavedOrdersText": "Сохраненные заказы",
+    "SavedOrdersDescription": "Просмотр и контроль сохраненных заказов",
+    "RecurringOrdersText": "Регулярные заказы",
+    "RecurringOrdersDescription": "Просмотр и контроль списка регулярных заказов",
+    "ApproveOrdersText": "Утвердить заказы",
+    "ApproveOrdersDescription": "Утвердить либо отклонить заказы",
+    "RequisitionListsText": "Списки учета заявок",
+    "RequisitionListsDescription": "Просмотр, контроль и создание списков учета заявок"
   }
 }

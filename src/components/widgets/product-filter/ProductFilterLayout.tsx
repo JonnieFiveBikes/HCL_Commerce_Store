@@ -14,14 +14,17 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch, batch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
+
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
+
 //Custom libraries
 import {
   PRODUCT_LIST_FIELDS,
   PAGINATION_CONFIGS,
 } from "../../../configs/catalog";
 import FormattedPriceDisplay from "../formatted-price-display";
+
 //Redux
 import {
   facetsSelector,
@@ -32,8 +35,8 @@ import {
 } from "../../../redux/selectors/catalog";
 import * as catalogActions from "../../../redux/actions/catalog";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
+
 //UI
-import "./productFilterLayout.scss";
 import {
   StyledGrid,
   StyledButton,
@@ -46,6 +49,7 @@ import {
   StyledNumberInput,
   StyledSwatch,
   StyledSidebar,
+  StyledBox,
 } from "../../StyledUI";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -67,6 +71,7 @@ const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
   const [maxPrice, setMaxPrice] = useState<number | null>(null);
   const [isMinPriceValid, setIsMinPriceValid] = useState<boolean>(true);
   const [isMaxPriceValid, setIsMaxPriceValid] = useState<boolean>(true);
+  const [isActiveFacetId, setIsActiveFacetId] = useState<string>("");
   const isSubmitButtonEnabled = enableSubmitButton();
 
   const facets = useSelector(facetsSelector);
@@ -95,7 +100,7 @@ const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
   const locale: string = i18n.languages[0].split("-").join("_");
   const pageLimit: number = PAGINATION_CONFIGS.pageLimit;
   const pageDefaultOffset: number = PAGINATION_CONFIGS.pageDefaultOffset;
-  const isMobile = useMediaQuery(theme.breakpoints.up("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const FACET_BRAND_TITLE = "mfName_ntk_cs";
   const FACET_PRICE_PREFIX = "price_";
@@ -454,6 +459,11 @@ const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
     );
   }
 
+  const onInputClick = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
   const filterList = (
     <>
       {facets &&
@@ -461,60 +471,67 @@ const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
           (facet: any, index: number) =>
             showFacet(facet) && (
               <StyledExpansionPanel
-                defaultExpanded={isMobile}
-                key={facet.value}>
-                <StyledExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                defaultExpanded={!isMobile}
+                key={facet.value}
+                expanded={!isMobile || isActiveFacetId === facet.value}
+                onClick={() => {
+                  if (isMobile) {
+                    if (isActiveFacetId === facet.value) {
+                      setIsActiveFacetId("");
+                    } else {
+                      setIsActiveFacetId(facet.value);
+                    }
+                  }
+                }}>
+                <StyledExpansionPanelSummary
+                  expandIcon={isMobile ? <ExpandMoreIcon /> : null}>
                   {isPriceFacet(facet)
                     ? t("ProductFilter.Labels.price")
                     : getFacetTitle(facet)}
                 </StyledExpansionPanelSummary>
                 <StyledExpansionPanelDetails>
                   {isPriceFacet(facet) ? (
-                    <StyledGrid
-                      container
-                      spacing={2}
-                      id={`productFilter_div_8_${index}_${cid}`}>
+                    <>
                       {priceSelected && minPrice && maxPrice ? (
-                        <div id={`productFilter_div_9_${index}_${cid}`}>
-                          <StyledChip
-                            size="medium"
-                            label={
-                              <FormattedPriceDisplay
-                                min={minPrice}
-                                max={maxPrice}
-                                currency={defaultCurrencyID}
-                                locale={locale}
-                              />
-                            }
-                            onClick={() => clearPriceFacet()}
-                            onDelete={() => clearPriceFacet()}
-                            id={`productFilter_a_10_${index}_${cid}`}
-                          />
-                        </div>
+                        <StyledChip
+                          size="medium"
+                          label={
+                            <FormattedPriceDisplay
+                              min={minPrice}
+                              max={maxPrice}
+                              currency={defaultCurrencyID}
+                              locale={locale}
+                            />
+                          }
+                          onClick={() => clearPriceFacet()}
+                          onDelete={() => clearPriceFacet()}
+                        />
                       ) : (
                         <div
-                          className="price-filter price-filter-input horizontal-padding-1"
+                          className="price-filter price-filter-input"
                           id={`productFilter_div_12_${index}_${cid}`}>
-                          <StyledNumberInput
-                            value={minPrice !== null ? minPrice : ""}
-                            min={0}
-                            precision={2}
-                            placeholder={t("ProductFilter.Labels.minPrice")}
-                            onChange={(valueAsNumber) =>
-                              onMinPriceChange(valueAsNumber)
-                            }
-                            error={!validatePriceRange()}
-                          />
-                          <StyledNumberInput
-                            value={maxPrice !== null ? maxPrice : ""}
-                            min={0}
-                            precision={2}
-                            placeholder={t("ProductFilter.Labels.maxPrice")}
-                            onChange={(valueAsNumber) =>
-                              onMaxPriceChange(valueAsNumber)
-                            }
-                            error={!validatePriceRange()}
-                          />
+                          <StyledBox pb={1} onClick={onInputClick}>
+                            <StyledNumberInput
+                              value={minPrice !== null ? minPrice : ""}
+                              min={0}
+                              precision={2}
+                              placeholder={t("ProductFilter.Labels.minPrice")}
+                              onChange={(valueAsNumber) =>
+                                onMinPriceChange(valueAsNumber)
+                              }
+                              error={!validatePriceRange()}
+                            />
+                            <StyledNumberInput
+                              value={maxPrice !== null ? maxPrice : ""}
+                              min={0}
+                              precision={2}
+                              placeholder={t("ProductFilter.Labels.maxPrice")}
+                              onChange={(valueAsNumber) =>
+                                onMaxPriceChange(valueAsNumber)
+                              }
+                              error={!validatePriceRange()}
+                            />
+                          </StyledBox>
                           <StyledButton
                             disabled={!isSubmitButtonEnabled}
                             size="small"
@@ -525,55 +542,53 @@ const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
                           </StyledButton>
                         </div>
                       )}
-                    </StyledGrid>
+                    </>
                   ) : (
-                    <div>
-                      <ul
-                        id={`productFilter_ul_20_${index}_${cid}`}
-                        className="menu">
-                        {facet.entry &&
-                          facet.entry.map((entry: any, index2: number) => (
-                            <Fragment key={entry.value}>
-                              {entry.image ? (
-                                <StyledSwatch
-                                  id={`productFilter_img_23_${index}_${index2}_${cid}`}
-                                  style={{
-                                    backgroundImage: `url("${entry.image}")`,
-                                  }}
-                                  onClick={(event) =>
-                                    onFacetChange(entry.value, entry.label)
-                                  }
-                                  size="medium"
-                                  selected={isFacetSelected(entry.value)}
-                                />
-                              ) : (
-                                <div className="top-margin-1">
-                                  <StyledFormControlLabel
-                                    control={
-                                      <StyledCheckbox
-                                        checked={isFacetSelected(
-                                          (isCategoryFacet(facet)
-                                            ? FACET_CATEGORY_VALUE_PREFIX
-                                            : "") + entry.value
-                                        )}
-                                        onChange={(event) =>
-                                          onFacetChange(
-                                            (isCategoryFacet(facet)
-                                              ? FACET_CATEGORY_VALUE_PREFIX
-                                              : "") + entry.value,
-                                            entry.label
-                                          )
-                                        }
-                                      />
+                    <StyledGrid
+                      container
+                      direction="row"
+                      justify="flex-start"
+                      alignItems="flex-start">
+                      {facet.entry &&
+                        facet.entry.map((entry: any, _: number) => (
+                          <Fragment key={entry.value}>
+                            {entry.image ? (
+                              <StyledSwatch
+                                style={{
+                                  backgroundImage: `url("${entry.image}")`,
+                                }}
+                                onClick={(_) =>
+                                  onFacetChange(entry.value, entry.label)
+                                }
+                                size="medium"
+                                selected={isFacetSelected(entry.value)}
+                              />
+                            ) : (
+                              <StyledFormControlLabel
+                                className="top-margin-1 full-width"
+                                control={
+                                  <StyledCheckbox
+                                    checked={isFacetSelected(
+                                      (isCategoryFacet(facet)
+                                        ? FACET_CATEGORY_VALUE_PREFIX
+                                        : "") + entry.value
+                                    )}
+                                    onChange={(_) =>
+                                      onFacetChange(
+                                        (isCategoryFacet(facet)
+                                          ? FACET_CATEGORY_VALUE_PREFIX
+                                          : "") + entry.value,
+                                        entry.label
+                                      )
                                     }
-                                    label={`${entry.label} (${entry.count})`}
                                   />
-                                </div>
-                              )}
-                            </Fragment>
-                          ))}
-                      </ul>
-                      <div className="top-margin-1">
+                                }
+                                label={`${entry.label} (${entry.count})`}
+                              />
+                            )}
+                          </Fragment>
+                        ))}
+                      <div className="top-margin-1 full-width">
                         {facet.entry && showMoreButton(facet) && (
                           <Link
                             to=""
@@ -597,7 +612,7 @@ const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
                           </Link>
                         )}
                       </div>
-                    </div>
+                    </StyledGrid>
                   )}
                 </StyledExpansionPanelDetails>
               </StyledExpansionPanel>
@@ -611,6 +626,8 @@ const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
       title={t("ProductFilter.Labels.filterBy")}
       sidebarContent={filterList}
       breakpoint="md"
+      className="product-filter"
+      scrollable={true}
     />
   );
 };

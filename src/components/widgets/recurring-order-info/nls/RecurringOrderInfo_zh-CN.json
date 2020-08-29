@@ -1,0 +1,12 @@
+{
+  "RecurringOrderInfo": {
+    "Title": "循环订单详细信息",
+    "Labels": {
+      "RecurringOrderNumber": "循环订单号",
+      "OrderSchedule": "订单排程",
+      "StartDate": "开始日期",
+      "NextDelivery": "下一个计划的订单",
+      "OrderHistoryButton": "{{orderId}} 的订单历史记录"
+    }
+  }
+}

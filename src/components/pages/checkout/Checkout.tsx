@@ -9,7 +9,8 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
+import { renderRoutes } from "react-router-config";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
@@ -17,40 +18,25 @@ import { Redirect } from "react-router-dom";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 //Custom libraries
-import { PAYMENT } from "../../../constants/order";
-import { CART } from "../../../constants/routes";
-import { ShippingBillingSection } from "./ShippingBillingSection";
-import { PaymentSection } from "./PaymentSection";
-import { ReviewOrderSection } from "./ReviewOrderSection";
-import { ConfirmationSection } from "./ConfirmationSection";
+import * as ROUTES from "../../../constants/routes";
 //Redux
 import * as orderActions from "../../../redux/actions/order";
 import {
   numItemsSelector,
-  checkoutActiveStepSelector,
+  isFetchingSelector,
 } from "../../../redux/selectors/order";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 //UI
 import {
-  StyledGrid,
   StyledContainer,
   StyledPaper,
   StyledTypography,
   StyledStep,
   StyledStepLabel,
   StyledStepper,
+  StyledProgressPlaceholder,
+  StyledLink,
 } from "../../StyledUI";
-
-const useActiveStep = () => {
-  const activeStep = useSelector(checkoutActiveStepSelector);
-
-  useEffect(() => {
-    //scroll to top on step change.
-    window.scrollTo(0, 0);
-  }, [activeStep]);
-
-  return activeStep;
-};
 
 /**
  * Checkout component
@@ -58,19 +44,11 @@ const useActiveStep = () => {
  * @param props
  */
 const Checkout: React.FC = (props: any) => {
-  const contractId = useSelector(currentContractIdSelector);
-  const activeStep = useActiveStep();
-  const numItems = useSelector(numItemsSelector);
+  const { route, location, match } = props;
 
-  const [selectedShipAddressId, setSelectedShipAddressId] = useState<string>(
-    ""
-  );
-  const [selectedBillAddressId, setSelectedBillAddressId] = useState<string>(
-    ""
-  );
-  const [selectedPayMethod, setSelectedPayMethod] = useState<string>(
-    PAYMENT.paymentMethodName.cod
-  );
+  const contractId = useSelector(currentContractIdSelector);
+  const isFetching = useSelector(isFetchingSelector);
+  const numItems = useSelector(numItemsSelector);
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -78,11 +56,21 @@ const Checkout: React.FC = (props: any) => {
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
-  const steps = [
-    t("Checkout.Labels.ShippingBilling"),
-    t("Checkout.Labels.PaymentDetails"),
-    t("Checkout.Labels.ReviewOrder"),
-  ];
+  const steps = ["shipping", "payment", "review"];
+  const stepsRoutes = {
+    shipping: ROUTES.CHECKOUT_SHIPPING,
+    payment: ROUTES.CHECKOUT_PAYMENT,
+    review: ROUTES.CHECKOUT_REVIEW,
+  };
+  const calculateStep = () => {
+    if (match.path === location.pathname) {
+      return 0;
+    } else {
+      const path = location.pathname.substr(match.path.length + 1);
+      return steps.indexOf(path);
+    }
+  };
+  const activeStep = useMemo(calculateStep, [location, match]);
 
   const defaultCurrencyID: string = mySite ? mySite.defaultCurrencyID : "";
 
@@ -93,6 +81,8 @@ const Checkout: React.FC = (props: any) => {
       cancels.push(c);
     }),
   };
+
+  const sampleExtraProps = {};
 
   useEffect(() => {
     if (mySite && contractId && defaultCurrencyID) {
@@ -108,40 +98,10 @@ const Checkout: React.FC = (props: any) => {
     };
   }, [mySite, contractId, defaultCurrencyID]);
 
-  function handleBack() {
-    dispatch(orderActions.PREV_CHECKOUTSTEP_ACTION());
-  }
-
-  function getStepContent(step: any) {
-    switch (step) {
-      case 0:
-        const props = {
-          setSelectedShipAddressId,
-          setSelectedBillAddressId,
-          selectedShipAddressId,
-          selectedBillAddressId,
-          selectedPayMethod,
-        };
-        return <ShippingBillingSection {...props} />;
-      case 1:
-        const props1 = {
-          handleBack,
-          selectedShipAddressId,
-          selectedBillAddressId,
-          selectedPayMethod,
-          setSelectedPayMethod,
-        };
-        return <PaymentSection {...props1} />;
-      case 2:
-        const props2 = { handleBack };
-        return <ReviewOrderSection {...props2} />;
-      default:
-        throw new Error("Unknown step");
-    }
-  }
-
-  return numItems < 1 && activeStep < 3 ? (
-    <Redirect to={CART} />
+  return isFetching === undefined || isFetching ? (
+    <StyledProgressPlaceholder className="vertical-padding-15" />
+  ) : numItems < 1 ? (
+    <Redirect to={ROUTES.CART} />
   ) : (
     <StyledContainer className="page">
       <StyledTypography
@@ -150,22 +110,27 @@ const Checkout: React.FC = (props: any) => {
         className="vertical-margin-4">
         {t("Checkout.Title")}
       </StyledTypography>
-
       <StyledPaper className="bottom-margin-2">
         <StyledStepper activeStep={activeStep}>
-          {steps.map((label) => (
-            <StyledStep key={label}>
-              <StyledStepLabel>{label}</StyledStepLabel>
+          {steps.map((key, i) => (
+            <StyledStep key={key}>
+              <StyledStepLabel>
+                {i < activeStep ? (
+                  <StyledLink to={stepsRoutes[key]}>
+                    {t(`Checkout.Labels.${key}`)}
+                  </StyledLink>
+                ) : (
+                  t(`Checkout.Labels.${key}`)
+                )}
+              </StyledStepLabel>
             </StyledStep>
           ))}
         </StyledStepper>
       </StyledPaper>
-
-      {activeStep === steps.length ? (
-        <ConfirmationSection />
-      ) : (
-        getStepContent(activeStep)
-      )}
+      {(match.path === location.pathname && (
+        <Redirect to={ROUTES.CHECKOUT_SHIPPING} />
+      )) ||
+        renderRoutes(route.routes, sampleExtraProps)}
     </StyledContainer>
   );
 };

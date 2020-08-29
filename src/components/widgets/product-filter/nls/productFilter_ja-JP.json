@@ -2,8 +2,8 @@
   "ProductFilter": {
     "Labels": {
       "filterBy": "フィルター基準",
-      "price": "Price",
-      "minPrice": "最小",
+      "price": "価格",
+      "minPrice": "分",
       "maxPrice": "最大"
     },
     "Actions": {

@@ -84,6 +84,10 @@ const StyledTable = styled(MaterialTableWrapper)`
       }
     }
 
+    .MuiTable-root {
+      table-layout: auto !important;
+    }
+
     .MuiTableCell-root {
       border-bottom: 1px solid ${theme.palette.grey[200]};
     }
@@ -167,6 +171,42 @@ const StyledTable = styled(MaterialTableWrapper)`
       padding: 0 16px;
       line-height: 36px;
       z-index: 1;
+    }
+
+    &.mini-cart-table {
+      max-width: 350px;
+      
+      .MuiPaper-root {
+        box-shadow: none;
+        padding-top: 0px;
+      }    
+
+      .MuiTableRow-root {
+        td:first-child{
+          padding-left: 0px;
+          padding-right: 0px;
+        }
+        td:last-child{
+          padding-right: 0px;
+        }        
+      }
+      
+      .MuiAvatar-root {
+        margin-left: 0;
+        width: ${theme.spacing(13)}px;
+        height: ${theme.spacing(11)}px;
+        border: 1px solid ${theme.palette.grey[200]};
+      }   
+      
+      .qty-price-section {
+        padding-top: ${theme.spacing(2)}px;
+      }
+    }
+
+    &.order-item-table {
+      tr:empty {
+        display: none;
+      }
     }
   `}
 `;

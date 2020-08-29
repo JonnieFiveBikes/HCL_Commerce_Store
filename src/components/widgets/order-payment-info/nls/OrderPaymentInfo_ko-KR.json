@@ -1,8 +1,8 @@
 {
   "OrderPaymentInfo": {
-    "Title": "Payment",
+    "Title": "지불 정보",
     "Labels": {
-      "BillMethod": "Payment Method"
+      "BillMethod": "지불 방법"
     }
   }
 }

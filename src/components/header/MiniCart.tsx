@@ -9,44 +9,86 @@
  *==================================================
  */
 //Standard libraries
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 //Custom libraries
-import { CART } from "../../constants/routes";
+import MiniCartPopperContent from "./MiniCartPopperContent";
 //Redux
 import { numItemsSelector } from "../../redux/selectors/order";
 //UI
-import { StyledTypography, StyledMiniCart } from "../StyledUI";
+import {
+  StyledAccountPopper,
+  StyledButton,
+  StyledTypography,
+  StyledHeaderActions,
+} from "../StyledUI";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+
+interface MiniCartProps {
+  id: string;
+  open: boolean;
+  handleClick: Function;
+  handleClose: Function;
+}
 
 /**
  * MiniCart component
  * displays number of cart items icon
  * @param props
  */
-const MiniCart: React.FC = (props: any) => {
-  const numItems = useSelector(numItemsSelector);
-  const { t } = useTranslation();
-  //addToCart action upon success shall call fetchCart action, and then the mini cart will be updated
-  return (
-    <StyledTypography variant="caption">
-      <Link
-        to={CART}
-        id="cart_link"
-        className={
-          "tool-button tool-button-cart " + (numItems === 0 ? "" : "show-badge")
-        }
-        data-cart-length={numItems}>
-        <StyledMiniCart>
-          <ShoppingCartIcon />
-          {numItems}
-          <span> {t("MiniCart.Items")}</span>
-        </StyledMiniCart>
-      </Link>
-    </StyledTypography>
-  );
-};
+const MiniCart = React.forwardRef<HTMLButtonElement | null, MiniCartProps>(
+  (props: any, ref: any) => {
+    const { id, open, handleClick, handleClose } = props;
+    const { t } = useTranslation();
+    const numItems = useSelector(numItemsSelector);
+    const [arrowRef, setArrowRef] = useState<any>(null);
+
+    return (
+      <>
+        <StyledButton
+          ref={ref}
+          className="header-actionsButton"
+          variant="text"
+          color="secondary"
+          onClick={handleClick}>
+          <StyledHeaderActions>
+            <ShoppingCartIcon />
+            <StyledTypography variant="body1" component="p">
+              {t("MiniCart.Items", { count: numItems })}
+            </StyledTypography>
+          </StyledHeaderActions>
+        </StyledButton>
+
+        <StyledAccountPopper
+          id={id}
+          open={open}
+          anchorEl={ref.current}
+          onClose={handleClose}
+          placement="bottom-end"
+          modifiers={{
+            flip: {
+              enabled: false,
+            },
+            preventOverflow: {
+              enabled: false,
+              boundariesElement: "scrollParent",
+            },
+            hide: {
+              enabled: true,
+            },
+            arrow: {
+              enabled: true,
+              element: arrowRef,
+            },
+          }}
+          className="mini-cart-popper">
+          <span className="arrow" ref={setArrowRef} />
+          <MiniCartPopperContent handleClose={handleClose} />
+        </StyledAccountPopper>
+      </>
+    );
+  }
+);
 
 export default MiniCart;

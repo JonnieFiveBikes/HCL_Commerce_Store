@@ -3,14 +3,14 @@
     "NewCustomer": "Nowy klient?",
     "FirstName": "Imię",
     "LastName": "Nazwisko",
-    "Email": "Email",
+    "Email": "Adres e-mail",
     "Phone": "Telefon (opcjonalny)",
     "Password": "Hasło",
-    "VerifyPassword": "Verify Password",
+    "VerifyPassword": "Potwierdź hasło",
     "TextContent": "Otrzymuj pomysły dotyczące architektury wnętrz wysyłane do Twojej skrzynki odbiorczej",
     "Register": "Zarejestruj",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "Nieprawidłowy format"
     }
   }
 }

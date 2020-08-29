@@ -1,18 +1,24 @@
 {
   "OrderItemTable": {
-    "Title": "Order Items",
+    "Title": "订单商品",
     "Labels": {
-      "ItemDetails": "Item Details",
-      "SKU": "SKU",
-      "Status": "Status",
-      "Quantity": "Quantity",
-      "Price": "Price",
-      "Actions": "Actions",
-      "Gift": "Free gift",
-      "NonRecurring": "Non-recurring item"
+      "ItemDetails": "商品详细信息",
+      "SKU": "SKU：",
+      "Status": "状态",
+      "Quantity": "数量",
+      "Price": "价格",
+      "Actions": "操作",
+      "Gift": "免费赠品",
+      "NonRecurring": "非循环商品",
+      "PageSizeLabel": "行",
+      "FirstPage": "首页",
+      "LastPage": "末页",
+      "PreviousPage": "上一页",
+      "NextPage": "下一页",
+      "RowCount": "显示 {from} 至 {to}，共 {count}"
     },
     "Actions": {
-      "Delete": "Delete"
+      "Delete": "删除"
     }
   }
 }

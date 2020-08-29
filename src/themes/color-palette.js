@@ -12,28 +12,35 @@ export const palette = {
   emerald: {
     main: "#009874",
     light: "#1EC79F",
-    dark: "#007055"
+    dark: "#007055",
   },
   sapphire: {
     main: "#0091FF",
     light: "#54B5FF",
-    dark: "#016FC2"
+    dark: "#016FC2",
   },
   text: {
     primary: "#43484D",
     secondary: "#5E6977",
     disabled: "#B5BECA",
-    highlight: "#f44336"
+    highlight: "#f44336",
+    alert: "#C10C0D",
+    expandedMenu: "#FFFFFF",
   },
   border: {
     main: "#cccccc",
-    hover: "#F0F4F7"
+    hover: "#F0F4F7",
+    alert: "#C10C0D",
+  },
+  divider: {
+    dark: "#4C5256",
   },
   background: {
     default: "#F4F4F4",
-    paper: "#FFFFFF"
+    paper: "#FFFFFF",
+    transparency: "CC",
   },
   disabled: {
-    background: "#F0F4F7"
-  }
+    background: "#F0F4F7",
+  },
 };

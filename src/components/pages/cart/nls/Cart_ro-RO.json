@@ -1,0 +1,20 @@
+{
+  "Cart": {
+    "Title": "Coș de cumpărături",
+    "Msgs": {
+      "Empty": "Coșul de cumpărături este gol. Cumpărați acum!",
+      "PromoCode": "Introduceți codul promoțional"
+    },
+    "Labels": {
+      "PromoCode": "Cod promo",
+      "RecurringOrder": "Programați-o ca o comandă recurentă",
+      "Frequency": "Frecvență",
+      "StartDate": "Dată pornire",
+      "OrderSummary": "Sumar comandă"
+    },
+    "Actions": {
+      "Checkout": "Finalizare comandă",
+      "Apply": "Aplicare"
+    }
+  }
+}

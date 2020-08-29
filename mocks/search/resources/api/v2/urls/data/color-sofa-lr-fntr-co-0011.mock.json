@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "blue-color-sofa-lr-fntr-co-0011",
+      "tokenName": "ProductToken",
+      "tokenExternalValue": "lr-fntr-co-0011",
+      "language": "en_US",
+      "id": 3074457345616681169,
+      "page": {
+        "imageAlternateDescription": "Image for Blue Double Sofa from Emerald",
+        "name": "PRODUCT_PAGE",
+        "title": "Blue Double Sofa | Emerald",
+        "type": "VariantPage",
+        "metaDescription": "A long cozy double sofa for lounges.",
+        "metaKeyword": " "
+      },
+      "storeId": "11",
+      "tokenValue": "3074457345616681169",
+      "status": 1
+    }
+  ]
+}

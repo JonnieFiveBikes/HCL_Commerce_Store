@@ -24,6 +24,8 @@ import FormattedPriceDisplay from "../../widgets/formatted-price-display";
 import ProductImage from "./ProductImage";
 import ProductQuantity from "./ProductQuantity";
 import ProductAttributes from "./ProductAttributes";
+import ReactHtmlParser from "react-html-parser";
+
 //Redux
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 import * as orderActions from "../../../redux/actions/order";
@@ -470,7 +472,7 @@ function ProductDetailsLayout({
     const descriptionElement = (
       <>
         <StyledTypography variant="body1">
-          {product.longDescription}
+          {ReactHtmlParser(product.longDescription)}
         </StyledTypography>
       </>
     );

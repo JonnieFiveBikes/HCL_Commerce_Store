@@ -1,12 +1,12 @@
 {
   "OrderTotalSummary": {
     "Labels": {
-      "Subtotal": "Subtotal",
-      "Tax": "Tax",
-      "Shipping": "Shipping",
-      "ShippingTax": "Shipping tax",
-      "Discount": "Total Discount",
-      "Total": "Total"
+      "Subtotal": "Промежуточный итог",
+      "Tax": "Сбор",
+      "Shipping": "Стоимость доставки",
+      "ShippingTax": "Налог на доставку",
+      "Discount": "Общая скидка",
+      "Total": "Итого"
     }
   }
 }

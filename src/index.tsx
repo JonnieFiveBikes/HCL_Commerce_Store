@@ -19,7 +19,12 @@ import "./i18n";
 //Redux
 import store from "./redux/store/index";
 //UI
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import { StylesProvider } from "@material-ui/styles";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { StyledCircularProgress } from "./components/StyledUI";
+import { CurrentTheme } from "./themes";
 import "./index.scss";
 
 const rootElement = document.getElementById("root");
@@ -28,7 +33,14 @@ render(
   <Provider store={store}>
     <Suspense
       fallback={<StyledCircularProgress className="horizontal-padding-5" />}>
-      <App />
+      <StylesProvider injectFirst>
+        <StyledThemeProvider theme={CurrentTheme}>
+          <MuiThemeProvider theme={CurrentTheme}>
+            <CssBaseline />
+            <App />
+          </MuiThemeProvider>
+        </StyledThemeProvider>
+      </StylesProvider>
     </Suspense>
   </Provider>,
   rootElement

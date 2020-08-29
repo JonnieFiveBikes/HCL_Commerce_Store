@@ -32,16 +32,12 @@ import { INIT_STATE_FROM_STORAGE_ACTION } from "./redux/actions/user";
 import { USER_CONTEXT_REQUEST_ACTION } from "./redux/actions/context";
 import { ENTITLED_ORG_ACTION } from "./redux/actions/organization";
 //UI
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { MuiThemeProvider } from "@material-ui/core/styles";
-import { StylesProvider } from "@material-ui/styles";
-import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import {
+  StyledGrid,
   StyledProgressPlaceholder,
   StyledWrapper,
 } from "./components/StyledUI";
 import "./App.scss";
-import { CurrentTheme } from "./themes";
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -89,36 +85,42 @@ const App: React.FC = (props: any) => {
 
   return (
     mySite && (
-      <StylesProvider injectFirst>
-        <StyledThemeProvider theme={CurrentTheme}>
-          <MuiThemeProvider theme={CurrentTheme}>
-            <CssBaseline />
-            <BrowserRouter {...baseName}>
-              <StyledWrapper>
-                <Header loggedIn={loggedIn} />
-                <LoginGuard />
-                <ScrollToTop />
-                <Helmet>
-                  <meta charSet="utf-8" />
-                  <title>
-                    {mySite.storeCfg.description[0]?.displayName ||
-                      mySite.storeName}
-                  </title>
-                </Helmet>
-                <Suspense
-                  fallback={
-                    <StyledProgressPlaceholder className="vertical-padding-20" />
-                  }>
-                  {renderRoutes(
-                    mySite.isB2B ? ROUTE_CONFIG.B2B : ROUTE_CONFIG.B2C
-                  )}
-                </Suspense>
-                <Footer />
-              </StyledWrapper>
-            </BrowserRouter>
-          </MuiThemeProvider>
-        </StyledThemeProvider>
-      </StylesProvider>
+      <BrowserRouter {...baseName}>
+        <StyledWrapper>
+          <StyledGrid
+            container
+            direction="column"
+            justify="space-evenly"
+            alignItems="stretch"
+            className="full-viewport-height">
+            <StyledGrid item xs={false}>
+              <Header loggedIn={loggedIn} />
+              <LoginGuard />
+              <ScrollToTop />
+              <Helmet>
+                <meta charSet="utf-8" />
+                <title>
+                  {mySite.storeCfg.description[0]?.displayName ||
+                    mySite.storeName}
+                </title>
+              </Helmet>
+            </StyledGrid>
+            <StyledGrid item xs>
+              <Suspense
+                fallback={
+                  <StyledProgressPlaceholder className="vertical-padding-20" />
+                }>
+                {renderRoutes(
+                  mySite.isB2B ? ROUTE_CONFIG.B2B : ROUTE_CONFIG.B2C
+                )}
+              </Suspense>
+            </StyledGrid>
+            <StyledGrid item xs={false}>
+              <Footer />
+            </StyledGrid>
+          </StyledGrid>
+        </StyledWrapper>
+      </BrowserRouter>
     )
   );
 };

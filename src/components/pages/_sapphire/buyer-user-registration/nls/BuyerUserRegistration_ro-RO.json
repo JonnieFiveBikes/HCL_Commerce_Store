@@ -1,31 +1,29 @@
 {
   "BuyerUserRegistration": {
-    "Title": "Înregistra?i-vã ca un cumpãrãtor în organiza?ia dvs.",
-    "Description": "Dacã organiza?ia dvs. are deja un cont la acest magazin, înregistra?i-vã singur pentru a putea cumpãra din cont ?i plasa comenzi. Atunci când înregistrarea se aprobã, vã pute?i autentifica în magazin ?i pute?i cumpãra.",
-    "OrgName": "Organiza?ie",
+    "Title": "Înregistrați-vă ca un cumpărător în organizația dvs.",
+    "Description": "Dacă organizația dvs. are deja un cont la acest magazin, înregistrați-vă singur pentru a putea cumpăra din cont și plasa comenzi. Atunci când înregistrarea se aprobă, vă puteți autentifica în magazin și puteți cumpăra.",
+    "OrgName": "Organizație",
     "Email": "E-mail",
-    "Address1": "Adresã stradã - Linia 1",
-    "Address2": "Adresã stradã - Linia 2",
-    "City": "Ora?",
-    "Country": "?arã",
-    "State": "Stat",
-    "ZipCode": "Cod zip",
+    "Address1": "Adresă - Linia 1",
+    "Address2": "Linie adresă 2 (opțional)",
+    "City": "Oraș",
+    "Country": "Țară",
+    "State": "Stat / Provincie",
+    "ZipCode": "Cod zip / poștal",
     "FirstName": "Prenume",
     "LastName": "Nume de familie",
     "LogonId": "Id conectare",
-    "Phone": "Telefon",
-    "Password": "Parolã",
-    "Password2": "Verificare parolã",
-    "Language": "Limbã preferatã",
-    "Currency": "Valutã preferatã",
+    "Phone": "Telefon (opțional)",
+    "Password": "Parolă",
+    "Password2": "Verificare parolă",
+    "Language": "Limbă preferată",
+    "Currency": "Valută preferată",
     "Submit": "Trimitere",
     "Clear": "Golire",
-    "USD": "Dolar SUA",
-    "USEnglish": "Englezã SUA",
-    "Success": "Solicitarea de activare a contului dvs. a fost primitã. Activa?i-vã contul pentru conectare.",
+    "Success": "Solicitarea de activare a contului dvs. a fost primită. Activați-vă contul pentru conectare.",
     "OK": "OK",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "Format nevalid"
     }
   }
 }

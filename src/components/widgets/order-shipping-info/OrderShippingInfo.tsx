@@ -42,7 +42,11 @@ const OrderShippingInfo: React.FC<OrderShippingInfoProps> = (props: any) => {
                 <StyledTypography variant="overline" gutterBottom>
                   {t("OrderShippingInfo.Labels.ShipAddress")}
                 </StyledTypography>
-                <AddressCard addressId={shippingInfo.addressId} />
+                <AddressCard
+                  addressId={shippingInfo.addressId}
+                  addressData={shippingInfo}
+                  readOnly={true}
+                />
               </>
             )}
           </StyledGrid>

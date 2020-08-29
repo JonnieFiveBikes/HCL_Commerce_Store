@@ -22,10 +22,21 @@ const StyledFormControlLabel = styled(({ ...props }) => (
 
     &.MuiFormControlLabel-root.address-display{
       display: inline-block;
-      padding: ${theme.spacing(2)}px;
       margin: 0;
       width: 100%;
+      height: 100%;
     }
+
+    &.MuiFormControlLabel-root.pay-option {
+      margin-left: 0px;
+      margin-right: 0.5px;
+    }
+
+    &.MuiFormControlLabel-root.pay-option:nth-child(odd) {
+      background-color: ${theme.palette.grey[100]};
+      border-top-left-radius: ${theme.shape.borderRadius}px;
+      border-top-right-radius: ${theme.shape.borderRadius}px;
+    }    
   `}
 `;
 

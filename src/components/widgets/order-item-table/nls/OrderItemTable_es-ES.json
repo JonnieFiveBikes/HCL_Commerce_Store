@@ -3,13 +3,19 @@
     "Title": "Artículos del pedido",
     "Labels": {
       "ItemDetails": "Detalles del artículo",
-      "SKU": "SKU",
+      "SKU": "SKU: ",
       "Status": "Estado",
       "Quantity": "Cantidad",
       "Price": "Precio",
       "Actions": "Acciones",
       "Gift": "Regalo gratuito",
-      "NonRecurring": "Non-recurring item"
+      "NonRecurring": "Elemento no recurrente",
+      "PageSizeLabel": "filas",
+      "FirstPage": "Primera página",
+      "LastPage": "Última página",
+      "PreviousPage": "Página anterior",
+      "NextPage": "Página siguiente",
+      "RowCount": "Mostrando de {from} a {to} de {count}"
     },
     "Actions": {
       "Delete": "Suprimir"

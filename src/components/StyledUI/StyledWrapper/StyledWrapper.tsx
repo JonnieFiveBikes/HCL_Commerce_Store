@@ -52,7 +52,6 @@ const StyledWrapper = styled.div`
         }
         .left-padding-${i} {
           padding-left: ${theme.spacing(i)}px;
-          padding-right: ${theme.spacing(i)}px;
         }
         .right-padding-${i} {
           padding-right: ${theme.spacing(i)}px;
@@ -73,7 +72,6 @@ const StyledWrapper = styled.div`
         }
         .left-margin-${i} {
           margin-left: ${theme.spacing(i)}px;
-          margin-right: ${theme.spacing(i)}px;
         }
         .right-margin-${i} {
           margin-right: ${theme.spacing(i)}px;
@@ -92,17 +90,35 @@ const StyledWrapper = styled.div`
         top: 50%;
         transform: translateY(-50%);
       }
+
       .horizontal-center {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
       }
+
       .horizontal-center.vertical-center,
       .full-center {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
+      }
+
+      .full-height {
+        height: 100%;
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      .full-viewport-height {
+        min-height: 100vh;
+      }
+
+      .full-viewport-width {
+        width: 100vw;
       }
 
       .marketing-button {

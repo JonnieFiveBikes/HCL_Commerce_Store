@@ -1,0 +1,22 @@
+{
+  "MyAccount": {
+    "Title": "나의 계정",
+    "AccountSettings": "계정 설정",
+    "PersonalInformation": "개인 정보",
+    "AddressBook": "주소록",
+    "OrderHistory": "주문 기록",
+    "Wishlists": "찜 목록"
+  },
+  "Dashboard": {
+    "Title": "대시보드",
+    "AccountSettings": "계정 설정",
+    "PersonalInformation": "개인 정보",
+    "AddressBook": "주소록",
+    "OrderManagement": "주문 관리",
+    "OrderHistory": "주문 기록",
+    "RecurringOrders": "반복 주문",
+    "RequisitionLists": "요청 목록",
+    "SavedOrders": "저장된 주문",
+    "ApproveOrders": "주문 승인"
+  }
+}

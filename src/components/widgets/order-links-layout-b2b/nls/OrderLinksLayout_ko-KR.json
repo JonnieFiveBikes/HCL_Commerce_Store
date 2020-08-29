@@ -1,18 +1,15 @@
 {
   "OrderLinks": {
-    "Title": "Order Management",
-
-    "OrderHistoryText": "Order History",
-    "OrderHistoryDescription": "Manage and edit saved addresses.",
-    "SavedOrdersText": "Saved Orders",
-    "SavedOrdersDescription": "View and manage saved orders",
-
-    "RecurringOrdersText": "Recurring Orders",
-    "RecurringOrdersDescription": "View and manage list of recurring orders",
-    "ApproveOrdersText": "Approve Orders",
-    "ApproveOrdersDescription": "Approve or reject orders",
-
-    "RequisitionListsText": "Requisition Lists",
-    "RequisitionListsDescription": "View, manage and create requisition lists"
+    "Title": "주문 관리",
+    "OrderHistoryText": "주문 기록",
+    "OrderHistoryDescription": "제출된 주문, 승인 대기 중인 주문, 개별 주문 정보를 확인하십시오",
+    "SavedOrdersText": "저장된 주문",
+    "SavedOrdersDescription": "저장된 주문 보기 및 관리",
+    "RecurringOrdersText": "반복 주문",
+    "RecurringOrdersDescription": "반복 주문 목록 보기 및 관리",
+    "ApproveOrdersText": "주문 승인",
+    "ApproveOrdersDescription": "주문 승인 또는 거부",
+    "RequisitionListsText": "요청 목록",
+    "RequisitionListsDescription": "요청 목록 보기, 관리 및 작성"
   }
 }

@@ -24,8 +24,12 @@ import { userRequiredServices } from "../configs/userRequiredService";
 import { numberParserRequiredServices } from "../configs/numberParserRequiredService";
 import { WC_PREVIEW_TOKEN } from "../constants/common";
 import { site } from "../constants/site";
-import { CURRENT_USER, PERSONALIZATION_ID } from "../constants/user";
-import { sessionStorageUtil, localStorageUtil } from "../utils/storageUtil";
+import { PERSONALIZATION_ID } from "../constants/user";
+import {
+  localStorageUtil,
+  storageSessionHandler,
+  storageStoreIdHandler,
+} from "../utils/storageUtil";
 import guestIdentityService from "../apis/transaction/guestIdentity.service";
 //Custom libraries
 import { CommerceEnvironment } from "../../constants/common";
@@ -70,7 +74,7 @@ const dispatchObject = {
 };
 
 const processTransactionHeader = (header: any) => {
-  const currentUser = sessionStorageUtil.get(CURRENT_USER);
+  const currentUser = storageSessionHandler.getCurrentUser();
   if (currentUser) {
     if (!header["WCTrustedToken"]) {
       header["WCTrustedToken"] = currentUser.WCTrustedToken;
@@ -88,14 +92,14 @@ const processTransactionHeader = (header: any) => {
       header["WCPersonalization"] = personalizationID;
     }
   }
-  const previewToken = sessionStorageUtil.get(WC_PREVIEW_TOKEN);
+  const previewToken = storageSessionHandler.getPreviewToken();
   if (previewToken && previewToken[WC_PREVIEW_TOKEN]) {
     header["WCPreviewToken"] = previewToken[WC_PREVIEW_TOKEN];
   }
 };
 
 const processSearchHeader = (header: any) => {
-  const previewToken = sessionStorageUtil.get(WC_PREVIEW_TOKEN);
+  const previewToken = storageSessionHandler.getPreviewToken();
   if (previewToken && previewToken[WC_PREVIEW_TOKEN]) {
     header["WCPreviewToken"] = previewToken[WC_PREVIEW_TOKEN];
   }
@@ -169,6 +173,8 @@ const initAxios = (dispatch: any) => {
 
 const executeRequest = (request: AxiosRequestConfig): AxiosPromise<any> => {
   const params: URLSearchParams = request.params;
+  //verify active storeId in localStorage.
+  storageStoreIdHandler.verifyActiveStoreId();
   if (!params.has("langId")) {
     // add language Id
     const langId =
@@ -185,7 +191,7 @@ const executeRequest = (request: AxiosRequestConfig): AxiosPromise<any> => {
     (request.url.indexOf(GUEST_IDENTITY) === -1 &&
       request.url.startsWith(site.transactionContext))
   ) {
-    let currentUser = sessionStorageUtil.get(CURRENT_USER);
+    let currentUser = storageSessionHandler.getCurrentUser();
     if (!currentUser && isUserRequiredService(request)) {
       return guestIdentityService
         .login(undefined)

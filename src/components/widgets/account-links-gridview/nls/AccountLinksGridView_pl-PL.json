@@ -1,11 +1,11 @@
 {
   "AccountLinksGridView": {
-    "Title": "Uk³ad siatki",
-    "AddressBookText": "Ksi¹¿ka adresowa",
-    "AddressBookDescription": "Zarz¹dzanie zapisanymi adresami i ich edytowanie",
-    "OrderHistoryText": "Historia zamówieñ",
-    "OrderHistoryDescription": "Pozwala wyœwietliæ z³o¿one zamówienia oraz zamówienia oczekuj¹ce na zatwierdzenie, a tak¿e dane dotycz¹ce poszczególnych zamówieñ",
-    "WishListText": "Lista ¿yczeñ",
-    "WishListDescription": "Lista ¿yczeñ"
+    "Title": "Narzędzia do obsługi mojego konta",
+    "AddressBookText": "Książka adresowa",
+    "AddressBookDescription": "Zarządzanie zapisanymi adresami i ich edytowanie",
+    "OrderHistoryText": "Historia zamówień",
+    "OrderHistoryDescription": "Pozwala wyświetlić złożone zamówienia oraz zamówienia oczekujące na zatwierdzenie, a także dane dotyczące poszczególnych zamówień",
+    "WishListText": "Lista życzeń",
+    "WishListDescription": "Lista życzeń"
   }
 }

@@ -11,7 +11,7 @@
 //Standard libraries
 import React from "react";
 import { useDispatch } from "react-redux";
-import isEmpty from "lodash-es/isEmpty";
+import isEmpty from "lodash/isEmpty";
 import { useTranslation } from "react-i18next";
 import LazyLoadComponent from "react-intersection-observer-lazy-load";
 //Redux

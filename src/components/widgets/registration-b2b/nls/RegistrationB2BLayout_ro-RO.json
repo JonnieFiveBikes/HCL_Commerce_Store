@@ -1,0 +1,9 @@
+{
+  "RegistrationB2BLayout": {
+    "Title": "Client nou?",
+    "Actions": {
+      "BuyerReg": "Înregistrare cumpărător",
+      "OrgReg": "Înregistrare organizație"
+    }
+  }
+}

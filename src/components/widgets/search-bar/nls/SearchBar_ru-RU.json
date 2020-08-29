@@ -2,8 +2,8 @@
   "SearchBar": {
     "SearchField": "Искать",
     "KeywordTitle": "КЛЮЧЕВЫЕ СЛОВА",
-    "CategoryTitle": "CATEGORY",
-    "BrandTitle": "BRAND",
-    "Clear": "Clear search"
+    "CategoryTitle": "КАТЕГОРИЯ",
+    "BrandTitle": "ПРОИЗВОДИТЕЛЬ",
+    "Clear": "Очистить поиск"
   }
 }

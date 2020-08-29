@@ -3,10 +3,10 @@
     "ReturningCustomer": "Cliente abituale",
     "Password": "Password",
     "RememberMe": "Ricordami",
-    "SignInButton": "Accesso",
+    "SignInButton": "Accedi",
     "ForgotPassword": "Password dimenticata",
     "Label": {
-      "B2B": "Logon ID",
+      "B2B": "ID di accesso",
       "Email": "Indirizzo e-mail"
     }
   }

@@ -1,0 +1,43 @@
+{
+  "Header": {
+    "Actions": {
+      "SignIn": "로그인",
+      "SignInRegister": "로그인/등록",
+      "WelcomeFirstname": "{{firstName}}님, 환영합니다",
+      "WelcomeNoFirstname": "{{lastName}}님, 환영합니다",
+      "WishList": "찜 목록",
+      "YourAccount": "나의 계정",
+      "Account": "계정"
+    },
+    "AccountPopper": {
+      "Welcome": "{{lastName}}{{firstName}}님, 환영합니다",
+      "Organization": "조직",
+      "Contract": "장기 구매 계약",
+      "Edit": "편집",
+      "AccountSetting": "계정 설정",
+      "SignOut": "로그아웃",
+      "Cart": "장바구니({{count}}개 품목)",
+      "Cart_plural": "장바구니({{count}}개 품목)"
+    }
+  },
+  "MegaMenu": {
+    "Title": "상품",
+    "Actions": {
+      "ViewAll": "모두 보기"
+    }
+  },
+  "AllCategoriesExpandedMenu": {
+    "AllCategoriesLabel": "모드 카테고리"
+  },
+  "MiniCart": {
+    "Items": "{{count}}개 항목",
+    "Items_plural": "{{count}}개 항목",
+    "Title": "나의 현재 주문",
+    "Subtotal": "{{count}}개 항목의 소계",
+    "Subtotal_plural": "{{count}}개 항목의 소계",
+    "Empty": "장바구니에 품목이 없습니다.",
+    "Actions": {
+      "Cart": "전체 장바구니 보기"
+    }
+  }
+}

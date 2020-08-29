@@ -1,0 +1,43 @@
+{
+  "Header": {
+    "Actions": {
+      "SignIn": "登入",
+      "SignInRegister": "登入 / 註冊",
+      "WelcomeFirstname": "歡迎，{{firstName}}",
+      "WelcomeNoFirstname": "歡迎，{{lastName}}",
+      "WishList": "願望清單",
+      "YourAccount": "您的帳戶",
+      "Account": "帳戶"
+    },
+    "AccountPopper": {
+      "Welcome": "歡迎，{{lastName}}{{firstName}}",
+      "Organization": "組織",
+      "Contract": "合約",
+      "Edit": "編輯",
+      "AccountSetting": "帳戶設定",
+      "SignOut": "登出",
+      "Cart": "購物車（{{count}} 項商品）",
+      "Cart_plural": "購物車（{{count}} 項商品）"
+    }
+  },
+  "MegaMenu": {
+    "Title": "產品",
+    "Actions": {
+      "ViewAll": "檢視全部"
+    }
+  },
+  "AllCategoriesExpandedMenu": {
+    "AllCategoriesLabel": "所有種類"
+  },
+  "MiniCart": {
+    "Items": "{{count}} 項商品",
+    "Items_plural": "{{count}} 項商品",
+    "Title": "您目前的訂單",
+    "Subtotal": "{{count}} 項商品小計",
+    "Subtotal_plural": "{{count}} 項商品小計",
+    "Empty": "您的購物車中沒有商品。",
+    "Actions": {
+      "Cart": "檢視整個購物車"
+    }
+  }
+}

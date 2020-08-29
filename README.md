@@ -24,6 +24,9 @@ products and category data, and SEO page metadata managed by business users from
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This project will be updated with enhancements and fixes as new versions of HCL Commerce Store SDK are made available. Please refer to the UPDATES.md file
+within this project for details.
+
 ## Setup
 
 ### Prerequisites

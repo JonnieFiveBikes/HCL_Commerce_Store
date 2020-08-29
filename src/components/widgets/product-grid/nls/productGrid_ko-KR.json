@@ -2,10 +2,10 @@
   "ProductGrid": {
     "Labels": {
       "filteredBy": "필터링 기준:",
-      "productFound": "<b>{{searchTerm}}</b>에 대해 {{count}}개 상품 검색됨",
-      "productFound_plural": "<b>{{searchTerm}}</b>에 대해 {{count}}개 상품 검색됨",
-      "productSearchFound": "<b>{{searchTerm}}</b>에 대해 {{count}}개 상품 검색됨",
-      "productSearchFound_plural": "<b>{{searchTerm}}</b>에 대해 {{count}}개 상품 검색됨",
+      "productFound": "{{count}}개의 상품 찾음",
+      "productFound_plural": "{{count}}개의 상품 찾음",
+      "productSearchFound": "\"{{searchTerm}}\"에 대해 {{count}}개의 상품 찾음",
+      "productSearchFound_plural": "\"{{searchTerm}}\"에 대해 {{count}}개의 상품 찾음",
       "noMatches": "\"{{searchTerm}}\"과(와) 일치하는 상품이 없습니다.",
       "searchAgain": "죄송합니다. 검색어 \"{{searchTerm}}\"의 결과가 없습니다. 다른 검색을 시도하십시오.",
       "suggestion": "이것을 찾으셨나요? ",

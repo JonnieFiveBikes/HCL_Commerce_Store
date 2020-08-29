@@ -13,6 +13,8 @@ import { createReducer, AnyAction } from "@reduxjs/toolkit";
 import { NOT_FOUND } from "http-status-codes";
 //Custom libraries
 import { INVENTORY_STATUS, SHIPMODE } from "../../constants/order";
+import { MINICART_CONFIGS } from "../../configs/order";
+
 //Redux
 import * as ACTIONS from "../action-types/order";
 import initStates from "./initStates";
@@ -39,7 +41,7 @@ const orderReducer = createReducer(initStates.order, (builder) => {
     }
   );
   builder.addCase(
-    ACTIONS.CART_GET_REQUESTED,
+    ACTIONS.CART_FETCHING_REQUESTED,
     (state: OrderReducerState, action: AnyAction) => {
       state.isFetching = true;
     }
@@ -52,16 +54,21 @@ const orderReducer = createReducer(initStates.order, (builder) => {
         const { orderItem: orderItems, ...cart } = response;
         const newCatentries = action.catentries;
         const checkInventory = action.checkInventory;
+        const updateMiniCartOnly = action.updateMiniCartOnly;
 
-        let count = 0;
-        if (orderItems) {
-          orderItems.map((item: any, index: number) => {
-            count += +item.quantity;
-            return count;
-          });
-        }
         state.cart = cart;
-        state.numItems = count;
+
+        if (!updateMiniCartOnly) {
+          //don't update numItems on miniCart call as only subset is fetched
+          let count = 0;
+          if (orderItems) {
+            orderItems.map((item: any, index: number) => {
+              count += +item.quantity;
+              return count;
+            });
+          }
+          state.numItems = count;
+        }
 
         let newOrderItems: any[] = [];
         let disableRecurringOrder = false;
@@ -114,10 +121,22 @@ const orderReducer = createReducer(initStates.order, (builder) => {
             }
             newOrderItems.push(obj);
           });
-          state.isCheckoutDisabled = disableCheckout;
-          state.isRecurringOrderDisabled = disableRecurringOrder;
+
+          if (!updateMiniCartOnly) {
+            state.isCheckoutDisabled = disableCheckout;
+            state.isRecurringOrderDisabled = disableRecurringOrder;
+          }
         }
-        state.orderItems = newOrderItems;
+        if (!updateMiniCartOnly) {
+          //get last N items from cart for minicart display
+          state.orderItems = newOrderItems;
+          state.miniCartItems = newOrderItems
+            .slice(MINICART_CONFIGS.maxItemsToShow * -1)
+            .reverse();
+        } else {
+          //only last N items were fetched and in descending order already
+          state.miniCartItems = newOrderItems;
+        }
       }
 
       if (state.isRecurringOrderDisabled) {
@@ -141,6 +160,7 @@ const orderReducer = createReducer(initStates.order, (builder) => {
         state.cart = null;
         state.numItems = 0;
         state.orderItems = [];
+        state.miniCartItems = [];
       }
       state.isCheckoutDisabled = true;
       state.isFetching = false;
@@ -150,13 +170,7 @@ const orderReducer = createReducer(initStates.order, (builder) => {
   builder.addCase(
     ACTIONS.SHIPINFO_GET_SUCCESS,
     (state: OrderReducerState, action: AnyAction) => {
-      state.shipAddresses = action.response;
-    }
-  );
-  builder.addCase(
-    ACTIONS.SHIPINFO_UPDATE_SUCCESS,
-    (state: OrderReducerState, action: AnyAction) => {
-      state.checkoutActiveStep = 1;
+      state.shipInfos = action.response;
     }
   );
   builder.addCase(
@@ -179,36 +193,7 @@ const orderReducer = createReducer(initStates.order, (builder) => {
       }
     }
   );
-  builder.addCase(
-    ACTIONS.PI_ADD_SUCCESS,
-    (state: OrderReducerState, action: AnyAction) => {
-      state.checkoutActiveStep = 2;
-    }
-  );
 
-  builder.addCase(
-    ACTIONS.ORDER_PLACE_SUCCESS,
-    (state: OrderReducerState, action: AnyAction) => {
-      state.checkoutActiveStep = 3;
-      state.numItems = 0;
-    }
-  );
-  builder.addCase(
-    ACTIONS.CHECKOUTSTEP_PREV_REQUESTED,
-    (state: OrderReducerState, action: AnyAction) => {
-      if (state.checkoutActiveStep > 0) {
-        state.checkoutActiveStep -= 1;
-      }
-    }
-  );
-  builder.addCase(
-    ACTIONS.CHECKOUTSTEP_RESET_REQUESTED,
-    (state: OrderReducerState, action: AnyAction) => {
-      if (state.checkoutActiveStep > 0) {
-        state.checkoutActiveStep = 0;
-      }
-    }
-  );
   builder.addCase(
     ACTIONS.RECURRINGORDER_TOGGLE_REQUESTED,
     (state: OrderReducerState, action: AnyAction) => {
@@ -231,33 +216,29 @@ const orderReducer = createReducer(initStates.order, (builder) => {
       state.recurringOrderStartDate = action.payload;
     }
   );
-  builder.addCase(
-    ACTIONS.RECURRINGORDER_PLACE_SUCCESS,
-    (state: OrderReducerState, action: AnyAction) => {
-      state.checkoutActiveStep = 3;
-      state.numItems = 0;
-    }
-  );
-
   builder.addCase(LOGOUT_SUCCESS_ACTION, resetCart);
   builder.addCase(ACTIONS.CART_RESET_REQUESTED, resetCart);
 });
 
 function resetCart(state: OrderReducerState, action: AnyAction) {
   state.cart = null;
+  resetCartInfo(state, action);
+}
+
+function resetCartInfo(state: OrderReducerState, action: AnyAction) {
   state.numItems = 0;
   state.orderItems = [];
   state.catentries = null;
   state.isCheckoutDisabled = false;
-  state.shipAddresses = null;
+  state.shipInfos = null;
   state.shipModes = [];
   state.payMethods = [];
-  state.checkoutActiveStep = 0;
   state.isRecurringOrder = false;
   state.recurringOrderFrequency = "0";
   state.recurringOrderStartDate = null;
   state.isRecurringOrderDisabled = false;
   state.isFetching = false;
+  state.miniCartItems = [];
 }
 
 export default orderReducer;

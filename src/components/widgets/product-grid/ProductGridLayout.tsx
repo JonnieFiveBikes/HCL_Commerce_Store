@@ -47,7 +47,7 @@ import {
   StyledSelect,
   StyledMenuItem,
   StyledPagination,
-  StyledFilterChipSection,
+  StyledButton,
   StyledTypography,
 } from "../../StyledUI";
 
@@ -305,9 +305,7 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
   }
 
   return (
-    <div
-      className="product-listing-container productListingWidget"
-      id={`productGrid_div_1_${cid}`}>
+    <div className="product-listing-container productListingWidget top-margin-3">
       {productListTotal === 0 &&
         searchTerm !== "" &&
         suggestedKeywords.length > 0 && (
@@ -339,10 +337,11 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
       {productListTotal > 0 && (
         <StyledGrid
           container
-          className="bottom-margin-2"
-          justify="space-between">
+          className="bottom-margin-1"
+          justify="space-between"
+          alignItems="center">
           <StyledGrid item>
-            <StyledTypography variant="subtitle2" className="top-margin-1">
+            <StyledTypography variant="subtitle2">
               {categoryId !== ""
                 ? t("ProductGrid.Labels.productFound", {
                     count: productListTotal,
@@ -377,55 +376,53 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
       {/* Facet selection listing */}
       {productListTotal > 0 &&
         (Object.keys(selectedFacets).length > 0 || priceSelected) && (
-          <StyledGrid item xs={12}>
-            <StyledFilterChipSection>
-              <span className="facet-title" id={`productGrid_span_10_${cid}`}>
-                {t("ProductGrid.Labels.filteredBy")}
-              </span>
-              {Object.keys(selectedFacets).map((key: string, index: number) => (
-                <Fragment key={key}>
-                  <StyledChip
-                    size="medium"
-                    label={selectedFacets[key]}
-                    onClick={() => onFacetRemove(key)}
-                    onDelete={() => onFacetRemove(key)}
-                    id={`productGrid_a_12_${index}_${cid}`}
+          <StyledGrid
+            item
+            container
+            direction="row"
+            alignItems="center"
+            className="bottom-margin-3">
+            <StyledTypography variant="body2">
+              {t("ProductGrid.Labels.filteredBy")}
+            </StyledTypography>
+            {Object.keys(selectedFacets).map((key: string, index: number) => (
+              <Fragment key={key}>
+                <StyledChip
+                  size="medium"
+                  className="left-margin-1"
+                  label={selectedFacets[key]}
+                  onClick={() => onFacetRemove(key)}
+                  onDelete={() => onFacetRemove(key)}
+                />
+              </Fragment>
+            ))}
+            {priceSelected && (
+              <StyledChip
+                size="medium"
+                className="left-margin-1"
+                label={
+                  <FormattedPriceDisplay
+                    min={selectedMinPrice}
+                    max={selectedMaxPrice}
+                    currency={defaultCurrencyID}
+                    locale={locale}
                   />
-                </Fragment>
-              ))}
-              {priceSelected && (
-                <>
-                  <StyledChip
-                    size="medium"
-                    label={
-                      <FormattedPriceDisplay
-                        min={selectedMinPrice}
-                        max={selectedMaxPrice}
-                        currency={defaultCurrencyID}
-                        locale={locale}
-                      />
-                    }
-                    onClick={() => clearPriceFacet()}
-                    onDelete={() => clearPriceFacet()}
-                    id={`productGrid_span_14_price_${cid}`}
-                  />
-                  {(Object.keys(selectedFacets).length > 1 ||
-                    (priceSelected &&
-                      Object.keys(selectedFacets).length > 0)) && (
-                    <span className="facet-divider">|</span>
-                  )}
-                </>
-              )}
-              {(Object.keys(selectedFacets).length > 1 ||
-                (priceSelected && Object.keys(selectedFacets).length > 0)) && (
+                }
+                onClick={() => clearPriceFacet()}
+                onDelete={() => clearPriceFacet()}
+              />
+            )}
+            {(Object.keys(selectedFacets).length > 1 ||
+              (priceSelected && Object.keys(selectedFacets).length > 0)) && (
+              <StyledButton variant="text" className="left-margin-1">
                 <Link
                   onClick={(event) => onClearAll(event)}
                   to=""
                   className="clear-all">
                   {t("ProductGrid.Actions.clearAll")}
                 </Link>
-              )}
-            </StyledFilterChipSection>
+              </StyledButton>
+            )}
           </StyledGrid>
         )}
 

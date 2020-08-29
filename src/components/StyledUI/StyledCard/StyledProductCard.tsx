@@ -16,16 +16,20 @@ import FormattedPriceDisplay from "../../widgets/formatted-price-display";
 //UI
 import styled from "styled-components";
 import {
+  StyledBox,
   StyledCard,
-  StyledCardActions,
-  StyledCardContent,
   StyledCardMedia,
+  StyledProgressPlaceholder,
   StyledTypography,
 } from "../../StyledUI";
 
-const StyledProductCard = styled(({ className, ...props }) => (
-  <Link className={className} {...props} />
-))`
+const StyledProductCard = styled(({ className, ...props }) =>
+  props.to ? (
+    <Link className={className} {...props} />
+  ) : (
+    <StyledBox className={className} {...props} />
+  )
+)`
   ${({ theme }) => `
     display: block;
     height: 100%;
@@ -42,6 +46,7 @@ interface ProductCardProps {
   seoUrl: any;
   name: any;
   thumbnail: any;
+  thumbnailLoading?: boolean;
   price?: number | null;
   swatches: any[];
   catentryId?: string;
@@ -59,11 +64,38 @@ export function ProductCard(props: ProductCardProps) {
   const seoUrl: any = props.seoUrl;
   const name: string = props.name;
   const thumbnail: string = props.thumbnail;
+  const thumbnailLoading: boolean = props.thumbnailLoading
+    ? props.thumbnailLoading
+    : false;
   const price: number | null = props.price ? props.price : null;
   const swatches: any[] = props.swatches;
   const catentryId: string = props.catentryId ? props.catentryId : "";
   const onClickAction: any = props.onClick ? { onClick: props.onClick } : {};
   const actions: any | null = props.actions ? props.actions : null;
+
+  const contentComponent = (
+    <>
+      {thumbnailLoading ? (
+        <StyledProgressPlaceholder className="vertical-padding-8" />
+      ) : (
+        <StyledCardMedia image={thumbnail} title={name} component="div" />
+      )}
+      <StyledTypography
+        variant="body2"
+        align="center"
+        className="bottom-margin-1 wrapText">
+        {name}
+      </StyledTypography>
+      {swatches.length > 0 && (
+        <StyledTypography align="center">{swatches}</StyledTypography>
+      )}
+      {price && (
+        <StyledTypography variant="body1" align="center">
+          <FormattedPriceDisplay min={price} />
+        </StyledTypography>
+      )}
+    </>
+  );
 
   return (
     <StyledProductCard
@@ -71,26 +103,7 @@ export function ProductCard(props: ProductCardProps) {
       to={seoUrl}
       id={catentryId ? `productCard_a_1_${catentryId}` : ""}
       {...onClickAction}>
-      <StyledCard>
-        <StyledCardMedia image={thumbnail} title={name} />
-        <StyledCardContent>
-          <StyledTypography
-            variant="body2"
-            align="center"
-            className="bottom-margin-1">
-            {name}
-          </StyledTypography>
-          {swatches.length > 0 && (
-            <StyledTypography align="center">{swatches}</StyledTypography>
-          )}
-          {price && (
-            <StyledTypography variant="body1" align="center">
-              <FormattedPriceDisplay min={price} />
-            </StyledTypography>
-          )}
-        </StyledCardContent>
-        {actions && <StyledCardActions disableSpacing></StyledCardActions>}
-      </StyledCard>
+      <StyledCard contentComponent={contentComponent} cardActions={actions} />
     </StyledProductCard>
   );
 }

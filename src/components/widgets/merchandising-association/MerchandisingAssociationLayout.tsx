@@ -49,15 +49,13 @@ function MerchandisingAssociationLayout({ pdpData, ...props }: any) {
       let merchandisingDetails = productDetails[0]?.merchandisingAssociations;
       for (let p of merchandisingDetails) {
         let c = JSON.parse(JSON.stringify(ProductData.productSkeleton));
-        if (p.items) {
-          c.id = p.items[0].id;
-          c.name = p.items[0].name;
-          c.thumbnail = p.items[0].thumbnail;
-          c.attributes = p.attributes;
-          c.seo.href = p.items[0].seo?.href; // TODO, need to implement
-          c.price = p.items[0].price;
-          productList.push(c);
-        }
+        c.id = p.id;
+        c.name = p.name;
+        c.thumbnail = p.thumbnail;
+        c.attributes = p.attributes;
+        c.seo.href = p.seo?.href; // TODO, need to implement
+        c.price = p.price;
+        productList.push(c);
       }
       setProductList(productList);
     }

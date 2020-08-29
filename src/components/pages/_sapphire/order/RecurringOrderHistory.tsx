@@ -107,7 +107,7 @@ const useRecurringOrder = () => {
     },
   };
 
-  const options: Options = {
+  const options: Options<any> = {
     filtering: false,
     showTitle: false,
     toolbar: false,

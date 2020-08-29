@@ -1,8 +1,8 @@
 {
   "OrderBillingInfo": {
-    "Title": "請求書",
+    "Title": "請求情報",
     "Labels": {
-      "BillAddress": "Billing Address"
+      "BillAddress": "請求先住所"
     }
   }
 }

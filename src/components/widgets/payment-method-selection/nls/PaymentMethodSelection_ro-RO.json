@@ -1,0 +1,18 @@
+{
+  "PaymentMethodSelection": {
+    "Title": "Metodă de plată",
+    "Msgs": {
+      "CreditCard": "Plată online sigură. Carduri de credit acceptate: {{cards}}",
+      "CVV": "Ultimele trei cifre de pe banda cu semnătura",
+      "InvalidCardNumber": "Numărul sau tipul cardului nu este valid",
+      "InvalidFormat": "Format nevalid"
+    },
+    "Labels": {
+      "COD": "Numerar la livrare",
+      "CreditCard": "Card de credit",
+      "CCNumber": "Număr card de credit",
+      "ExpiryDate": "Dată de expirare",
+      "CVV": "Cod CVV"
+    }
+  }
+}

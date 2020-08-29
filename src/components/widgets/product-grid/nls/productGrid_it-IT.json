@@ -4,7 +4,7 @@
       "filteredBy": "Filtrato per:",
       "productFound": "{{count}} prodotto trovato",
       "productFound_plural": "{{count}} prodotti trovati",
-      "productSearchFound": "{{count}}prodotto trovato per \"{{searchTerm}}\"",
+      "productSearchFound": "{{count}} prodotto trovato per \"{{searchTerm}}\"",
       "productSearchFound_plural": "{{count}} prodotti trovati per \"{{searchTerm}}\"",
       "noMatches": "0 corrispondenze per \"{{searchTerm}}\".",
       "searchAgain": "Spiacenti, la ricerca di \"{{searchTerm}}\" non ha restituito risultati. Provare con un'altra ricerca.",

@@ -12,7 +12,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import isEmpty from "lodash-es/isEmpty";
+import isEmpty from "lodash/isEmpty";
 import LazyLoadComponent from "react-intersection-observer-lazy-load";
 //Custom libraries
 import { DISPLAY, DEFINING, OFFER } from "../../../constants/common";

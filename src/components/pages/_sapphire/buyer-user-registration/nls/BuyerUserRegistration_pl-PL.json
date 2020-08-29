@@ -1,31 +1,29 @@
 {
   "BuyerUserRegistration": {
-    "Title": "Zarejestruj siê jako kupuj¹cy w swojej organizacji",
-    "Description": "Jeœli Twoja organizacja ma ju¿ konto w tym sklepie, zarejestruj siê, aby mieæ mo¿liwoœæ robienia zakupów w ramach konta i sk³adania zamówieñ. Po zatwierdzeniu rejestracji mo¿esz siê zalogowaæ i rozpocz¹æ zakupy.",
+    "Title": "Zarejestruj się jako kupujący w swojej organizacji",
+    "Description": "Jeśli Twoja organizacja ma już konto w tym sklepie, zarejestruj się, aby mieć możliwość robienia zakupów w ramach konta i składania zamówień. Po zatwierdzeniu rejestracji możesz się zalogować i rozpocząć zakupy.",
     "OrgName": "Organizacja",
     "Email": "Adres e-mail",
-    "Address1": "1. wiersz adresu (ulica)",
-    "Address2": "2. wiersz adresu (ulica)",
-    "City": "Miejscowoœæ",
+    "Address1": "1. wiersz adresu",
+    "Address2": "2. wiersz adresu (opcjonalny)",
+    "City": "Miejscowość",
     "Country": "Kraj",
-    "State": "Województwo",
+    "State": "Województwo/powiat",
     "ZipCode": "Kod pocztowy",
-    "FirstName": "Imiê",
+    "FirstName": "Imię",
     "LastName": "Nazwisko",
     "LogonId": "Identyfikator logowania",
-    "Phone": "Telefon",
-    "Password": "Has³o",
-    "Password2": "PotwierdŸ has³o",
-    "Language": "Preferowany jêzyk",
+    "Phone": "Telefon (opcjonalny)",
+    "Password": "Hasło",
+    "Password2": "Potwierdź hasło",
+    "Language": "Preferowany język",
     "Currency": "Preferowana waluta",
-    "Submit": "Wyœlij",
-    "Clear": "Wyczyœæ",
-    "USD": "USD",
-    "USEnglish": "Angielski - Stany Zjednoczone",
-    "Success": "Otrzymano ¿¹danie aktywacji Twojego konta. Aktywuj swoje konto, aby siê zalogowaæ.",
+    "Submit": "Wyślij",
+    "Clear": "Wyczyść",
+    "Success": "Otrzymano żądanie aktywacji Twojego konta. Aktywuj swoje konto, aby się zalogować.",
     "OK": "OK",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "Nieprawidłowy format"
     }
   }
 }

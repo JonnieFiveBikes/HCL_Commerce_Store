@@ -3,9 +3,13 @@
     "Actions": {
       "SignIn": "Sign In",
       "SignInRegister": "Sign In / Register",
-      "Welcome": " Welcome, {{firstName}}"
+      "WelcomeFirstname": "Welcome, {{firstName}}",
+      "WelcomeNoFirstname": "Welcome, {{lastName}}",
+      "WishList": "Wishlist",
+      "YourAccount": "Your Account",
+      "Account": "Account"
     },
-    "AccountPopover": {
+    "AccountPopper": {
       "Welcome": "Welcome, {{firstName}} {{lastName}}",
       "Organization": "Organization",
       "Contract": "Contract",
@@ -22,7 +26,18 @@
       "ViewAll": "View all"
     }
   },
+  "AllCategoriesExpandedMenu": {
+    "AllCategoriesLabel": "All Categories"
+  },
   "MiniCart": {
-    "Items": "Items"
+    "Items": "{{count}} Item",
+    "Items_plural": "{{count}} Items",
+    "Title": "Your Current Order",
+    "Subtotal": "Subtotal for {{count}} item",
+    "Subtotal_plural": "Subtotal for {{count}} items",
+    "Empty": "There are no items in  your cart.",
+    "Actions": {
+      "Cart": "View Full Cart"
+    }
   }
 }

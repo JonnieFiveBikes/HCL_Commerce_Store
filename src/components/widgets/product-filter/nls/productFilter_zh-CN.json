@@ -2,9 +2,9 @@
   "ProductFilter": {
     "Labels": {
       "filterBy": "筛选方式",
-      "price": "Price",
-      "minPrice": "min",
-      "maxPrice": "max"
+      "price": "价格",
+      "minPrice": "分钟",
+      "maxPrice": "最大值"
     },
     "Actions": {
       "showMore": "显示更多",

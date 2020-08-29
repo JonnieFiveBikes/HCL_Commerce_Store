@@ -1,0 +1,43 @@
+{
+  "Header": {
+    "Actions": {
+      "SignIn": "Entrar",
+      "SignInRegister": "Entrar/Registrar",
+      "WelcomeFirstname": "Bem-vindo, {{firstName}}",
+      "WelcomeNoFirstname": "Bem-vindo, {{lastName}}",
+      "WishList": "Lista de desejos",
+      "YourAccount": "Sua conta",
+      "Account": "Conta"
+    },
+    "AccountPopper": {
+      "Welcome": "Bem-vindo, {{firstName}} {{lastName}}",
+      "Organization": "Organização",
+      "Contract": "Contrato",
+      "Edit": "Editar",
+      "AccountSetting": "Configurações da conta",
+      "SignOut": "Sair",
+      "Cart": "Carrinho ({{count}} item)",
+      "Cart_plural": "Carrinho ({{count}} itens)"
+    }
+  },
+  "MegaMenu": {
+    "Title": "Produtos",
+    "Actions": {
+      "ViewAll": "Visualizar tudo"
+    }
+  },
+  "AllCategoriesExpandedMenu": {
+    "AllCategoriesLabel": "Todas as categorias"
+  },
+  "MiniCart": {
+    "Items": "{{count}} item",
+    "Items_plural": "{{count}} itens",
+    "Title": "Pedido atual",
+    "Subtotal": "Subtotal de {{count}} item",
+    "Subtotal_plural": "Subtotal de {{count}} itens",
+    "Empty": "Não há itens no carrinho.",
+    "Actions": {
+      "Cart": "Visualizar carrinho completo"
+    }
+  }
+}

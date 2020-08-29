@@ -1,0 +1,22 @@
+{
+  "MyAccount": {
+    "Title": "Moje konto",
+    "AccountSettings": "Ustawienia konta",
+    "PersonalInformation": "Dane osobowe",
+    "AddressBook": "Książka adresowa",
+    "OrderHistory": "Historia zamówień",
+    "Wishlists": "Lista życzeń"
+  },
+  "Dashboard": {
+    "Title": "Panel kontrolny",
+    "AccountSettings": "Ustawienia konta",
+    "PersonalInformation": "Dane osobowe",
+    "AddressBook": "Książka adresowa",
+    "OrderManagement": "Zarządzanie zamówieniami",
+    "OrderHistory": "Historia zamówień",
+    "RecurringOrders": "Zamówienia cykliczne",
+    "RequisitionLists": "Wykazy zapotrzebowania",
+    "SavedOrders": "Zapisane zamówienia",
+    "ApproveOrders": "Zatwierdź zamówienia"
+  }
+}

@@ -2,8 +2,8 @@
   "SearchBar": {
     "SearchField": "検索",
     "KeywordTitle": "キーワード",
-    "CategoryTitle": "CATEGORY",
-    "BrandTitle": "BRAND",
-    "Clear": "Clear search"
+    "CategoryTitle": "カテゴリー",
+    "BrandTitle": "ブランド",
+    "Clear": "検索のクリア"
   }
 }

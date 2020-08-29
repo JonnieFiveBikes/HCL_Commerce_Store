@@ -1,0 +1,19 @@
+{
+  "Footer": {
+    "CompanyLinks": {
+      "Label": "Entreprise",
+      "OurStory": "Notre histoire",
+      "Careers": "Carrières"
+    },
+    "Copyright": "Copyright HCL Technologies Limited 2020. Tous droits réservés.",
+    "CustomerService": {
+      "Label": "Service client",
+      "ContactUs": "Nous contacter",
+      "ContactUsDescription": "Nous contacter",
+      "PrivacyPolicy": "Politique de confidentialité"
+    },
+    "FollowUs": "Nous suivre",
+    "Description": "Ce modèle de vitrine est créé sur React et HCL Commerce. HCL Commerce fait du commerce agile à l'échelle une réalité.",
+    "DisabledMessage": "Désolé, cette page est toujours en cours de développement."
+  }
+}

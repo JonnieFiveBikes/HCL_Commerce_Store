@@ -3,14 +3,14 @@
     "NewCustomer": "¿Es un nuevo cliente?",
     "FirstName": "Nombre",
     "LastName": "Apellidos",
-    "Email": "Email",
+    "Email": "Correo electrónico",
     "Phone": "Teléfono (opcional)",
     "Password": "Contraseña",
-    "VerifyPassword": "Verify Password",
+    "VerifyPassword": "Verificar contraseña",
     "TextContent": "Reciba ideas de diseño de interiores en su bandeja de entrada",
     "Register": "Registro",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "Formato no válido"
     }
   }
 }

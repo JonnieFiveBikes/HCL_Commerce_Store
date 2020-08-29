@@ -1,0 +1,16 @@
+{
+  "Checkout": {
+    "Title": "Règlement",
+    "Labels": {
+      "shipping": "Expédition et facturation",
+      "payment": "Paiement et livraison",
+      "review": "Examiner la commande"
+    },
+    "Actions": {
+      "ReturnCart": "Revenir au panier",
+      "BackTo": "Retour à {{step}}",
+      "ContinueTo": "Poursuivre vers {{step}}",
+      "PlaceOrder": "Passer une commande"
+    }
+  }
+}

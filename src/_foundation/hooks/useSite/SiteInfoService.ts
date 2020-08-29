@@ -11,9 +11,14 @@
 //Standard libraries
 import Axios, { AxiosRequestConfig } from "axios";
 //Foundation libraries
-import { sessionStorageUtil, localStorageUtil } from "../../utils/storageUtil";
+import {
+  sessionStorageUtil,
+  localStorageUtil,
+  storageSessionHandler,
+  windowRegistryHandler,
+  storageStoreIdHandler,
+} from "../../utils/storageUtil";
 import { WC_PREVIEW_TOKEN, NEW_PREVIEW_SESSION } from "../../constants/common";
-import { CURRENT_USER } from "../../constants/user";
 import { SiteInfo } from "../../../redux/reducers/reducerStateInterface";
 //Redux
 import { INIT_SITE_SUCCESS_ACTION } from "../../../redux/actions/site";
@@ -52,19 +57,26 @@ export class SiteInfoService {
   private initStorage(site: SiteInfo) {
     sessionStorageUtil.setStoreName(site.storeName);
     localStorageUtil.setStoreName(site.storeName);
-
+    storageStoreIdHandler.setStoreId(site.storeID);
+    windowRegistryHandler.registerWindow();
+    window.addEventListener("unload", function (event) {
+      windowRegistryHandler.unRegisterWindow();
+    });
+    window.addEventListener("contextmenu", function (this, event) {
+      storageStoreIdHandler.verifyActiveStoreId();
+    });
     //preview token
     const storeviewURL = new URL(window.location.href);
     const wcPreviewToken = {};
     const previewtoken = storeviewURL.searchParams.get(WC_PREVIEW_TOKEN);
     if (previewtoken !== null) {
       wcPreviewToken[WC_PREVIEW_TOKEN] = previewtoken;
-      sessionStorageUtil.set(WC_PREVIEW_TOKEN, wcPreviewToken);
+      storageSessionHandler.savePreviewToken(wcPreviewToken);
       const newPreviewSession = storeviewURL.searchParams.get(
         NEW_PREVIEW_SESSION
       );
       if ("true" === newPreviewSession) {
-        sessionStorageUtil.remove(CURRENT_USER);
+        storageSessionHandler.removeCurrentUser();
       }
     }
   }
@@ -73,10 +85,7 @@ export class SiteInfoService {
     const _site: SiteInfoArgs = Object.assign({}, s);
     let storeId = typeof HCL_STORE_ID === undefined ? undefined : HCL_STORE_ID;
     if (!storeId) {
-      //at this point, the sessionkey does not have storename prefix.
-      storeId = sessionStorageUtil.getStoreId();
-    } else {
-      sessionStorageUtil.setStoreId(storeId);
+      storeId = storageStoreIdHandler.getStoreId4Initialization();
     }
     if (!storeId) {
       //no store ID, lookup default name first.

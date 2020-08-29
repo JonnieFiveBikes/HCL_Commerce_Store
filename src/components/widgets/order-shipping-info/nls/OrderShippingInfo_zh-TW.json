@@ -1,9 +1,9 @@
 {
   "OrderShippingInfo": {
-    "Title": "Shipping",
+    "Title": "運送資訊",
     "Labels": {
-      "ShipAddress": "Shipping Address",
-      "ShipMethod": "Shipping Method"
+      "ShipAddress": "運送地址",
+      "ShipMethod": "運送方法"
     }
   }
 }

@@ -2,7 +2,7 @@
   "ProductFilter": {
     "Labels": {
       "filterBy": "Filtrer par",
-      "price": "Price",
+      "price": "Prix",
       "minPrice": "min",
       "maxPrice": "max"
     },

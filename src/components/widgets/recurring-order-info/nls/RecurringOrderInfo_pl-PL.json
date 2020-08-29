@@ -1,0 +1,12 @@
+{
+  "RecurringOrderInfo": {
+    "Title": "Szczegóły zamówienia cyklicznego",
+    "Labels": {
+      "RecurringOrderNumber": "Numer zamówienia cyklicznego",
+      "OrderSchedule": "Harmonogram zamówienia",
+      "StartDate": "Data rozpoczęcia",
+      "NextDelivery": "Następne zaplanowane zamówienie",
+      "OrderHistoryButton": "Historia zamówienia {{orderId}}"
+    }
+  }
+}

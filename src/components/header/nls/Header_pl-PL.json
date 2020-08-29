@@ -1,0 +1,43 @@
+{
+  "Header": {
+    "Actions": {
+      "SignIn": "Zaloguj się",
+      "SignInRegister": "Zaloguj się/zarejestruj",
+      "WelcomeFirstname": "Witaj, {{firstName}}",
+      "WelcomeNoFirstname": "Witaj, {{lastName}}",
+      "WishList": "Lista życzeń",
+      "YourAccount": "Twoje konto",
+      "Account": "Konto"
+    },
+    "AccountPopper": {
+      "Welcome": "Witaj, {{firstName}} {{lastName}}",
+      "Organization": "Organizacja",
+      "Contract": "Kontrakt",
+      "Edit": "Edytuj",
+      "AccountSetting": "Ustawienia konta",
+      "SignOut": "Wyloguj się",
+      "Cart": "Koszyk ({{count}} pozycja)",
+      "Cart_plural": "Koszyk (pozycje: {{count}})"
+    }
+  },
+  "MegaMenu": {
+    "Title": "Produkty",
+    "Actions": {
+      "ViewAll": "Wyświetl wszystko"
+    }
+  },
+  "AllCategoriesExpandedMenu": {
+    "AllCategoriesLabel": "Wszystkie kategorie"
+  },
+  "MiniCart": {
+    "Items": "{{count}} pozycja",
+    "Items_plural": "Pozycje: {{count}}",
+    "Title": "Twoje bieżące zamówienie",
+    "Subtotal": "Suma częściowa dla {{count}} pozycji",
+    "Subtotal_plural": "Suma częściowa dla {{count}} pozycji",
+    "Empty": "W Twoim koszyku nie ma żadnych pozycji.",
+    "Actions": {
+      "Cart": "Wyświetl cały koszyk"
+    }
+  }
+}

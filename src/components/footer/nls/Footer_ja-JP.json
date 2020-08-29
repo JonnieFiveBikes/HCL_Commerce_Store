@@ -1,0 +1,19 @@
+{
+  "Footer": {
+    "CompanyLinks": {
+      "Label": "会社",
+      "OurStory": "企業沿革",
+      "Careers": "経歴"
+    },
+    "Copyright": "Copyright HCL Technologies Limited 2020. All rights reserved.",
+    "CustomerService": {
+      "Label": "お客様サービス",
+      "ContactUs": "連絡先",
+      "ContactUsDescription": "連絡先",
+      "PrivacyPolicy": "プライバシー・ポリシー"
+    },
+    "FollowUs": "フォローする",
+    "Description": "このストアフロントのサンプルは React および HCL Commerce をベースにして構築されています。HCL Commerce は大規模なアジャイル・コマースを実現します。",
+    "DisabledMessage": "申し訳ありません。このページはまだ開発中です。"
+  }
+}

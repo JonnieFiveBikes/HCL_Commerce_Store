@@ -1,12 +1,12 @@
 {
   "OrderTotalSummary": {
     "Labels": {
-      "Subtotal": "Subtotal",
-      "Tax": "Tax",
-      "Shipping": "Shipping",
-      "ShippingTax": "Shipping tax",
-      "Discount": "Total Discount",
-      "Total": "Total"
+      "Subtotal": "Suma częściowa",
+      "Tax": "Podatek",
+      "Shipping": "Do dostawy",
+      "ShippingTax": "Podatek od kosztów dostawy",
+      "Discount": "Łączny upust",
+      "Total": "Łącznie"
     }
   }
 }

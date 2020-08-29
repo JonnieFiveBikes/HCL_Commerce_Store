@@ -1,20 +1,25 @@
 {
   "AddressForm": {
     "Msgs": {
-      "InvalidFormat": "無効な形式です"
+      "InvalidFormat": "無効な形式です",
+      "InvalidAddressName": "住所名には英数字 (A～Z、a～z、0～9) と空白文字のみを使用できます。"
     },
     "Labels": {
       "FirstName": "名",
       "LastName": "姓",
       "Address1": "住所行 1",
-      "Address2": "住所行 2",
+      "Address2": "住所行 2 (オプション)",
       "City": "市区町村",
       "Country": "国",
       "State": "都道府県",
       "ZipCode": "郵便番号",
-      "Phone": "電話番号",
+      "Phone": "電話番号 (任意)",
       "Email": "E メール",
-      "NickName": "住所のニックネーム"
+      "NickName": "住所の名前",
+      "AddressType": "住所のタイプ",
+      "Shipping": "配送先",
+      "Billing": "請求書",
+      "ShippingAndBilling": "配送先および請求先"
     }
   }
 }

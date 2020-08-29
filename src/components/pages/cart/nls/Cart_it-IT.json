@@ -1,0 +1,20 @@
+{
+  "Cart": {
+    "Title": "Carrello della spesa",
+    "Msgs": {
+      "Empty": "Il tuo carrello della spesa è vuoto. Fai la spesa.",
+      "PromoCode": "Immetti il codice promozionale"
+    },
+    "Labels": {
+      "PromoCode": "Codice promozione",
+      "RecurringOrder": "Pianifica questo ordine come ricorrente",
+      "Frequency": "Frequenza",
+      "StartDate": "Data di inizio",
+      "OrderSummary": "Riepilogo ordine"
+    },
+    "Actions": {
+      "Checkout": "Checkout",
+      "Apply": "Applica"
+    }
+  }
+}

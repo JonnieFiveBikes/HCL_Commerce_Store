@@ -4,9 +4,9 @@
     "Password": "Palavra-passe",
     "RememberMe": "Lembrar-me",
     "SignInButton": "Iniciar sessão",
-    "ForgotPassword": "Palavra-passe esquecida",
+    "ForgotPassword": "Esqueceu-se da palavra-passe?",
     "Label": {
-      "B2B": "Logon ID",
+      "B2B": "ID de início de sessão",
       "Email": "Endereço de e-mail"
     }
   }

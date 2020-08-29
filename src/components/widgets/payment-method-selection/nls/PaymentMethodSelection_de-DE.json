@@ -1,0 +1,18 @@
+{
+  "PaymentMethodSelection": {
+    "Title": "Zahlungsmethode",
+    "Msgs": {
+      "CreditCard": "Sichere Online-Zahlung. Akzeptierte Kreditkarten: {{cards}}",
+      "CVV": "Die letzten drei Ziffern auf dem Unterschriftsstreifen",
+      "InvalidCardNumber": "Ungültige Kartennummer bzw. ungültiger Kartenttyp",
+      "InvalidFormat": "Ungültiges Format"
+    },
+    "Labels": {
+      "COD": "Per Nachnahme",
+      "CreditCard": "Kreditkarte",
+      "CCNumber": "Kreditkartennummer",
+      "ExpiryDate": "Ablaufdatum",
+      "CVV": "CVV-Code"
+    }
+  }
+}

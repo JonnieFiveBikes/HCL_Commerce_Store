@@ -1,0 +1,18 @@
+{
+  "PaymentMethodSelection": {
+    "Title": "Método de pagamento",
+    "Msgs": {
+      "CreditCard": "Pagamento seguro on-line. Cartões de crédito aceitos: {{cards}}",
+      "CVV": "Últimos três dígitos no campo de assinatura",
+      "InvalidCardNumber": "Tipo ou número de cartão inválido",
+      "InvalidFormat": "Formato inválido"
+    },
+    "Labels": {
+      "COD": "Pagamento em dinheiro na entrega",
+      "CreditCard": "Cartão de crédito",
+      "CCNumber": "Número do cartão de crédito",
+      "ExpiryDate": "Data de expiração",
+      "CVV": "Código CVV"
+    }
+  }
+}

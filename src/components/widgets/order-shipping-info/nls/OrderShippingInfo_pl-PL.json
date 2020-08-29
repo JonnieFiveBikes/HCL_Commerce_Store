@@ -1,9 +1,9 @@
 {
   "OrderShippingInfo": {
-    "Title": "Shipping",
+    "Title": "Informacje o wysyłce",
     "Labels": {
-      "ShipAddress": "Shipping Address",
-      "ShipMethod": "Shipping Method"
+      "ShipAddress": "Adres wysyłki",
+      "ShipMethod": "Sposób wysyłki"
     }
   }
 }

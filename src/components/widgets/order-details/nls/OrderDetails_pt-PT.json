@@ -1,10 +1,10 @@
 {
   "OrderDetails": {
-    "Title": "Order Details",
+    "Title": "Detalhes do pedido",
     "Actions": {
-      "Back": "Back to Payment Details",
-      "Next": "Place Order",
-      "NextRecurringOrder": "Place Recurring Order"
+      "Back": "Voltar a Dados de pagamento",
+      "Next": "Fazer pedido",
+      "NextRecurringOrder": "Fazer pedido recorrente"
     }
   }
 }

@@ -2,8 +2,8 @@
   "SearchBar": {
     "SearchField": "Suche",
     "KeywordTitle": "STICHWORTE",
-    "CategoryTitle": "CATEGORY",
-    "BrandTitle": "BRAND",
-    "Clear": "Clear search"
+    "CategoryTitle": "KATEGORIE",
+    "BrandTitle": "MARKE",
+    "Clear": "Suche löschen"
   }
 }

@@ -1,0 +1,19 @@
+{
+  "Footer": {
+    "CompanyLinks": {
+      "Label": "Compañía",
+      "OurStory": "Nuestra historia",
+      "Careers": "Carreras"
+    },
+    "Copyright": "Copyright HCL Technologies Limited 2020. Todos los derechos reservados.",
+    "CustomerService": {
+      "Label": "Servicio al cliente",
+      "ContactUs": "Póngase en contacto",
+      "ContactUsDescription": "Póngase en contacto",
+      "PrivacyPolicy": "Política de privacidad"
+    },
+    "FollowUs": "Síganos",
+    "Description": "Este escaparate de muestra se ha creado con React y HCL Commerce. HCL Commerce convierte el comercio ágil a escala en realidad.",
+    "DisabledMessage": "Lo sentimos, esta página aún está en desarrollo."
+  }
+}

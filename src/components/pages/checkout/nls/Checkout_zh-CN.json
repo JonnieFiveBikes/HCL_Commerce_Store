@@ -1,0 +1,16 @@
+{
+  "Checkout": {
+    "Title": "结账",
+    "Labels": {
+      "shipping": "配送和账单",
+      "payment": "付款和交货",
+      "review": "查看订单"
+    },
+    "Actions": {
+      "ReturnCart": "返回购物车",
+      "BackTo": "返回 {{step}}",
+      "ContinueTo": "继续 {{step}}",
+      "PlaceOrder": "下订单"
+    }
+  }
+}

@@ -1,15 +1,14 @@
 {
-   "SessionError":{
-      "TimeoutTitle":"Su sesión ha excedido el tiempo de espera",
-      "InvalidTitle":"Error de sesión no válida",
-      "GenericTitle":"Error genérico",
-      "TimeoutMsg":"Se ha excedido el tiempo de espera de la sesión y se ha cerrado correctamente. Vuelva a iniciarla para acceder a su tienda.",
-      "InvalidMsg":"Puede que otro usuario haya utilizado su ID de inicio de sesión en otra ubicación. Vuelva a iniciar la sesión para acceder a su tienda.",
-      "Email":"Correo electrónico",
-      "Password":"Contraseña",
-      "SubmitButton":"Iniciar sesión",
-      "CancelButton":"Cancelar",
-      "ActionIncomplete":"No se ha completado su solicitud porque puede que su ID de inicio de sesión esté en uso en otra ubicación. Vuelva a iniciar la sesión para continuar."
-   
-}
+  "SessionError": {
+    "TimeoutTitle": "Su sesión ha excedido el tiempo de espera",
+    "InvalidTitle": "Error de sesión no válida",
+    "GenericTitle": "Error genérico",
+    "TimeoutMsg": "Se ha excedido el tiempo de espera de la sesión y se ha cerrado correctamente. Vuelva a iniciarla para acceder a su tienda.",
+    "InvalidMsg": "Puede que otro usuario haya utilizado su ID de inicio de sesión en otra ubicación. Vuelva a iniciar la sesión para acceder a su tienda.",
+    "Email": "Correo electrónico",
+    "Password": "Contraseña",
+    "SubmitButton": "Iniciar sesión",
+    "CancelButton": "Cancelar",
+    "ActionIncomplete": "No se ha completado su solicitud porque puede que su ID de inicio de sesión esté en uso en otra ubicación. Vuelva a iniciar la sesión para continuar."
+  }
 }

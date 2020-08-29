@@ -1,15 +1,14 @@
 {
-   "SessionError":{
-      "TimeoutTitle":"Przekroczono limit czasu sesji",
-      "InvalidTitle":"Błąd niepoprawnej sesji",
-      "GenericTitle":"Błąd ogólny",
-      "TimeoutMsg":"Sesja wygasła i użytkownik został wylogowany. Zaloguj się ponownie, aby uzyskać dostęp do sklepu.",
-      "InvalidMsg":"Twój identyfikator logowania mógł zostać użyty w innym miejscu. Zaloguj się ponownie, aby uzyskać dostęp do sklepu.",
-      "Email":"Adres e-mail",
-      "Password":"Hasło",
-      "SubmitButton":"Zaloguj się",
-      "CancelButton":"Anuluj",
-      "ActionIncomplete":"Twoje żądanie nie zostało wykonane, ponieważ identyfikator logowania może być używany w innym miejscu. Zaloguj się ponownie, aby kontynuować."
-   
-}
+  "SessionError": {
+    "TimeoutTitle": "Przekroczono limit czasu sesji",
+    "InvalidTitle": "Błąd niepoprawnej sesji",
+    "GenericTitle": "Błąd ogólny",
+    "TimeoutMsg": "Sesja wygasła i użytkownik został wylogowany. Zaloguj się ponownie, aby uzyskać dostęp do sklepu.",
+    "InvalidMsg": "Twój identyfikator logowania mógł zostać użyty w innym miejscu. Zaloguj się ponownie, aby uzyskać dostęp do sklepu.",
+    "Email": "Adres e-mail",
+    "Password": "Hasło",
+    "SubmitButton": "Zaloguj się",
+    "CancelButton": "Anuluj",
+    "ActionIncomplete": "Twoje żądanie nie zostało wykonane, ponieważ identyfikator logowania może być używany w innym miejscu. Zaloguj się ponownie, aby kontynuować."
+  }
 }

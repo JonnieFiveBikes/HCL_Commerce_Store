@@ -144,19 +144,22 @@ function ProductRecommendationLayout({
         const prod = {
           id: product.productId,
           name: product.description[0].productName,
-          thumbnail:
-            product.description[0].thumbnail.indexOf("/") === 0
+          thumbnail: product.description[0].thumbnail
+            ? product.description[0].thumbnail.indexOf("/") === 0
               ? `/${storePath}${product.description[0].thumbnail}`
-              : `/${storePath}${product.description[0].thumbnail}`,
+              : `/${storePath}/${product.description[0].thumbnail}`
+            : "",
           seo: { href: "#" },
           price: [
             {
               usage: "Offer",
-              value: contractId
-                ? product.contractPrice.filter(
-                    (p) => p.contractID === contractId
-                  )[0]?.contractPrice
-                : product.contractPrice[0].contractPrice,
+              value: product.contractPrice
+                ? contractId
+                  ? product.contractPrice.filter(
+                      (p) => p.contractID === contractId
+                    )[0]?.contractPrice
+                  : product.contractPrice[0].contractPrice
+                : "",
             },
           ],
         };

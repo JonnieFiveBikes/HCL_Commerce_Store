@@ -1,18 +1,24 @@
 {
   "OrderItemTable": {
-    "Title": "Order Items",
+    "Title": "Articole comandă",
     "Labels": {
-      "ItemDetails": "Item Details",
-      "SKU": "SKU",
-      "Status": "Status",
-      "Quantity": "Quantity",
-      "Price": "Price",
-      "Actions": "Actions",
-      "Gift": "Free gift",
-      "NonRecurring": "Non-recurring item"
+      "ItemDetails": "Detalii articol",
+      "SKU": "SKU: ",
+      "Status": "Stare",
+      "Quantity": "Cantitate",
+      "Price": "Preț",
+      "Actions": "Acțiuni",
+      "Gift": "Cadou gratuit",
+      "NonRecurring": "Articol nerecent",
+      "PageSizeLabel": "rânduri",
+      "FirstPage": "Prima pagină",
+      "LastPage": "Ultima pagină",
+      "PreviousPage": "Pagina anterioară",
+      "NextPage": "Pagina următoare",
+      "RowCount": "Se afișează de la {from} la {to} din {count}"
     },
     "Actions": {
-      "Delete": "Delete"
+      "Delete": "Ștergere"
     }
   }
 }

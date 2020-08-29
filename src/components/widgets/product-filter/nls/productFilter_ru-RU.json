@@ -2,8 +2,8 @@
   "ProductFilter": {
     "Labels": {
       "filterBy": "Отфильтровать по",
-      "price": "Price",
-      "minPrice": "минимальная",
+      "price": "Цена",
+      "minPrice": "мин.",
       "maxPrice": "максимальная"
     },
     "Actions": {

@@ -19,12 +19,12 @@ const StyledTypography = styled(({ ...rest }) => <Typography {...rest} />)`
     }
     a {
       color: ${theme.palette.primary.main};
-  
+
       &:hover {
         color: ${theme.palette.primary.dark};
         font-weight: 500;
       }
-  
+
       &:visited {
         color: ${theme.palette.primary.main};
       }
@@ -43,6 +43,30 @@ const StyledTypography = styled(({ ...rest }) => <Typography {...rest} />)`
       font-size: 0.9em;
       opacity: 0.8;
       margin-right: ${theme.spacing(1)}px;
+    }
+
+    &.expanded-menu-bold {
+      font-size:12px;
+      font-weight: bold;
+      margin-bottom:${theme.spacing(1.25)}px;
+    }
+
+    &.expanded-menu-sub-links {
+      font-size:12px;
+      margin-bottom: ${theme.spacing(0.63)}px;
+    }
+
+    &.expanded-menu-text {
+      color: ${theme.palette.text.expandedMenu};
+      &.MuiTypography-body2 {
+        font-size:12px;
+      }
+    }
+    &.wrapText {
+      &.MuiTypography-body2 {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+      }
     }
   `}
 `;
@@ -87,7 +111,7 @@ export const StyledMenuTypography = styled(({ ...props }) => (
   &.searchBar-resultsCategory {
     color: ${theme.palette.text.secondary};
     padding: ${theme.spacing(1)}px ${theme.spacing(2)}px;
-    
+
     &.MuiTypography-body2 {
       display: block;
     }
@@ -95,7 +119,7 @@ export const StyledMenuTypography = styled(({ ...props }) => (
     &:hover {
       color: ${theme.palette.text.secondary};
     }
-    
+
     &:not(:first-child) {
       border-top: 1px solid ${theme.palette.text.disabled};
       padding-top: ${theme.spacing(2)}px;

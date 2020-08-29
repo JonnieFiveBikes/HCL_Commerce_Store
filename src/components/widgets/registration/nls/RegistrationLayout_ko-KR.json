@@ -3,14 +3,14 @@
     "NewCustomer": "처음 방문 고객",
     "FirstName": "이름",
     "LastName": "성",
-    "Email": "Email",
+    "Email": "이메일",
     "Phone": "전화번호(선택)",
     "Password": "암호",
-    "VerifyPassword": "Verify Password",
-    "TextContent": "전자 우편으로 집 꾸미기 아이디어 받아 보기",
+    "VerifyPassword": "암호 확인",
+    "TextContent": "이메일로 집 꾸미기 아이디어 받아 보기",
     "Register": "등록",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "올바르지 않은 형식"
     }
   }
 }

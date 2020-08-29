@@ -1,0 +1,16 @@
+{
+  "Checkout": {
+    "Title": "Finalizar compra",
+    "Labels": {
+      "shipping": "Remessa e cobrança",
+      "payment": "Pagamento e entrega",
+      "review": "Revisar pedido"
+    },
+    "Actions": {
+      "ReturnCart": "Retornar ao carrinho",
+      "BackTo": "Voltar para {{step}}",
+      "ContinueTo": "Avançar para {{step}}",
+      "PlaceOrder": "Inserir pedido"
+    }
+  }
+}

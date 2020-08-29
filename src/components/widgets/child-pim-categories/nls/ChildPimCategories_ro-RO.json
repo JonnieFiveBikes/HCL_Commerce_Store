@@ -1,3 +1,5 @@
 {
-  "ChildPimCategories": { "title": "Toate {{name}}" }
+  "ChildPimCategories": {
+    "title": "Toate {{name}}"
+  }
 }

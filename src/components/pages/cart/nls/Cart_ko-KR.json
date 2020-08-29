@@ -1,0 +1,20 @@
+{
+  "Cart": {
+    "Title": "장바구니",
+    "Msgs": {
+      "Empty": "장바구니가 비어 있습니다. 지금 쇼핑하십시오!",
+      "PromoCode": "특별 판매 코드 입력"
+    },
+    "Labels": {
+      "PromoCode": "특별 판매 코드",
+      "RecurringOrder": "이 주문을 반복 주문으로 스케줄링",
+      "Frequency": "빈도",
+      "StartDate": "시작 날짜",
+      "OrderSummary": "주문 요약"
+    },
+    "Actions": {
+      "Checkout": "결제",
+      "Apply": "적용"
+    }
+  }
+}

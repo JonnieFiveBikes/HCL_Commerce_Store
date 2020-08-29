@@ -1,20 +1,25 @@
 {
   "AddressForm": {
     "Msgs": {
-      "InvalidFormat": "올바르지 않은 형식"
+      "InvalidFormat": "올바르지 않은 형식",
+      "InvalidAddressName": "주소 이름은 영문자(A-Z, a-z, 0-9)와 공백만 포함할 수 있습니다."
     },
     "Labels": {
       "FirstName": "이름",
       "LastName": "성",
       "Address1": "주소(1행)",
-      "Address2": "주소(2행)",
+      "Address2": "주소(2행, 선택사항)",
       "City": "도시",
       "Country": "국가",
       "State": "주/도",
       "ZipCode": "우편번호",
-      "Phone": "전화번호",
+      "Phone": "전화번호(선택)",
       "Email": "이메일",
-      "NickName": "주소 별명"
+      "NickName": "주소 이름",
+      "AddressType": "주소 유형",
+      "Shipping": "운송료",
+      "Billing": "지불 청구",
+      "ShippingAndBilling": "운송 및 지불 청구"
     }
   }
 }

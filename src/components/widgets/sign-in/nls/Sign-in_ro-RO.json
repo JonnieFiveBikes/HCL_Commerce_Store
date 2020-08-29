@@ -2,12 +2,12 @@
   "SignIn": {
     "ReturningCustomer": "Client care se întoarce",
     "Password": "Parolă",
-    "RememberMe": "Re?ine-mã",
+    "RememberMe": "Reține-mă",
     "SignInButton": "Autentificare",
-    "ForgotPassword": "Ați uitat parola",
+    "ForgotPassword": "Parola uitată",
     "Label": {
-      "B2B": "Logon ID",
-      "Email": "Adresã e-mail"
+      "B2B": "ID conectare",
+      "Email": "Adresă e-mail"
     }
   }
 }

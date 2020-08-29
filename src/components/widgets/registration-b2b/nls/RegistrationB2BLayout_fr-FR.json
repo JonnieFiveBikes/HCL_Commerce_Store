@@ -1,0 +1,9 @@
+{
+  "RegistrationB2BLayout": {
+    "Title": "Nouveau client ?",
+    "Actions": {
+      "BuyerReg": "Enregistrement d'acheteurs",
+      "OrgReg": "Enregistrement de l'organisation"
+    }
+  }
+}

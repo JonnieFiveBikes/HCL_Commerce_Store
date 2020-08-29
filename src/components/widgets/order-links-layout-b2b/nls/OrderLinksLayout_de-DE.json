@@ -2,7 +2,7 @@
   "OrderLinks": {
     "Title": "Benutzerverwaltung",
     "OrderHistoryText": "Bestellverlauf",
-    "OrderHistoryDescription": "Verwalten und bearbeiten Sie gespeicherte Adressen.",
+    "OrderHistoryDescription": "Aufgegebene Bestellungen und Bestellungen, die auf Genehmigung warten, und einzelne Bestelldetails anzeigen.",
     "SavedOrdersText": "Gespeicherte Bestellungen",
     "SavedOrdersDescription": "Gespeicherte Bestellungen anzeigen und verwalten",
     "RecurringOrdersText": "Wiederkehrende Bestellungen",

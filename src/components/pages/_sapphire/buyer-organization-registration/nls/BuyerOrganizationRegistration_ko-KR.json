@@ -1,21 +1,21 @@
 {
   "BuyerOrganizationRegistration": {
     "Title": "조직 등록",
-    "Description": "이 상점의 계정 설정 프로세스를 시작하려면 조직을 등록하십시오. 등록이 승인되면 조직의 관리자가 로그인하고 구매자를 등록할 수 있으며, 구매자가 자신을 등록할 수 있습니다.",
+    "Description": "이 스토어의 계정 설정 프로세스를 시작하려면 조직을 등록하십시오. 등록이 승인되면 조직의 관리자가 로그인하고 구매자를 등록할 수 있으며, 구매자가 자신을 등록할 수 있습니다.",
     "OrgDetails": "조직에 대한 상세 정보 제공",
     "UserDetails": "조직을 관리하고 구매자를 관리할 사람에 대한 상세 정보를 제공하십시오",
     "OrgName": "조직 이름",
     "Email": "이메일",
     "Address1": "주소(1행)",
-    "Address2": "주소(2행)",
+    "Address2": "주소(2행, 선택사항)",
     "City": "도시",
     "Country": "국가",
-    "State": "주",
+    "State": "주/도",
     "ZipCode": "우편번호",
     "FirstName": "이름",
     "LastName": "성",
     "LogonId": "로그온 ID",
-    "Phone": "전화번호",
+    "Phone": "전화번호(선택)",
     "Password": "암호",
     "Password2": "암호 확인",
     "Language": "선호 언어",
@@ -23,12 +23,10 @@
     "UseOrg": "조직과 동일한 주소 사용",
     "Submit": "제출",
     "Clear": "지우기",
-    "USD": "미국 달러",
-    "USEnglish": "미국 영어",
     "Success": "등록 요청이 접수되었습니다. 계정이 승인 대기 중입니다. 계정이 승인될 때까지 로그온할 수 없습니다log on.",
     "OK": "확인",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "올바르지 않은 형식"
     }
   }
 }

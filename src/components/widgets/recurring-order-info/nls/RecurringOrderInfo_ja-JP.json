@@ -1,0 +1,12 @@
+{
+  "RecurringOrderInfo": {
+    "Title": "定期オーダーの詳細",
+    "Labels": {
+      "RecurringOrderNumber": "定期オーダー番号",
+      "OrderSchedule": "オーダー・スケジュール",
+      "StartDate": "開始日",
+      "NextDelivery": "次回のスケジュールされたオーダー",
+      "OrderHistoryButton": "{{orderId}} のオーダー履歴"
+    }
+  }
+}

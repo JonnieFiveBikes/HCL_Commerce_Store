@@ -12,20 +12,15 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 //Custom libraries
+import { DASHBOARD } from "../../../../constants/routes";
 import { SectionContent } from "../../../layouts/sectionContentType";
 import { StandardPageLayout } from "../../../layouts/standard-page";
 import { PersonalInformationSection } from "./PersonalInformationSection";
 import { ChangePasswordSection } from "./ChangePasswordSection";
 import { WelcomeUserSection } from "./WelcomeUserSection";
-import Dashboard from "../../../widgets/dashboard/Dashboard";
-import { DASHBOARD } from "../../../../constants/routes";
+import AccountSidebar from "../../../widgets/account-sidebar/AccountSidebar";
 //UI
-import {
-  StyledGrid,
-  StyledPaper,
-  StyledTypography,
-  StyledSidebar,
-} from "../../../StyledUI";
+import { StyledGrid, StyledPaper, StyledTypography } from "../../../StyledUI";
 
 /**
  * Account component
@@ -46,11 +41,7 @@ function AccountSummary() {
             </StyledTypography>
             <StyledGrid container spacing={2}>
               <StyledGrid item xs={12} sm={5} md={3} className="sidebar">
-                <StyledSidebar
-                  title={t("Dashboard.Title")}
-                  sidebarContent={<Dashboard />}
-                  linkTo={DASHBOARD}
-                />
+                <AccountSidebar />
               </StyledGrid>
               <StyledGrid container item xs={12} sm={7} md={9}>
                 <StyledGrid item xs={12} className="bottom-margin-2">

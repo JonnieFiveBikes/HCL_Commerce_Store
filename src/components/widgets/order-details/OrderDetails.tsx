@@ -90,7 +90,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
   const { t } = useTranslation();
   const theme = useTheme();
   const isMobile = !useMediaQuery(theme.breakpoints.up("md"));
-  const reviewOrderBackButton = (
+  const ReviewOrderBackButton = () => (
     <StyledButton
       color="secondary"
       onClick={backButtonFunction}
@@ -180,7 +180,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
             <StyledGrid container item justify="flex-end" spacing={3}>
               {backButtonFunction && !isMobile && (
                 <StyledGrid container item xs={12} md={4} alignItems="flex-end">
-                  {reviewOrderBackButton}
+                  <ReviewOrderBackButton />
                 </StyledGrid>
               )}
 
@@ -195,7 +195,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
               <StyledGrid item xs={12} md={4}>
                 <StyledPaper className="horizontal-padding-3 vertical-padding-2">
                   <OrderTotalSummary order={order} />
-                  {backButtonFunction && isMobile && reviewOrderBackButton}
+                  {backButtonFunction && isMobile && <ReviewOrderBackButton />}
 
                   {submitButtonFunction && (
                     <StyledButton

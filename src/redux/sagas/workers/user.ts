@@ -11,15 +11,12 @@
 //Standard libraries
 import { call, put } from "redux-saga/effects";
 //Foundation libraries
-import {
-  CURRENT_USER,
-  PERSONALIZATION_ID,
-} from "../../../_foundation/constants/user";
+import { PERSONALIZATION_ID } from "../../../_foundation/constants/user";
 import { WC_PREVIEW_TOKEN } from "../../../_foundation/constants/common";
 import loginIdentity from "../../../_foundation/apis/transaction/loginIdentity.service";
 import {
-  sessionStorageUtil,
   localStorageUtil,
+  storageSessionHandler,
 } from "../../../_foundation/utils/storageUtil";
 import personService from "../../../_foundation/apis/transaction/person.service";
 //Redux
@@ -52,7 +49,7 @@ export function* login(action: any) {
 export function* sessionErrorReLogin(action: any) {
   try {
     const payload = action.payload;
-    sessionStorageUtil.remove(CURRENT_USER);
+    storageSessionHandler.removeCurrentUser();
     yield* loginAndFetchDetail(payload);
   } catch (error) {
     if (
@@ -94,12 +91,12 @@ export function* registration(action: any) {
 
 export function* initStateFromStorage(action: any) {
   try {
-    let currentUser = sessionStorageUtil.get(CURRENT_USER);
+    let currentUser = storageSessionHandler.getCurrentUser();
     if (currentUser === null) {
       //
       // if we have both previewtoken and newPreviewSession, the current user is removed in inistates.ts
       // then we should get new personalizationID from preview session
-      const previewToken = sessionStorageUtil.get(WC_PREVIEW_TOKEN);
+      const previewToken = storageSessionHandler.getPreviewToken();
       if (!previewToken || !previewToken[WC_PREVIEW_TOKEN]) {
         let personalizationID = localStorageUtil.get(PERSONALIZATION_ID);
         if (personalizationID !== null) {

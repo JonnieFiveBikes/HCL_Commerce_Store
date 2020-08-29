@@ -1,0 +1,20 @@
+{
+  "Cart": {
+    "Title": "Panier d'achat",
+    "Msgs": {
+      "Empty": "Votre panier est vide. Laissez-vous tenter !",
+      "PromoCode": "Entrer votre code promotionnel"
+    },
+    "Labels": {
+      "PromoCode": "Code promo",
+      "RecurringOrder": "Planifier en tant que commande récurrente",
+      "Frequency": "Fréquence",
+      "StartDate": "Date de début",
+      "OrderSummary": "Récapitulatif de la commande"
+    },
+    "Actions": {
+      "Checkout": "Règlement",
+      "Apply": "Appliquer"
+    }
+  }
+}

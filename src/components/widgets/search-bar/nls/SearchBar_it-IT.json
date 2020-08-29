@@ -2,8 +2,8 @@
   "SearchBar": {
     "SearchField": "Cerca",
     "KeywordTitle": "KEYWORDS",
-    "CategoryTitle": "CATEGORY",
-    "BrandTitle": "BRAND",
-    "Clear": "Clear search"
+    "CategoryTitle": "CATEGORIA",
+    "BrandTitle": "MARCHIO",
+    "Clear": "Cancella ricerca"
   }
 }

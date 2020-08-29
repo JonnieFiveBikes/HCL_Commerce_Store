@@ -1,0 +1,9 @@
+{
+  "RegistrationB2BLayout": {
+    "Title": "처음 방문 고객",
+    "Actions": {
+      "BuyerReg": "구매자 등록",
+      "OrgReg": "조직 등록"
+    }
+  }
+}

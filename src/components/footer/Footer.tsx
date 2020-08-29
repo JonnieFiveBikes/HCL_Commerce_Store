@@ -166,7 +166,7 @@ function Footer(props: any) {
               </div>
             </StyledGrid>
           </StyledGrid>
-          <StyledGrid container spacing={2} className="footer-bottom">
+          <StyledGrid container className="footer-bottom">
             <StyledGrid item xs={12} sm={9}>
               <Copyright />
             </StyledGrid>

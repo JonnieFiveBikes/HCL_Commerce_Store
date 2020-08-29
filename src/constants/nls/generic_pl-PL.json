@@ -1,0 +1,78 @@
+{
+  "CommerceEnvironment": {
+    "listSettings": {
+      "relevance": "Zgodność",
+      "brands": "Marki",
+      "name": "Nazwa",
+      "priceLowToHigh": "Cena (od najniższej do najwyższej)",
+      "priceHighToLow": "Cena (od najwyższej do najniższej)"
+    },
+    "inventoryStatus": {
+      "Available": "Dostępne",
+      "Allocated": "Dostępne",
+      "Unallocated": "Nieprzydzielone",
+      "Backordered": "Zamówienie z opóźnioną realizacją",
+      "OOS": "Brak w magazynie",
+      "NA": "Niedostępne"
+    },
+    "recurringOrderFrequency": {
+      "Everyday": "Codziennie",
+      "EveryWeek": "Co tydzień",
+      "EveryTwoWeeks": "Co 2 tygodnie",
+      "EveryThreeWeeks": "Co 3 tygodnie",
+      "EveryFourWeeks": "Co 4 tygodnie"
+    },
+    "currency": {
+      "ROL": "RON",
+      "RON": "RON",
+      "ARS": "ARS",
+      "ATS": "ATS",
+      "AUD": "AUD",
+      "BEF": "BEF",
+      "BRL": "BRL",
+      "CAD": "CAD",
+      "CNY": "CNY",
+      "DEM": "DEM",
+      "ESP": "ESP",
+      "EUR": "EUR",
+      "FRF": "FRF",
+      "GBP": "GBP",
+      "HKD": "HKD",
+      "ITL": "ITL",
+      "JPY": "JPY",
+      "KRW": "KRW",
+      "SGD": "SGD",
+      "TWD": "TWD",
+      "USD": "USD",
+      "ZAR": "ZAR",
+      "FIM": "FIM",
+      "IEP": "IEP",
+      "LUF": "LUF",
+      "NLG": "NLG",
+      "PTE": "PTE",
+      "NOK": "NOK",
+      "SEK": "SEK",
+      "DKK": "DKK",
+      "CHF": "CHF",
+      "PLN": "PLN",
+      "RUB": "RUB",
+      "EGP": "EGP"
+    },
+    "language": {
+      "-1": "Angielski (Stany Zjednoczone)",
+      "-2": "Francuski",
+      "-3": "Niemiecki",
+      "-4": "Włoski",
+      "-5": "Hiszpański",
+      "-6": "Portugalski (Brazylia)",
+      "-7": "Chiński uproszczony",
+      "-8": "Chiński tradycyjny",
+      "-10": "Japoński",
+      "-21": "Rumuński",
+      "-20": "Rosyjski",
+      "-9": "Koreański",
+      "-22": "Polski",
+      "-23": "Arabski"
+    }
+  }
+}

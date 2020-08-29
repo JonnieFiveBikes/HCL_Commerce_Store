@@ -3,14 +3,14 @@
     "NewCustomer": "新客戶嗎？",
     "FirstName": "名字",
     "LastName": "姓氏",
-    "Email": "Email",
+    "Email": "電子郵件",
     "Phone": "電話號碼（選用）",
     "Password": "密碼",
-    "VerifyPassword": "Verify Password",
+    "VerifyPassword": "驗證密碼",
     "TextContent": "接收傳送到收件匣的室內設計理念",
     "Register": "註冊",
     "Msgs": {
-      "InvalidFormat": "Invalid format"
+      "InvalidFormat": "無效格式"
     }
   }
 }

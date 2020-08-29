@@ -1,0 +1,23 @@
+{
+  "productDetail": {
+    "Quantity": "Quantité",
+    "QtyError": "La quantité doit être supérieure ou égale à 1.",
+    "Availability": "Disponibilité",
+    "AddToCart": "Ajouter au panier",
+    "Description": "Description",
+    "ProductDetails": "Caractéristiques du produit",
+    "InStock": "En stock",
+    "OutofStock": "Rupture de stock",
+    "PricePending": "Prix en attente",
+    "addToCartErrorMsg": "Les valeurs indiquées dans les zones Quantité sont vides ou ne sont pas valides. Vérifiez que les valeurs correspondent à des entiers positifs et faites une nouvelle tentative.",
+    "any": "Tout",
+    "showAttributes": "Afficher les attributs",
+    "attributeFilter": "Filtre Attribut",
+    "addToCurrentOrder": "Ajouter à la commande en cours",
+    "SignIn": "Veuillez vous connecter pour faire des achats.",
+    "noproductsToDisplay": "Aucun produit à afficher. Veuillez modifier le filtre Attribut et réessayez.",
+    "SKU": "SKU",
+    "Price": "Prix",
+    "Online_Availability": "Disponibilité en ligne"
+  }
+}

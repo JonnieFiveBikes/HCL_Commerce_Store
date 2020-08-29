@@ -13,13 +13,32 @@ import React, { ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
 //Custom libraries
 import addressUtil from "../../../utils/addressUtil";
+import {
+  CHECKOUT,
+  ADDRESS_SHIPPING,
+  ADDRESS_BILLING,
+  ADDRESS_SHIPPING_BILLING,
+  ADDRESS_BOOK,
+  EMPTY_STRING,
+} from "../../../constants/common";
+
 //UI
-import { StyledGrid, StyledTextField } from "../../StyledUI";
+import {
+  StyledGrid,
+  StyledTextField,
+  StyledTypography,
+  StyledFormControl,
+  StyledRadioGroup,
+  StyledFormControlLabel,
+  StyledRadio,
+} from "../../StyledUI";
 
 interface AddressFormProps {
   cid: string;
   setAddressFormData: any; //address form data setter fn
   addressFormData: any; //address form data
+  page?: string; // page name
+  edit?: boolean;
 }
 
 /**
@@ -29,16 +48,17 @@ interface AddressFormProps {
  */
 const AddressForm: React.FC<AddressFormProps> = (props: any) => {
   const { t } = useTranslation();
-
   const cid = props.cid;
   const setAddressFormData = props.setAddressFormData;
   const addressFormData = props.addressFormData;
+  const page = props.page ? props.page : CHECKOUT; // Default page is checkout
+  const edit = props.edit ? props.edit : false;
 
   function handleChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     let newAdressFormData = { ...addressFormData };
-    if (event.target.name.trim() !== "") {
+    if (event.target.name && event.target.name.trim() !== EMPTY_STRING) {
       newAdressFormData[event.target.name] = event.target.value;
       setAddressFormData(newAdressFormData);
     }
@@ -46,6 +66,69 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
 
   return (
     <StyledGrid container spacing={3}>
+      <StyledGrid item xs={12}>
+        <StyledTextField
+          required
+          id={`${cid}-nickName`}
+          name="nickName"
+          label={t("AddressForm.Labels.NickName")}
+          onChange={(event) => handleChange(event)}
+          value={addressFormData.nickName}
+          inputProps={{ maxLength: 254 }}
+          fullWidth
+          autoComplete="nickname"
+          disabled={edit}
+          error={
+            !edit && !addressUtil.validateNickName(addressFormData.nickName)
+          }
+          helperText={
+            !edit && !addressUtil.validateNickName(addressFormData.nickName)
+              ? t("AddressForm.Msgs.InvalidAddressName")
+              : EMPTY_STRING
+          }
+        />
+      </StyledGrid>
+      {page && page === ADDRESS_BOOK && (
+        <StyledGrid item xs={12}>
+          <StyledTypography>
+            {t("AddressForm.Labels.AddressType")}
+          </StyledTypography>
+          <StyledFormControl component="fieldset">
+            <StyledRadioGroup
+              name="addressType"
+              value={addressFormData.addressType}
+              onChange={(event) => handleChange(event)}>
+              <StyledFormControlLabel
+                value={ADDRESS_SHIPPING}
+                control={<StyledRadio />}
+                label={
+                  <StyledTypography variant="body2">
+                    {t("AddressForm.Labels.Shipping")}
+                  </StyledTypography>
+                }
+              />
+              <StyledFormControlLabel
+                value={ADDRESS_BILLING}
+                control={<StyledRadio />}
+                label={
+                  <StyledTypography variant="body2">
+                    {t("AddressForm.Labels.Billing")}
+                  </StyledTypography>
+                }
+              />
+              <StyledFormControlLabel
+                value={ADDRESS_SHIPPING_BILLING}
+                control={<StyledRadio />}
+                label={
+                  <StyledTypography variant="body2">
+                    {t("AddressForm.Labels.ShippingAndBilling")}
+                  </StyledTypography>
+                }
+              />
+            </StyledRadioGroup>
+          </StyledFormControl>
+        </StyledGrid>
+      )}
       <StyledGrid item xs={12} sm={6}>
         <StyledTextField
           id={`${cid}-firstName`}
@@ -56,6 +139,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
           inputProps={{ maxLength: 128 }}
           fullWidth
           autoComplete="fname"
+          required
         />
       </StyledGrid>
       <StyledGrid item xs={12} sm={6}>
@@ -168,7 +252,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
           helperText={
             !addressUtil.validatePhoneNumber(addressFormData.phone1)
               ? t("AddressForm.Msgs.InvalidFormat")
-              : ""
+              : EMPTY_STRING
           }
           inputProps={{
             maxLength: 32,
@@ -193,25 +277,11 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
           helperText={
             !addressUtil.validateEmail(addressFormData.email1)
               ? t("AddressForm.Msgs.InvalidFormat")
-              : ""
+              : EMPTY_STRING
           }
           inputProps={{ maxLength: 256 }}
           fullWidth
           autoComplete="email"
-        />
-      </StyledGrid>
-
-      <StyledGrid item xs={12}>
-        <StyledTextField
-          required
-          id={`${cid}-nickName`}
-          name="nickName"
-          label={t("AddressForm.Labels.NickName")}
-          onChange={(event) => handleChange(event)}
-          value={addressFormData.nickName}
-          inputProps={{ maxLength: 254 }}
-          fullWidth
-          autoComplete="nickname"
         />
       </StyledGrid>
     </StyledGrid>

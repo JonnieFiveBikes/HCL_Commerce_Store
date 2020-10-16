@@ -1,9 +1,13 @@
 {
   "OrderShippingInfo": {
-    "Title": "Versandinformationen",
     "Labels": {
       "ShipAddress": "Versandadresse",
-      "ShipMethod": "Versandmethode"
+      "ShipMethod": "Versandmethode",
+      "CartDetails": "Warenkorbdetails",
+      "ShippingDetails": "Versanddetails",
+      "ShipmentGroup": "Versandgruppe {{index}}",
+      "HideGroupDetails": "Gruppendetails ausblenden",
+      "ShowGroupDetails": "Gruppendetails anzeigen"
     }
   }
 }

@@ -1,0 +1,14 @@
+{
+  "InventoryAvailability": [
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Emerald",
+      "productId": "14019",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Unavailable",
+      "onlineStoreId": "11"
+    }
+  ],
+  "resourceId": "https://www.commercetest1.tk:5443/wcs/resources/store/11/inventoryavailability/14019?langId=-1",
+  "resourceName": "inventoryavailability"
+}

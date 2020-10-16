@@ -37,7 +37,7 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
   const { page } = props;
 
   const dispatch = useDispatch();
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const [content, setContent] = React.useState<any>(null);
   const wcToken: string = useSelector(wcTokenSelector);
   const contract = useSelector(currentContractIdSelector);

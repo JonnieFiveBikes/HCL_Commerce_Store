@@ -6,8 +6,6 @@
     "AddToCart": "Adăugare la coş",
     "Description": "Descriere",
     "ProductDetails": "Detalii produs",
-    "InStock": "În stoc",
-    "OutofStock": "Nu mai este în stoc",
     "PricePending": "Preţ în aşteptare",
     "addToCartErrorMsg": "Valorile din câmpurile Cantitate sunt nevalide sau goale. Asigurați-vă că valorile sunt numere întregi pozitive și încercați din nou.",
     "any": "Oricare",

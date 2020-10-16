@@ -21,7 +21,6 @@ export const ORDER_CONFIRMATION = "/order-confirmation";
 export const ORDER_HISTORY = "/order-history";
 export const WISH_LIST = "/wish-list";
 export const RECURRING_ORDERS = "/recurring-orders";
-export const APPROVE_ORDERS = "/approve-orders";
 export const SAVED_ORDERS = "/saved-orders";
 export const REQUISITION_LISTS = "/requisition-lists";
 export const ORDER_DETAILS = "/order-details";
@@ -50,3 +49,8 @@ export const SEARCH = "/search";
 export const REGISTER_PROTECTED = "register";
 //only guest and generic user access
 export const GENERIC_PROTECTED = "generic";
+
+export const BUYER_MANAGEMENT = "/buyer-management";
+export const APPROVALS_MANAGEMENT = "/approvals-management";
+export const ORGANIZATION_MANAGEMENT = "/organization-management";
+export const ORDER_APPROVAL = "/order-approval";

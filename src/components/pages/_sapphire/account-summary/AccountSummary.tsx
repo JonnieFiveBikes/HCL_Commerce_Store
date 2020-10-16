@@ -12,7 +12,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 //Custom libraries
-import { DASHBOARD } from "../../../../constants/routes";
 import { SectionContent } from "../../../layouts/sectionContentType";
 import { StandardPageLayout } from "../../../layouts/standard-page";
 import { PersonalInformationSection } from "./PersonalInformationSection";
@@ -20,7 +19,12 @@ import { ChangePasswordSection } from "./ChangePasswordSection";
 import { WelcomeUserSection } from "./WelcomeUserSection";
 import AccountSidebar from "../../../widgets/account-sidebar/AccountSidebar";
 //UI
-import { StyledGrid, StyledPaper, StyledTypography } from "../../../StyledUI";
+import {
+  StyledGrid,
+  StyledPaper,
+  StyledTypography,
+  StyledContainer,
+} from "../../../StyledUI";
 
 /**
  * Account component
@@ -35,15 +39,15 @@ function AccountSummary() {
       key: "account-summary-b2b-page",
       CurrentComponent: () => {
         return (
-          <>
+          <StyledContainer className="page">
             <StyledTypography variant="h4" className="vertical-margin-4">
               {title}
             </StyledTypography>
             <StyledGrid container spacing={2}>
-              <StyledGrid item xs={12} sm={5} md={3} className="sidebar">
+              <StyledGrid item xs={12} md={3} className="sidebar">
                 <AccountSidebar />
               </StyledGrid>
-              <StyledGrid container item xs={12} sm={7} md={9}>
+              <StyledGrid container item xs={12} md={9}>
                 <StyledGrid item xs={12} className="bottom-margin-2">
                   <StyledPaper className="vertical-padding-2 horizontal-padding-2">
                     <WelcomeUserSection />
@@ -63,7 +67,7 @@ function AccountSummary() {
                 </StyledGrid>
               </StyledGrid>
             </StyledGrid>
-          </>
+          </StyledContainer>
         );
       },
     },

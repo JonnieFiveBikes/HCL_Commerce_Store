@@ -8,11 +8,11 @@
       "priceHighToLow": "Preţ (de la mic la mare)"
     },
     "inventoryStatus": {
-      "Available": "Disponibilă",
-      "Allocated": "Disponibilă",
+      "Available": "În stoc",
+      "Allocated": "În stoc",
       "Unallocated": "Nealocată",
       "Backordered": "Comandat cu restanță",
-      "OOS": "Epuizare de stoc",
+      "OOS": "Nu mai este în stoc",
       "NA": "Indisponibilă"
     },
     "recurringOrderFrequency": {

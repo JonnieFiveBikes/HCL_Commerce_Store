@@ -35,3 +35,7 @@ export const MINICART_CONFIGS = {
     SUCCESS_MSG_PREFIX + ORDER_ACTIONS.COPY_CART_SUCCESS,
   ],
 };
+
+export const PAYMENT_CONFIGS = {
+  maxNumPayment: 3,
+};

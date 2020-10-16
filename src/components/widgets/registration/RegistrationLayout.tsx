@@ -38,7 +38,7 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
   const dispatch = useDispatch();
   const registrationStatus = useSelector(registrationStatusSelector);
   const { t } = useTranslation();
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const storeId: string = mySite ? mySite.storeID : "";
   const catalogId: string = mySite ? mySite.catalogID : "";
   const preferredLanguage: string = mySite ? mySite.defaultLanguageID : "";
@@ -63,7 +63,7 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
           registerType: "G",
           profileType: "C",
           email1: email,
-          phone1: phone,
+          phone1: phone.trim(),
           storeId,
           catalogId,
           preferredLanguage,
@@ -99,7 +99,7 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             inputProps={{
-              maxLength: 100,
+              maxLength: 35,
               type: "email",
               placeholder: "name@domain.com",
             }}
@@ -119,7 +119,7 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
             onChange={(e) => setFirstName(e.target.value)}
             value={firstName}
             inputProps={{
-              maxLength: 120,
+              maxLength: 40,
             }}
           />
           <StyledTextField
@@ -131,7 +131,7 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
             onChange={(e) => setLastName(e.target.value)}
             value={lastName}
             inputProps={{
-              maxLength: 120,
+              maxLength: 40,
             }}
           />
           <StyledTextField
@@ -142,10 +142,8 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
             onChange={(e) => setPhone(e.target.value)}
             value={phone}
             inputProps={{
-              maxLength: 30,
+              maxLength: 32,
               type: "tel",
-              pattern: "[0-9]{0,1}-{0,1}[0-9]{3}-[0-9]{3}-[0-9]{4}",
-              placeholder: "000-000-0000 or 1-000-000-0000",
             }}
             error={!addressUtil.validatePhoneNumber(phone)}
             helperText={
@@ -163,7 +161,7 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
             onChange={(e) => setPassword1(e.target.value)}
             value={password1}
             inputProps={{
-              maxLength: 100,
+              maxLength: 50,
               type: "password",
             }}
           />
@@ -176,7 +174,7 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
             onChange={(e) => setPassword2(e.target.value)}
             value={password2}
             inputProps={{
-              maxLength: 100,
+              maxLength: 50,
               type: "password",
             }}
           />

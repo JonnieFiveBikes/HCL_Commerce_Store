@@ -5,6 +5,10 @@
       "Back": "返回“付款详细信息”",
       "Next": "下订单",
       "NextRecurringOrder": "下循环订单"
+    },
+    "Labels": {
+      "PaymentDetails": "付款详细信息",
+      "OrderSummary": "订单摘要"
     }
   }
 }

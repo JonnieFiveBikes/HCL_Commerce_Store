@@ -25,14 +25,12 @@ import {
 } from "../../../StyledUI";
 
 const ChangePasswordSection: React.FC = (props: any) => {
-  const [open, setOpen] = React.useState<boolean>(false);
   const [openSuccess, setOpenSuccess] = React.useState<boolean>(false);
-  const [err_text, setErrorText] = React.useState<string>("");
   const [passwordOld, setOldPassword] = React.useState<string>("");
   const [passwordNew, setNewPassword] = React.useState<string>("");
   const [passwordVerify, setVerifyPassword] = React.useState<string>("");
 
-  const site = useSite();
+  const { mySite: site } = useSite();
 
   const { t } = useTranslation();
   const title = t("ChangePasswordSection.Title");
@@ -72,13 +70,7 @@ const ChangePasswordSection: React.FC = (props: any) => {
     setVerifyPassword(val);
   };
 
-  const handleClose = () => {
-    setErrorText("");
-    setOpen(false);
-  };
-
   const handleSuccess = () => {
-    handleClose();
     setOpenSuccess(true);
   };
 

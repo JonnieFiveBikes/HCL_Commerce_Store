@@ -20,12 +20,16 @@ import HistoryIcon from "@material-ui/icons/History";
 import ListIcon from "@material-ui/icons/List";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import RepeatIcon from "@material-ui/icons/Repeat";
-import PlaylistAddCheckIcon from "@material-ui/icons/PlaylistAddCheck";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 
-function OrderLinksLayout() {
+interface OrderLinksLayoutProps {
+  isBuyerApprover?: boolean;
+}
+
+function OrderLinksLayout({ isBuyerApprover }: OrderLinksLayoutProps) {
   const { t } = useTranslation();
 
-  let linkList: JSX.Element[] = [
+  const baseLinkList: JSX.Element[] = [
     <StyledLinkBox
       title={t("OrderLinks.OrderHistoryText")}
       description={t("OrderLinks.OrderHistoryDescription")}
@@ -46,13 +50,6 @@ function OrderLinksLayout() {
       disabled
     />,
     <StyledLinkBox
-      title={t("OrderLinks.ApproveOrdersText")}
-      description={t("OrderLinks.ApproveOrdersDescription")}
-      url={ROUTES.APPROVE_ORDERS}
-      icon={<PlaylistAddCheckIcon />}
-      disabled
-    />,
-    <StyledLinkBox
       title={t("OrderLinks.RequisitionListsText")}
       description={t("OrderLinks.RequisitionListsDescription")}
       url={ROUTES.REQUISITION_LISTS}
@@ -60,9 +57,22 @@ function OrderLinksLayout() {
       disabled
     />,
   ];
+  const orderApprovalLink = [
+    <StyledLinkBox
+      title={t("OrderLinks.ApproveOrdersText")}
+      description={t("OrderLinks.ApproveOrdersDescription")}
+      url={ROUTES.ORDER_APPROVAL}
+      icon={<PersonAddIcon />}
+    />,
+  ];
 
   return (
-    <AccountLinksSection title={t("OrderLinks.Title")} linkList={linkList} />
+    <AccountLinksSection
+      title={t("OrderLinks.Title")}
+      linkList={
+        isBuyerApprover ? baseLinkList.concat(orderApprovalLink) : baseLinkList
+      }
+    />
   );
 }
 

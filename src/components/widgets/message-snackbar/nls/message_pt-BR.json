@@ -88,6 +88,8 @@
     "_ERR_CMD_INVALID_PARAM_parentMember": "O nome de organização inserido no campo Organização não é válido. Você deve digitar o nome de organização exato. Se você não sabe o nome exato, pergunte ao responsável pela administração da organização nesta loja. Se sua organização tem uma empresa matriz, você deve usar o seguinte formato para sua entrada: <b>organização/empresa_matriz</b>, por exemplo, <b>Empresa ABC EUA/Empresa ABC Global</b>.",
     "_ERR_CMD_INVALID_PARAM_org_orgEntityName": "Digite um nome de organização no campo Nome da organização.",
     "_API_BAD_INV_2": "Não há estoque suficiente para comprar {{1}} unidades de {{0}}.",
+    "_ERR_FINDING_ORDER_230": "Ocorreu um problema no sistema durante o processamento de seu pedido.",
+    "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "Ocorreu um problema no sistema. Entre em contato com a loja para obter assistência.",
     "B2B": {
       "_ERR_LOGONID_ALREDY_EXIST_2030": "O ID de logon que você inseriu já existe. Digite outro ID de logon e tente novamente."
     }

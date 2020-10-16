@@ -9,12 +9,10 @@
  *==================================================
  */
 //Standard libraries
-import React from "react";
-import { useTranslation } from "react-i18next";
+import React, { useMemo } from "react";
 //Custom libraries
-import { AddressCard } from "../address-card";
-//UI
-import { StyledGrid, StyledTypography } from "../../StyledUI";
+import SingleShipment from "./single-shipment/SingleShipment";
+import ShipmentGroups from "./multiple-shipment/ShipmentGroups";
 
 interface OrderShippingInfoProps {
   shippingInfo: any;
@@ -26,44 +24,49 @@ interface OrderShippingInfoProps {
  * @param props
  */
 const OrderShippingInfo: React.FC<OrderShippingInfoProps> = (props: any) => {
-  const shippingInfo = props.shippingInfo;
-  const { t } = useTranslation();
+  const { shippingInfo } = props;
+  const { orderItems, parentComponent } = shippingInfo;
+
+  const formatShippingGroup = () => {
+    const groups: any[] = [];
+    /**
+     * groupby addressId and shipModeId
+     * groups: [
+     *  [{orderItem}, {orderItem}..],
+     *  [...],
+     *  [...],
+     *  '''
+     * ]
+     */
+    if (orderItems) {
+      orderItems.forEach((o) => {
+        const filteredGroup = groups.filter((g) => {
+          return (
+            g[0].addressId === o.addressId && g[0].shipModeId === o.shipModeId
+          );
+        });
+        if (filteredGroup.length === 0) {
+          const tempGroup = [{ ...o }];
+          groups.push(tempGroup);
+        } else {
+          const group: any[] = filteredGroup[0];
+          group.push({ ...o });
+        }
+      });
+    }
+    return groups;
+  };
+  const shippingGroups = useMemo(formatShippingGroup, orderItems);
 
   return (
     <>
-      <StyledTypography variant="h6" gutterBottom>
-        {t("OrderShippingInfo.Title")}
-      </StyledTypography>
-      {shippingInfo && (
-        <StyledGrid container spacing={2}>
-          <StyledGrid item xs={12} sm={6}>
-            {shippingInfo.addressId && (
-              <>
-                <StyledTypography variant="overline" gutterBottom>
-                  {t("OrderShippingInfo.Labels.ShipAddress")}
-                </StyledTypography>
-                <AddressCard
-                  addressId={shippingInfo.addressId}
-                  addressData={shippingInfo}
-                  readOnly={true}
-                />
-              </>
-            )}
-          </StyledGrid>
-          <StyledGrid item xs={12} sm={6}>
-            {shippingInfo.shipModeDescription && (
-              <>
-                <StyledTypography variant="overline" gutterBottom>
-                  {t("OrderShippingInfo.Labels.ShipMethod")}
-                </StyledTypography>
-                <StyledTypography gutterBottom>
-                  {shippingInfo.shipModeDescription}
-                </StyledTypography>
-              </>
-            )}
-          </StyledGrid>
-        </StyledGrid>
+      {shippingGroups.length === 1 && (
+        <SingleShipment
+          orderItems={shippingGroups[0]}
+          showHeading={parentComponent === "Review"}
+        />
       )}
+      {shippingGroups.length > 1 && <ShipmentGroups groups={shippingGroups} />}
     </>
   );
 };

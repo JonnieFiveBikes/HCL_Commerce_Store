@@ -58,7 +58,7 @@ const addressUtil = {
     return (
       phoneNumber === undefined ||
       phoneNumber.trim() === "" ||
-      PHONE.test(phoneNumber)
+      PHONE.test(phoneNumber.trim())
     );
   },
 

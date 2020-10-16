@@ -32,9 +32,9 @@ import {
 function CategoryRecommendationLayout({ cid, eSpot, ...props }: any) {
   const { eSpotName, type } = eSpot;
   const { page } = props;
-  const mySite: any = useSite();
-  const CategoryCardLayout = lazy(() =>
-    import("../category-card/CategoryCardLayout")
+  const { mySite } = useSite();
+  const CategoryCardLayout = lazy(
+    () => import("../category-card/CategoryCardLayout")
   );
   const contract = useSelector(currentContractIdSelector);
   const [showEspot, setShowEspot] = React.useState<boolean>(true);
@@ -50,7 +50,6 @@ function CategoryRecommendationLayout({ cid, eSpot, ...props }: any) {
   const ESPOT_TYPE_PAGE_SUFFIX: string = "page-suffix";
   const storeID: string = mySite ? mySite.storeID : "";
   const catalogID: string = mySite ? mySite.catalogID : "";
-  const langID: string = mySite ? mySite.defaultLanguageID : "";
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
@@ -98,7 +97,6 @@ function CategoryRecommendationLayout({ cid, eSpot, ...props }: any) {
         findCategoriesByUniqueId(categoriesId, categoriesEspot, eSpotObject);
       })
       .catch((e) => {
-        console.log("Could not retrieve Espots");
         //setShowEspot(false);
       });
   };
@@ -112,7 +110,6 @@ function CategoryRecommendationLayout({ cid, eSpot, ...props }: any) {
         storeId: storeID,
         id: categoriesId,
         catalogId: catalogID,
-        langId: langID,
         $queryParameters: {
           contractId: contract,
         },
@@ -133,7 +130,7 @@ function CategoryRecommendationLayout({ cid, eSpot, ...props }: any) {
             );
           }
         })
-        .catch((e) => console.log("Could not retrieve category"));
+        .catch((e) => {});
     }
   };
   const generateCategoryLists = (

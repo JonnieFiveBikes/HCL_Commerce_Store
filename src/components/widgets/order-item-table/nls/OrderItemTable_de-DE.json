@@ -4,7 +4,7 @@
     "Labels": {
       "ItemDetails": "Artikeldetails",
       "SKU": "Artikelposition: ",
-      "Status": "Status",
+      "Status": "Verfügbarkeit",
       "Quantity": "Menge",
       "Price": "Preis",
       "Actions": "Aktionen",

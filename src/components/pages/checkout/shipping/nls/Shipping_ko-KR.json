@@ -1,22 +1,22 @@
 {
   "Shipping": {
-    "Title": "Shipping Details",
+    "Title": "운송 정보",
     "Labels": {
-      "UseMultiple": "Ship to multiple addresses",
+      "UseMultiple": "여러 주소로 운송",
       "ShippingAddress": "운송 주소",
-      "ShippingMethod": "배송 방법",
-      "SelectShippingMethod": "Choose your delivery method",
-      "AddNewAddress": "Add new address",
-      "EditAddress": "Edit Address"
+      "ShippingMethod": "운송 방법",
+      "SelectShippingMethod": "배송 방법 선택",
+      "AddNewAddress": "새 주소 추가",
+      "EditAddress": "주소 편집"
     },
     "Actions": {
-      "SelectAddress": "Use this address",
-      "CreateNew": "Create new address",
-      "Next": "Continue to Payment"
+      "SelectAddress": "이 주소 사용",
+      "CreateNew": "새 주소 작성",
+      "Next": "지불 단계로 진행"
     },
     "Msgs": {
-      "UseSavedAddress": "Or select a saved address to use:",
-      "SelectShippingAddress": "Please first select a shipping address"
+      "UseSavedAddress": "또는 저장된 주소를 선택하여 사용:",
+      "SelectShippingAddress": "먼저 운송 주소를 선택하십시오"
     }
   }
 }

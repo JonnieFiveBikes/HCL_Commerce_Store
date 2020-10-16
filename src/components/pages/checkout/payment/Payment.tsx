@@ -13,15 +13,24 @@ import React, { useState, useEffect, useMemo, ChangeEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
-import creditCardType, { types as CardType } from "credit-card-type";
 import { useHistory } from "react-router";
+import {
+  IS_PERSONAL_ADDRESS_ALLOWED,
+  STRING_TRUE,
+  EMPTY_STRING,
+} from "../../../../constants/common";
 //Foundation libraries
 import { useSite } from "../../../../_foundation/hooks/useSite";
+import { localStorageUtil } from "../../../../_foundation/utils/storageUtil";
 import paymentInstructionService from "../../../../_foundation/apis/transaction/paymentInstruction.service";
+import { ACCOUNT } from "../../../../_foundation/constants/common";
 //Custom libraries
-import { PAYMENT, EXPIRY } from "../../../../constants/order";
-import { PaymentMethodContainer } from "../../../widgets/payment-method-container";
+import { PAYMENT_CONFIGS } from "../../../../configs/order";
+import { PAYMENT, PO_NUMBER } from "../../../../constants/order";
 import * as ROUTES from "../../../../constants/routes";
+import { PaymentMethodContainer } from "../../../widgets/payment-method-container";
+import { PaymentInfoList } from "../../../widgets/payment-info-list";
+import { PurchaseOrderNumber } from "../../../widgets/purchase-order-number";
 import storeUtil from "../../../../utils/storeUtil";
 //Redux
 import {
@@ -30,7 +39,12 @@ import {
   cartSelector,
 } from "../../../../redux/selectors/order";
 import { addressDetailsSelector } from "../../../../redux/selectors/account";
+import {
+  organizationDetailsSelector,
+  activeOrgSelector,
+} from "../../../../redux/selectors/organization";
 import * as orderActions from "../../../../redux/actions/order";
+import * as organizationAction from "../../../../redux/actions/organization";
 import * as accountActions from "../../../../redux/actions/account";
 //UI
 import { Divider } from "@material-ui/core";
@@ -44,11 +58,6 @@ import {
   StyledTypography,
 } from "../../../StyledUI";
 
-interface PaymentProps {
-  handleBack: Function; //handle back fn to move back in checkout flow
-  selectedPayMethod: string;
-}
-
 interface CreditCardFormDataType {
   account: string;
   expire_month: string;
@@ -58,27 +67,35 @@ interface CreditCardFormDataType {
 
 export const CREDITCARDFORMDATA_INIT: CreditCardFormDataType = {
   account: "",
-  expire_month: EXPIRY.MONTHS[0],
-  expire_year: EXPIRY.YEARS[0],
+  expire_month: "",
+  expire_year: "",
   cc_cvc: "",
 };
 
 export interface PaymentInfoType {
-  selectedPayOption: string;
+  payMethodId: string;
   creditCardFormData: CreditCardFormDataType;
+  addressId: string;
+  piAmount: string;
+  paymentTermConditionId: string;
+  title: string;
+  policyId: string;
 }
 
 /**
  * Payment section
- * displays ship mode selection, and payment instructions input
+ * displays payment method and billing address selection
  * @param props
  */
 const Payment: React.FC = (props: any) => {
+  const { isPONumberRequired } = props;
   const isCheckoutDisabled = useSelector(isCheckoutDisabledSelector);
   const payMethods = useSelector(payMethodsSelector);
   const addressDetails: any = useSelector(addressDetailsSelector);
   const cart = useSelector(cartSelector);
-
+  const orgAddressDetails = useSelector(organizationDetailsSelector);
+  const activeOrgId = useSelector(activeOrgSelector);
+  const [currentPaymentNumber, setCurrentPaymentNumber] = useState<number>(0);
   const selectedPayMethod = props.selectedPayMethod
     ? props.selectedPayMethod
     : PAYMENT.paymentMethodName.cod;
@@ -86,37 +103,56 @@ const Payment: React.FC = (props: any) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { t } = useTranslation();
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
   const isB2B = mySite ? mySite.isB2B : false;
-  const paymentInfoInit: PaymentInfoType = {
-    selectedPayOption:
-      selectedPayMethod === PAYMENT.payOptions.cod
-        ? PAYMENT.payOptions.cod
-        : PAYMENT.payOptions.cc,
+  const PAYMENT_INFO_INIT: PaymentInfoType = {
+    payMethodId: selectedPayMethod,
     creditCardFormData: CREDITCARDFORMDATA_INIT,
+    addressId: "",
+    piAmount: cart.grandTotal,
+    paymentTermConditionId: "",
+    policyId: "",
+    title: "",
   };
   const [selectedPaymentInfoList, setSelectedPaymentInfoList] = useState<
     PaymentInfoType[]
-  >([paymentInfoInit]);
+  >([]);
+
   const usableBillAddresses = useMemo(() => initUsableBillingAddresses(), [
-    payMethods,
     addressDetails,
+    orgAddressDetails,
+    selectedPaymentInfoList,
+    currentPaymentNumber,
+    payMethods,
   ]);
-  const [selectedBillAddressIdList, setSelectedBillAddressIdList] = useState<
-    string[]
-  >([""]);
   const [useMultiplePayment, setUseMultiplePayment] = useState<boolean>(false);
-  const [currentPaymentNumber, setCurrentPaymentNumber] = useState<number>(0);
+
   const [createNewAddress, setCreateNewAddress] = useState<boolean>(false);
   const [editAddress, setEditAddress] = useState<boolean>(false);
-  const { allowedCardTypes, allowedCardDisplayNames } = useMemo(
-    () => initAllowedCardTypes(),
-    [payMethods]
-  );
+  const [addNewPayment, setAddNewPayment] = useState<boolean>(false);
+  const [poNumber, setPONumber] = useState<string>("");
 
+  const allowMorePayments = useMemo(
+    () => selectedPaymentInfoList.length < PAYMENT_CONFIGS.maxNumPayment,
+    [selectedPaymentInfoList]
+  );
+  const handlePONumberChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const newPONumber = event.target.value;
+    setPONumber(newPONumber);
+  };
+
+  const isPersonalAddressAllowed: string =
+    cart && cart[IS_PERSONAL_ADDRESS_ALLOWED]
+      ? cart[IS_PERSONAL_ADDRESS_ALLOWED]
+      : STRING_TRUE;
+
+  const ACCOUNT_CC = "account";
+  const ACCOUNT_FOR_VIEW_CC = "accountForView";
   const payloadBase: any = {
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
@@ -130,6 +166,12 @@ const Payment: React.FC = (props: any) => {
       };
       dispatch(orderActions.GET_PAYMETHODS_ACTION(payload));
       dispatch(accountActions.GET_ADDRESS_DETAIL_ACTION(payload));
+      const param: any = {
+        storeId: mySite.storeId,
+        organizationId: activeOrgId,
+        ...payloadBase,
+      };
+      dispatch(organizationAction.GET_ORGANIZATION_ADDRESS_ACTION(param));
     }
 
     return () => {
@@ -139,48 +181,122 @@ const Payment: React.FC = (props: any) => {
 
   useEffect(() => {
     if (cart?.paymentInstruction?.length > 0) {
-      setSelectedBillAddressIdList(
-        cart.paymentInstruction.map((pi) => pi.billing_address_id)
-      );
       setSelectedPaymentInfoList(
         cart.paymentInstruction.map((pi) => {
           let payMethodId = pi.payMethodId;
-          if (payMethodId !== PAYMENT.payOptions.cod) {
-            payMethodId = PAYMENT.payOptions.cc;
+          let paymentFromList = payMethods.filter(
+            (payment) => payment.xumet_policyId === pi.xpaym_policyId
+          )[0];
+
+          let creditCardFormData = CREDITCARDFORMDATA_INIT;
+
+          if (payMethodId !== PAYMENT.paymentMethodName.cod) {
+            creditCardFormData = {
+              ...creditCardFormData,
+            };
           }
+
           const newPaymentInfo: PaymentInfoType = {
-            selectedPayOption: payMethodId,
-            creditCardFormData: CREDITCARDFORMDATA_INIT,
+            payMethodId: payMethodId,
+            creditCardFormData: creditCardFormData,
+            addressId: pi.billing_address_id,
+            piAmount: cart.grandTotal,
+            paymentTermConditionId: paymentFromList?.paymentTermConditionId,
+            policyId: pi.xpaym_policyId,
+            title: paymentFromList?.description,
           };
           return newPaymentInfo;
         })
       );
+
+      //Commented out for multiple payment
+      /* if (cart.paymentInstruction.length === 1) {
+        setUseMultiplePayment(false);
+      } else {
+        setUseMultiplePayment(true);
+      } */
     }
   }, [cart]);
 
-  const handleMultiplePaymentChange = (event) =>
-    setUseMultiplePayment(event.target.checked);
+  useEffect(() => {
+    if (cart && poNumber === "") {
+      const poNumberFromStorage = localStorageUtil.get(
+        ACCOUNT + "-" + PO_NUMBER + "-" + cart.orderId
+      );
+
+      if (poNumberFromStorage !== null && poNumberFromStorage !== "") {
+        setPONumber(poNumberFromStorage);
+      }
+    }
+  }, [cart]);
+
+  /** Handle toggle between single/multiple payments */
+  const handleMultiplePaymentChange = (event) => {
+    const newUseMultiplePayment = event.target.checked;
+    if (newUseMultiplePayment) {
+      setSelectedPaymentInfoList([]);
+      setCurrentPaymentNumber(-1);
+    } else {
+      const singlePaymentInit: PaymentInfoType = {
+        ...PAYMENT_INFO_INIT,
+        piAmount: cart.grandTotal,
+      };
+      setSelectedPaymentInfoList([singlePaymentInit]);
+      setCurrentPaymentNumber(0);
+    }
+    setUseMultiplePayment(newUseMultiplePayment);
+  };
+
+  /** Handle adding new payments for multiple payments */
+  const handleAddNewPayment = () => {
+    if (allowMorePayments) {
+      setAddNewPayment(true);
+      setCurrentPaymentNumber(selectedPaymentInfoList.length);
+
+      let newPaymentInfoList: PaymentInfoType[] = selectedPaymentInfoList.slice();
+      newPaymentInfoList.push(PAYMENT_INFO_INIT);
+      setSelectedPaymentInfoList(newPaymentInfoList);
+    }
+  };
+
+  /** Handle cancelling new payments for multiple payments */
+  const handleCancelNewPayment = () => {
+    if (addNewPayment) {
+      let newPaymentInfoList: PaymentInfoType[] = selectedPaymentInfoList.slice();
+      newPaymentInfoList.pop();
+      setSelectedPaymentInfoList(newPaymentInfoList);
+      setCurrentPaymentNumber(newPaymentInfoList.length - 1);
+    }
+    setAddNewPayment(false);
+  };
 
   /**
    * Initialize filtered billing addresses based on usable payment info
    */
   function initUsableBillingAddresses() {
-    let newFilteredUsableBillAddresses: any[] | null = null;
-    if (payMethods) {
-      let newUsableBillAddresses: any[] = [];
-      for (let i = 0; i < payMethods.length; i++) {
-        if (payMethods[i].paymentMethodName === selectedPayMethod) {
-          newUsableBillAddresses = payMethods[i].usableBillingAddress;
-          break;
+    let filterList: any[] = [];
+    if (selectedPaymentInfoList !== [] && currentPaymentNumber !== null) {
+      let payment = selectedPaymentInfoList[currentPaymentNumber];
+      if (payment) {
+        let paymentFromList = payMethods.filter(
+          (p) => p.xumet_policyId === payment.policyId
+        )[0];
+
+        let newUsableBillAddresses = paymentFromList?.usableBillingAddress;
+
+        if (newUsableBillAddresses && newUsableBillAddresses.length > 0) {
+          filterList = filterAddresses(newUsableBillAddresses);
+          if (filterList && filterList.length > 0) {
+            filterList = filterList.concat(
+              filterOrgAddresses(newUsableBillAddresses)
+            );
+          } else {
+            filterList = filterOrgAddresses(newUsableBillAddresses);
+          }
         }
       }
-      if (newUsableBillAddresses && newUsableBillAddresses.length > 0) {
-        newFilteredUsableBillAddresses = filterAddresses(
-          newUsableBillAddresses
-        );
-      }
     }
-    return newFilteredUsableBillAddresses;
+    return filterList;
   }
 
   /**
@@ -196,8 +312,8 @@ const Payment: React.FC = (props: any) => {
             return (
               addressDetails.addressLine !== undefined &&
               addressDetails.country !== undefined &&
-              addressDetails.addressLine[0] !== "" &&
-              addressDetails.country !== ""
+              addressDetails.addressLine[0] !== EMPTY_STRING &&
+              addressDetails.country !== EMPTY_STRING
             );
           } else if (
             addressDetails.contactMap &&
@@ -208,8 +324,8 @@ const Payment: React.FC = (props: any) => {
             return (
               adressDetailsFromContact.addressLine !== undefined &&
               adressDetailsFromContact.country !== undefined &&
-              adressDetailsFromContact.addressLine[0] !== "" &&
-              adressDetailsFromContact.country !== ""
+              adressDetailsFromContact.addressLine[0] !== EMPTY_STRING &&
+              adressDetailsFromContact.country !== EMPTY_STRING
             );
           } else {
             return false;
@@ -221,83 +337,109 @@ const Payment: React.FC = (props: any) => {
         return filteredList;
       }
     }
-    return null;
+    return [];
   }
 
   /**
-   * Initialize allowed credit card types based on usable payment info
-   * and map to card-type utility's type constants
+   * Filter out organization addresses that does not have the mandatory fields for checkout
+   * @param usableAddresses List of addresses to scan
+   * @returns Filtered list of addresses
    */
-  function initAllowedCardTypes() {
-    let newAllowedCardTypes = {};
-    let newAllowedCardDisplayNames: string[] = [];
-    payMethods.forEach((payMethod: any) => {
-      if (payMethod.paymentMethodName === PAYMENT.paymentMethodName.visa) {
-        newAllowedCardTypes[CardType.VISA] = PAYMENT.paymentMethodName.visa;
-        newAllowedCardDisplayNames.push(PAYMENT.paymentDisplayName.visa);
-      } else if (payMethod.paymentMethodName === PAYMENT.paymentMethodName.mc) {
-        newAllowedCardTypes[CardType.MASTERCARD] = PAYMENT.paymentMethodName.mc;
-        newAllowedCardDisplayNames.push(PAYMENT.paymentDisplayName.mc);
-      } else if (
-        payMethod.paymentMethodName === PAYMENT.paymentMethodName.amex
-      ) {
-        newAllowedCardTypes[CardType.AMERICAN_EXPRESS] =
-          PAYMENT.paymentMethodName.amex;
-        newAllowedCardDisplayNames.push(PAYMENT.paymentDisplayName.amex);
-      }
-    });
-    return {
-      allowedCardTypes: newAllowedCardTypes,
-      allowedCardDisplayNames: newAllowedCardDisplayNames,
-    };
-  }
-
-  /**
-   * Detect credit card type based on card number
-   * then validate against usable payment methods to see if card type is allowed
-   * @param cardNumber The credit card number to check
-   * @returns The credit card type if it is an allowed payment method. Otherwise return empty string.
-   */
-  function getAllowedCardType(cardNumber: string) {
-    let allowedCardType = "";
-    const cardTypeList = creditCardType(cardNumber);
-
-    if (cardTypeList != null && cardTypeList.length > 0) {
-      const type = cardTypeList[0].type;
-      if (allowedCardTypes[type] !== undefined) {
-        allowedCardType = allowedCardTypes[type];
-      } else {
-        allowedCardType = type;
-      }
-    } else {
-      //Fallback to first allowed card type for service to validate, if type not found
-      if (Object.keys(allowedCardTypes).length > 0) {
-        allowedCardType = allowedCardTypes[Object.keys(allowedCardTypes)[0]];
-      } else {
-        //Last fallback to visa
-        allowedCardType = PAYMENT.paymentMethodName.visa;
+  function filterOrgAddresses(usableAddresses: any[]) {
+    if (usableAddresses) {
+      const filteredList = usableAddresses.filter((address) => {
+        if (
+          address &&
+          orgAddressDetails &&
+          orgAddressDetails.contactInfo &&
+          orgAddressDetails.addressBook
+        ) {
+          if (address.addressId === orgAddressDetails.contactInfo.addressId) {
+            return (
+              orgAddressDetails.contactInfo.address1 !== undefined &&
+              orgAddressDetails.contactInfo.country !== undefined &&
+              orgAddressDetails.contactInfo.address1 !== EMPTY_STRING &&
+              orgAddressDetails.contactInfo.country !== EMPTY_STRING
+            );
+          } else {
+            for (let orgAddress of orgAddressDetails.addressBook) {
+              if (address.addressId === orgAddress.addressId) {
+                return (
+                  orgAddress.address1 !== undefined &&
+                  orgAddress.country !== undefined &&
+                  orgAddress.address1 !== EMPTY_STRING &&
+                  orgAddress.country !== EMPTY_STRING
+                );
+              }
+            }
+          }
+          return false;
+        }
+      });
+      if (filteredList && filteredList.length > 0) {
+        return filteredList;
       }
     }
-    return allowedCardType;
+    return [];
   }
 
   /** Sets the billing address id for the current payment method # */
   const setSelectedBillingAddressId = (newAddressId: string) => {
-    let newBillingAddressIdList: string[] = selectedBillAddressIdList.slice();
-    newBillingAddressIdList[currentPaymentNumber] = newAddressId;
-    setSelectedBillAddressIdList(newBillingAddressIdList);
+    let newPaymentInfo: PaymentInfoType = {
+      ...selectedPaymentInfoList[currentPaymentNumber],
+      addressId: newAddressId,
+    };
+
+    let newPaymentInfoList: PaymentInfoType[] = selectedPaymentInfoList.slice();
+    newPaymentInfoList.splice(currentPaymentNumber, 1, newPaymentInfo);
+    setSelectedPaymentInfoList(newPaymentInfoList);
   };
 
   /**
    * Handle pay option change
    * @param option The selected pay option
    */
-  function togglePayOption(optionValue: string) {
-    let newPaymentInfo: PaymentInfoType = {
-      selectedPayOption: optionValue,
-      creditCardFormData: CREDITCARDFORMDATA_INIT,
-    };
+  function togglePayOption(optionValue: number) {
+    let payment = payMethods.filter((x) => x.xumet_policyId == optionValue)[0];
 
+    let paymentTCId = payment?.paymentTermConditionId;
+
+    let newPaymentInfo: PaymentInfoType = {
+      ...selectedPaymentInfoList[currentPaymentNumber],
+      payMethodId: payment?.paymentMethodName,
+      creditCardFormData: CREDITCARDFORMDATA_INIT,
+      piAmount: cart.grandTotal,
+      paymentTermConditionId: paymentTCId ? paymentTCId : "",
+      addressId: "",
+      policyId: payment?.xumet_policyId,
+      title: payment?.description,
+    };
+    if (
+      paymentTCId &&
+      paymentTCId !== "" &&
+      payment.payMethodId !== PAYMENT.paymentMethodName.cod
+    ) {
+      const formData: CreditCardFormDataType = {
+        account: "",
+        expire_month: "",
+        expire_year: "",
+        cc_cvc: "",
+      };
+      newPaymentInfo = {
+        ...selectedPaymentInfoList[currentPaymentNumber],
+        payMethodId: payment.paymentMethodName,
+        creditCardFormData: formData,
+        piAmount: cart.grandTotal,
+        paymentTermConditionId: paymentTCId,
+        addressId: "",
+        policyId: payment?.xumet_policyId,
+        title: payment?.description,
+      };
+
+      let newPaymentInfoList: PaymentInfoType[] = selectedPaymentInfoList.slice();
+      newPaymentInfoList.splice(currentPaymentNumber, 1, newPaymentInfo);
+      setSelectedPaymentInfoList(newPaymentInfoList);
+    }
     let newPaymentInfoList: PaymentInfoType[] = selectedPaymentInfoList.slice();
     newPaymentInfoList.splice(currentPaymentNumber, 1, newPaymentInfo);
     setSelectedPaymentInfoList(newPaymentInfoList);
@@ -315,6 +457,9 @@ const Payment: React.FC = (props: any) => {
       ...selectedPaymentInfoList[paymentNumber].creditCardFormData,
     };
     if (event.target.name.trim() !== "") {
+      if (event.target.name === ACCOUNT_CC) {
+        newCreditCardFormData[ACCOUNT_FOR_VIEW_CC] = event.target.value;
+      }
       newCreditCardFormData[event.target.name] = event.target.value;
 
       let newPaymentInfo: PaymentInfoType = {
@@ -363,49 +508,115 @@ const Payment: React.FC = (props: any) => {
   }
 
   /**
-   * Validate billing address id list and payment options/credit card inputs
-   * @returns Whether or not payment selections is valid
+   * Validate billing address id for a payment
+   * @returns Whether or not the billing address is valid
    */
-  function isValidPayment() {
-    for (let i = 0; i < selectedBillAddressIdList.length; i++) {
-      if (selectedBillAddressIdList[i] === "") {
-        return false;
-      }
+  function isValidBillingAddress(paymentNumber: number) {
+    if (
+      paymentNumber >= selectedPaymentInfoList.length ||
+      selectedPaymentInfoList[paymentNumber].addressId === ""
+    ) {
+      return false;
     }
-    for (let i = 0; i < selectedPaymentInfoList.length; i++) {
+
+    return true;
+  }
+
+  /**
+   * Validate payment options/credit card for a payment
+   * @returns Whether or not the payment method is valid
+   */
+  function isValidPaymentMethod(paymentNumber: number) {
+    if (paymentNumber >= selectedPaymentInfoList.length) {
+      return false;
+    }
+
+    if (
+      selectedPaymentInfoList[paymentNumber].payMethodId !==
+      PAYMENT.paymentMethodName.cod
+    ) {
       if (
-        selectedPaymentInfoList[i].selectedPayOption !==
-          PAYMENT.payOptions.cod &&
-        selectedPaymentInfoList[i].selectedPayOption !== PAYMENT.payOptions.cc
+        selectedPaymentInfoList[paymentNumber].paymentTermConditionId === ""
       ) {
-        return false;
-      } else if (
-        selectedPaymentInfoList[i].selectedPayOption === PAYMENT.payOptions.cc
-      ) {
-        for (let key in selectedPaymentInfoList[i].creditCardFormData) {
+        for (let key in selectedPaymentInfoList[paymentNumber]
+          .creditCardFormData) {
           if (
-            selectedPaymentInfoList[i].creditCardFormData[key]?.trim() === ""
+            selectedPaymentInfoList[paymentNumber].creditCardFormData[
+              key
+            ]?.trim() === ""
           ) {
             return false;
           }
         }
-        if (isValidCardNumber(i) === false) {
-          return false;
-        }
-        if (isValidCode(i) === false) {
+        if (isValidCardNumber(paymentNumber) === false) {
           return false;
         }
         if (
-          getAllowedCardType(
-            selectedPaymentInfoList[i].creditCardFormData.account
-          ) === ""
+          isValidCode(paymentNumber) === false ||
+          selectedPaymentInfoList[
+            paymentNumber
+          ]?.creditCardFormData.cc_cvc?.trim() === ""
         ) {
+          return false;
+        }
+        if (
+          selectedPaymentInfoList[paymentNumber].creditCardFormData.account ===
+          ""
+        ) {
+          return false;
+        }
+      } else {
+        if (isValidCode(paymentNumber) === false) {
           return false;
         }
       }
     }
-    if (selectedBillAddressIdList.length !== selectedPaymentInfoList.length) {
+    return true;
+  }
+
+  /**
+   * Validate billing address id and payment options/credit card for a payment
+   * @returns Whether or not the payment is valid
+   */
+  function isValidPayment(paymentNumber: number) {
+    if (!isValidBillingAddress(paymentNumber)) {
       return false;
+    }
+    if (!isValidPaymentMethod(paymentNumber)) {
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Validate billing address id list and payment options/credit card inputs for all payments
+   * @returns Whether or not all payment selections is valid
+   */
+  function isValidPaymentList() {
+    if (selectedPaymentInfoList.length < 1) {
+      return false;
+    }
+
+    for (let i = 0; i < selectedPaymentInfoList.length; i++) {
+      if (!isValidBillingAddress(i)) {
+        return false;
+      }
+      if (!isValidPaymentMethod(i)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
+   * Validate whether po number is required and specified
+   * @returns Whether po number is valid or needed
+   */
+  function isValidPO() {
+    if (isPONumberRequired) {
+      if (poNumber.trim() === "") {
+        return false;
+      }
     }
     return true;
   }
@@ -415,59 +626,69 @@ const Payment: React.FC = (props: any) => {
    * @returns Whether next step is allowed
    */
   function canContinue() {
-    return !isCheckoutDisabled && isValidPayment();
+    return !isCheckoutDisabled && isValidPaymentList() && isValidPO();
   }
 
   /**
-   * Submit the selected ship mode and payment information
+   * Submit the selected payment method and billing address information
    */
   async function submit() {
     if (canContinue()) {
+      if (isPONumberRequired && cart) {
+        localStorageUtil.set(
+          ACCOUNT + "-" + PO_NUMBER + "-" + cart.orderId,
+          poNumber
+        );
+      }
+
       await paymentInstructionService.deleteAllPaymentInstructions({
         ...payloadBase,
       });
 
-      for (let i = 0; i < selectedPaymentInfoList.length; i++) {
+      for (let i = 0; i < 1; i++) {
+        //Submit first PI only until Multiple payment feature is added
         const thisPayment = selectedPaymentInfoList[i];
-        let payMethod = thisPayment.selectedPayOption;
-        if (
-          selectedPaymentInfoList[i].selectedPayOption === PAYMENT.payOptions.cc
-        ) {
-          payMethod = getAllowedCardType(
-            thisPayment.creditCardFormData.account
-          );
-        }
+        let payMethod = thisPayment.payMethodId;
 
         let body: any = {
-          piAmount: cart.grandTotal,
-          billing_address_id: selectedBillAddressIdList[i],
+          piAmount: selectedPaymentInfoList[i].piAmount,
+          billing_address_id: selectedPaymentInfoList[i].addressId,
           payMethodId: payMethod,
         };
         if (
-          selectedPaymentInfoList[i].selectedPayOption === PAYMENT.payOptions.cc
+          selectedPaymentInfoList[i].payMethodId !==
+          PAYMENT.paymentMethodName.cod
         ) {
-          body = {
-            ...body,
-            account: thisPayment.creditCardFormData.account,
-            expire_month: thisPayment.creditCardFormData.expire_month,
-            expire_year: thisPayment.creditCardFormData.expire_year,
-            cc_cvc: thisPayment.creditCardFormData.cc_cvc,
-            cc_brand: payMethod,
-          };
+          if (selectedPaymentInfoList[i].paymentTermConditionId === "") {
+            body = {
+              ...body,
+              account: thisPayment.creditCardFormData.account.trim(),
+              expire_month: thisPayment.creditCardFormData.expire_month,
+              expire_year: thisPayment.creditCardFormData.expire_year,
+              cc_cvc: thisPayment.creditCardFormData.cc_cvc.trim(),
+              cc_brand: payMethod,
+            };
+          } else {
+            body = {
+              ...body,
+              account: EMPTY_STRING,
+              cc_cvc: EMPTY_STRING,
+              expire_month: EMPTY_STRING,
+              expire_year: EMPTY_STRING,
+              cc_brand: payMethod,
+              valueFromPaymentTC: "true",
+              paymentTermConditionId: thisPayment.paymentTermConditionId,
+              valueFromProfileOrder: "",
+              orderId: ".",
+            };
+          }
         }
-
         const payload = {
           ...payloadBase,
           body,
         };
         await paymentInstructionService.addPaymentInstruction(payload);
       }
-      dispatch(
-        orderActions.FETCHING_CART_ACTION({
-          ...payloadBase,
-          fetchCatentries: true,
-        })
-      );
       history.push(ROUTES.CHECKOUT_REVIEW);
     }
   }
@@ -487,7 +708,7 @@ const Payment: React.FC = (props: any) => {
         alignments="center"
         justify="flex-start"
         spacing={2}>
-        {!createNewAddress && !editAddress ? (
+        {!createNewAddress && !editAddress && !addNewPayment ? (
           <>
             <StyledGrid item>
               <StyledBox
@@ -517,48 +738,84 @@ const Payment: React.FC = (props: any) => {
                 onClick={() => {
                   setCreateNewAddress(false);
                   setEditAddress(false);
+                  handleCancelNewPayment();
                 }}>
                 <StyledTypography variant="h4" component="p">
                   {t("Payment.Title")}
                 </StyledTypography>
               </StyledButton>
             </StyledGrid>
-            <StyledGrid item>
-              <StyledBox
-                variant="div"
-                display="inline-flex"
-                alignItems="center"
-                className="full-height">
-                <ChevronRightIcon />
-              </StyledBox>
-            </StyledGrid>
-            {editAddress ? (
-              <StyledGrid item>
-                <StyledTypography variant="h4" component="p">
-                  {t("Shipping.Labels.EditAddress")}
-                </StyledTypography>
-              </StyledGrid>
-            ) : (
-              <StyledGrid item>
-                <StyledTypography variant="h4" component="p">
-                  {t("Shipping.Labels.AddNewAddress")}
-                </StyledTypography>
-              </StyledGrid>
+            {addNewPayment && (
+              <>
+                <StyledGrid item>
+                  <StyledBox
+                    variant="div"
+                    display="inline-flex"
+                    alignItems="center"
+                    className="full-height">
+                    <ChevronRightIcon />
+                  </StyledBox>
+                </StyledGrid>
+                <StyledGrid item>
+                  <StyledTypography variant="h4" component="p">
+                    {t("Payment.Labels.PaymentMethod", {
+                      number: currentPaymentNumber + 1,
+                    })}
+                  </StyledTypography>
+                </StyledGrid>
+              </>
             )}
+
+            {createNewAddress ||
+              editAddress ||
+              (!isPersonalAddressAllowed && (
+                <>
+                  <StyledGrid item>
+                    <StyledBox
+                      variant="div"
+                      display="inline-flex"
+                      alignItems="center"
+                      className="full-height">
+                      <ChevronRightIcon />
+                    </StyledBox>
+                  </StyledGrid>
+                  {createNewAddress ? (
+                    <StyledGrid item>
+                      <StyledTypography variant="h4" component="p">
+                        {t("Shipping.Labels.AddNewAddress")}
+                      </StyledTypography>
+                    </StyledGrid>
+                  ) : (
+                    <StyledGrid item>
+                      <StyledTypography variant="h4" component="p">
+                        {t("Shipping.Labels.EditAddress")}
+                      </StyledTypography>
+                    </StyledGrid>
+                  )}
+                </>
+              ))}
           </>
         )}
       </StyledGrid>
       <Divider className="top-margin-3 bottom-margin-2" />
 
-      {!useMultiplePayment ? (
+      {isB2B && isPONumberRequired && !createNewAddress && !editAddress && (
+        <>
+          <PurchaseOrderNumber
+            poNumber={poNumber}
+            handlePONumberChange={handlePONumberChange}
+            isValidPO={isValidPO}
+          />
+          <Divider className="top-margin-3 bottom-margin-2" />
+        </>
+      )}
+
+      {!useMultiplePayment || (useMultiplePayment && addNewPayment) ? (
         <PaymentMethodContainer
-          allowedCardDisplayNames={allowedCardDisplayNames}
-          selectedPaymentInfoList={selectedPaymentInfoList}
+          paymentInfo={selectedPaymentInfoList[currentPaymentNumber]}
           currentPaymentNumber={currentPaymentNumber}
           usableBillAddresses={usableBillAddresses}
-          selectedAddressIdList={selectedBillAddressIdList}
           setSelectedAddressId={setSelectedBillingAddressId}
-          getAllowedCardType={getAllowedCardType}
           setCreateNewAddress={setCreateNewAddress}
           createNewAddress={createNewAddress}
           editAddress={editAddress}
@@ -567,32 +824,73 @@ const Payment: React.FC = (props: any) => {
           handleCreditCardChange={handleCreditCardChange}
           isValidCardNumber={isValidCardNumber}
           isValidCode={isValidCode}
+          useMultiplePayment={useMultiplePayment}
+          paymentsList={payMethods}
+          isPersonalAddressAllowed={isPersonalAddressAllowed}
+          orgAddressDetails={orgAddressDetails}
         />
       ) : (
-        <></>
+        <PaymentInfoList
+          selectedPaymentInfoList={selectedPaymentInfoList}
+          handleAddNewPayment={handleAddNewPayment}
+          allowMorePayments={allowMorePayments}
+        />
       )}
 
       {!createNewAddress && !editAddress && (
         <StyledGrid
           container
+          spacing={1}
           justify="space-between"
           className="checkout-actions">
           <StyledGrid item>
-            <StyledButton
-              className="left-border-solid"
-              size="small"
-              variant="outlined"
-              onClick={() => back()}>
+            <StyledButton color="secondary" onClick={() => back()}>
               {t("Payment.Actions.Back")}
             </StyledButton>
           </StyledGrid>
           <StyledGrid item>
-            <StyledButton
-              color="primary"
-              disabled={!canContinue()}
-              onClick={() => submit()}>
-              {t("Payment.Actions.Next")}
-            </StyledButton>
+            <StyledGrid item>
+              {useMultiplePayment && (
+                <StyledGrid item>
+                  {addNewPayment && allowMorePayments && (
+                    <StyledButton
+                      color="secondary"
+                      disabled={!isValidPayment(currentPaymentNumber)}
+                      onClick={handleAddNewPayment}>
+                      {t("Payment.Actions.SaveAndAdd")}
+                    </StyledButton>
+                  )}
+                  {!addNewPayment &&
+                    selectedPaymentInfoList.length > 0 &&
+                    allowMorePayments && (
+                      <StyledButton
+                        color="secondary"
+                        onClick={handleAddNewPayment}>
+                        {t("Payment.Actions.AddAnotherPayMethod")}
+                      </StyledButton>
+                    )}
+                </StyledGrid>
+              )}
+              <StyledGrid item>
+                {addNewPayment ? (
+                  <StyledButton
+                    color="primary"
+                    disabled={!isValidPayment(currentPaymentNumber)}
+                    onClick={() => {
+                      setAddNewPayment(false);
+                    }}>
+                    {t("Payment.Actions.Finish")}
+                  </StyledButton>
+                ) : (
+                  <StyledButton
+                    color="primary"
+                    disabled={!canContinue()}
+                    onClick={() => submit()}>
+                    {t("Payment.Actions.Next")}
+                  </StyledButton>
+                )}
+              </StyledGrid>
+            </StyledGrid>
           </StyledGrid>
         </StyledGrid>
       )}

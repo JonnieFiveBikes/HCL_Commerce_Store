@@ -1,0 +1,11 @@
+{
+  "AdminTools": {
+    "buyerManagement": "买家管理",
+    "orgAndBuyer": "买家和订单审批",
+    "orgManagement": "组织管理",
+    "buyerManagementDesc": "在您的组织下创建、编辑或删除买家",
+    "orgAndBuyerDesc": "批准或拒绝买家注册和订单",
+    "orgManagementDesc": "添加和查看您的组织",
+    "adminTools": "管理工具"
+  }
+}

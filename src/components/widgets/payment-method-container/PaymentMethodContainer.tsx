@@ -9,8 +9,7 @@
  *==================================================
  */
 //Standard libraries
-import React from "react";
-import { useTranslation } from "react-i18next";
+import React, { useEffect } from "react";
 //Custom libraries
 import { PaymentMethodSelection } from "../../widgets/payment-method-selection";
 import { PaymentInfoType } from "../../pages/checkout/payment/Payment";
@@ -21,13 +20,10 @@ import CheckoutAddress, {
 import { Divider } from "@material-ui/core";
 
 interface PaymentMethodContainerProps {
-  allowedCardDisplayNames: string[];
-  selectedPaymentInfoList: PaymentInfoType[];
+  paymentInfo: PaymentInfoType;
   currentPaymentNumber: number;
   usableBillAddresses: any[] | null;
-  selectedAddressIdList: string[];
   setSelectedAddressId: Function; //setter fn to set selected billing address id
-  getAllowedCardType: Function;
   createNewAddress: boolean;
   setCreateNewAddress: Function;
   setEditAddress: Function;
@@ -36,6 +32,10 @@ interface PaymentMethodContainerProps {
   handleCreditCardChange: Function;
   isValidCardNumber: Function;
   isValidCode: Function;
+  useMultiplePayment: boolean;
+  paymentsList: any[];
+  isPersonalAddressAllowed: string;
+  orgAddressDetails: any[];
 }
 
 /**
@@ -48,12 +48,9 @@ const PaymentMethodContainer: React.FC<PaymentMethodContainerProps> = (
 ) => {
   const {
     usableBillAddresses,
-    allowedCardDisplayNames,
-    selectedPaymentInfoList,
+    paymentInfo,
     currentPaymentNumber,
-    selectedAddressIdList,
     setSelectedAddressId,
-    getAllowedCardType,
     createNewAddress,
     setCreateNewAddress,
     setEditAddress,
@@ -62,37 +59,51 @@ const PaymentMethodContainer: React.FC<PaymentMethodContainerProps> = (
     handleCreditCardChange,
     isValidCardNumber,
     isValidCode,
+    useMultiplePayment,
+    paymentsList,
+    isPersonalAddressAllowed,
+    orgAddressDetails,
   } = props;
-  const { t } = useTranslation();
+
+  const [paymentChosen, setPaymentChosen] = React.useState<boolean>(false);
+
+  useEffect(() => {
+    if (paymentInfo && paymentInfo.policyId && paymentInfo.payMethodId) {
+      setPaymentChosen(true);
+    }
+  }, [paymentInfo]);
 
   return (
     <>
-      <CheckoutAddress
-        usableAddresses={usableBillAddresses || []}
-        page={CheckoutPageType.PAYMENT}
-        setSelectedAddressId={setSelectedAddressId}
-        selectedAddressId={selectedAddressIdList[currentPaymentNumber]}
-        toggleCreateNewAddress={setCreateNewAddress}
-        createNewAddress={createNewAddress}
-        editAddress={editAddress}
-        toggleEditAddress={setEditAddress}
-      />
-
       {!createNewAddress && !editAddress && (
         <>
           <PaymentMethodSelection
-            allowedCardDisplayNames={allowedCardDisplayNames}
-            selectedPaymentInfoList={selectedPaymentInfoList}
-            getAllowedCardType={getAllowedCardType}
+            paymentInfo={paymentInfo}
             currentPaymentNumber={currentPaymentNumber}
             togglePayOption={togglePayOption}
             handleCreditCardChange={handleCreditCardChange}
             isValidCardNumber={isValidCardNumber}
             isValidCode={isValidCode}
+            useMultiplePayment={useMultiplePayment}
+            paymentsList={paymentsList}
           />
           <Divider className="top-margin-3 bottom-margin-2" />
         </>
       )}
+
+      <CheckoutAddress
+        usableAddresses={usableBillAddresses || []}
+        page={CheckoutPageType.PAYMENT}
+        setSelectedAddressId={setSelectedAddressId}
+        selectedAddressId={paymentInfo?.addressId ? paymentInfo.addressId : ""}
+        toggleCreateNewAddress={setCreateNewAddress}
+        createNewAddress={createNewAddress}
+        editAddress={editAddress}
+        toggleEditAddress={setEditAddress}
+        isPersonalAddressAllowed={isPersonalAddressAllowed}
+        orgAddressDetails={orgAddressDetails}
+        paymentChosen={paymentChosen}
+      />
     </>
   );
 };

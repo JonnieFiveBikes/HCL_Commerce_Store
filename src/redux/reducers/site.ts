@@ -15,9 +15,9 @@ import initStates from "./initStates";
 import { INIT_SITE_SUCCESS_ACTION } from "../actions/site";
 
 /**
- * Session error reducer
+ * Site reducer
  */
-const siteReducer = createReducer(initStates.error, (builder) => {
+const siteReducer = createReducer(initStates.site, (builder) => {
   builder.addCase(
     INIT_SITE_SUCCESS_ACTION,
     (state: any | any, action: AnyAction) => {

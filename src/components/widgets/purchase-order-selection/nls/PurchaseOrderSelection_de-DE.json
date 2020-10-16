@@ -1,0 +1,11 @@
+{
+  "PurchaseOrderSelection": {
+    "Title": "Einkaufsauftrag",
+    "Msgs": {
+      "InvalidFormat": "Ungültiges Format"
+    },
+    "Labels": {
+      "PONumber": "Bestellnummer"
+    }
+  }
+}

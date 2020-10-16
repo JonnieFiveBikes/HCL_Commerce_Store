@@ -29,11 +29,11 @@ function FeaturedProductRecommendationLayout({
 }: any) {
   let title: string;
   let ctx: any;
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const storeID: string = mySite ? mySite.storeID : "";
   const catalogID: string = mySite ? mySite.catalogID : "";
-  const FeatureCardLayout = lazy(() =>
-    import("../feature-card/FeatureCardLayout")
+  const FeatureCardLayout = lazy(
+    () => import("../feature-card/FeatureCardLayout")
   );
 
   let eSpot: any;

@@ -1,22 +1,22 @@
 {
   "Shipping": {
-    "Title": "Shipping Details",
+    "Title": "Detalles del envío",
     "Labels": {
-      "UseMultiple": "Ship to multiple addresses",
+      "UseMultiple": "Enviar a varias direcciones",
       "ShippingAddress": "Dirección de envío",
       "ShippingMethod": "Método de envío",
-      "SelectShippingMethod": "Choose your delivery method",
-      "AddNewAddress": "Add new address",
-      "EditAddress": "Edit Address"
+      "SelectShippingMethod": "Elija su método de envío",
+      "AddNewAddress": "Añadir nueva dirección",
+      "EditAddress": "Editar dirección"
     },
     "Actions": {
-      "SelectAddress": "Use this address",
-      "CreateNew": "Create new address",
-      "Next": "Continue to Payment"
+      "SelectAddress": "Utilizar esta dirección",
+      "CreateNew": "Crear nueva dirección",
+      "Next": "Continuar con el pago"
     },
     "Msgs": {
-      "UseSavedAddress": "Or select a saved address to use:",
-      "SelectShippingAddress": "Please first select a shipping address"
+      "UseSavedAddress": "O seleccione una de las direcciones guardadas:",
+      "SelectShippingAddress": "Seleccione primero una dirección de envío"
     }
   }
 }

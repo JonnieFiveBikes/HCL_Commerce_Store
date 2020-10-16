@@ -2,8 +2,8 @@
   "Checkout": {
     "Title": "结账",
     "Labels": {
-      "shipping": "配送和账单",
-      "payment": "付款和交货",
+      "shipping": "正在配送",
+      "payment": "付款",
       "review": "查看订单"
     },
     "Actions": {

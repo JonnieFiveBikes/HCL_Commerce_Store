@@ -8,7 +8,9 @@
  *
  *==================================================
  */
-export const initStates = {
+import { RootReducerState } from "../../../../redux/reducers";
+
+export const initStates: RootReducerState = {
   account: {
     orders: null,
     address: null,
@@ -30,7 +32,9 @@ export const initStates = {
     breadcrumbs: [],
   },
   user: {
-    initiatedFromStorage: true,
+    WCToken: "",
+    WCTrustedToken: "",
+    lastUpdated: 1111,
   },
   order: {
     cart: null,
@@ -38,12 +42,9 @@ export const initStates = {
     orderItems: [],
     catentries: null,
     isCheckoutDisabled: false,
-    shipAddresses: null,
+    shipInfos: null,
     shipModes: [],
     payMethods: [],
-    isRecurringOrder: false,
-    recurringOrderFrequency: "0",
-    recurringOrderStartDate: null,
     isRecurringOrderDisabled: false,
   },
   error: {
@@ -65,18 +66,14 @@ export const initStates = {
   context: {
     globalization: {
       preferredCurrency: "USD",
-      languageId: "-1",
+      languageId: -1,
       currency: "USD",
-      preferredLanguageId: "-1",
+      preferredLanguageId: -1,
     },
     catalog: {
-      catalogId: "11501",
+      catalogId: 11501,
       masterCatalog: false,
     },
-    bcsversion: {
-      lastUpdateTime: null,
-    },
-    resourceName: "usercontext",
     entitlement: {
       eligibleTradingAgreementIds: ["-11005"],
       hostingContractId: "-11004",
@@ -86,19 +83,20 @@ export const initStates = {
     },
     isPartiallyAuthenticated: false,
     basicInfo: {
-      runAsId: "-1002",
-      callerId: "-1002",
+      runAsId: -1002,
+      callerId: -1002,
       registerType: "G",
-      storeId: "11",
-      channelId: "-4",
+      storeId: 11,
+      channelId: -4,
     },
   },
   organization: {
     entitledOrganizations: [],
+    organizationDetails: {},
     accountCheck: true,
   },
-  success: {},
-  confirmation: {},
+  success: { key: "" },
+  confirmation: { key: "", title: "" },
   recurringOrder: {
     resultList: [],
   },

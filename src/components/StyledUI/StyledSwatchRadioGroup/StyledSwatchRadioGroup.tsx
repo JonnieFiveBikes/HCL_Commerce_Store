@@ -37,7 +37,7 @@ function RadioGroupWrapper({
       ? attributeChangeMap.get(id)
       : t("productDetail.any");
   } else {
-    currentSelectedAttributes = props.currentSelection.selectedAttributes
+    currentSelectedAttributes = props.currentSelection?.selectedAttributes
       ? props.currentSelection.selectedAttributes
       : {};
     defaultSelected = currentSelectedAttributes[id]

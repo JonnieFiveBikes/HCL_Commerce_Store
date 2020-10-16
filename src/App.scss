@@ -12,6 +12,12 @@
 * CSS Reset
 */
 
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
 a:-webkit-any-link {
   text-decoration: none;
 }
@@ -25,7 +31,10 @@ ul {
 }
 
 .page {
-  margin-top: 50px;
+  //Hamburger menu is used in mobile
+  @media (min-width: 600px) {
+    margin-top: 50px;
+  }
   margin-bottom: 60px;
 }
 

@@ -37,7 +37,7 @@ import {
 
 function Footer(props: any) {
   const { t } = useTranslation();
-  const mySite: SiteInfo = useSite();
+  const { mySite } = useSite();
   const Logo = () => {
     return mySite != null ? (
       <div className="footer-logo">

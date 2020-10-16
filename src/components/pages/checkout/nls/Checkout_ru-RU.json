@@ -2,8 +2,8 @@
   "Checkout": {
     "Title": "Оформить",
     "Labels": {
-      "shipping": "Доставка и выставление счетов",
-      "payment": "Оплата и доставка",
+      "shipping": "Доставка",
+      "payment": "Платеж",
       "review": "Сведения о заказе"
     },
     "Actions": {

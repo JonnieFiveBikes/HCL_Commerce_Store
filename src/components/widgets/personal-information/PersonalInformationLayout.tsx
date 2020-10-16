@@ -41,7 +41,7 @@ function PersonalInformationLayout() {
   const Password = t("PersonalInformation.Password");
   const SignOut = t("PersonalInformation.SignOutButton");
 
-  const mySite: any = useSite();
+  const { mySite } = useSite();
 
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
@@ -53,7 +53,10 @@ function PersonalInformationLayout() {
   };
 
   const logOutUser = (props: any) => {
-    dispatch(userAction.LOGOUT_REQUESTED_ACTION());
+    let payload = {
+      ...payloadBase,
+    };
+    dispatch(userAction.LOGOUT_REQUESTED_ACTION(payload));
   };
 
   useEffect(() => {

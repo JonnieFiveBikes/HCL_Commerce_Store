@@ -12,7 +12,7 @@ const fs = require("fs");
 const swaggerGen = require("swagger-js-codegen").CodeGen;
 const minimist = require("minimist");
 
-let swaggerDistDir = "src/apis";
+let swaggerDistDir = "src/_foundation/apis";
 let opts = {
   //defaults
   string: ["spec", "name", "resourceDomain", "tag", "ops"],
@@ -21,8 +21,8 @@ let opts = {
     spec: "undefined",
     resourceDomain: "undefined",
     tag: "undefined",
-    ops: "undefined"
-  }
+    ops: "undefined",
+  },
 };
 //console.log(process.execPath);
 let cmdArgs = minimist(process.argv.slice(2), opts);
@@ -75,7 +75,7 @@ function generateRestClass(opts) {
   if (opts.tag && opts.tag !== "undefined") {
     let tagList = opts.tag.split(",");
 
-    let filteredTags = spec.tags.filter(function(tag) {
+    let filteredTags = spec.tags.filter(function (tag) {
       return tagList.indexOf(tag.name) >= 0;
     });
 
@@ -90,7 +90,7 @@ function generateRestClass(opts) {
       return;
     }
 
-    Object.keys(spec.paths).forEach(function(pathRoute) {
+    Object.keys(spec.paths).forEach(function (pathRoute) {
       /*
        * path = { get: { tags: [] }, post: {  tags: [] } , etc}
        */
@@ -98,13 +98,13 @@ function generateRestClass(opts) {
       delete spec.paths[pathRoute];
 
       let filteredPath = {};
-      Object.keys(path).forEach(function(method) {
+      Object.keys(path).forEach(function (method) {
         //remvoe deprecated spec for Swagger spec 2.0
         if (
           !path[method].deprecated &&
           isOpToInclude(path[method].operationId, includingOperations)
         ) {
-          tagList.forEach(function(tag) {
+          tagList.forEach(function (tag) {
             if (path[method].tags.indexOf(tag) !== -1) {
               filteredPath[method] = path[method];
             }
@@ -120,8 +120,8 @@ function generateRestClass(opts) {
     spec.tags = filteredTags;
   } else {
     //remove deprecated spec Swagger spec 1.0
-    let apis = spec.apis.filter(function(api) {
-      let operations = api.operations.filter(function(op) {
+    let apis = spec.apis.filter(function (api) {
+      let operations = api.operations.filter(function (op) {
         return (
           !op.deprecated && isOpToInclude(op.nickname, includingOperations)
         );
@@ -150,23 +150,23 @@ function generateRestClass(opts) {
       resourceDomainName: opts.resourceDomain,
       moduleNameCamelCase: opts.camelCaseModuleName,
       classNameCamelCase: opts.camelCaseClassName,
-      year: new Date().getFullYear()
+      year: new Date().getFullYear(),
     },
     swagger: spec,
     template: {
       class: classTemplate,
       method: methodTemplate,
-      request: requestTemplate
-    }
+      request: requestTemplate,
+    },
   });
   fs.mkdirSync(`${swaggerDistDir}/${opts.camelCaseResourceDomain}`, {
-    recursive: true
+    recursive: true,
   });
   fs.writeFile(
     `${swaggerDistDir}/${opts.camelCaseResourceDomain}/${opts.camelCaseClassName}.service.ts`,
     source,
     "utf8",
-    err => {
+    (err) => {
       if (err) {
         console.error(err);
       } else {

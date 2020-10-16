@@ -18,6 +18,7 @@ import {
   SESSION_ERROR_LOGIN_REQUESTED_ACTION,
   INIT_STATE_FROM_STORAGE_ACTION,
   LOGOUT_REQUESTED_ACTION,
+  LISTEN_USER_FROM_STORAGE_ACTION,
 } from "../../actions/user";
 
 export function* watchSaga() {
@@ -25,6 +26,10 @@ export function* watchSaga() {
   yield takeLatest(
     INIT_STATE_FROM_STORAGE_ACTION,
     WORKERS.initStateFromStorage
+  );
+  yield takeLatest(
+    LISTEN_USER_FROM_STORAGE_ACTION,
+    WORKERS.updateStateFromStorage
   );
   //login
   yield takeLatest(ACTIONS.LOGIN_REQUESTED, WORKERS.login);

@@ -9,7 +9,6 @@
  *==================================================
  */
 import React from "react";
-import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { StyledIconLabel, StyledPaper, StyledButton, StyledGrid } from "..";
 
@@ -47,8 +46,6 @@ export default function StyledButtonBox({
   disabled,
   buttonAction,
 }: ButtonBoxProps) {
-  const { t } = useTranslation();
-
   return (
     <StyledButtonBoxWrapper className={disabled ? "disabled" : ""}>
       <StyledGrid

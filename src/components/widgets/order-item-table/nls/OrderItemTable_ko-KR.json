@@ -4,7 +4,7 @@
     "Labels": {
       "ItemDetails": "품목 상세 정보",
       "SKU": "SKU: ",
-      "Status": "상태",
+      "Status": "재고 여부",
       "Quantity": "수량",
       "Price": "가격",
       "Actions": "조치",

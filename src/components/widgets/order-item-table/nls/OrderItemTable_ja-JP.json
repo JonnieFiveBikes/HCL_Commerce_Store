@@ -4,7 +4,7 @@
     "Labels": {
       "ItemDetails": "商品の詳細",
       "SKU": "SKU:",
-      "Status": "状況",
+      "Status": "在庫状況",
       "Quantity": "数量",
       "Price": "価格",
       "Actions": "アクション",

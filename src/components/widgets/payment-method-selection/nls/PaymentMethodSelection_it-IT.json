@@ -3,16 +3,22 @@
     "Title": "Metodo di pagamento",
     "Msgs": {
       "CreditCard": "Pagamento sicuro online. Carte di credito accettate: {{cards}}",
-      "CVV": "Le ultime tre cifre nella riga della firma",
-      "InvalidCardNumber": "Numero o tipo di carta di credito non valido",
+      "CVV": "Le ultime tre cifre accanto alla firma",
+      "InvalidCardNumber": "Numero o tipo di carta non valido",
       "InvalidFormat": "Formato non valido"
     },
     "Labels": {
-      "COD": "Contanti alla consegna",
+      "COD": "Pagamento alla consegna",
       "CreditCard": "Carta di credito",
       "CCNumber": "Numero di carta di credito",
       "ExpiryDate": "Data di scadenza",
-      "CVV": "Codice CVV"
+      "CVV": "Codice CVV",
+      "OrderTotal": "Totale ordine",
+      "RemainingAmount": "Importo da pagare rimanente",
+      "AmountToPay": "Importo da pagare"
+    },
+    "Actions": {
+      "PayRemaining": "Paga importo rimanente"
     }
   }
 }

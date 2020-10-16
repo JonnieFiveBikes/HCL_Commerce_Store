@@ -74,7 +74,7 @@ const dispatchObject = {
 };
 
 const processTransactionHeader = (header: any) => {
-  const currentUser = storageSessionHandler.getCurrentUser();
+  const currentUser = storageSessionHandler.getCurrentUserAndLoadAccount();
   if (currentUser) {
     if (!header["WCTrustedToken"]) {
       header["WCTrustedToken"] = currentUser.WCTrustedToken;
@@ -191,7 +191,7 @@ const executeRequest = (request: AxiosRequestConfig): AxiosPromise<any> => {
     (request.url.indexOf(GUEST_IDENTITY) === -1 &&
       request.url.startsWith(site.transactionContext))
   ) {
-    let currentUser = storageSessionHandler.getCurrentUser();
+    let currentUser = storageSessionHandler.getCurrentUserAndLoadAccount();
     if (!currentUser && isUserRequiredService(request)) {
       return guestIdentityService
         .login(undefined)

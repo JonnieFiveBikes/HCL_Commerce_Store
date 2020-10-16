@@ -1,8 +1,11 @@
 {
   "CheckoutAddress": {
     "Actions": {
-      "Submit": "Save and select this address",
+      "Submit": "Enregistrer et sélectionner cette adresse",
       "Cancel": "Annuler"
+    },
+    "Payment": {
+      "ChooseFirst": "Veuillez d'abord choisir un mode de paiement."
     }
   }
 }

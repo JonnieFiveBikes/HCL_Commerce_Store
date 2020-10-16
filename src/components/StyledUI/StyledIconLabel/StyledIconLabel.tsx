@@ -10,7 +10,7 @@
  */
 import React from "react";
 import styled from "styled-components";
-import { StyledGrid, StyledTypography } from "../index";
+import { StyledTypography, StyledBox } from "../index";
 
 const StyledIconWithBackground = styled.div`
   ${({ theme }) => `
@@ -34,7 +34,7 @@ const StyledIconWithBackground = styled.div`
 
 interface StyledIconLabelProps {
   icon: any;
-  label: string;
+  label: any;
   variant?: string;
 }
 
@@ -42,25 +42,28 @@ const StyledIconLabel = styled(
   React.forwardRef<any, StyledIconLabelProps>((props: any, ref: any) => {
     const { icon, label } = props;
     const variant = props.variant ? props.variant : "h5";
+    const isLabelString = typeof label === "string" || label instanceof String;
 
-    const TextElements = (
+    const TextElements = isLabelString ? (
       <StyledTypography variant={variant}>{label}</StyledTypography>
+    ) : (
+      label
     );
 
     return (
-      <StyledGrid
-        item
-        xs
-        container
-        spacing={2}
-        direction="row"
+      <StyledBox
+        display="flex"
+        flexDirection="row"
         alignItems="center"
+        flexWrap="wrap"
         ref={ref}>
-        <StyledGrid item>
+        <StyledBox pr={2}>
           <StyledIconWithBackground>{icon}</StyledIconWithBackground>
-        </StyledGrid>
-        <StyledGrid item>{TextElements}</StyledGrid>
-      </StyledGrid>
+        </StyledBox>
+        <StyledBox pr={2} py={1}>
+          {TextElements}
+        </StyledBox>
+      </StyledBox>
     );
   })
 )`

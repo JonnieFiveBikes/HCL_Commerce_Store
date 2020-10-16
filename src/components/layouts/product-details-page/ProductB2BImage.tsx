@@ -20,23 +20,18 @@ import { StyledProductImage } from "../../StyledUI";
  * @param partNumber
  * @param props
  */
-function ProductB2BImage({ product, partNumber, ...props }: any) {
-  if (product && !product.isAngleImage && product.partNumber.thumbnail) {
-    return (
-      <StyledProductImage
-        itemProp="image"
-        id={`product_img_full_${partNumber}`}
-        src={product.partNumber.thumbnail}
-      />
-    );
+function ProductB2BImage({ thumbnail, isAngleImage, alt }: any) {
+  if (!isAngleImage && thumbnail) {
+    return <StyledProductImage itemProp="image" src={thumbnail} alt={alt} />;
   } else {
     return null;
   }
 }
 
 ProductB2BImage.propTypes = {
-  product: PropTypes.object,
-  partNumber: PropTypes.string,
+  thumbnail: PropTypes.string,
+  isAngleImage: PropTypes.bool,
+  alt: PropTypes.string,
 };
 
 export default ProductB2BImage;

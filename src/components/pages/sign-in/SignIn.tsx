@@ -23,7 +23,7 @@ import { SectionContent } from "../../layouts/sectionContentType";
 
 const Sign: React.FC = (props: any) => {
   const { t } = useTranslation();
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const isB2B: boolean = mySite?.isB2B ? mySite.isB2B : false;
   const redirectRoute: string = props.location?.state?.redirectRoute
     ? props.location.state.redirectRoute

@@ -26,6 +26,21 @@ const StyledBox = styled(ComponentWrapper)`
       background-color: ${theme.palette.primary.dark};
       cursor: pointer;
     }
+    &.accordion-show-expanded {
+      display: none;
+    }
+    &.accordion-show-summary {
+      display: block;
+    }
+    .Mui-expanded > &{
+      .accordion-show-expanded {
+        display: block;
+      }
+      .accordion-show-summary {
+        display: none;
+      }
+    }
+
   `}
 `;
 

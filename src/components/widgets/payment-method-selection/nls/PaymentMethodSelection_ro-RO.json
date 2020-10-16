@@ -12,7 +12,13 @@
       "CreditCard": "Card de credit",
       "CCNumber": "Număr card de credit",
       "ExpiryDate": "Dată de expirare",
-      "CVV": "Cod CVV"
+      "CVV": "Cod CVV",
+      "OrderTotal": "Total comandă",
+      "RemainingAmount": "Sumă rămasă de plată",
+      "AmountToPay": "Sumă de plată"
+    },
+    "Actions": {
+      "PayRemaining": "Plătiți suma rămasă"
     }
   }
 }

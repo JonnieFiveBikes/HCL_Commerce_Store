@@ -41,6 +41,7 @@ interface OrderItemTableProps {
   readOnly?: boolean;
   options?: any;
   miniCartView?: boolean;
+  className?: string;
   handleMiniCartClose?: Function;
 }
 
@@ -53,7 +54,7 @@ interface OrderItemTableProps {
 const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
@@ -68,6 +69,9 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
   const readOnly = props.readOnly !== undefined ? props.readOnly : true;
   const miniCartView =
     props.miniCartView !== undefined ? props.miniCartView : false;
+
+  //update this flag as need later
+  const pagination = !readOnly && !miniCartView;
   const handleMiniCartClose =
     props.handleMiniCartClose !== undefined ? props.handleMiniCartClose : null;
   const [quantityList, setQuantityList] = useState<any>(initQuantityData());
@@ -247,7 +251,7 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
   const defaultOptions = {
     toolbar: false,
     header: !miniCartView,
-    paging: !miniCartView,
+    paging: pagination,
     pageSize: PAGINATION_CONFIGS.pageLimit,
     pageSizeOptions: PAGINATION_CONFIGS.pageSizeOptions,
     actionsColumnIndex: -1,
@@ -360,7 +364,8 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
       localization={localization}
       options={options}
       actions={readOnly ? [] : actions}
-      className={miniCartView ? "mini-cart-table" : "order-item-table"}
+      className={`${props.className ? props.className : ""}
+          ${miniCartView ? "mini-cart-table" : "order-item-table"}`}
     />
   );
 };

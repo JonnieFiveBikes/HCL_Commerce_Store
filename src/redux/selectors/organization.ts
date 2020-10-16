@@ -18,4 +18,8 @@ const activeOrgSelector = (state: RootReducerState) => {
   return state.context.entitlement?.activeOrganizationId;
 };
 
-export { entitledOrgSelector, activeOrgSelector };
+const organizationDetailsSelector = (state: RootReducerState) => {
+  return state.organization.organizationDetails;
+};
+
+export { entitledOrgSelector, activeOrgSelector, organizationDetailsSelector };

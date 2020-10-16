@@ -16,11 +16,7 @@ import { createSelector } from "@reduxjs/toolkit";
 import cloneDeep from "lodash/cloneDeep";
 //Custom libraries
 import FormattedPriceDisplay from "../../../widgets/formatted-price-display";
-import {
-  RECURRING_ORDERS,
-  ORDER_DETAILS,
-  DASHBOARD,
-} from "../../../../constants/routes";
+import { RECURRING_ORDERS, ORDER_DETAILS } from "../../../../constants/routes";
 import AccountSidebar from "../../../widgets/account-sidebar/AccountSidebar";
 //Redux
 import { COPY_CART_ACTION } from "../../../../redux/actions/order";
@@ -252,7 +248,6 @@ const useRecurringOrderTable = () => {
 };
 
 function RecurringOrders(props: any) {
-  const { t } = useTranslation();
   const {
     columns,
     options,

@@ -1,0 +1,12 @@
+{
+  "PaymentInfoList": {
+    "Title": "Modes de paiement - Total de la commande : ",
+    "Msgs": {
+      "PayMethodRequired": "Au moins un mode de paiement est requis.",
+      "InsufficientPayment": "L'ensemble de vos modes de paiement doit vous permettre de régler l'intégralité de la commande, soit {{grandTotal}}."
+    },
+    "Actions": {
+      "AddPayMethod": "Ajouter un mode de paiement"
+    }
+  }
+}

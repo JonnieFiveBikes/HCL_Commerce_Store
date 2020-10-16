@@ -34,10 +34,10 @@ import {
   StyledDialogContentText,
 } from "./StyledDialog";
 import {
-  StyledExpansionPanel,
-  StyledExpansionPanelDetails,
-  StyledExpansionPanelSummary,
-} from "./StyledExpansionPanel";
+  StyledAccordion,
+  StyledAccordionDetails,
+  StyledAccordionSummary,
+} from "./StyledAccordion";
 import StyledFilterChipSection from "./StyledFilterChipSection/StyledFilterChipSection";
 import StyledFooter from "./StyledFooter/StyledFooter";
 import {
@@ -124,11 +124,7 @@ export {
   StyledDialogActions,
   StyledDialogContentText,
 };
-export {
-  StyledExpansionPanel,
-  StyledExpansionPanelDetails,
-  StyledExpansionPanelSummary,
-};
+export { StyledAccordion, StyledAccordionDetails, StyledAccordionSummary };
 export { StyledFilterChipSection };
 export { StyledFooter };
 export {
@@ -187,3 +183,4 @@ export { StyledTextField };
 export { StyledTooltip };
 export { StyledTypography, StyledMenuTypography };
 export { StyledWrapper };
+export { StylediFrame } from "./StylediFrame/StylediFrame";

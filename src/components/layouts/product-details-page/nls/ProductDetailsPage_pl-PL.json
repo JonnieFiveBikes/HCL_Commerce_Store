@@ -6,8 +6,6 @@
     "AddToCart": "Dodaj do koszyka",
     "Description": "Opis",
     "ProductDetails": "Szczegóły produktu",
-    "InStock": "W magazynie",
-    "OutofStock": "Brak w magazynie",
     "PricePending": "Oczekiwanie na cenę",
     "addToCartErrorMsg": "Wartości w polach ilości są niepoprawne lub puste. Upewnij się, że wartości te są dodatnimi liczbami całkowitymi, i spróbuj ponownie.",
     "any": "Dowolne",

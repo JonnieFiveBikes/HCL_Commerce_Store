@@ -1,19 +1,21 @@
 {
   "Payment": {
-    "Title": "Payment Details",
+    "Title": "支払いの詳細",
     "Msgs": {
       "InvalidFormat": "無効な形式です"
     },
     "Labels": {
-      "UseMultiple": "Use multiple payment methods",
+      "UseMultiple": "複数の支払方法を使用する",
       "PaymentMethod": "支払方法 {{number}}",
-      "AddNewAddress": "Add new address",
+      "AddNewAddress": "新規住所を追加",
       "BillingAddress": "請求先住所"
     },
     "Actions": {
-      "Back": "Back to Shipping Details",
-      "Next": "オーダーのレビューを続ける",
-      "SaveAndAdd": "Save and add another payment method"
+      "Back": "配送の詳細に戻る",
+      "Next": "オーダーのレビュー",
+      "Finish": "完了",
+      "SaveAndAdd": "保存して別の支払方法を追加",
+      "AddAnotherPayMethod": "別の支払方法を追加"
     }
   }
 }

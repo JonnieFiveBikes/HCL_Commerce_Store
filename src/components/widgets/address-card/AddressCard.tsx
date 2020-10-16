@@ -10,7 +10,7 @@
  */
 
 //Standard libraries
-import React, { Fragment, useEffect, useContext } from "react";
+import React, { Fragment, useEffect, useContext, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
@@ -31,10 +31,13 @@ import {
   ADDRESSLINE2,
   EMPTY_STRING,
   PHONE1,
+  ORG_ADDRESS_DETAILS,
+  ORG_ADDRESS,
+  ADDRESS_LINE,
 } from "../../../constants/common";
 import { EDIT_ADDRESS } from "../../../constants/routes";
 import * as ROUTES from "../../../constants/routes";
-import EditAddressContext from "../../pages/checkout/address/EditAddressContext";
+import AddressContext from "../../pages/checkout/address/AddressContext";
 import addressUtil from "../../../utils/addressUtil";
 //UI
 import { StyledTypography, StyledCard } from "../../StyledUI";
@@ -69,14 +72,15 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
     : null;
   const isSelected = selectedAddressId === addressId;
   const addressDetails = useSelector(addressDetailsSelector);
+  const addressContext = useContext(AddressContext);
+  const orgAddressDetails = addressContext[ORG_ADDRESS_DETAILS];
   const addressData = props.addressData
     ? buildAddressData(props.addressData)
     : getAddress();
   const { t } = useTranslation();
   const dispatch = useDispatch();
   let editAddressDetails: any;
-  const mySite: any = useSite();
-  const editAddressContext = useContext(EditAddressContext);
+  const { mySite } = useSite();
   const TOGGLE_EDIT_ADDRESS = "toggleEditAddress";
   const SET_EDIT_ADDRESS_FORM_DATA = "setEditAddressFormData";
 
@@ -138,6 +142,45 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
         }
       }
     }
+    if (
+      orgAddressDetails &&
+      orgAddressDetails.contactInfo &&
+      orgAddressDetails.addressBook &&
+      addressId !== EMPTY_STRING
+    ) {
+      if (
+        addressId === orgAddressDetails.contactInfo.addressId ||
+        nickName === orgAddressDetails.contactInfo.nickName
+      ) {
+        let orgAddress: any = {};
+        Object.assign(orgAddress, orgAddressDetails.contactInfo);
+        orgAddress[ADDRESS_LINE] = [
+          orgAddress.address1,
+          orgAddress.address2,
+          orgAddress.address3,
+        ];
+        orgAddress[ORG_ADDRESS] = true;
+        finalAddressData = orgAddress;
+      } else {
+        for (let orgAddress of orgAddressDetails.addressBook) {
+          if (
+            addressId === orgAddress.addressId ||
+            nickName === orgAddress.nickName
+          ) {
+            let address: any = {};
+            Object.assign(address, orgAddress);
+            address[ADDRESS_LINE] = [
+              address.address1,
+              address.address2,
+              address.address3,
+            ];
+            address[ORG_ADDRESS] = true;
+            finalAddressData = address;
+            break;
+          }
+        }
+      }
+    }
     return buildAddressData(finalAddressData);
   }
 
@@ -189,13 +232,13 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
   }
 
   const handleEditButton = () => {
-    editAddressContext[TOGGLE_EDIT_ADDRESS](true);
+    addressContext[TOGGLE_EDIT_ADDRESS](true);
     editAddressDetails = { ...addressData };
     setAndCleanAddressData(addressData);
     if (!addressData.phone1) {
       editAddressDetails[PHONE1] = EMPTY_STRING;
     }
-    editAddressContext[SET_EDIT_ADDRESS_FORM_DATA](editAddressDetails);
+    addressContext[SET_EDIT_ADDRESS_FORM_DATA](editAddressDetails);
   };
 
   const setAndCleanAddressData = (filteredAddressDetails: any) => {
@@ -269,37 +312,71 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
     </>
   );
 
-  const cardActions = actions
-    ? actions
-    : setSelectedAddressId
-    ? isSelected
-      ? [
-          {
-            text: t("AddressCard.EditButton"),
-            handleClick: () => handleEditButton(),
-          },
-        ]
-      : [
-          {
-            text: t("AddressCard.EditButton"),
-            handleClick: () => handleEditButton(),
-          },
-          {
-            text: t("AddressCard.UseAddress"),
-            handleClick: () => setSelectedAddressId(addressData.addressId),
-          },
-        ]
-    : [
-        {
-          text: t("AddressCard.EditButton"),
-          link: EDIT_ADDRESS + ROUTES.HOME + addressData.addressId,
-        },
-        {
-          text: t("AddressCard.DeleteButton"),
-          handleClick: () => deleteAddress(addressData.nickName),
-          enableConfirmation: true,
-        },
-      ];
+  // Memoized function to get the address card action based on dependencies/conditons
+  const cardActions = useMemo(() => getCardActions(), [
+    actions,
+    setSelectedAddressId,
+    isSelected,
+    addressData.orgAddress,
+    addressId,
+  ]);
+
+  /**
+   * Get the card actions for Address Card
+   */
+  function getCardActions() {
+    if (actions) {
+      return actions;
+    } else if (setSelectedAddressId) {
+      return getCardActionsForCheckout();
+    } else {
+      return getCardActionsForAddressBook();
+    }
+  }
+
+  /**
+   * Returns card action for checkout flow
+   */
+  function getCardActionsForCheckout() {
+    const action: any[] = [];
+    if (!isOrgAddress()) {
+      action.push({
+        text: t("AddressCard.EditButton"),
+        handleClick: () => handleEditButton(),
+      });
+    }
+    if (!isSelected) {
+      action.push({
+        text: t("AddressCard.UseAddress"),
+        handleClick: () => setSelectedAddressId(addressData.addressId),
+      });
+    }
+    return action;
+  }
+
+  /**
+   * if the address is organization address returns true else undefined
+   */
+  function isOrgAddress() {
+    return addressData.orgAddress;
+  }
+
+  /**
+   * Returns the adress card actions for AddressBook component
+   */
+  function getCardActionsForAddressBook() {
+    return [
+      {
+        text: t("AddressCard.EditButton"),
+        link: EDIT_ADDRESS + ROUTES.HOME + addressData.addressId,
+      },
+      {
+        text: t("AddressCard.DeleteButton"),
+        handleClick: () => deleteAddress(addressData.nickName),
+        enableConfirmation: true,
+      },
+    ];
+  }
 
   return readOnly ? (
     contentComponent

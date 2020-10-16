@@ -8,6 +8,7 @@
  *
  *==================================================
  */
+
 //Standard libraries
 import React, { Dispatch, Suspense } from "react";
 import { BrowserRouter, useLocation } from "react-router-dom";
@@ -20,6 +21,12 @@ import { site } from "./_foundation/constants/site";
 import { initAxios } from "./_foundation/axios/axiosConfig";
 import { initSite, useSite } from "./_foundation/hooks/useSite";
 import LoginGuard from "./_foundation/guard/LoginGuard";
+import {
+  storageSessionHandler,
+  localStorageUtil,
+} from "./_foundation/utils/storageUtil";
+import { LOCALE } from "./_foundation/constants/common";
+
 //Custom libraries
 import { ROUTE_CONFIG } from "./configs/routes";
 import { CommerceEnvironment } from "./constants/common";
@@ -28,7 +35,10 @@ import { Footer } from "./components/footer";
 //Redux
 import { loginStatusSelector } from "./redux/selectors/user";
 import { FETCH_CONTRACT_REQUESTED_ACTION } from "./redux/actions/contract";
-import { INIT_STATE_FROM_STORAGE_ACTION } from "./redux/actions/user";
+import {
+  INIT_STATE_FROM_STORAGE_ACTION,
+  LISTEN_USER_FROM_STORAGE_ACTION,
+} from "./redux/actions/user";
 import { USER_CONTEXT_REQUEST_ACTION } from "./redux/actions/context";
 import { ENTITLED_ORG_ACTION } from "./redux/actions/organization";
 //UI
@@ -38,7 +48,6 @@ import {
   StyledWrapper,
 } from "./components/StyledUI";
 import "./App.scss";
-
 const ScrollToTop = () => {
   const location = useLocation();
   React.useEffect(() => {
@@ -53,14 +62,23 @@ const ScrollToTop = () => {
 const App: React.FC = (props: any) => {
   const loggedIn = useSelector(loginStatusSelector);
   const dispatch = useDispatch<Dispatch<any>>();
-  const mySite: any = useSite();
+  const { mySite, storeDisplayName } = useSite();
   const { i18n } = useTranslation();
 
   const setTranslate = () => {
+    /**
+     * language preference priority
+     * 1. user context, to be implemented with language toggle
+     * 2. localStorage (saved for 30 days).
+     * 3. store default language.
+     */
+    // TODO: language toggle, update user language, read language from userContext if it is registered user.
     if (mySite) {
-      const locale = CommerceEnvironment.languageMap[mySite.defaultLanguageID]
-        .split("_")
-        .join("-");
+      const locale =
+        localStorageUtil.get(LOCALE)?.split("_").join("-") ||
+        CommerceEnvironment.languageMap[mySite.defaultLanguageID]
+          .split("_")
+          .join("-");
       if (locale !== i18n.languages[0]) {
         i18n.changeLanguage(locale);
       }
@@ -74,6 +92,9 @@ const App: React.FC = (props: any) => {
       dispatch(ENTITLED_ORG_ACTION({}));
       dispatch(FETCH_CONTRACT_REQUESTED_ACTION());
       dispatch(INIT_STATE_FROM_STORAGE_ACTION({}));
+      storageSessionHandler.triggerUserStorageListener(() =>
+        dispatch(LISTEN_USER_FROM_STORAGE_ACTION({}))
+      );
       setTranslate();
     } else {
       initSite(site, dispatch);
@@ -86,7 +107,7 @@ const App: React.FC = (props: any) => {
   return (
     mySite && (
       <BrowserRouter {...baseName}>
-        <StyledWrapper>
+        <StyledWrapper data-testid="app-wrapper">
           <StyledGrid
             container
             direction="column"
@@ -99,10 +120,7 @@ const App: React.FC = (props: any) => {
               <ScrollToTop />
               <Helmet>
                 <meta charSet="utf-8" />
-                <title>
-                  {mySite.storeCfg.description[0]?.displayName ||
-                    mySite.storeName}
-                </title>
+                <title>{`${storeDisplayName}`}</title>
               </Helmet>
             </StyledGrid>
             <StyledGrid item xs>

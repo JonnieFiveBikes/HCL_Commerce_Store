@@ -170,10 +170,7 @@ function AddAddress() {
           <Divider className="top-margin-2 bottom-margin-2" />
           <StyledGrid item xs={12}>
             <StyledLink to={ADDRESS_BOOK_ROUTE}>
-              <StyledButton
-                size="small"
-                variant="outlined"
-                className="left-border-solid">
+              <StyledButton size="small" color="secondary">
                 {t("AddressBook.Cancel")}
               </StyledButton>
             </StyledLink>

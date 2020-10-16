@@ -1,0 +1,12 @@
+{
+  "PaymentInfoList": {
+    "Title": "Metode de plată - Total comandă: ",
+    "Msgs": {
+      "PayMethodRequired": "Este necesară cel puțin o metodă de plată.",
+      "InsufficientPayment": "Trebuie să acoperiți totalul comenzii în valoare de {{grandTotal}} cu toate metodele de plată."
+    },
+    "Actions": {
+      "AddPayMethod": "Adăugați o metodă de plată"
+    }
+  }
+}

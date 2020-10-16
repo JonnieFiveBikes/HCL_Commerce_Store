@@ -5,6 +5,10 @@
       "Back": "Back to Payment Details",
       "Next": "Place Order",
       "NextRecurringOrder": "Place Recurring Order"
+    },
+    "Labels": {
+      "PaymentDetails": "Payment Details",
+      "OrderSummary": "Order Summary"
     }
   }
 }

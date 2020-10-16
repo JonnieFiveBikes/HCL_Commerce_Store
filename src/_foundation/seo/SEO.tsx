@@ -23,7 +23,7 @@ import { seoSelector } from "../../redux/selectors/seo";
 import { StyledProgressPlaceholder } from "../../components/StyledUI";
 
 function SEO(props: any): JSX.Element {
-  const site = useSite();
+  const { mySite: site } = useSite();
   const dispatch = useDispatch();
   const seoConfig = useSelector(seoSelector);
   const url = props.match.url;

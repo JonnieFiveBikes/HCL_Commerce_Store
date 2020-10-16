@@ -5,6 +5,10 @@
       "Back": "Zurück zu Zahlungsdetails",
       "Next": "Bestellung aufgeben",
       "NextRecurringOrder": "Wiederkehrende Bestellung aufgeben"
+    },
+    "Labels": {
+      "PaymentDetails": "Zahlungsdetails",
+      "OrderSummary": "Bestellübesicht"
     }
   }
 }

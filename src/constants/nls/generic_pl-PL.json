@@ -8,8 +8,8 @@
       "priceHighToLow": "Cena (od najwyższej do najniższej)"
     },
     "inventoryStatus": {
-      "Available": "Dostępne",
-      "Allocated": "Dostępne",
+      "Available": "W magazynie",
+      "Allocated": "W magazynie",
       "Unallocated": "Nieprzydzielone",
       "Backordered": "Zamówienie z opóźnioną realizacją",
       "OOS": "Brak w magazynie",

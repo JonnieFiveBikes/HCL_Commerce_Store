@@ -21,62 +21,67 @@ const Cart = lazy(() => import("../components/pages/cart/Cart"));
 
 //component
 const SignIn = lazy(() => import("../components/pages/sign-in/SignIn"));
-const AddressBook = lazy(() =>
-  import("../components/pages/address-book/AddressBook")
+const AddressBook = lazy(
+  () => import("../components/pages/address-book/AddressBook")
 );
-const EditAddress = lazy(() =>
-  import("../components/pages/address-book/EditAddress")
+const EditAddress = lazy(
+  () => import("../components/pages/address-book/EditAddress")
 );
-const AddAddress = lazy(() =>
-  import("../components/pages/address-book/AddAddress")
+const AddAddress = lazy(
+  () => import("../components/pages/address-book/AddAddress")
 );
-const SearchResults = lazy(() =>
-  import("../components/pages/search-results/SearchResults")
+const SearchResults = lazy(
+  () => import("../components/pages/search-results/SearchResults")
 );
 
 //checkout
 const Checkout = lazy(() => import("../components/pages/checkout/Checkout"));
-const Shipping = lazy(() =>
-  import("../components/pages/checkout/shipping/Shipping")
+const Shipping = lazy(
+  () => import("../components/pages/checkout/shipping/Shipping")
 );
-const Billing = lazy(() =>
-  import("../components/pages/checkout/payment/Payment")
+const Billing = lazy(
+  () => import("../components/pages/checkout/payment/Payment")
 );
 const Review = lazy(() => import("../components/pages/checkout/review/Review"));
-const OrderConfirmation = lazy(() =>
-  import("../components/pages/order-confirmation/OrderConfirmation")
+const OrderConfirmation = lazy(
+  () => import("../components/pages/order-confirmation/OrderConfirmation")
 );
 
 //Emerald pages
-const Account = lazy(() =>
-  import("../components/pages/_emerald/account/Account")
+const Account = lazy(
+  () => import("../components/pages/_emerald/account/Account")
 );
 
 //Sapphire pages
-const Dashboard = lazy(() =>
-  import("../components/pages/_sapphire/dashboard/Dashboard")
+const Dashboard = lazy(
+  () => import("../components/pages/_sapphire/dashboard/Dashboard")
 );
-const OrderHistory = lazy(() =>
-  import("../components/pages/_sapphire/order/OrderHistoryPage")
+const OrderHistory = lazy(
+  () => import("../components/pages/_sapphire/order/OrderHistoryPage")
 );
-const RecurringOrders = lazy(() =>
-  import("../components/pages/_sapphire/order/RecurringOrdersPage")
+const RecurringOrders = lazy(
+  () => import("../components/pages/_sapphire/order/RecurringOrdersPage")
 );
-const OrderDetailsPage = lazy(() =>
-  import("../components/pages/_sapphire/order/OrderDetailsPage")
+const OrderDetailsPage = lazy(
+  () => import("../components/pages/_sapphire/order/OrderDetailsPage")
 );
-const AccountSummary = lazy(() =>
-  import("../components/pages/_sapphire/account-summary/AccountSummary")
+const AccountSummary = lazy(
+  () => import("../components/pages/_sapphire/account-summary/AccountSummary")
 );
-const BuyerUserRegistration = lazy(() =>
-  import(
-    "../components/pages/_sapphire/buyer-user-registration/BuyerUserRegistration"
-  )
+const BuyerUserRegistration = lazy(
+  () =>
+    import(
+      "../components/pages/_sapphire/buyer-user-registration/BuyerUserRegistration"
+    )
 );
-const BuyerOrganizationRegistration = lazy(() =>
-  import(
-    "../components/pages/_sapphire/buyer-organization-registration/BuyerOrganizationRegistration"
-  )
+const BuyerOrganizationRegistration = lazy(
+  () =>
+    import(
+      "../components/pages/_sapphire/buyer-organization-registration/BuyerOrganizationRegistration"
+    )
+);
+const AdminTools = lazy(
+  () => import("../components/pages/_sapphire/adminTools/AdminTools")
 );
 
 const CheckoutRouteConfig: RouteConfig[] = [
@@ -205,6 +210,34 @@ const B2BRouteConfig: RouteConfig[] = [
     exact: true,
     isProtected: ROUTES.REGISTER_PROTECTED,
     component: AddAddress,
+  },
+  {
+    key: ROUTES.ORGANIZATION_MANAGEMENT,
+    path: ROUTES.ORGANIZATION_MANAGEMENT,
+    exact: true,
+    isProtected: ROUTES.REGISTER_PROTECTED,
+    component: AdminTools,
+  },
+  {
+    key: ROUTES.BUYER_MANAGEMENT,
+    path: ROUTES.BUYER_MANAGEMENT,
+    exact: true,
+    isProtected: ROUTES.REGISTER_PROTECTED,
+    component: AdminTools,
+  },
+  {
+    key: ROUTES.APPROVALS_MANAGEMENT,
+    path: ROUTES.APPROVALS_MANAGEMENT,
+    exact: true,
+    isProtected: ROUTES.REGISTER_PROTECTED,
+    component: AdminTools,
+  },
+  {
+    key: ROUTES.ORDER_APPROVAL,
+    path: ROUTES.ORDER_APPROVAL,
+    exact: true,
+    isProtected: ROUTES.REGISTER_PROTECTED,
+    component: AdminTools,
   },
   {
     key: "other",

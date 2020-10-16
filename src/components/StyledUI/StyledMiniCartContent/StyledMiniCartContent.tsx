@@ -47,12 +47,13 @@ const StyledMiniCartContent = React.forwardRef<any, MiniCartContentProps>(
       cartLinkLabel,
       handleCartOnClick,
       handleClose,
-      className,
-      ...other
     } = props;
 
     return (
-      <StyledPaper ref={ref} className="mini-cart-container">
+      <StyledPaper
+        ref={ref}
+        className="mini-cart-container"
+        data-testid="mini-cart-popper">
         <StyledTypography
           variant="h6"
           className="horizontal-padding-2 vertical-padding-2">

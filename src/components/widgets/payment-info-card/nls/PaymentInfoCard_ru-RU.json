@@ -1,0 +1,15 @@
+{
+  "PaymentInfoCard": {
+    "Title": "Способ оплаты {{number}}",
+    "Labels": {
+      "CreditCard": "Кредитная карта: ",
+      "AmountToPay": "Сумма к оплате",
+      "ExpiryDate": "Дата окончания срока действия:",
+      "BillingAddress": "Адрес выставления счета"
+    },
+    "Actions": {
+      "Edit": "Изменить",
+      "Delete": "Удалить"
+    }
+  }
+}

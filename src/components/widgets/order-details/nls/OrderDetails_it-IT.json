@@ -5,6 +5,10 @@
       "Back": "Torna ai dettagli di pagamento",
       "Next": "Effettua ordine",
       "NextRecurringOrder": "Effettua ordine ricorrente"
+    },
+    "Labels": {
+      "PaymentDetails": "Dettagli pagamento",
+      "OrderSummary": "Riepilogo ordine"
     }
   }
 }

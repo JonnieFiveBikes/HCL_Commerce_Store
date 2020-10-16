@@ -2,8 +2,8 @@
   "Checkout": {
     "Title": "결제",
     "Labels": {
-      "shipping": "운송 및 지불 청구",
-      "payment": "지불 및 배송",
+      "shipping": "운송",
+      "payment": "지불",
       "review": "주문 검토"
     },
     "Actions": {

@@ -29,7 +29,7 @@ import {
 } from "../../redux/selectors/user";
 
 const LoginGuard: React.FC = () => {
-  const mySite = useSite();
+  const { mySite } = useSite();
   const location = useLocation();
   const history = useHistory();
   const loginStatus = useSelector(loginStatusSelector);

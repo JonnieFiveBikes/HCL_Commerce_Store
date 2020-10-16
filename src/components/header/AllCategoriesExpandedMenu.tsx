@@ -30,19 +30,21 @@ const AllCategoriesExpandedMenu: React.FC<AllCategoriesExpandedMenuProps> = (
 
   return (
     <>
-      <StyledPaper className="expanded-menu-paper horizontal-padding-2">
+      <StyledPaper className="expanded-menu-paper">
         <StyledBox
           display="flex"
           direction="row"
           flexWrap="wrap"
           justifyContent="flex-start"
-          alignContent="flex-start">
+          alignContent="flex-start"
+          mx={4}
+          my={3}>
           {pages &&
             pages.map((page: any, index: number) => (
-              <StyledBox key={page.id} p={2}>
+              <StyledBox key={page.id} mr={5}>
                 <Link key={index} to={page.seo?.href}>
                   <StyledMenuTypography
-                    variant="body2"
+                    variant="body1"
                     className="expanded-menu-bold">
                     {page.name}
                   </StyledMenuTypography>

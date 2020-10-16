@@ -26,15 +26,7 @@ export const shipModesSelector = (state: RootReducerState) =>
   state.order.shipModes;
 export const payMethodsSelector = (state: RootReducerState) =>
   state.order.payMethods;
-export const isRecurringOrderSelector = (state: RootReducerState) =>
-  state.order.isRecurringOrder;
-export const recurringOrderFrequencySelector = (state: RootReducerState) =>
-  state.order.recurringOrderFrequency;
-export const recurringOrderStartDateSelector = (state: RootReducerState) =>
-  state.order.recurringOrderStartDate;
 export const isRecurringOrderDisabledSelector = (state: RootReducerState) =>
   state.order.isRecurringOrderDisabled;
 export const isFetchingSelector = (state: RootReducerState) =>
   state.order.isFetching;
-export const miniCartItemsSelector = (state: RootReducerState) =>
-  state.order.miniCartItems;

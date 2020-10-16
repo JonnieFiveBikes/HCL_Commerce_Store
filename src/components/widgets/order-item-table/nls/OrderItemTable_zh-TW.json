@@ -4,7 +4,7 @@
     "Labels": {
       "ItemDetails": "商品詳細資料",
       "SKU": "SKU：",
-      "Status": "完成狀態",
+      "Status": "可得性",
       "Quantity": "數量",
       "Price": "價格",
       "Actions": "動作",

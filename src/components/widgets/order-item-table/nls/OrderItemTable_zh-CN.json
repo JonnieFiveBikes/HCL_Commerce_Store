@@ -4,7 +4,7 @@
     "Labels": {
       "ItemDetails": "商品详细信息",
       "SKU": "SKU：",
-      "Status": "状态",
+      "Status": "可用性",
       "Quantity": "数量",
       "Price": "价格",
       "Actions": "操作",

@@ -6,8 +6,6 @@
     "AddToCart": "添加到购物车",
     "Description": "描述",
     "ProductDetails": "产品详细信息",
-    "InStock": "有库存",
-    "OutofStock": "无库存",
     "PricePending": "价格待定",
     "addToCartErrorMsg": "“数量”字段中的值无效或为空。请确保值为正整数，然后重试。",
     "any": "任何",

@@ -12,7 +12,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import isEmpty from "lodash/isEmpty";
-import { useTranslation } from "react-i18next";
 import LazyLoadComponent from "react-intersection-observer-lazy-load";
 //Redux
 import { CLICK_EVENT_TRIGGERED_ACTION } from "../../../redux/actions/marketingEvent";
@@ -73,7 +72,6 @@ function CategoryCardLayout({ renderingContext }: any) {
     eSpotInternal: eSpotRoot,
     categoryInternal: category,
   } = renderingContext;
-  const { t } = useTranslation();
 
   const informMarketingOfClick = (event) => {
     if (

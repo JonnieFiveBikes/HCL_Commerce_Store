@@ -1,13 +1,16 @@
-/*
- * (C) Copyright HCL Technologies Limited 2020
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+/**
+ *==================================================
+ * Licensed Materials - Property of HCL Technologies
+ *
+ * HCL Commerce
+ *
+ * (C) Copyright HCL Technologies Limited 2020a
+ *
+ *==================================================
  */
-
+/**
+ * Do not modify, the file is generated.
+ */
 import { AxiosRequestConfig, Method, AxiosPromise } from "axios";
 import { executeRequest } from "../../axios/axiosConfig";
 import { getSite } from "../../hooks/useSite";
@@ -16,26 +19,24 @@ const siteContentService = {
   /**
    * Provides keyword suggestions with type-ahead for search result page based on a term.
    * `@method`
-   * `@name SiteContent#findKeywordSuggestionsByTerm`
+   * `@name SiteContent#findKeywordSuggestionsByTermUsingGET`
    *
    * `@param {any} headers (optional)` will add headers to rest request
    *
    * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
    *
    * `@param {any} parameters` have following properties:
-   ** `@property {string} storeId (required)` The child property of `Parameters`.The store ID.
-   ** `@property {string} _fields ` The fields to be returned.
-   ** `@property {string} term (required)` The child property of `Parameters`.The search term.
-   ** `@property {string} term ` The search term.
+   ** `@property {integer} catalogId ` The catalog identifier. If none is specified, the store default catalog will be used.
+   ** `@property {integer} contractId ` The contractId
+   ** `@property {integer} count ` The number of suggested keywords to be returned. The default value is 4.
+   ** `@property {integer} langId ` Language identifier. If not specified, the "locale" parameter will be used. If "locale" is not specified, then the store default language will be used.
    ** `@property {string} limit ` Limit.
-   ** `@property {string} count ` The number of suggested keywords to be returned. The default value is 4.
-   ** `@property {string} contractId ` The contractId
-   ** `@property {string} langId ` Language identifier. If not specified, the "locale" parameter will be used. If "locale" isn't specified, then the store default language shall be used.
-   ** `@property {boolean} termsSort ` The sorting to be used in the returned result, "count" or "index". By default, it is "count".
-   ** `@property {string} catalogId ` The catalog identifier. If none is specified, the store default catalog shall be used.
    ** `@property {string} profileName ` Profile name. Profiles determine the subset of data to be returned by a search query.
+   ** `@property {integer} storeId (required)` The child property of `Parameters`.The store ID.
+   ** `@property {string} term (required)` The child property of `Parameters`.The search term.
+   ** `@property {boolean} termsSort ` The sorting to be used in the returned result, "count" or "index". By default, it is "count".
    */
-  findKeywordSuggestionsByTerm(
+  findKeywordSuggestionsByTermUsingGET(
     parameters: any,
     headers?: any,
     url?: string
@@ -49,7 +50,6 @@ const siteContentService = {
     let path = "/store/{storeId}/sitecontent/keywordSuggestionsByTerm/{term}";
     let requestUrl = domain + path;
     let method: Method = "GET";
-
     let form: any = {};
     let body = {};
     let header: Headers;
@@ -63,73 +63,16 @@ const siteContentService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = ["application/json"];
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/sitecontent/keywordSuggestionsByTerm/{term}' missing required parameter storeId"
-      );
-    }
-
-    if (parameters["_fields"] !== undefined) {
-      const name = "_fields";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    requestUrl = requestUrl.replace("{term}", parameters["term"]);
-
-    if (parameters["term"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/sitecontent/keywordSuggestionsByTerm/{term}' missing required parameter term"
-      );
-    }
-
-    if (parameters["term"] !== undefined) {
-      const name = "term";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["limit"] !== undefined) {
-      const name = "limit";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["count"] !== undefined) {
-      const name = "count";
+    if (parameters["catalogId"] !== undefined) {
+      const name = "catalogId";
       const parameter = parameters[name];
       delete parameters[name];
       if (parameter instanceof Array) {
@@ -154,6 +97,19 @@ const siteContentService = {
       }
     }
 
+    if (parameters["count"] !== undefined) {
+      const name = "count";
+      const parameter = parameters[name];
+      delete parameters[name];
+      if (parameter instanceof Array) {
+        parameter.forEach((value) => {
+          queryParameters.append(name, value);
+        });
+      } else {
+        queryParameters.set(name, parameter);
+      }
+    }
+
     if (parameters["langId"] !== undefined) {
       const name = "langId";
       const parameter = parameters[name];
@@ -167,21 +123,8 @@ const siteContentService = {
       }
     }
 
-    if (parameters["termsSort"] !== undefined) {
-      const name = "termsSort";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["catalogId"] !== undefined) {
-      const name = "catalogId";
+    if (parameters["limit"] !== undefined) {
+      const name = "limit";
       const parameter = parameters[name];
       delete parameters[name];
       if (parameter instanceof Array) {
@@ -206,6 +149,33 @@ const siteContentService = {
       }
     }
 
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/sitecontent/keywordSuggestionsByTerm/{term}' missing path parameter storeId"
+      );
+    }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+
+    if (parameters["term"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/sitecontent/keywordSuggestionsByTerm/{term}' missing path parameter term"
+      );
+    }
+    requestUrl = requestUrl.replace("{term}", parameters["term"]);
+
+    if (parameters["termsSort"] !== undefined) {
+      const name = "termsSort";
+      const parameter = parameters[name];
+      delete parameters[name];
+      if (parameter instanceof Array) {
+        parameter.forEach((value) => {
+          queryParameters.append(name, value);
+        });
+      } else {
+        queryParameters.set(name, parameter);
+      }
+    }
+
     if (parameters.$queryParameters) {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
@@ -214,16 +184,13 @@ const siteContentService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -260,37 +227,34 @@ const siteContentService = {
       },
       { ...parameters }
     );
-
     return executeRequest(requestOptions);
   },
 
   /**
    * Provides suggestions with type-ahead for search result page.
    * `@method`
-   * `@name SiteContent#findSuggestions`
+   * `@name SiteContent#findSuggestionsUsingGET`
    *
    * `@param {any} headers (optional)` will add headers to rest request
    *
    * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
    *
    * `@param {any} parameters` have following properties:
-   ** `@property {string} storeId (required)` The child property of `Parameters`.The store ID.
-   ** `@property {string} _fields ` The fields to be returned.
+   ** `@property {integer} catalogId ` The catalog identifier. If none is specified, the store default catalog will be used.
+   ** `@property {integer} contractId ` The contractId
+   ** `@property {integer} count ` The number of suggested keywords to be returned. The default value is 4.
+   ** `@property {integer} langId ` Language identifier. If not specified, the "locale" parameter will be used. If "locale" is not specified, then the store default language will be used.
+   ** `@property {string} limit ` Limit.
+   ** `@property {integer} storeId (required)` The child property of `Parameters`.The store ID.
    ** `@property {string} suggestType ` The suggestion type. Accepted values are 'Category', 'Brand', 'Articles', 'Keyword', and 'Product'.
    ** `@property {string} term ` The search term.
-   ** `@property {string} limit ` Limit.
-   ** `@property {string} count ` The number of suggested keywords to be returned. The default value is 4.
-   ** `@property {string} contractId ` The contractId
-   ** `@property {string} langId ` Language identifier. If not specified, the "locale" parameter will be used. If "locale" isn't specified, then the store default language shall be used.
    ** `@property {boolean} termsSort ` The sorting to be used in the returned result, "count" or "index". By default, it is "count".
-   ** `@property {string} catalogId ` The catalog identifier. If none is specified, the store default catalog shall be used.
    */
-  findSuggestions(
+  findSuggestionsUsingGET(
     parameters: any,
     headers?: any,
     url?: string
   ): AxiosPromise<any> {
-    //Set domain based on profile.
     let site = getSite();
     let siteContext: string = "";
     if (site) {
@@ -313,26 +277,16 @@ const siteContentService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = ["application/json"];
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/sitecontent/suggestions' missing required parameter storeId"
-      );
-    }
-
-    if (parameters["_fields"] !== undefined) {
-      const name = "_fields";
+    if (parameters["catalogId"] !== undefined) {
+      const name = "catalogId";
       const parameter = parameters[name];
       delete parameters[name];
       if (parameter instanceof Array) {
@@ -343,6 +297,65 @@ const siteContentService = {
         queryParameters.set(name, parameter);
       }
     }
+
+    if (parameters["contractId"] !== undefined) {
+      const name = "contractId";
+      const parameter = parameters[name];
+      delete parameters[name];
+      if (parameter instanceof Array) {
+        parameter.forEach((value) => {
+          queryParameters.append(name, value);
+        });
+      } else {
+        queryParameters.set(name, parameter);
+      }
+    }
+
+    if (parameters["count"] !== undefined) {
+      const name = "count";
+      const parameter = parameters[name];
+      delete parameters[name];
+      if (parameter instanceof Array) {
+        parameter.forEach((value) => {
+          queryParameters.append(name, value);
+        });
+      } else {
+        queryParameters.set(name, parameter);
+      }
+    }
+
+    if (parameters["langId"] !== undefined) {
+      const name = "langId";
+      const parameter = parameters[name];
+      delete parameters[name];
+      if (parameter instanceof Array) {
+        parameter.forEach((value) => {
+          queryParameters.append(name, value);
+        });
+      } else {
+        queryParameters.set(name, parameter);
+      }
+    }
+
+    if (parameters["limit"] !== undefined) {
+      const name = "limit";
+      const parameter = parameters[name];
+      delete parameters[name];
+      if (parameter instanceof Array) {
+        parameter.forEach((value) => {
+          queryParameters.append(name, value);
+        });
+      } else {
+        queryParameters.set(name, parameter);
+      }
+    }
+
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/sitecontent/suggestions' missing path parameter storeId"
+      );
+    }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["suggestType"] !== undefined) {
       const name = "suggestType";
@@ -370,73 +383,8 @@ const siteContentService = {
       }
     }
 
-    if (parameters["limit"] !== undefined) {
-      const name = "limit";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["count"] !== undefined) {
-      const name = "count";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["contractId"] !== undefined) {
-      const name = "contractId";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["langId"] !== undefined) {
-      const name = "langId";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
     if (parameters["termsSort"] !== undefined) {
       const name = "termsSort";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["catalogId"] !== undefined) {
-      const name = "catalogId";
       const parameter = parameters[name];
       delete parameters[name];
       if (parameter instanceof Array) {
@@ -456,16 +404,13 @@ const siteContentService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -502,8 +447,8 @@ const siteContentService = {
       },
       { ...parameters }
     );
-
     return executeRequest(requestOptions);
   },
 };
+
 export default siteContentService;

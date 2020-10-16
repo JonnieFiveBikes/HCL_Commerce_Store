@@ -18,6 +18,7 @@ import {
   WATCH_AXIOS_ERROR_ACTION,
   VALIDATION_ERROR_ACTION,
   CANCEL_SESSION_ERROR_ACTION,
+  CMC_SESSION_ERROR_ACTION,
 } from "../../actions/error";
 export function* watchSaga() {
   yield takeLatest(RESET_ERROR_ACTION, WORKERS.resetError);
@@ -27,4 +28,5 @@ export function* watchSaga() {
   );
   yield takeLeading(WATCH_AXIOS_ERROR_ACTION, WORKERS.handleAxiosErrors);
   yield takeLeading(VALIDATION_ERROR_ACTION, WORKERS.handleValidationError);
+  yield takeLeading(CMC_SESSION_ERROR_ACTION, WORKERS.handleCMCSessionError);
 }

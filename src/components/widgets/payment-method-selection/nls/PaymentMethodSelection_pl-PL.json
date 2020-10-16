@@ -12,7 +12,13 @@
       "CreditCard": "Karta kredytowa",
       "CCNumber": "Numer karty kredytowej",
       "ExpiryDate": "Data ważności",
-      "CVV": "Kod CVV"
+      "CVV": "Kod CVV",
+      "OrderTotal": "Suma zamówienia",
+      "RemainingAmount": "Pozostała kwota do zapłaty",
+      "AmountToPay": "Kwota do zapłaty"
+    },
+    "Actions": {
+      "PayRemaining": "Zapłać pozostałą kwotę"
     }
   }
 }

@@ -47,6 +47,7 @@ const MiniCart = React.forwardRef<HTMLButtonElement | null, MiniCartProps>(
     return (
       <>
         <StyledButton
+          data-testid="header-mini-cart-button"
           ref={ref}
           className="header-actionsButton"
           variant="text"
@@ -63,7 +64,7 @@ const MiniCart = React.forwardRef<HTMLButtonElement | null, MiniCartProps>(
         <StyledAccountPopper
           id={id}
           open={open}
-          anchorEl={ref.current}
+          anchorEl={ref?.current}
           onClose={handleClose}
           placement="bottom-end"
           modifiers={{

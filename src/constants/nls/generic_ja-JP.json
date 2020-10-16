@@ -8,8 +8,8 @@
       "priceHighToLow": "価格 (価格の高い順)"
     },
     "inventoryStatus": {
-      "Available": "使用可能",
-      "Allocated": "使用可能",
+      "Available": "在庫中",
+      "Allocated": "在庫中",
       "Unallocated": "未割り振り",
       "Backordered": "バックオーダー済み",
       "OOS": "在庫切れ",

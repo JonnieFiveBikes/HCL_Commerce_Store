@@ -18,6 +18,7 @@ import {
   StyledLink,
   StyledGrid,
   StyledCardContent,
+  StyledTypography,
 } from "../../StyledUI";
 
 const StyledCardWrapper = styled(({ ...props }) => <Card {...props} />)`
@@ -26,15 +27,20 @@ const StyledCardWrapper = styled(({ ...props }) => <Card {...props} />)`
       width: 66%;
       margin: 0 auto;
     }
-
+  
     &.address-card {
       position: relative;
+      border: 1px solid  ${theme.palette.divider};
+
+      a {
+        font-weight: 400;
+      }
     }
 
     &.selected {
       border-radius: ${theme.shape.borderRadius}px;
       border: 2px solid ${theme.palette.primary.main};
-    }  
+    }
   `}
 `;
 
@@ -69,11 +75,7 @@ const StyledCard: React.FC<StyledParameterizedCardProps> = (props: any) => {
   const [confirmState, setConfirmState] = useState<boolean>(false);
   const [confirmActionIndex, setConfirmActionIndex] = useState<number>(0);
 
-  const toggleConfirm = (
-    event: MouseEvent<HTMLAnchorElement>,
-    index: number
-  ) => {
-    event.preventDefault();
+  const toggleConfirm = (index: number) => {
     setConfirmState(!confirmState);
     setConfirmActionIndex(index);
   };
@@ -117,16 +119,20 @@ const StyledCard: React.FC<StyledParameterizedCardProps> = (props: any) => {
                     {v.text}
                   </StyledLink>
                 ) : (
-                  <StyledLink
-                    to="#"
-                    onClick={
-                      v.enableConfirmation
-                        ? (event) => toggleConfirm(event, index)
-                        : v.handleClick
-                    }
-                    key={index}>
-                    {v.text}
-                  </StyledLink>
+                  <StyledButton
+                    variant="text"
+                    key={index}
+                    onClick={() => {
+                      if (v.enableConfirmation) {
+                        toggleConfirm(index);
+                      } else {
+                        v.handleClick();
+                      }
+                    }}>
+                    <StyledTypography variant="body1">
+                      {v.text}
+                    </StyledTypography>
+                  </StyledButton>
                 )
               )}
             </StyledCardActions>
@@ -153,7 +159,7 @@ const StyledCard: React.FC<StyledParameterizedCardProps> = (props: any) => {
                       className="cancel-action-button"
                       variant="outlined"
                       fullWidth
-                      onClick={(event) => toggleConfirm(event, 0)}>
+                      onClick={() => toggleConfirm(0)}>
                       {cancelLabel}
                     </StyledButton>
                   </StyledGrid>

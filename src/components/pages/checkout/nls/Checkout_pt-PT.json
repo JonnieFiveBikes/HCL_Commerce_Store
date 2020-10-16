@@ -2,9 +2,9 @@
   "Checkout": {
     "Title": "Pagamento",
     "Labels": {
-      "shipping": "Envio e faturação",
-      "payment": "Pagamento e entrega",
-      "review": "Analisar pedido"
+      "shipping": "Envio",
+      "payment": "Pagamento",
+      "review": "Rever pedido"
     },
     "Actions": {
       "ReturnCart": "Voltar ao Carrinho",

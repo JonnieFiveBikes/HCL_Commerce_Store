@@ -2,8 +2,8 @@
   "Checkout": {
     "Title": "Checkout",
     "Labels": {
-      "shipping": "Versand und Abrechnung",
-      "payment": "Zahlung und Zustellung",
+      "shipping": "Versand",
+      "payment": "Zahlung",
       "review": "Bestellüberprüfung"
     },
     "Actions": {

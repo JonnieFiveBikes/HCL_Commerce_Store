@@ -35,7 +35,7 @@ import {
 } from "../../../StyledUI";
 
 const BuyerUserRegistration = (props: any) => {
-  const mySite = useSite();
+  const { mySite } = useSite();
   const defaultLanguageID = mySite?.defaultLanguageID;
   const defaultCurrencyID = mySite?.defaultCurrencyID;
   const supportedLanguages = mySite?.supportedLanguages;
@@ -105,7 +105,7 @@ const BuyerUserRegistration = (props: any) => {
         state: state,
         zipCode: zipCode,
         email1: email,
-        phone1: phone,
+        phone1: phone.trim(),
         preferredLanguage: language,
         preferredCurrency: currency,
         organizationDistinguishedName: parentOrg,
@@ -168,7 +168,7 @@ const BuyerUserRegistration = (props: any) => {
               <StyledTextField
                 required
                 inputProps={{
-                  maxLength: 100,
+                  maxLength: 128,
                 }}
                 label={t("BuyerUserRegistration.LogonId")}
                 name="logonId"
@@ -182,7 +182,7 @@ const BuyerUserRegistration = (props: any) => {
               <StyledTextField
                 required
                 inputProps={{
-                  maxLength: 100,
+                  maxLength: 254,
                 }}
                 label={t("BuyerUserRegistration.OrgName")}
                 name="orgName"
@@ -195,7 +195,7 @@ const BuyerUserRegistration = (props: any) => {
               <StyledTextField
                 required
                 inputProps={{
-                  maxLength: 100,
+                  maxLength: 50,
                   type: "password",
                 }}
                 label={t("BuyerUserRegistration.Password")}
@@ -209,7 +209,7 @@ const BuyerUserRegistration = (props: any) => {
               <StyledTextField
                 required
                 inputProps={{
-                  maxLength: 100,
+                  maxLength: 50,
                   type: "password",
                 }}
                 label={t("BuyerUserRegistration.Password2")}
@@ -223,7 +223,7 @@ const BuyerUserRegistration = (props: any) => {
               <StyledTextField
                 required
                 inputProps={{
-                  maxLength: 120,
+                  maxLength: 40,
                 }}
                 label={t("BuyerUserRegistration.FirstName")}
                 name="firstName"
@@ -236,7 +236,7 @@ const BuyerUserRegistration = (props: any) => {
               <StyledTextField
                 required
                 inputProps={{
-                  maxLength: 120,
+                  maxLength: 40,
                 }}
                 label={t("BuyerUserRegistration.LastName")}
                 name="lastName"
@@ -249,7 +249,7 @@ const BuyerUserRegistration = (props: any) => {
               <StyledTextField
                 required
                 inputProps={{
-                  maxLength: 220,
+                  maxLength: 99,
                 }}
                 label={t("BuyerUserRegistration.Address1")}
                 name="address1"
@@ -261,7 +261,7 @@ const BuyerUserRegistration = (props: any) => {
             <StyledGrid item xs={12}>
               <StyledTextField
                 inputProps={{
-                  maxLength: 220,
+                  maxLength: 49,
                 }}
                 label={t("BuyerUserRegistration.Address2")}
                 name="address2"
@@ -274,7 +274,7 @@ const BuyerUserRegistration = (props: any) => {
               <StyledTextField
                 required
                 inputProps={{
-                  maxLength: 100,
+                  maxLength: 40,
                 }}
                 label={t("BuyerUserRegistration.City")}
                 name="city"
@@ -287,7 +287,7 @@ const BuyerUserRegistration = (props: any) => {
               <StyledTextField
                 required
                 inputProps={{
-                  maxLength: 100,
+                  maxLength: 40,
                 }}
                 label={t("BuyerUserRegistration.Country")}
                 name="country"
@@ -300,7 +300,7 @@ const BuyerUserRegistration = (props: any) => {
               <StyledTextField
                 required
                 inputProps={{
-                  maxLength: 100,
+                  maxLength: 40,
                 }}
                 label={t("BuyerUserRegistration.State")}
                 name="state"
@@ -313,7 +313,7 @@ const BuyerUserRegistration = (props: any) => {
               <StyledTextField
                 required
                 inputProps={{
-                  maxLength: 50,
+                  maxLength: 30,
                 }}
                 label={t("BuyerUserRegistration.ZipCode")}
                 name="zipCode"
@@ -325,10 +325,8 @@ const BuyerUserRegistration = (props: any) => {
             <StyledGrid item xs={12} sm={6}>
               <StyledTextField
                 inputProps={{
-                  maxLength: 30,
+                  maxLength: 32,
                   type: "tel",
-                  pattern: "[0-9]{0,1}-{0,1}[0-9]{3}-[0-9]{3}-[0-9]{4}",
-                  placeholder: "000-000-0000 or 1-000-000-0000",
                 }}
                 label={t("BuyerUserRegistration.Phone")}
                 name="phone"
@@ -347,7 +345,7 @@ const BuyerUserRegistration = (props: any) => {
               <StyledTextField
                 required
                 inputProps={{
-                  maxLength: 100,
+                  maxLength: 35,
                   type: "email",
                 }}
                 label={t("BuyerUserRegistration.Email")}
@@ -371,12 +369,13 @@ const BuyerUserRegistration = (props: any) => {
                 <StyledSelect
                   value={language}
                   name="language"
+                  native
                   onChange={(e) => setLanguage(e.target.value)}
                   fullWidth>
                   {supportedLanguages?.map((e: any) => (
-                    <StyledMenuItem value={e} key={e}>
+                    <option value={e} key={e}>
                       {t(`CommerceEnvironment.language.${e}`)}
-                    </StyledMenuItem>
+                    </option>
                   ))}
                 </StyledSelect>
               </StyledFormControl>
@@ -389,12 +388,13 @@ const BuyerUserRegistration = (props: any) => {
                 <StyledSelect
                   value={currency}
                   name="currency"
+                  native
                   onChange={(e) => setCurrency(e.target.value)}
                   fullWidth>
                   {supportedCurrencies?.map((e: any) => (
-                    <StyledMenuItem value={e} key={e}>
+                    <option value={e} key={e}>
                       {t(`CommerceEnvironment.currency.${e}`)}
-                    </StyledMenuItem>
+                    </option>
                   ))}
                 </StyledSelect>
               </StyledFormControl>

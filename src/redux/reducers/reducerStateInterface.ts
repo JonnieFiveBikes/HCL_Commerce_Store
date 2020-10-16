@@ -47,17 +47,14 @@ export interface OrderReducerState {
   shipInfos: any | null;
   shipModes: any[];
   payMethods: any[];
-  isRecurringOrder: boolean;
-  recurringOrderFrequency: string;
-  recurringOrderStartDate: Date | null;
   isRecurringOrderDisabled: boolean;
   isFetching?: boolean;
-  miniCartItems: any[]; //Stores the last N items to be shown in minicart only
 }
 
 export interface UserReducerState {
   WCToken: string;
   WCTrustedToken: string;
+  lastUpdated?: number;
   [extraProps: string]: any;
 }
 
@@ -73,6 +70,7 @@ export interface ContractReducerState {
 }
 export interface OrganizationReducerState {
   entitledOrganizations: any;
+  organizationDetails: any;
   [extraProps: string]: any;
 }
 export interface ContextReducerState {
@@ -172,6 +170,7 @@ export interface SiteInfo {
   isB2B: boolean;
   inventorySystem: number;
   storeCfg: any;
+  supportedLanguages: any[];
   [extraPros: string]: any;
 }
 export interface OrderDetailsMapReducerState {

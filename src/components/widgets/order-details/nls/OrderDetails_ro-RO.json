@@ -5,6 +5,10 @@
       "Back": "Înapoi la detaliile de plată",
       "Next": "Plasare comandă",
       "NextRecurringOrder": "Plasare comandă recurentă"
+    },
+    "Labels": {
+      "PaymentDetails": "Detalii de plată",
+      "OrderSummary": "Sumar comandă"
     }
   }
 }

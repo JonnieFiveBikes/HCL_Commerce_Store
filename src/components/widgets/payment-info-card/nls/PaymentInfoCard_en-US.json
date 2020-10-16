@@ -1,0 +1,15 @@
+{
+  "PaymentInfoCard": {
+    "Title": "Payment Method {{number}}",
+    "Labels": {
+      "CreditCard": "Credit Card: ",
+      "AmountToPay": "Amount to pay",
+      "ExpiryDate": "Expiry Date:",
+      "BillingAddress": "Billing Address"
+    },
+    "Actions": {
+      "Edit": "Edit",
+      "Delete": "Delete"
+    }
+  }
+}

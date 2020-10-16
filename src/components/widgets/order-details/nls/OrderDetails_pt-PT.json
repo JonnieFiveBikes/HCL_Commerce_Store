@@ -5,6 +5,10 @@
       "Back": "Voltar a Dados de pagamento",
       "Next": "Fazer pedido",
       "NextRecurringOrder": "Fazer pedido recorrente"
+    },
+    "Labels": {
+      "PaymentDetails": "Dados de pagamento",
+      "OrderSummary": "Resumo do pedido"
     }
   }
 }

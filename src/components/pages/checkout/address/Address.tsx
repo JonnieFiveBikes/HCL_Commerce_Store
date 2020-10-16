@@ -12,25 +12,10 @@
 import React, { useState, useEffect } from "react";
 import Axios, { Canceler } from "axios";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 //Foundation libraries
 import personContactService from "../../../../_foundation/apis/transaction/personContact.service";
 //Custom library
-import { AddressList } from "../../../widgets/address-list";
-import addressUtil from "../../../../utils/addressUtil";
-import EditAddressContext from "./EditAddressContext";
-//Redux
-import * as accountActions from "../../../../redux/actions/account";
-import * as successActions from "../../../../redux/actions/success";
-import * as orderActions from "../../../../redux/actions/order";
-//UI
-import { Divider } from "@material-ui/core";
-import HomeIcon from "@material-ui/icons/Home";
-import {
-  StyledGrid,
-  StyledIconLabel,
-  StyledButton,
-  StyledTypography,
-} from "../../../StyledUI";
 import {
   ADDRESS_SHIPPING_BILLING,
   ADDRESS_LINE,
@@ -41,7 +26,23 @@ import {
   STRING_TRUE,
 } from "../../../../constants/common";
 import { AddressForm } from "../../../widgets/address-form";
-import { useTranslation } from "react-i18next";
+import { AddressList } from "../../../widgets/address-list";
+import addressUtil from "../../../../utils/addressUtil";
+import AddressContext from "./AddressContext";
+//Redux
+import * as accountActions from "../../../../redux/actions/account";
+import * as successActions from "../../../../redux/actions/success";
+import * as orderActions from "../../../../redux/actions/order";
+//UI
+import { Divider } from "@material-ui/core";
+import HomeIcon from "@material-ui/icons/Home";
+import ContactsIcon from "@material-ui/icons/Contacts";
+import {
+  StyledGrid,
+  StyledIconLabel,
+  StyledButton,
+  StyledTypography,
+} from "../../../StyledUI";
 
 export enum CheckoutPageType {
   SHIPPING = "shipping",
@@ -102,9 +103,16 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
   createNewAddress: createNew,
   toggleEditAddress,
   editAddress,
+  paymentChosen,
   ...props
 }: CheckoutAddressProps) => {
   const dispatch = useDispatch();
+  const isPersonalAddressAllowed: string = props.isPersonalAddressAllowed
+    ? props.isPersonalAddressAllowed
+    : STRING_TRUE;
+  const orgAddressDetails: any = props.orgAddressDetails
+    ? props.orgAddressDetails
+    : {};
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
   const EDIT_SUCCESS_MSG = "success-message.EDIT_ADDRESS_SUCCESS";
@@ -253,7 +261,13 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
           justify="space-between"
           alignItems="center">
           <StyledIconLabel
-            icon={<HomeIcon color="primary" />}
+            icon={
+              page === CheckoutPageType.SHIPPING ? (
+                <HomeIcon color="primary" />
+              ) : (
+                <ContactsIcon color="primary" />
+              )
+            }
             label={
               page === CheckoutPageType.SHIPPING
                 ? t("Shipping.Labels.ShippingAddress")
@@ -261,8 +275,13 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
             }
           />
         </StyledGrid>
+        {!paymentChosen && page === CheckoutPageType.PAYMENT && (
+          <StyledGrid item xs={12}>
+            {t("CheckoutAddress.Payment.ChooseFirst")}
+          </StyledGrid>
+        )}
         {(createNew || editAddress) && (
-          <StyledGrid item xs={12} md={6}>
+          <StyledGrid item xs={12} md={6} data-testid="checkout-address-form">
             <AddressForm
               cid="newAddress"
               setAddressFormData={setAddressFormData}
@@ -273,27 +292,34 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
         )}
         {!createNew && !editAddress && (
           <>
-            <StyledGrid item xs={12}>
-              <StyledButton
-                className="left-border-solid"
-                size="small"
-                variant="outlined"
-                onClick={(event) => {
-                  toggleCreateNew(true);
-                  setAddressFormData(addressFormDataInit);
-                }}>
-                {t("Shipping.Actions.CreateNew")}
-              </StyledButton>
-            </StyledGrid>
+            {((paymentChosen &&
+              page === CheckoutPageType.PAYMENT &&
+              isPersonalAddressAllowed === STRING_TRUE) ||
+              (page === CheckoutPageType.SHIPPING &&
+                isPersonalAddressAllowed === STRING_TRUE)) && (
+              <StyledGrid item xs={12}>
+                <StyledButton
+                  data-testid="checkout-new-address-button"
+                  size="small"
+                  color="secondary"
+                  onClick={(event) => {
+                    toggleCreateNew(true);
+                    setAddressFormData(addressFormDataInit);
+                  }}>
+                  {t("Shipping.Actions.CreateNew")}
+                </StyledButton>
+              </StyledGrid>
+            )}
             {usableAddresses?.length > 0 && (
               <StyledGrid item xs={12}>
                 <StyledTypography className="bottom-margin-2">
                   {t("Shipping.Msgs.UseSavedAddress")}
                 </StyledTypography>
-                <EditAddressContext.Provider
+                <AddressContext.Provider
                   value={{
                     toggleEditAddress: toggleEditAddress,
                     setEditAddressFormData: setAddressFormData,
+                    orgAddressDetails: orgAddressDetails,
                   }}>
                   <AddressList
                     cid="shipping"
@@ -301,7 +327,7 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
                     setSelectedAddressId={setSelectedAddressId}
                     selectedAddressId={selectedAddressId || EMPTY_STRING}
                   />
-                </EditAddressContext.Provider>
+                </AddressContext.Provider>
               </StyledGrid>
             )}
           </>
@@ -315,11 +341,7 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
           spacing={2}
           className="checkout-actions">
           <StyledGrid item>
-            <StyledButton
-              size="small"
-              variant="outlined"
-              onClick={cancelButtonAction}
-              className="left-border-solid">
+            <StyledButton size="small" onClick={cancelButtonAction}>
               {t("CheckoutAddress.Actions.Cancel")}
             </StyledButton>
           </StyledGrid>
@@ -328,7 +350,7 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
               color="primary"
               disabled={!canContinue()}
               onClick={() => submit(createNew, editAddress)}
-              className="button">
+              className="MuiButton-containedSecondary">
               {t("CheckoutAddress.Actions.Submit")}
             </StyledButton>
           </StyledGrid>

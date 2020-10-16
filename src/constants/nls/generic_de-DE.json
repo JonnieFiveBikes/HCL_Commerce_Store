@@ -8,8 +8,8 @@
       "priceHighToLow": "Preis (absteigend)"
     },
     "inventoryStatus": {
-      "Available": "Verfügbar",
-      "Allocated": "Verfügbar",
+      "Available": "Vorrätig",
+      "Allocated": "Vorrätig",
       "Unallocated": "Nicht zugewiesen",
       "Backordered": "Rückständig",
       "OOS": "Nicht vorrätig",

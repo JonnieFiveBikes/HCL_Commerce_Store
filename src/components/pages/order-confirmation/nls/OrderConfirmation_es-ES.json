@@ -2,10 +2,12 @@
   "OrderConfirmation": {
     "Title": "Confirmación del pedido",
     "Msgs": {
-      "Heading": "We've received your order",
-      "OrderNumber": "Order #{{orderId}}",
-      "Details": "A copy of your receipt has been sent to {{emails}}",
-      "ThankYou": "Thank you for shopping at {{storeName}}"
+      "Heading": "Hemos recibido su pedido",
+      "Pending": "Su pedido está pendiente",
+      "OrderNumber": "Pedido #{{orderId}}",
+      "Details": "Se ha enviado una copia de su recibo a {{emails}}.",
+      "PendingDetails": "Su pedido excede el límite permitido de precio. Un administrador tendrá que aprobar el pedido antes de que se procese.",
+      "ThankYou": "Gracias por comprar en {{storeName}}."
     }
   }
 }

@@ -1,19 +1,21 @@
 {
   "Payment": {
-    "Title": "Payment Details",
+    "Title": "付款詳細資料",
     "Msgs": {
       "InvalidFormat": "無效格式"
     },
     "Labels": {
-      "UseMultiple": "Use multiple payment methods",
+      "UseMultiple": "使用多個付款方法",
       "PaymentMethod": "付款方法 {{number}}",
-      "AddNewAddress": "Add new address",
+      "AddNewAddress": "新增新地址",
       "BillingAddress": "帳單地址"
     },
     "Actions": {
-      "Back": "Back to Shipping Details",
-      "Next": "繼續檢閱訂單",
-      "SaveAndAdd": "Save and add another payment method"
+      "Back": "返回運送詳細資料",
+      "Next": "檢閱訂單",
+      "Finish": "完成",
+      "SaveAndAdd": "儲存並新增其他付款方法",
+      "AddAnotherPayMethod": "新增其他付款方法"
     }
   }
 }

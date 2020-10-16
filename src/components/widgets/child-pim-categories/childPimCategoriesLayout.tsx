@@ -30,7 +30,7 @@ function ChildPimCategoriesLayout({ cid, page, ...props }: any) {
   const catId = page.externalContext.identifier;
   const [categories, setCategories] = useState<any[]>([]);
   const [categoryTitle, setCategoryTitle] = useState<string>();
-  const mySite = useSite();
+  const { mySite } = useSite();
   const contract = useSelector(currentContractIdSelector);
   const { t } = useTranslation();
 

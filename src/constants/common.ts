@@ -12,12 +12,13 @@
 export const REG_EX = {
   NUMERIC: /^[0-9]+$/,
   EMAIL: /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i,
-  PHONE: /^[0-9]{0,1}-{0,1}[0-9]{3}-[0-9]{3}-[0-9]{4}$/,
+  PHONE: /^[-+() ]*[0-9][-+() 0-9]*$/,
   PRICE: /^[0-9]+([.][0-9]{0,2})?$|^[.][0-9]{1,2}$/,
   NICKNAME_ALPHA_NUMERIC_SPECIAL_CHAR: /^[a-zA-Z0-9 ]*$/,
 };
 
 export const DEFINING = "Defining";
+export const DESCRIPTIVE = "Descriptive";
 export const OFFER = "Offer";
 export const DISPLAY = "Display";
 export const SEARCHTERM = "searchTerm";
@@ -37,6 +38,11 @@ export const IS_NEW = "isNew";
 export const ADDRESSLINE1 = "addressLine1";
 export const ADDRESSLINE2 = "addressLine2";
 export const PHONE1 = "phone1";
+
+//Admin Tools
+export const IBM_ASSIGNED_ROLE_DETAILS = "IBM_Assigned_Roles_Details";
+export const BUYER_ADMIN_ROLE = "-21";
+export const BUYER_APPROVAL_ROLE = "-22";
 
 export const ADDRESS_TYPE_MAP = new Map();
 ADDRESS_TYPE_MAP.set(ADDRESS_SHIPPING, "AddressBook.ShippingLabel");
@@ -128,3 +134,11 @@ export const INVENTORY = {
 };
 
 export const SUCCESS_MSG_PREFIX = "success-message.";
+
+// Shipping
+export const IS_PERSONAL_ADDRESS_ALLOWED =
+  "x_isPersonalAddressesAllowedForShipping";
+export const ORG_ADDRESS_DETAILS = "orgAddressDetails";
+export const ORG_ADDRESS = "orgAddress";
+export const ORDER_ID = "orderid";
+export const HYPHEN = "-";

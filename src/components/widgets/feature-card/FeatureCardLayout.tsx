@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import isEmpty from "lodash/isEmpty";
 import LazyLoadComponent from "react-intersection-observer-lazy-load";
+import { useTranslation } from "react-i18next";
 //Custom libraries
 import { DISPLAY, DEFINING, OFFER } from "../../../constants/common";
 import FormattedPriceDisplay from "../../widgets/formatted-price-display";
@@ -30,7 +31,10 @@ import {
 } from "../../StyledUI";
 
 function FeatureCardLayout({ renderingContext }: any) {
-  let productInfo = renderingContext.productDesc.data.contents[0];
+  const { t } = useTranslation();
+  let productInfo = renderingContext?.productDesc?.data?.contents
+    ? renderingContext.productDesc.data.contents[0]
+    : {};
   const colorList: object[] = [];
   const {
     eSpotDescInternal: eSpotDesc,
@@ -95,6 +99,7 @@ function FeatureCardLayout({ renderingContext }: any) {
                   <img
                     id={`featureCard_fullImage_${productInfo.id}`}
                     src={productInfo.fullImage}
+                    alt={productInfo.name}
                   />
                 </Link>
               </StyledGrid>
@@ -159,7 +164,9 @@ function FeatureCardLayout({ renderingContext }: any) {
                 onClick={informMarketingOfClick}
                 id={`featureCard_textRouter_${productInfo.id}`}
                 to={productInfo.seo?.href}>
-                <StyledButton color="secondary">Shop Now</StyledButton>
+                <StyledButton color="secondary">
+                  {t("FeaturedCard.ShopNow")}
+                </StyledButton>
               </Link>
             </StyledGrid>
           </StyledGrid>

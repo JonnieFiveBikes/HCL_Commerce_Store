@@ -1,0 +1,12 @@
+{
+  "PaymentInfoList": {
+    "Title": "付款方式 - 订单总额：",
+    "Msgs": {
+      "PayMethodRequired": "至少需要一种付款方式。",
+      "InsufficientPayment": "所有付款方式的总额必须涵盖订单总额 {{grandTotal}}。"
+    },
+    "Actions": {
+      "AddPayMethod": "添加付款方式"
+    }
+  }
+}

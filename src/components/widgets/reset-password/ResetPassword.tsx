@@ -29,10 +29,9 @@ const ResetPassword: React.FC = (props: any) => {
   const [validationCode, setValidationCode] = React.useState<string>("");
   const [passwordNew, setNewPassword] = React.useState<string>("");
   const [passwordVerify, setVerifyPassword] = React.useState<string>("");
-  const site = useSite();
+  const { mySite: site } = useSite();
 
   const { t } = useTranslation();
-  const title = t("ResetPassword.Title");
   const validationCodeLabel = t("ResetPassword.ValidationCodeLabel");
   const newPasswordLabel = t("ResetPassword.NewPasswordLabel");
   const verifyPasswordLabel = t("ResetPassword.VerifyPasswordLabel");

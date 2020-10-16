@@ -59,7 +59,7 @@ function PersonalInformationSection() {
   const PhoneNumber = t("PersonalInformationSection.PhoneNumber");
   const Address = t("PersonalInformationSection.Address");
 
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const dispatch = useDispatch();
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];

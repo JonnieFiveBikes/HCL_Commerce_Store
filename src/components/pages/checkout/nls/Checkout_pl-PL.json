@@ -2,8 +2,8 @@
   "Checkout": {
     "Title": "Przejdź do kasy",
     "Labels": {
-      "shipping": "Wysyłka i rozliczenie",
-      "payment": "Płatność i dostawa",
+      "shipping": "Do dostawy",
+      "payment": "Płatność",
       "review": "Przegląd zamówienia"
     },
     "Actions": {

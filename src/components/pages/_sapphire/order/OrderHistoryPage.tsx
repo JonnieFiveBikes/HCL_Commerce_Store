@@ -19,12 +19,9 @@ import orderService from "../../../../_foundation/apis/transaction/order.service
 import cartService from "../../../../_foundation/apis/transaction/cart.service";
 //Custom libraries
 import FormattedPriceDisplay from "../../../widgets/formatted-price-display";
-import {
-  ORDER_DETAILS,
-  ORDER_HISTORY,
-  DASHBOARD,
-} from "../../../../constants/routes";
+import { ORDER_DETAILS, ORDER_HISTORY } from "../../../../constants/routes";
 import { REG_EX } from "../../../../constants/common";
+import { ORDER_STATUS } from "../../../../constants/order";
 import AccountSidebar from "../../../widgets/account-sidebar/AccountSidebar";
 //Redux
 import * as errorActions from "../../../../redux/actions/error";
@@ -89,19 +86,27 @@ const useOrderHistoryTable = () => {
         return <StyledLink to={location}>{rowData.orderId}</StyledLink>;
       },
     },
-    // PO data is being fetched but not displayed.
-    // {
-    //   title: t("Order.PONumber"),
-    //   field: "purchaseOrderNumber",
-    //   filtering: false,
-    // },
+    {
+      title: t("Order.PONumber"),
+      field: "purchaseOrderNumber",
+      filtering: false,
+      render: (rowData: any) => (
+        <StyledTypography className="wrapText">
+          {rowData.purchaseOrderNumber}
+        </StyledTypography>
+      ),
+    },
     {
       title: t("Order.OrderDate"),
       field: "placedDate",
       filtering: false,
       render: (rowData: any) => (
         <StyledTypography>
-          {dateFormatter.format(new Date(rowData.placedDate))}
+          {rowData.placedDate
+            ? dateFormatter.format(new Date(rowData.placedDate))
+            : rowData.orderStatus === ORDER_STATUS.ApprovalDenied
+            ? t(`Order.NotAvailable`)
+            : t("Order.Pending")}
         </StyledTypography>
       ),
     },
@@ -109,6 +114,7 @@ const useOrderHistoryTable = () => {
       title: t("Order.Status"),
       field: "orderStatus",
       lookup: statusLookup,
+      filterCellStyle: { maxWidth: "160px" },
     },
     {
       title: t("Order.TotalPrice"),
@@ -322,7 +328,6 @@ const useOrderHistoryTable = () => {
 };
 
 function OrderHistory(props: any) {
-  const { t } = useTranslation();
   const {
     options,
     columns,
@@ -336,7 +341,7 @@ function OrderHistory(props: any) {
   return (
     <StyledContainer className="page">
       <StyledTypography
-        variant="h4"
+        variant="h3"
         component="h1"
         className="vertical-margin-4">
         {title}

@@ -17,19 +17,24 @@ import {
   FETCH_RECURRING_SUCCESS_ACTION,
   CANCEL_RECURRING_SUCCESS_ACTION,
 } from "../actions/recurringOrder";
+import { LOGOUT_SUCCESS_ACTION } from "../actions/user";
 
 const recurringOrderReducer = createReducer(
-  initStates.confirmation,
+  initStates.recurringOrder,
   (builder) => {
     builder.addCase(
       FETCH_RECURRING_SUCCESS_ACTION,
-      (state: RecurringOrderReducerState | any, action: AnyAction) => {
-        Object.assign(state, action.payload);
+      (state: RecurringOrderReducerState, action: AnyAction) => {
+        if (action?.payload?.resultList === undefined) {
+          resetRecurringOrder(state, action);
+        } else {
+          Object.assign(state, action.payload);
+        }
       }
     );
     builder.addCase(
       CANCEL_RECURRING_SUCCESS_ACTION,
-      (state: RecurringOrderReducerState | any, action: AnyAction) => {
+      (state: RecurringOrderReducerState, action: AnyAction) => {
         const subscriptionId = action.payload.subscriptionId[0];
         const susState = action.payload.state[0];
         state.resultList.forEach((o) => {
@@ -39,6 +44,16 @@ const recurringOrderReducer = createReducer(
         });
       }
     );
+
+    builder.addCase(LOGOUT_SUCCESS_ACTION, resetRecurringOrder);
   }
 );
+
+function resetRecurringOrder(
+  state: RecurringOrderReducerState,
+  action: AnyAction
+) {
+  Object.assign(state, initStates.recurringOrder);
+}
+
 export default recurringOrderReducer;

@@ -47,12 +47,23 @@ const StyledHeader = styled.header`
 
   .header-accountPopperButton {
     height: ${headerHeight}px;
-
+    display: inline-block;
+    
+    ${theme.breakpoints.up("sm")} {
+      margin-left: ${theme.spacing(2)}px;
+    }
+ 
     ${theme.breakpoints.down("sm")} {
       height: ${mobileHeaderHeight}px;
     }
-  }
 
+    .welcome-text {
+      color: ${theme.palette.text.secondary}; 
+      font-weight: 500;
+      line-height: 1.25;
+    }
+  }
+  
   .header-actionsButton {
     height: ${headerHeight}px;
 
@@ -125,11 +136,11 @@ const StyledHeader = styled.header`
 
   .expanded-menu-container{
     background-color: ${theme.palette.primary.main};
-    line-height:${theme.spacing(5)}px;
-    position:relative;
-    color:${theme.palette.text.expandedMenu};
-    text-align:left;
-    z-index:-1;
+    line-height: normal;
+    position: relative;
+    color: ${theme.palette.text.expandedMenu};
+    text-align: left;
+    z-index: -1;
     &.hover {
       .MuiBox-root {
         background-color:${theme.palette.background.paper};

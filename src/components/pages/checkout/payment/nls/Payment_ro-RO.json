@@ -1,19 +1,21 @@
 {
   "Payment": {
-    "Title": "Payment Details",
+    "Title": "Detalii de plată",
     "Msgs": {
       "InvalidFormat": "Format nevalid"
     },
     "Labels": {
-      "UseMultiple": "Use multiple payment methods",
-      "PaymentMethod": "Metodă de plată {{number}}",
-      "AddNewAddress": "Add new address",
+      "UseMultiple": "Folosiți mai multe metode de plată",
+      "PaymentMethod": "Metoda de plată {{number}}",
+      "AddNewAddress": "Adăugare adresă nouă",
       "BillingAddress": "Adresă de facturare"
     },
     "Actions": {
-      "Back": "Back to Shipping Details",
-      "Next": "Continuați cu Revizuirea comenzii",
-      "SaveAndAdd": "Save and add another payment method"
+      "Back": "Înapoi la Detaliile livrării",
+      "Next": "Revizuire comandă",
+      "Finish": "Finalizare",
+      "SaveAndAdd": "Salvați și adăugați o altă metodă de plată",
+      "AddAnotherPayMethod": "Adăugați o altă metodă de plată"
     }
   }
 }

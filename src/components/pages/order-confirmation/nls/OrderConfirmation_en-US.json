@@ -3,9 +3,11 @@
     "Title": "Order Confirmation",
     "Msgs": {
       "Heading": "We've received your order",
+      "Pending": "Your order is pending",
       "OrderNumber": "Order #{{orderId}}",
-      "Details": "A copy of your receipt has been sent to {{emails}}",
-      "ThankYou": "Thank you for shopping at {{storeName}}"
+      "Details": "A copy of your receipt has been sent to {{emails}}.",
+      "PendingDetails": "Your order exceeds the allowable price limit. The order must be approved by an administrator before it can be processed.",
+      "ThankYou": "Thank you for shopping at {{storeName}}."
     }
   }
 }

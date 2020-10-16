@@ -8,12 +8,12 @@
       "priceHighToLow": "Price (High to Low)"
     },
     "inventoryStatus": {
-      "Available": "Available",
-      "Allocated": "Available",
+      "Available": "In Stock",
+      "Allocated": "In Stock",
       "Unallocated": "Unallocated",
       "Backordered": "Backordered",
-      "OOS": "Out of stock",
-      "NA": "Not availble"
+      "OOS": "Out of Stock",
+      "NA": "Not Availble"
     },
     "recurringOrderFrequency": {
       "Everyday": "Everyday",

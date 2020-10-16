@@ -30,7 +30,7 @@ interface FormattedPriceDisplayProps {
 const FormattedPriceDisplay: React.FC<FormattedPriceDisplayProps> = (
   props: any
 ) => {
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const { i18n } = useTranslation();
   const min = props.min;
   const max = props.max ? props.max : null;

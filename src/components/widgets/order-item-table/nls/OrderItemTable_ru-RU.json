@@ -4,7 +4,7 @@
     "Labels": {
       "ItemDetails": "Сведения о позиции",
       "SKU": "Артикул: ",
-      "Status": "Статус",
+      "Status": "Наличие",
       "Quantity": "Количество",
       "Price": "Цена",
       "Actions": "Действия",

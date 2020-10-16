@@ -4,7 +4,7 @@
     "Msgs": {
       "CreditCard": "Sichere Online-Zahlung. Akzeptierte Kreditkarten: {{cards}}",
       "CVV": "Die letzten drei Ziffern auf dem Unterschriftsstreifen",
-      "InvalidCardNumber": "Ungültige Kartennummer bzw. ungültiger Kartenttyp",
+      "InvalidCardNumber": "Ungültige Kartennummer bzw. ungültiger Kartentyp",
       "InvalidFormat": "Ungültiges Format"
     },
     "Labels": {
@@ -12,7 +12,13 @@
       "CreditCard": "Kreditkarte",
       "CCNumber": "Kreditkartennummer",
       "ExpiryDate": "Ablaufdatum",
-      "CVV": "CVV-Code"
+      "CVV": "CVV-Code",
+      "OrderTotal": "Bestellsumme",
+      "RemainingAmount": "Zu zahlender Restbetrag",
+      "AmountToPay": "Zu zahlender Betrag"
+    },
+    "Actions": {
+      "PayRemaining": "Restbetrag bezahlen"
     }
   }
 }

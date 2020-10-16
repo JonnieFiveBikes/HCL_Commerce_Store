@@ -14,7 +14,8 @@ import React from "react";
 
 const StyledTypography = styled(({ ...rest }) => <Typography {...rest} />)`
   ${({ theme }) => `
-    li, a {
+  
+  li, a {
       text-decoration: none;
     }
     a {
@@ -46,27 +47,36 @@ const StyledTypography = styled(({ ...rest }) => <Typography {...rest} />)`
     }
 
     &.expanded-menu-bold {
-      font-size:12px;
+      font-size: 1.15em;
       font-weight: bold;
-      margin-bottom:${theme.spacing(1.25)}px;
+      margin-bottom: ${theme.spacing(1)}px;
     }
 
     &.expanded-menu-sub-links {
-      font-size:12px;
-      margin-bottom: ${theme.spacing(0.63)}px;
+      margin-bottom: ${theme.spacing(0.75)}px;
+      margin-top: ${theme.spacing(0.75)}px;
     }
 
     &.expanded-menu-text {
       color: ${theme.palette.text.expandedMenu};
+      font-size: 1.15em;
       &.MuiTypography-body2 {
-        font-size:12px;
+        font-size: 12px;
       }
     }
     &.wrapText {
-      &.MuiTypography-body2 {
         overflow-wrap: break-word;
         word-wrap: break-word;
-      }
+        word-break: break-word;
+    }
+
+    &.error {
+      color: ${theme.palette.text.alert};
+    }
+
+    // checkout review shipment group summary heading
+    &.shipment-group-heading{
+      font-weight: bold
     }
   `}
 `;

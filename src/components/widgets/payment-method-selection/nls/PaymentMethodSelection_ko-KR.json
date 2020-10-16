@@ -12,7 +12,13 @@
       "CreditCard": "신용 카드",
       "CCNumber": "신용 카드 번호",
       "ExpiryDate": "만료일",
-      "CVV": "CVV 코드"
+      "CVV": "CVV 코드",
+      "OrderTotal": "주문 총계",
+      "RemainingAmount": "지불할 잔액",
+      "AmountToPay": "지불할 금액"
+    },
+    "Actions": {
+      "PayRemaining": "잔액 지불"
     }
   }
 }

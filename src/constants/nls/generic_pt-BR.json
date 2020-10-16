@@ -8,8 +8,8 @@
       "priceHighToLow": "Preço (ordem decrescente)"
     },
     "inventoryStatus": {
-      "Available": "Disponível",
-      "Allocated": "Disponível",
+      "Available": "Em estoque",
+      "Allocated": "Em estoque",
       "Unallocated": "Não alocado",
       "Backordered": "Encomendado",
       "OOS": "Sem estoque",

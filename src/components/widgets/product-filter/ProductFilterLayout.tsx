@@ -42,9 +42,9 @@ import {
   StyledButton,
   StyledCheckbox,
   StyledFormControlLabel,
-  StyledExpansionPanel,
-  StyledExpansionPanelDetails,
-  StyledExpansionPanelSummary,
+  StyledAccordion,
+  StyledAccordionDetails,
+  StyledAccordionSummary,
   StyledChip,
   StyledNumberInput,
   StyledSwatch,
@@ -91,7 +91,7 @@ const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
 
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const theme = useTheme();
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
@@ -470,7 +470,7 @@ const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
         facets.map(
           (facet: any, index: number) =>
             showFacet(facet) && (
-              <StyledExpansionPanel
+              <StyledAccordion
                 defaultExpanded={!isMobile}
                 key={facet.value}
                 expanded={!isMobile || isActiveFacetId === facet.value}
@@ -483,13 +483,13 @@ const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
                     }
                   }
                 }}>
-                <StyledExpansionPanelSummary
+                <StyledAccordionSummary
                   expandIcon={isMobile ? <ExpandMoreIcon /> : null}>
                   {isPriceFacet(facet)
                     ? t("ProductFilter.Labels.price")
                     : getFacetTitle(facet)}
-                </StyledExpansionPanelSummary>
-                <StyledExpansionPanelDetails>
+                </StyledAccordionSummary>
+                <StyledAccordionDetails>
                   {isPriceFacet(facet) ? (
                     <>
                       {priceSelected && minPrice && maxPrice ? (
@@ -614,8 +614,8 @@ const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
                       </div>
                     </StyledGrid>
                   )}
-                </StyledExpansionPanelDetails>
-              </StyledExpansionPanel>
+                </StyledAccordionDetails>
+              </StyledAccordion>
             )
         )}
     </>

@@ -1,0 +1,12 @@
+{
+  "PaymentInfoList": {
+    "Title": "支払方法 - オーダー合計: ",
+    "Msgs": {
+      "PayMethodRequired": "少なくとも 1 つの支払方法が必要です。",
+      "InsufficientPayment": "支払方法全体でオーダー合計 {{grandTotal}} を保証する必要があります。"
+    },
+    "Actions": {
+      "AddPayMethod": "支払方法の追加"
+    }
+  }
+}

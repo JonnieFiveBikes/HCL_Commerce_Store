@@ -15,6 +15,7 @@ import * as WORKERS from "../workers/organization";
 import {
   ENTITLED_ORG_ACTION,
   ORG_SWITCH_ACTION,
+  GET_ORGANIZATION_ADDRESS_ACTION,
 } from "../../actions/organization";
 import {
   LOGIN_SUCCESS_ACTION,
@@ -35,4 +36,8 @@ export function* watchSaga() {
     WORKERS.getEntitledOrg
   );
   yield takeLatest(ORG_SWITCH_ACTION, WORKERS.switchOrg);
+  yield takeLatest(
+    GET_ORGANIZATION_ADDRESS_ACTION,
+    WORKERS.getOrganizationDetails
+  );
 }

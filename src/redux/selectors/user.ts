@@ -45,6 +45,10 @@ const userInitStatusSelector = (state: RootReducerState) => {
   return state.user.initiatedFromStorage;
 };
 
+const userLastUpdatedSelector = (state: RootReducerState) => {
+  return state.user.lastUpdated;
+};
+
 const registrationStatusSelector = (state: RootReducerState) => {
   return state.user.userRegistration || false;
 };
@@ -60,4 +64,5 @@ export {
   userNameSelector,
   userIdSelector,
   userInitStatusSelector,
+  userLastUpdatedSelector,
 };

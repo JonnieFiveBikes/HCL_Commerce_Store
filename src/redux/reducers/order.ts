@@ -12,9 +12,11 @@
 import { createReducer, AnyAction } from "@reduxjs/toolkit";
 import { NOT_FOUND } from "http-status-codes";
 //Custom libraries
-import { INVENTORY_STATUS, SHIPMODE } from "../../constants/order";
-import { MINICART_CONFIGS } from "../../configs/order";
-
+import { INVENTORY_STATUS, SHIPMODE, PAYMENT } from "../../constants/order";
+import { ORDER_ID, HYPHEN } from "../../constants/common";
+//Foundation libraries
+import { localStorageUtil } from "../../_foundation/utils/storageUtil";
+import { ACCOUNT } from "../../_foundation/constants/common";
 //Redux
 import * as ACTIONS from "../action-types/order";
 import initStates from "./initStates";
@@ -30,17 +32,6 @@ import { LOGOUT_SUCCESS_ACTION } from "../actions/user";
 
 const orderReducer = createReducer(initStates.order, (builder) => {
   builder.addCase(
-    ACTIONS.ITEM_ADD_SUCCESS,
-    (state: OrderReducerState, action: AnyAction) => {
-      let quantity =
-        action.payload.quantity instanceof Array
-          ? action.payload.quantity.reduce((a, b) => +a + +b, 0)
-          : action.payload.quantity;
-      state.numItems = state.numItems + +quantity;
-      state.isFetching = false;
-    }
-  );
-  builder.addCase(
     ACTIONS.CART_FETCHING_REQUESTED,
     (state: OrderReducerState, action: AnyAction) => {
       state.isFetching = true;
@@ -54,21 +45,17 @@ const orderReducer = createReducer(initStates.order, (builder) => {
         const { orderItem: orderItems, ...cart } = response;
         const newCatentries = action.catentries;
         const checkInventory = action.checkInventory;
-        const updateMiniCartOnly = action.updateMiniCartOnly;
 
         state.cart = cart;
 
-        if (!updateMiniCartOnly) {
-          //don't update numItems on miniCart call as only subset is fetched
-          let count = 0;
-          if (orderItems) {
-            orderItems.map((item: any, index: number) => {
-              count += +item.quantity;
-              return count;
-            });
-          }
-          state.numItems = count;
+        let count = 0;
+        if (orderItems) {
+          count = orderItems.reduce(
+            (c: number, item: any) => +item.quantity + c,
+            0
+          );
         }
+        state.numItems = count;
 
         let newOrderItems: any[] = [];
         let disableRecurringOrder = false;
@@ -122,27 +109,23 @@ const orderReducer = createReducer(initStates.order, (builder) => {
             newOrderItems.push(obj);
           });
 
-          if (!updateMiniCartOnly) {
-            state.isCheckoutDisabled = disableCheckout;
-            state.isRecurringOrderDisabled = disableRecurringOrder;
-          }
+          state.isCheckoutDisabled = disableCheckout;
+          state.isRecurringOrderDisabled = disableRecurringOrder;
         }
-        if (!updateMiniCartOnly) {
-          //get last N items from cart for minicart display
-          state.orderItems = newOrderItems;
-          state.miniCartItems = newOrderItems
-            .slice(MINICART_CONFIGS.maxItemsToShow * -1)
-            .reverse();
-        } else {
-          //only last N items were fetched and in descending order already
-          state.miniCartItems = newOrderItems;
-        }
+        state.orderItems = newOrderItems;
       }
-
-      if (state.isRecurringOrderDisabled) {
-        state.isRecurringOrder = false;
-        state.recurringOrderFrequency = "0";
-        state.recurringOrderStartDate = null;
+      if (state.isRecurringOrderDisabled && state.cart && state.cart.orderId) {
+        if (
+          localStorageUtil.get(
+            ACCOUNT + HYPHEN + ORDER_ID + HYPHEN + state.cart.orderId
+          )
+        ) {
+          const recurringOrderInfo: any[] = [false, "0", null];
+          localStorageUtil.set(
+            ACCOUNT + HYPHEN + ORDER_ID + HYPHEN + state.cart.orderId,
+            recurringOrderInfo
+          );
+        }
       }
       state.isFetching = false;
     }
@@ -160,7 +143,6 @@ const orderReducer = createReducer(initStates.order, (builder) => {
         state.cart = null;
         state.numItems = 0;
         state.orderItems = [];
-        state.miniCartItems = [];
       }
       state.isCheckoutDisabled = true;
       state.isFetching = false;
@@ -189,31 +171,28 @@ const orderReducer = createReducer(initStates.order, (builder) => {
     (state: OrderReducerState, action: AnyAction) => {
       const response = action.response;
       if (response && response.usablePaymentInformation) {
-        state.payMethods = response.usablePaymentInformation;
-      }
-    }
-  );
+        let cardsList: any[] = [];
+        let cashList: any[] = [];
+        for (let payment of response.usablePaymentInformation) {
+          if (
+            payment.paymentMethodName === PAYMENT.paymentMethodName.amex ||
+            payment.paymentMethodName === PAYMENT.paymentMethodName.mc ||
+            payment.paymentMethodName === PAYMENT.paymentMethodName.visa
+          ) {
+            cardsList.push(payment);
+          } else if (
+            payment.paymentMethodName === PAYMENT.paymentMethodName.cod
+          ) {
+            cashList.push(payment);
+          }
+        }
 
-  builder.addCase(
-    ACTIONS.RECURRINGORDER_TOGGLE_REQUESTED,
-    (state: OrderReducerState, action: AnyAction) => {
-      state.isRecurringOrder = !state.isRecurringOrder;
-      if (!state.isRecurringOrder) {
-        state.recurringOrderFrequency = "0";
-        state.recurringOrderStartDate = null;
+        if (cardsList.length > 0) {
+          state.payMethods = cardsList.concat(cashList);
+        } else {
+          state.payMethods = cashList;
+        }
       }
-    }
-  );
-  builder.addCase(
-    ACTIONS.RECURRINGORDER_FREQ_SET_REQUESTED,
-    (state: OrderReducerState, action: AnyAction) => {
-      state.recurringOrderFrequency = action.payload;
-    }
-  );
-  builder.addCase(
-    ACTIONS.RECURRINGORDER_STARTDATE_SET_REQUESTED,
-    (state: OrderReducerState, action: AnyAction) => {
-      state.recurringOrderStartDate = action.payload;
     }
   );
   builder.addCase(LOGOUT_SUCCESS_ACTION, resetCart);
@@ -233,12 +212,8 @@ function resetCartInfo(state: OrderReducerState, action: AnyAction) {
   state.shipInfos = null;
   state.shipModes = [];
   state.payMethods = [];
-  state.isRecurringOrder = false;
-  state.recurringOrderFrequency = "0";
-  state.recurringOrderStartDate = null;
   state.isRecurringOrderDisabled = false;
   state.isFetching = false;
-  state.miniCartItems = [];
 }
 
 export default orderReducer;

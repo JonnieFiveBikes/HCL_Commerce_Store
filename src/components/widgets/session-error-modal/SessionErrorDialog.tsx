@@ -16,7 +16,7 @@ import { useTranslation } from "react-i18next";
 //Custom libraries
 import { HOME } from "../../../constants/routes";
 //Redux
-import { seessionErrorSelector } from "../../../redux/selectors/error";
+import { sessionErrorSelector } from "../../../redux/selectors/error";
 import { SESSION_ERROR_LOGIN_REQUESTED_ACTION } from "../../../redux/actions/user";
 import {
   RESET_SESSION_ERROR_ACTION,
@@ -49,7 +49,7 @@ export const SessionErrorDialog = () => {
   const history = useHistory();
 
   const { errorTitleKey, errorMsgKey, handled, errorMessage } = useSelector(
-    seessionErrorSelector
+    sessionErrorSelector
   );
   const dispatch = useDispatch();
 

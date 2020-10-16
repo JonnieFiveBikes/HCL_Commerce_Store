@@ -15,15 +15,16 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router";
 //Custom libraries
 import { CART } from "../../constants/routes";
+import { MINICART_CONFIGS } from "../../configs/order";
 //Redux
 import {
   numItemsSelector,
   cartSelector,
-  miniCartItemsSelector,
+  orderItemsSelector,
 } from "../../redux/selectors/order";
 //UI
 import { ClickAwayListener } from "@material-ui/core";
-import { StyledMiniCartContent, StyledPaper } from "../StyledUI";
+import { StyledMiniCartContent } from "../StyledUI";
 
 interface MiniCartPopperContentProps {
   handleClose: Function;
@@ -40,7 +41,7 @@ const MiniCartPopperContent: React.FC<MiniCartPopperContentProps> = (
   const { handleClose } = props;
   const numItems = useSelector(numItemsSelector);
   const cart = useSelector(cartSelector);
-  const miniCartItems = useSelector(miniCartItemsSelector);
+  const orderItems = useSelector(orderItemsSelector);
   const { t } = useTranslation();
   const history = useHistory();
 
@@ -69,6 +70,10 @@ const MiniCartPopperContent: React.FC<MiniCartPopperContentProps> = (
   };
 
   const { subtotal, subtotalCurrency } = useMemo(initOrderTotalSummary, [cart]);
+  const miniCartItems = useMemo(
+    () => orderItems.slice(MINICART_CONFIGS.maxItemsToShow * -1).reverse(),
+    [orderItems]
+  );
 
   return (
     <ClickAwayListener onClickAway={handleClose}>

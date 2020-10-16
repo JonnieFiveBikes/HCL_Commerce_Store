@@ -5,6 +5,10 @@
       "Back": "支払いの詳細情報に戻る",
       "Next": "オーダーの発行",
       "NextRecurringOrder": "定期オーダーの発行"
+    },
+    "Labels": {
+      "PaymentDetails": "支払いの詳細",
+      "OrderSummary": "オーダー要約"
     }
   }
 }

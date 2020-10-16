@@ -33,12 +33,6 @@ const StyledPaper = styled(PaperWrapper)`
       border-radius: 0px 0px ${theme.shape.borderRadius}px ${
     theme.shape.borderRadius
   }px;
-      padding:${theme.spacing(2.5)}px ${theme.spacing(1.25)}px;
-      width:inherit;
-      height:inherit;
-      line-height:0%;
-      text-align:left;
-      line-spacing:${theme.spacing(1.25)}px;
     }
 
     &.expanded-menu-three-tier-submenu{

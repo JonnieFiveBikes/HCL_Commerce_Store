@@ -9,10 +9,13 @@
  *==================================================
  */
 //Standard libraries
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import Axios, { Canceler } from "axios";
+//Foundation libraries
+import cartService from "../../../_foundation/apis/transaction/cart.service";
 //Custom libraries
-import { OrderItemTable } from "../order-item-table";
+import OrderDetailSubsection from "../order-detail-subsection/OrderDetailSubsection";
 import { OrderShippingInfo } from "../order-shipping-info";
 import { OrderBillingInfo } from "../order-billing-info";
 import { OrderPaymentInfo } from "../order-payment-info";
@@ -20,6 +23,7 @@ import { OrderTotalSummary } from "../order-total-summary";
 import { RecurringOrderInfo } from "../recurring-order-info";
 import { OrderDiscountSummary } from "../order-discount-summary";
 import RecurringOderHistory from "../../pages/_sapphire/order/RecurringOrderHistory";
+import { PurchaseOrderNumber } from "../purchase-order-number";
 //UI
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
@@ -29,7 +33,11 @@ import {
   StyledContainer,
   StyledGrid,
   StyledProgressPlaceholder,
+  StyledTypography,
+  StyledBox,
+  StyledIconLabel,
 } from "../../StyledUI";
+import ReccuringOrderIcon from "@material-ui/icons/Repeat";
 
 interface OrderDetailsProps {
   order: any;
@@ -45,6 +53,8 @@ interface OrderDetailsProps {
   backButtonFunction?: Function;
   submitButtonFunction?: Function;
   submitButtonDisableFunction?: Function;
+  parentComponent?: string; //name of parent
+  poNumber?: string;
 }
 
 /**
@@ -71,6 +81,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
     backButtonFunction,
     submitButtonFunction,
     submitButtonDisableFunction,
+    parentComponent,
   } = props;
   const paymentInstruction = order
     ? order.paymentInstruction
@@ -89,133 +100,193 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
 
   const { t } = useTranslation();
   const theme = useTheme();
-  const isMobile = !useMediaQuery(theme.breakpoints.up("md"));
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+  const sm = !useMediaQuery(theme.breakpoints.up("sm"));
+  const fullWidth = sm ? { fullWidth: true } : {};
+
+  const resolvePONumber = () => {
+    if (props.poNumber === undefined && order && order.buyerPONumber) {
+      cartService
+        .getBuyerPurchaseOrderDataBean({
+          buyerPurchaseOrderId: order.buyerPONumber,
+          cancelToken: new Axios.CancelToken(function executor(c) {
+            cancels.push(c);
+          }),
+        })
+        .then((r) => r.data)
+        .then((d2) => {
+          if (d2.resultList[0] && d2.resultList[0].purchaseOrderNumber) {
+            setPONumber(d2.resultList[0].purchaseOrderNumber);
+          }
+        });
+    }
+  };
+
+  const [poNumber, setPONumber] = useState<string>(props.poNumber);
+
   const ReviewOrderBackButton = () => (
-    <StyledButton
-      color="secondary"
-      onClick={backButtonFunction}
-      className={"button" + isMobile ? " bottom-margin-2" : ""}
-      fullWidth>
+    <StyledButton onClick={backButtonFunction} color="secondary" {...fullWidth}>
       {t("OrderDetails.Actions.Back")}
     </StyledButton>
   );
 
-  return (
-    <>
-      <StyledGrid container spacing={3}>
-        {isRecurringOrder && (
-          <StyledGrid item xs={12}>
-            <StyledPaper>
-              <StyledContainer className="vertical-margin-2">
-                <RecurringOrderInfo
-                  {...recurringOrderProps}
-                  showHistoryLink={!!showRecurringHistoryLink}
-                  handleHistoryLinkClick={() => handleHistoryClick()}
-                />
-              </StyledContainer>
-            </StyledPaper>
-          </StyledGrid>
-        )}
-        {isRecurringOrder && !showRecurringHistoryLink && recurringOrderNumber && (
-          <StyledGrid item xs={12}>
-            <StyledPaper>
-              <StyledContainer className="vertical-margin-2">
-                <RecurringOderHistory parentOrderId={recurringOrderNumber} />
-              </StyledContainer>
-            </StyledPaper>
-          </StyledGrid>
-        )}
-        {(!isRecurringOrder ||
-          !!showRecurringHistoryLink ||
-          !recurringOrderNumber) && (
-          <>
-            <StyledGrid item xs={12} md={4}>
-              <StyledPaper>
-                <StyledContainer className="vertical-margin-2">
-                  {orderItems ? (
-                    <OrderShippingInfo
-                      shippingInfo={{ ...orderItems[0], shipAsComplete }}
-                    />
-                  ) : (
-                    <StyledProgressPlaceholder className="vertical-padding-20" />
-                  )}
-                </StyledContainer>
-              </StyledPaper>
-            </StyledGrid>
-            <StyledGrid item xs={12} md={4}>
-              <StyledPaper>
-                <StyledContainer className="vertical-margin-2">
-                  {orderItems && paymentInstruction ? (
-                    <OrderBillingInfo billingInfo={paymentInstruction[0]} />
-                  ) : (
-                    <StyledProgressPlaceholder className="vertical-padding-20" />
-                  )}
-                </StyledContainer>
-              </StyledPaper>
-            </StyledGrid>
-            <StyledGrid item xs={12} md={4}>
-              <StyledPaper>
-                <StyledContainer className="vertical-margin-2">
-                  {orderItems && paymentInstruction ? (
-                    <OrderPaymentInfo
-                      paymentInstruction={paymentInstruction[0]}
-                    />
-                  ) : (
-                    <StyledProgressPlaceholder className="vertical-padding-20" />
-                  )}
-                </StyledContainer>
-              </StyledPaper>
-            </StyledGrid>
-            <StyledGrid item xs={12}>
-              {orderItems ? (
-                <OrderItemTable data={orderItems} />
-              ) : (
-                <StyledPaper>
-                  <StyledContainer>
-                    <StyledProgressPlaceholder className="vertical-padding-20" />
-                  </StyledContainer>
-                </StyledPaper>
-              )}
-            </StyledGrid>
-            <StyledGrid container item justify="flex-end" spacing={3}>
-              {backButtonFunction && !isMobile && (
-                <StyledGrid container item xs={12} md={4} alignItems="flex-end">
-                  <ReviewOrderBackButton />
-                </StyledGrid>
-              )}
-
-              <StyledGrid item xs={12} md={4}>
-                {hasDiscounts && (
-                  <StyledPaper className="horizontal-padding-3 vertical-padding-2">
-                    <OrderDiscountSummary order={order} />
-                  </StyledPaper>
+  const actions =
+    backButtonFunction || submitButtonFunction
+      ? {
+          actions: (
+            <StyledGrid
+              container
+              justify="space-between"
+              spacing={1}
+              className="checkout-actions">
+              <StyledGrid item>
+                {backButtonFunction && <ReviewOrderBackButton />}
+              </StyledGrid>
+              <StyledGrid item>
+                {submitButtonFunction && (
+                  <StyledButton
+                    color="primary"
+                    disabled={!submitButtonDisableFunction}
+                    onClick={submitButtonFunction}
+                    className="button"
+                    fullWidth>
+                    {isRecurringOrder
+                      ? t("OrderDetails.Actions.NextRecurringOrder")
+                      : t("OrderDetails.Actions.Next")}
+                  </StyledButton>
                 )}
               </StyledGrid>
-
-              <StyledGrid item xs={12} md={4}>
-                <StyledPaper className="horizontal-padding-3 vertical-padding-2">
-                  <OrderTotalSummary order={order} />
-                  {backButtonFunction && isMobile && <ReviewOrderBackButton />}
-
-                  {submitButtonFunction && (
-                    <StyledButton
-                      color="primary"
-                      disabled={!submitButtonDisableFunction}
-                      onClick={submitButtonFunction}
-                      className="button"
-                      fullWidth>
-                      {isRecurringOrder
-                        ? t("OrderDetails.Actions.NextRecurringOrder")
-                        : t("OrderDetails.Actions.Next")}
-                    </StyledButton>
-                  )}
-                </StyledPaper>
-              </StyledGrid>
             </StyledGrid>
-          </>
-        )}
+          ),
+        }
+      : {};
+
+  const BillingAndPaymentSection = () => (
+    <StyledGrid container spacing={2}>
+      <StyledGrid item md={4} xs={12}>
+        <OrderBillingInfo billingInfo={paymentInstruction[0]} />
       </StyledGrid>
-    </>
+      <StyledGrid item md={4} xs={12}>
+        <OrderPaymentInfo paymentInstruction={paymentInstruction[0]} />
+      </StyledGrid>
+    </StyledGrid>
+  );
+
+  const paymentDetails = poNumber ? (
+    [<PurchaseOrderNumber poNumber={poNumber} />, <BillingAndPaymentSection />]
+  ) : (
+    <BillingAndPaymentSection />
+  );
+
+  useEffect(() => {
+    resolvePONumber();
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+  }, [order?.buyerPONumber]);
+
+  return (
+    <StyledGrid container spacing={2}>
+      {isRecurringOrder && !showRecurringHistoryLink && recurringOrderNumber && (
+        <StyledGrid item xs={12}>
+          <StyledPaper>
+            <StyledContainer className="vertical-margin-2">
+              <RecurringOderHistory parentOrderId={recurringOrderNumber} />
+            </StyledContainer>
+          </StyledPaper>
+        </StyledGrid>
+      )}
+      {(!isRecurringOrder ||
+        !!showRecurringHistoryLink ||
+        !recurringOrderNumber) && (
+        <>
+          {/* order item and shipment */}
+          {orderItems ? (
+            <OrderShippingInfo
+              shippingInfo={{ orderItems, shipAsComplete, parentComponent }}
+            />
+          ) : (
+            <StyledGrid item xs={12}>
+              <StyledPaper>
+                <StyledContainer className="vertical-margin-2">
+                  <StyledProgressPlaceholder className="vertical-padding-20" />
+                </StyledContainer>
+              </StyledPaper>
+            </StyledGrid>
+          )}
+          <StyledGrid item xs={12}>
+            {/* Payment section */}
+            {orderItems && paymentInstruction ? (
+              <OrderDetailSubsection
+                heading={
+                  <StyledTypography variant="h4" gutterBottom>
+                    {t("OrderDetails.Labels.PaymentDetails")}
+                  </StyledTypography>
+                }
+                details={paymentDetails}
+              />
+            ) : (
+              <StyledProgressPlaceholder className="vertical-padding-20" />
+            )}
+          </StyledGrid>
+          <StyledGrid item xs={12}>
+            <OrderDetailSubsection
+              heading={
+                <StyledGrid
+                  container
+                  direction="row"
+                  justify="space-between"
+                  alignItems="center"
+                  spacing={2}>
+                  <StyledGrid item xs={12} md={5}>
+                    <StyledTypography variant="h4" gutterBottom>
+                      {t("OrderDetails.Labels.OrderSummary")}
+                    </StyledTypography>
+                  </StyledGrid>
+                  {isRecurringOrder && (
+                    <>
+                      <StyledGrid item xs={12} md={3}>
+                        <StyledIconLabel
+                          variant="h6"
+                          icon={<ReccuringOrderIcon color="primary" />}
+                          label={t("RecurringOrderInfo.Title")}
+                        />
+                      </StyledGrid>
+                      <StyledGrid item xs={12} md={4} container spacing={1}>
+                        <RecurringOrderInfo
+                          {...recurringOrderProps}
+                          showHistoryLink={!!showRecurringHistoryLink}
+                          handleHistoryLinkClick={() => handleHistoryClick()}
+                        />
+                      </StyledGrid>
+                    </>
+                  )}
+                </StyledGrid>
+              }
+              details={
+                <StyledGrid
+                  container
+                  display="flex"
+                  direction="row"
+                  alignItems="flex-start"
+                  {...(hasDiscounts && { justify: "space-between" })}
+                  spacing={2}>
+                  {hasDiscounts && (
+                    <StyledGrid item xs={12} md={4}>
+                      <OrderDiscountSummary order={order} />
+                    </StyledGrid>
+                  )}
+                  <StyledGrid item xs={12} md={4}>
+                    <OrderTotalSummary order={order} />
+                  </StyledGrid>
+                </StyledGrid>
+              }
+              {...actions}></OrderDetailSubsection>
+          </StyledGrid>
+        </>
+      )}
+    </StyledGrid>
   );
 };
 

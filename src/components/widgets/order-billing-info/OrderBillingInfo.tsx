@@ -14,7 +14,8 @@ import { useTranslation } from "react-i18next";
 //Custom libraries
 import { AddressCard } from "../address-card";
 //UI
-import { StyledTypography } from "../../StyledUI";
+import { StyledIconLabel, StyledBox } from "../../StyledUI";
+import ContactsIcon from "@material-ui/icons/Contacts";
 
 interface OrderBillingInfoProps {
   billingInfo: any;
@@ -31,20 +32,20 @@ const OrderBillingInfo: React.FC<OrderBillingInfoProps> = (props: any) => {
 
   return (
     <>
-      <StyledTypography variant="h6" gutterBottom>
-        {t("OrderBillingInfo.Title")}
-      </StyledTypography>
       {billingInfo && billingInfo.billing_address_id && (
         <>
-          <StyledTypography variant="overline" gutterBottom>
-            {t("OrderBillingInfo.Labels.BillAddress")}
-          </StyledTypography>
-          <AddressCard
-            addressId={billingInfo.billing_address_id}
-            addressData={billingInfo}
-            nickName={billingInfo.nickName}
-            readOnly={true}
+          <StyledIconLabel
+            icon={<ContactsIcon color="primary" />}
+            label={t("OrderBillingInfo.Labels.BillAddress")}
           />
+          <StyledBox my={2}>
+            <AddressCard
+              addressId={billingInfo.billing_address_id}
+              addressData={billingInfo}
+              nickName={billingInfo.nickName}
+              readOnly={true}
+            />
+          </StyledBox>
         </>
       )}
     </>

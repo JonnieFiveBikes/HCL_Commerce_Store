@@ -2,8 +2,8 @@
   "Checkout": {
     "Title": "Finalizare comandă",
     "Labels": {
-      "shipping": "Livrare și facturare",
-      "payment": "Plată și livrare",
+      "shipping": "Livrare",
+      "payment": "Plată",
       "review": "Revizuire comandă"
     },
     "Actions": {

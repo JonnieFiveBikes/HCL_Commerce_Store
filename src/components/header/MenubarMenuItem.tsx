@@ -50,8 +50,9 @@ const MenubarMenuItem = (props) => {
   return (
     <>
       <StyledBox
-        pl={2}
-        pr={2}
+        p={2}
+        mr={1}
+        ml={1}
         className={
           selectedMenuItem !== null && selectedMenuItem.id === page.id
             ? "expanded-menu-hover"
@@ -61,7 +62,7 @@ const MenubarMenuItem = (props) => {
         <StyledButton
           variant="text"
           onMouseOver={() => selectMenuItem(page.id)}>
-          <StyledTypography className="expanded-menu-text" variant="body2">
+          <StyledTypography className="expanded-menu-text" variant="body1">
             {page.name}
           </StyledTypography>
         </StyledButton>
@@ -73,6 +74,7 @@ const MenubarMenuItem = (props) => {
         open={selectedMenuItem !== null && selectedMenuItem.id === page.id}
         anchorEl={popperRef.current}
         placement="bottom-start"
+        disablePortal
         modifiers={{
           flip: {
             enabled: false,
@@ -89,8 +91,7 @@ const MenubarMenuItem = (props) => {
             order: 875,
             fn: setWidth,
           },
-        }}
-        className="">
+        }}>
         <ClickAwayListener onClickAway={handleClickAway}>
           <StyledBox>
             {page.id === "allCategories" ? (

@@ -12,7 +12,7 @@
       "Allocated": "Disponibile",
       "Unallocated": "Non allocato",
       "Backordered": "Inevaso",
-      "OOS": "Articolo esaurito",
+      "OOS": "Esaurito",
       "NA": "Non disponibile"
     },
     "recurringOrderFrequency": {

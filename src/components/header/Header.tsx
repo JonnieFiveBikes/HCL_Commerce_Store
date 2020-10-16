@@ -13,6 +13,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
+import Axios, { Canceler } from "axios";
 //Foundation libraries
 import { useSite } from "../../_foundation/hooks/useSite";
 import categoryService from "../../_foundation/apis/search/categories.service";
@@ -52,10 +53,12 @@ import {
   StyledGrid,
   StyledLink,
   StyledPaper,
+  StyledBox,
 } from "../StyledUI";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
-import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
 //import FavoriteIcon from "@material-ui/icons/Favorite";
 
 interface HeaderProps {
@@ -80,7 +83,7 @@ const Header: React.FC<HeaderProps> = (props: any) => {
   const [miniCartPopperOpen, setMiniCartPopperOpen] = useState<boolean>(false);
   const miniCartElRef = useRef<HTMLButtonElement>(null);
 
-  const mySite: SiteInfo = useSite();
+  const { mySite } = useSite();
   const { t } = useTranslation();
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -103,6 +106,16 @@ const Header: React.FC<HeaderProps> = (props: any) => {
 
   const myAccountPopperId = "HEADER_MY_ACCOUNT_Popper";
   const miniCartPopperId = "HEADER_MINI_CART_Popper";
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+  const payloadBase: any = {
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+  const payload = {
+    ...payloadBase,
+  };
 
   const handleMyAccountClick = () => {
     setMyAccountPopperOpen(true);
@@ -130,7 +143,10 @@ const Header: React.FC<HeaderProps> = (props: any) => {
     event.preventDefault();
     const orgId = event.target.value;
     dispatch(
-      ORG_SWITCH_ACTION({ $queryParameters: { activeOrgId: String(orgId) } })
+      ORG_SWITCH_ACTION({
+        $queryParameters: { activeOrgId: String(orgId) },
+        payload,
+      })
     );
     history.push(ROUTES.HOME);
   };
@@ -144,6 +160,7 @@ const Header: React.FC<HeaderProps> = (props: any) => {
     dispatch(
       CONTRACT_SWITCH_ACTION({
         $queryParameters: { contractId: String(conId) },
+        payload,
       })
     );
     history.push(ROUTES.HOME);
@@ -151,7 +168,10 @@ const Header: React.FC<HeaderProps> = (props: any) => {
 
   const handleLogout = (event) => {
     event.preventDefault();
-    dispatch(LOGOUT_REQUESTED_ACTION());
+    const param: any = {
+      payload,
+    };
+    dispatch(LOGOUT_REQUESTED_ACTION(param));
     setMyAccountPopperOpen(false);
     setMiniCartPopperOpen(false);
     history.push(ROUTES.HOME);
@@ -166,13 +186,18 @@ const Header: React.FC<HeaderProps> = (props: any) => {
         $queryParameters: {
           contractId: contractId,
         },
+        payload,
       };
       categoryService
         .getV2CategoryResourcesUsingGET(parameters, null, mySite.searchContext)
         .then((res) => {
           setTopCategories(res.data.contents);
-        });
+        })
+        .catch((e) => {});
     }
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
   }, [mySite, contractId]);
 
   useEffect(() => {
@@ -303,7 +328,10 @@ const Header: React.FC<HeaderProps> = (props: any) => {
                       </StyledHeaderActions>
                     ) : (
                       <>
-                        <StyledTypography variant="body1" component="p">
+                        <StyledTypography
+                          className="welcome-text"
+                          variant="button"
+                          component="p">
                           {firstName
                             ? t("Header.Actions.WelcomeFirstname", {
                                 firstName,
@@ -311,14 +339,22 @@ const Header: React.FC<HeaderProps> = (props: any) => {
                             : t("Header.Actions.WelcomeNoFirstname", {
                                 lastName,
                               })}
-                          <br />
-                          {t("Header.Actions.YourAccount")}
-                          {myAccountPopperOpen ? (
-                            <ArrowDropUpIcon />
-                          ) : (
-                            <ArrowDropDownIcon />
-                          )}
                         </StyledTypography>
+
+                        <StyledBox
+                          display="flex"
+                          flexDirection="row"
+                          alignItems="center"
+                          flexWrap="wrap">
+                          <StyledTypography variant="body2">
+                            {t("Header.Actions.YourAccount")}​​​​​
+                          </StyledTypography>
+                          {myAccountPopperOpen ? (
+                            <ExpandLessIcon />
+                          ) : (
+                            <ExpandMoreIcon />
+                          )}
+                        </StyledBox>
                       </>
                     )}
                   </StyledButton>

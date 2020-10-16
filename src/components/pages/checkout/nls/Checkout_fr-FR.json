@@ -2,8 +2,8 @@
   "Checkout": {
     "Title": "Règlement",
     "Labels": {
-      "shipping": "Expédition et facturation",
-      "payment": "Paiement et livraison",
+      "shipping": "Expédition",
+      "payment": "Paiement",
       "review": "Examiner la commande"
     },
     "Actions": {

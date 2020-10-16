@@ -2,8 +2,8 @@
   "Checkout": {
     "Title": "結帳",
     "Labels": {
-      "shipping": "運送與帳單",
-      "payment": "付款與遞送",
+      "shipping": "運送",
+      "payment": "付款",
       "review": "檢閱訂單"
     },
     "Actions": {

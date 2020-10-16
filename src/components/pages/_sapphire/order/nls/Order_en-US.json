@@ -1,6 +1,6 @@
 {
   "Order": {
-    "noPO": "NONE",
+    "noPO": "None",
     "Status_A": "Payment authorization requires review",
     "Status_B": "Back ordered",
     "Status_C": "Payment approved",
@@ -20,7 +20,7 @@
     "Status_W": "Pending approval",
     "Status_V": "Partially shipped",
     "Status_X": "Order canceled",
-    "NotAvailable": "Information not available",
+    "NotAvailable": "N/A",
     "OrderId": "Order Id",
     "PONumber": "Po Number",
     "OrderDate": "Order Date",
@@ -60,6 +60,7 @@
     "OrderDetails": "Order Details",
     "OrderNumber": "Order Number",
     "HistorySearchPlaceHolder": "Search by Order ID",
-    "HistoryViewDetailTooltip": "View order details"
+    "HistoryViewDetailTooltip": "View order details",
+    "Pending": "Pending"
   }
 }

@@ -17,7 +17,12 @@ import { useTranslation } from "react-i18next";
 import { Divider } from "@material-ui/core";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import LocalShippingIcon from "@material-ui/icons/LocalShipping";
-import { EMPTY_STRING } from "../../../../constants/common";
+import {
+  EMPTY_STRING,
+  IS_PERSONAL_ADDRESS_ALLOWED,
+  STRING_TRUE,
+} from "../../../../constants/common";
+import { SHIPMODE } from "../../../../constants/order";
 //Foundation libraries
 import { useSite } from "../../../../_foundation/hooks/useSite";
 import shippingInfoService from "../../../../_foundation/apis/transaction/shippingInfo.service";
@@ -28,10 +33,16 @@ import * as ROUTES from "../../../../constants/routes";
 //Redux
 import { addressDetailsSelector } from "../../../../redux/selectors/account";
 import {
+  activeOrgSelector,
+  organizationDetailsSelector,
+} from "../../../../redux/selectors/organization";
+import {
   shipInfosSelector,
   orderItemsSelector,
+  cartSelector,
 } from "../../../../redux/selectors/order";
 import * as orderActions from "../../../../redux/actions/order";
+import * as organizationAction from "../../../../redux/actions/organization";
 import { currentContractIdSelector } from "../../../../redux/selectors/contract";
 import * as accountActions from "../../../../redux/actions/account";
 //UI
@@ -56,13 +67,19 @@ const useShipping = (props) => {
   const contractId = useSelector(currentContractIdSelector);
   const usableShipInfos: any = useSelector(shipInfosSelector);
   const addressDetails: any = useSelector(addressDetailsSelector);
-
+  const activeOrgId = useSelector(activeOrgSelector);
+  const orgAddressDetails = useSelector(organizationDetailsSelector);
+  const cart = useSelector(cartSelector);
+  const isPersonalAddressAllowed: string =
+    cart && cart[IS_PERSONAL_ADDRESS_ALLOWED]
+      ? cart[IS_PERSONAL_ADDRESS_ALLOWED]
+      : STRING_TRUE;
   const [selectedShipAddressIds, setSelectedShipAddressIds] = useState<
     string[]
   >([]);
   const [selectedShipModeIds, setSelectedShipModeIds] = useState<string[]>([]);
 
-  const mySite: any = useSite();
+  const { mySite } = useSite();
 
   const [useMultipleShipment, setUseMultipleShipment] = useState(false);
 
@@ -71,11 +88,11 @@ const useShipping = (props) => {
 
   const [createNewAddress, setCreateNewAddress] = useState<boolean>(false);
   const [editAddress, setEditAddress] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const usableShipAddresses = useMemo(() => initUsableShippingAddresses(), [
     usableShipInfos,
     addressDetails,
+    orgAddressDetails,
   ]);
 
   const usableShippingMethods = useMemo(() => initUsableShippingMethods(), [
@@ -94,18 +111,48 @@ const useShipping = (props) => {
     ) {
       const orderItems: any[] = usableShipInfos.orderItem;
       orderItems.forEach((item) => {
-        _usableShippingAddresses.push(
-          filterAddresses(item.usableShippingAddress)
+        let _usableShippingAddressesPerItem: any[] = [];
+        _usableShippingAddressesPerItem = pushUsableShippingAddresses(
+          filterAddresses(item.usableShippingAddress),
+          _usableShippingAddressesPerItem
         );
+        _usableShippingAddressesPerItem = pushUsableShippingAddresses(
+          filterOrgAddresses(item.usableShippingAddress),
+          _usableShippingAddressesPerItem
+        );
+        _usableShippingAddresses.push(_usableShippingAddressesPerItem);
       });
-      setIsLoading(false);
     } else if (usableShipInfos && usableShipInfos.usableShippingAddress) {
-      _usableShippingAddresses.push(
-        filterAddresses(usableShipInfos.usableShippingAddress)
+      let _usableShippingAddressesPerItem: any[] = [];
+      _usableShippingAddressesPerItem = pushUsableShippingAddresses(
+        filterAddresses(usableShipInfos.usableShippingAddress),
+        _usableShippingAddressesPerItem
       );
-      setIsLoading(false);
+      _usableShippingAddressesPerItem = pushUsableShippingAddresses(
+        filterOrgAddresses(usableShipInfos.usableShippingAddress),
+        _usableShippingAddressesPerItem
+      );
+
+      orderItems.forEach((item) => {
+        _usableShippingAddresses.push(_usableShippingAddressesPerItem);
+      });
     }
     return _usableShippingAddresses;
+  }
+
+  /**
+   * Validate address and push it to _usableShippingAddresses array
+   * @param address
+   */
+  function pushUsableShippingAddresses(
+    address: any[],
+    _usableShippingAddresses: any[]
+  ) {
+    if (address && address.length > 0) {
+      return _usableShippingAddresses.concat(address);
+    } else {
+      return _usableShippingAddresses;
+    }
   }
 
   /**
@@ -121,15 +168,29 @@ const useShipping = (props) => {
       const orderItems: any[] = usableShipInfos.orderItem;
       orderItems.forEach((item) => {
         if (item.usableShippingMode) {
-          _usableShippingMethods.push(
+          pushUsableShippingMode(
             item.usableShippingMode.filter(
-              (mode) => mode.shipModeCode !== "PickupInStore"
-            )
+              (mode) => mode.shipModeCode !== SHIPMODE.shipModeCode.PickUp
+            ),
+            _usableShippingMethods
           );
         }
       });
     }
     return _usableShippingMethods;
+  }
+
+  /**
+   * Validate shipping method/mode and push it to _usableShippingMethods array
+   * @param address
+   */
+  function pushUsableShippingMode(
+    shippingMode: any[],
+    _usableShippingMethods: any[]
+  ) {
+    if (shippingMode && shippingMode.length > 0) {
+      _usableShippingMethods.push(shippingMode);
+    }
   }
 
   /**
@@ -165,6 +226,49 @@ const useShipping = (props) => {
           }
         }
         return false;
+      });
+      if (filteredList && filteredList.length > 0) {
+        return filteredList;
+      }
+    }
+    return [];
+  }
+
+  /**
+   * Filter out organization addresses that does not have the mandatory fields for checkout
+   * @param usableAddresses List of addresses to scan
+   * @returns Filtered list of addresses
+   */
+  function filterOrgAddresses(usableAddresses: any[]) {
+    if (usableAddresses) {
+      const filteredList = usableAddresses.filter((address) => {
+        if (
+          address &&
+          orgAddressDetails &&
+          orgAddressDetails.contactInfo &&
+          orgAddressDetails.addressBook
+        ) {
+          if (address.addressId === orgAddressDetails.contactInfo.addressId) {
+            return (
+              orgAddressDetails.contactInfo.address1 !== undefined &&
+              orgAddressDetails.contactInfo.country !== undefined &&
+              orgAddressDetails.contactInfo.address1 !== EMPTY_STRING &&
+              orgAddressDetails.contactInfo.country !== EMPTY_STRING
+            );
+          } else {
+            for (let orgAddress of orgAddressDetails.addressBook) {
+              if (address.addressId === orgAddress.addressId) {
+                return (
+                  orgAddress.address1 !== undefined &&
+                  orgAddress.country !== undefined &&
+                  orgAddress.address1 !== EMPTY_STRING &&
+                  orgAddress.country !== EMPTY_STRING
+                );
+              }
+            }
+          }
+          return false;
+        }
       });
       if (filteredList && filteredList.length > 0) {
         return filteredList;
@@ -255,7 +359,31 @@ const useShipping = (props) => {
    */
   async function submit() {
     if (canContinue()) {
-      if (shipModeUpdated()) {
+      let isSingleShipModeId = true;
+      if (!useMultipleShipment && orderItems?.length > 1) {
+        const addressIds = orderItems.map((o) => o.addressId);
+        const isSingleAddressId = addressIds.every(
+          (addressId, index, array) => addressId === array[0]
+        );
+        if (!isSingleAddressId) {
+          const body = {
+            ...shipInfoBody,
+            addressId: addressIds[0],
+          };
+          const payload = {
+            ...payloadBase,
+            body,
+          };
+          await shippingInfoService.updateOrderShippingInfo(payload);
+        }
+
+        const shipModeIds = orderItems.map((o) => o.shipModeId);
+        isSingleShipModeId = shipModeIds.every(
+          (shipModeId, index, array) => shipModeId === array[0]
+        );
+      }
+
+      if (shipModeUpdated() || !isSingleShipModeId) {
         const body = {
           ...shipInfoBody,
           shipModeId: selectedShipModeIds[0],
@@ -285,6 +413,12 @@ const useShipping = (props) => {
           ...payloadBase,
         })
       );
+      const param: any = {
+        storeId: mySite.storeId,
+        organizationId: activeOrgId,
+        ...payloadBase,
+      };
+      dispatch(organizationAction.GET_ORGANIZATION_ADDRESS_ACTION(param));
     }
 
     return () => {
@@ -294,7 +428,11 @@ const useShipping = (props) => {
 
   useEffect(() => {
     if (orderItems.length > 0) {
-      if (usableShipAddresses && usableShipAddresses.length > 0 && !isLoading) {
+      if (
+        (selectedShipAddressIds.length === 0 || !selectedShipAddressIds[0]) &&
+        usableShipAddresses &&
+        usableShipAddresses.length > 0
+      ) {
         setSelectedShipAddressIds(
           orderItems
             .map((o) => o.addressId)
@@ -306,11 +444,19 @@ const useShipping = (props) => {
             })
         );
       }
-      setSelectedShipModeIds(
-        orderItems.map((o) => o.shipModeId).filter((i) => i !== undefined)
-      );
+      if (selectedShipModeIds.length === 0 || !selectedShipModeIds[0]) {
+        setSelectedShipModeIds(
+          orderItems
+            .filter(
+              (i) =>
+                i !== undefined &&
+                i.shipModeCode !== SHIPMODE.shipModeCode.PickUp
+            )
+            .map((o) => o.shipModeId)
+        );
+      }
     }
-  }, [isLoading]);
+  }, [usableShipAddresses]);
 
   return {
     usableShipAddresses,
@@ -328,6 +474,8 @@ const useShipping = (props) => {
     setSelectedShipAddressId,
     selectedshipModeIds: selectedShipModeIds,
     setSelectedshipModeId,
+    isPersonalAddressAllowed,
+    orgAddressDetails,
   };
 };
 
@@ -353,6 +501,8 @@ const Shipping: React.FC = (props: any) => {
     setCreateNewAddress,
     editAddress,
     setEditAddress,
+    isPersonalAddressAllowed,
+    orgAddressDetails,
   } = useShipping(props);
 
   const isDisabled = (): boolean => {
@@ -444,6 +594,8 @@ const Shipping: React.FC = (props: any) => {
         createNewAddress={createNewAddress}
         editAddress={editAddress}
         toggleEditAddress={setEditAddress}
+        isPersonalAddressAllowed={isPersonalAddressAllowed}
+        orgAddressDetails={orgAddressDetails}
       />
 
       {!createNewAddress && !editAddress && (
@@ -475,6 +627,7 @@ const Shipping: React.FC = (props: any) => {
                 </StyledInputLabel>
                 {usableShippingMethods[0] && (
                   <StyledSelect
+                    data-testid="shipping-method-select"
                     native
                     value={selectedshipModeIds[0] || EMPTY_STRING}
                     onChange={(event: ChangeEvent<HTMLSelectElement>) =>
@@ -495,6 +648,7 @@ const Shipping: React.FC = (props: any) => {
           <StyledGrid container justify="flex-end" className="checkout-actions">
             <StyledGrid item>
               <StyledButton
+                data-testid="shipping-can-continue"
                 color="primary"
                 disabled={!canContinue()}
                 onClick={() => submit()}

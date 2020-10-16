@@ -17,6 +17,7 @@ import { Provider } from "react-redux";
 import { I18nextProvider } from "react-i18next";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { ThemeProvider } from "styled-components";
+import { BrowserRouter } from "react-router-dom";
 //custom library
 import reducerInitialState from "../../redux/reducers/initStates";
 import reducer from "../../redux/reducers";
@@ -38,7 +39,7 @@ function render(
         <I18nextProvider i18n={i18n}>
           <ThemeProvider theme={currentTheme}>
             <MuiThemeProvider theme={currentTheme}>
-              {children}{" "}
+              <BrowserRouter>{children} </BrowserRouter>
             </MuiThemeProvider>
           </ThemeProvider>
         </I18nextProvider>

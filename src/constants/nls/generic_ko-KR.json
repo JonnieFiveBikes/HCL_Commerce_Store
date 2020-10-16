@@ -8,8 +8,8 @@
       "priceHighToLow": "가격(높은 가격순)"
     },
     "inventoryStatus": {
-      "Available": "사용 가능",
-      "Allocated": "사용 가능",
+      "Available": "재고 있음",
+      "Allocated": "재고 있음",
       "Unallocated": "할당되지 않음",
       "Backordered": "이월 주문됨",
       "OOS": "재고 없음",

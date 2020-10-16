@@ -1,22 +1,22 @@
 {
   "Shipping": {
-    "Title": "Shipping Details",
+    "Title": "配送详细信息",
     "Labels": {
-      "UseMultiple": "Ship to multiple addresses",
+      "UseMultiple": "配送到多个地址",
       "ShippingAddress": "配送地址",
-      "ShippingMethod": "送货方式",
-      "SelectShippingMethod": "Choose your delivery method",
-      "AddNewAddress": "Add new address",
-      "EditAddress": "Edit Address"
+      "ShippingMethod": "配送方式",
+      "SelectShippingMethod": "选择您的送货方式",
+      "AddNewAddress": "添加新地址",
+      "EditAddress": "编辑地址"
     },
     "Actions": {
-      "SelectAddress": "Use this address",
-      "CreateNew": "Create new address",
-      "Next": "Continue to Payment"
+      "SelectAddress": "使用此地址",
+      "CreateNew": "创建新地址",
+      "Next": "继续付款"
     },
     "Msgs": {
-      "UseSavedAddress": "Or select a saved address to use:",
-      "SelectShippingAddress": "Please first select a shipping address"
+      "UseSavedAddress": "或选择使用已保存的地址：",
+      "SelectShippingAddress": "请先选择配送地址"
     }
   }
 }

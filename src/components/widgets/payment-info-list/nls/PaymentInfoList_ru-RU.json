@@ -1,0 +1,12 @@
+{
+  "PaymentInfoList": {
+    "Title": "Способы оплаты — общая сумма заказа: ",
+    "Msgs": {
+      "PayMethodRequired": "Требуется хотя бы один способ оплаты.",
+      "InsufficientPayment": "Необходимо покрыть общую сумму заказа {{grandTotal}} по всем способам оплаты."
+    },
+    "Actions": {
+      "AddPayMethod": "Добавить способ оплаты"
+    }
+  }
+}

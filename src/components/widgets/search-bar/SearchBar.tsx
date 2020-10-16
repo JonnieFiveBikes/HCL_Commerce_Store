@@ -67,7 +67,7 @@ const SearchBar: React.FC = (props: any) => {
   const [nameList, setNameList] = React.useState<Array<string>>([]);
   const [index, setIndex] = React.useState(0);
   let nameListIndex = 1;
-  const mySite = useSite();
+  const { mySite } = useSite();
   const dispatch = useDispatch();
   const [showKeywords, setShowKeywords] = React.useState(false);
   const [showCategories, setShowCategories] = React.useState(false);
@@ -128,7 +128,7 @@ const SearchBar: React.FC = (props: any) => {
         }),
       };
       siteContentService
-        .findSuggestions(parameters)
+        .findSuggestionsUsingGET(parameters)
         .then((res) => {
           if (res.status === OK) {
             const categoriesResponse = res?.data.suggestionView[0].entry;
@@ -186,11 +186,11 @@ const SearchBar: React.FC = (props: any) => {
     const element = event.currentTarget as HTMLInputElement;
 
     setInput(element.value);
-
     retrieveSuggestions(element.value);
   };
 
   const retrieveSuggestions = (searchTerm: any) => {
+    searchTerm = searchTerm.trim();
     if (searchTerm.length > 1) {
       setTimeout(function () {
         const storeID = mySite.storeID;
@@ -207,7 +207,7 @@ const SearchBar: React.FC = (props: any) => {
         };
 
         siteContentService
-          .findKeywordSuggestionsByTerm(parameters)
+          .findKeywordSuggestionsByTermUsingGET(parameters)
           .then((res) => {
             if (res.status === OK) {
               const keywordSuggestions = res?.data.suggestionView[0].entry;
@@ -353,28 +353,32 @@ const SearchBar: React.FC = (props: any) => {
   const submitSearch = (props: any) => {
     props.preventDefault();
     clearSuggestions();
-    let url = "";
-    const storeID = mySite.storeID;
-    const parameters: any = {
-      storeId: storeID,
-      searchTerm: input,
-    };
-    searchDisplayService
-      .getSearchDisplayView(parameters)
-      .then((res) => {
-        if (res.status === OK) {
-          url = res?.data.redirecturl;
 
-          if (url === undefined) {
-            url = SEARCH + "?" + SEARCHTERM + "=" + input;
+    if (input && input.trim() !== "") {
+      let url = "";
+      const storeID = mySite.storeID;
+      const searchTerm = input.trim();
+      const parameters: any = {
+        storeId: storeID,
+        searchTerm: searchTerm,
+      };
+      searchDisplayService
+        .getSearchDisplayView(parameters)
+        .then((res) => {
+          if (res.status === OK) {
+            url = res?.data.redirecturl;
+
+            if (url === undefined) {
+              url = SEARCH + "?" + SEARCHTERM + "=" + searchTerm;
+            }
+            redirectTo(url);
           }
+        })
+        .catch((e) => {
+          url = SEARCH + "?" + SEARCHTERM + "=" + searchTerm;
           redirectTo(url);
-        }
-      })
-      .catch((e) => {
-        url = SEARCH + "?" + SEARCHTERM + "=" + input;
-        redirectTo(url);
-      });
+        });
+    }
   };
 
   const toggleSearchBar = () => {

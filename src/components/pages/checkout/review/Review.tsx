@@ -9,30 +9,34 @@
  *==================================================
  */
 //Standard libraries
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useHistory } from "react-router";
 //Foundation libraries
 import { useSite } from "../../../../_foundation/hooks/useSite";
+import { localStorageUtil } from "../../../../_foundation/utils/storageUtil";
 import cartService from "../../../../_foundation/apis/transaction/cart.service";
 import subscriptionService from "../../../../_foundation/apis/transaction/subscription.service";
+import { ACCOUNT } from "../../../../_foundation/constants/common";
 //Custom libraries
-import { RECURRING_ORDER_OPTIONS } from "../../../../constants/order";
+import {
+  RECURRING_ORDER_OPTIONS,
+  PO_NUMBER,
+} from "../../../../constants/order";
 import { OrderDetails } from "../../../widgets/order-details";
 import * as ROUTES from "../../../../constants/routes";
+import { ORDER_ID, HYPHEN } from "../../../../constants/common";
 //Redux
 import { currentContractIdSelector } from "../../../../redux/selectors/contract";
 import {
   cartSelector,
   orderItemsSelector,
   isCheckoutDisabledSelector,
-  isRecurringOrderSelector,
-  recurringOrderFrequencySelector,
-  recurringOrderStartDateSelector,
   isRecurringOrderDisabledSelector,
 } from "../../../../redux/selectors/order";
 import { GET_ADDRESS_DETAIL_ACTION } from "../../../../redux/actions/account";
+import { GET_CART_ACTION } from "../../../../redux/actions/order";
 import { RESET_CART_ACTION } from "../../../../redux/actions/order";
 //UI
 import { StyledGrid } from "../../../StyledUI";
@@ -43,20 +47,40 @@ import { StyledGrid } from "../../../StyledUI";
  * @param props
  */
 const Review: React.FC = (props: any) => {
+  const { isPONumberRequired } = props;
+  const componentName = "Review";
   const contractId = useSelector(currentContractIdSelector);
   const cart = useSelector(cartSelector);
   const orderItems = useSelector(orderItemsSelector);
   const isCheckoutDisabled = useSelector(isCheckoutDisabledSelector);
-  const isRecurringOrder = useSelector(isRecurringOrderSelector);
-  const recurringOrderFrequency = useSelector(recurringOrderFrequencySelector);
-  const recurringOrderStartDate = useSelector(recurringOrderStartDateSelector);
+  let isRecurringOrder: boolean = false;
+  let recurringOrderFrequency: string = "0";
+  let recurringOrderStartDate: string = "";
   const isRecurringOrderDisabled = useSelector(
     isRecurringOrderDisabledSelector
   );
 
+  const recurringOrderDetails = useMemo(
+    () =>
+      localStorageUtil.get(
+        ACCOUNT + HYPHEN + ORDER_ID + HYPHEN + cart?.orderId
+      ),
+    [cart]
+  );
+  const poNumber = useMemo(
+    () => localStorageUtil.get(ACCOUNT + "-" + PO_NUMBER + "-" + cart?.orderId),
+    [cart]
+  );
+
+  if (recurringOrderDetails && recurringOrderDetails.length === 3) {
+    isRecurringOrder = recurringOrderDetails[0];
+    recurringOrderFrequency = recurringOrderDetails[1];
+    recurringOrderStartDate = recurringOrderDetails[2];
+  }
+
   const dispatch = useDispatch();
   const history = useHistory();
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
@@ -72,6 +96,7 @@ const Review: React.FC = (props: any) => {
 
   useEffect(() => {
     if (mySite) {
+      dispatch(GET_CART_ACTION({ ...payloadBase, fetchCatentries: true }));
       //Refresh address list to get any new shipping/billing addresses created
       dispatch(GET_ADDRESS_DETAIL_ACTION({ ...payloadBase }));
     }
@@ -94,11 +119,17 @@ const Review: React.FC = (props: any) => {
 
   async function submit() {
     if (canContinue()) {
+      let payloadBodyBase = {};
+      if (isPONumberRequired) {
+        payloadBodyBase = {
+          purchaseorder_id: poNumber?.trim(),
+        };
+      }
       if (isRecurringOrder) {
         if (recurringOrderStartDate != null) {
           let fulfillmentInterval = "";
           let fulfillmentIntervalUOM = "";
-          const startDate = recurringOrderStartDate.toISOString();
+          const startDate = recurringOrderStartDate;
 
           for (let i = 0; i < RECURRING_ORDER_OPTIONS.length; i++) {
             if (recurringOrderFrequency === RECURRING_ORDER_OPTIONS[i].value) {
@@ -118,7 +149,9 @@ const Review: React.FC = (props: any) => {
             const payload: any = {
               ...payloadBase,
               orderId: cart.orderId,
+              $queryParameters: { ...payloadBodyBase }, //PO must be specified in the params too else API throws error
               body: {
+                ...payloadBodyBase, //API uses the PO number value from body
                 fulfillmentInterval: fulfillmentInterval,
                 fulfillmentIntervalUOM: fulfillmentIntervalUOM,
                 startDate: startDate,
@@ -130,7 +163,10 @@ const Review: React.FC = (props: any) => {
         }
       } else {
         await cartService.preCheckout({ ...payloadBase });
-        await cartService.checkOut({ ...payloadBase });
+        await cartService.checkOut({
+          ...payloadBase,
+          body: { ...payloadBodyBase },
+        });
       }
 
       const piList: any[] = cart.paymentInstruction;
@@ -147,6 +183,7 @@ const Review: React.FC = (props: any) => {
         emailList: emailList,
       });
       dispatch(RESET_CART_ACTION());
+      localStorageUtil.remove(ACCOUNT + "-" + PO_NUMBER + "-" + cart.orderId);
     }
   }
 
@@ -155,24 +192,18 @@ const Review: React.FC = (props: any) => {
   }
 
   return (
-    <>
-      <StyledGrid item xs={12}>
-        <OrderDetails
-          order={cart}
-          orderItems={orderItems}
-          isRecurringOrder={isRecurringOrder}
-          orderSchedule={recurringOrderFrequency}
-          startDateString={
-            recurringOrderStartDate
-              ? recurringOrderStartDate?.toISOString()
-              : ""
-          }
-          backButtonFunction={back}
-          submitButtonDisableFunction={canContinue}
-          submitButtonFunction={submit}
-        />
-      </StyledGrid>
-    </>
+    <OrderDetails
+      order={cart}
+      orderItems={orderItems}
+      isRecurringOrder={isRecurringOrder}
+      orderSchedule={recurringOrderFrequency}
+      startDateString={recurringOrderStartDate}
+      backButtonFunction={back}
+      submitButtonDisableFunction={canContinue}
+      submitButtonFunction={submit}
+      parentComponent={componentName}
+      poNumber={poNumber}
+    />
   );
 };
 

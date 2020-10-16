@@ -86,7 +86,7 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
 
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
@@ -306,16 +306,15 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
 
   return (
     <div className="product-listing-container productListingWidget top-margin-3">
-      {productListTotal === 0 &&
-        searchTerm !== "" &&
-        suggestedKeywords.length > 0 && (
-          <div id={`productGrid_div_18_${cid}`} className="suggested-keywords">
-            <h4 id={`productGrid_p_19_${cid}`}>
-              {t("ProductGrid.Labels.noMatches", { searchTerm: searchTerm })}
-            </h4>
-            <p id={`productGrid_p_21_${cid}`}>
-              {t("ProductGrid.Labels.searchAgain", { searchTerm: searchTerm })}
-            </p>
+      {(productListTotal === 0 || !productListTotal) && searchTerm !== "" && (
+        <div id={`productGrid_div_18_${cid}`} className="suggested-keywords">
+          <h4 id={`productGrid_p_19_${cid}`}>
+            {t("ProductGrid.Labels.noMatches", { searchTerm: searchTerm })}
+          </h4>
+          <p id={`productGrid_p_21_${cid}`}>
+            {t("ProductGrid.Labels.searchAgain", { searchTerm: searchTerm })}
+          </p>
+          {suggestedKeywords.length > 0 && (
             <>
               {t("ProductGrid.Labels.suggestion")}
               <br />
@@ -330,8 +329,9 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
                 </Link>
               ))}
             </>
-          </div>
-        )}
+          )}
+        </div>
+      )}
 
       {/* Summary info and sort options */}
       {productListTotal > 0 && (
@@ -357,15 +357,16 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
               <StyledSelect
                 id={`productGrid_select_6_${cid}`}
                 value={selectedSortOption}
+                native
                 onChange={(event) => onSortOptionChange(event)}
                 fullWidth>
                 {sortOptions.map((option: any, index: number) => (
-                  <StyledMenuItem
+                  <option
                     value={option.value}
                     key={option.value}
                     id={`productGrid_option_7_${index}_${cid}`}>
                     {t(`${option.translationKey}`)}
-                  </StyledMenuItem>
+                  </option>
                 ))}
               </StyledSelect>
             </StyledFormControl>

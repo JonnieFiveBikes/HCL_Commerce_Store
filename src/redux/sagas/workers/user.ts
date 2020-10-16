@@ -9,7 +9,7 @@
  *==================================================
  */
 //Standard libraries
-import { call, put } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 //Foundation libraries
 import { PERSONALIZATION_ID } from "../../../_foundation/constants/user";
 import { WC_PREVIEW_TOKEN } from "../../../_foundation/constants/common";
@@ -28,7 +28,9 @@ import {
   INIT_USER_FROM_STORAGE_SUCCESS_ACTION,
   FETCH_USER_DETAILS_SUCCESS_ACTION,
   SESSION_ERROR_LOGIN_ERROR_ACTION,
+  GUEST_LOGIN_SUCCESS_ACTION,
 } from "../../actions/user";
+import { userLastUpdatedSelector } from "../../selectors/user";
 
 function* loginAndFetchDetail(payload: any) {
   const response = yield call(loginIdentity.login, payload);
@@ -68,7 +70,8 @@ export function* sessionErrorReLogin(action: any) {
 
 export function* logout(action: any) {
   try {
-    yield call(loginIdentity.logout, {});
+    const payload = action.payload;
+    yield call(loginIdentity.logout, payload);
     yield put(LOGOUT_SUCCESS_ACTION());
   } catch (error) {
     yield put({ type: ACTIONS.LOGOUT_ERROR, error });
@@ -91,7 +94,7 @@ export function* registration(action: any) {
 
 export function* initStateFromStorage(action: any) {
   try {
-    let currentUser = storageSessionHandler.getCurrentUser();
+    let currentUser = storageSessionHandler.getCurrentUserAndLoadAccount();
     if (currentUser === null) {
       //
       // if we have both previewtoken and newPreviewSession, the current user is removed in inistates.ts
@@ -105,6 +108,27 @@ export function* initStateFromStorage(action: any) {
       }
     }
     yield put(INIT_USER_FROM_STORAGE_SUCCESS_ACTION(currentUser));
+  } catch (e) {
+    console.warn(e);
+  }
+}
+
+export function* updateStateFromStorage(action: any) {
+  try {
+    let currentUser = storageSessionHandler.getCurrentUserAndLoadAccount();
+    const userLastUpdated = yield select(userLastUpdatedSelector);
+    if (
+      currentUser &&
+      currentUser.lastUpdated &&
+      (!userLastUpdated || userLastUpdated < currentUser.lastUpdated)
+    ) {
+      yield put(INIT_USER_FROM_STORAGE_SUCCESS_ACTION(currentUser));
+      if (currentUser.isGuest) {
+        yield put(GUEST_LOGIN_SUCCESS_ACTION(null));
+      } else {
+        yield put(LOGIN_SUCCESS_ACTION(null));
+      }
+    }
   } catch (e) {
     console.warn(e);
   }

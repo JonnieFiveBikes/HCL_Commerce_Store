@@ -1,0 +1,4 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+#import "./data/inventory-flared-accent-chair-lr-fntr-0002.mock.json";

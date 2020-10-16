@@ -44,6 +44,7 @@ import {
   SiteReducerState,
 } from "./reducerStateInterface";
 
+export * from "./reducerStateInterface";
 export interface RootReducerState {
   account: AccountReducerState;
   catalog: CatalogReducerState;

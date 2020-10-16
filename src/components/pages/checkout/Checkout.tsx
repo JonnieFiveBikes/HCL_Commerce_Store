@@ -24,8 +24,10 @@ import * as orderActions from "../../../redux/actions/order";
 import {
   numItemsSelector,
   isFetchingSelector,
+  cartSelector,
 } from "../../../redux/selectors/order";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
+import { guestStatusSelector } from "../../../redux/selectors/user";
 //UI
 import {
   StyledContainer,
@@ -45,14 +47,19 @@ import {
  */
 const Checkout: React.FC = (props: any) => {
   const { route, location, match } = props;
-
+  const isGuest = useSelector(guestStatusSelector);
   const contractId = useSelector(currentContractIdSelector);
   const isFetching = useSelector(isFetchingSelector);
   const numItems = useSelector(numItemsSelector);
+  const cart = useSelector(cartSelector);
+  const isPONumberRequired = useMemo(
+    () => cart?.x_isPurchaseOrderNumberRequired === "true",
+    [cart]
+  );
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
@@ -82,7 +89,17 @@ const Checkout: React.FC = (props: any) => {
     }),
   };
 
-  const sampleExtraProps = {};
+  const shippingProps = {};
+  const paymentProps = { isPONumberRequired };
+  const reviewOrderProps = { isPONumberRequired };
+  const extraProps =
+    activeStep === 0
+      ? shippingProps
+      : activeStep === 1
+      ? paymentProps
+      : activeStep === 2
+      ? reviewOrderProps
+      : {};
 
   useEffect(() => {
     if (mySite && contractId && defaultCurrencyID) {
@@ -101,13 +118,16 @@ const Checkout: React.FC = (props: any) => {
   return isFetching === undefined || isFetching ? (
     <StyledProgressPlaceholder className="vertical-padding-15" />
   ) : numItems < 1 ? (
-    <Redirect to={ROUTES.CART} />
+    isGuest ? (
+      <Redirect to={ROUTES.CART} />
+    ) : mySite.isB2B ? (
+      <Redirect to={ROUTES.ORDER_HISTORY} />
+    ) : (
+      <Redirect to={ROUTES.CART} />
+    )
   ) : (
     <StyledContainer className="page">
-      <StyledTypography
-        variant="h4"
-        component="h1"
-        className="vertical-margin-4">
+      <StyledTypography variant="h3" className="vertical-margin-4">
         {t("Checkout.Title")}
       </StyledTypography>
       <StyledPaper className="bottom-margin-2">
@@ -130,7 +150,7 @@ const Checkout: React.FC = (props: any) => {
       {(match.path === location.pathname && (
         <Redirect to={ROUTES.CHECKOUT_SHIPPING} />
       )) ||
-        renderRoutes(route.routes, sampleExtraProps)}
+        renderRoutes(route.routes, extraProps)}
     </StyledContainer>
   );
 };

@@ -2,8 +2,8 @@
   "Checkout": {
     "Title": "Finalizar compra",
     "Labels": {
-      "shipping": "Remessa e cobrança",
-      "payment": "Pagamento e entrega",
+      "shipping": "Envio",
+      "payment": "Pagamento",
       "review": "Revisar pedido"
     },
     "Actions": {

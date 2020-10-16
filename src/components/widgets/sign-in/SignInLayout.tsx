@@ -36,7 +36,7 @@ interface SignInContext {
 function SignInLayout({ cid, ...props }: SignInContext) {
   const redirectRoute = props.redirectRoute ? props.redirectRoute : HOME;
   const loginStatus = useSelector(loginStatusSelector);
-  const mySite = useSite();
+  const { mySite } = useSite();
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [logonInputProps, setLogonInputProps] = useState<any>({});

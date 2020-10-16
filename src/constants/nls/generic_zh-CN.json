@@ -8,11 +8,11 @@
       "priceHighToLow": "价格（从高到低）"
     },
     "inventoryStatus": {
-      "Available": "可用",
-      "Allocated": "可用",
+      "Available": "有库存",
+      "Allocated": "有库存",
       "Unallocated": "未分配",
       "Backordered": "订单已延期交货",
-      "OOS": "无存货",
+      "OOS": "无库存",
       "NA": "不可用"
     },
     "recurringOrderFrequency": {

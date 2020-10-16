@@ -6,8 +6,6 @@
     "AddToCart": "Adicionar ao carrinho",
     "Description": "Descrição",
     "ProductDetails": "Detalhes do produto",
-    "InStock": "Em stock",
-    "OutofStock": "Sem stock",
     "PricePending": "Preço pendente",
     "addToCartErrorMsg": "Os valores nos campos de Quantidade são inválidos ou estão vazios. Certifique-se de que os valores são números inteiros positivos e tente novamente.",
     "any": "Quaisquer",

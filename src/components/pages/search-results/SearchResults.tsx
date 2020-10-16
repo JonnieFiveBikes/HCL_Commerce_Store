@@ -17,6 +17,8 @@ import { SectionContent } from "../../layouts/sectionContentType";
 import { ProductFilterLayout } from "../../widgets/product-filter";
 import { ProductGridLayout } from "../../widgets/product-grid";
 import { SEARCHTERM } from "../../../constants/common";
+//UI
+import { StyledContainer } from "../../StyledUI";
 
 const SearchResults: React.FC = (props: any) => {
   const { page } = props;
@@ -68,14 +70,14 @@ const SearchResults: React.FC = (props: any) => {
   ];
 
   return (
-    <>
+    <StyledContainer className="page">
       <TwoColumnsLeftFilterLayout
         cid={`search-results-${searchTerm}`}
         leftNavigationSection={leftNavigationSection}
         rightContentSection={rightContentSection}
         page={page}
       />
-    </>
+    </StyledContainer>
   );
 };
 

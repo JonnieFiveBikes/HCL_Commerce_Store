@@ -11,13 +11,7 @@
 //Standard libraries
 import { put, select } from "redux-saga/effects";
 //Redux
-import {
-  EXPIRED_ACTIVITY_TOKEN_ERROR,
-  INVALID_COOKIE_ERROR_CODE,
-  INVALID_COOKIE_ERROR_KEY,
-  PASSWORD_EXPIRED_ERR_CODE,
-  PASSWORD_EXPIRED,
-} from "../../../constants/errors";
+import * as ERRORS from "../../../constants/errors";
 import {
   HANDLE_SESSION_ERROR_ACTION,
   RESET_ERROR_SUCCESS_ACTION,
@@ -25,7 +19,7 @@ import {
   RESET_SESSION_POPUP_LOGON_ERROR_ACTION,
 } from "../../actions/error";
 import { defaultStates } from "../../reducers/initStates";
-import { seessionErrorSelector } from "../../selectors/error";
+import { sessionErrorSelector } from "../../selectors/error";
 
 let handlingError = false;
 /**
@@ -45,8 +39,10 @@ export function* handleAxiosErrors(action: any) {
       const e = errorResponse.data.errors[0];
       // handle expired session
       if (
-        e.errorCode === EXPIRED_ACTIVITY_TOKEN_ERROR ||
-        e.errorKey === EXPIRED_ACTIVITY_TOKEN_ERROR
+        e.errorCode === ERRORS.EXPIRED_ACTIVITY_TOKEN_ERROR ||
+        e.errorKey === ERRORS.EXPIRED_ACTIVITY_TOKEN_ERROR ||
+        e.errorCode === ERRORS.PARTIAL_AUTHENTICATION_ERROR_CODE ||
+        e.errorKey === ERRORS.PARTIAL_AUTHENTICATION_ERROR_KEY
       ) {
         const payload = {
           ...e,
@@ -59,8 +55,8 @@ export function* handleAxiosErrors(action: any) {
       }
       // handle invalid session where another user logged in from different location
       else if (
-        e.errorCode === INVALID_COOKIE_ERROR_CODE &&
-        e.errorKey === INVALID_COOKIE_ERROR_KEY
+        e.errorCode === ERRORS.INVALID_COOKIE_ERROR_CODE &&
+        e.errorKey === ERRORS.INVALID_COOKIE_ERROR_KEY
       ) {
         const payload = {
           ...e,
@@ -72,8 +68,8 @@ export function* handleAxiosErrors(action: any) {
       }
       // handle password expired issue.
       else if (
-        e.errorCode === PASSWORD_EXPIRED_ERR_CODE ||
-        e.errorKey === PASSWORD_EXPIRED
+        e.errorCode === ERRORS.PASSWORD_EXPIRED_ERR_CODE ||
+        e.errorKey === ERRORS.PASSWORD_EXPIRED
       ) {
         //reset password dialog
         const payload = {
@@ -82,6 +78,7 @@ export function* handleAxiosErrors(action: any) {
           errorTitleKey: "reset.title",
           errorMsgKey: "reset.errorMsg",
         };
+        yield put(HANDLE_SESSION_ERROR_ACTION(payload));
       } else {
         //other errors
         const payload = {
@@ -106,8 +103,18 @@ export function* handleAxiosErrors(action: any) {
   }
 }
 
+export function* handleCMCSessionError() {
+  const payload = {
+    errorKey: ERRORS.CMC_SESSION_ERROR_KEY,
+    handled: false,
+    errorTitleKey: "SessionError.InvalidTitle",
+    errorMsgKey: "SessionError.InvalidMsg",
+  };
+  yield put(HANDLE_SESSION_ERROR_ACTION(payload));
+}
+
 export function* resetError() {
-  const sessionErrorObject = yield select(seessionErrorSelector);
+  const sessionErrorObject = yield select(sessionErrorSelector);
   if (!sessionErrorObject.errorKey && !sessionErrorObject.errorCode) {
     //do not reset session error
     const sessionError = { ...defaultStates.error };
@@ -118,7 +125,7 @@ export function* resetError() {
 }
 
 export function* resetSessionError() {
-  const sessionErrorObject = yield select(seessionErrorSelector);
+  const sessionErrorObject = yield select(sessionErrorSelector);
   if (sessionErrorObject.errorKey || sessionErrorObject.errorCode) {
     //reset session error
     const sessionError = { ...defaultStates.error };

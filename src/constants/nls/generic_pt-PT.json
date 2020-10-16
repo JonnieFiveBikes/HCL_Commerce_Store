@@ -8,8 +8,8 @@
       "priceHighToLow": "Preço (Alto para baixo)"
     },
     "inventoryStatus": {
-      "Available": "Disponível",
-      "Allocated": "Disponível",
+      "Available": "Em stock",
+      "Allocated": "Em stock",
       "Unallocated": "Não alocado",
       "Backordered": "Pedido novamente",
       "OOS": "Sem stock",

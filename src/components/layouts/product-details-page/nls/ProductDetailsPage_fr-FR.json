@@ -6,8 +6,6 @@
     "AddToCart": "Ajouter au panier",
     "Description": "Description",
     "ProductDetails": "Caractéristiques du produit",
-    "InStock": "En stock",
-    "OutofStock": "Rupture de stock",
     "PricePending": "Prix en attente",
     "addToCartErrorMsg": "Les valeurs indiquées dans les zones Quantité sont vides ou ne sont pas valides. Vérifiez que les valeurs correspondent à des entiers positifs et faites une nouvelle tentative.",
     "any": "Tout",

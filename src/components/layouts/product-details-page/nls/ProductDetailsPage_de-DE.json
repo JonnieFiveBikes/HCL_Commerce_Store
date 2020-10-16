@@ -6,8 +6,6 @@
     "AddToCart": "Zum Warenkorb hinzufügen",
     "Description": "Beschreibung",
     "ProductDetails": "Produktdetails",
-    "InStock": "Vorrätig",
-    "OutofStock": "Nicht vorrätig",
     "PricePending": "Preis ausstehend",
     "addToCartErrorMsg": "Die Werte in den Mengenfeldern sind ungültig oder leer. Stellen Sie sicher, dass die Werte positive Ganzzahlen sind, und versuchen Sie es erneut.",
     "any": "Alle",

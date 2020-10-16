@@ -80,6 +80,22 @@ const getLocalStorageUtil = () => {
   };
 
   /**
+   * Gets the keys from localStorage where key starts with prefix
+   * @param {string} key
+   * @returns {any[]}
+   */
+  const getKeysStartsWith = (keyStartsWith: string): any | null => {
+    let getKeysList: any[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i);
+      if (key && key.startsWith(`${KEY_PREFIX}${storeName}-${keyStartsWith}`)) {
+        getKeysList.push(key.substring(key.indexOf(`${keyStartsWith}`)));
+      }
+    }
+    return getKeysList;
+  };
+
+  /**
    * Save the item to localStorage
    * @param {string} key
    * @param {string} value
@@ -116,6 +132,21 @@ const getLocalStorageUtil = () => {
       storageKeys.splice(kIndex, 1);
     }
     saveStorageKeys(storageKeys);
+  };
+
+  /**
+   * Remove the localStorage cache item with key starting with prefix
+   * @param {string} key
+   */
+  const removeStartsWith = (keyStartsWith: string) => {
+    let removeKeysList: any[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i);
+      if (key && key.startsWith(`${KEY_PREFIX}${storeName}-${keyStartsWith}`)) {
+        removeKeysList.push(key.substring(key.indexOf(`${keyStartsWith}`)));
+      }
+    }
+    removeKeysList.forEach((key) => remove(key));
   };
 
   /**
@@ -220,8 +251,10 @@ const getLocalStorageUtil = () => {
   return {
     setStoreName,
     get,
+    getKeysStartsWith,
     set,
     remove,
+    removeStartsWith,
     setStoreId,
     getStoreId,
     removeStoreId,
@@ -264,6 +297,22 @@ const getSessionStorageUtil = () => {
       result = r;
     }
     return result;
+  };
+
+  /**
+   * Gets the keys from sessionStorage where key starts with prefix
+   * @param {string} key
+   * @returns {any[]}
+   */
+  const getKeysStartsWith = (keyStartsWith: string): any | null => {
+    let getKeysList: any[] = [];
+    for (let i = 0; i < sessionStorage.length; i++) {
+      let key = sessionStorage.key(i);
+      if (key && key.startsWith(getKey(`${keyStartsWith}`))) {
+        getKeysList.push(key.substring(key.indexOf(`${keyStartsWith}`)));
+      }
+    }
+    return getKeysList;
   };
 
   /**
@@ -324,6 +373,7 @@ const getSessionStorageUtil = () => {
     removeStoreId,
     set,
     get,
+    getKeysStartsWith,
     remove,
     clear,
   };
@@ -344,13 +394,15 @@ const storageSessionHandler = {
    * Remove current user from storage.
    */
   removeCurrentUser: () => {
+    _localStorageUtil.removeStartsWith(constants.ACCOUNT);
     _localStorageUtil.remove(constants.CURRENT_USER);
     _sessionStorageUtil.remove(constants.CURRENT_USER);
   },
+
   /**
-   * Get current user from storage
+   * Get current user from storage and load any account-related keys from storage
    */
-  getCurrentUser: (): any => {
+  getCurrentUserAndLoadAccount: (): any => {
     //handle refresh use both session and local
     const lCurrentUser = _localStorageUtil.get(constants.CURRENT_USER);
     const sCurrentUser = _sessionStorageUtil.get(constants.CURRENT_USER);
@@ -360,6 +412,19 @@ const storageSessionHandler = {
     if (lCurrentUser === null && sCurrentUser) {
       _localStorageUtil.set(constants.CURRENT_USER, sCurrentUser);
       _sessionStorageUtil.remove(constants.CURRENT_USER);
+
+      const sAccountKeys = _sessionStorageUtil.getKeysStartsWith(
+        constants.ACCOUNT
+      );
+      sAccountKeys.forEach((sKey) => {
+        const lValue = _localStorageUtil.get(sKey);
+        const sValue = _sessionStorageUtil.get(sKey);
+
+        if (lValue === null && sValue) {
+          _localStorageUtil.set(sKey, sValue);
+          _sessionStorageUtil.remove(sKey);
+        }
+      });
     }
     return _localStorageUtil.get(constants.CURRENT_USER);
   },
@@ -402,10 +467,23 @@ const storageSessionHandler = {
     if (previewToken) {
       _sessionStorageUtil.set(constants.WC_PREVIEW_TOKEN, previewToken);
     }
+
+    const accountKeys = _localStorageUtil.getKeysStartsWith(constants.ACCOUNT);
+    accountKeys.forEach((key) => {
+      const value = _localStorageUtil.get(key);
+      _sessionStorageUtil.set(key, value);
+    });
   },
   clearLocalStorageSessionInfo: () => {
     _localStorageUtil.remove(constants.WC_PREVIEW_TOKEN);
     _localStorageUtil.remove(constants.CURRENT_USER);
+    _localStorageUtil.removeStartsWith(constants.ACCOUNT);
+  },
+
+  triggerUserStorageListener: (callback: Function) => {
+    window.addEventListener("storage", () => {
+      callback();
+    });
   },
 };
 

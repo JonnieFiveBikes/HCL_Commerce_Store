@@ -17,9 +17,17 @@ import {
   storageSessionHandler,
   windowRegistryHandler,
   storageStoreIdHandler,
-} from "../../utils/storageUtil";
-import { WC_PREVIEW_TOKEN, NEW_PREVIEW_SESSION } from "../../constants/common";
+} from "../../../_foundation/utils/storageUtil";
+import {
+  WC_PREVIEW_TOKEN,
+  NEW_PREVIEW_SESSION,
+  LANGID,
+  LOCALE,
+} from "../../../_foundation/constants/common";
+//custom library
 import { SiteInfo } from "../../../redux/reducers/reducerStateInterface";
+import { CommerceEnvironment } from "../../../constants/common";
+import { PERMANENT_STORE_DAYS } from "../../../configs/common";
 //Redux
 import { INIT_SITE_SUCCESS_ACTION } from "../../../redux/actions/site";
 
@@ -77,6 +85,39 @@ export class SiteInfoService {
       );
       if ("true" === newPreviewSession) {
         storageSessionHandler.removeCurrentUser();
+      }
+    }
+    const langId = storeviewURL.searchParams.get(LANGID);
+    const locale = storeviewURL.searchParams.get(LOCALE);
+    if (langId !== null) {
+      //check if it is part supported language.
+      if (site.supportedLanguages.includes(langId)) {
+        localStorageUtil.set(
+          LOCALE,
+          CommerceEnvironment.languageMap[langId],
+          30
+        );
+      } else {
+        console.warn(
+          `${langId} is not supported language of store ${site.storeName}`
+        );
+      }
+    } else if (locale != null) {
+      //
+      const langId = CommerceEnvironment.reverseLanguageMap[locale];
+      if (site.supportedLanguages.includes(langId)) {
+        localStorageUtil.set(LOCALE, locale, PERMANENT_STORE_DAYS);
+      } else {
+        console.warn(
+          `${locale} is not supported language of store ${site.storeName}`
+        );
+      }
+    } else {
+      //verify if locale is one of supported language, remove it if is not supported.
+      const locale = localStorageUtil.get(LOCALE);
+      const langId = CommerceEnvironment.reverseLanguageMap[locale];
+      if (!site.supportedLanguages.includes(langId)) {
+        localStorageUtil.remove(LOCALE);
       }
     }
   }

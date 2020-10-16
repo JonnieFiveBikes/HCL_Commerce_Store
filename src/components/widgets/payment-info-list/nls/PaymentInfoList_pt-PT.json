@@ -1,0 +1,12 @@
+{
+  "PaymentInfoList": {
+    "Title": "Métodos de pagamento - Total do pedido: ",
+    "Msgs": {
+      "PayMethodRequired": "É necessário pelo menos um método de pagamento.",
+      "InsufficientPayment": "Deve pagar o total do pedido de {{grandTotal}} com vários métodos de pagamento."
+    },
+    "Actions": {
+      "AddPayMethod": "Adicionar método de pagamento"
+    }
+  }
+}

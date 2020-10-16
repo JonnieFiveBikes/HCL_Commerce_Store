@@ -1,8 +1,11 @@
 {
   "CheckoutAddress": {
     "Actions": {
-      "Submit": "Save and select this address",
+      "Submit": "Сохранить и выбрать адрес",
       "Cancel": "Отмена"
+    },
+    "Payment": {
+      "ChooseFirst": "Сначала выберите способ оплаты."
     }
   }
 }

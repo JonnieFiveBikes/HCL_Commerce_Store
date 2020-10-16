@@ -2,10 +2,12 @@
   "OrderConfirmation": {
     "Title": "オーダーの確認",
     "Msgs": {
-      "Heading": "We've received your order",
-      "OrderNumber": "Order #{{orderId}}",
-      "Details": "A copy of your receipt has been sent to {{emails}}",
-      "ThankYou": "Thank you for shopping at {{storeName}}"
+      "Heading": "オーダーを受領しました",
+      "Pending": "オーダーは保留中です",
+      "OrderNumber": "オーダー #{{orderId}}",
+      "Details": "受領書のコピーを {{emails}} に送信しました。",
+      "PendingDetails": "オーダーは許容される上限額を超えています。続行する前に管理者の承認を得る必要があります。",
+      "ThankYou": "{{storeName}} でご購入いただきありがとうございました。"
     }
   }
 }

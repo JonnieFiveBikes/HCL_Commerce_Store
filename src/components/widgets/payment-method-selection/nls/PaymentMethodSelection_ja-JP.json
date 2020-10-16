@@ -12,7 +12,13 @@
       "CreditCard": "クレジット・カード",
       "CCNumber": "クレジット・カード番号",
       "ExpiryDate": "有効期限",
-      "CVV": "CVV 番号"
+      "CVV": "CVV 番号",
+      "OrderTotal": "オーダー合計",
+      "RemainingAmount": "支払い残額",
+      "AmountToPay": "支払い金額"
+    },
+    "Actions": {
+      "PayRemaining": "支払い残額"
     }
   }
 }

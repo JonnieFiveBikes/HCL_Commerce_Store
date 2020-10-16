@@ -2,10 +2,12 @@
   "OrderConfirmation": {
     "Title": "Подтверждение заказа",
     "Msgs": {
-      "Heading": "We've received your order",
-      "OrderNumber": "Order #{{orderId}}",
-      "Details": "A copy of your receipt has been sent to {{emails}}",
-      "ThankYou": "Thank you for shopping at {{storeName}}"
+      "Heading": "Мы получили ваш заказ",
+      "Pending": "Ваш заказ ожидает подтверждения",
+      "OrderNumber": "Заказ №{{orderId}}",
+      "Details": "Копия накладной отправлена на адреса {{emails}}.",
+      "PendingDetails": "Ваш платеж превышает допустимое ограничение по цене. Прежде чем заказ будет обработан, его должен одобрить администратор.",
+      "ThankYou": "Благодарим за покупки в магазине {{storeName}}."
     }
   }
 }

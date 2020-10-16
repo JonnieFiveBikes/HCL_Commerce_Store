@@ -39,3 +39,8 @@ export const SORT_OPTIONS = {
     },
   ],
 };
+
+export const ATTR_IDENTIFIER = {
+  PickUp: "PickUpInStore",
+  RibbonAd: "ribbonad",
+};

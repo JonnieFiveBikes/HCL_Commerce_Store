@@ -22,17 +22,13 @@ const StyledGrid = styled(ComponentWrapper)`
       }
     }
 
-    &.checkout-actions {
-      ${theme.breakpoints.down("sm")} {
+    ${theme.breakpoints.down("xs")} {
+      &.checkout-actions {
+        flex-direction: column;
+
         .MuiGrid-item {
-          width: 100%;
-
-          .MuiButton-root {
+          .MuiButtonBase-root {
             width: 100%;
-          }
-
-          &:last-child {
-            margin-top:  ${theme.spacing(2)}px;
           }
         }
       }

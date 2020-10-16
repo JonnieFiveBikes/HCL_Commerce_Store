@@ -16,9 +16,9 @@ import { Link } from "react-router-dom";
 import {
   StyledMenuItem,
   StyledMenuTypography,
-  StyledExpansionPanel,
-  StyledExpansionPanelDetails,
-  StyledExpansionPanelSummary,
+  StyledAccordion,
+  StyledAccordionDetails,
+  StyledAccordionSummary,
 } from "../StyledUI";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -119,7 +119,7 @@ const MegaMenuColumn: React.FC<MegaMenuColumnProps> = (props: any) => {
   }
 
   return (
-    <StyledExpansionPanel
+    <StyledAccordion
       elevation={0}
       square={true}
       expanded={
@@ -131,7 +131,7 @@ const MegaMenuColumn: React.FC<MegaMenuColumnProps> = (props: any) => {
         setActiveMenuId(activeMenuId !== id ? id : null);
         setActiveParentMenuId(activeParentMenuId !== id ? id : null);
       }}>
-      <StyledExpansionPanelSummary
+      <StyledAccordionSummary
         className={`level-${level}`}
         expandIcon={<ExpandMoreIcon />}
         aria-controls={`${id}bh-content`}
@@ -147,9 +147,9 @@ const MegaMenuColumn: React.FC<MegaMenuColumnProps> = (props: any) => {
             </StyledMenuTypography>
           </StyledMenuItem>
         </Link>
-      </StyledExpansionPanelSummary>
-      <StyledExpansionPanelDetails>{childrenList}</StyledExpansionPanelDetails>
-    </StyledExpansionPanel>
+      </StyledAccordionSummary>
+      <StyledAccordionDetails>{childrenList}</StyledAccordionDetails>
+    </StyledAccordion>
   );
 };
 

@@ -22,7 +22,7 @@ interface CustomSwitchProps {
 
 const CustomSwitch = React.forwardRef<any, CustomSwitchProps>(
   (props: any, ref: any) => {
-    const { checked, setChecked, label } = props;
+    const { checked, setChecked, label, ...other } = props;
 
     return label ? (
       <StyledFormGroup>
@@ -31,7 +31,7 @@ const CustomSwitch = React.forwardRef<any, CustomSwitchProps>(
             <Switch
               checked={checked}
               onChange={setChecked}
-              {...props}
+              {...other}
               ref={ref}
             />
           }
@@ -39,7 +39,7 @@ const CustomSwitch = React.forwardRef<any, CustomSwitchProps>(
         />
       </StyledFormGroup>
     ) : (
-      <Switch checked={checked} onChange={setChecked} {...props} ref={ref} />
+      <Switch checked={checked} onChange={setChecked} {...other} ref={ref} />
     );
   }
 );

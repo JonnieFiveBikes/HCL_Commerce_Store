@@ -88,6 +88,8 @@
     "_ERR_CMD_INVALID_PARAM_parentMember": "Der Organisationsname, den Sie in das Feld Organisation eingegeben haben, ist nicht gültig. Sie müssen den exakten Organisationsnamen eingeben. Wenn Sie den exakten Namen nicht kennen, fragen Sie die Person in Ihrer Organisation, die Ihre Organisation für dieses Geschäft verwaltet. Wenn Ihre Organisation eine übergeordnete Organisation hat, müssen Sie das folgende Format für Ihren Eintrag verwenden: <b>Organisation/übergeordnete_Organisation</b>, zum Beispiel: <b>ABC Unternehmen USA/ABC Unternehmen weltweit</b>.",
     "_ERR_CMD_INVALID_PARAM_org_orgEntityName": "Geben Sie einen Organisationsnamen in das Feld Organisationsname ein.",
     "_API_BAD_INV_2": "Es ist kein ausreichender Bestand vorhanden, um {{1}} Stück {{0}} zu kaufen.",
+    "_ERR_FINDING_ORDER_230": "Bei der Verarbeitung Ihrer Bestellung ist ein Systemproblem aufgetreten.",
+    "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "Es ist ein Systemfehler aufgetreten. Bitte wenden Sie sich für Unterstützung an das Geschäft.",
     "B2B": {
       "_ERR_LOGONID_ALREDY_EXIST_2030": "Die eingegebene Anmelde-ID ist bereits vorhanden. Geben Sie eine andere Anmelde-ID ein und versuchen Sie es erneut."
     }

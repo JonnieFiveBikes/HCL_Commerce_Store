@@ -2,8 +2,8 @@
   "Checkout": {
     "Title": "チェックアウト",
     "Labels": {
-      "shipping": "配送先および請求先",
-      "payment": "支払いおよび配送",
+      "shipping": "配送先",
+      "payment": "支払い",
       "review": "オーダーのレビュー"
     },
     "Actions": {

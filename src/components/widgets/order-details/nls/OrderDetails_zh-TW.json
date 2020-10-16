@@ -5,6 +5,10 @@
       "Back": "回到付款詳細資料",
       "Next": "訂購",
       "NextRecurringOrder": "重複訂購"
+    },
+    "Labels": {
+      "PaymentDetails": "付款詳細資料",
+      "OrderSummary": "訂單摘要"
     }
   }
 }

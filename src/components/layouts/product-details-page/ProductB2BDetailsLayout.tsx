@@ -17,13 +17,19 @@ import Hidden from "@material-ui/core/Hidden";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
 //Foundation libraries
 import associatedPromotionCodeService from "../../../_foundation/apis/transaction/associatedPromotionCode.service";
 import inventoryavailabilityService from "../../../_foundation/apis/transaction/inventoryavailability.service";
 import productsService from "../../../_foundation/apis/search/products.service";
 //Custom libraries
-import { OFFER, DISPLAY } from "../../../constants/common";
+import {
+  OFFER,
+  DISPLAY,
+  DEFINING,
+  DESCRIPTIVE,
+  STRING_TRUE,
+} from "../../../constants/common";
+import { ATTR_IDENTIFIER } from "../../../constants/catalog";
 import { SIGNIN } from "../../../constants/routes";
 import FormattedPriceDisplay from "../../widgets/formatted-price-display";
 import ProductB2BImage from "./ProductB2BImage";
@@ -71,16 +77,10 @@ const StyledB2BDetailPanel = styled.div`
  * Allows user to choose the product and add it to shopping cart.
  *
  * @param productPartNumber
- * @param productLayout
  * @param pdpData
  * @param storeId
  */
-function ProductB2BDetailsLayout({
-  productPartNumber,
-  productLayout,
-  pdpData,
-  storeId,
-}: any) {
+function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
   let cancels: Canceler[] = [];
   const CancelToken = Axios.CancelToken;
   const { t } = useTranslation();
@@ -333,13 +333,13 @@ function ProductB2BDetailsLayout({
   const getDescriptiveAndDefiningAttributes = () => {
     for (const att of productInfoData.availableAttributes) {
       if (
-        att.usage === "Descriptive" &&
+        att.usage === DESCRIPTIVE &&
         att.displayable &&
-        att.identifier !== "PickUpInStore" &&
-        !att.identifier.startsWith("ribbonad")
+        att.identifier !== ATTR_IDENTIFIER.PickUp &&
+        !att.identifier.startsWith(ATTR_IDENTIFIER.RibbonAd)
       ) {
         descAttributes.push(att);
-      } else if (att.usage === "Defining") {
+      } else if (att.usage === DEFINING) {
         definingAttributes.push(att);
         defnAttrSrc.push(att);
       }
@@ -410,7 +410,7 @@ function ProductB2BDetailsLayout({
       }
       tablebodyDataMap.set("price", priceDisplaytag);
 
-      if (inventory.get(s.id)) {
+      if (inventory.get(s.id) && s.buyable === STRING_TRUE) {
         let availableQuantityTag = (
           <StyledTextField
             type="number"
@@ -438,7 +438,7 @@ function ProductB2BDetailsLayout({
                 src="\SapphireSAS\images\Available.gif"
               />
             </span>
-            <span> {t("productDetail.InStock")}</span>
+            <span> {t("CommerceEnvironment.inventoryStatus.Available")}</span>
           </div>
         );
         tablebodyDataMap.set("online_availability", availableImage);
@@ -465,7 +465,7 @@ function ProductB2BDetailsLayout({
                 src="\SapphireSAS\images\Unavailable.gif"
               />
             </span>
-            <span> {t("productDetail.OutofStock")}</span>
+            <span> {t("CommerceEnvironment.inventoryStatus.OOS")}</span>
           </div>
         );
         tablebodyDataMap.set("online_availability", unAvailableImage);
@@ -583,13 +583,15 @@ function ProductB2BDetailsLayout({
    * based on selected defining attributes
    */
   const updateCurrentSelection = () => {
-    currentSelection = { ...currentProdSelect };
-    const sku = resolveSKU(uniqueSkuList, mapToObj(attributeState));
-    if (sku !== "") {
-      currentSelection.partNumber = sku;
+    if (productData?.items) {
+      currentSelection = { ...currentProdSelect };
+      const sku = resolveSKU(uniqueSkuList, mapToObj(attributeState));
+      if (sku !== "") {
+        currentSelection.partNumber = sku;
+      }
+      setCurrentProdSelect(currentSelection);
+      setProductPrice(currentSelection.partNumber.price);
     }
-    setCurrentProdSelect(currentSelection);
-    setProductPrice(currentSelection.partNumber.price);
   };
 
   /**
@@ -769,9 +771,24 @@ function ProductB2BDetailsLayout({
     });
   }
 
+  const MainImage = () =>
+    currentProdSelect?.partNumber?.thumbnail ? (
+      <ProductB2BImage
+        thumbnail={currentProdSelect.partNumber.thumbnail}
+        isAngleImage={false}
+        alt={currentProdSelect.partNumber.name}
+      />
+    ) : (
+      <ProductB2BImage
+        thumbnail={productData.thumbnail}
+        isAngleImage={false}
+        alt={productData.name}
+      />
+    );
+
   return (
     <>
-      {productPartNumber && currentProdSelect && (
+      {productPartNumber && productData && (
         <StyledGrid container spacing={3}>
           <StyledGrid item xs={12}>
             <StyledPDPContainer
@@ -782,35 +799,26 @@ function ProductB2BDetailsLayout({
                 <Hidden smUp>
                   <StyledGrid item xs={1}></StyledGrid>
                   <StyledGrid item xs={10} className="product-image">
-                    <ProductB2BImage
-                      product={currentProdSelect}
-                      partNumber={productPartNumber}
-                    />
+                    <MainImage />
                   </StyledGrid>
                 </Hidden>
                 <StyledGrid item xs={12} sm={6} md={6} lg={6} xl={5}>
-                  {product && (
-                    <StyledTypography
-                      variant="h4"
-                      itemProp="name"
-                      className="product-name">
-                      {product.name}
-                    </StyledTypography>
-                  )}
-                  {productData !== null && (
-                    <StyledTypography variant="body2" className="product-sku">
-                      SKU: {productData.partNumber}
-                    </StyledTypography>
-                  )}
-                  {product && (
-                    <StyledTypography
-                      variant="body1"
-                      itemProp="description"
-                      className="product-shortDescription">
-                      {product.shortDescription}
-                    </StyledTypography>
-                  )}
-                  {
+                  <StyledTypography
+                    variant="h4"
+                    itemProp="name"
+                    className="product-name">
+                    {productData.name}
+                  </StyledTypography>
+                  <StyledTypography variant="body2" className="product-sku">
+                    {t("productDetail.SKU")}: {productData.partNumber}
+                  </StyledTypography>
+                  <StyledTypography
+                    variant="body1"
+                    itemProp="description"
+                    className="product-shortDescription">
+                    {productData.shortDescription}
+                  </StyledTypography>
+                  {promotion && (
                     <StyledTypography
                       variant="body2"
                       id={`product_advertisement_${productPartNumber}`}
@@ -818,7 +826,7 @@ function ProductB2BDetailsLayout({
                       gutterBottom>
                       {promotion}
                     </StyledTypography>
-                  }
+                  )}
                   <div
                     itemProp="offers"
                     itemScope
@@ -853,17 +861,16 @@ function ProductB2BDetailsLayout({
                       </>
                     )}
                   </div>
-                  <StyledTabs
-                    childrenList={productDetailTabsChildren}
-                    name="productDetails"
-                  />
+                  {productDetailTabsChildren?.length > 0 && (
+                    <StyledTabs
+                      childrenList={productDetailTabsChildren}
+                      name="productDetails"
+                    />
+                  )}
                 </StyledGrid>
                 <Hidden xsDown>
                   <StyledGrid item xs={6} md={5} className="product-image">
-                    <ProductB2BImage
-                      product={currentProdSelect}
-                      partNumber={productPartNumber}
-                    />
+                    <MainImage />
                   </StyledGrid>
                 </Hidden>
               </StyledGrid>
@@ -981,7 +988,6 @@ function ProductB2BDetailsLayout({
 
 ProductB2BDetailsLayout.propTypes = {
   productPartNumber: PropTypes.string.isRequired,
-  productLayout: PropTypes.string,
   pdpData: PropTypes.any,
   storeId: PropTypes.string,
 };

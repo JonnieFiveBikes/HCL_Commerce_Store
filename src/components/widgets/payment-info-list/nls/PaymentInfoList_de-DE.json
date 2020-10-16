@@ -1,0 +1,12 @@
+{
+  "PaymentInfoList": {
+    "Title": "Zahlungsmethoden – Bestellsumme: ",
+    "Msgs": {
+      "PayMethodRequired": "Es muss mindestens eine Zahlungsmethode angegeben werden.",
+      "InsufficientPayment": "Sie müssen die Bestellsumme von {{grandTotal}} bei allen Zahlungsmethoden abdecken."
+    },
+    "Actions": {
+      "AddPayMethod": "Zahlungsmethode hinzufügen"
+    }
+  }
+}

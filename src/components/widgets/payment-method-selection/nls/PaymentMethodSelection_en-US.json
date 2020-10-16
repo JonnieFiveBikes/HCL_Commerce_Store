@@ -12,7 +12,13 @@
       "CreditCard": "Credit Card",
       "CCNumber": "Credit Card Number",
       "ExpiryDate": "Expiry Date",
-      "CVV": "CVV Code"
+      "CVV": "CVV Code",
+      "OrderTotal": "Order Total",
+      "RemainingAmount": "Remaining amount to pay",
+      "AmountToPay": "Amount to pay"
+    },
+    "Actions": {
+      "PayRemaining": "Pay remaining amount"
     }
   }
 }

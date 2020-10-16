@@ -6,8 +6,6 @@
     "AddToCart": "Añadir al carro",
     "Description": "Descripción",
     "ProductDetails": "Detalles del producto",
-    "InStock": "Disponible",
-    "OutofStock": "Existencias agotadas",
     "PricePending": "Precio pendiente",
     "addToCartErrorMsg": "Los campos de Cantidades tienen valores no válidos o están vacíos. Asegúrese de que los valores sean números enteros positivos y vuelva a intentarlo.",
     "any": "Cualquiera",

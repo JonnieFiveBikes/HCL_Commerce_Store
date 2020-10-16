@@ -42,7 +42,7 @@ function OrderDetailsPage(props: any) {
     !!recurringOrder
   );
 
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const defaultCurrencyID: string = mySite ? mySite.defaultCurrencyID : "";
 
   const orderDetails = useSelector(
@@ -56,11 +56,7 @@ function OrderDetailsPage(props: any) {
   );
 
   useEffect(() => {
-    if (
-      orderId &&
-      (!orderDetails || orderDetails === undefined) &&
-      defaultCurrencyID
-    ) {
+    if (orderId && defaultCurrencyID) {
       dispatch(
         FETCH_ORDER_DETAILS_ACTION({
           orderId,
@@ -69,7 +65,7 @@ function OrderDetailsPage(props: any) {
         })
       );
     }
-  }, [orderId, mySite, orderDetails, defaultCurrencyID]);
+  }, [orderId, mySite, defaultCurrencyID]);
 
   const loading = orderId && orderDetails === undefined;
   const notFound = !orderId || (orderDetails && orderDetails.error);
@@ -83,7 +79,15 @@ function OrderDetailsPage(props: any) {
       ) : (
         <>
           <StyledGrid container spacing={2}>
-            <StyledGrid item xs={12} lg={3} md={4}>
+            <StyledGrid
+              item
+              xs={12}
+              lg={3}
+              md={4}
+              container
+              display="flex"
+              direction="row"
+              alignItems="center">
               {!recurringOrder && location.state && location.state.from && (
                 <StyledLink to={location.state.from}>
                   <ArrowBackIosIcon />
@@ -104,10 +108,7 @@ function OrderDetailsPage(props: any) {
                   <ArrowBackIosIcon />
                 </StyledButton>
               )}
-              <StyledTypography
-                variant="h5"
-                component="span"
-                className="vertical-margin-4">
+              <StyledTypography variant="h3" component="div">
                 {t("Order.OrderDetails")}
               </StyledTypography>
             </StyledGrid>
@@ -122,14 +123,16 @@ function OrderDetailsPage(props: any) {
                 {orderDetails.orderId}
               </StyledTypography>
             </StyledGrid>
-            <StyledGrid item xs={6} md={2}>
-              <StyledTypography variant="overline" display="block">
-                {t("Order.OrderDate")}
-              </StyledTypography>
-              <StyledTypography variant="body2" display="block">
-                {dateFormatter.format(new Date(orderDetails.placedDate))}
-              </StyledTypography>
-            </StyledGrid>
+            {orderDetails.placedDate && (
+              <StyledGrid item xs={6} md={2}>
+                <StyledTypography variant="overline" display="block">
+                  {t("Order.OrderDate")}
+                </StyledTypography>
+                <StyledTypography variant="body2" display="block">
+                  {dateFormatter.format(new Date(orderDetails.placedDate))}
+                </StyledTypography>
+              </StyledGrid>
+            )}
             <StyledGrid item xs={6} md={2}>
               <StyledTypography variant="overline" display="block">
                 {t("Order.Status")}

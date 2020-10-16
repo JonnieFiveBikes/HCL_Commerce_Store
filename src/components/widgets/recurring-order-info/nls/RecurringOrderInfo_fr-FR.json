@@ -1,9 +1,9 @@
 {
   "RecurringOrderInfo": {
-    "Title": "Détails de la commande récurrente",
+    "Title": "Commande récurrente",
     "Labels": {
       "RecurringOrderNumber": "Numéro de commande récurrente",
-      "OrderSchedule": "Planification de commande",
+      "OrderSchedule": "Fréquence",
       "StartDate": "Date de début",
       "NextDelivery": "Prochaine commande planifiée",
       "OrderHistoryButton": "Historique des commandes pour {{orderId}}"

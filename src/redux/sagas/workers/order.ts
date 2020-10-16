@@ -64,12 +64,6 @@ export function* addItem(action: any) {
     const payload = action.payload;
     const cartPayload = {
       contractId: payload.contractId,
-      pageNumber: 1,
-      pageSize: MINICART_CONFIGS.maxItemsToShow,
-      updateMiniCartOnly: true,
-      $queryParameters: {
-        sortOrder: "DESC",
-      },
     };
 
     const _orderItems: any[] = [];
@@ -214,11 +208,6 @@ export function* fetchCart(action: any) {
     const checkInventory: boolean = payload.checkInventory
       ? payload.checkInventory
       : false;
-    //only update minicart related states in redux if true
-    const updateMiniCartOnly: boolean = payload.updateMiniCartOnly
-      ? payload.updateMiniCartOnly
-      : false;
-
     const responseCart = yield call(cartService.getCart, { ...parameters });
 
     let catentries: any = null;
@@ -250,7 +239,6 @@ export function* fetchCart(action: any) {
 
           if (catentryIdList.length > 0) {
             catentryIdList = [...new Set(catentryIdList)];
-            const ids = catentryIdList.join();
 
             const currency = parameters ? parameters.currency : "";
             const contractId = parameters ? parameters.contractId : "";
@@ -259,6 +247,9 @@ export function* fetchCart(action: any) {
               contractId: contractId,
               id: catentryIdList,
             };
+            if (parameters?.cancelToken) {
+              paramsProduct["cancelToken"] = parameters.cancelToken;
+            }
 
             try {
               const contents = yield call(
@@ -294,14 +285,12 @@ export function* fetchCart(action: any) {
         response: responseCart.data,
         catentries: catentries,
         checkInventory: checkInventory,
-        updateMiniCartOnly: updateMiniCartOnly,
       });
     } else {
       yield put({
         type: ACTIONS.CART_GET_SUCCESS,
         response: responseCart.data,
         checkInventory: checkInventory,
-        updateMiniCartOnly: updateMiniCartOnly,
       });
     }
   } catch (error) {

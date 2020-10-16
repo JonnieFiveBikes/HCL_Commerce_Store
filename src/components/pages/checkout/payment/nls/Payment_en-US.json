@@ -13,7 +13,9 @@
     "Actions": {
       "Back": "Back to Shipping Details",
       "Next": "Review Order",
-      "SaveAndAdd": "Save and add another payment method"
+      "Finish": "Finish",
+      "SaveAndAdd": "Save and add another payment method",
+      "AddAnotherPayMethod": "Add another payment method"
     }
   }
 }

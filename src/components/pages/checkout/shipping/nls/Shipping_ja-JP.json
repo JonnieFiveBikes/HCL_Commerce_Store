@@ -1,22 +1,22 @@
 {
   "Shipping": {
-    "Title": "Shipping Details",
+    "Title": "配送の詳細",
     "Labels": {
-      "UseMultiple": "Ship to multiple addresses",
+      "UseMultiple": "複数の住所に配送する",
       "ShippingAddress": "配送先住所",
       "ShippingMethod": "配送方法",
-      "SelectShippingMethod": "Choose your delivery method",
-      "AddNewAddress": "Add new address",
-      "EditAddress": "Edit Address"
+      "SelectShippingMethod": "配送方法を選択",
+      "AddNewAddress": "新規住所を追加",
+      "EditAddress": "住所の編集"
     },
     "Actions": {
-      "SelectAddress": "Use this address",
-      "CreateNew": "Create new address",
-      "Next": "Continue to Payment"
+      "SelectAddress": "この住所を使用する",
+      "CreateNew": "新規住所を作成する",
+      "Next": "支払いを続行する"
     },
     "Msgs": {
-      "UseSavedAddress": "Or select a saved address to use:",
-      "SelectShippingAddress": "Please first select a shipping address"
+      "UseSavedAddress": "または保存された住所から選択する:",
+      "SelectShippingAddress": "最初に配送先住所を選択してください"
     }
   }
 }

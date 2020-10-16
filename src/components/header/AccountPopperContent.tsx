@@ -25,7 +25,7 @@ import {
   currentContractIdSelector,
   contractSelector,
 } from "../../redux/selectors/contract";
-import { numItemsSelector } from "../../redux/selectors/order";
+
 //UI
 import {
   StyledTypography,
@@ -41,7 +41,6 @@ import {
 } from "../StyledUI";
 import { Divider } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import styled from "styled-components";
 
@@ -69,7 +68,6 @@ function AccountPopperContent(props: any): JSX.Element {
   const activeOrgId = useSelector(activeOrgSelector);
   const currentContractId = useSelector(currentContractIdSelector);
   const eligibleContracts = useSelector(contractSelector);
-  const cartItems = useSelector(numItemsSelector);
 
   const [edit, setEdit] = useState<boolean>(false);
 
@@ -262,27 +260,6 @@ function AccountPopperContent(props: any): JSX.Element {
     );
   };
 
-  const CartSection = () => {
-    return (
-      <Link
-        to={ROUTES.CART}
-        id="account_popper_cart_link"
-        onClick={handleClose}>
-        <StyledListItem>
-          <StyledListItemIcon>
-            <ShoppingCartIcon />
-          </StyledListItemIcon>
-          <StyledListItemText
-            primary={
-              <>
-                {t("Header.AccountPopper.Cart", { count: Number(cartItems) })}
-              </>
-            }></StyledListItemText>
-        </StyledListItem>
-      </Link>
-    );
-  };
-
   return (
     <>
       <StyledList disablePadding>
@@ -292,7 +269,6 @@ function AccountPopperContent(props: any): JSX.Element {
             <OrgAndContract />
           </>
         )}
-        <CartSection />
         <Divider component="li" />
         <AccountSetting />
         <Divider component="li" />

@@ -16,7 +16,6 @@ import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
 import { Redirect } from "react-router-dom";
 //Foundation libraries
-import { useSite } from "../../../_foundation/hooks/useSite";
 import { SIGNIN } from "../../../constants/routes";
 //Redux
 import * as accountActions from "../../../redux/actions/account";
@@ -45,15 +44,14 @@ import {
 import { ADD_ADDRESS } from "../../../constants/routes";
 
 const AddressBook: React.FC = (props: any) => {
-  const mySite: any = useSite();
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const loginStatus = useSelector(loginStatusSelector);
   const addressDetails = useSelector(addressDetailsSelector);
-  const [addressList, setAddressList] = React.useState<any[]>([]);
-  const [type, setType] = React.useState<number>(0);
+  const [addressList, setAddressList] = useState<any[]>([]);
+  const [type, setType] = useState<number>(0);
   const payloadBase: any = {
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
@@ -62,7 +60,7 @@ const AddressBook: React.FC = (props: any) => {
   const history = useHistory();
 
   useEffect(() => {
-    if (mySite) {
+    if (!addressDetails) {
       let payload = {
         ...payloadBase,
       };
@@ -72,7 +70,7 @@ const AddressBook: React.FC = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
-  }, [mySite]);
+  }, []);
 
   useEffect(() => {
     if (addressDetails && addressDetails.contactList) {

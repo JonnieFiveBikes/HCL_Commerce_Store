@@ -15,9 +15,9 @@ import PropTypes from "prop-types";
 import {
   StyledTypography,
   StyledSwatchRadioGroup,
-  StyledExpansionPanel,
-  StyledExpansionPanelDetails,
-  StyledExpansionPanelSummary,
+  StyledAccordion,
+  StyledAccordionDetails,
+  StyledAccordionSummary,
 } from "../../StyledUI";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
@@ -39,7 +39,7 @@ function ProductB2BAttributes({
   return (
     <>
       {attributeList.map((attr: any, index: number) => (
-        <StyledExpansionPanel
+        <StyledAccordion
           defaultExpanded={!isMobile}
           key={attr.identifier}
           expanded={!isMobile || isActiveAttrId === attr.identifier}
@@ -52,26 +52,27 @@ function ProductB2BAttributes({
               }
             }
           }}>
-          <StyledExpansionPanelSummary
+          <StyledAccordionSummary
             expandIcon={isMobile ? <ExpandMoreIcon /> : null}
             key={index}>
             <StyledTypography variant="body2" key={index}>
               <strong key={index}>{attr.name}</strong>
             </StyledTypography>
-          </StyledExpansionPanelSummary>
-          <StyledExpansionPanelDetails key={index}>
+          </StyledAccordionSummary>
+          <StyledAccordionDetails key={index}>
             <StyledSwatchRadioGroup
               values={attr.values}
               name={attr.name}
               id={attr.identifier}
               onChangeHandler={onChangeHandler}
-              useSwatches={attr.values[0].image1path ? true : false}
+              useSwatches={false}
+              //currently, swatch is not supported for B2B
               key={index}
               isB2B={true}
               attributeState={attributeState}
             />
-          </StyledExpansionPanelDetails>
-        </StyledExpansionPanel>
+          </StyledAccordionDetails>
+        </StyledAccordion>
       ))}
     </>
   );

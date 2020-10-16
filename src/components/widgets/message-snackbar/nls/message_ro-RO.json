@@ -88,6 +88,8 @@
     "_ERR_CMD_INVALID_PARAM_parentMember": "Numele organizației care a fost introdus în câmpul Organizație nu este valid. Trebuie să tastați numele exact al organizației. Dacă nu cunoașteți numele exact, întrebați persoana din compania dvs. care administrează organizația dvs. pentru acest magazin. Dacă organizația dvs. are o organizație părinte, trebuie să folosiți următorul format la introducere: <b>organizație/organizație_părinte</b>, de exemplu, <b>Firma ABC RO/Firma ABC Globală</b>.",
     "_ERR_CMD_INVALID_PARAM_org_orgEntityName": "Tastați un nume al organizației în câmpul Nume organizație.",
     "_API_BAD_INV_2": "Nu există un inventar suficient pentru a cumpăra {{1}} bucăți din {{0}}.",
+    "_ERR_FINDING_ORDER_230": "A apărut o problemă de sistem în timpul procesării comenzii.",
+    "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "A apărut o problemă de sistem. Contactați magazinul pentru asistență.",
     "B2B": {
       "_ERR_LOGONID_ALREDY_EXIST_2030": "ID-ul de conectare introdus există deja. Tastați un ID de conectare diferit și încercați din nou."
     }

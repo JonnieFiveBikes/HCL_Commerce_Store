@@ -88,6 +88,8 @@
     "_ERR_CMD_INVALID_PARAM_parentMember": "El nombre de organización que ha introducido en el campo Organización no es válido. Debe escribir el nombre exacto de la organización. Si no sabe el nombre exacto, pregunte al responsable de su empresa de administrar su organización para esta tienda. Si su organización dispone de una organización principal, deberá utilizar el formato siguiente para la información introducida: <b>organización/organización_principal</b>, por ejemplo, <b>Empresa ABC EE.UU./Empresa ABC Mundial</b>.",
     "_ERR_CMD_INVALID_PARAM_org_orgEntityName": "Introduzca el nombre de una organización en el campo Nombre de organización.",
     "_API_BAD_INV_2": "No hay inventario suficiente para comprar {{1}} unidades de {{0}}.",
+    "_ERR_FINDING_ORDER_230": "Se ha producido un problema en el sistema durante el procesamiento de su pedido.",
+    "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "Ha ocurrido un error en el sistema. Póngase en contacto con la tienda para recibir ayuda.",
     "B2B": {
       "_ERR_LOGONID_ALREDY_EXIST_2030": "El ID de inicio de sesión que ha introducido ya existe. Escriba un ID de inicio de sesión diferente e inténtelo de nuevo."
     }

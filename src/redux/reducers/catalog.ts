@@ -26,16 +26,12 @@ const catalogReducer = createReducer(initStates.catalog, (builder) => {
   const pageDefaultOffset: number = PAGINATION_CONFIGS.pageDefaultOffset;
 
   builder.addCase(
-    ACTIONS.PRODUCT_LIST_GET_SUCCESS,
+    ACTIONS.PRODUCT_LIST_GET_REQUESTED,
     (state, action: AnyAction) => {
       const payload = action.payload;
-      const response = action.response;
-
       if (payload.states) {
         if (payload.states["selectedFacets"] !== undefined) {
-          if (parseInt(response.total) > 0) {
-            state.selectedFacets = payload.states.selectedFacets;
-          }
+          state.selectedFacets = payload.states.selectedFacets;
         }
         if (payload.states["selectedFacetLimits"] !== undefined) {
           state.selectedFacetLimits = payload.states.selectedFacetLimits;
@@ -61,6 +57,13 @@ const catalogReducer = createReducer(initStates.catalog, (builder) => {
         state.selectedPageOffset = pageDefaultOffset;
         state.selectedSortOption = "0";
       }
+    }
+  );
+
+  builder.addCase(
+    ACTIONS.PRODUCT_LIST_GET_SUCCESS,
+    (state, action: AnyAction) => {
+      const response = action.response;
 
       if (response["facets"] && response["facets"].length > 0) {
         let newFacetPrice = null;

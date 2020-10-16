@@ -15,6 +15,7 @@ import React, {
   MouseEvent,
   ChangeEvent,
   KeyboardEvent,
+  useMemo,
 } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
@@ -24,6 +25,8 @@ import DateFnsUtils from "@date-io/date-fns";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import assignedPromotionCode from "../../../_foundation/apis/transaction/assignedPromotionCode.service";
+import { localStorageUtil } from "../../../_foundation/utils/storageUtil";
+import { ACCOUNT } from "../../../_foundation/constants/common";
 //Custom libraries
 import { CHECKOUT } from "../../../constants/routes";
 import { RECURRING_ORDER_OPTIONS } from "../../../constants/order";
@@ -31,6 +34,8 @@ import {
   INVENTORY,
   CommerceEnvironment,
   KEY_CODES,
+  ORDER_ID,
+  HYPHEN,
 } from "../../../constants/common";
 import { OrderItemTable } from "../../widgets/order-item-table";
 import { OrderTotalSummary } from "../../widgets/order-total-summary";
@@ -41,17 +46,16 @@ import {
   cartSelector,
   orderItemsSelector,
   isCheckoutDisabledSelector,
-  isRecurringOrderSelector,
-  recurringOrderFrequencySelector,
-  recurringOrderStartDateSelector,
   isRecurringOrderDisabledSelector,
   isFetchingSelector,
 } from "../../../redux/selectors/order";
 import { loginStatusSelector } from "../../../redux/selectors/user";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 //UI
+import { Divider } from "@material-ui/core";
 import {
   StyledGrid,
+  StyledBox,
   StyledContainer,
   StyledTypography,
   StyledPaper,
@@ -61,7 +65,6 @@ import {
   StyledFormControlLabel,
   StyledCheckbox,
   StyledSelect,
-  StyledMenuItem,
   StyledKeyboardDatePicker,
   StyledMuiPickersUtilsProvider,
   StyledInputLabel,
@@ -91,11 +94,22 @@ const Cart: React.FC = (props: any) => {
   const cart = useSelector(cartSelector);
   const orderItems = useSelector(orderItemsSelector);
   const isCheckoutDisabled = useSelector(isCheckoutDisabledSelector);
-  const isRecurringOrder = useSelector(isRecurringOrderSelector);
-  const recurringOrderFrequency = useSelector(recurringOrderFrequencySelector);
-  const recurringOrderStartDate = useSelector(recurringOrderStartDateSelector);
+  const [isRecurringOrder, setIsRecurringOrder] = useState<boolean>(false);
+  const [recurringOrderFrequency, setRecurringOrderFrequency] = useState<
+    string
+  >("0");
+  const [recurringOrderStartDate, setRecurringOrderStartDate] = useState<Date>(
+    () => new Date()
+  );
   const isRecurringOrderDisabled = useSelector(
     isRecurringOrderDisabledSelector
+  );
+  const recurringOrderDetails = useMemo(
+    () =>
+      localStorageUtil.get(
+        ACCOUNT + HYPHEN + ORDER_ID + HYPHEN + cart?.orderId
+      ),
+    [cart]
   );
   const isFetching = useSelector(isFetchingSelector);
   const loginStatus = useSelector(loginStatusSelector);
@@ -123,7 +137,7 @@ const Cart: React.FC = (props: any) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { t, i18n } = useTranslation();
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
@@ -146,15 +160,21 @@ const Cart: React.FC = (props: any) => {
   };
 
   useEffect(() => {
+    if (recurringOrderDetails && recurringOrderDetails.length === 3) {
+      setIsRecurringOrder(recurringOrderDetails[0]);
+      setRecurringOrderFrequency(recurringOrderDetails[1]);
+      setRecurringOrderStartDate(recurringOrderDetails[2]);
+    }
+  }, [recurringOrderDetails]);
+
+  useEffect(() => {
     if (mySite && contractId && defaultCurrencyID) {
       let payload = {
         ...payloadBase,
         fetchCatentries: true,
       };
-
       dispatch(orderActions.FETCHING_CART_ACTION(payload));
     }
-
     return () => {
       cancels.forEach((cancel) => cancel());
     };
@@ -265,7 +285,9 @@ const Cart: React.FC = (props: any) => {
    * Handle recurring order start date change
    */
   function onDateChange(date: Date | null) {
-    dispatch(orderActions.SET_RECURRINGORDER_STARTDATE_ACTION(date));
+    date
+      ? setRecurringOrderStartDate(date)
+      : setRecurringOrderStartDate(new Date());
   }
 
   function onDateError(error) {
@@ -297,6 +319,17 @@ const Cart: React.FC = (props: any) => {
    */
   function checkout() {
     if (canContinue()) {
+      if (cart && cart.orderId) {
+        const recurringOrderInfo: any[] = [
+          isRecurringOrder,
+          recurringOrderFrequency,
+          recurringOrderStartDate,
+        ];
+        localStorageUtil.set(
+          ACCOUNT + HYPHEN + ORDER_ID + HYPHEN + cart.orderId,
+          recurringOrderInfo
+        );
+      }
       history.push(CHECKOUT);
     }
   }
@@ -328,9 +361,7 @@ const Cart: React.FC = (props: any) => {
                             name="recurringOrder"
                             checked={isRecurringOrder}
                             onChange={() =>
-                              dispatch(
-                                orderActions.TOGGLE_RECURRINGORDER_ACTION()
-                              )
+                              setIsRecurringOrder(!isRecurringOrder)
                             }
                             disabled={isRecurringOrderDisabled}
                           />
@@ -346,22 +377,19 @@ const Cart: React.FC = (props: any) => {
                           <StyledSelect
                             value={recurringOrderFrequency}
                             labelId="frequency"
+                            native
                             name="frequency"
                             onChange={(event) =>
-                              dispatch(
-                                orderActions.SET_RECURRINGORDER_FREQ_ACTION(
-                                  event.target.value
-                                )
-                              )
+                              setRecurringOrderFrequency(event.target.value)
                             }
                             fullWidth>
                             {frequencyOptions.map(
                               (frequency: any, index: number) => (
-                                <StyledMenuItem
+                                <option
                                   value={frequency.value}
                                   key={frequency.value}>
                                   {t(`${frequency.translationKey}`)}
-                                </StyledMenuItem>
+                                </option>
                               )
                             )}
                           </StyledSelect>
@@ -411,8 +439,8 @@ const Cart: React.FC = (props: any) => {
           </StyledGrid>
 
           {orderItems.length > 0 && (
-            <StyledGrid container item justify="flex-end" spacing={3}>
-              <StyledGrid item xs={12} sm={6} md={4}>
+            <StyledGrid container item justify="flex-end" spacing={2}>
+              <StyledGrid item xs={12} sm={6} md={hasDiscounts ? 4 : 6}>
                 <StyledPaper className="vertical-padding-2 horizontal-padding-2">
                   <StyledTypography variant="subtitle1" gutterBottom>
                     {t("Cart.Labels.PromoCode")}
@@ -461,20 +489,27 @@ const Cart: React.FC = (props: any) => {
                   </StyledPaper>
                 </StyledGrid>
               )}
-              <StyledGrid item xs={12} md={4}>
+              <StyledGrid
+                item
+                xs={12}
+                sm={hasDiscounts ? 12 : 6}
+                md={hasDiscounts ? 4 : 6}>
                 <StyledPaper className="vertical-padding-2 horizontal-padding-2">
                   <StyledTypography variant="subtitle1" gutterBottom>
                     {t("Cart.Labels.OrderSummary")}
                   </StyledTypography>
                   <OrderTotalSummary order={cart} />
-                  <StyledButton
-                    color="primary"
-                    className="button"
-                    fullWidth
-                    disabled={!canContinue()}
-                    onClick={() => checkout()}>
-                    {t("Cart.Actions.Checkout")}
-                  </StyledButton>
+                  <Divider className="vertical-margin-2" />
+                  <StyledBox textAlign="center">
+                    <StyledButton
+                      color="primary"
+                      fullWidth
+                      style={{ maxWidth: "320px" }}
+                      disabled={!canContinue()}
+                      onClick={() => checkout()}>
+                      {t("Cart.Actions.Checkout")}
+                    </StyledButton>
+                  </StyledBox>
                 </StyledPaper>
               </StyledGrid>
             </StyledGrid>

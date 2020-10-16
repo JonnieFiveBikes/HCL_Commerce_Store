@@ -74,7 +74,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
           label={t("AddressForm.Labels.NickName")}
           onChange={(event) => handleChange(event)}
           value={addressFormData.nickName}
-          inputProps={{ maxLength: 254 }}
+          inputProps={{ maxLength: 128 }}
           fullWidth
           autoComplete="nickname"
           disabled={edit}
@@ -136,7 +136,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
           label={t("AddressForm.Labels.FirstName")}
           onChange={(event) => handleChange(event)}
           value={addressFormData.firstName}
-          inputProps={{ maxLength: 128 }}
+          inputProps={{ maxLength: 40 }}
           fullWidth
           autoComplete="fname"
           required
@@ -150,7 +150,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
           label={t("AddressForm.Labels.LastName")}
           onChange={(event) => handleChange(event)}
           value={addressFormData.lastName}
-          inputProps={{ maxLength: 128 }}
+          inputProps={{ maxLength: 40 }}
           fullWidth
           autoComplete="lname"
         />
@@ -164,7 +164,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
           label={t("AddressForm.Labels.Address1")}
           onChange={(event) => handleChange(event)}
           value={addressFormData.addressLine1}
-          inputProps={{ maxLength: 100 }}
+          inputProps={{ maxLength: 99 }}
           fullWidth
           autoComplete="address-line1"
         />
@@ -177,7 +177,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
           label={t("AddressForm.Labels.Address2")}
           onChange={(event) => handleChange(event)}
           value={addressFormData.addressLine2}
-          inputProps={{ maxLength: 50 }}
+          inputProps={{ maxLength: 49 }}
           fullWidth
           autoComplete="address-line2"
         />
@@ -191,7 +191,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
           label={t("AddressForm.Labels.City")}
           onChange={(event) => handleChange(event)}
           value={addressFormData.city}
-          inputProps={{ maxLength: 128 }}
+          inputProps={{ maxLength: 40 }}
           fullWidth
           autoComplete="address-level2"
         />
@@ -206,7 +206,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
           label={t("AddressForm.Labels.Country")}
           onChange={(event) => handleChange(event)}
           value={addressFormData.country}
-          inputProps={{ maxLength: 128 }}
+          inputProps={{ maxLength: 40 }}
           fullWidth
           autoComplete="country"
         />
@@ -221,7 +221,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
           label={t("AddressForm.Labels.State")}
           onChange={(event) => handleChange(event)}
           value={addressFormData.state}
-          inputProps={{ maxLength: 128 }}
+          inputProps={{ maxLength: 40 }}
           fullWidth
           autoComplete="state"
         />
@@ -235,7 +235,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
           label={t("AddressForm.Labels.ZipCode")}
           onChange={(event) => handleChange(event)}
           value={addressFormData.zipCode}
-          inputProps={{ maxLength: 40 }}
+          inputProps={{ maxLength: 30 }}
           fullWidth
           autoComplete="postal-code"
         />
@@ -254,11 +254,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
               ? t("AddressForm.Msgs.InvalidFormat")
               : EMPTY_STRING
           }
-          inputProps={{
-            maxLength: 32,
-            pattern: "[0-9]{0,1}-{0,1}[0-9]{3}-[0-9]{3}-[0-9]{4}",
-            placeholder: "000-000-0000 or 1-000-000-0000",
-          }}
+          inputProps={{ maxLength: 32 }}
           fullWidth
           autoComplete="phone"
         />
@@ -279,7 +275,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
               ? t("AddressForm.Msgs.InvalidFormat")
               : EMPTY_STRING
           }
-          inputProps={{ maxLength: 256 }}
+          inputProps={{ maxLength: 35 }}
           fullWidth
           autoComplete="email"
         />

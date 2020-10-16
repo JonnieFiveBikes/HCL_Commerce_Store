@@ -45,11 +45,7 @@ const orderDefaultState: OrderReducerState = {
   shipInfos: null,
   shipModes: [],
   payMethods: [],
-  isRecurringOrder: false,
-  recurringOrderFrequency: "0",
-  recurringOrderStartDate: null,
   isRecurringOrderDisabled: false,
-  miniCartItems: [],
 };
 const errorDefaultState: ErrorReducerState = {
   errorKey: null,

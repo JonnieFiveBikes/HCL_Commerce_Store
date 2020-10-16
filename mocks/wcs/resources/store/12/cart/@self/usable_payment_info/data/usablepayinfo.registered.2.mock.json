@@ -1,0 +1,35 @@
+{
+  "resourceId": "https://localhost:443/wcs/resources/store/2/cart/@self/usable_payment_info",
+  "orderId": "3119512",
+  "resourceName": "cart",
+  "usablePaymentInformation": [
+    {
+      "xumet_policyId": "12009",
+      "usableBillingAddress": [
+        {
+          "nickName": "Buyer A Organization",
+          "addressId": "4721531370"
+        }
+      ],
+      "paymentTermConditionId": "4000000000000005023",
+      "description": "test visa",
+      "xumet_attrPageName": "StandardVisa",
+      "language": "-1",
+      "paymentMethodName": "VISA"
+    },
+    {
+      "xumet_policyId": "12006",
+      "usableBillingAddress": [
+        {
+          "nickName": "Buyer A Organization",
+          "addressId": "4721531370"
+        }
+      ],
+      "paymentTermConditionId": "4000000000000005025",
+      "description": "test cod",
+      "xumet_attrPageName": "StandardCOD",
+      "language": "-1",
+      "paymentMethodName": "COD"
+    }
+  ]
+}

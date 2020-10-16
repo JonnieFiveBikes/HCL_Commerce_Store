@@ -88,6 +88,8 @@
     "_ERR_CMD_INVALID_PARAM_parentMember": "「組織」フィールドに入力された組織名は有効ではありません。正確な組織名を入力する必要があります。正確な名前が不明な場合は、このストアに対して組織を管理している会社内の担当者に確認してください。組織に親組織がある場合は、入力に <b>organization/parent_organization</b> (例: <b>ABC Company US/ABC Company Worldwide</b>) の形式を使用する必要があります。",
     "_ERR_CMD_INVALID_PARAM_org_orgEntityName": "「組織名」フィールドに組織名を入力してください。",
     "_API_BAD_INV_2": "{{1}} 個の {{0}} を購入するための在庫が不足しています。",
+    "_ERR_FINDING_ORDER_230": "オーダーの処理中にシステムの問題が発生しました。",
+    "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "システム上の問題が発生しました。詳しくはストアにお問い合わせください。",
     "B2B": {
       "_ERR_LOGONID_ALREDY_EXIST_2030": "入力されたログイン ID は既に存在します。別のログイン ID を入力して再試行してください。"
     }

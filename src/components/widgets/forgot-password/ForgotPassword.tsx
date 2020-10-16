@@ -35,7 +35,7 @@ const ForgotPassword: React.FC = (props: any) => {
   const [forgotPasswordState, setForgotPasswordState] = React.useState<boolean>(
     true
   );
-  const site = useSite();
+  const { mySite: site } = useSite();
   const { t } = useTranslation();
   const forgotPasswordTitle = t("ForgotPassword.Title");
   const resetPasswordTitle = t("ResetPassword.Title");

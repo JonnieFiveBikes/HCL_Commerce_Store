@@ -29,7 +29,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Checkbox from "@material-ui/core/Checkbox";
 import ListItemText from "@material-ui/core/ListItemText";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import Icon from "@material-ui/core/Icon";
 import Tooltip from "@material-ui/core/Tooltip";
 import DateFnsUtils from "@date-io/date-fns";
 import {
@@ -117,6 +116,9 @@ class StyledMTableFilterRow extends React.Component {
         renderValue={(selecteds) =>
           selecteds.map((selected) => columnDef.lookup[selected]).join(", ")
         }
+        title={(columnDef.tableData.filterValue || [])
+          .map((selected) => columnDef.lookup[selected])
+          .join(",")}
         MenuProps={MenuProps}
         style={{ marginTop: 0 }}>
         {Object.keys(columnDef.lookup).map((key) => (

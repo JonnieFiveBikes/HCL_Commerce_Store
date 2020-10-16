@@ -47,7 +47,7 @@ export default function ProductCard(props: ProductCardProps) {
 
   let swatches: any[] = [];
 
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
@@ -98,7 +98,6 @@ export default function ProductCard(props: ProductCardProps) {
         const contents = productData.data.contents;
         if (contents && contents.length > 0) {
           const product = contents[0];
-          const skus = product.items;
 
           changeProductImage(attrValueId, product);
           setProductData(product);

@@ -175,11 +175,11 @@ const StyledTable = styled(MaterialTableWrapper)`
 
     &.mini-cart-table {
       max-width: 350px;
-      
+
       .MuiPaper-root {
         box-shadow: none;
         padding-top: 0px;
-      }    
+      }
 
       .MuiTableRow-root {
         td:first-child{
@@ -188,16 +188,16 @@ const StyledTable = styled(MaterialTableWrapper)`
         }
         td:last-child{
           padding-right: 0px;
-        }        
+        }
       }
-      
+
       .MuiAvatar-root {
         margin-left: 0;
         width: ${theme.spacing(13)}px;
         height: ${theme.spacing(11)}px;
         border: 1px solid ${theme.palette.grey[200]};
-      }   
-      
+      }
+
       .qty-price-section {
         padding-top: ${theme.spacing(2)}px;
       }
@@ -206,6 +206,12 @@ const StyledTable = styled(MaterialTableWrapper)`
     &.order-item-table {
       tr:empty {
         display: none;
+      }
+    }
+    &.review-order {
+      .MuiPaper-root {
+        box-shadow: none;
+        border: 1px solid ${theme.palette.divider};
       }
     }
   `}

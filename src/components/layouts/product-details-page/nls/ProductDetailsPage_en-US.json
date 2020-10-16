@@ -6,8 +6,6 @@
     "AddToCart": "Add to cart",
     "Description": "Description",
     "ProductDetails": "Product Details",
-    "InStock": "In Stock",
-    "OutofStock": "Out of Stock",
     "PricePending": "Price pending",
     "addToCartErrorMsg": "The values in the Quantity fields are invalid or empty. Ensure the values are positive integers and try again.",
     "any": "Any",

@@ -9,23 +9,29 @@
  *==================================================
  */
 //Standard libraries
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import ReactHtmlParser from "react-html-parser";
 //Foundation libraries
 import inventoryavailabilityService from "../../../_foundation/apis/transaction/inventoryavailability.service";
 import associatedPromotionCodeService from "../../../_foundation/apis/transaction/associatedPromotionCode.service";
 import productsService from "../../../_foundation/apis/search/products.service";
 //Custom libraries
-import { OFFER, DISPLAY } from "../../../constants/common";
+import {
+  OFFER,
+  DISPLAY,
+  DEFINING,
+  DESCRIPTIVE,
+  STRING_TRUE,
+} from "../../../constants/common";
+import { ATTR_IDENTIFIER } from "../../../constants/catalog";
 import FormattedPriceDisplay from "../../widgets/formatted-price-display";
 import ProductImage from "./ProductImage";
 import ProductQuantity from "./ProductQuantity";
 import ProductAttributes from "./ProductAttributes";
-import ReactHtmlParser from "react-html-parser";
-
 //Redux
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 import * as orderActions from "../../../redux/actions/order";
@@ -40,135 +46,188 @@ import {
 } from "../../StyledUI";
 import Hidden from "@material-ui/core/Hidden";
 
+interface CurrentSelectionType {
+  sku: any;
+  quantity: number;
+  selectedAttributes: any;
+}
+
 /**
  * Product Display component
  * displays product defining atrributes, descriptive atrributes, availability, promotions etc.
  * @param productPartNumber
- * @param productLayout
  * @param pdpData
  * @param storeId
  */
-function ProductDetailsLayout({
-  productPartNumber,
-  productLayout,
-  pdpData,
-  storeId,
-}: any) {
+function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
   const ONLINE_STORE_KEY: string = "Online";
   const AVAILABLE_KEY: string = "Available";
   let cancels: Canceler[] = [];
   const CancelToken = Axios.CancelToken;
   const { t } = useTranslation();
-  const [product, setProduct] = React.useState<any>(null);
-  const [currentProdSelect, setCurrentProdSelect] = React.useState<any>(null);
-  const [productOfferPrice, setProductOfferPrice] = React.useState<number>(0);
-  const [prodDisplayPrice, setProdDisplayPrice] = React.useState<number>(0);
-  const [descAttributeList, setDescAttributeList] = React.useState<
-    Array<object>
-  >([]);
-  const [definingAttributeList, setDefiningAttributeList] = React.useState<
-    Array<object>
-  >([]);
-  const [productData, setProductData] = React.useState<any>(null);
-  const [promotion, setPromotion] = React.useState<Array<any>>([]);
-  const [disabledButtonFlag, setDisabledButtonFlag] = React.useState<boolean>(
-    false
-  );
-  const contract = useSelector(currentContractIdSelector);
-  let currentSelection: any = {
-    sku: { fullImage: "" },
-    quantity: "1",
-    isAngleImage: false,
-    selectedAttributes: {},
-    availability: null,
-  };
-  let productInfoData: any = {
-    price: [{}],
-    availableAttributes: [{ values: [{}] }],
-    fullImage: "",
-  };
-  let productInfo: any;
-  let descAttributes: any[] = [];
-  let definingAttributes: any[] = [];
-  let defnAttrSrc: any[] = [];
-  let availAttrs: Set<string> = new Set<string>();
-  let productType: string = "";
-  let invalidSKU: boolean;
   const dispatch = useDispatch();
+
+  const [promotion, setPromotion] = useState<Array<any>>([]);
+  const [inventoryAvailableFlag, setInventoryAvailableFlag] = useState<boolean>(
+    true
+  );
+  const [buyableFlag, setBuyableFlag] = useState<boolean>(true);
+
+  const CURRENT_SELECTION_INIT: CurrentSelectionType = {
+    sku: {},
+    quantity: 1,
+    selectedAttributes: {},
+  };
+
+  const [product, setProduct] = useState<any>(null);
+  const [currentSelection, setCurrentSelection] = useState<
+    CurrentSelectionType
+  >(CURRENT_SELECTION_INIT);
+
+  const [displayName, setDisplayName] = useState<string>("");
+  const [displayPartNumber, setDisplayPartNumber] = useState<string>(
+    productPartNumber
+  );
+  const [displayShortDesc, setDisplayShortDesc] = useState<string>("");
+  const [displayOfferPrice, setDisplayOfferPrice] = useState<number>(0);
+  const [displayListPrice, setDisplayListPrice] = useState<number>(0);
+  const [displayFullImage, setDisplayFullImage] = useState<string>("");
+  const [displayLongDesc, setDisplayLongDesc] = useState<string>("");
+  const [displayDescriptiveAttrList, setDisplayDescriptiveAttrList] = useState<
+    any[]
+  >([]);
+
+  const [definingAttrList, setDefiningAttrList] = useState<any[]>([]);
+  const [availability, setAvailability] = useState<any[]>([]);
+
+  const contract = useSelector(currentContractIdSelector);
+
+  const payloadBase: any = {
+    storeId: storeId,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
 
   /**
    * Get product information based on its type
    */
-  const getProduct = () => {
-    productType = "";
-    productInfo = pdpData[0];
-    let product: any = {
-      name: productInfo.name,
-      shortDescription: productInfo.shortDescription,
-      longDescription: productInfo.longDescription,
-    };
-    if (productInfo.type === "product" || productInfo.type === "variant") {
-      productType = productInfo.type;
-      initializeProduct(productInfo);
-    } else if (
-      productInfo.type === "item" &&
-      productInfo.parentCatalogEntryID
-    ) {
-      productType = productInfo.type;
-      let productsId: string[] = [];
-      productsId.push(productInfo.parentCatalogEntryID);
-      let parameters: any = {
-        storeId: storeId,
-        id: productsId,
-        contractId: contract,
-        cancelToken: new CancelToken(function executor(c) {
-          cancels.push(c);
-        }),
-      };
-      productsService
-        .findProductsUsingGET(parameters)
-        .then((res) => {
-          if (res.data.contents && res.data.contents.length > 0) {
-            initializeProduct(res.data.contents[0], productInfo.attributes);
-          }
-        })
-        .catch((e) => {
-          console.log("could not retreive the parent product details", e);
-        });
+  const getProduct = (catentry: any) => {
+    if (catentry) {
+      if (catentry.type === "product" || catentry.type === "variant") {
+        setProduct(catentry);
+        initializeProduct(catentry);
+        getAssociatedPromotions(catentry);
+      } else if (catentry.type === "item" && catentry.parentCatalogEntryID) {
+        let productsId: string[] = [];
+        productsId.push(catentry.parentCatalogEntryID);
+        const parameters: any = {
+          ...payloadBase,
+          id: productsId,
+          contractId: contract,
+        };
+        productsService
+          .findProductsUsingGET(parameters)
+          .then((res) => {
+            if (res.data.contents && res.data.contents.length > 0) {
+              initializeProduct(res.data.contents[0], catentry.attributes);
+              getAssociatedPromotions(res.data.contents[0]);
+              setProduct(res.data.contents[0]);
+            }
+          })
+          .catch((e) => {
+            console.log("could not retreive the parent product details", e);
+          });
+      }
     }
-    setProduct(product);
   };
 
   /**
    * Get associated promotions for the product
    */
-  const getAssociatedPromotions = () => {
-    let promotion: any[] = [];
-    let parameters: any = {
-      storeId: storeId,
-      q: "byProduct",
-      qProductId: pdpData[0].id,
-      cancelToken: new CancelToken(function executor(c) {
-        cancels.push(c);
-      }),
-    };
-    associatedPromotionCodeService
-      .findPromotionsByProduct(parameters)
-      .then((res) => {
-        if (res.data.associatedPromotions) {
-          for (let promo of res.data.associatedPromotions) {
-            if (promo.description)
-              promotion = promo.description.shortDescription;
+  const getAssociatedPromotions = (productInfo) => {
+    if (productInfo) {
+      let promotion: any[] = [];
+      const parameters: any = {
+        ...payloadBase,
+        q: "byProduct",
+        qProductId: productInfo.id,
+      };
+      associatedPromotionCodeService
+        .findPromotionsByProduct(parameters)
+        .then((res) => {
+          if (res.data.associatedPromotions) {
+            for (let promo of res.data.associatedPromotions) {
+              if (promo.description)
+                promotion = promo.description.shortDescription;
+            }
+            setPromotion(promotion);
           }
-          setPromotion(promotion);
-        }
-      })
-      .catch((e) => {
-        console.log(
-          "Could not retrieve product associated promotion details",
-          e
-        );
-      });
+        })
+        .catch((e) => {
+          console.log(
+            "Could not retrieve product associated promotion details",
+            e
+          );
+        });
+    }
+  };
+
+  /**
+   * Set the display information on the page using the specified catentry data
+   * @param catentry Catentry info to use for display; either item/product/variant
+   * @param productInfo Product data to fall back to if needed
+   */
+  const setDisplayInfo = (catentry: any, productInfo?: any) => {
+    if (catentry) {
+      if (catentry.name) {
+        setDisplayName(catentry.name);
+      } else {
+        setDisplayName("");
+      }
+
+      if (catentry.partNumber) {
+        setDisplayPartNumber(catentry.partNumber);
+      } else {
+        setDisplayPartNumber("");
+      }
+
+      if (catentry.shortDescription) {
+        setDisplayShortDesc(catentry.shortDescription);
+      } else {
+        setDisplayShortDesc("");
+      }
+
+      if (catentry.price?.length > 0) {
+        setDisplayPrices(catentry.price);
+      } else {
+        setDisplayPrices([]);
+      }
+
+      if (catentry.attributes?.length > 0) {
+        getDescriptiveAttributes(catentry.attributes);
+      } else if (productInfo?.attributes?.length > 0) {
+        //Fallback to product's descriptive attributes
+        getDescriptiveAttributes(productInfo.attributes);
+      } else {
+        getDescriptiveAttributes([]);
+      }
+
+      if (catentry.longDescription) {
+        setDisplayLongDesc(catentry.longDescription);
+      } else if (productInfo?.longDescription) {
+        //Fallback to product's long description
+        setDisplayLongDesc(productInfo.longDescription);
+      } else {
+        setDisplayLongDesc("");
+      }
+
+      if (catentry.fullImage) {
+        setDisplayFullImage(catentry.fullImage);
+      } else {
+        setDisplayFullImage("");
+      }
+    }
   };
 
   /**
@@ -177,72 +236,69 @@ function ProductDetailsLayout({
    * @param attr
    */
   const initializeProduct = (productInfo: any, attr?: any) => {
+    let newSelection = { ...currentSelection };
     if (productInfo) {
-      productInfoData = JSON.parse(JSON.stringify(productInfo));
-      descAttributes = [];
-      definingAttributes = [];
-      defnAttrSrc = [];
-      availAttrs.clear();
+      setDisplayInfo(productInfo);
       if (productInfo.attributes) {
-        productInfoData.availableAttributes = JSON.parse(
-          JSON.stringify(productInfo.attributes)
-        );
-        getDescriptiveAndDefiningAttributes();
+        getDefiningAttributes(productInfo.attributes);
       }
-      if (productInfoData.items && productInfoData.items.length > 0) {
-        currentSelection.partNumber = productInfoData.items[0];
-        if (currentSelection.partNumber.attributes)
-          initializeSelectedAttributes(attr);
-        else if (currentSelection.partNumber.id)
-          getInventory(currentSelection.partNumber.id);
-      } else {
-        currentSelection.partNumber = productInfoData;
-        currentSelection.selectedAttributes = {};
-        if (currentSelection.partNumber.attributes) {
-          for (const att of currentSelection.partNumber.attributes) {
-            if (att.values.length) {
-              currentSelection.selectedAttributes[att.identifier] =
-                att.values[0].identifier;
-            }
-          }
+      if (productInfo.items?.length > 0) {
+        newSelection.sku = productInfo.items[0];
+        if (attr) {
+          initializeSelectedAttributes(newSelection, productInfo, attr);
+        } else if (newSelection.sku.attributes) {
+          initializeSelectedAttributes(
+            newSelection,
+            productInfo,
+            newSelection.sku.attributes
+          );
         }
+      } else {
+        setBuyableFlag(false);
       }
     }
-    setProductPrice(currentSelection.partNumber.price);
-    setDefiningAttributeList(definingAttributes);
-    setDescAttributeList(descAttributes);
-    setProductData(productInfoData);
+    setCurrentSelection(newSelection);
   };
 
   /**
    * Validate SKU based upon the selected attributes
    * @param attr
    */
-  const initializeSelectedAttributes = (attr?: any) => {
-    currentSelection.selectedAttributes = {};
-    if (attr) {
-      for (const att of attr) {
-        currentSelection.selectedAttributes[att.identifier] =
-          att.values[0].identifier;
+  const initializeSelectedAttributes = (
+    newSelection: CurrentSelectionType,
+    productInfo: any,
+    attr?: any
+  ) => {
+    if (productInfo?.items) {
+      newSelection.selectedAttributes = {};
+      if (attr) {
+        for (const att of attr) {
+          newSelection.selectedAttributes[att.identifier] =
+            att.values[0].identifier;
+        }
+      } else {
+        for (const att of newSelection.sku.attributes) {
+          newSelection.selectedAttributes[att.identifier] =
+            att.values[0].identifier;
+        }
       }
-    } else {
-      for (const att of currentSelection.partNumber.attributes) {
-        currentSelection.selectedAttributes[att.identifier] =
-          att.values[0].identifier;
+
+      newSelection.sku = resolveSKU(
+        productInfo.items,
+        newSelection.selectedAttributes
+      );
+      if (newSelection.sku === "") {
+        setAvailability([]);
+        setBuyableFlag(false);
+      } else {
+        setDisplayInfo(newSelection.sku, productInfo);
+        if (newSelection.sku.buyable === STRING_TRUE) {
+          setBuyableFlag(true);
+        } else {
+          setBuyableFlag(false);
+        }
       }
     }
-    const sku = resolveSKU(
-      productInfoData.items,
-      currentSelection.selectedAttributes
-    );
-    if (sku === "") {
-      invalidSKU = true;
-    } else {
-      invalidSKU = false;
-      currentSelection.partNumber = sku;
-      getInventory(currentSelection.partNumber.id);
-    }
-    setDisabledButtonFlag(invalidSKU);
   };
 
   /**
@@ -275,31 +331,30 @@ function ProductDetailsLayout({
 
   /**
    *Get the inventory details of the product
-   * @param productId
+   * @param catentryId
    */
-  const getInventory = (productId: any) => {
+  const getInventory = (catentryId: string) => {
     let preferredStore: any; // TODO need to check & implement
     let physicalStoreId: string = "";
     if (preferredStore) {
       physicalStoreId = preferredStore.storeId;
     }
-    let parameters: any = {
-      storeId: storeId,
-      productIds: productId,
-      cancelToken: new CancelToken(function executor(c) {
-        cancels.push(c);
-      }),
+    const parameters: any = {
+      ...payloadBase,
+      productIds: catentryId,
     };
+
+    let newAvailability: any[];
 
     inventoryavailabilityService
       .getInventoryAvailabilityByProductId(parameters)
       .then((res) => {
-        currentSelection.availability = [];
+        newAvailability = [];
         if (res.data.InventoryAvailability !== undefined) {
           let onlineInventory = res.data.InventoryAvailability.find(
             (inventory: any) => inventory.onlineStoreId
           );
-          currentSelection.availability.push({
+          newAvailability.push({
             storeId: onlineInventory?.onlineStoreId,
             storeName: ONLINE_STORE_KEY,
             inventoryStatus:
@@ -307,7 +362,7 @@ function ProductDetailsLayout({
           });
           for (let inventory of res.data.InventoryAvailability) {
             if (inventory.physicalStoreId && inventory.physicalStoreName) {
-              currentSelection.availability.push({
+              newAvailability.push({
                 storeId: inventory.physicalStoreId,
                 storeName: inventory.physicalStoreName,
                 inventoryStatus:
@@ -317,7 +372,7 @@ function ProductDetailsLayout({
               inventory.physicalStoreId &&
               !inventory.physicalStoreName
             ) {
-              currentSelection.availability.push({
+              newAvailability.push({
                 storeId: inventory.physicalStoreId,
                 storeName: inventory.physicalStoreId,
                 inventoryStatus:
@@ -326,10 +381,22 @@ function ProductDetailsLayout({
             }
           }
         }
-        setCurrentProdSelect(currentSelection);
-        if (currentSelection.availability.length === 0) {
-          setDisabledButtonFlag(true);
+
+        if (newAvailability.length === 0) {
+          setInventoryAvailableFlag(false);
+        } else {
+          //Check whether returned inventory is actually available
+          //Only check against online store for now
+          const selectedStoreInventory = newAvailability.find(
+            (inventory: any) => inventory.storeId === storeId
+          );
+          if (selectedStoreInventory) {
+            setInventoryAvailableFlag(selectedStoreInventory.inventoryStatus);
+          } else {
+            setInventoryAvailableFlag(false);
+          }
         }
+        setAvailability(newAvailability);
       })
       .catch((e) => {
         console.log("Could not retrieve Inventory Details", e);
@@ -337,142 +404,139 @@ function ProductDetailsLayout({
   };
 
   /**
-   *Get the descriptive and defining attributes
+   * Get the descriptive attributes
    */
-  const getDescriptiveAndDefiningAttributes = () => {
-    for (const att of productInfoData.availableAttributes) {
-      if (
-        att.usage === "Descriptive" &&
-        att.displayable &&
-        att.identifier !== "PickUpInStore" &&
-        !att.identifier.startsWith("ribbonad")
-      ) {
-        descAttributes.push(att);
-      } else if (att.usage === "Defining") {
-        definingAttributes.push(att);
-        defnAttrSrc.push(att);
+  const getDescriptiveAttributes = (attributesArray: any[]) => {
+    if (attributesArray) {
+      let newDescriptiveAttrList: any[] = [];
+      for (const att of attributesArray) {
+        if (
+          att.usage === DESCRIPTIVE &&
+          att.displayable &&
+          att.identifier !== ATTR_IDENTIFIER.PickUp &&
+          !att.identifier.startsWith(ATTR_IDENTIFIER.RibbonAd)
+        ) {
+          newDescriptiveAttrList.push(att);
+        }
       }
-    }
-    if (productInfoData.items) {
-      availableAttributes(productInfoData.items);
+      setDisplayDescriptiveAttrList(newDescriptiveAttrList);
     }
   };
 
   /**
-   * Helper method to get unique available attributes and store it in set
-   * @param skus
+   * Get the defining attributes
    */
-  const availableAttributes = (skus: any[]): void => {
-    let c: any;
-    let u: string[];
-    for (const s of skus) {
-      c = attrs2Object(s.attributes);
-      u = [];
-      for (let d of definingAttributes) {
-        u.push(c[d.identifier]);
+  const getDefiningAttributes = (attributesArray: any[]) => {
+    if (attributesArray) {
+      let newDefiningAttrList: any[] = [];
+      for (const att of attributesArray) {
+        if (att.usage === DEFINING) {
+          newDefiningAttrList.push(att);
+        }
       }
-      availAttrs.add(u.join("|"));
+      setDefiningAttrList(newDefiningAttrList);
     }
   };
 
   /**
-   *Helper method to convert attributes to object
-   * @param attrs
-   */
-  const attrs2Object = (attrs: any[]): any => {
-    if (attrs === undefined) {
-      return {};
-    }
-    return attrs.reduce((obj: any, attr: any) => {
-      obj[attr.identifier] = attr.values[0].identifier;
-      return obj;
-    }, {});
-  };
-
-  /**
-   * Defining attribute change even handler
+   * Defining attribute change event handler
    * @param attr
    * @param e
    */
   const onAttributeChange = (attr: string, e: string) => {
-    currentSelection = { ...currentProdSelect };
-    if (e) {
-      currentSelection.selectedAttributes[attr] = e;
+    if (product?.items) {
+      let newSelection = { ...currentSelection };
+      if (e && newSelection && newSelection.selectedAttributes) {
+        newSelection.selectedAttributes[attr] = e;
+      }
+
+      newSelection.sku = resolveSKU(
+        product.items,
+        newSelection.selectedAttributes
+      );
+      if (newSelection.sku === "") {
+        setBuyableFlag(false);
+        setAvailability([]);
+      } else {
+        setDisplayInfo(newSelection.sku, product);
+        if (newSelection.sku.buyable === STRING_TRUE) {
+          setBuyableFlag(true);
+        } else {
+          setBuyableFlag(false);
+        }
+      }
+      setCurrentSelection(newSelection);
     }
-    const sku = resolveSKU(
-      productData.items,
-      currentSelection.selectedAttributes
-    );
-    if (sku === "") {
-      invalidSKU = true;
-      currentSelection.availability = [];
-    } else {
-      invalidSKU = false;
-      currentSelection.partNumber = sku;
-      getInventory(currentSelection.partNumber.id);
-    }
-    setProductPrice(currentSelection.partNumber.price);
-    setDisabledButtonFlag(invalidSKU);
   };
 
   /**
    * Set the product offer price and display price
    * @param priceArray
    */
-  const setProductPrice = (priceArray: any[]) => {
+  const setDisplayPrices = (priceArray: any[]) => {
     if (priceArray) {
+      let offer: string = "0";
+      let list: string = "0";
       for (const price of priceArray) {
         if (price.usage === OFFER && price.value !== "") {
-          setProductOfferPrice(parseFloat(price.value));
+          offer = price.value;
         } else if (price.usage === DISPLAY && price.value !== "") {
-          setProdDisplayPrice(parseFloat(price.value));
+          list = price.value;
         }
       }
+      setDisplayOfferPrice(parseFloat(offer));
+      setDisplayListPrice(parseFloat(list));
     }
   };
+
   /**
    * Product quantity input field value change event handler
    * @param e
    */
   const updateProductQuantity = (e: number) => {
-    currentSelection = currentProdSelect;
-    currentSelection.quantity = e;
+    let newSelection = { ...currentSelection };
+    newSelection.quantity = e;
+    setCurrentSelection(newSelection);
   };
 
   /**
    *Add the selected product to the shopping cart
    */
   const addToCart = () => {
-    currentSelection = currentProdSelect;
     const param = {
-      partnumber: [currentSelection.partNumber.partNumber],
-      quantity: [currentSelection.quantity],
+      partnumber: [currentSelection.sku.partNumber],
+      quantity: [currentSelection.quantity.toString()],
       contractId: contract,
       cancelToken: new CancelToken(function executor(c) {
         cancels.push(c);
       }),
     };
     dispatch(orderActions.ADD_ITEM_ACTION(param));
-    currentSelection.quantity = "1";
   };
 
   React.useEffect(() => {
-    if (pdpData !== undefined && pdpData !== null && pdpData.length > 0) {
-      getProduct();
-      getAssociatedPromotions();
+    const inputCatentryData = pdpData ? pdpData[0] : null;
+    if (inputCatentryData !== undefined && inputCatentryData !== null) {
+      getProduct(inputCatentryData);
     }
     return () => {
       cancels.forEach((cancel) => cancel());
     };
   }, []);
 
+  React.useEffect(() => {
+    if (currentSelection?.sku?.id) {
+      getInventory(currentSelection.sku.id);
+    }
+  }, [currentSelection?.sku]);
+
   let productDetailTabsChildren: ITabs[] = [];
 
-  if (product && product.longDescription) {
+  if (displayLongDesc) {
     const descriptionElement = (
       <>
         <StyledTypography variant="body1">
-          {ReactHtmlParser(product.longDescription)}
+          {ReactHtmlParser(displayLongDesc)}
         </StyledTypography>
       </>
     );
@@ -482,14 +546,14 @@ function ProductDetailsLayout({
     });
   }
 
-  if (descAttributeList.length > 0) {
+  if (displayDescriptiveAttrList.length > 0) {
     const productDetailsElement = (
       <div
         id={`product-details-container_${productPartNumber}`}
         className="product-details-container">
         <div className="product-details-list">
           <ul className="product-attribute">
-            {descAttributeList.map((e: any) => (
+            {displayDescriptiveAttrList.map((e: any) => (
               <li
                 key={`li_${e.identifier}`}
                 id={`product_attribute_${productPartNumber}`}>
@@ -519,7 +583,7 @@ function ProductDetailsLayout({
 
   return (
     <>
-      {productPartNumber && currentProdSelect && (
+      {productPartNumber && product && (
         <StyledPDPContainer
           itemScope
           itemType="http://schema.org/Product"
@@ -529,34 +593,35 @@ function ProductDetailsLayout({
               <StyledGrid item xs={1}></StyledGrid>
               <StyledGrid item xs={10} className="product-image">
                 <ProductImage
-                  product={currentProdSelect}
-                  partNumber={productPartNumber}
+                  fullImage={displayFullImage}
+                  isAngleImage={false}
+                  alt={displayName}
                 />
               </StyledGrid>
             </Hidden>
             <StyledGrid item xs={12} sm={6} md={6} lg={6} xl={5}>
-              {product && (
+              {displayName && (
                 <StyledTypography
                   variant="h4"
                   itemProp="name"
                   className="product-name">
-                  {product.name}
+                  {displayName}
                 </StyledTypography>
               )}
-              {currentProdSelect && (
+              {displayPartNumber && (
                 <StyledTypography variant="body2" className="product-sku">
-                  SKU: {currentProdSelect.partNumber.partNumber}
+                  {t("productDetail.SKU")}: {displayPartNumber}
                 </StyledTypography>
               )}
-              {product && (
+              {displayShortDesc && (
                 <StyledTypography
                   variant="body1"
                   itemProp="description"
                   className="product-shortDescription">
-                  {product.shortDescription}
+                  {displayShortDesc}
                 </StyledTypography>
               )}
-              {
+              {promotion && (
                 <StyledTypography
                   variant="body2"
                   id={`product_advertisement_${productPartNumber}`}
@@ -564,41 +629,41 @@ function ProductDetailsLayout({
                   gutterBottom>
                   {promotion}
                 </StyledTypography>
-              }
+              )}
               <div
                 itemProp="offers"
                 itemScope
                 itemType="http://schema.org/Offer">
-                {productType !== "bundle" && (
+                {product.type !== "bundle" && (
                   <>
                     <StyledTypography
                       variant="h5"
                       className="product-price-container">
-                      {productOfferPrice > 0 && (
+                      {displayOfferPrice > 0 && (
                         <span className="product-price">
-                          <FormattedPriceDisplay min={productOfferPrice} />
+                          <FormattedPriceDisplay min={displayOfferPrice} />
                         </span>
                       )}
-                      {prodDisplayPrice > 0 && (
+                      {displayListPrice > 0 && (
                         <span
                           id={`product_price_${productPartNumber}`}
                           className={
-                            productOfferPrice > 0 ? "strikethrough" : ""
+                            displayListPrice > 0 ? "strikethrough" : ""
                           }>
-                          <FormattedPriceDisplay min={prodDisplayPrice} />
+                          <FormattedPriceDisplay min={displayListPrice} />
                         </span>
                       )}
-                      {productOfferPrice === 0 && prodDisplayPrice === 0 && (
+                      {displayOfferPrice === 0 && displayListPrice === 0 && (
                         <span id={`product_offer_price_${productPartNumber}`}>
                           {<FormattedPriceDisplay min={null} />}
                         </span>
                       )}
                     </StyledTypography>
-                    {definingAttributeList.length > 0 && (
+                    {definingAttrList?.length > 0 && (
                       <ProductAttributes
-                        attributeList={definingAttributeList}
+                        attributeList={definingAttrList}
                         onChangeHandler={onAttributeChange}
-                        currentSelection={currentProdSelect}
+                        currentSelection={currentSelection}
                       />
                     )}
                     <>
@@ -607,50 +672,54 @@ function ProductDetailsLayout({
                       </StyledTypography>
                       <ProductQuantity
                         updateProductQuantity={updateProductQuantity}
+                        value={currentSelection.quantity}
                       />
-                      {currentProdSelect &&
-                        currentProdSelect.availability.length > 0 && (
-                          <>
-                            <StyledTypography variant="body2">
-                              {t("productDetail.Availability")}
-                            </StyledTypography>
-                            <StyledTypography variant="body1" component="div">
-                              {currentProdSelect.availability.map((e: any) => (
-                                <div key={`inventoryDetails_div_${e.storeId}`}>
-                                  <div
-                                    key={`store-name_div_${e.storeId}`}
-                                    id={`product_availability_store_name_${productPartNumber}`}
-                                    className="store-name">
-                                    {e.storeName}
-                                  </div>
-                                  {e.inventoryStatus && (
-                                    <div
-                                      key={`inStock_div_${e.storeId}`}
-                                      className="inventory-status in-stock"
-                                      id={`product_availability_status_inStock_${productPartNumber}`}>
-                                      {t("productDetail.InStock")}
-                                    </div>
-                                  )}
-                                  {!e.inventoryStatus && (
-                                    <div
-                                      key={`outOfStock_div_${e.storeId}`}
-                                      className="store-inventory out-of-stock"
-                                      id={`product_availability_status_outOfStock_${productPartNumber}`}>
-                                      {t("productDetail.OutofStock")}
-                                    </div>
-                                  )}
+                      {availability?.length > 0 && (
+                        <>
+                          <StyledTypography variant="body2">
+                            {t("productDetail.Availability")}
+                          </StyledTypography>
+                          <StyledTypography variant="body1" component="div">
+                            {availability.map((e: any) => (
+                              <div key={`inventoryDetails_div_${e.storeId}`}>
+                                <div
+                                  key={`store-name_div_${e.storeId}`}
+                                  id={`product_availability_store_name_${productPartNumber}`}
+                                  className="store-name">
+                                  {e.storeName}
                                 </div>
-                              ))}
-                            </StyledTypography>
-                          </>
-                        )}
+                                {e.inventoryStatus && (
+                                  <div
+                                    key={`inStock_div_${e.storeId}`}
+                                    className="inventory-status in-stock"
+                                    id={`product_availability_status_inStock_${productPartNumber}`}>
+                                    {t(
+                                      "CommerceEnvironment.inventoryStatus.Available"
+                                    )}
+                                  </div>
+                                )}
+                                {!e.inventoryStatus && (
+                                  <div
+                                    key={`outOfStock_div_${e.storeId}`}
+                                    className="store-inventory out-of-stock"
+                                    id={`product_availability_status_outOfStock_${productPartNumber}`}>
+                                    {t(
+                                      "CommerceEnvironment.inventoryStatus.OOS"
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                            ))}
+                          </StyledTypography>
+                        </>
+                      )}
                       <StyledButton
                         color="primary"
                         size="small"
                         className="product-add-to-cart"
                         id={`product_add_to_cart_${productPartNumber}`}
                         onClick={addToCart}
-                        disabled={disabledButtonFlag}>
+                        disabled={!inventoryAvailableFlag || !buyableFlag}>
                         {t("productDetail.AddToCart")}
                       </StyledButton>
                     </>
@@ -661,16 +730,19 @@ function ProductDetailsLayout({
             <Hidden xsDown>
               <StyledGrid item xs={6} md={5} className="product-image">
                 <ProductImage
-                  product={currentProdSelect}
-                  partNumber={productPartNumber}
+                  fullImage={displayFullImage}
+                  isAngleImage={false}
+                  alt={displayName}
                 />
               </StyledGrid>
             </Hidden>
             <StyledGrid item xs={12} md={8}>
-              <StyledTabs
-                childrenList={productDetailTabsChildren}
-                name="productDetails"
-              />
+              {productDetailTabsChildren?.length > 0 && (
+                <StyledTabs
+                  childrenList={productDetailTabsChildren}
+                  name="productDetails"
+                />
+              )}
             </StyledGrid>
           </StyledGrid>
         </StyledPDPContainer>
@@ -681,7 +753,6 @@ function ProductDetailsLayout({
 
 ProductDetailsLayout.propTypes = {
   productPartNumber: PropTypes.string.isRequired,
-  productLayout: PropTypes.string,
   pdpData: PropTypes.any,
   storeId: PropTypes.string,
 };

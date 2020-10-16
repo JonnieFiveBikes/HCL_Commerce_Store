@@ -16,6 +16,9 @@ import {
   INVALID_COOKIE_ERROR_KEY,
   PASSWORD_EXPIRED_ERR_CODE,
   PASSWORD_EXPIRED,
+  PARTIAL_AUTHENTICATION_ERROR_CODE,
+  PARTIAL_AUTHENTICATION_ERROR_KEY,
+  CMC_SESSION_ERROR_KEY,
 } from "../../constants/errors";
 import { defaultStates } from "../reducers/initStates";
 import { ErrorReducerState } from "../reducers/reducerStateInterface";
@@ -24,11 +27,13 @@ const sessionErrors = [
   EXPIRED_ACTIVITY_TOKEN_ERROR,
   INVALID_COOKIE_ERROR_CODE,
   INVALID_COOKIE_ERROR_KEY,
+  PARTIAL_AUTHENTICATION_ERROR_CODE,
+  PARTIAL_AUTHENTICATION_ERROR_KEY,
+  CMC_SESSION_ERROR_KEY,
 ];
-
 const passwordExpiredErrors = [PASSWORD_EXPIRED_ERR_CODE, PASSWORD_EXPIRED];
 
-const seessionErrorSelector = (state: RootReducerState) => {
+const sessionErrorSelector = (state: RootReducerState) => {
   const errorCode =
     state.error.errorCode === undefined || state.error.errorCode === ""
       ? undefined
@@ -80,16 +85,8 @@ const genericErrorSelector = (state: RootReducerState) => {
       : state.error.errorKey;
   let error = {};
   if (
-    !(
-      errorCode &&
-      (passwordExpiredErrors.includes(errorCode) ||
-        sessionErrors.includes(errorCode))
-    ) &&
-    !(
-      errorKey &&
-      (passwordExpiredErrors.includes(errorKey) ||
-        sessionErrors.includes(errorKey))
-    )
+    !(errorCode && sessionErrors.includes(errorCode)) &&
+    !(errorKey && sessionErrors.includes(errorKey))
   ) {
     error = state.error;
   } else if (
@@ -103,7 +100,7 @@ const genericErrorSelector = (state: RootReducerState) => {
 };
 
 export {
-  seessionErrorSelector,
+  sessionErrorSelector,
   passwordExpiredErrorSelector,
   genericErrorSelector,
 };

@@ -35,11 +35,10 @@ import * as catalogActions from "../../../redux/actions/catalog";
 const Product: React.FC = (props: any) => {
   let cancels: Canceler[] = [];
   const CancelToken = Axios.CancelToken;
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const storeIdentifier: string = mySite ? mySite.storeID : "";
   const catalogIdentifier: string = mySite ? mySite.catalogID : "";
   const defaultCurrencyID: string = mySite ? mySite.defaultCurrencyID : "";
-  const defaultLanguageID: string = mySite ? mySite.defaultLanguageID : "";
   const contract = useSelector(currentContractIdSelector);
   const dispatch = useDispatch();
   const { page } = props;
@@ -72,14 +71,12 @@ const Product: React.FC = (props: any) => {
             {mySite && mySite.isB2B ? (
               <ProductB2BDetailsLayout
                 productPartNumber={partNumber}
-                productLayout={page.layout}
                 pdpData={pdpData}
                 storeId={storeIdentifier}
               />
             ) : (
               <ProductDetailsLayout
                 productPartNumber={partNumber}
-                productLayout={page.layout}
                 pdpData={pdpData}
                 storeId={storeIdentifier}
               />
@@ -131,7 +128,6 @@ const Product: React.FC = (props: any) => {
             contractId: contract,
             currency: defaultCurrencyID,
             storeId: storeIdentifier,
-            langId: defaultLanguageID,
             productName: productData.data.contents[0].name,
             cancelToken: new CancelToken(function executor(c) {
               cancels.push(c);

@@ -39,7 +39,7 @@ const clearUserState = (userState: any) => {
   for (var variableKey in userState) {
     if (
       variableKey !== PERSONALIZATION_ID &&
-      variableKey != INITIATED_FROM_STORAGE &&
+      variableKey !== INITIATED_FROM_STORAGE &&
       userState.hasOwnProperty(variableKey)
     ) {
       delete userState[variableKey];
@@ -56,18 +56,22 @@ const userReducer = createReducer(initStates.user, (builder) => {
   builder.addCase(
     LOGIN_SUCCESS_ACTION,
     (state: UserReducerState | any, action: AnyAction) => {
-      Object.assign(state, action.payload, {
-        userLoggedIn: true,
-        isGuest: false,
-      });
-      storageSessionHandler.saveCurrentUser(state);
-      //set personalizationID to localStorage
-      const { personalizationID } = action.payload;
-      localStorageUtil.set(
-        PERSONALIZATION_ID,
-        personalizationID,
-        PERMANENT_STORE_DAYS
-      );
+      if (action.payload) {
+        Object.assign(state, action.payload, {
+          userLoggedIn: true,
+          isGuest: false,
+          //lastUpdated is not needed here, since we will fetch details right after.
+        });
+        storageSessionHandler.saveCurrentUser(state);
+        //set personalizationID to localStorage
+        const { personalizationID } = action.payload;
+        localStorageUtil.set(
+          PERSONALIZATION_ID,
+          personalizationID,
+          PERMANENT_STORE_DAYS
+        );
+      }
+      //else is init from storage.
     }
   );
 
@@ -101,21 +105,26 @@ const userReducer = createReducer(initStates.user, (builder) => {
     (state: UserReducerState | any, action: AnyAction) => {
       clearUserState(state);
       storageSessionHandler.removeCurrentUser();
+      state.lastUpdated = Date.now();
     }
   );
   builder.addCase(
     GUEST_LOGIN_SUCCESS_ACTION,
     (state: UserReducerState | any, action: AnyAction) => {
-      Object.assign(state, action.payload);
-      state.userLoggedIn = false;
-      state.isGuest = true;
-      const { personalizationID } = action.payload;
-      localStorageUtil.set(
-        PERSONALIZATION_ID,
-        personalizationID,
-        PERMANENT_STORE_DAYS
-      );
-      storageSessionHandler.saveCurrentUser(state);
+      if (action.payload) {
+        Object.assign(state, action.payload);
+        state.userLoggedIn = false;
+        state.isGuest = true;
+        state.lastUpdated = Date.now();
+        const { personalizationID } = action.payload;
+        localStorageUtil.set(
+          PERSONALIZATION_ID,
+          personalizationID,
+          PERMANENT_STORE_DAYS
+        );
+        storageSessionHandler.saveCurrentUser(state);
+      }
+      //else is init from storage.
     }
   );
   builder.addCase(
@@ -125,6 +134,7 @@ const userReducer = createReducer(initStates.user, (builder) => {
       state.userRegistration = true;
       state.userLoggedIn = true;
       state.isGuest = false;
+      state.lastUpdated = Date.now();
       storageSessionHandler.saveCurrentUser(state);
       const { personalizationID } = state;
       localStorageUtil.set(
@@ -147,7 +157,10 @@ const userReducer = createReducer(initStates.user, (builder) => {
   builder.addCase(
     FETCH_USER_DETAILS_SUCCESS_ACTION,
     (state: UserReducerState | any, action: AnyAction) => {
-      Object.assign(state, { details: action.payload });
+      Object.assign(state, {
+        details: action.payload,
+        lastUpdated: Date.now(),
+      });
       storageSessionHandler.saveCurrentUser(state);
     }
   );

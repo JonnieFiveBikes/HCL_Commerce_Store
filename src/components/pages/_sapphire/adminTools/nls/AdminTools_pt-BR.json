@@ -1,0 +1,11 @@
+{
+  "AdminTools": {
+    "buyerManagement": "Gerenciamento de comprador",
+    "orgAndBuyer": "Compradores e aprovação do pedido",
+    "orgManagement": "Gerenciamento da organização",
+    "buyerManagementDesc": "Criar, editar ou remover compradores de suas organizações",
+    "orgAndBuyerDesc": "Aprovar ou rejeitar registros do comprador e pedidos",
+    "orgManagementDesc": "Adicionar e visualizar suas organizações",
+    "adminTools": "Ferramentas administrativas"
+  }
+}

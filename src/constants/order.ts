@@ -105,3 +105,18 @@ export const EXPIRY = {
     "2030",
   ],
 };
+
+export const PO_NUMBER = "poNumber";
+
+export const ORDER_STATUS = {
+  BackOrdered: "B",
+  Submitted: "I",
+  Approved: "M",
+  NoInventory: "L",
+  ApprovalDenied: "N",
+  PendingOrder: "P",
+  Released: "R",
+  Shipped: "S",
+  PendingApproval: "W",
+  Canceled: "X",
+};

@@ -22,13 +22,13 @@ import { StyledNumberInput } from "../../StyledUI";
  * @param quantity
  * @param errors
  */
-function ProductQuantity({ updateProductQuantity }: any) {
+function ProductQuantity({ updateProductQuantity, value }: any) {
   return (
     <StyledNumberInput
       mobile
       min={1}
       onChange={(value) => updateProductQuantity(value)}
-      value={1}
+      value={value ? value : 1}
       strict
     />
   );
@@ -36,6 +36,7 @@ function ProductQuantity({ updateProductQuantity }: any) {
 
 ProductQuantity.propTypes = {
   updateProductQuantity: PropTypes.any,
+  value: PropTypes.number,
 };
 
 export default ProductQuantity;

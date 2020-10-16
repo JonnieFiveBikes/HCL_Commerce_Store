@@ -43,6 +43,7 @@ jest.mock("./_foundation/hooks/useSite/SiteInfoService", () => {
     },
   };
 });
+window.scrollTo = jest.fn();
 beforeAll(() => {
   server.listen();
 });

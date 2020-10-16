@@ -1,22 +1,22 @@
 {
   "Shipping": {
-    "Title": "Shipping Details",
+    "Title": "Сведения о доставке",
     "Labels": {
-      "UseMultiple": "Ship to multiple addresses",
+      "UseMultiple": "Доставить по нескольким адресам",
       "ShippingAddress": "Адрес доставки",
       "ShippingMethod": "Способ доставки",
-      "SelectShippingMethod": "Choose your delivery method",
-      "AddNewAddress": "Add new address",
-      "EditAddress": "Edit Address"
+      "SelectShippingMethod": "Выберите свой способ доставки",
+      "AddNewAddress": "Добавить новый адрес",
+      "EditAddress": "Изменить адрес"
     },
     "Actions": {
-      "SelectAddress": "Use this address",
-      "CreateNew": "Create new address",
-      "Next": "Continue to Payment"
+      "SelectAddress": "Использовать этот адрес",
+      "CreateNew": "Создать новый адрес",
+      "Next": "Перейти к оплате"
     },
     "Msgs": {
-      "UseSavedAddress": "Or select a saved address to use:",
-      "SelectShippingAddress": "Please first select a shipping address"
+      "UseSavedAddress": "Или выберите сохраненный адрес:",
+      "SelectShippingAddress": "Сначала выберите адрес доставки"
     }
   }
 }

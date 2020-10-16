@@ -21,7 +21,7 @@ function ProductAttributes({
 }: any) {
   return (
     <>
-      {attributeList.map(function(attr: any, index: number) {
+      {attributeList.map(function (attr: any, index: number) {
         const useSwatches = attr.values[0].image1path ? true : false;
 
         const productAttributeTabContent = (
@@ -51,7 +51,7 @@ function ProductAttributes({
 ProductAttributes.propTypes = {
   attributeList: PropTypes.array.isRequired,
   onChangeHandler: PropTypes.any.isRequired,
-  currentSelection: PropTypes.any.isRequired,
+  currentSelection: PropTypes.any,
 };
 
 export default ProductAttributes;

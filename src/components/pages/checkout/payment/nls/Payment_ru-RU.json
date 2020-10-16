@@ -1,19 +1,21 @@
 {
   "Payment": {
-    "Title": "Payment Details",
+    "Title": "Сведения об оплате",
     "Msgs": {
       "InvalidFormat": "Недопустимый формат"
     },
     "Labels": {
-      "UseMultiple": "Use multiple payment methods",
+      "UseMultiple": "Использовать несколько способов оплаты",
       "PaymentMethod": "Способ оплаты {{number}}",
-      "AddNewAddress": "Add new address",
+      "AddNewAddress": "Добавить новый адрес",
       "BillingAddress": "Адрес выставления счета"
     },
     "Actions": {
-      "Back": "Back to Shipping Details",
-      "Next": "Перейти к сведениям о заказе",
-      "SaveAndAdd": "Save and add another payment method"
+      "Back": "Назад к сведениям о доставке",
+      "Next": "Сведения о заказе",
+      "Finish": "Готово",
+      "SaveAndAdd": "Сохранить и добавить другой способ оплаты",
+      "AddAnotherPayMethod": "Добавить другой способ оплаты"
     }
   }
 }

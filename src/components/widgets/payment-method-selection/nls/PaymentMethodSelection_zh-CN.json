@@ -12,7 +12,13 @@
       "CreditCard": "信用卡",
       "CCNumber": "信用卡号",
       "ExpiryDate": "到期日",
-      "CVV": "CVV 代码"
+      "CVV": "CVV 代码",
+      "OrderTotal": "订单总计",
+      "RemainingAmount": "剩余应付金额",
+      "AmountToPay": "应付金额"
+    },
+    "Actions": {
+      "PayRemaining": "支付剩余金额"
     }
   }
 }

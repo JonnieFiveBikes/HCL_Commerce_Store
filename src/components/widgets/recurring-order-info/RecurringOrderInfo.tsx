@@ -79,58 +79,49 @@ const RecurringOrderInfo: React.FC<RecurringOrderInfoProps> = (props: any) => {
 
   return (
     <>
-      <StyledGrid container>
-        <StyledGrid item xs={6}>
-          <StyledTypography variant="h6" gutterBottom>
-            {t("RecurringOrderInfo.Title")}
-          </StyledTypography>
+      {showHistoryLink && recurringOrderNumber && (
+        <StyledGrid item xs={12} align="left">
+          <StyledButton
+            variant="outlined"
+            onClick={() => handleHistoryLinkClick()}>
+            {t("RecurringOrderInfo.Labels.OrderHistoryButton", {
+              orderId: recurringOrderNumber,
+            })}
+          </StyledButton>
         </StyledGrid>
-        {showHistoryLink && recurringOrderNumber && (
-          <StyledGrid item xs={6} align="right">
-            <StyledButton
-              variant="outlined"
-              onClick={() => handleHistoryLinkClick()}>
-              {t("RecurringOrderInfo.Labels.OrderHistoryButton", {
-                orderId: recurringOrderNumber,
-              })}
-            </StyledButton>
-          </StyledGrid>
-        )}
-      </StyledGrid>
-      <StyledGrid container>
-        {recurringOrderNumber && (
-          <StyledGrid item xs={6} md={4}>
-            <StyledTypography variant="overline" gutterBottom>
-              {t("RecurringOrderInfo.Labels.RecurringOrderNumber")}
-            </StyledTypography>
-            <StyledTypography>{recurringOrderNumber}</StyledTypography>
-          </StyledGrid>
-        )}
-        {(orderSchedule || orderScheduleDisplay) && (
-          <StyledGrid item xs={6} md={4}>
-            <StyledTypography variant="overline" gutterBottom>
-              {t("RecurringOrderInfo.Labels.OrderSchedule")}
-            </StyledTypography>
-            <StyledTypography>{orderScheduleDisplayString}</StyledTypography>
-          </StyledGrid>
-        )}
-        {startDateDisplay && (
-          <StyledGrid item xs={6} md={4}>
-            <StyledTypography variant="overline" gutterBottom>
-              {t("RecurringOrderInfo.Labels.StartDate")}
-            </StyledTypography>
-            <StyledTypography>{startDateDisplay}</StyledTypography>
-          </StyledGrid>
-        )}
-        {nextDelivery && (
-          <StyledGrid item xs={6} md={4}>
-            <StyledTypography variant="overline" gutterBottom>
-              {t("RecurringOrderInfo.Labels.NextDelivery")}
-            </StyledTypography>
-            <StyledTypography>{nextDelivery}</StyledTypography>
-          </StyledGrid>
-        )}
-      </StyledGrid>
+      )}
+      {(orderSchedule || orderScheduleDisplay) && (
+        <StyledGrid item xs={12} sm={6} md={4}>
+          <StyledTypography variant="overline" gutterBottom>
+            {t("RecurringOrderInfo.Labels.OrderSchedule")}
+          </StyledTypography>
+          <StyledTypography>{orderScheduleDisplayString}</StyledTypography>
+        </StyledGrid>
+      )}
+      {recurringOrderNumber && (
+        <StyledGrid item xs={12} sm={6} md={8}>
+          <StyledTypography variant="overline" gutterBottom>
+            {t("RecurringOrderInfo.Labels.RecurringOrderNumber")}
+          </StyledTypography>
+          <StyledTypography>{recurringOrderNumber}</StyledTypography>
+        </StyledGrid>
+      )}
+      {startDateDisplay && (
+        <StyledGrid item xs={12} sm={6} md={4}>
+          <StyledTypography variant="overline" gutterBottom>
+            {t("RecurringOrderInfo.Labels.StartDate")}
+          </StyledTypography>
+          <StyledTypography>{startDateDisplay}</StyledTypography>
+        </StyledGrid>
+      )}
+      {nextDelivery && (
+        <StyledGrid item xs={12} sm={6} md={8}>
+          <StyledTypography variant="overline" gutterBottom>
+            {t("RecurringOrderInfo.Labels.NextDelivery")}
+          </StyledTypography>
+          <StyledTypography>{nextDelivery}</StyledTypography>
+        </StyledGrid>
+      )}
     </>
   );
 };

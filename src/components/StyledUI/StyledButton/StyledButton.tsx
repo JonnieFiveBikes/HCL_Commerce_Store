@@ -20,6 +20,19 @@ const CustomMatButton = React.forwardRef((props: any, ref: any) => {
 
 const StyledButton = styled(CustomMatButton)`
   ${({ theme }) => `
+
+  &.accordion-show-expanded {
+    display: none;
+  }
+  .MuiAccordionSummary-expandIcon.Mui-expanded &{
+    &.accordion-show-summary {
+      display: none;
+    }
+    &.accordion-show-expanded {
+      display:flex;
+      transform: rotate(180deg);
+    }
+  }
   &.MuiButtonBase-root {
     border-radius: ${theme.shape.borderRadius}px;
     padding: ${theme.spacing(1)}px ${theme.spacing(2)}px;
@@ -29,13 +42,14 @@ const StyledButton = styled(CustomMatButton)`
 
   &.MuiButton-containedSecondary {
     background: white;
-    border: 1px solid ${theme.palette.grey[400]};
+    border: 2px solid ${theme.palette.grey[500]};
+    padding: ${theme.spacing(1) - 2}px ${theme.spacing(2) - 2}px;
     color: ${theme.palette.text.secondary};
     font-weight: 500;
 
     &:hover {
       border-color: ${theme.palette.primary.dark};
-      color: ${theme.palette.primary.dark};
+      color: ${theme.palette.primary.main};
     }
   }
 
@@ -48,18 +62,15 @@ const StyledButton = styled(CustomMatButton)`
     background: none;
   }
 
-  &.left-border-solid  {
-  &.MuiButton-outlinedSizeSmall {
+  &.border-solid-bold  {
     font-weight: bold;
-    float: left;
     border: 1.35px solid;
-  }
   }
 
   &.confirm-action-button,
   &.cancel-action-button {
     background-color: ${theme.palette.background.paper};
-    font-weight: 600;   
+    font-weight: 600;
   }
 
   &.confirm-action-button {
@@ -70,6 +81,7 @@ const StyledButton = styled(CustomMatButton)`
   &.cancel-action-button {
     border: ${theme.spacing(0.25)}px solid;
   }
+
 
   `}
 `;

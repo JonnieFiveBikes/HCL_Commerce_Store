@@ -6,8 +6,6 @@
     "AddToCart": "放入購物車",
     "Description": "說明",
     "ProductDetails": "產品詳細資料",
-    "InStock": "有庫存",
-    "OutofStock": "缺貨",
     "PricePending": "價格擱置中",
     "addToCartErrorMsg": "「數量」欄位中的值無效或空白。請確定值為正整數，然後重試。",
     "any": "任何",

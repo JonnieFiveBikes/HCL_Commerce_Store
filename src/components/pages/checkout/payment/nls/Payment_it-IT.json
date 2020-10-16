@@ -1,19 +1,21 @@
 {
   "Payment": {
-    "Title": "Payment Details",
+    "Title": "Dettagli pagamento",
     "Msgs": {
       "InvalidFormat": "Formato non valido"
     },
     "Labels": {
-      "UseMultiple": "Use multiple payment methods",
+      "UseMultiple": "Usa più metodi di pagamento",
       "PaymentMethod": "Metodo di pagamento {{number}}",
-      "AddNewAddress": "Add new address",
+      "AddNewAddress": "Aggiungi nuovo indirizzo",
       "BillingAddress": "Indirizzo di fatturazione"
     },
     "Actions": {
-      "Back": "Back to Shipping Details",
-      "Next": "Continua a rivedere l'ordine",
-      "SaveAndAdd": "Save and add another payment method"
+      "Back": "Torna a dettagli spedizione",
+      "Next": "Controlla ordine",
+      "Finish": "Fine",
+      "SaveAndAdd": "Salva e aggiungi un altro metodo di pagamento",
+      "AddAnotherPayMethod": "Aggiungi un altro metodo di pagamento"
     }
   }
 }

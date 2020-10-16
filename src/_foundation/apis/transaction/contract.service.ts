@@ -1,13 +1,16 @@
-/*
+/**
+ *==================================================
+ * Licensed Materials - Property of HCL Technologies
+ *
+ * HCL Commerce
+ *
  * (C) Copyright HCL Technologies Limited 2020
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ *
+ *==================================================
  */
-
+/**
+ * Do not modify, the file is generated.
+ */
 import { AxiosRequestConfig, Method, AxiosPromise } from "axios";
 import { executeRequest } from "../../axios/axiosConfig";
 import { getSite } from "../../hooks/useSite";
@@ -69,6 +72,11 @@ const contractService = {
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
+    if (parameters["q"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/contract' missing required parameter q"
+      );
+    }
     if (parameters["q"] !== undefined) {
       const name = "q";
       const parameter = parameters[name];
@@ -80,11 +88,6 @@ const contractService = {
       } else {
         queryParameters.set(name, parameter);
       }
-    }
-    if (parameters["q"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/contract' missing required parameter q"
-      );
     }
 
     if (parameters.$queryParameters) {
@@ -305,13 +308,13 @@ const contractService = {
 
 
    ** `@property {string} paymentTCId (required)` Payment terms & conditions id. The payment Term & Condition identifier for this payment instruction.
-   ** `@property {integer} changeableFlag ` 
-   ** `@property {string} displayName ` 
-   ** `@property {integer} mandatoryFlag ` 
-   ** `@property {integer} memberId ` 
-   ** `@property {string} nickName ` 
-   ** `@property {integer} tcSequence ` 
-   ** `@property {integer} tradingId ` 
+   ** `@property {integer} changeableFlag `
+   ** `@property {string} displayName `
+   ** `@property {integer} mandatoryFlag `
+   ** `@property {integer} memberId `
+   ** `@property {string} nickName `
+   ** `@property {integer} tcSequence `
+   ** `@property {integer} tradingId `
   */
   byPaymentTermConditionId(
     parameters: any,
@@ -388,6 +391,11 @@ const contractService = {
 
     queryParameters.set("q", "byPaymentTermConditionId");
 
+    if (parameters["paymentTCId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/contract' missing required parameter paymentTCId"
+      );
+    }
     if (parameters["paymentTCId"] !== undefined) {
       const name = "paymentTCId";
       const parameter = parameters[name];
@@ -399,11 +407,6 @@ const contractService = {
       } else {
         queryParameters.set(name, parameter);
       }
-    }
-    if (parameters["paymentTCId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/contract' missing required parameter paymentTCId"
-      );
     }
 
     if (parameters["changeableFlag"] !== undefined) {

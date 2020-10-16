@@ -88,6 +88,8 @@
     "_ERR_CMD_INVALID_PARAM_parentMember": "Le nom d'organisation que vous avez saisi dans la zone Organisation n'est pas valide. Vous devez indiquer le nom exact de l'organisation. Si vous ne le connaissez pas, vérifiez-le auprès de la personne qui gère votre organisation pour ce magasin. Si votre organisation a une organisation mère, vous devez respecter le format suivant pour votre entrée : <b>organisation/organisation_mère</b>, par exemple, <b>ABC France/ABC Monde</b>.",
     "_ERR_CMD_INVALID_PARAM_org_orgEntityName": "Entrez un nom d'organisation dans la zone Nom d'organisation.",
     "_API_BAD_INV_2": "Le stock est insuffisant pour acheter {{1}} unités de {{0}}.",
+    "_ERR_FINDING_ORDER_230": "Une erreur système est survenue lors du traitement de votre commande.",
+    "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "Une erreur système est survenue. Veuillez contacter le magasin pour résoudre le problème.",
     "B2B": {
       "_ERR_LOGONID_ALREDY_EXIST_2030": "L'ID de connexion que vous avez entré existe déjà. Indiquez-en un autre et faites une nouvelle tentative."
     }

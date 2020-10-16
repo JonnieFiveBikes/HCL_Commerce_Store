@@ -36,7 +36,7 @@ function ProductRecommendationLayout({
   ...props
 }: any) {
   let title: string;
-  const mySite: any = useSite();
+  const { mySite } = useSite();
   const contractId = useSelector(currentContractIdSelector);
   const storeID: string = mySite ? mySite.storeID : "";
   const [productList, setProductList] = React.useState<Array<object>>();
@@ -183,8 +183,8 @@ function ProductRecommendationLayout({
   }, [eSpotName, mySite]);
 
   let slides: JSX.Element[] = [];
-  const ProductRecCard = lazy(() =>
-    import("../productCard-recommendation/ProductRecCard")
+  const ProductRecCard = lazy(
+    () => import("../productCard-recommendation/ProductRecCard")
   );
 
   productList?.map((e: any) => {

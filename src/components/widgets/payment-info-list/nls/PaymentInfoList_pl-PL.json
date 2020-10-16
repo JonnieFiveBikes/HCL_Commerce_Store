@@ -1,0 +1,12 @@
+{
+  "PaymentInfoList": {
+    "Title": "Formy płatności — suma zamówienia: ",
+    "Msgs": {
+      "PayMethodRequired": "Wymagana jest co najmniej jedna forma płatności.",
+      "InsufficientPayment": "Za pomocą różnych form płatności musisz pokryć sumę zamówienia w wysokości {{grandTotal}}."
+    },
+    "Actions": {
+      "AddPayMethod": "Dodaj formę płatności"
+    }
+  }
+}

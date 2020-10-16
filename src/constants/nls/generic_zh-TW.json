@@ -8,8 +8,8 @@
       "priceHighToLow": "價格（由高到低）"
     },
     "inventoryStatus": {
-      "Available": "可用",
-      "Allocated": "可用",
+      "Available": "有庫存",
+      "Allocated": "有庫存",
       "Unallocated": "未配置",
       "Backordered": "延期交貨",
       "OOS": "缺貨",

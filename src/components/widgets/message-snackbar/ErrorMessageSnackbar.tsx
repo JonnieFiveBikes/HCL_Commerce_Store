@@ -29,7 +29,7 @@ const useErrorMessageSnackbar = () => {
 
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
-  const mySite = useSite();
+  const { mySite } = useSite();
   const error: any = useSelector(genericErrorSelector);
 
   let errorKeys: string[] = [];

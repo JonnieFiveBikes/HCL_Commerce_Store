@@ -17,6 +17,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 const SEARCH_HOST = "https://localhost:30901";
 const TRANSACTION_HOST = "https://localhost";
 const MOCK_HOST = "http://localhost:9002";
+const CMC_HOST = "https://localhost:7443";
 
 const useMock = () => {
   return process.env.REACT_APP_MOCK === "true";
@@ -78,6 +79,11 @@ const hclStoreAssetProxyContext = {
   pathRewrite: storeAssetPathRewrite,
 };
 
+const lobToolsProxyContext = {
+  target: CMC_HOST,
+  ...options,
+};
+
 const transactionProxyContext = useMock()
   ? {
       target: MOCK_HOST,
@@ -98,5 +104,9 @@ module.exports = function (app) {
   app.use(
     ["/hclstore/", "/wcsstore/ExtendedSitesCatalogAssetStore"],
     createProxyMiddleware(hclStoreAssetProxyContext)
+  );
+  app.use(
+    ["/lobtools/", "/tooling/", "/sockjs-node/", "/rest/"],
+    createProxyMiddleware(lobToolsProxyContext)
   );
 };

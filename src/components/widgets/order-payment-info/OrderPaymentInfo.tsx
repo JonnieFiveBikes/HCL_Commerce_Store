@@ -12,7 +12,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 //UI
-import { StyledTypography } from "../../StyledUI";
+import { StyledTypography, StyledIconLabel, StyledBox } from "../../StyledUI";
+import PaymentIcon from "@material-ui/icons/Payment";
 
 interface OrderPaymentInfoProps {
   paymentInstruction: any;
@@ -53,23 +54,23 @@ const OrderPaymentInfo: React.FC<OrderPaymentInfoProps> = (props: any) => {
 
   return (
     <>
-      <StyledTypography variant="h6" gutterBottom>
-        {t("OrderPaymentInfo.Title")}
-      </StyledTypography>
       {pi && (
         <>
-          <StyledTypography variant="overline" gutterBottom>
-            {t("OrderPaymentInfo.Labels.BillMethod")}
-          </StyledTypography>
-          <StyledTypography gutterBottom>{pi.piDescription}</StyledTypography>
-          {account !== "" && (
-            <StyledTypography gutterBottom>{account}</StyledTypography>
-          )}
-          {month !== "" && year !== "" && (
-            <StyledTypography gutterBottom>
-              {month} / {year}
-            </StyledTypography>
-          )}
+          <StyledIconLabel
+            icon={<PaymentIcon />}
+            label={t("OrderPaymentInfo.Labels.BillMethod")}
+          />
+          <StyledBox my={2}>
+            <StyledTypography gutterBottom>{pi.piDescription}</StyledTypography>
+            {account !== "" && (
+              <StyledTypography gutterBottom>{account}</StyledTypography>
+            )}
+            {month !== "" && year !== "" && (
+              <StyledTypography gutterBottom>
+                {month} / {year}
+              </StyledTypography>
+            )}
+          </StyledBox>
         </>
       )}
     </>

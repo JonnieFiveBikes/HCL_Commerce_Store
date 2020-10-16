@@ -1,0 +1,11 @@
+{
+  "AdminTools": {
+    "buyerManagement": "Gestione acquirente",
+    "orgAndBuyer": "Approvazione acquirente e ordine",
+    "orgManagement": "Gestione organizzazione",
+    "buyerManagementDesc": "Crea, modifica o rimuovi acquirenti nelle organizzazioni",
+    "orgAndBuyerDesc": "Approva o rifiuta registrazioni acquirenti e ordini",
+    "orgManagementDesc": "Aggiungi e visualizza le organizzazioni",
+    "adminTools": "Strumenti di amministrazione"
+  }
+}

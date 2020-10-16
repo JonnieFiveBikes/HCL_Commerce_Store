@@ -8,8 +8,8 @@
       "priceHighToLow": "Цена (по убыванию)"
     },
     "inventoryStatus": {
-      "Available": "Доступно",
-      "Allocated": "Доступно",
+      "Available": "Есть на складе",
+      "Allocated": "Есть на складе",
       "Unallocated": "Не распределено",
       "Backordered": "Предварительные заказы",
       "OOS": "Нет на складе",

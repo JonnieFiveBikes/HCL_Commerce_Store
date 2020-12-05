@@ -15,6 +15,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
 import { Redirect } from "react-router-dom";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 //Custom libraries
@@ -25,6 +26,7 @@ import {
   numItemsSelector,
   isFetchingSelector,
   cartSelector,
+  orderItemsSelector,
 } from "../../../redux/selectors/order";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 import { guestStatusSelector } from "../../../redux/selectors/user";
@@ -39,6 +41,8 @@ import {
   StyledProgressPlaceholder,
   StyledLink,
 } from "../../StyledUI";
+//GA360
+import GADataService from "../../../_foundation/gtm/gaData.service";
 
 /**
  * Checkout component
@@ -46,6 +50,8 @@ import {
  * @param props
  */
 const Checkout: React.FC = (props: any) => {
+  const widgetName = getDisplayName(Checkout);
+
   const { route, location, match } = props;
   const isGuest = useSelector(guestStatusSelector);
   const contractId = useSelector(currentContractIdSelector);
@@ -59,7 +65,7 @@ const Checkout: React.FC = (props: any) => {
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { mySite } = useSite();
+  const { mySite, storeDisplayName } = useSite();
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
@@ -84,6 +90,7 @@ const Checkout: React.FC = (props: any) => {
   const payloadBase: any = {
     currency: defaultCurrencyID,
     contractId: contractId,
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),
@@ -101,19 +108,44 @@ const Checkout: React.FC = (props: any) => {
       ? reviewOrderProps
       : {};
 
+  //GA360
+  if (mySite.enableGA) GADataService.setPageTitle(storeDisplayName);
+
   useEffect(() => {
     if (mySite && contractId && defaultCurrencyID) {
       let payload = {
         ...payloadBase,
         fetchCatentries: true,
       };
-      dispatch(orderActions.GET_CART_ACTION(payload));
+      dispatch(orderActions.GET_CART_ACTION({ ...payload }));
     }
-
     return () => {
       cancels.forEach((cancel) => cancel());
     };
   }, [mySite, contractId, defaultCurrencyID]);
+
+  /**GA360: checkout process and  purchase event */
+  const orderItems = useSelector(orderItemsSelector);
+  useEffect(() => {
+    if (mySite.enableGA) {
+      GADataService.sendCheckoutPageViewEvent(
+        steps[activeStep],
+        location.pathname
+      );
+      let step = activeStep + 1;
+      switch (step) {
+        case 1:
+          GADataService.sendCheckoutEvent(orderItems, step, steps[0]);
+          break;
+        case 2:
+          GADataService.sendCheckoutEvent(orderItems, step, steps[1]);
+          break;
+        case 3:
+          GADataService.sendCheckoutEvent(orderItems, step, steps[2]);
+          break;
+      }
+    }
+  }, [activeStep]);
 
   return isFetching === undefined || isFetching ? (
     <StyledProgressPlaceholder className="vertical-padding-15" />

@@ -21,3 +21,5 @@ export const ORG_TOOL_ID = "organizationManagement";
 export const ACCOUNT = "ACCOUNT";
 export const LANGID = "langId";
 export const LOCALE = "locale";
+export const SHOW_API_FLOW = "showAPIFlow";
+export const PRODUCTION = "production";

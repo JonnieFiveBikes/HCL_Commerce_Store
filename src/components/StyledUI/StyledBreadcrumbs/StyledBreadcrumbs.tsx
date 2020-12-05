@@ -19,7 +19,7 @@ const BreadcrumbWrapper = (props: any) => (
 
 const StyledBreadcrumbs = styled(BreadcrumbWrapper)`
   ${({ theme }) => `
-    margin-bottom: ${theme.spacing(3)}px;
+    margin: ${theme.spacing(3)}px 0;
 
     a {
       font-weight: 500;

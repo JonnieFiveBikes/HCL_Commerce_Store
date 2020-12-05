@@ -56,7 +56,7 @@ const Account = lazy(
 const Dashboard = lazy(
   () => import("../components/pages/_sapphire/dashboard/Dashboard")
 );
-const OrderHistory = lazy(
+const OrderHistoryPage = lazy(
   () => import("../components/pages/_sapphire/order/OrderHistoryPage")
 );
 const RecurringOrders = lazy(
@@ -174,7 +174,7 @@ const B2BRouteConfig: RouteConfig[] = [
     path: ROUTES.ORDER_HISTORY,
     exact: true,
     isProtected: ROUTES.REGISTER_PROTECTED,
-    component: OrderHistory,
+    component: OrderHistoryPage,
   },
   {
     key: ROUTES.RECURRING_ORDERS,

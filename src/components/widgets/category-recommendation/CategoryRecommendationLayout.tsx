@@ -14,6 +14,7 @@ import ReactHtmlParser from "react-html-parser";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import eSpotService from "../../../_foundation/apis/transaction/eSpot.service";
@@ -30,6 +31,8 @@ import {
 } from "../../StyledUI";
 
 function CategoryRecommendationLayout({ cid, eSpot, ...props }: any) {
+  const widgetName = getDisplayName(CategoryRecommendationLayout);
+
   const { eSpotName, type } = eSpot;
   const { page } = props;
   const { mySite } = useSite();
@@ -53,6 +56,13 @@ function CategoryRecommendationLayout({ cid, eSpot, ...props }: any) {
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+
   const initESpot = (pageName: string) => {
     let _eSpotName = eSpotName;
     if (type === ESPOT_TYPE_PAGE_SUFFIX) {
@@ -68,9 +78,7 @@ function CategoryRecommendationLayout({ cid, eSpot, ...props }: any) {
         DM_ReturnCatalogGroupId: true,
         DM_ReturnCatalogEntryId: true,
       },
-      cancelToken: new CancelToken(function executor(c) {
-        cancels.push(c);
-      }),
+      ...payloadBase,
     };
     eSpotService
       .findByName(parameters)
@@ -113,9 +121,7 @@ function CategoryRecommendationLayout({ cid, eSpot, ...props }: any) {
         $queryParameters: {
           contractId: contract,
         },
-        cancelToken: new CancelToken(function executor(c) {
-          cancels.push(c);
-        }),
+        ...payloadBase,
       };
       categoryService
         .getV2CategoryResourcesUsingGET(requestParameters)

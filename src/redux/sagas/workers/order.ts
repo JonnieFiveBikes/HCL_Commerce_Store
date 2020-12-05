@@ -30,6 +30,7 @@ import { fetchOrderItemDetailsByIds } from "./orderDetails";
 export function* copyCart(action: AnyAction) {
   try {
     const { fromOrderId } = action.payload;
+    const payload = action.payload;
     const params = {
       body: {
         fromOrderId_1: fromOrderId,
@@ -37,6 +38,9 @@ export function* copyCart(action: AnyAction) {
         copyOrderItemId_1: "*",
       },
     };
+    if (payload.widget) {
+      params["widget"] = payload.widget;
+    }
     const response = yield call(cartService.copyOrder, params);
     yield put(
       COPY_CART_SUCCESS_ACTION({
@@ -112,6 +116,11 @@ export function* addItem(action: any) {
         x_inventoryValidation: ORDER_CONFIGS.inventoryValidation,
       },
     };
+    if (payload.widget) {
+      body["widget"] = payload.widget;
+      cartPayload["widget"] = payload.widget;
+    }
+
     const response = yield call(cartService.addOrderItem, body);
     yield put({
       type: ACTIONS.ITEM_ADD_SUCCESS,
@@ -149,6 +158,10 @@ export function* removeItem(action: any) {
         orderItemId: orderItemId,
       },
     };
+    if (payload.widget) {
+      body["widget"] = payload.widget;
+    }
+
     const response = yield call(cartService.deleteOrderItem, body);
     yield put({ type: ACTIONS.ITEM_REMOVE_SUCCESS, response, payload });
   } catch (error) {
@@ -177,6 +190,10 @@ export function* updateItem(action: any) {
         ],
       },
     };
+    if (payload.widget) {
+      body["widget"] = payload.widget;
+    }
+
     const response = yield call(cartService.updateOrderItem, body);
     yield put({ type: ACTIONS.ITEM_UPDATE_SUCCESS, response, payload });
   } catch (error) {
@@ -250,6 +267,9 @@ export function* fetchCart(action: any) {
             if (parameters?.cancelToken) {
               paramsProduct["cancelToken"] = parameters.cancelToken;
             }
+            if (parameters?.widget) {
+              paramsProduct["widget"] = parameters.widget;
+            }
 
             try {
               const contents = yield call(
@@ -266,6 +286,7 @@ export function* fetchCart(action: any) {
                     attributes: catentry.attributes,
                     seo: catentry.seo,
                     disallowRecurringOrder: catentry.disallowRecurringOrder,
+                    parentCatalogGroupID: catentry.parentCatalogGroupID,
                   };
                   catentries[catentry.id] = obj;
                 });
@@ -346,6 +367,9 @@ export function* updateShipMode(action: any) {
       orderItem: [], //bypass defect HC-2784
     },
   };
+  if (payload.widget) {
+    body["widget"] = payload.widget;
+  }
   const response = yield call(
     shippingInfoService.updateOrderShippingInfo,
     body

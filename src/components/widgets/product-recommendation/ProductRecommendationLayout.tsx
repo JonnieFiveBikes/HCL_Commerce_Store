@@ -14,6 +14,7 @@ import ReactHtmlParser from "react-html-parser";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import eSpotService from "../../../_foundation/apis/transaction/eSpot.service";
@@ -25,7 +26,7 @@ import { currentContractIdSelector } from "../../../redux/selectors/contract";
 //UI
 import {
   StyledTypography,
-  PureReactSlider,
+  StyledProductRecommendationSlider,
   StyledProgressPlaceholder,
 } from "../../StyledUI";
 
@@ -35,6 +36,8 @@ function ProductRecommendationLayout({
   renderingContext,
   ...props
 }: any) {
+  const widgetName = getDisplayName(ProductRecommendationLayout);
+
   let title: string;
   const { mySite } = useSite();
   const contractId = useSelector(currentContractIdSelector);
@@ -47,14 +50,20 @@ function ProductRecommendationLayout({
   >();
 
   let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+
   const initESpot = (name: string) => {
     let eSName = name;
     const parameters: any = {
       storeId: storeID,
       name: eSName,
-      cancelToken: new CancelToken(function executor(c) {
-        cancels.push(c);
-      }),
+      ...payloadBase,
     };
     eSpotService
       .findByName(parameters)
@@ -97,9 +106,7 @@ function ProductRecommendationLayout({
       let requestParameters = {
         storeId: storeID,
         id: plist.map((p) => p.id),
-        cancelToken: new CancelToken(function executor(c) {
-          cancels.push(c);
-        }),
+        ...payloadBase,
       };
       productsService
         .findProductsUsingGET(requestParameters)
@@ -207,7 +214,7 @@ function ProductRecommendationLayout({
               {ReactHtmlParser(recommendedProductTitle)}
             </StyledTypography>
           )}
-          <PureReactSlider slidesList={slides} />
+          <StyledProductRecommendationSlider slidesList={slides} />
         </>
       ) : (
         <StyledProgressPlaceholder className="vertical-padding-5" />

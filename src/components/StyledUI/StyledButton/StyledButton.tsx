@@ -13,8 +13,14 @@ import styled from "styled-components";
 import MatButton from "@material-ui/core/Button";
 
 const CustomMatButton = React.forwardRef((props: any, ref: any) => {
+  const { variant, className, color, ...other } = props;
   return (
-    <MatButton {...props} ref={ref} variant={props.variant || "contained"} />
+    <MatButton
+      {...props}
+      ref={ref}
+      variant={variant || "contained"}
+      color={color || "primary"}
+    />
   );
 });
 

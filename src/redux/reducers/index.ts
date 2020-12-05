@@ -12,6 +12,7 @@
 import { combineReducers } from "redux";
 //Redux
 import account from "./account";
+import api from "./api";
 import catalog from "./catalog";
 import user from "./user";
 import order from "./order";
@@ -42,11 +43,13 @@ import {
   RecurringOrderReducerState,
   OrderDetailsMapReducerState,
   SiteReducerState,
+  ApiReducerState,
 } from "./reducerStateInterface";
 
 export * from "./reducerStateInterface";
 export interface RootReducerState {
   account: AccountReducerState;
+  api: ApiReducerState;
   catalog: CatalogReducerState;
   user: UserReducerState;
   order: OrderReducerState;
@@ -65,6 +68,7 @@ export interface RootReducerState {
 
 const reducers = {
   account,
+  api,
   catalog,
   user,
   order,

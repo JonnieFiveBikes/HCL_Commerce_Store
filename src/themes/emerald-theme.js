@@ -8,8 +8,8 @@
  *
  *==================================================
  */
-import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
-import { sharedOverrides, merge } from "./shared-theme";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { sharedOverrides, merge, responsiveFontSizes } from "./shared-theme";
 import { palette } from "./color-palette";
 
 const { main, light, dark } = palette.emerald;
@@ -21,31 +21,30 @@ export const emeraldOverrides = {
       light: light,
       main: main,
       dark: dark,
-      contrastText: "#fff"
+      contrastText: "#fff",
     },
     secondary: {
       light: light,
       main: main,
       dark: dark,
-      contrastText: "#fff"
-    }
+      contrastText: "#fff",
+    },
   },
   button: {
     backgroundColor: main,
     "&:hover": {
-      backgroundColor: main
-    }
+      backgroundColor: main,
+    },
   },
   child: {
-    backgroundColor: main
+    backgroundColor: main,
   },
   rippleVisible: {
-    opacity: 0.5
-  }
+    opacity: 0.5,
+  },
 };
 
 const combinedOverides = merge(sharedOverrides, emeraldOverrides);
-const theme = createMuiTheme(combinedOverides);
-const emeraldTheme = responsiveFontSizes(theme);
+const theme = responsiveFontSizes(createMuiTheme(combinedOverides));
 
-export default emeraldTheme;
+export default theme;

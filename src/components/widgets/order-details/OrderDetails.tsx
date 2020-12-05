@@ -12,6 +12,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import cartService from "../../../_foundation/apis/transaction/cart.service";
 //Custom libraries
@@ -22,7 +23,7 @@ import { OrderPaymentInfo } from "../order-payment-info";
 import { OrderTotalSummary } from "../order-total-summary";
 import { RecurringOrderInfo } from "../recurring-order-info";
 import { OrderDiscountSummary } from "../order-discount-summary";
-import RecurringOderHistory from "../../pages/_sapphire/order/RecurringOrderHistory";
+import RecurringOrderHistory from "../../pages/_sapphire/order/RecurringOrderHistory";
 import { PurchaseOrderNumber } from "../purchase-order-number";
 //UI
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -63,6 +64,7 @@ interface OrderDetailsProps {
  * @param props
  */
 const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
+  const widgetName = getDisplayName(OrderDetails);
   const isRecurringOrder = props.isRecurringOrder
     ? props.isRecurringOrder
     : false;
@@ -105,14 +107,19 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
   const sm = !useMediaQuery(theme.breakpoints.up("sm"));
   const fullWidth = sm ? { fullWidth: true } : {};
 
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+
   const resolvePONumber = () => {
     if (props.poNumber === undefined && order && order.buyerPONumber) {
       cartService
         .getBuyerPurchaseOrderDataBean({
           buyerPurchaseOrderId: order.buyerPONumber,
-          cancelToken: new Axios.CancelToken(function executor(c) {
-            cancels.push(c);
-          }),
+          ...payloadBase,
         })
         .then((r) => r.data)
         .then((d2) => {
@@ -192,7 +199,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
         <StyledGrid item xs={12}>
           <StyledPaper>
             <StyledContainer className="vertical-margin-2">
-              <RecurringOderHistory parentOrderId={recurringOrderNumber} />
+              <RecurringOrderHistory parentOrderId={recurringOrderNumber} />
             </StyledContainer>
           </StyledPaper>
         </StyledGrid>

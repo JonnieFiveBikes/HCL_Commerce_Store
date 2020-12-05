@@ -23,9 +23,13 @@ import {
 
 const StyledCardWrapper = styled(({ ...props }) => <Card {...props} />)`
   ${({ theme }) => `
-    .MuiTypography-body2 {
-      width: 66%;
-      margin: 0 auto;
+    border: 1px solid  ${theme.palette.grey[200]};
+
+    &.product-card {
+      .MuiTypography-body2 {
+        width: 66%;
+        margin: 0 auto;
+      }
     }
   
     &.address-card {
@@ -61,6 +65,7 @@ interface StyledParameterizedCardProps {
   confirmLabel?: string;
   cancelLabel?: string;
   className?: string;
+  cardFooter?: any;
 }
 
 const StyledCard: React.FC<StyledParameterizedCardProps> = (props: any) => {
@@ -68,6 +73,7 @@ const StyledCard: React.FC<StyledParameterizedCardProps> = (props: any) => {
     headerProps,
     contentComponent,
     cardActions,
+    cardFooter,
     confirmLabel,
     cancelLabel,
     className,
@@ -166,6 +172,12 @@ const StyledCard: React.FC<StyledParameterizedCardProps> = (props: any) => {
                 </StyledGrid>
               </StyledConfirmOverlay>
             )}
+          </StyledGrid>
+        )}
+
+        {cardFooter && (
+          <StyledGrid item xs={false}>
+            {cardFooter}
           </StyledGrid>
         )}
       </StyledGrid>

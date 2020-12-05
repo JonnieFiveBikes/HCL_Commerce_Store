@@ -13,7 +13,7 @@ import { createAction } from "@reduxjs/toolkit";
 //Redux
 import * as ACTIONTYPES from "../action-types/context";
 
-export const USER_CONTEXT_REQUEST_ACTION = createAction(
+export const USER_CONTEXT_REQUEST_ACTION = createAction<any, string>(
   ACTIONTYPES.USER_CONTEXT_REQUESTED
 );
 

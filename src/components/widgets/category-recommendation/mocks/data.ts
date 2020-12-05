@@ -15,6 +15,9 @@ export const initStates: RootReducerState = {
     orders: null,
     address: null,
   },
+  api: {
+    apiFlowList: [],
+  },
   catalog: {
     productList: [],
     productListTotal: -1,

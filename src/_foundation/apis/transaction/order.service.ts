@@ -1,20 +1,25 @@
-/* jshint ignore:start */
-/*
+/**
+ *==================================================
+ * Licensed Materials - Property of HCL Technologies
+ *
+ * HCL Commerce
+ *
  * (C) Copyright HCL Technologies Limited 2020
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ *
+ *==================================================
  */
-
-/* beautify ignore:start */
+/**
+ * Do not modify, the file is generated.
+ */
+//Standard libraries
 import { AxiosRequestConfig, Method, AxiosPromise } from "axios";
+//Foundation libraries
 import { executeRequest } from "../../axios/axiosConfig";
 import { getSite } from "../../hooks/useSite";
-
-/* beautify ignore:end */
+import { localStorageUtil } from "../../utils/storageUtil";
+import { PRODUCTION, SHOW_API_FLOW } from "../../constants/common";
+//Redux
+import { API_CALL_ACTION } from "../../../redux/actions/api";
 
 const orderService = {
   /**
@@ -62,7 +67,9 @@ const orderService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -73,25 +80,19 @@ const orderService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    requestUrl = requestUrl.replace("{orderId}", parameters["orderId"]);
-
     if (parameters["orderId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/order/{orderId}' missing required parameter orderId"
+        "Request '/store/{storeId}/order/{orderId}' missing path parameter orderId"
       );
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+    requestUrl = requestUrl.replace("{orderId}", parameters["orderId"]);
 
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/order/{orderId}' missing required parameter storeId"
+        "Request '/store/{storeId}/order/{orderId}' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -166,16 +167,13 @@ const orderService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -212,6 +210,28 @@ const orderService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -260,7 +280,9 @@ const orderService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -271,25 +293,19 @@ const orderService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/order/byStatus/{status}' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/order/byStatus/{status}' missing required parameter storeId"
-      );
-    }
-
-    requestUrl = requestUrl.replace("{status}", parameters["status"]);
-
     if (parameters["status"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/order/byStatus/{status}' missing required parameter status"
+        "Request '/store/{storeId}/order/byStatus/{status}' missing path parameter status"
       );
     }
+    requestUrl = requestUrl.replace("{status}", parameters["status"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -351,16 +367,13 @@ const orderService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -398,25 +411,47 @@ const orderService = {
       { ...parameters }
     );
 
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 
   /**
-     * Find promotions applied to order.
-     * `@method`
-     * `@name Order#findOrderPromotions`
-     *
-     * `@param {any} headers (optional)` will add headers to rest request
-     *
-     * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-     *
-     * `@param {any} parameters` have following properties:
+  * Find promotions applied to order.
+  * `@method`
+  * `@name Order#findOrderPromotions`
+  *
+  * `@param {any} headers (optional)` will add headers to rest request
+  *
+  * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
+  *
+  * `@param {any} parameters` have following properties:
      ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
-     ** `@property {string} orderId (required)` The order identifier.
+   ** `@property {string} orderId (required)` The order identifier.
 
 
-     ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
-     */
+   ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
+  */
   findOrderPromotions(
     parameters: any,
     headers?: any,
@@ -444,7 +479,9 @@ const orderService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -455,18 +492,18 @@ const orderService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/order' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
+    if (parameters["orderId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/order' missing required parameter storeId"
+        "Request '/store/{storeId}/order' missing required parameter orderId"
       );
     }
-
     if (parameters["orderId"] !== undefined) {
       const name = "orderId";
       const parameter = parameters[name];
@@ -478,12 +515,6 @@ const orderService = {
       } else {
         queryParameters.set(name, parameter);
       }
-    }
-
-    if (parameters["orderId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/order' missing required parameter orderId"
-      );
     }
 
     if (parameters["profileName"] !== undefined) {
@@ -500,12 +531,6 @@ const orderService = {
     }
 
     queryParameters.set("q", "findOrderPromotions");
-
-    if (parameters["q"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/order' missing required parameter q"
-      );
-    }
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -528,16 +553,13 @@ const orderService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -575,28 +597,50 @@ const orderService = {
       { ...parameters }
     );
 
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 
   /**
-     * This allows a CSR to find orders that he/she can work on behalf.
-     * `@method`
-     * `@name Order#ordersICanWorkonbehalf`
-     *
-     * `@param {any} headers (optional)` will add headers to rest request
-     *
-     * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-     *
-     * `@param {any} parameters` have following properties:
+  * This allows a CSR to find orders that he/she can work on behalf.
+  * `@method`
+  * `@name Order#ordersICanWorkonbehalf`
+  *
+  * `@param {any} headers (optional)` will add headers to rest request
+  *
+  * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
+  *
+  * `@param {any} parameters` have following properties:
      ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
 
 
-     ** `@property {string} orderByTableName ` The order by table name.
-     ** `@property {string} orderByFieldName ` The order by field name.
-     ** `@property {string} startIndex ` The starting index of the result.
-     ** `@property {string} retrievePendingGuestOrders ` The flag of retrieving pending guest orders or not. Default value is false.
-     ** `@property {string} maxResults ` The maximum number of results to be returned.
-     */
+   ** `@property {string} orderByTableName ` The order by table name.
+   ** `@property {string} orderByFieldName ` The order by field name.
+   ** `@property {string} startIndex ` The starting index of the result.
+   ** `@property {string} retrievePendingGuestOrders ` The flag of retrieving pending guest orders or not. Default value is false.
+   ** `@property {string} maxResults ` The maximum number of results to be returned.
+  */
   ordersICanWorkonbehalf(
     parameters: any,
     headers?: any,
@@ -624,7 +668,9 @@ const orderService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -635,17 +681,12 @@ const orderService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/order' missing required parameter storeId"
+        "Request '/store/{storeId}/order' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["profileName"] !== undefined) {
       const name = "profileName";
@@ -661,12 +702,6 @@ const orderService = {
     }
 
     queryParameters.set("q", "ordersICanWorkonbehalf");
-
-    if (parameters["q"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/order' missing required parameter q"
-      );
-    }
 
     if (parameters["orderByTableName"] !== undefined) {
       const name = "orderByTableName";
@@ -741,16 +776,13 @@ const orderService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -787,6 +819,28 @@ const orderService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -834,7 +888,9 @@ const orderService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -845,25 +901,19 @@ const orderService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/order/{orderId}/comment' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/order/{orderId}/comment' missing required parameter storeId"
-      );
-    }
-
-    requestUrl = requestUrl.replace("{orderId}", parameters["orderId"]);
-
     if (parameters["orderId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/order/{orderId}/comment' missing required parameter orderId"
+        "Request '/store/{storeId}/order/{orderId}/comment' missing path parameter orderId"
       );
     }
+    requestUrl = requestUrl.replace("{orderId}", parameters["orderId"]);
 
     if (parameters["mode"] !== undefined) {
       const name = "mode";
@@ -894,7 +944,6 @@ const orderService = {
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
     if (parameters.$queryParameters) {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
@@ -903,16 +952,13 @@ const orderService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -949,6 +995,28 @@ const orderService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -998,7 +1066,9 @@ const orderService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -1009,25 +1079,19 @@ const orderService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/order/{orderId}/comment' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/order/{orderId}/comment' missing required parameter storeId"
-      );
-    }
-
-    requestUrl = requestUrl.replace("{orderId}", parameters["orderId"]);
-
     if (parameters["orderId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/order/{orderId}/comment' missing required parameter orderId"
+        "Request '/store/{storeId}/order/{orderId}/comment' missing path parameter orderId"
       );
     }
+    requestUrl = requestUrl.replace("{orderId}", parameters["orderId"]);
 
     if (parameters["isAsc"] !== undefined) {
       const name = "isAsc";
@@ -1102,16 +1166,13 @@ const orderService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -1149,12 +1210,35 @@ const orderService = {
       { ...parameters }
     );
 
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
+
   /**
   * Find order by the parent order ID.
   * `@method`
-  * `@name Order2#findByParentOrderId`
+  * `@name Order#findByParentOrderId`
   *
   * `@param {any} headers (optional)` will add headers to rest request
   *
@@ -1311,8 +1395,31 @@ const orderService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 };
+
 export default orderService;
-/* jshint ignore:end */

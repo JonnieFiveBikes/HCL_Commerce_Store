@@ -9,11 +9,18 @@
  *==================================================
  */
 //Standard libraries
-import React, { useEffect, ChangeEvent, MouseEvent, Fragment } from "react";
+import React, {
+  useEffect,
+  ChangeEvent,
+  MouseEvent,
+  Fragment,
+  useRef,
+} from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 //Custom libraries
@@ -35,6 +42,7 @@ import {
   selectedFacetPricesSelector,
   selectedPageOffsetSelector,
   selectedSortOptionSelector,
+  breadcrumbsSelector,
 } from "../../../redux/selectors/catalog";
 import * as catalogActions from "../../../redux/actions/catalog";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
@@ -50,6 +58,8 @@ import {
   StyledButton,
   StyledTypography,
 } from "../../StyledUI";
+//GA360
+import GADataService from "../../../_foundation/gtm/gaData.service";
 
 interface ProductGridProps {
   cid: string;
@@ -64,6 +74,8 @@ interface ProductGridProps {
  * @param props
  */
 const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
+  const widgetName = getDisplayName(ProductGridLayout);
+
   const productList = useSelector(productListSelector);
   const productListTotal = useSelector(productListTotalSelector);
   const priceMode = useSelector(priceModeSelector);
@@ -76,6 +88,7 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
   const selectedSortOption = useSelector(selectedSortOptionSelector);
   const selectedPageOffset = useSelector(selectedPageOffsetSelector);
   const contract = useSelector(currentContractIdSelector);
+  const breadcrumb = useSelector(breadcrumbsSelector);
 
   const sortOptions = getSortOptions();
   const suggestedKeywords = useSelector(keywordSelector);
@@ -102,6 +115,7 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
     contractId: contract ? contract : "",
     _fields: PRODUCT_LIST_FIELDS,
     limit: pageLimit,
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),
@@ -121,6 +135,36 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
       cancels.forEach((cancel) => cancel());
     };
   }, []);
+
+  //GA360
+  const mounted = useRef(false);
+  useEffect(() => {
+    if (mySite.enableGA) {
+      if (!mounted.current) {
+        mounted.current = true;
+      } else {
+        if (categoryId === "" && productListTotal >= 0) {
+          GADataService.sendSearchPageViewEvent(productListTotal, searchTerm);
+          if (productListTotal > 0) {
+            GADataService.sendProductImpressionEvent(
+              productList,
+              false,
+              breadcrumb
+            );
+          }
+        } else if (categoryId !== "" && productListTotal >= 0) {
+          GADataService.sendListerPageViewEvent(productListTotal, breadcrumb);
+          if (productListTotal > 0) {
+            GADataService.sendProductImpressionEvent(
+              productList,
+              true,
+              breadcrumb
+            );
+          }
+        }
+      }
+    }
+  }, [productList]);
 
   /**
    * Removes selected facet and dispatches request to get product list
@@ -235,7 +279,6 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
    */
   function onPageChange(value: number) {
     value = value * pageLimit - pageLimit;
-
     if (value >= 0) {
       const newStates = {
         selectedPageOffset: value,

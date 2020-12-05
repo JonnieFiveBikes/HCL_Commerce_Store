@@ -11,8 +11,8 @@
 export const dimensions = {
   header: {
     height: {
-      desktop: 70,
-      mobile: 50,
+      desktop: 88,
+      mobile: 64,
     },
   },
   menu: {
@@ -22,10 +22,7 @@ export const dimensions = {
   },
   searchBar: {
     width: 340,
-    height: {
-      desktop: 40,
-      mobile: 40,
-    },
+    height: 40,
   },
   productCard: {
     swatch: 20,

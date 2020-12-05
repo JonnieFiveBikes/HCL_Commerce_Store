@@ -104,6 +104,9 @@ const orderReducer = createReducer(initStates.order, (builder) => {
                     disableRecurringOrder = true;
                   }
                 }
+                if (catentry.parentCatalogGroupID !== undefined) {
+                  obj["parentCatalogGroupID"] = catentry.parentCatalogGroupID;
+                }
               }
             }
             newOrderItems.push(obj);

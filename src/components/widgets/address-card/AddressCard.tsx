@@ -14,6 +14,7 @@ import React, { Fragment, useEffect, useContext, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
+import getDisplayName from "react-display-name";
 
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
@@ -59,6 +60,7 @@ interface AddressCardProps {
  * @param props
  */
 const AddressCard: React.FC<AddressCardProps> = (props: any) => {
+  const widgetName = getDisplayName(AddressCard);
   const addressId = props.addressId ? props.addressId : "";
   const nickName = props.nickName ? props.nickName : "";
   const actions = props.actions;
@@ -88,6 +90,7 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
   let cancels: Canceler[] = [];
 
   const payloadBase: any = {
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),
@@ -104,11 +107,15 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
       };
       dispatch(GET_ADDRESS_DETAIL_ACTION(payload));
     }
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
   }, [mySite]);
 
   function deleteAddress(nickName: string) {
     const parameters: any = {
       nickName: nickName,
+      ...payloadBase,
     };
     personContactService.deletePersonContact(parameters).then((res) => {
       dispatch(GET_ADDRESS_DETAIL_ACTION(payload));

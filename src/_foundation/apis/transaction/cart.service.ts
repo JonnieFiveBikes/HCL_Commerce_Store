@@ -1,21 +1,25 @@
-/* jshint ignore:start */
-/*
+/**
+ *==================================================
+ * Licensed Materials - Property of HCL Technologies
+ *
+ * HCL Commerce
+ *
  * (C) Copyright HCL Technologies Limited 2020
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ *
+ *==================================================
  */
-
-/* beautify ignore:start */
+/**
+ * Do not modify, the file is generated.
+ */
+//Standard libraries
 import { AxiosRequestConfig, Method, AxiosPromise } from "axios";
+//Foundation libraries
 import { executeRequest } from "../../axios/axiosConfig";
 import { getSite } from "../../hooks/useSite";
-
-declare var __karma__: any;
-/* beautify ignore:end */
+import { localStorageUtil } from "../../utils/storageUtil";
+import { PRODUCTION, SHOW_API_FLOW } from "../../constants/common";
+//Redux
+import { API_CALL_ACTION } from "../../../redux/actions/api";
 
 const cartService = {
   /**
@@ -59,7 +63,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -70,17 +76,12 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/@self' missing required parameter storeId"
+        "Request '/store/{storeId}/cart/@self' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -168,16 +169,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -214,6 +212,28 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -255,7 +275,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -266,17 +288,12 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/copy_order' missing required parameter storeId"
+        "Request '/store/{storeId}/cart/copy_order' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -294,7 +311,6 @@ const cartService = {
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
     if (parameters.$queryParameters) {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
@@ -303,16 +319,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -349,6 +362,28 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -394,7 +429,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -405,17 +442,12 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/@self/delete_order_item' missing required parameter storeId"
+        "Request '/store/{storeId}/cart/@self/delete_order_item' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -433,7 +465,6 @@ const cartService = {
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
     if (parameters.$queryParameters) {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
@@ -442,16 +473,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -488,6 +516,28 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -535,7 +585,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -546,17 +598,12 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/@self/usable_shipping_info' missing required parameter storeId"
+        "Request '/store/{storeId}/cart/@self/usable_shipping_info' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -618,16 +665,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -664,6 +708,28 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -711,7 +777,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -722,17 +790,12 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/@self/usable_shipping_mode' missing required parameter storeId"
+        "Request '/store/{storeId}/cart/@self/usable_shipping_mode' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -794,16 +857,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -840,6 +900,28 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -887,7 +969,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -898,17 +982,12 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/@self/usable_payment_info' missing required parameter storeId"
+        "Request '/store/{storeId}/cart/@self/usable_payment_info' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -970,16 +1049,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -1016,6 +1092,28 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -1061,7 +1159,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -1072,17 +1172,12 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart' missing required parameter storeId"
+        "Request '/store/{storeId}/cart' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -1100,7 +1195,6 @@ const cartService = {
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
     if (parameters.$queryParameters) {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
@@ -1109,16 +1203,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -1155,6 +1246,28 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -1200,7 +1313,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -1211,17 +1326,12 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/@self/update_order_item' missing required parameter storeId"
+        "Request '/store/{storeId}/cart/@self/update_order_item' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -1239,7 +1349,6 @@ const cartService = {
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
     if (parameters.$queryParameters) {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
@@ -1248,16 +1357,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -1294,6 +1400,28 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -1335,7 +1463,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -1346,17 +1476,12 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/@self/precheckout' missing required parameter storeId"
+        "Request '/store/{storeId}/cart/@self/precheckout' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -1374,7 +1499,6 @@ const cartService = {
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
     if (parameters.$queryParameters) {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
@@ -1383,16 +1507,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -1429,6 +1550,28 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -1470,7 +1613,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -1481,17 +1626,12 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/@self/checkout' missing required parameter storeId"
+        "Request '/store/{storeId}/cart/@self/checkout' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -1509,7 +1649,6 @@ const cartService = {
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
     if (parameters.$queryParameters) {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
@@ -1518,16 +1657,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -1564,6 +1700,28 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -1605,7 +1763,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -1616,25 +1776,19 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/cart/{cartId}/lock' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/lock' missing required parameter storeId"
-      );
-    }
-
-    requestUrl = requestUrl.replace("{cartId}", parameters["cartId"]);
-
     if (parameters["cartId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/lock' missing required parameter cartId"
+        "Request '/store/{storeId}/cart/{cartId}/lock' missing path parameter cartId"
       );
     }
+    requestUrl = requestUrl.replace("{cartId}", parameters["cartId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -1657,16 +1811,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -1703,6 +1854,28 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -1750,7 +1923,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -1761,25 +1936,19 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/cart/{cartId}/lockOnBehalf' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/lockOnBehalf' missing required parameter storeId"
-      );
-    }
-
-    requestUrl = requestUrl.replace("{cartId}", parameters["cartId"]);
-
     if (parameters["cartId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/lockOnBehalf' missing required parameter cartId"
+        "Request '/store/{storeId}/cart/{cartId}/lockOnBehalf' missing path parameter cartId"
       );
     }
+    requestUrl = requestUrl.replace("{cartId}", parameters["cartId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -1828,16 +1997,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -1874,6 +2040,28 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -1915,7 +2103,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -1926,25 +2116,19 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/cart/{cartId}/unlock' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/unlock' missing required parameter storeId"
-      );
-    }
-
-    requestUrl = requestUrl.replace("{cartId}", parameters["cartId"]);
-
     if (parameters["cartId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/unlock' missing required parameter cartId"
+        "Request '/store/{storeId}/cart/{cartId}/unlock' missing path parameter cartId"
       );
     }
+    requestUrl = requestUrl.replace("{cartId}", parameters["cartId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -1967,16 +2151,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -2013,6 +2194,28 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -2060,7 +2263,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -2071,25 +2276,19 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/cart/{cartId}/unlockOnBehalf' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/unlockOnBehalf' missing required parameter storeId"
-      );
-    }
-
-    requestUrl = requestUrl.replace("{cartId}", parameters["cartId"]);
-
     if (parameters["cartId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/unlockOnBehalf' missing required parameter cartId"
+        "Request '/store/{storeId}/cart/{cartId}/unlockOnBehalf' missing path parameter cartId"
       );
     }
+    requestUrl = requestUrl.replace("{cartId}", parameters["cartId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -2138,16 +2337,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -2184,6 +2380,28 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -2228,7 +2446,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -2239,17 +2459,12 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/@self/applepay_cancel' missing required parameter storeId"
+        "Request '/store/{storeId}/cart/@self/applepay_cancel' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -2272,16 +2487,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -2318,6 +2530,28 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -2363,7 +2597,9 @@ const cartService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -2374,17 +2610,12 @@ const cartService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/@self/applepay_update' missing required parameter storeId"
+        "Request '/store/{storeId}/cart/@self/applepay_update' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -2402,7 +2633,6 @@ const cartService = {
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
     if (parameters.$queryParameters) {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
@@ -2411,16 +2641,13 @@ const cartService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -2458,13 +2685,35 @@ const cartService = {
       { ...parameters }
     );
 
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 
   /**
    * Gets buyer purchase order information for buyer purchase order ID.
    * `@method`
-   * `@name Cart1#getBuyerPurchaseOrderDataBean`
+   * `@name Cart#getBuyerPurchaseOrderDataBean`
    *
    * `@param {any} headers (optional)` will add headers to rest request
    *
@@ -2611,8 +2860,31 @@ const cartService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 };
+
 export default cartService;
-/* jshint ignore:end */

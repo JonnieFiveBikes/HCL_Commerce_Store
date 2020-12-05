@@ -43,6 +43,25 @@ The React Store Application (Sapphire only) has been updated with the following 
 
 This version of the React Store Application requires corresponding HCL Commerce Version 9.1.3 Search services for multiple languages support.
 
+### 2020/12/11 HCL Commerce Version 9.1.4 - Refreshed Store Application
+
+The React Store Application (Emerald and Sapphire) has been updated with the following enhancements:
+
+1. Support for content and digital assets managed and served from HCL Digital Experience (DX) product.
+
+- Support for 'Marketing Content' template from DX within Marketing Spots on any page
+- Support for 'Marketing Video Content' template from DX within Marketing Spots on any page
+- Multiple language support for DX Content
+
+1. Support for multiple images displayed as carousel on products, variants and skus on Product Display Page
+1. Support for attachments to products, variants and skus on Product Display Page
+1. Support for developers to view generated API flow diagrams when run in development mode of SDK
+
+This version of the React Store Application requires corresponding HCL Commerce Version 9.1.4 Search services for multiple angle image support
+and attachments.
+This version of the React Store Application optionally includes support HCL Digital Experience if content is returned from a Marketing Spot that
+references a DX external content type.
+
 ## Limitations
 
 The list of latest features delivered in the React Store Applications are described for Emerald:

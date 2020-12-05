@@ -41,6 +41,10 @@ const StyledBox = styled(ComponentWrapper)`
       }
     }
 
+    &.horizontal-scroll {
+      overflow-x: auto;
+      max-width: ${window.innerWidth - theme.spacing(3)}px;
+    }   
   `}
 `;
 

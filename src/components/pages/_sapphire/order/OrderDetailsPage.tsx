@@ -13,6 +13,8 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../../_foundation/hooks/useSite";
 //Custom libraries
@@ -33,6 +35,7 @@ import {
 } from "../../../StyledUI";
 
 function OrderDetailsPage(props: any) {
+  const widgetName = getDisplayName(OrderDetailsPage);
   const { location } = props;
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
@@ -55,6 +58,16 @@ function OrderDetailsPage(props: any) {
     dateFormatOptions
   );
 
+  let cancels: Canceler[] = [];
+  const CancelToken = Axios.CancelToken;
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+
   useEffect(() => {
     if (orderId && defaultCurrencyID) {
       dispatch(
@@ -62,9 +75,13 @@ function OrderDetailsPage(props: any) {
           orderId,
           currency: defaultCurrencyID,
           skipErrorSnackbar: true,
+          ...payloadBase,
         })
       );
     }
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
   }, [orderId, mySite, defaultCurrencyID]);
 
   const loading = orderId && orderDetails === undefined;

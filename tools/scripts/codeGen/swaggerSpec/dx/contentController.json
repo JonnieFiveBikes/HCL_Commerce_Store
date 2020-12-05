@@ -1,0 +1,962 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ringapi-server",
+    "version": "1.3.0",
+    "description": "Loopback4 based Ring API Server",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "ContentController",
+      "description": "This request returns a content's details."
+    }
+  ],
+  "paths": {
+    "/{access_type}/webcontent/contents/{content_id}": {
+      "get": {
+        "x-controller-name": "ContentController",
+        "x-operation-name": "readContent",
+        "tags": ["ContentController"],
+        "operationId": "webContentReadContent",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "description": "<h2>This request returns a content's details.</h2>",
+        "responses": {
+          "200": {
+            "description": "Returns created content item information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "ad0490ea-27cb-4392-801b-5b559170e69e"
+                    },
+                    "title": {
+                      "type": "object",
+                      "properties": {
+                        "lang": {
+                          "type": "string",
+                          "example": "en"
+                        },
+                        "value": {
+                          "type": "string",
+                          "example": "Example Content Display Title"
+                        }
+                      }
+                    },
+                    "summary": {
+                      "type": "object",
+                      "properties": {
+                        "lang": {
+                          "type": "string",
+                          "example": "en"
+                        },
+                        "value": {
+                          "type": "string",
+                          "example": "Example content description/summary."
+                        }
+                      }
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "Example Content Name"
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "Content"
+                    },
+                    "updated": {
+                      "type": "string",
+                      "example": "Fri, 11 Aug 2020 00:00:00.789Z"
+                    },
+                    "created": {
+                      "type": "string",
+                      "example": "Fri, 11 Aug 2020 00:00:00.789Z"
+                    },
+                    "author": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "distinguishedName": {
+                            "type": "string",
+                            "example": "uid=wpsadmin,o=defaultWIMFileBasedRealm"
+                          },
+                          "uri": {
+                            "type": "string",
+                            "example": "Z9eAeI1ECJP47N1E6JMCC3JC6MMG663PIJM07JHOAJM07HPD23H9C1RD83I16K1"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "wpsadmin"
+                          }
+                        }
+                      }
+                    },
+                    "owner": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "distinguishedName": {
+                            "type": "string",
+                            "example": "uid=wpsadmin,o=defaultWIMFileBasedRealm"
+                          },
+                          "uri": {
+                            "type": "string",
+                            "example": "Z9eAeI1ECJP47N1E6JMCC3JC6MMG663PIJM07JHOAJM07HPD23H9C1RD83I16K1"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "wpsadmin"
+                          }
+                        }
+                      }
+                    },
+                    "lastModifier": {
+                      "type": "object",
+                      "properties": {
+                        "distinguishedName": {
+                          "type": "string",
+                          "example": "uid=wpsadmin,o=defaultWIMFileBasedRealm"
+                        },
+                        "uri": {
+                          "type": "string",
+                          "example": "Z9eAeI1ECJP47N1E6JMCC3JC6MMG663PIJM07JHOAJM07HPD23H9C1RD83I16K1"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "wpsadmin"
+                        }
+                      }
+                    },
+                    "creator": {
+                      "type": "object",
+                      "properties": {
+                        "distinguishedName": {
+                          "type": "string",
+                          "example": "uid=wpsadmin,o=defaultWIMFileBasedRealm"
+                        },
+                        "uri": {
+                          "type": "string",
+                          "example": "Z9eAeI1ECJP47N1E6JMCC3JC6MMG663PIJM07JHOAJM07HPD23H9C1RD83I16K1"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "wpsadmin"
+                        }
+                      }
+                    },
+                    "profile": {
+                      "type": "object",
+                      "properties": {
+                        "keyword": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "samplekeyword"
+                          }
+                        },
+                        "category": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "samplecategory"
+                          }
+                        }
+                      }
+                    },
+                    "workflow": {
+                      "type": "object",
+                      "properties": {
+                        "publishDate": {
+                          "type": "string",
+                          "example": "Tue, 11 Aug 2020 00:00:00.000Z"
+                        },
+                        "expiryDate": {
+                          "type": "string",
+                          "example": "Thu, 01 Jan 2099 00:00:00.000Z"
+                        },
+                        "generalDateOne": {
+                          "type": "string",
+                          "example": "Mon, 11 Aug 1986 00:00:00.000Z"
+                        },
+                        "generalDateTwo": {
+                          "type": "string",
+                          "example": "Mon, 11 Aug 1986 00:00:00.000Z"
+                        }
+                      }
+                    },
+                    "content": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "application/vnd.ibm.wcm+xml"
+                        },
+                        "content": {
+                          "type": "object",
+                          "properties": {
+                            "elements": {
+                              "type": "object",
+                              "properties": {
+                                "element": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "name": {
+                                        "type": "string",
+                                        "example": "Example Component Reference"
+                                      },
+                                      "title": {
+                                        "type": "object",
+                                        "properties": {
+                                          "lang": {
+                                            "type": "string",
+                                            "example": "en"
+                                          },
+                                          "value": {
+                                            "type": "string",
+                                            "example": "English"
+                                          }
+                                        }
+                                      },
+                                      "displayTitle": {
+                                        "type": "object",
+                                        "properties": {
+                                          "lang": {
+                                            "type": "string",
+                                            "example": "en"
+                                          },
+                                          "value": {
+                                            "type": "string",
+                                            "example": "Example Component Reference Display Title"
+                                          }
+                                        }
+                                      },
+                                      "type": {
+                                        "type": "string",
+                                        "example": "ReferenceComponent"
+                                      },
+                                      "data": {
+                                        "type": "object",
+                                        "properties": {
+                                          "type": {
+                                            "type": "string",
+                                            "example": "application/vnd.ibm.wcm+xml"
+                                          },
+                                          "PropertiesContent": {
+                                            "type": "object",
+                                            "properties": {
+                                              "type": {
+                                                "type": "string",
+                                                "example": "application/vnd.ibm.wcm+xml"
+                                              },
+                                              "properties": {
+                                                "type": "array",
+                                                "items": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "key": {
+                                                      "type": "string",
+                                                      "example": "HELP_TEXT_PROVIDER_NAME"
+                                                    },
+                                                    "value": {
+                                                      "type": "string",
+                                                      "example": "NONE"
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "reference": {
+                                                "type": "string",
+                                                "example": "/wps/mycontenthandler/!ut/p/digest!uKX-_1ZH17yLg1CZ5cVRRg/wcmrest/LibraryMenuComponent/ec09ce29-d421-4064-b5ec-c4a4c642116d"
+                                              },
+                                              "date": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "example": "DateTime"
+                                                  },
+                                                  "value": {
+                                                    "type": "string",
+                                                    "example": "Tue, 11 Aug 2020 00:00:00.000Z"
+                                                  }
+                                                }
+                                              },
+                                              "resourceUri": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "example": "application/pdf"
+                                                  },
+                                                  "value": {
+                                                    "type": "string",
+                                                    "example": "/wps/wcm/myconnect/605092bc-9f12-4688-9fec-fa4ced30c550/5kB-test-document.pdf?MOD=AJPERES"
+                                                  }
+                                                }
+                                              },
+                                              "value": {
+                                                "type": "string",
+                                                "example": "<h1>HCL Digital Experience<h1>"
+                                              },
+                                              "image": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "dimension": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "height": {
+                                                        "type": "string",
+                                                        "example": "1500"
+                                                      },
+                                                      "width": {
+                                                        "type": "string",
+                                                        "example": "1500"
+                                                      },
+                                                      "border": {
+                                                        "type": "string",
+                                                        "example": "0"
+                                                      }
+                                                    }
+                                                  },
+                                                  "altText": {
+                                                    "type": "string",
+                                                    "example": ""
+                                                  },
+                                                  "tagName": {
+                                                    "type": "string",
+                                                    "example": ""
+                                                  },
+                                                  "fileName": {
+                                                    "type": "string",
+                                                    "example": "5kB-test-image.png"
+                                                  },
+                                                  "resourceUri": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "type": {
+                                                        "type": "string",
+                                                        "example": "image/png"
+                                                      },
+                                                      "value": {
+                                                        "type": "string",
+                                                        "example": "/wps/wcm/myconnect/ebc24b4b-7e2c-42a6-bab7-b1b8488486a0/5kB-test-image.png?MOD=AJPERES"
+                                                      }
+                                                    }
+                                                  },
+                                                  "renditionList": {
+                                                    "type": "array",
+                                                    "items": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "type": {
+                                                          "type": "string",
+                                                          "example": "desktop"
+                                                        },
+                                                        "fileName": {
+                                                          "type": "string",
+                                                          "example": "filename.png"
+                                                        },
+                                                        "resourceUri": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "type": {
+                                                              "type": "string",
+                                                              "example": "image/png"
+                                                            },
+                                                            "value": {
+                                                              "type": "string",
+                                                              "example": "/wps/wcm/myconnect/ebc24b4b-7e2c-42a6-bab7-b1b8488486a0/5kB-test-image.png?MOD=AJPERES"
+                                                            }
+                                                          }
+                                                        },
+                                                        "binaryresource": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "fileName": {
+                                                              "type": "string",
+                                                              "example": "filename.png"
+                                                            },
+                                                            "type": {
+                                                              "type": "string",
+                                                              "example": "image/png"
+                                                            },
+                                                            "value": {
+                                                              "type": "string",
+                                                              "example": "base64"
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "jsp": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "path": {
+                                                    "type": "string",
+                                                    "example": "/sample/path"
+                                                  },
+                                                  "errorMessage": {
+                                                    "type": "string",
+                                                    "example": "sample errors"
+                                                  }
+                                                }
+                                              },
+                                              "linkElement": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "destination": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "type": {
+                                                        "type": "string",
+                                                        "example": "external"
+                                                      },
+                                                      "allowClear": {
+                                                        "type": "boolean",
+                                                        "example": false
+                                                      },
+                                                      "value": {
+                                                        "type": "string",
+                                                        "example": "https://www.hcltechsw.com"
+                                                      }
+                                                    }
+                                                  },
+                                                  "display": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "type": {
+                                                        "type": "string",
+                                                        "example": "image"
+                                                      },
+                                                      "value": {
+                                                        "type": "string",
+                                                        "example": "/wps/mycontenthandler/!ut/p/digest!uKX-_1ZH17yLg1CZ5cVRRg/wcmrest/LibraryImageComponent/cd39f201-3e41-4f13-8363-fb5d2301f92d"
+                                                      }
+                                                    }
+                                                  },
+                                                  "description": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "useDestination": {
+                                                        "type": "boolean",
+                                                        "example": false
+                                                      },
+                                                      "value": {
+                                                        "type": "string",
+                                                        "example": ""
+                                                      }
+                                                    }
+                                                  },
+                                                  "target": {
+                                                    "type": "string",
+                                                    "example": "None"
+                                                  },
+                                                  "additionalAttributes": {
+                                                    "type": "string",
+                                                    "example": ""
+                                                  }
+                                                }
+                                              },
+                                              "double": {
+                                                "type": "string",
+                                                "example": "1,000"
+                                              },
+                                              "optionselection": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "displaytype": {
+                                                    "type": "string",
+                                                    "example": "Automatic"
+                                                  },
+                                                  "selection": {
+                                                    "type": "string",
+                                                    "example": "UserDefined"
+                                                  },
+                                                  "options": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "mode": {
+                                                        "type": "string",
+                                                        "example": "Multiselect"
+                                                      },
+                                                      "option": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "selected": {
+                                                              "type": "boolean",
+                                                              "example": true
+                                                            },
+                                                            "id": {
+                                                              "type": "string",
+                                                              "example": "Red"
+                                                            },
+                                                            "value": {
+                                                              "type": "string",
+                                                              "example": "Red"
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "userSelection": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "user": {
+                                                    "type": "array",
+                                                    "items": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "distinguishedName": {
+                                                          "type": "string",
+                                                          "example": "uid=wpsadmin,o=defaultWIMFileBasedRealm"
+                                                        },
+                                                        "uri": {
+                                                          "type": "string",
+                                                          "example": "/wps/mycontenthandler/!ut/p/digest!uKX-_1ZH17yLg1CZ5cVRRg/um/users/profiles/Z9eAeI1ECJP47N1E6JMCC3JC6MMG663PIJM07JHOAJM07HPD23H9C1RD83I16K1"
+                                                        },
+                                                        "name": {
+                                                          "type": "string",
+                                                          "example": "wpsadmin"
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "file": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "fileName": {
+                                                    "type": "string",
+                                                    "example": "5kB-test-document.pdf"
+                                                  },
+                                                  "resourceUri": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "type": {
+                                                        "type": "string",
+                                                        "example": "application/pdf"
+                                                      },
+                                                      "value": {
+                                                        "type": "string",
+                                                        "example": "/wps/wcm/myconnect/605092bc-9f12-4688-9fec-fa4ced30c550/5kB-test-document.pdf?MOD=AJPERES"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "links": {
+                      "type": "object",
+                      "properties": {
+                        "publish": {
+                          "type": "object",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "example": "/webcontent/contents/ad0490ea-27cb-4392-801b-5b559170e69e/workflow-action"
+                            },
+                            "lang": {
+                              "type": "string",
+                              "example": "en"
+                            },
+                            "label": {
+                              "type": "string",
+                              "example": "Publish"
+                            }
+                          }
+                        },
+                        "workflow": {
+                          "type": "object",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "example": "/dxmyrest/webcontent/contents/fa1f9585-6c40-4bfa-85cc-155c20567448/workflow"
+                            },
+                            "lang": {
+                              "type": "string",
+                              "example": "en"
+                            },
+                            "label": {
+                              "type": "string",
+                              "example": "Workflow"
+                            }
+                          }
+                        },
+                        "workflowStage": {
+                          "type": "object",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "example": "/dxmyrest/webcontent/contents/3c2480d5-6a2d-4396-a3f3-cde6e5d34319/currentstage"
+                            },
+                            "lang": {
+                              "type": "string",
+                              "example": "en"
+                            },
+                            "label": {
+                              "type": "string",
+                              "example": "Workflow Stage"
+                            }
+                          }
+                        },
+                        "accessControl": {
+                          "type": "object",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "example": "/dxmyrest/access/current-user?resourceId=Z6QReDe13P03Q47G9P2MM86NPO4MMG6J9E4JM07G9C4MMK62BDAJS46N1CA6R4753"
+                            },
+                            "lang": {
+                              "type": "string",
+                              "example": "en"
+                            },
+                            "label": {
+                              "type": "string",
+                              "example": "Access Control"
+                            }
+                          }
+                        },
+                        "library": {
+                          "type": "object",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "example": "/dxmyrest/webcontent/libraries/a1ce9683-5713-449b-ab30-7155a77225cb"
+                            },
+                            "lang": {
+                              "type": "string",
+                              "example": "en"
+                            },
+                            "label": {
+                              "type": "string",
+                              "example": "Library"
+                            }
+                          }
+                        },
+                        "parent": {
+                          "type": "object",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "example": "/dxmyrest/webcontent/search?type=SiteArea&id=a5a4887c-ee1c-4723-8e92-12c77630f98d"
+                            },
+                            "lang": {
+                              "type": "string",
+                              "example": "en"
+                            },
+                            "label": {
+                              "type": "string",
+                              "example": "Parent"
+                            }
+                          }
+                        },
+                        "preview": {
+                          "type": "object",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "example": "/dxmyrest/webcontent/contents/render/ad0490ea-27cb-4392-801b-5b559170e69e"
+                            },
+                            "lang": {
+                              "type": "string",
+                              "example": "en"
+                            },
+                            "label": {
+                              "type": "string",
+                              "example": "Preview"
+                            }
+                          }
+                        },
+                        "contentTemplate": {
+                          "type": "object",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "example": "/dxmyrest/webcontent/content-templates/8f572e31-3e97-4be0-9838-8a4449b89c36"
+                            },
+                            "lang": {
+                              "type": "string",
+                              "example": "en"
+                            },
+                            "label": {
+                              "type": "string",
+                              "example": "Content Template"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "categories": {
+                      "type": "object",
+                      "properties": {
+                        "workflowState": {
+                          "type": "object",
+                          "properties": {
+                            "term": {
+                              "type": "string",
+                              "example": "DRAFT"
+                            },
+                            "label": {
+                              "type": "string",
+                              "example": "Draft"
+                            },
+                            "lang": {
+                              "type": "string",
+                              "example": "en"
+                            }
+                          }
+                        },
+                        "favorite": {
+                          "type": "object",
+                          "properties": {
+                            "term": {
+                              "type": "string",
+                              "example": "true"
+                            },
+                            "lang": {
+                              "type": "string",
+                              "example": "en"
+                            }
+                          }
+                        },
+                        "locked": {
+                          "type": "object",
+                          "properties": {
+                            "term": {
+                              "type": "string",
+                              "example": "false"
+                            },
+                            "label": {
+                              "type": "string",
+                              "example": ""
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returns status 400 - Bad Request. It is a client side error that may be a result of either JSON format error or request data validation error. <p><small><b>(e.g., input parameters are missing or invalid)</b></small>.</p>",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "reason": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns a status 401 - Unauthorized error. Usually the user is not authenticated or logged in or the authentication token is not sent.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "reason": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Returns a status 403 - Forbidden error. Check for out of scope user roles or permissions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "reason": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returns a status 404 - Not Found error. Usually if the resource is not found or if there is a mistyped endpoints.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "reason": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Returns status 500 - Internal Server Error. This an unexpected error which was not handled on the server side, usually an undefined or null error, or a promise rejection error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "reason": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "virtualportal",
+            "in": "query",
+            "description": "The virtual portal name, if any, to which this request will be applied, otherwise leave this field empty.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Cookie",
+            "in": "header",
+            "description": "Contains the access or authentication token. Leave this field empty if you are already authenticated, unless you intend to put a token value.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "content_id",
+            "in": "path",
+            "description": "The ID of the content (e.g., 97d110f7-ab61-49d9-b9b2-de5322892f9c)",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "access_type",
+            "in": "path",
+            "description": "The access type of the user. Authenticated users should use 'dxmyrest', and an unauthenticated users should use 'dxrest'.",
+            "schema": {
+              "type": "string",
+              "enum": ["dxrest", "dxmyrest"],
+              "example": "dxmyrest"
+            },
+            "required": true
+          },
+          {
+            "name": "filename",
+            "in": "query",
+            "description": "Boolean value to determine if whether to include the filename for file elements in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "servers": [
+    {
+      "url": "/dx/api/core/v1"
+    }
+  ]
+}

@@ -13,6 +13,7 @@ import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
 import { useSelector, useDispatch } from "react-redux";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../../_foundation/hooks/useSite";
 //Redux
@@ -22,6 +23,7 @@ import { GET_ADDRESS_DETAIL_ACTION } from "../../../../redux/actions/account";
 import { StyledTextField, StyledTypography } from "../../../StyledUI";
 
 function PersonalInformationSection() {
+  const widgetName = getDisplayName(PersonalInformationSection);
   const addressDetails = useSelector(addressDetailsSelector);
   let completeAddress: string = "";
 
@@ -65,6 +67,7 @@ function PersonalInformationSection() {
   let cancels: Canceler[] = [];
 
   const payloadBase: any = {
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),

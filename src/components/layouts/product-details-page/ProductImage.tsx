@@ -21,9 +21,26 @@ import { StyledProductImage } from "../../StyledUI";
  * @param alt
  * @param props
  */
-function ProductImage({ fullImage, isAngleImage, alt }: any) {
+function ProductImage({
+  fullImage,
+  isAngleImage,
+  alt,
+  isSelected,
+  isThumbnail,
+}: any) {
+  const className = `${isThumbnail ? "thumbnail" : ""} ${
+    isSelected ? "selected" : ""
+  }`;
+
   if (fullImage && !isAngleImage) {
-    return <StyledProductImage itemProp="image" src={fullImage} alt={alt} />;
+    return (
+      <StyledProductImage
+        itemProp="image"
+        src={fullImage}
+        alt={alt}
+        className={className}
+      />
+    );
   } else {
     return null;
   }
@@ -32,7 +49,10 @@ function ProductImage({ fullImage, isAngleImage, alt }: any) {
 ProductImage.propTypes = {
   fullImage: PropTypes.string,
   isAngleImage: PropTypes.bool,
+  isThumbnail: PropTypes.bool,
   alt: PropTypes.string,
+  isSelected: PropTypes.bool,
+  onClick: PropTypes.any,
 };
 
 export default ProductImage;

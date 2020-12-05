@@ -49,4 +49,14 @@
       },
       { ...parameters }
     );
+
+    const showAPIFlow = process.env.NODE_ENV !== PRODUCTION ? localStorageUtil.get(SHOW_API_FLOW) === "true" : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"]? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if(store){
+        store.dispatch(API_CALL_ACTION(from + " -> {{resourceDomainName}}: " + method + " " + requestUrl + "?" + queryParameters));
+      }
+    }
+
     return executeRequest(requestOptions);

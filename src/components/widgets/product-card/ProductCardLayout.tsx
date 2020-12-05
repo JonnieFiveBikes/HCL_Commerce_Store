@@ -12,6 +12,7 @@
 import React, { useEffect, useState, MouseEvent } from "react";
 import Axios, { Canceler } from "axios";
 import { useSelector } from "react-redux";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import productsService from "../../../_foundation/apis/search/products.service";
@@ -19,8 +20,11 @@ import productsService from "../../../_foundation/apis/search/products.service";
 import { DEFINING, OFFER } from "../../../constants/common";
 //Redux
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
+import { breadcrumbsSelector } from "../../../redux/selectors/catalog";
 //UI
 import { StyledProductCard, StyledSwatch } from "../../StyledUI";
+//GA360
+import GADataService from "../../../_foundation/gtm/gaData.service";
 
 interface ProductCardProps {
   product: any;
@@ -32,6 +36,8 @@ interface ProductCardProps {
  * @param props
  */
 export default function ProductCard(props: ProductCardProps) {
+  const widgetName = getDisplayName(ProductCard);
+
   const contract = useSelector(currentContractIdSelector);
 
   const product: any = props.product;
@@ -50,6 +56,13 @@ export default function ProductCard(props: ProductCardProps) {
   const { mySite } = useSite();
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
 
   useEffect(() => {
     return () => {
@@ -88,9 +101,7 @@ export default function ProductCard(props: ProductCardProps) {
       catalogId: mySite.catalogID,
       id: catentryId,
       contractId: contract ? contract : "",
-      cancelToken: new CancelToken(function executor(c) {
-        cancels.push(c);
-      }),
+      ...payloadBase,
     };
     productsService
       .findProductsUsingGET(parameters)
@@ -166,6 +177,19 @@ export default function ProductCard(props: ProductCardProps) {
     return null;
   });
 
+  //GA360
+  const breadcrumbs = useSelector(breadcrumbsSelector);
+  const gaProductClick = () => {
+    let listerCategoryFlag = breadcrumbs.length > 0 ? true : false;
+    GADataService.sendProductClickEvent(
+      product,
+      null,
+      listerCategoryFlag,
+      breadcrumbs
+    );
+  };
+  const clickProductGA = mySite.enableGA && { onClick: gaProductClick };
+
   return (
     <StyledProductCard
       seoUrl={seoUrl}
@@ -176,6 +200,8 @@ export default function ProductCard(props: ProductCardProps) {
       name={name}
       price={getOfferPrice(product.price)}
       className="product-grid"
+      //GA360
+      {...clickProductGA}
     />
   );
 }

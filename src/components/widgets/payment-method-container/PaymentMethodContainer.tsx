@@ -15,7 +15,7 @@ import { PaymentMethodSelection } from "../../widgets/payment-method-selection";
 import { PaymentInfoType } from "../../pages/checkout/payment/Payment";
 import CheckoutAddress, {
   CheckoutPageType,
-} from "../../pages/checkout/address/Address";
+} from "../../pages/checkout/address/CheckoutAddress";
 //UI
 import { Divider } from "@material-ui/core";
 

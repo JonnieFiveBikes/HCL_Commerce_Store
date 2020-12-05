@@ -8,6 +8,6 @@ exports[`Category Recommendation Layout renders Category Recommendation with eSp
 
 exports[`Category Recommendation Layout renders empty Category Recommendation when eSpot not found 1`] = `
 <div
-  class="MuiGrid-root sc-giAqnE dZzDYG vertical-padding-2 MuiGrid-container MuiGrid-spacing-xs-2"
+  class="MuiGrid-root sc-ezrdKe dsbMot vertical-padding-2 MuiGrid-container MuiGrid-spacing-xs-2"
 />
 `;

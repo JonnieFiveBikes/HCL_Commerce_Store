@@ -18,11 +18,7 @@ import { useSite } from "../../_foundation/hooks/useSite";
 import { footerConfig } from "./footerConstant";
 import { ContentRecommendationLayout } from "../widgets/content-recommendation";
 import { SessionErrorDialog } from "../widgets/session-error-modal";
-import ErrorMessageSnackbar from "../widgets/message-snackbar/ErrorMessageSnackbar";
-import SuccessMessageSnackbar from "../widgets/message-snackbar/SuccessMessageSnackbar";
 import ConfirmationDialog from "../widgets/confirmation-dialog/ConfirmationDialog";
-//Redux
-import { SiteInfo } from "../../redux/reducers/reducerStateInterface";
 //UI
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
@@ -170,13 +166,10 @@ function Footer(props: any) {
             <StyledGrid item xs={12} sm={9}>
               <Copyright />
             </StyledGrid>
-            <StyledGrid item xs={12} sm={3}></StyledGrid>
           </StyledGrid>
         </StyledContainer>
       </StyledFooter>
       <SessionErrorDialog />
-      <SuccessMessageSnackbar />
-      <ErrorMessageSnackbar />
       <ConfirmationDialog />
     </>
   );

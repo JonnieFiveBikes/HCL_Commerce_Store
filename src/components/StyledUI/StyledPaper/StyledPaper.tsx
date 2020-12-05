@@ -23,26 +23,15 @@ const StyledPaper = styled(PaperWrapper)`
     box-shadow: ${theme.shadows[1]};
     overflow: hidden;
 
-    &.expanded-menu-paper {
+    &.expanded-menu-paper,
+    &.expanded-menu-two-tier-submenu,
+    &.expanded-menu-three-tier-submenu {
       border-radius: 0px 0px ${theme.shape.borderRadius}px ${
     theme.shape.borderRadius
   }px;
-    }
-
-    &.expanded-menu-two-tier-submenu{
-      border-radius: 0px 0px ${theme.shape.borderRadius}px ${
-    theme.shape.borderRadius
-  }px;
-    }
-
-    &.expanded-menu-three-tier-submenu{
-      border-radius: 0px 0px ${theme.shape.borderRadius}px ${
-    theme.shape.borderRadius
-  }px;
-    }
-
-    ul {
-      display:grid;
+      ul {
+        display:grid;
+      }
     }
 
     &.mini-cart-container {

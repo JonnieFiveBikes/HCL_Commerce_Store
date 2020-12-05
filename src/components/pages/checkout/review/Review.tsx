@@ -13,6 +13,7 @@ import React, { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useHistory } from "react-router";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../../_foundation/hooks/useSite";
 import { localStorageUtil } from "../../../../_foundation/utils/storageUtil";
@@ -40,6 +41,8 @@ import { GET_CART_ACTION } from "../../../../redux/actions/order";
 import { RESET_CART_ACTION } from "../../../../redux/actions/order";
 //UI
 import { StyledGrid } from "../../../StyledUI";
+//GA360
+import GADataService from "../../../../_foundation/gtm/gaData.service";
 
 /**
  * Review Order section
@@ -47,6 +50,7 @@ import { StyledGrid } from "../../../StyledUI";
  * @param props
  */
 const Review: React.FC = (props: any) => {
+  const widgetName = getDisplayName(Review);
   const { isPONumberRequired } = props;
   const componentName = "Review";
   const contractId = useSelector(currentContractIdSelector);
@@ -89,6 +93,7 @@ const Review: React.FC = (props: any) => {
   const payloadBase: any = {
     currency: defaultCurrencyID,
     contractId: contractId,
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),
@@ -169,14 +174,15 @@ const Review: React.FC = (props: any) => {
         });
       }
 
-      const piList: any[] = cart.paymentInstruction;
       let emailList: string[] = [];
-
-      piList.forEach((pi: any) => {
-        if (pi.email1.trim() !== "") {
-          emailList.push(pi.email1);
-        }
-      });
+      if (cart.paymentInstruction) {
+        const piList: any[] = cart.paymentInstruction;
+        piList.forEach((pi: any) => {
+          if (pi.email1.trim() !== "") {
+            emailList.push(pi.email1);
+          }
+        });
+      }
 
       history.push(ROUTES.ORDER_CONFIRMATION, {
         orderId: cart.orderId,
@@ -184,6 +190,14 @@ const Review: React.FC = (props: any) => {
       });
       dispatch(RESET_CART_ACTION());
       localStorageUtil.remove(ACCOUNT + "-" + PO_NUMBER + "-" + cart.orderId);
+      //GA360
+      if (mySite.enableGA) {
+        GADataService.sendCheckoutPageViewEvent(
+          "Order Confirmation",
+          ROUTES.ORDER_CONFIRMATION
+        );
+        GADataService.sendPurchaseEvent(cart, orderItems);
+      }
     }
   }
 

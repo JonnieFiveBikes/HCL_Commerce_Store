@@ -14,17 +14,15 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch, batch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
-
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
-
 //Custom libraries
 import {
   PRODUCT_LIST_FIELDS,
   PAGINATION_CONFIGS,
 } from "../../../configs/catalog";
 import FormattedPriceDisplay from "../formatted-price-display";
-
 //Redux
 import {
   facetsSelector,
@@ -35,7 +33,6 @@ import {
 } from "../../../redux/selectors/catalog";
 import * as catalogActions from "../../../redux/actions/catalog";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
-
 //UI
 import {
   StyledGrid,
@@ -67,6 +64,8 @@ interface ProductFilterProps {
  * @param props
  */
 const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
+  const widgetName = getDisplayName(ProductFilterLayout);
+
   const [minPrice, setMinPrice] = useState<number | null>(null);
   const [maxPrice, setMaxPrice] = useState<number | null>(null);
   const [isMinPriceValid, setIsMinPriceValid] = useState<boolean>(true);
@@ -113,6 +112,7 @@ const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
     _fields: PRODUCT_LIST_FIELDS,
     offset: pageDefaultOffset,
     limit: pageLimit,
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),
@@ -508,19 +508,12 @@ const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
                         />
                       ) : (
                         <div
-                          className="price-filter price-filter-input"
+                          className="price-filter  price-filter-input"
                           id={`productFilter_div_12_${index}_${cid}`}>
-                          <StyledBox pb={1} onClick={onInputClick}>
-                            <StyledNumberInput
-                              value={minPrice !== null ? minPrice : ""}
-                              min={0}
-                              precision={2}
-                              placeholder={t("ProductFilter.Labels.minPrice")}
-                              onChange={(valueAsNumber) =>
-                                onMinPriceChange(valueAsNumber)
-                              }
-                              error={!validatePriceRange()}
-                            />
+                          <StyledBox
+                            className="price-filter"
+                            pb={1}
+                            onClick={onInputClick}>
                             <StyledNumberInput
                               value={maxPrice !== null ? maxPrice : ""}
                               min={0}
@@ -531,15 +524,27 @@ const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
                               }
                               error={!validatePriceRange()}
                             />
+                            <StyledNumberInput
+                              className="horizontal-margin"
+                              value={minPrice !== null ? minPrice : ""}
+                              min={0}
+                              precision={2}
+                              placeholder={t("ProductFilter.Labels.minPrice")}
+                              onChange={(valueAsNumber) =>
+                                onMinPriceChange(valueAsNumber)
+                              }
+                              error={!validatePriceRange()}
+                            />
+
+                            <StyledButton
+                              disabled={!isSubmitButtonEnabled}
+                              size="small"
+                              className="price-go"
+                              id={`productFilter_button_19_${index}_${cid}`}
+                              onClick={() => onPriceSubmit()}>
+                              {t("ProductFilter.Actions.Filter")}
+                            </StyledButton>
                           </StyledBox>
-                          <StyledButton
-                            disabled={!isSubmitButtonEnabled}
-                            size="small"
-                            className="price-go"
-                            id={`productFilter_button_19_${index}_${cid}`}
-                            onClick={() => onPriceSubmit()}>
-                            {t("ProductFilter.Actions.Go")}
-                          </StyledButton>
                         </div>
                       )}
                     </>

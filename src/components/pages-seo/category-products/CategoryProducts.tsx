@@ -11,6 +11,8 @@
 //Standard libraries
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 
 //Custom libraries
 import { TwoColumnsLeftFilterLayout } from "../../layouts/two-colums-left-filter";
@@ -24,11 +26,22 @@ import { CATEGORY_DISPLAY } from "../../../constants/marketing";
 import { TRIGGER_MARKETING_ACTION } from "../../../redux/actions/marketingEvent";
 
 function CategoryProducts(props: any) {
+  const widgetName = getDisplayName(CategoryProducts);
   const dispatch = useDispatch();
 
   const { page } = props;
   const catId = page.externalContext.identifier;
   const categoryId = page.tokenValue;
+
+  let cancels: Canceler[] = [];
+  const CancelToken = Axios.CancelToken;
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
 
   const topContentSection: SectionContent[] = [
     {
@@ -77,6 +90,10 @@ function CategoryProducts(props: any) {
     const mtkParam = {
       categoryId: page.tokenValue,
       DM_ReqCmd: CATEGORY_DISPLAY,
+      ...payloadBase,
+    };
+    return () => {
+      cancels.forEach((cancel) => cancel());
     };
     dispatch(TRIGGER_MARKETING_ACTION(mtkParam));
   }, []);

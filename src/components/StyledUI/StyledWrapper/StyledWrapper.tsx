@@ -108,7 +108,7 @@ const StyledWrapper = styled.div`
       .full-height {
         height: 100%;
       }
-
+      
       .full-width {
         width: 100%;
       }

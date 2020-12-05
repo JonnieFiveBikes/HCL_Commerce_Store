@@ -17,6 +17,7 @@ import {
   ErrorReducerState,
   SearchReducerState,
   OrderDetailsMapReducerState,
+  ApiReducerState,
 } from "./reducerStateInterface";
 
 const accountDefaultState: AccountReducerState = {
@@ -63,8 +64,13 @@ const searchDefaultState: SearchReducerState = {
 
 const orderDetails: OrderDetailsMapReducerState = {};
 
+const apiDefaultState: ApiReducerState = {
+  apiFlowList: [],
+};
+
 export const defaultStates = {
   account: accountDefaultState,
+  api: apiDefaultState,
   catalog: catalogDefaultState,
   order: orderDefaultState,
   user: { initiatedFromStorage: false },

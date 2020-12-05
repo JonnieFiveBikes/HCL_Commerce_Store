@@ -54,23 +54,27 @@ const StyledTabsPanel = styled.div`
 function TabPanel(props) {
   const { children, value, index, name, ...other } = props;
 
-  return (
-    <StyledTabsPanel
-      role="tabpanel"
-      hidden={value !== index}
-      id={`${name}-tabpanel-${index}`}
-      aria-labelledby={`${name}-tab-${index}`}
-      {...other}>
-      {value === index && <>{children}</>}
-    </StyledTabsPanel>
-  );
+  if (value === index) {
+    return (
+      <StyledTabsPanel
+        role="tabpanel"
+        hidden={value !== index}
+        id={`${name}-tabpanel-${index}`}
+        aria-labelledby={`${name}-tab-${index}`}
+        {...other}>
+        {children}
+      </StyledTabsPanel>
+    );
+  } else {
+    return <></>;
+  }
 }
 
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
 };
 
 export interface ITabs {
@@ -88,7 +92,7 @@ function StyledTabs({ childrenList, name }: any) {
   function a11yProps(index) {
     return {
       id: `${name}-tab-${index}`,
-      "aria-controls": `${name}-tabpanel-${index}`
+      "aria-controls": `${name}-tabpanel-${index}`,
     };
   }
 
@@ -112,7 +116,7 @@ function StyledTabs({ childrenList, name }: any) {
 
 StyledTabs.propTypes = {
   childrenList: PropTypes.any.isRequired,
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
 };
 
 export default StyledTabs;

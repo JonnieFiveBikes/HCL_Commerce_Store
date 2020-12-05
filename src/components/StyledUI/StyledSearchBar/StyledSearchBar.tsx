@@ -12,35 +12,13 @@ import styled from "styled-components";
 import { dimensions } from "../../../themes/variables";
 
 const searchBarWidth = dimensions.searchBar.width;
-const searchBarHeight = dimensions.searchBar.height.desktop;
-const mobileSearchBarHeight = dimensions.searchBar.height.mobile;
+const searchBarHeight = dimensions.searchBar.height;
 const headerHeight = dimensions.header.height.desktop;
 const mobileHeaderHeight = dimensions.header.height.mobile;
-const menuHeight = dimensions.menu.height.desktop;
 
 const StyledSearchBar = styled.div`
   ${({ theme }) => `
   position: relative;
-  display: inline-block;
-
-  ${theme.breakpoints.down("sm")} {
-    display: none;
-    position: absolute;
-    top: ${mobileHeaderHeight}px;
-    left: 0;
-    width: 100%;
-    padding: 0 ${theme.spacing(4)}px;
-    background-color: ${theme.palette.background.paper};
-    box-shadow: 0px 3px 4px 0px ${theme.palette.text.disabled};
-
-    &.expanded {
-      display: block;
-
-      .MuiFormControl-root {
-        width: 100%;
-      }
-    }
-  }
 
   .searchBar-results {
     position: absolute;
@@ -55,7 +33,7 @@ const StyledSearchBar = styled.div`
     
     ${theme.breakpoints.down("sm")} {
       top: ${
-        (mobileHeaderHeight - mobileSearchBarHeight) * 0.5 + mobileHeaderHeight
+        (mobileHeaderHeight - searchBarHeight) * 0.5 + mobileHeaderHeight
       }px;
     }
 
@@ -70,18 +48,18 @@ const StyledSearchBar = styled.div`
 
   .MuiInputBase-root {
     height: ${searchBarHeight}px;
-    
-    ${theme.breakpoints.down("sm")} {
-      height: ${mobileSearchBarHeight}px;
-    }
   }
 
   .MuiFormControl-root {
     width: ${searchBarWidth}px;
-    margin: ${(headerHeight - searchBarHeight) * 0.5}px 0;
+    margin: 0;
 
     ${theme.breakpoints.down("sm")} {
-      margin: ${(mobileHeaderHeight - mobileSearchBarHeight) * 0.5}px 0;
+      width: 100%;
+    }
+  
+    .MuiOutlinedInput-input {
+      height: ${searchBarHeight}px;
     }
   }
 
@@ -103,10 +81,7 @@ export const StyledSearchBarButton = styled.button`
   ${({ theme }) => `
     background: none;
     border: none;
-    display: inline;
-    vertical-align: middle;
     cursor: pointer;
-    margin-right: ${theme.spacing(1)}px;
     width: ${theme.spacing(4.5)}px;
     height: ${theme.spacing(4.5)}px;
     border-radius: 50%;

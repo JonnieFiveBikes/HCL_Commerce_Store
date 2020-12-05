@@ -13,11 +13,13 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 // update this point to your Search and Transaction server.
 // const SEARCH_HOST = MOCK_HOST;
 // CHANGE SEARCH_HOST to point to the Docker Search Query Service for ElasticSearch
-// for example const SEARCH_HOST = "https://10.190.66.159:30901";
+// for example: const SEARCH_HOST = "https://10.190.66.159:30901";
+
 const SEARCH_HOST = "https://localhost:30901";
 const TRANSACTION_HOST = "https://localhost";
 const MOCK_HOST = "http://localhost:9002";
 const CMC_HOST = "https://localhost:7443";
+const DX_HOST = "https://localhost";
 
 const useMock = () => {
   return process.env.REACT_APP_MOCK === "true";
@@ -94,6 +96,10 @@ const transactionProxyContext = useMock()
       target: TRANSACTION_HOST,
       ...options,
     };
+const dxProxyContext = {
+  target: DX_HOST,
+  ...options,
+};
 
 module.exports = function (app) {
   app.use(
@@ -109,4 +115,5 @@ module.exports = function (app) {
     ["/lobtools/", "/tooling/", "/sockjs-node/", "/rest/"],
     createProxyMiddleware(lobToolsProxyContext)
   );
+  app.use("/dx/", createProxyMiddleware(dxProxyContext));
 };

@@ -24,6 +24,7 @@ const StyledAccordionDetails = styled(({ ...props }) => (
 
   .header-menu &.MuiAccordionDetails-root{
     display: block;
+    padding-top: 0;
   }
 `}
 `;

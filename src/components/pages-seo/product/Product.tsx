@@ -12,6 +12,7 @@
 import React, { useEffect, useState } from "react";
 import Axios, { Canceler } from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import productsService from "../../../_foundation/apis/search/products.service";
@@ -33,6 +34,8 @@ import * as catalogActions from "../../../redux/actions/catalog";
  * @param props
  */
 const Product: React.FC = (props: any) => {
+  const widgetName = getDisplayName(Product);
+
   let cancels: Canceler[] = [];
   const CancelToken = Axios.CancelToken;
   const { mySite } = useSite();
@@ -46,6 +49,13 @@ const Product: React.FC = (props: any) => {
   const [pdpData, setPdpData] = useState<any>(null);
   let categoryIdentifier: string = "";
   let productDetails: any;
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
 
   // Top section of the product includes breadcrumbs
   const topMarketingSection: SectionContent[] = [
@@ -109,9 +119,7 @@ const Product: React.FC = (props: any) => {
       partNumber: partNumber,
       contractId: contract,
       catalogId: catalogIdentifier,
-      cancelToken: new CancelToken(function executor(c) {
-        cancels.push(c);
-      }),
+      ...payloadBase,
     };
     productsService
       .findProductsUsingGET(parameters)
@@ -129,9 +137,7 @@ const Product: React.FC = (props: any) => {
             currency: defaultCurrencyID,
             storeId: storeIdentifier,
             productName: productData.data.contents[0].name,
-            cancelToken: new CancelToken(function executor(c) {
-              cancels.push(c);
-            }),
+            ...payloadBase,
           };
           dispatch(
             catalogActions.getProductListForPDPAction({
@@ -151,6 +157,7 @@ const Product: React.FC = (props: any) => {
       const mtkParam = {
         productId: page.tokenValue,
         DM_ReqCmd: PRODUCT_DISPLAY,
+        ...payloadBase,
       };
       dispatch(TRIGGER_MARKETING_ACTION(mtkParam));
     }

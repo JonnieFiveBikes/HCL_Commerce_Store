@@ -9,11 +9,13 @@
  *---------------------------------------------------
  */
 //Standard libraries
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
+import cloneDeep from "lodash/cloneDeep";
 //Foundation libraries
 import orderService from "../../../../_foundation/apis/transaction/order.service";
 import cartService from "../../../../_foundation/apis/transaction/cart.service";
@@ -39,6 +41,7 @@ import {
   StyledMTableFilterRow,
 } from "../../../StyledUI";
 const useOrderHistoryTable = () => {
+  const widgetName = getDisplayName(OrderHistoryPage);
   const { t, i18n } = useTranslation();
   const history = useHistory();
   const [options, setOptions] = useState<Options<any>>({
@@ -201,6 +204,10 @@ const useOrderHistoryTable = () => {
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
+  const payloadBase: any = {
+    widget: widgetName,
+  };
+
   const statusQuery = "N,M,A,B,C,R,S,D,F,G,L,W";
   const getPONumber = (buyerPONumber: string) => {
     if (buyerPONumber) {
@@ -210,6 +217,7 @@ const useOrderHistoryTable = () => {
           cancelToken: new CancelToken(function executor(c) {
             cancels.push(c);
           }),
+          ...payloadBase,
         })
         .then((r) => r.data)
         .then((d2) => {
@@ -242,13 +250,17 @@ const useOrderHistoryTable = () => {
     cs.forEach((cancel) => {
       cancel();
     });
+    const payload = {
+      cancelToken: new CancelToken(function executor(c) {
+        cancels.push(c);
+      }),
+      ...payloadBase,
+    };
     if (search && search.trim() !== "" && NUMERIC.test(search)) {
       return orderService
         .findByOrderId({
           orderId: search.trim(),
-          cancelToken: new CancelToken(function executor(c) {
-            cancels.push(c);
-          }),
+          ...cloneDeep(payload),
         })
         .then((response) => response.data)
         .then((o) => {
@@ -283,9 +295,7 @@ const useOrderHistoryTable = () => {
           status,
           pageSize,
           pageNumber,
-          cancelToken: new CancelToken(function executor(c) {
-            cancels.push(c);
-          }),
+          ...cloneDeep(payload),
         })
         .then((response) => response.data)
         .then((d) => {
@@ -324,10 +334,11 @@ const useOrderHistoryTable = () => {
     title,
     components,
     actions,
+    cancels,
   };
 };
 
-function OrderHistory(props: any) {
+function OrderHistoryPage(props: any) {
   const {
     options,
     columns,
@@ -336,7 +347,14 @@ function OrderHistory(props: any) {
     title,
     components,
     actions,
+    cancels,
   } = useOrderHistoryTable();
+
+  useEffect(() => {
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+  });
 
   return (
     <StyledContainer className="page">
@@ -368,4 +386,4 @@ function OrderHistory(props: any) {
   );
 }
 
-export default OrderHistory;
+export default OrderHistoryPage;

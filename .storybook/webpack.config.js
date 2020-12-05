@@ -20,11 +20,13 @@ module.exports = ({ config }) => {
       {
         loader: require.resolve("awesome-typescript-loader"),
         options: {
-          configFileName: "./.storybook/tsconfig.json"
-        }
+          configFileName: "./.storybook/tsconfig.json",
+          typeCheck: false,
+          transpileOnly: true,
+          files: false,
+        },
       },
-      { loader: require.resolve("react-docgen-typescript-loader") }
-    ]
+    ],
   });
   config.resolve.extensions.push(".ts", ".tsx");
   return config;

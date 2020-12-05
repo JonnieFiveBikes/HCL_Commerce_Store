@@ -13,6 +13,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
 import { useSelector } from "react-redux";
+import getDisplayName from "react-display-name";
 //Custom libraries
 import { SectionContent } from "../../../layouts/sectionContentType";
 import { StandardPageLayout } from "../../../layouts/standard-page";
@@ -35,6 +36,7 @@ import { AdministrativeToolsLayout } from "../../../widgets/administrative-tools
  * @param props
  */
 function Dashboard() {
+  const widgetName = getDisplayName(Dashboard);
   const { t } = useTranslation();
   const title = t("Dashboard.Title");
   const userId = useSelector(userIdSelector);
@@ -42,12 +44,17 @@ function Dashboard() {
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
-  const param = {
-    userId: userId,
-    profileName: IBM_ASSIGNED_ROLE_DETAILS,
+  const payloadBase: any = {
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),
+  };
+
+  const param = {
+    userId: userId,
+    profileName: IBM_ASSIGNED_ROLE_DETAILS,
+    ...payloadBase,
   };
 
   const getPerson = () => {

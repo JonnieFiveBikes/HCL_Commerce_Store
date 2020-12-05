@@ -121,12 +121,7 @@ const transformNumberResponse = function (data, headers) {
 const useSnackbarHandleError = (error: AxiosError) => {
   if (error.config) {
     const { skipErrorSnackbar } = error.config as any;
-    if (
-      skipErrorSnackbar === true &&
-      error.response &&
-      error.response.status < INTERNAL_SERVER_ERROR
-      // status 500 and above will be handled by snackbar
-    ) {
+    if (skipErrorSnackbar === true) {
       return false;
     }
   }
@@ -193,12 +188,15 @@ const executeRequest = (request: AxiosRequestConfig): AxiosPromise<any> => {
   ) {
     let currentUser = storageSessionHandler.getCurrentUserAndLoadAccount();
     if (!currentUser && isUserRequiredService(request)) {
+      const payload = {
+        widget: "axiosConfig",
+      };
       return guestIdentityService
-        .login(undefined)
+        .login(payload)
         .then((resp: AxiosResponse) => {
           currentUser = resp.data;
           const dispatch = dispatchObject.dispatch;
-          dispatch(GUEST_LOGIN_SUCCESS_ACTION(currentUser));
+          dispatch(GUEST_LOGIN_SUCCESS_ACTION({ ...currentUser, ...payload }));
           return Axios(request);
         })
         .catch((error) => {

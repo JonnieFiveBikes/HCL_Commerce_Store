@@ -19,7 +19,7 @@ import {
   CONTRACT_SWITCH_ERROR,
 } from "../action-types/contract";
 
-const FETCH_CONTRACT_REQUESTED_ACTION = createAction(
+const FETCH_CONTRACT_REQUESTED_ACTION = createAction<any, string>(
   FETCH_ELIGIBLE_CONTRACT_REQUESTED
 );
 

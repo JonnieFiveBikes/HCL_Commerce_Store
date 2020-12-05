@@ -14,6 +14,8 @@ import { Redirect } from "react-router";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../_foundation/hooks/useSite";
 //Redux
@@ -21,16 +23,31 @@ import { GET_SEO_CONFIG_ACTION } from "../../redux/actions/seo";
 import { seoSelector } from "../../redux/selectors/seo";
 //UI
 import { StyledProgressPlaceholder } from "../../components/StyledUI";
+//GA360
+import GADataService from "../gtm/gaData.service";
 
 function SEO(props: any): JSX.Element {
+  const widgetName = getDisplayName(SEO);
+
   const { mySite: site } = useSite();
   const dispatch = useDispatch();
   const seoConfig = useSelector(seoSelector);
   const url = props.match.url;
 
+  let cancels: Canceler[] = [];
+  const CancelToken = Axios.CancelToken;
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+
   React.useEffect(() => {
     if (site !== null && url) {
-      dispatch(GET_SEO_CONFIG_ACTION({ identifier: url.substr(1) }));
+      dispatch(
+        GET_SEO_CONFIG_ACTION({ identifier: url.substr(1), ...payloadBase })
+      );
     }
   }, [site, url, dispatch]);
 
@@ -38,6 +55,10 @@ function SEO(props: any): JSX.Element {
     if (seoConfig && seoConfig[url.substr(1)]) {
       const c = seoConfig[url.substr(1)];
       const ActiveC = c.component;
+      //GA360
+      if (site.enableGA && seoConfig[url.substr(1)].page)
+        GADataService.setPageTitle(seoConfig[url.substr(1)].page.title);
+
       return c.redirect && c.redirect.trim() !== "" ? (
         <Redirect to={c.redirect} />
       ) : (

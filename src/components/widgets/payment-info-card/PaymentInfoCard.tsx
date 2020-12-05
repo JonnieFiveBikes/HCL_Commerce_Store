@@ -14,6 +14,7 @@ import React, { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 //Custom libraries
@@ -35,6 +36,7 @@ interface PaymentInfoCardProps {
  * @param props
  */
 const PaymentInfoCard: React.FC<PaymentInfoCardProps> = (props: any) => {
+  const widgetName = getDisplayName(PaymentInfoCard);
   const { paymentInfo, currentPaymentNumber } = props;
   const addressId = paymentInfo.addressId;
   const addressDetails = useSelector(addressDetailsSelector);
@@ -49,6 +51,7 @@ const PaymentInfoCard: React.FC<PaymentInfoCardProps> = (props: any) => {
   let cancels: Canceler[] = [];
 
   const payloadBase: any = {
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),
@@ -58,6 +61,9 @@ const PaymentInfoCard: React.FC<PaymentInfoCardProps> = (props: any) => {
     if (mySite && addressDetails === null) {
       dispatch(GET_ADDRESS_DETAIL_ACTION({ ...payloadBase }));
     }
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
   }, [mySite]);
 
   function getAddress() {

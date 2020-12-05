@@ -11,8 +11,9 @@
 //Standard libraries
 import React from "react";
 import { Link } from "react-router-dom";
+//Foundation
+import { useSite } from "../../_foundation/hooks/useSite";
 //UI
-
 import {
   StyledMenuItem,
   StyledMenuTypography,
@@ -23,6 +24,8 @@ import {
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
+//GA360
+import GTMDLService from "../../_foundation/gtm/gtmDataLayer.service";
 
 const MegaMenuLink = (props: any) => {
   const {
@@ -36,7 +39,10 @@ const MegaMenuLink = (props: any) => {
     setActiveParentMenuId,
     closeMegaMenu,
     parentId,
+    parentName,
+    site,
   } = props;
+
   return (
     <>
       {page.children && page.children.length > 0 ? (
@@ -51,7 +57,14 @@ const MegaMenuLink = (props: any) => {
           parentId={parentId}
         />
       ) : (
-        <Link to={link} onClick={closeMegaMenu}>
+        <Link
+          to={link}
+          onClick={() => {
+            /*GA360*/
+            if (site.enableGA)
+              GTMDLService.measureNavigationClick(parentName, name);
+            closeMegaMenu();
+          }}>
           <StyledMenuItem role="menuitem">
             <StyledMenuTypography variant="body1">
               <span>{name}</span>
@@ -92,6 +105,7 @@ const MegaMenuColumn: React.FC<MegaMenuColumnProps> = (props: any) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.up("sm"));
   const id = page.id;
+  const { mySite } = useSite();
 
   let childrenList: JSX.Element[] = [];
 
@@ -111,12 +125,20 @@ const MegaMenuColumn: React.FC<MegaMenuColumnProps> = (props: any) => {
           closeMegaMenu={closeMegaMenu}
           level={level + 1}
           parentId={id}
+          parentName={props.page.name}
+          site={mySite}
         />
       );
       childrenList.push(element);
       return null;
     });
   }
+
+  const icon = useMediaQuery(theme.breakpoints.down("xs")) ? (
+    <ExpandMoreIcon />
+  ) : (
+    ""
+  );
 
   return (
     <StyledAccordion
@@ -133,10 +155,17 @@ const MegaMenuColumn: React.FC<MegaMenuColumnProps> = (props: any) => {
       }}>
       <StyledAccordionSummary
         className={`level-${level}`}
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={icon}
         aria-controls={`${id}bh-content`}
         id={`${id}bh-header`}>
-        <Link to={page.seo?.href} onClick={closeMegaMenu}>
+        <Link
+          to={page.seo?.href}
+          onClick={() => {
+            /*GA360 */
+            if (mySite.enableGA)
+              GTMDLService.measureNavigationClick("Main", page.name);
+            closeMegaMenu();
+          }}>
           <StyledMenuItem>
             <StyledMenuTypography
               variant={level === 1 ? "overline" : "body2"}

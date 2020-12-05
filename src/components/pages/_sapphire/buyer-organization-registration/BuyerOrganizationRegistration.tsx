@@ -13,6 +13,8 @@ import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { CREATED } from "http-status-codes";
 import { Redirect } from "react-router-dom";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import organizationService from "../../../../_foundation/apis/transaction/organization.service";
 import { useSite } from "../../../../_foundation/hooks/useSite";
@@ -36,8 +38,11 @@ import {
   StyledSelect,
   StyledMenuItem,
 } from "../../../StyledUI";
+//GA360
+import GADataService from "../../../../_foundation/gtm/gaData.service";
 
 const BuyerOrganizationRegistration = (props: any) => {
+  const widgetName = getDisplayName(BuyerOrganizationRegistration);
   const { mySite } = useSite();
   const defaultLanguageID = mySite?.defaultLanguageID;
   const defaultCurrencyID = mySite?.defaultCurrencyID;
@@ -71,6 +76,16 @@ const BuyerOrganizationRegistration = (props: any) => {
   const [currency, setCurrency] = React.useState<string>(defaultCurrencyID);
   const [openSuccess, setOpenSuccess] = React.useState<boolean>(false);
   const [redirect, setRedirect] = React.useState<boolean>(false);
+
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
 
   const handleSubmit = (props: any) => {
     props.preventDefault();
@@ -137,6 +152,7 @@ const BuyerOrganizationRegistration = (props: any) => {
         usr_preferredLanguage: language,
         usr_preferredCurrency: currency,
       },
+      ...payloadBase,
     };
 
     organizationService
@@ -181,6 +197,9 @@ const BuyerOrganizationRegistration = (props: any) => {
       setLanguage(defaultLanguageID);
       setCurrency(defaultCurrencyID);
     }
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
   }, [mySite]);
 
   const closeAndRedirect = () => {
@@ -189,6 +208,9 @@ const BuyerOrganizationRegistration = (props: any) => {
   };
 
   if (redirect) {
+    //GA360
+    if (mySite.enableGA)
+      GADataService.sendFormCompletionEvent("Register your organization");
     return <Redirect to={SIGNIN} />;
   } else {
     return (

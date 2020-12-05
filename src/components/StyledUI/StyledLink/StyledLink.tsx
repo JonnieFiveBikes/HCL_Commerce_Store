@@ -29,6 +29,10 @@ const StyledLink = styled(LinkWrapper)`
         color: ${theme.palette.primary.dark};
       }
     }
+    
+    &.disabled {
+        color: ${theme.palette.text.disabled};
+    }
   `}
 `;
 

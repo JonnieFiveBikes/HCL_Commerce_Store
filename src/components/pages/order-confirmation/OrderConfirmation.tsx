@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
 import { Redirect } from "react-router-dom";
 import { useLocation } from "react-router";
+import getDisplayName from "react-display-name";
 //Foundation Libraries
 import { localStorageUtil } from "../../../_foundation/utils/storageUtil";
 import { ACCOUNT } from "../../../_foundation/constants/common";
@@ -40,6 +41,7 @@ import {
  * @param props
  */
 const OrderConfirmation: React.FC = (props: any) => {
+  const widgetName = getDisplayName(OrderConfirmation);
   const [orderStatus, setOrderStatus] = useState<string>("");
   const { t } = useTranslation();
   const { storeDisplayName } = useSite();
@@ -51,11 +53,18 @@ const OrderConfirmation: React.FC = (props: any) => {
   const emailListString = emailList.join(", ");
   const CancelToken = Axios.CancelToken;
   let cancel: Canceler;
+  let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+
   const param: any = {
     orderId: orderId,
-    cancelToken: new CancelToken(function executor(c) {
-      cancel = c;
-    }),
+    ...payloadBase,
   };
 
   async function queryOrderStatus() {
@@ -66,7 +75,10 @@ const OrderConfirmation: React.FC = (props: any) => {
 
   useEffect(() => {
     queryOrderStatus();
-    return () => cancel();
+
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
   }, []);
 
   if (localStorageUtil.get(ACCOUNT + HYPHEN + ORDER_ID + HYPHEN + orderId)) {

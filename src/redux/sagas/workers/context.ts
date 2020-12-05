@@ -20,7 +20,10 @@ import {
 
 export function* getUserContext(action: any) {
   try {
-    const response = yield call(userContextService.getContextData, {});
+    const response = yield call(
+      userContextService.getContextData,
+      action.payload
+    );
     yield put(USER_CONTEXT_REQUEST_SUCCESS_ACTION(response.data));
   } catch (e) {
     yield put(USER_CONTEXT_REQUEST_ERROR_ACTION(e));

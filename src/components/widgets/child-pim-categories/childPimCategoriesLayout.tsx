@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import Axios, { AxiosResponse, Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import categoryService from "../../../_foundation/apis/search/categories.service";
@@ -27,6 +28,8 @@ import { StyledGrid, StyledTypography } from "../../StyledUI";
 import "./childPimCategoriesLayout.scss";
 
 function ChildPimCategoriesLayout({ cid, page, ...props }: any) {
+  const widgetName = getDisplayName(ChildPimCategoriesLayout);
+
   const catId = page.externalContext.identifier;
   const [categories, setCategories] = useState<any[]>([]);
   const [categoryTitle, setCategoryTitle] = useState<string>();
@@ -36,6 +39,14 @@ function ChildPimCategoriesLayout({ cid, page, ...props }: any) {
 
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+
   const getSubCategories = (catIdentifier: string) => {
     const param = {
       identifier: catIdentifier,
@@ -43,9 +54,7 @@ function ChildPimCategoriesLayout({ cid, page, ...props }: any) {
       $queryParameters: {
         contractId: contract,
       },
-      cancelToken: new CancelToken(function executor(c) {
-        cancels.push(c);
-      }),
+      ...payloadBase,
     };
     categoryService
       .getV2CategoryResourcesUsingGET(param)
@@ -65,9 +74,7 @@ function ChildPimCategoriesLayout({ cid, page, ...props }: any) {
             $queryParameters: {
               contractId: contract,
             },
-            cancelToken: new CancelToken(function executor(c) {
-              cancels.push(c);
-            }),
+            ...payloadBase,
           };
           setCategoryTitle(
             t("ChildPimCategories.title", { name: category.name })

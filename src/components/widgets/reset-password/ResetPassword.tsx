@@ -9,9 +9,11 @@
  *==================================================
  */
 //Standard libraries
-import React, { ChangeEvent } from "react";
+import React, { useEffect, ChangeEvent } from "react";
 import { OK } from "http-status-codes";
 import { useTranslation } from "react-i18next";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import personService from "../../../_foundation/apis/transaction/person.service";
@@ -25,6 +27,7 @@ import {
 } from "../../StyledUI";
 
 const ResetPassword: React.FC = (props: any) => {
+  const widgetName = getDisplayName(ResetPassword);
   const [email, setEmail] = React.useState<string>("");
   const [validationCode, setValidationCode] = React.useState<string>("");
   const [passwordNew, setNewPassword] = React.useState<string>("");
@@ -45,6 +48,16 @@ const ResetPassword: React.FC = (props: any) => {
   const [resetPasswordState, setResetPasswordState] = React.useState<boolean>(
     true
   );
+
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
 
   const handleEmailChange = (
     evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -100,6 +113,7 @@ const ResetPassword: React.FC = (props: any) => {
         logonPassword: passwordNew,
         xcred_logonPasswordVerify: passwordVerify,
       },
+      ...payloadBase,
     };
     personService
       .updatePerson(parameters, null, site.transactionContext)
@@ -109,6 +123,12 @@ const ResetPassword: React.FC = (props: any) => {
         }
       });
   };
+
+  useEffect(() => {
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+  });
 
   return getResetPasswordState() ? (
     <StyledDialogContent>

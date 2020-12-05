@@ -13,6 +13,8 @@ import React from "react";
 import isEmpty from "lodash/isEmpty";
 import { useDispatch } from "react-redux";
 import LazyLoadComponent from "react-intersection-observer-lazy-load";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Custom libraries
 import { DEFINING, OFFER } from "../../../constants/common";
 //Redux
@@ -25,10 +27,23 @@ import {
 } from "../../StyledUI";
 
 function ProductRecCard({ renderingContext }: any) {
+  const widgetName = getDisplayName(ProductRecCard);
   const dispatch = useDispatch();
   const [attributeList, setAttributeList] = React.useState<Array<object>>();
   const [productPrice, setProductPrice] = React.useState<number | null>();
   const colorList: object[] = [];
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+  const payload = {
+    ...payloadBase,
+  };
 
   const {
     eSpotDescInternal: eSpotDesc,
@@ -60,12 +75,17 @@ function ProductRecCard({ renderingContext }: any) {
 
   const informMarketingOfClick = (event) => {
     if (eSpotDesc && !isEmpty(eSpotDesc)) {
-      dispatch(CLICK_EVENT_TRIGGERED_ACTION({ eSpotRoot, eSpotDesc }));
+      dispatch(
+        CLICK_EVENT_TRIGGERED_ACTION({ eSpotRoot, eSpotDesc, ...payloadBase })
+      );
     }
   };
 
   React.useEffect(() => {
     init();
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
   }, [product]);
 
   let swatches: any[] = [];

@@ -9,10 +9,12 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Redirect } from "react-router-dom";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 //Custom libraries
@@ -29,12 +31,15 @@ import {
   StyledFormControlLabel,
   StyledCheckbox,
 } from "../../StyledUI";
+//GA360
+import GADataService from "../../../_foundation/gtm/gaData.service";
 
 interface RegistrationContext {
   cid: string;
 }
 
 function RegistrationLayout({ cid, ...props }: RegistrationContext) {
+  const widgetName = getDisplayName(RegistrationLayout);
   const dispatch = useDispatch();
   const registrationStatus = useSelector(registrationStatusSelector);
   const { t } = useTranslation();
@@ -49,6 +54,16 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
   const [password2, setPassword2] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [receiveEmail, setReceiveEmail] = useState<boolean>(true);
+
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
 
   const handleSubmit = (props: any) => {
     props.preventDefault();
@@ -71,11 +86,20 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
           challengeQuestion: "-",
           challengeAnswer: "-",
         },
+        ...payloadBase,
       })
     );
   };
 
+  useEffect(() => {
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+  });
+
   if (registrationStatus) {
+    //GA360
+    if (mySite.enableGA) GADataService.sendFormCompletionEvent("Register");
     return <Redirect to={HOME} />;
   } else {
     return (

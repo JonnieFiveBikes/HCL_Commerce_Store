@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 import { Divider } from "@material-ui/core";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import LocalShippingIcon from "@material-ui/icons/LocalShipping";
+import getDisplayName from "react-display-name";
 import {
   EMPTY_STRING,
   IS_PERSONAL_ADDRESS_ALLOWED,
@@ -27,7 +28,7 @@ import { SHIPMODE } from "../../../../constants/order";
 import { useSite } from "../../../../_foundation/hooks/useSite";
 import shippingInfoService from "../../../../_foundation/apis/transaction/shippingInfo.service";
 //Custom libraries
-import CheckoutAddress, { CheckoutPageType } from "../address/Address";
+import CheckoutAddress, { CheckoutPageType } from "../address/CheckoutAddress";
 import { ORDER_CONFIGS } from "../../../../configs/order";
 import * as ROUTES from "../../../../constants/routes";
 //Redux
@@ -60,6 +61,7 @@ import {
 } from "../../../StyledUI";
 
 const useShipping = (props) => {
+  const widgetName = getDisplayName(Shipping);
   const history = useHistory();
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -286,6 +288,7 @@ const useShipping = (props) => {
   const payloadBase: any = {
     currency: defaultCurrencyID,
     contractId: contractId,
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),

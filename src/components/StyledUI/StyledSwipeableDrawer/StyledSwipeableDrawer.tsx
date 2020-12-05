@@ -31,7 +31,8 @@ const StyledSwipeableDrawer = styled(({ ...props }) => (
     margin-top: ${headerHeight}px;
     border-top: 1px solid ${theme.palette.action.disabledBackground};
     box-shadow: 0px 3px 4px 0px ${theme.palette.text.disabled};
-    padding: 15px 0 20px;
+    padding: ${theme.spacing(3)}px 0 ${theme.spacing(2)}px;
+    
     ${theme.breakpoints.down("sm")} {
       margin-top: ${mobileHeaderHeight}px;
     }
@@ -40,7 +41,7 @@ const StyledSwipeableDrawer = styled(({ ...props }) => (
   .MuiDrawer-paperAnchorLeft {
     width: 75%;
     max-width: 300px;
-    padding-top: ${theme.spacing(1)}px;
+    padding-top: ${theme.spacing(3)}px;
   }
 
   .MuiExpansionPanel-root:before {

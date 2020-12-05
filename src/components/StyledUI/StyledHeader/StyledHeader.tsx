@@ -28,58 +28,45 @@ export const StyledHeaderIcon = styled(AccountCircleIcon)`
 
 const StyledHeader = styled.header`
   ${({ theme }) => `
-  height: ${headerHeight}px;
-  line-height: ${headerHeight}px;
   background-color: ${theme.palette.background.paper};
   box-shadow: 0px 3px 4px 0px ${theme.palette.text.disabled};
   position: relative;
   z-index: 20;
-  margin-bottom: ${theme.spacing(2.5)}px;
 
   ${theme.breakpoints.down("sm")} {
-    height: ${mobileHeaderHeight}px;
-    line-height: ${mobileHeaderHeight}px;
     position: sticky;
     top: 0;
     left: 0;
     width: 100%;
   }
 
-  .header-accountPopperButton {
+  .header-topbarSection {
     height: ${headerHeight}px;
-    display: inline-block;
-    
-    ${theme.breakpoints.up("sm")} {
-      margin-left: ${theme.spacing(2)}px;
-    }
- 
+    width: auto;
+
     ${theme.breakpoints.down("sm")} {
       height: ${mobileHeaderHeight}px;
-    }
-
-    .welcome-text {
-      color: ${theme.palette.text.secondary}; 
-      font-weight: 500;
-      line-height: 1.25;
     }
   }
-  
-  .header-actionsButton {
-    height: ${headerHeight}px;
 
-    ${theme.breakpoints.down("sm")} {
-      height: ${mobileHeaderHeight}px;
+  .welcome-text {
+    .MuiTypography-button {
+      color: ${theme.palette.text.primary};
     }
+
+    .MuiTypography-root {
+      line-height: 1.5;
+    }
+  }
+
+  .header-actionsButton {
+    margin: ${theme.spacing(1)}px;
   }
 
   .header-branding {
-    display: inline-block;
-    height: ${headerHeight}px;
-    margin-left: ${theme.spacing(2)}px;
-
     a {
       display: block;
-      vertical-align: middle;
+      line-height: 1;
     }
 
     img {
@@ -87,8 +74,6 @@ const StyledHeader = styled.header`
     }
 
     ${theme.breakpoints.down("sm")} {
-      height: ${mobileHeaderHeight}px;
-
       img {
         height: 20px;
       }
@@ -96,10 +81,6 @@ const StyledHeader = styled.header`
 
     @media (max-width: 450px) {
       margin-left: 0px;
-
-      img {
-        height: ${theme.spacing(2)}px;
-      }
     }
   }
 

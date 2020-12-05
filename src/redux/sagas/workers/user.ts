@@ -34,8 +34,12 @@ import { userLastUpdatedSelector } from "../../selectors/user";
 
 function* loginAndFetchDetail(payload: any) {
   const response = yield call(loginIdentity.login, payload);
-  yield put(LOGIN_SUCCESS_ACTION(response.data));
-  const response2 = yield call(personService.findPersonBySelf, {});
+  let loginPayload = response.data;
+  if (payload?.widget) {
+    loginPayload["widget"] = payload.widget;
+  }
+  yield put(LOGIN_SUCCESS_ACTION(loginPayload));
+  const response2 = yield call(personService.findPersonBySelf, payload);
   yield put(FETCH_USER_DETAILS_SUCCESS_ACTION(response2.data));
 }
 
@@ -69,14 +73,14 @@ export function* sessionErrorReLogin(action: any) {
 }
 
 export function* logout(action: any) {
+  const payload = action.payload;
   try {
-    const payload = action.payload;
     yield call(loginIdentity.logout, payload);
-    yield put(LOGOUT_SUCCESS_ACTION());
+    yield put(LOGOUT_SUCCESS_ACTION(payload));
   } catch (error) {
     yield put({ type: ACTIONS.LOGOUT_ERROR, error });
     //still need to clear user token, event though logout fail to avoid infinite loop
-    yield put(LOGOUT_SUCCESS_ACTION());
+    yield put(LOGOUT_SUCCESS_ACTION(payload));
   }
 }
 
@@ -85,7 +89,7 @@ export function* registration(action: any) {
     const payload = action.payload;
     const response = yield call(personService.registerPerson, payload);
     yield put(REGISTRATION_SUCCESS_ACTION(response.data));
-    const response2 = yield call(personService.findPersonBySelf, {});
+    const response2 = yield call(personService.findPersonBySelf, payload);
     yield put(FETCH_USER_DETAILS_SUCCESS_ACTION(response2.data));
   } catch (error) {
     yield put({ type: ACTIONS.REGISTRATION_ERROR, error });
@@ -107,6 +111,9 @@ export function* initStateFromStorage(action: any) {
         }
       }
     }
+    if (action?.payload?.widget) {
+      currentUser["widget"] = action.payload.widget;
+    }
     yield put(INIT_USER_FROM_STORAGE_SUCCESS_ACTION(currentUser));
   } catch (e) {
     console.warn(e);
@@ -122,11 +129,14 @@ export function* updateStateFromStorage(action: any) {
       currentUser.lastUpdated &&
       (!userLastUpdated || userLastUpdated < currentUser.lastUpdated)
     ) {
+      if (action?.payload?.widget) {
+        currentUser["widget"] = action.payload.widget;
+      }
       yield put(INIT_USER_FROM_STORAGE_SUCCESS_ACTION(currentUser));
       if (currentUser.isGuest) {
-        yield put(GUEST_LOGIN_SUCCESS_ACTION(null));
+        yield put(GUEST_LOGIN_SUCCESS_ACTION(action.payload));
       } else {
-        yield put(LOGIN_SUCCESS_ACTION(null));
+        yield put(LOGIN_SUCCESS_ACTION(action.payload));
       }
     }
   } catch (e) {

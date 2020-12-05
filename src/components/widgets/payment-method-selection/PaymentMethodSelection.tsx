@@ -33,6 +33,7 @@ import {
   StyledSelect,
   StyledBox,
   StyledIconLabel,
+  StyledCircularProgress,
 } from "../../StyledUI";
 
 interface PaymentMethodSelectionProps {
@@ -67,12 +68,16 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = (
   const { t } = useTranslation();
   const cart = useSelector(cartSelector);
   const [policyIdValue, setPolicyIdValue] = React.useState<string>("");
+  const [loading, setLoading] = React.useState(true);
 
   useEffect(() => {
     if (paymentInfo && paymentInfo.policyId) {
       setPolicyIdValue(paymentInfo.policyId);
     }
-  }, [paymentInfo]);
+    if (paymentsList && paymentsList.length > 0) {
+      setLoading(false);
+    }
+  }, [paymentInfo, paymentsList]);
   return (
     <StyledGrid container spacing={4} className="bottom-margin-2">
       <StyledGrid
@@ -88,170 +93,180 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = (
       </StyledGrid>
 
       <StyledGrid item xs={12} md={6}>
-        <StyledBox className="basic-border" border={1}>
-          <StyledFormControl component="fieldset">
-            <StyledRadioGroup
-              name="payOption"
-              value={policyIdValue}
-              onChange={(event) => togglePayOption(event.target.value)}>
-              {paymentsList &&
-                paymentsList.length > 0 &&
-                paymentsList.map((payment: any) => (
-                  <Fragment key={payment.xumet_policyId}>
-                    <StyledFormControlLabel
-                      value={payment.xumet_policyId}
-                      control={<StyledRadio />}
-                      label={
-                        <StyledTypography variant="body1">
-                          {payment.description}
-                        </StyledTypography>
-                      }
-                      className="vertical-padding-1 pay-option"
-                    />
+        {loading ? (
+          <div className="horizontal-padding-13">
+            <StyledCircularProgress />
+          </div>
+        ) : (
+          <StyledBox className="basic-border" border={1}>
+            <StyledFormControl component="fieldset">
+              <StyledRadioGroup
+                name="payOption"
+                value={policyIdValue}
+                onChange={(event) => togglePayOption(event.target.value)}>
+                {paymentsList &&
+                  paymentsList.length > 0 &&
+                  paymentsList.map((payment: any) => (
+                    <Fragment key={payment.xumet_policyId}>
+                      <StyledFormControlLabel
+                        value={payment.xumet_policyId}
+                        control={<StyledRadio />}
+                        label={
+                          <StyledTypography variant="body1">
+                            {payment.description}
+                          </StyledTypography>
+                        }
+                        className="vertical-padding-1 pay-option"
+                      />
 
-                    {paymentInfo &&
-                      paymentInfo.payMethodId !==
-                        PAYMENT.paymentMethodName.cod &&
-                      paymentInfo.policyId === payment.xumet_policyId &&
-                      paymentInfo.paymentTermConditionId === "" && (
-                        <>
-                          <Divider className="horizontal-margin-2" />
-                          <StyledGrid
-                            container
-                            spacing={2}
-                            className="horizontal-padding-2 vertical-padding-3">
-                            <StyledGrid item xs={12}>
-                              <StyledTextField
-                                required
-                                name="account"
-                                value={paymentInfo.creditCardFormData?.account}
-                                label={t(
-                                  "PaymentMethodSelection.Labels.CCNumber"
-                                )}
-                                type="tel"
-                                onChange={(event) =>
-                                  handleCreditCardChange(
-                                    event,
-                                    currentPaymentNumber
-                                  )
-                                }
-                                error={!isValidCardNumber(currentPaymentNumber)}
-                                helperText={
-                                  !isValidCardNumber(currentPaymentNumber)
-                                    ? t(
-                                        "PaymentMethodSelection.Msgs.InvalidFormat"
-                                      )
-                                    : ""
-                                }
-                                inputProps={{ maxLength: 19 }}
-                                fullWidth
-                              />
-                            </StyledGrid>
+                      {paymentInfo &&
+                        paymentInfo.payMethodId !==
+                          PAYMENT.paymentMethodName.cod &&
+                        paymentInfo.policyId === payment.xumet_policyId &&
+                        paymentInfo.paymentTermConditionId === "" && (
+                          <>
+                            <Divider className="horizontal-margin-2" />
+                            <StyledGrid
+                              container
+                              spacing={2}
+                              className="horizontal-padding-2 vertical-padding-3">
+                              <StyledGrid item xs={12}>
+                                <StyledTextField
+                                  required
+                                  name="account"
+                                  value={
+                                    paymentInfo.creditCardFormData?.account
+                                  }
+                                  label={t(
+                                    "PaymentMethodSelection.Labels.CCNumber"
+                                  )}
+                                  type="tel"
+                                  onChange={(event) =>
+                                    handleCreditCardChange(
+                                      event,
+                                      currentPaymentNumber
+                                    )
+                                  }
+                                  error={
+                                    !isValidCardNumber(currentPaymentNumber)
+                                  }
+                                  helperText={
+                                    !isValidCardNumber(currentPaymentNumber)
+                                      ? t(
+                                          "PaymentMethodSelection.Msgs.InvalidFormat"
+                                        )
+                                      : ""
+                                  }
+                                  inputProps={{ maxLength: 19 }}
+                                  fullWidth
+                                />
+                              </StyledGrid>
 
-                            <StyledGrid item xs={12} sm={8}>
-                              <StyledGrid
-                                container
-                                spacing={2}
-                                alignItems="flex-end">
-                                <StyledGrid item xs={6} sm={5}>
-                                  <StyledFormControl variant="outlined">
-                                    <StyledInputLabel
-                                      shrink
-                                      htmlFor="expire_month">
-                                      {t(
-                                        "PaymentMethodSelection.Labels.ExpiryDate"
-                                      )}
-                                    </StyledInputLabel>
+                              <StyledGrid item xs={12} sm={8}>
+                                <StyledGrid
+                                  container
+                                  spacing={2}
+                                  alignItems="flex-end">
+                                  <StyledGrid item xs={6} sm={5}>
+                                    <StyledFormControl variant="outlined">
+                                      <StyledInputLabel
+                                        shrink
+                                        htmlFor="expire_month">
+                                        {t(
+                                          "PaymentMethodSelection.Labels.ExpiryDate"
+                                        )}
+                                      </StyledInputLabel>
 
-                                    <StyledSelect
-                                      required
-                                      native
-                                      id="expire_month"
-                                      name="expire_month"
-                                      value={
-                                        paymentInfo.creditCardFormData
-                                          ?.expire_month
-                                      }
-                                      onChange={(event) =>
-                                        handleCreditCardChange(
-                                          event,
-                                          currentPaymentNumber
-                                        )
-                                      }
-                                      fullWidth>
-                                      {EXPIRY.MONTHS.map(
-                                        (month: any, index: number) => (
-                                          <option value={month} key={month}>
-                                            {month}
-                                          </option>
-                                        )
-                                      )}
-                                    </StyledSelect>
-                                  </StyledFormControl>
-                                </StyledGrid>
-                                <StyledGrid item xs={6} sm={5}>
-                                  <StyledFormControl variant="outlined">
-                                    <StyledSelect
-                                      native
-                                      required
-                                      name="expire_year"
-                                      value={
-                                        paymentInfo.creditCardFormData
-                                          ?.expire_year
-                                      }
-                                      onChange={(event) =>
-                                        handleCreditCardChange(
-                                          event,
-                                          currentPaymentNumber
-                                        )
-                                      }
-                                      fullWidth>
-                                      {EXPIRY.YEARS.map(
-                                        (year: any, index: number) => (
-                                          <option value={year} key={year}>
-                                            {year}
-                                          </option>
-                                        )
-                                      )}
-                                    </StyledSelect>
-                                  </StyledFormControl>
+                                      <StyledSelect
+                                        required
+                                        native
+                                        id="expire_month"
+                                        name="expire_month"
+                                        value={
+                                          paymentInfo.creditCardFormData
+                                            ?.expire_month
+                                        }
+                                        onChange={(event) =>
+                                          handleCreditCardChange(
+                                            event,
+                                            currentPaymentNumber
+                                          )
+                                        }
+                                        fullWidth>
+                                        {EXPIRY.MONTHS.map(
+                                          (month: any, index: number) => (
+                                            <option value={month} key={month}>
+                                              {month}
+                                            </option>
+                                          )
+                                        )}
+                                      </StyledSelect>
+                                    </StyledFormControl>
+                                  </StyledGrid>
+                                  <StyledGrid item xs={6} sm={5}>
+                                    <StyledFormControl variant="outlined">
+                                      <StyledSelect
+                                        native
+                                        required
+                                        name="expire_year"
+                                        value={
+                                          paymentInfo.creditCardFormData
+                                            ?.expire_year
+                                        }
+                                        onChange={(event) =>
+                                          handleCreditCardChange(
+                                            event,
+                                            currentPaymentNumber
+                                          )
+                                        }
+                                        fullWidth>
+                                        {EXPIRY.YEARS.map(
+                                          (year: any, index: number) => (
+                                            <option value={year} key={year}>
+                                              {year}
+                                            </option>
+                                          )
+                                        )}
+                                      </StyledSelect>
+                                    </StyledFormControl>
+                                  </StyledGrid>
                                 </StyledGrid>
                               </StyledGrid>
-                            </StyledGrid>
 
-                            <StyledGrid item xs={12} sm={4}>
-                              <StyledTextField
-                                required
-                                name="cc_cvc"
-                                value={paymentInfo.creditCardFormData?.cc_cvc}
-                                label={t("PaymentMethodSelection.Labels.CVV")}
-                                type="tel"
-                                onChange={(event) =>
-                                  handleCreditCardChange(
-                                    event,
-                                    currentPaymentNumber
-                                  )
-                                }
-                                error={!isValidCode(currentPaymentNumber)}
-                                helperText={
-                                  !isValidCode(currentPaymentNumber)
-                                    ? t(
-                                        "PaymentMethodSelection.Msgs.InvalidFormat"
-                                      )
-                                    : ""
-                                }
-                                inputProps={{ maxLength: 4 }}
-                                fullWidth
-                              />
+                              <StyledGrid item xs={12} sm={4}>
+                                <StyledTextField
+                                  required
+                                  name="cc_cvc"
+                                  value={paymentInfo.creditCardFormData?.cc_cvc}
+                                  label={t("PaymentMethodSelection.Labels.CVV")}
+                                  type="tel"
+                                  onChange={(event) =>
+                                    handleCreditCardChange(
+                                      event,
+                                      currentPaymentNumber
+                                    )
+                                  }
+                                  error={!isValidCode(currentPaymentNumber)}
+                                  helperText={
+                                    !isValidCode(currentPaymentNumber)
+                                      ? t(
+                                          "PaymentMethodSelection.Msgs.InvalidFormat"
+                                        )
+                                      : ""
+                                  }
+                                  inputProps={{ maxLength: 4 }}
+                                  fullWidth
+                                />
+                              </StyledGrid>
                             </StyledGrid>
-                          </StyledGrid>
-                        </>
-                      )}
-                  </Fragment>
-                ))}
-            </StyledRadioGroup>
-          </StyledFormControl>
-        </StyledBox>
+                          </>
+                        )}
+                    </Fragment>
+                  ))}
+              </StyledRadioGroup>
+            </StyledFormControl>
+          </StyledBox>
+        )}
       </StyledGrid>
 
       {useMultiplePayment && (

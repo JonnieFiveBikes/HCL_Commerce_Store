@@ -34,7 +34,6 @@ export const ADDRESS_SHIPPING = "Shipping";
 export const ADDRESS_BILLING = "Billing";
 export const ADDRESS_SHIPPING_BILLING = "ShippingAndBilling";
 export const ADDRESS_LINE = "addressLine";
-export const IS_NEW = "isNew";
 export const ADDRESSLINE1 = "addressLine1";
 export const ADDRESSLINE2 = "addressLine2";
 export const PHONE1 = "phone1";
@@ -127,6 +126,19 @@ export const CommerceEnvironment = {
     ru_RU: "ru",
     ro_RO: "ro",
   },
+  dxLanguageMap: {
+    "-1": "en",
+    "-2": "fr",
+    "-3": "de",
+    "-4": "it",
+    "-5": "es",
+    "-6": "pt",
+    "-7": "zh",
+    "-8": "zh-TW",
+    "-10": "ja",
+    "-20": "ru",
+    "-21": "ro",
+  },
 };
 
 export const INVENTORY = {
@@ -142,3 +154,10 @@ export const ORG_ADDRESS_DETAILS = "orgAddressDetails";
 export const ORG_ADDRESS = "orgAddress";
 export const ORDER_ID = "orderid";
 export const HYPHEN = "-";
+
+// Discover
+export const DISCOVER_FEATURE = "Discover";
+//Image
+export const IMAGE = "IMAGE";
+export const VIDEO = "VIDEO";
+export const ATTACHMENTS = "Attachments";

@@ -103,7 +103,11 @@ export function ProductCard(props: ProductCardProps) {
       to={seoUrl}
       id={catentryId ? `productCard_a_1_${catentryId}` : ""}
       {...onClickAction}>
-      <StyledCard contentComponent={contentComponent} cardActions={actions} />
+      <StyledCard
+        className="product-card"
+        contentComponent={contentComponent}
+        cardActions={actions}
+      />
     </StyledProductCard>
   );
 }

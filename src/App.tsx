@@ -16,6 +16,8 @@ import { renderRoutes } from "react-router-config";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { site } from "./_foundation/constants/site";
 import { initAxios } from "./_foundation/axios/axiosConfig";
@@ -26,12 +28,18 @@ import {
   localStorageUtil,
 } from "./_foundation/utils/storageUtil";
 import { LOCALE } from "./_foundation/constants/common";
-
+import storeService from "./_foundation/apis/transaction/store.service";
+import { PRODUCTION } from "./_foundation/constants/common";
 //Custom libraries
 import { ROUTE_CONFIG } from "./configs/routes";
-import { CommerceEnvironment } from "./constants/common";
+import {
+  CommerceEnvironment,
+  DISCOVER_FEATURE,
+  EMPTY_STRING,
+} from "./constants/common";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
+import { Extensions } from "./components/extensions";
 //Redux
 import { loginStatusSelector } from "./redux/selectors/user";
 import { FETCH_CONTRACT_REQUESTED_ACTION } from "./redux/actions/contract";
@@ -48,22 +56,41 @@ import {
   StyledWrapper,
 } from "./components/StyledUI";
 import "./App.scss";
+//GA360
+import GADataService from "./_foundation/gtm/gaData.service";
+import GTMDLService from "./_foundation/gtm/gtmDataLayer.service";
+
 const ScrollToTop = () => {
   const location = useLocation();
+  const { mySite } = useSite();
+
   React.useEffect(() => {
     //scroll to top on path change.
     setTimeout(() => {
       window.scrollTo(0, 0);
+      //GA360
+      if (mySite.enableGA) GADataService.setPagePath(location.pathname);
     });
   }, [location.pathname]);
   return <></>;
 };
 
 const App: React.FC = (props: any) => {
+  const widgetName = getDisplayName(App);
   const loggedIn = useSelector(loginStatusSelector);
   const dispatch = useDispatch<Dispatch<any>>();
   const { mySite, storeDisplayName } = useSite();
   const { i18n } = useTranslation();
+  const CancelToken = Axios.CancelToken;
+
+  let cancels: Canceler[] = [];
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+  const [discover, setDiscover] = React.useState<boolean>(false);
 
   const setTranslate = () => {
     /**
@@ -84,25 +111,65 @@ const App: React.FC = (props: any) => {
       }
     }
   };
-
   initAxios(dispatch);
+
+  /**
+   * Function to check Discover is enabled for store based on storeId
+   *
+   * @param storeID
+   */
+  const isDiscoverEnabled = (storeID: string) => {
+    const payload = {
+      storeId: storeID,
+      ...payloadBase,
+    };
+    storeService
+      .getStoreEnabledFeaturesList(payload)
+      .then((res) => {
+        if (res.data && res.data.resultList) {
+          setDiscover(res.data.resultList.includes(DISCOVER_FEATURE));
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   React.useEffect(() => {
     if (mySite) {
-      dispatch(USER_CONTEXT_REQUEST_ACTION());
-      dispatch(ENTITLED_ORG_ACTION({}));
-      dispatch(FETCH_CONTRACT_REQUESTED_ACTION());
-      dispatch(INIT_STATE_FROM_STORAGE_ACTION({}));
+      dispatch(USER_CONTEXT_REQUEST_ACTION({ ...payloadBase }));
+      dispatch(ENTITLED_ORG_ACTION({ ...payloadBase }));
+      dispatch(FETCH_CONTRACT_REQUESTED_ACTION({ ...payloadBase }));
+      dispatch(INIT_STATE_FROM_STORAGE_ACTION({ ...payloadBase }));
       storageSessionHandler.triggerUserStorageListener(() =>
-        dispatch(LISTEN_USER_FROM_STORAGE_ACTION({}))
+        dispatch(LISTEN_USER_FROM_STORAGE_ACTION({ ...payloadBase }))
       );
       setTranslate();
+      isDiscoverEnabled(mySite.storeID);
+      //GA360
+      if (mySite.enableGA) {
+        GTMDLService.initailizeGTM(
+          mySite.gtmID,
+          mySite.gtmAuth,
+          mySite.gtmPreview
+        );
+      }
     } else {
       initSite(site, dispatch);
     }
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
   }, [mySite, dispatch]);
+
   const baseName = process.env.REACT_APP_ROUTER_BASENAME
     ? { basename: process.env.REACT_APP_ROUTER_BASENAME }
     : {};
+
+  // public url path for accessing discoverui.js file.
+  const publicUrlPath = process.env.PUBLIC_URL
+    ? process.env.PUBLIC_URL
+    : EMPTY_STRING;
 
   return (
     mySite && (
@@ -121,6 +188,13 @@ const App: React.FC = (props: any) => {
               <Helmet>
                 <meta charSet="utf-8" />
                 <title>{`${storeDisplayName}`}</title>
+                {discover && (
+                  <script
+                    src={`${publicUrlPath}/discover/discoverui.js?q=${Date.now()}`}
+                    type="text/javascript"
+                    async
+                  />
+                )}
               </Helmet>
             </StyledGrid>
             <StyledGrid item xs>
@@ -136,6 +210,7 @@ const App: React.FC = (props: any) => {
             <StyledGrid item xs={false}>
               <Footer />
             </StyledGrid>
+            {process.env.NODE_ENV !== PRODUCTION && <Extensions />}
           </StyledGrid>
         </StyledWrapper>
       </BrowserRouter>

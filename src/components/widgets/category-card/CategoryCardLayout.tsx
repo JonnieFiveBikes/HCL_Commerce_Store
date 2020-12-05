@@ -9,15 +9,18 @@
  *==================================================
  */
 //Standard libraries
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import isEmpty from "lodash/isEmpty";
 import LazyLoadComponent from "react-intersection-observer-lazy-load";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Redux
 import { CLICK_EVENT_TRIGGERED_ACTION } from "../../../redux/actions/marketingEvent";
 //UI
 import styled from "styled-components";
 import {
+  StyledBox,
   StyledGrid,
   StyledPaper,
   StyledTypography,
@@ -25,7 +28,9 @@ import {
   StyledProgressPlaceholder,
 } from "../../StyledUI";
 
-const StyledCategoryCard = styled(({ ...props }) => <StyledLink {...props} />)`
+const StyledCategoryCard = styled(({ ...props }) =>
+  props.to ? <StyledLink {...props} /> : <StyledBox {...props} />
+)`
   ${({ theme }) => `
   display: block;
 
@@ -36,7 +41,7 @@ const StyledCategoryCard = styled(({ ...props }) => <StyledLink {...props} />)`
   };
   }
 
-  &:hover {
+  a&:hover {
     .MuiPaper-root {
       box-shadow: ${theme.shadows[2]};
     }
@@ -66,21 +71,43 @@ const StyledCategoryCard = styled(({ ...props }) => <StyledLink {...props} />)`
 `;
 
 function CategoryCardLayout({ renderingContext }: any) {
+  const widgetName = getDisplayName(CategoryCardLayout);
   const dispatch = useDispatch();
   const {
     eSpotDescInternal: eSpotDesc,
     eSpotInternal: eSpotRoot,
     categoryInternal: category,
   } = renderingContext;
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+  const payload = {
+    ...payloadBase,
+  };
 
   const informMarketingOfClick = (event) => {
     if (
       renderingContext.eSpotDescInternal &&
       !isEmpty(renderingContext.eSpotDescInternal)
     ) {
-      dispatch(CLICK_EVENT_TRIGGERED_ACTION({ eSpotRoot, eSpotDesc }));
+      dispatch(
+        CLICK_EVENT_TRIGGERED_ACTION({ eSpotRoot, eSpotDesc, ...payloadBase })
+      );
     }
   };
+
+  useEffect(() => {
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+  });
+
   return (
     <>
       {category && category.name && (

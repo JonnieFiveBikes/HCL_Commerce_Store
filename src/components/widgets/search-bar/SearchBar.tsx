@@ -15,6 +15,7 @@ import { OK } from "http-status-codes";
 import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
 import { useHistory, Link, useLocation } from "react-router-dom";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import siteContentService from "../../../_foundation/apis/search/siteContent.service";
@@ -36,16 +37,20 @@ import {
   StyledIconButton,
   StyledMenuItem,
   StyledSearchBar,
-  StyledSearchBarButton,
   StyledMenuTypography,
 } from "../../StyledUI";
-import { Hidden, InputAdornment, ClickAwayListener } from "@material-ui/core";
+import { InputAdornment, ClickAwayListener } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import SearchIcon from "@material-ui/icons/Search";
 
-const SearchBar: React.FC = (props: any) => {
+
+const SearchBar: React.FC<SearchBarProps> = ({
+  showSearchBar,
+  openSearchBar,
+  closeSearchBar,
+}) => {
+  const widgetName = getDisplayName(SearchBar);
   const contractId = useSelector(currentContractIdSelector);
-  const [isExpanded, setIsExpanded] = React.useState(false);
   const [keywordSuggestions, setKeywordSuggestions] = React.useState<
     Array<Object>
   >([]);
@@ -95,7 +100,7 @@ const SearchBar: React.FC = (props: any) => {
     clearSuggestions();
     str = callRegex(str);
     setInput(str);
-    toggleSearchBar();
+    setShowSearchBar(!showSearchBar);
   };
 
   const clearSuggestionsAndInputField = () => {
@@ -114,6 +119,13 @@ const SearchBar: React.FC = (props: any) => {
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+
   useEffect(() => {
     if (mySite) {
       const catalogId = mySite?.catalogID;
@@ -123,9 +135,7 @@ const SearchBar: React.FC = (props: any) => {
 
         contractId: contractId,
         catalogId: catalogId,
-        cancelToken: new CancelToken(function executor(c) {
-          cancels.push(c);
-        }),
+        ...payloadBase,
       };
       siteContentService
         .findSuggestionsUsingGET(parameters)
@@ -204,6 +214,7 @@ const SearchBar: React.FC = (props: any) => {
           limit: KEYWORD_LIMIT,
           contractId: contractId,
           catalogId: catalogId,
+          ...payloadBase,
         };
 
         siteContentService
@@ -361,6 +372,7 @@ const SearchBar: React.FC = (props: any) => {
       const parameters: any = {
         storeId: storeID,
         searchTerm: searchTerm,
+        ...payloadBase,
       };
       searchDisplayService
         .getSearchDisplayView(parameters)
@@ -381,13 +393,9 @@ const SearchBar: React.FC = (props: any) => {
     }
   };
 
-  const toggleSearchBar = () => {
-    setIsExpanded(!isExpanded);
-  };
-
   const redirectTo = (url: string) => {
     clearSuggestions();
-    setIsExpanded(false);
+    setShowSearchBar(false);
     //redirect
     if (url.startsWith("http")) {
       window.location.href = url;
@@ -397,158 +405,159 @@ const SearchBar: React.FC = (props: any) => {
   };
 
   const clickAway = (prev) => {
-    setIsExpanded(!prev);
+    setShowSearchBar(!prev);
   };
+
+  const setShowSearchBar = (boolean) => {
+    if (boolean) {
+      openSearchBar();
+    } else {
+      closeSearchBar();
+    }
+  };
+
   return (
-    <>
-      <ClickAwayListener onClickAway={clickAway}>
-        <span>
-          <Hidden mdUp>
-            <StyledSearchBarButton
-              onClick={toggleSearchBar}
-              className={isExpanded ? "active" : ""}>
-              <SearchIcon />
-            </StyledSearchBarButton>
-          </Hidden>
-          <StyledSearchBar className={isExpanded ? "expanded" : ""}>
-            <form onSubmit={submitSearch}>
-              <StyledTextField
-                margin="normal"
-                size="small"
-                autoFocus
-                autoComplete="off"
-                type="text"
-                disabled={inputDisabled}
-                placeholder={searchField}
-                value={input}
-                name="searchTerm"
-                onChange={(e) => handleLookAheadSearch(e, "searchTerm")}
-                onKeyDown={onKeyDown}
-                InputProps={{
-                  endAdornment: (
-                    <>
-                      {showKeywords || showCategories || showBrands ? (
-                        <>
-                          <InputAdornment position="end">
-                            <StyledIconButton
-                              onClick={clearSuggestionsAndInputField}>
-                              <CloseIcon titleAccess={t("SearchBar.Clear")} />
-                            </StyledIconButton>
-                          </InputAdornment>
-                        </>
-                      ) : (
-                        <>
-                          <InputAdornment position="start">
-                            <SearchIcon onClick={toggleSearchBar} />
-                          </InputAdornment>
-                        </>
-                      )}
-                    </>
-                  ),
-                }}
-              />
-            </form>
-
-            {(showKeywords || showCategories || showBrands) && (
-              <ClickAwayListener
-                onClickAway={() => {
-                  clearSuggestionsAndInputField();
-                }}>
-                <ul className="searchBar-results">
-                  {showKeywords && (
-                    <>
-                      <StyledMenuTypography
-                        variant="body2"
-                        className="searchBar-resultsCategory">
-                        {keywordTitle}
-                      </StyledMenuTypography>
-                      {keywordSuggestions?.map((e: any, i: number) => (
-                        <Link
-                          key={`brand-${i}`}
-                          to={e.url}
-                          onClick={() =>
-                            clearSuggestionsAndUpdateInputField(e.name)
-                          }>
-                          <StyledMenuItem>
-                            <StyledMenuTypography
-                              variant="body1"
-                              className={e.arrIndex === index ? "active" : ""}
-                              key={e.arrIndex}
-                              id={`megamenu_department_${e.id}`}
-                              title={e.name}>
-                              {e.name}
-                            </StyledMenuTypography>
-                          </StyledMenuItem>
-                        </Link>
-                      ))}
-                    </>
+    <ClickAwayListener onClickAway={clickAway}>
+      <StyledSearchBar>
+        <form onSubmit={submitSearch}>
+          <StyledTextField
+            margin="normal"
+            size="small"
+            autoFocus
+            autoComplete="off"
+            type="text"
+            disabled={inputDisabled}
+            placeholder={searchField}
+            value={input}
+            name="searchTerm"
+            onChange={(e) => handleLookAheadSearch(e, "searchTerm")}
+            onKeyDown={onKeyDown}
+            InputProps={{
+              endAdornment: (
+                <>
+                  {showKeywords || showCategories || showBrands ? (
+                    <InputAdornment position="end">
+                      <StyledIconButton onClick={clearSuggestionsAndInputField}>
+                        <CloseIcon titleAccess={t("SearchBar.Clear")} />
+                      </StyledIconButton>
+                    </InputAdornment>
+                  ) : (
+                    <InputAdornment position="start">
+                      <SearchIcon
+                        onClick={() => setShowSearchBar(!showSearchBar)}
+                      />
+                    </InputAdornment>
                   )}
+                </>
+              ),
+            }}
+          />
+        </form>
 
-                  {showCategories && (
-                    <>
-                      <StyledMenuTypography
-                        variant="body2"
-                        className="searchBar-resultsCategory">
-                        {categoryTitle}
-                      </StyledMenuTypography>
-                      {categorySuggestions?.map((e: any, i: number) => (
-                        <Link
-                          key={`category-${i}`}
-                          to={e.url}
-                          onClick={(evt) =>
-                            clearSuggestionsAndUpdateInputField(e.name)
-                          }>
-                          <StyledMenuItem>
-                            <StyledMenuTypography
-                              variant="body1"
-                              className={e.arrIndex === index ? "active" : ""}
-                              key={e.arrIndex}
-                              id={`megamenu_department_${e.id}`}
-                              title={e.name}>
-                              {e.name}
-                            </StyledMenuTypography>
-                          </StyledMenuItem>
-                        </Link>
-                      ))}
-                    </>
-                  )}
+        {(showKeywords || showCategories || showBrands) && (
+          <ClickAwayListener
+            onClickAway={() => {
+              clearSuggestionsAndInputField();
+            }}>
+            <ul className="searchBar-results">
+              {showKeywords && (
+                <>
+                  <StyledMenuTypography
+                    variant="body2"
+                    className="searchBar-resultsCategory">
+                    {keywordTitle}
+                  </StyledMenuTypography>
+                  {keywordSuggestions?.map((e: any, i: number) => (
+                    <Link
+                      key={`brand-${i}`}
+                      to={e.url}
+                      onClick={() =>
+                        clearSuggestionsAndUpdateInputField(e.name)
+                      }>
+                      <StyledMenuItem>
+                        <StyledMenuTypography
+                          variant="body1"
+                          className={e.arrIndex === index ? "active" : ""}
+                          key={e.arrIndex}
+                          id={`megamenu_department_${e.id}`}
+                          title={e.name}>
+                          {e.name}
+                        </StyledMenuTypography>
+                      </StyledMenuItem>
+                    </Link>
+                  ))}
+                </>
+              )}
 
-                  {showBrands && (
-                    <>
-                      <StyledMenuTypography
-                        variant="body2"
-                        className="searchBar-resultsCategory">
-                        {brandTitle}
-                      </StyledMenuTypography>
-                      {brandSuggestions?.map((e: any, i: number) => (
-                        <Link
-                          key={`brand-${i}`}
-                          to={e.url}
-                          onClick={(evt) =>
-                            clearSuggestionsAndUpdateInputField(e.name)
-                          }>
-                          <StyledMenuItem>
-                            <StyledMenuTypography
-                              variant="body1"
-                              className={e.arrIndex === index ? "active" : ""}
-                              key={e.arrIndex}
-                              id={`megamenu_department_${e.id}`}
-                              title={e.name}>
-                              {e.name}
-                            </StyledMenuTypography>
-                          </StyledMenuItem>
-                        </Link>
-                      ))}
-                    </>
-                  )}
-                </ul>
-              </ClickAwayListener>
-            )}
-          </StyledSearchBar>
-        </span>
-      </ClickAwayListener>
-    </>
+              {showCategories && (
+                <>
+                  <StyledMenuTypography
+                    variant="body2"
+                    className="searchBar-resultsCategory">
+                    {categoryTitle}
+                  </StyledMenuTypography>
+                  {categorySuggestions?.map((e: any, i: number) => (
+                    <Link
+                      key={`category-${i}`}
+                      to={e.url}
+                      onClick={(evt) =>
+                        clearSuggestionsAndUpdateInputField(e.name)
+                      }>
+                      <StyledMenuItem>
+                        <StyledMenuTypography
+                          variant="body1"
+                          className={e.arrIndex === index ? "active" : ""}
+                          key={e.arrIndex}
+                          id={`megamenu_department_${e.id}`}
+                          title={e.name}>
+                          {e.name}
+                        </StyledMenuTypography>
+                      </StyledMenuItem>
+                    </Link>
+                  ))}
+                </>
+              )}
+
+              {showBrands && (
+                <>
+                  <StyledMenuTypography
+                    variant="body2"
+                    className="searchBar-resultsCategory">
+                    {brandTitle}
+                  </StyledMenuTypography>
+                  {brandSuggestions?.map((e: any, i: number) => (
+                    <Link
+                      key={`brand-${i}`}
+                      to={e.url}
+                      onClick={(evt) =>
+                        clearSuggestionsAndUpdateInputField(e.name)
+                      }>
+                      <StyledMenuItem>
+                        <StyledMenuTypography
+                          variant="body1"
+                          className={e.arrIndex === index ? "active" : ""}
+                          key={e.arrIndex}
+                          id={`megamenu_department_${e.id}`}
+                          title={e.name}>
+                          {e.name}
+                        </StyledMenuTypography>
+                      </StyledMenuItem>
+                    </Link>
+                  ))}
+                </>
+              )}
+            </ul>
+          </ClickAwayListener>
+        )}
+      </StyledSearchBar>
+    </ClickAwayListener>
   );
 };
+
+interface SearchBarProps {
+  showSearchBar: boolean;
+  openSearchBar: any;
+  closeSearchBar: any;
+}
 
 export { SearchBar };

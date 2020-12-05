@@ -12,6 +12,8 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { paramCase } from "change-case";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Custom libraries
 import { categoryConfig } from "./categoryConstant";
 import { ContentRecommendationLayout } from "../../widgets/content-recommendation";
@@ -23,10 +25,22 @@ import { CATEGORY_DISPLAY } from "../../../constants/marketing";
 import { TRIGGER_MARKETING_ACTION } from "../../../redux/actions/marketingEvent";
 
 const Category: React.FC = (props: any) => {
+  const widgetName = getDisplayName(Category);
   const dispatch = useDispatch();
 
   const { page } = props;
   const catId = page.externalContext.identifier;
+
+  let cancels: Canceler[] = [];
+  const CancelToken = Axios.CancelToken;
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+
   const hero: SectionContent[] = [
     {
       key: `Category-${catId}-${paramCase(
@@ -61,8 +75,13 @@ const Category: React.FC = (props: any) => {
     const mtkParam = {
       categoryId: page.tokenValue,
       DM_ReqCmd: CATEGORY_DISPLAY,
+      ...payloadBase,
     };
     dispatch(TRIGGER_MARKETING_ACTION(mtkParam));
+
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
   }, []);
 
   return (

@@ -52,8 +52,8 @@ export function* getOrderDetails(action: any) {
 
 export const fetchOrderItemDetailsByIds = (param: any) => {
   const promiseArray: Promise<any>[] = [];
-  const { currency, id } = param;
-  const paramBase = { currency };
+  const { currency, id, widget } = param;
+  const paramBase = { currency, widget };
   const ids = chunk(id, 50);
   ids.forEach((id) => {
     const param = Object.assign({}, paramBase, { id });

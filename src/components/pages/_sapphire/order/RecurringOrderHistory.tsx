@@ -9,8 +9,10 @@
  *---------------------------------------------------
  */
 //Standard libraries
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import orderService from "../../../../_foundation/apis/transaction/order.service";
 //Custom libraries
@@ -23,18 +25,35 @@ import {
   StyledTypography,
 } from "../../../StyledUI";
 
-interface RecurringOderHistoryProps {
+interface RecurringOrderHistoryProps {
   parentOrderId: string;
 }
 
 const useRecurringOrder = () => {
+  const widgetName = getDisplayName(RecurringOrderHistory);
   const { t, i18n } = useTranslation();
+
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
 
   const dateFormatOptions = { year: "numeric", month: "long", day: "numeric" };
   const dateFormatter = new Intl.DateTimeFormat(
     i18n.languages[0],
     dateFormatOptions
   );
+
+  useEffect(() => {
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+  });
 
   const statusLookup = {
     N: t(`Order.Status_N`),
@@ -119,7 +138,7 @@ const useRecurringOrder = () => {
     const pageNumber = query.page + 1;
     let result: any = { page: pageNumber - 1 };
     return orderService
-      .findByParentOrderId({ orderId, pageSize, pageNumber })
+      .findByParentOrderId({ orderId, pageSize, pageNumber, ...payloadBase })
       .then((response) => response.data)
       .then((d) => {
         result["totalCount"] = parseInt(d.recordSetTotal);
@@ -144,7 +163,7 @@ const useRecurringOrder = () => {
   };
 };
 
-const RecurringOderHistory: React.FC<RecurringOderHistoryProps> = (props) => {
+const RecurringOrderHistory: React.FC<RecurringOrderHistoryProps> = (props) => {
   const { options, columns, localization, getOrders } = useRecurringOrder();
   const { parentOrderId } = props;
   return (
@@ -158,4 +177,4 @@ const RecurringOderHistory: React.FC<RecurringOderHistoryProps> = (props) => {
   );
 };
 
-export default RecurringOderHistory;
+export default RecurringOrderHistory;

@@ -1,4 +1,4 @@
-/*
+/**
  *==================================================
  * Licensed Materials - Property of HCL Technologies
  *
@@ -8,23 +8,18 @@
  *
  *==================================================
  */
-/* jshint ignore:start */
-/*
- * Copyright HCL 2020
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+/**
+ * Do not modify, the file is generated.
  */
-
-/* beautify ignore:start */
+//Standard libraries
 import { AxiosRequestConfig, Method, AxiosPromise } from "axios";
+//Foundation libraries
 import { executeRequest } from "../../axios/axiosConfig";
 import { getSite } from "../../hooks/useSite";
-
-/* beautify ignore:end */
+import { localStorageUtil } from "../../utils/storageUtil";
+import { PRODUCTION, SHOW_API_FLOW } from "../../constants/common";
+//Redux
+import { API_CALL_ACTION } from "../../../redux/actions/api";
 
 const wishListService = {
   /**
@@ -69,7 +64,9 @@ const wishListService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -80,17 +77,12 @@ const wishListService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/wishlist/@self' missing required parameter storeId"
+        "Request '/store/{storeId}/wishlist/@self' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -139,16 +131,13 @@ const wishListService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -185,6 +174,28 @@ const wishListService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -230,7 +241,9 @@ const wishListService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -241,17 +254,12 @@ const wishListService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/wishlist' missing required parameter storeId"
+        "Request '/store/{storeId}/wishlist' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -269,7 +277,6 @@ const wishListService = {
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
     if (parameters.$queryParameters) {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
@@ -278,16 +285,13 @@ const wishListService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -324,6 +328,28 @@ const wishListService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -371,7 +397,9 @@ const wishListService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -382,25 +410,19 @@ const wishListService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/wishlist/{externalId}' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/wishlist/{externalId}' missing required parameter storeId"
-      );
-    }
-
-    requestUrl = requestUrl.replace("{externalId}", parameters["externalId"]);
-
     if (parameters["externalId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/wishlist/{externalId}' missing required parameter externalId"
+        "Request '/store/{storeId}/wishlist/{externalId}' missing path parameter externalId"
       );
     }
+    requestUrl = requestUrl.replace("{externalId}", parameters["externalId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -431,7 +453,6 @@ const wishListService = {
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
     if (parameters.$queryParameters) {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
@@ -440,16 +461,13 @@ const wishListService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -486,6 +504,28 @@ const wishListService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -533,7 +573,9 @@ const wishListService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -544,25 +586,19 @@ const wishListService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/wishlist/{externalId}' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/wishlist/{externalId}' missing required parameter storeId"
-      );
-    }
-
-    requestUrl = requestUrl.replace("{externalId}", parameters["externalId"]);
-
     if (parameters["externalId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/wishlist/{externalId}' missing required parameter externalId"
+        "Request '/store/{storeId}/wishlist/{externalId}' missing path parameter externalId"
       );
     }
+    requestUrl = requestUrl.replace("{externalId}", parameters["externalId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -611,16 +647,13 @@ const wishListService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -639,6 +672,7 @@ const wishListService = {
       for (let p in form) {
         formParams.append(p, form[p]);
       }
+      formParams.sort();
       body = formParams;
     }
     const headerObject: any = {};
@@ -657,8 +691,30 @@ const wishListService = {
       { ...parameters }
     );
 
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 };
+
 export default wishListService;
-/* jshint ignore:end */

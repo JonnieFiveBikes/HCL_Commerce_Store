@@ -10,8 +10,12 @@
  */
 //Standard libraries
 import React from "react";
+//Foundation
+import { useSite } from "../../../_foundation/hooks/useSite";
 //UI
 import { StyledGrid, StyledContainer } from "../../StyledUI";
+//GA360
+import GADataService from "../../../_foundation/gtm/gaData.service";
 
 const CategoryPageLayout: React.FC<any> = ({
   cid,
@@ -19,6 +23,7 @@ const CategoryPageLayout: React.FC<any> = ({
   contentSection,
   ...props
 }: any) => {
+  const { mySite } = useSite();
   let { page } = props;
   if (!page) {
     page = {};
@@ -62,6 +67,14 @@ const CategoryPageLayout: React.FC<any> = ({
       </>
     );
   };
+
+  //GA360
+  React.useEffect(() => {
+    if (mySite.enableGA) {
+      GADataService.sendContentPageViewEvent(cid);
+    }
+  }, []);
+
   return (
     <StyledContainer id={cid}>
       <Hero />

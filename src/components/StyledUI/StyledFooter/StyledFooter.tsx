@@ -14,7 +14,7 @@ const StyledFooter = styled.footer`
   ${({ theme }) => `
   background: ${theme.palette.text.primary};
   color: ${theme.palette.text.disabled};
-  margin-top: ${theme.spacing(8)}px;
+  margin-top: ${theme.spacing(7)}px;
 
   ${theme.breakpoints.down("sm")} {
     margin-top: ${theme.spacing(4)}px;
@@ -32,15 +32,14 @@ const StyledFooter = styled.footer`
   .contact-us {
     line-height: 2;
 
-    a {
-      color: ${theme.palette.action.disabledBackground};
-      text-decoration: none;
-
+    a {    
+      color: ${theme.palette.text.disabled};
+text-decoration: none;
       &:hover {
-        color: ${theme.palette.primary.main};
+        color: ${theme.palette.text.disabled};
       }
       &:visited {
-        color: ${theme.palette.action.disabledBackground};
+        color: ${theme.palette.text.disabled};
       }
     }
 

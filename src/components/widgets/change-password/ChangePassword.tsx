@@ -9,9 +9,11 @@
  *==================================================
  */
 //Standard libraries
-import React, { ChangeEvent } from "react";
+import React, { useEffect, ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { OK } from "http-status-codes";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import personService from "../../../_foundation/apis/transaction/person.service";
 import { useSite } from "../../../_foundation/hooks/useSite";
@@ -26,6 +28,7 @@ import {
 } from "../../StyledUI";
 
 const ChangePassword: React.FC = (props: any) => {
+  const widgetName = getDisplayName(ChangePassword);
   const [open, setOpen] = React.useState<boolean>(false);
   const [openSuccess, setOpenSuccess] = React.useState<boolean>(false);
   const [passwordOld, setOldPassword] = React.useState<string>("");
@@ -43,6 +46,16 @@ const ChangePassword: React.FC = (props: any) => {
   const cancelLabel = t("ChangePassword.CancelLabel");
   const successLabel = t("ChangePassword.SuccessLabel");
   const okLabel = t("ChangePassword.OkLabel");
+
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
 
   const handleOldPasswordChange = (
     evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -97,6 +110,7 @@ const ChangePassword: React.FC = (props: any) => {
         logonPassword: passwordNew,
         xcred_logonPasswordVerify: passwordVerify,
       },
+      ...payloadBase,
     };
     personService
       .updatePerson(parameters, null, site.transactionContext)
@@ -107,6 +121,11 @@ const ChangePassword: React.FC = (props: any) => {
       });
   };
 
+  useEffect(() => {
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+  });
   return (
     <div>
       <StyledButton size="small" color="secondary" onClick={handleClickOpen}>

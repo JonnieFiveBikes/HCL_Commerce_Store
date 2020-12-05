@@ -34,7 +34,8 @@ export function* fetchRecurringOrders(action: AnyAction) {
         buyerId,
         subscriptionTypeCode,
         profileName,
-      }
+      },
+      action.payload
     );
     yield put(FETCH_RECURRING_SUCCESS_ACTION(response.data));
   } catch (e) {
@@ -44,10 +45,9 @@ export function* fetchRecurringOrders(action: AnyAction) {
 
 export function* cancelRecurringOrder(action: AnyAction) {
   try {
-    const { orderId, subscriptionId } = action.payload;
     const response = yield call(
       subscriptionService.cancelRecurringOrSubscription,
-      { orderId, subscriptionId }
+      action.payload
     );
     yield put(CANCEL_RECURRING_SUCCESS_ACTION(response.data));
     const successMessage = {

@@ -1,16 +1,25 @@
-/*
+/**
+ *==================================================
+ * Licensed Materials - Property of HCL Technologies
+ *
+ * HCL Commerce
+ *
  * (C) Copyright HCL Technologies Limited 2020
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ *
+ *==================================================
  */
-
+/**
+ * Do not modify, the file is generated.
+ */
+//Standard libraries
 import { AxiosRequestConfig, Method, AxiosPromise } from "axios";
+//Foundation libraries
 import { executeRequest } from "../../axios/axiosConfig";
 import { getSite } from "../../hooks/useSite";
+import { localStorageUtil } from "../../utils/storageUtil";
+import { PRODUCTION, SHOW_API_FLOW } from "../../constants/common";
+//Redux
+import { API_CALL_ACTION } from "../../../redux/actions/api";
 
 const organizationService = {
   /**
@@ -127,6 +136,29 @@ const organizationService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 
@@ -282,12 +314,36 @@ const organizationService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
+
   /**
    * This allows an administrator to find organization information by organization identifier.
    * `@method`
-   * `@name organizationService1#findByOrganizationId`
+   * `@name Organization#findByOrganizationId`
    *
    * `@param {any} headers (optional)` will add headers to rest request
    *
@@ -419,6 +475,29 @@ const organizationService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 };

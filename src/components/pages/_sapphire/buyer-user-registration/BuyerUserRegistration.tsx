@@ -9,10 +9,12 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { CREATED } from "http-status-codes";
 import { Redirect } from "react-router-dom";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import personService from "../../../../_foundation/apis/transaction/person.service";
 import { useSite } from "../../../../_foundation/hooks/useSite";
@@ -33,8 +35,11 @@ import {
   StyledSelect,
   StyledMenuItem,
 } from "../../../StyledUI";
+//GA360
+import GADataService from "../../../../_foundation/gtm/gaData.service";
 
 const BuyerUserRegistration = (props: any) => {
+  const widgetName = getDisplayName(BuyerUserRegistration);
   const { mySite } = useSite();
   const defaultLanguageID = mySite?.defaultLanguageID;
   const defaultCurrencyID = mySite?.defaultCurrencyID;
@@ -65,6 +70,16 @@ const BuyerUserRegistration = (props: any) => {
   langMap.set("-1", t("BuyerUserRegistration.USEnglish"));
   currMap.set("USD", t("BuyerUserRegistration.USD"));
   let parentOrg = "";
+
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
 
   const parseParentOrg = () => {
     const regex = new RegExp("/", "ig");
@@ -112,6 +127,7 @@ const BuyerUserRegistration = (props: any) => {
         ancestorOrgs: orgName,
         appendRootOrganizationDN: "true",
       },
+      ...payloadBase,
     };
 
     personService
@@ -148,7 +164,19 @@ const BuyerUserRegistration = (props: any) => {
     setRedirect(true);
   };
 
+  useEffect(() => {
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+  });
+
   if (redirect) {
+    //GA360
+    if (mySite.enableGA) {
+      GADataService.sendFormCompletionEvent(
+        "Register as a buyer in your organization"
+      );
+    }
     return <Redirect to={SIGNIN} />;
   } else {
     return (

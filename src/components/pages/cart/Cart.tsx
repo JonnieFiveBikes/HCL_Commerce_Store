@@ -22,6 +22,7 @@ import Axios, { Canceler } from "axios";
 import { useHistory } from "react-router";
 import { useTranslation } from "react-i18next";
 import DateFnsUtils from "@date-io/date-fns";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import assignedPromotionCode from "../../../_foundation/apis/transaction/assignedPromotionCode.service";
@@ -90,6 +91,8 @@ import {
  * @param props
  */
 const Cart: React.FC = (props: any) => {
+  const widgetName = getDisplayName(Cart);
+
   const contractId = useSelector(currentContractIdSelector);
   const cart = useSelector(cartSelector);
   const orderItems = useSelector(orderItemsSelector);
@@ -154,6 +157,7 @@ const Cart: React.FC = (props: any) => {
     currency: defaultCurrencyID,
     contractId: contractId,
     checkInventory: checkInventory,
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),
@@ -173,7 +177,7 @@ const Cart: React.FC = (props: any) => {
         ...payloadBase,
         fetchCatentries: true,
       };
-      dispatch(orderActions.FETCHING_CART_ACTION(payload));
+      dispatch(orderActions.FETCHING_CART_ACTION({ ...payload }));
     }
     return () => {
       cancels.forEach((cancel) => cancel());
@@ -220,7 +224,7 @@ const Cart: React.FC = (props: any) => {
             ...payloadBase,
             fetchCatentries: true,
           };
-          dispatch(orderActions.FETCHING_CART_ACTION(payload));
+          dispatch(orderActions.FETCHING_CART_ACTION({ ...payload }));
           setPromoCodeError(false);
           setPromoCode("");
         })
@@ -273,7 +277,7 @@ const Cart: React.FC = (props: any) => {
             ...payloadBase,
             fetchCatentries: true,
           };
-          dispatch(orderActions.FETCHING_CART_ACTION(payload));
+          dispatch(orderActions.FETCHING_CART_ACTION({ ...payload }));
         })
         .catch((e) => {
           console.log("Could not remove promo code");

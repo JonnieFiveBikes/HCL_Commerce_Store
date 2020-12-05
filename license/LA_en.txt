@@ -2,7 +2,7 @@ LICENSE INFORMATION
 
 The Programs listed below are licensed under the following License Information terms and conditions in addition to the Program license terms previously agreed to by Customer and HCL.
 
-Program Name: HCL Commerce Enterprise Developer Version 9.1
+Program Name: HCL Commerce Enterprise Developer Version 9.1.4
 
 The following standard terms apply to Licensee's use of the Program.
 
@@ -24,8 +24,8 @@ Licensee is authorized to install and use the Supporting Programs identified bel
 
 Supporting Programs:
 IBM Rational Application Developer for WebSphere Software 9.6
-IBM WebSphere Application Server V9.0 FP 9.0.5.3
-IBM WebSphere Application Server Liberty 20.0
+IBM WebSphere Application Server V9.0 FP 9.0.5
+IBM WebSphere Application Server Liberty 20.0.0
 IBM Db2 Advanced Workgroup Server Edition 11.5
 
 Prohibited Components

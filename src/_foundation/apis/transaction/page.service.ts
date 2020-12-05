@@ -1,37 +1,42 @@
-/* jshint ignore:start */
-/*
+/**
+ *==================================================
+ * Licensed Materials - Property of HCL Technologies
+ *
+ * HCL Commerce
+ *
  * (C) Copyright HCL Technologies Limited 2020
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ *
+ *==================================================
  */
-
-/* beautify ignore:start */
+/**
+ * Do not modify, the file is generated.
+ */
+//Standard libraries
 import { AxiosRequestConfig, Method, AxiosPromise } from "axios";
+//Foundation libraries
 import { executeRequest } from "../../axios/axiosConfig";
 import { getSite } from "../../hooks/useSite";
-
-/* beautify ignore:end */
+import { localStorageUtil } from "../../utils/storageUtil";
+import { PRODUCTION, SHOW_API_FLOW } from "../../constants/common";
+//Redux
+import { API_CALL_ACTION } from "../../../redux/actions/api";
 
 const pageService = {
   /**
-     * Finds pages by their names. Invalid page names are ignored.
-     * `@method`
-     * `@name Page#byNames`
-     *
-     * `@param {any} headers (optional)` will add headers to rest request
-     *
-     * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-     *
-     * `@param {any} parameters` have following properties:
+  * Finds pages by their names. Invalid page names are ignored.
+  * `@method`
+  * `@name page#byNames`
+  *
+  * `@param {any} headers (optional)` will add headers to rest request
+  *
+  * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
+  *
+  * `@param {any} parameters` have following properties:
      ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
 
-     ** `@property {string} name (required)` The page name.
-     ** `@property {string} profileName ` Profile name. Profiles determine the subset of data to be returned by a query.
-     */
+   ** `@property {string} name (required)` The page name.
+   ** `@property {string} profileName ` Profile name. Profiles determine the subset of data to be returned by a query.
+  */
   byNames(parameters: any, headers?: any, url?: string): AxiosPromise<any> {
     let site = getSite();
     let siteContext: string = "";
@@ -55,7 +60,9 @@ const pageService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -66,26 +73,20 @@ const pageService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/page' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/page' missing required parameter storeId"
-      );
-    }
-
     queryParameters.set("q", "byNames");
 
-    if (parameters["q"] === undefined) {
+    if (parameters["name"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/page' missing required parameter q"
+        "Request '/store/{storeId}/page' missing required parameter name"
       );
     }
-
     if (parameters["name"] !== undefined) {
       const name = "name";
       const parameter = parameters[name];
@@ -97,12 +98,6 @@ const pageService = {
       } else {
         queryParameters.set(name, parameter);
       }
-    }
-
-    if (parameters["name"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/page' missing required parameter name"
-      );
     }
 
     if (parameters["profileName"] !== undefined) {
@@ -126,16 +121,13 @@ const pageService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -173,23 +165,45 @@ const pageService = {
       { ...parameters }
     );
 
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 
   /**
-     * Finds pages by category IDs. Invalid category IDs are ignored.
-     * `@method`
-     * `@name Page#byCategoryIds`
-     *
-     * `@param {any} headers (optional)` will add headers to rest request
-     *
-     * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-     *
-     * `@param {any} parameters` have following properties:
+  * Finds pages by category IDs. Invalid category IDs are ignored.
+  * `@method`
+  * `@name page#byCategoryIds`
+  *
+  * `@param {any} headers (optional)` will add headers to rest request
+  *
+  * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
+  *
+  * `@param {any} parameters` have following properties:
      ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
 
-     ** `@property {string} categoryId (required)` The category ID.
-     */
+   ** `@property {string} categoryId (required)` The category ID.
+  */
   byCategoryIds(
     parameters: any,
     headers?: any,
@@ -217,7 +231,9 @@ const pageService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -228,26 +244,20 @@ const pageService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/page' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/page' missing required parameter storeId"
-      );
-    }
-
     queryParameters.set("q", "byCategoryIds");
 
-    if (parameters["q"] === undefined) {
+    if (parameters["categoryId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/page' missing required parameter q"
+        "Request '/store/{storeId}/page' missing required parameter categoryId"
       );
     }
-
     if (parameters["categoryId"] !== undefined) {
       const name = "categoryId";
       const parameter = parameters[name];
@@ -261,12 +271,6 @@ const pageService = {
       }
     }
 
-    if (parameters["categoryId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/page' missing required parameter categoryId"
-      );
-    }
-
     if (parameters.$queryParameters) {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
@@ -275,16 +279,13 @@ const pageService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -322,23 +323,45 @@ const pageService = {
       { ...parameters }
     );
 
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 
   /**
-     * Finds pages by catalog entry IDs. Invalid catalog entry IDs are ignored.
-     * `@method`
-     * `@name Page#byCatalogEntryIds`
-     *
-     * `@param {any} headers (optional)` will add headers to rest request
-     *
-     * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-     *
-     * `@param {any} parameters` have following properties:
+  * Finds pages by catalog entry IDs. Invalid catalog entry IDs are ignored.
+  * `@method`
+  * `@name page#byCatalogEntryIds`
+  *
+  * `@param {any} headers (optional)` will add headers to rest request
+  *
+  * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
+  *
+  * `@param {any} parameters` have following properties:
      ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
 
-     ** `@property {string} catalogEntryId (required)` The catalog entry ID.
-     */
+   ** `@property {string} catalogEntryId (required)` The catalog entry ID.
+  */
   byCatalogEntryIds(
     parameters: any,
     headers?: any,
@@ -366,7 +389,9 @@ const pageService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -377,26 +402,20 @@ const pageService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/page' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/page' missing required parameter storeId"
-      );
-    }
-
     queryParameters.set("q", "byCatalogEntryIds");
 
-    if (parameters["q"] === undefined) {
+    if (parameters["catalogEntryId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/page' missing required parameter q"
+        "Request '/store/{storeId}/page' missing required parameter catalogEntryId"
       );
     }
-
     if (parameters["catalogEntryId"] !== undefined) {
       const name = "catalogEntryId";
       const parameter = parameters[name];
@@ -410,12 +429,6 @@ const pageService = {
       }
     }
 
-    if (parameters["catalogEntryId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/page' missing required parameter catalogEntryId"
-      );
-    }
-
     if (parameters.$queryParameters) {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
@@ -424,16 +437,13 @@ const pageService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -471,8 +481,30 @@ const pageService = {
       { ...parameters }
     );
 
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 };
+
 export default pageService;
-/* jshint ignore:end */

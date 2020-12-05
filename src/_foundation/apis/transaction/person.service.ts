@@ -1,20 +1,25 @@
-/* jshint ignore:start */
-/*
+/**
+ *==================================================
+ * Licensed Materials - Property of HCL Technologies
+ *
+ * HCL Commerce
+ *
  * (C) Copyright HCL Technologies Limited 2020
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ *
+ *==================================================
  */
-
-/* beautify ignore:start */
+/**
+ * Do not modify, the file is generated.
+ */
+//Standard libraries
 import { AxiosRequestConfig, Method, AxiosPromise } from "axios";
+//Foundation libraries
 import { executeRequest } from "../../axios/axiosConfig";
 import { getSite } from "../../hooks/useSite";
-
-/* beautify ignore:end */
+import { localStorageUtil } from "../../utils/storageUtil";
+import { PRODUCTION, SHOW_API_FLOW } from "../../constants/common";
+//Redux
+import { API_CALL_ACTION } from "../../../redux/actions/api";
 
 const personService = {
   /**
@@ -57,7 +62,9 @@ const personService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -68,17 +75,12 @@ const personService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/person/@self' missing required parameter storeId"
+        "Request '/store/{storeId}/person/@self' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -101,16 +103,13 @@ const personService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -147,6 +146,28 @@ const personService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -192,7 +213,9 @@ const personService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -203,25 +226,19 @@ const personService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/person/{userId}' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/person/{userId}' missing required parameter storeId"
-      );
-    }
-
-    requestUrl = requestUrl.replace("{userId}", parameters["userId"]);
-
     if (parameters["userId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/person/{userId}' missing required parameter userId"
+        "Request '/store/{storeId}/person/{userId}' missing path parameter userId"
       );
     }
+    requestUrl = requestUrl.replace("{userId}", parameters["userId"]);
 
     if (parameters["profileName"] !== undefined) {
       const name = "profileName";
@@ -244,16 +261,13 @@ const personService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -291,63 +305,87 @@ const personService = {
       { ...parameters }
     );
 
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 
   /**
-     * This allows CSR/CSS to find approved registered users in store organizations that he/she can manage.
-     * `@method`
-     * `@name Person#registeredUsersICanManage`
-     *
-     * `@param {any} headers (optional)` will add headers to rest request
-     *
-     * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-     *
-     * `@param {any} parameters` have following properties:
+  * This allows CSR/CSS to find approved registered users in store organizations that he/she can manage.
+  * `@method`
+  * `@name Person#registeredUsersICanManage`
+  *
+  * `@param {any} headers (optional)` will add headers to rest request
+  *
+  * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
+  *
+  * `@param {any} parameters` have following properties:
      ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
-     ** `@property {string} profileName ` Profile name. Profiles determine the subset of data to be returned by a query.  Default profile name = IBM_User_List_Summary
+   ** `@property {string} profileName ` Profile name. Profiles determine the subset of data to be returned by a query.  Default profile name = IBM_User_List_Summary
 
-     ** `@property {string} orderByTableName ` The order by table name.
-     ** `@property {string} orderByFieldName ` The order by field name.
-     ** `@property {string} startIndex ` The starting index of the result.
-     ** `@property {string} maxResults ` The maximum number of results to be returned.
-     ** `@property {string} logonId ` Logon Id of the customer to search for.
-     ** `@property {string} logonIdSearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} parentOrgName ` Parent organization name to search buyers. Only used in B2B store.
-     ** `@property {string} parentOrgNameSearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} firstName ` First name of the customer to search for.
-     ** `@property {string} firstNameSearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} lastName ` Last name of the customer to search for.
-     ** `@property {string} lastNameSearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} middleName ` Middle name of the customer to search for.
-     ** `@property {string} middleNameSearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} address1 ` Address line 1 of the customer to search for.
-     ** `@property {string} address1SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} city ` The city name of the customer to search for.
-     ** `@property {string} citySearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} country ` The country or region name of the customer to search for.
-     ** `@property {string} countrySearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} email1 ` The primary e-mail address of the customer to search for.
-     ** `@property {string} email1SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} email2 ` The secondary e-mail address of the customer to search for.
-     ** `@property {string} email2SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} fax1 ` The primary fax number of the customer to search for.
-     ** `@property {string} fax1SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} fax2 ` The secondary fax number of the customer to search for.
-     ** `@property {string} fax2SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} field1 ` Customizable field1 to search for.
-     ** `@property {string} field1SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} field2 ` Customizable field1 to search for.
-     ** `@property {string} field2SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} phone1 ` The primary phone number of the customer to search for.
-     ** `@property {string} phone1SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} phone2 ` The secondary phone number of the customer to search for.
-     ** `@property {string} phone2SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} state ` The state or province name of the customer to search for.
-     ** `@property {string} stateSearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     ** `@property {string} zipcode `  ZIP or postal code of the customer to search for.
-     ** `@property {string} zipcodeSearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
-     */
+   ** `@property {string} orderByTableName ` The order by table name.
+   ** `@property {string} orderByFieldName ` The order by field name.
+   ** `@property {string} startIndex ` The starting index of the result.
+   ** `@property {string} maxResults ` The maximum number of results to be returned.
+   ** `@property {string} logonId ` Logon Id of the customer to search for.
+   ** `@property {string} logonIdSearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} parentOrgName ` Parent organization name to search buyers. Only used in B2B store.
+   ** `@property {string} parentOrgNameSearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} firstName ` First name of the customer to search for.
+   ** `@property {string} firstNameSearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} firstName ` First name of the customer to search for.
+   ** `@property {string} firstNameSearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} lastName ` Last name of the customer to search for.
+   ** `@property {string} lastNameSearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} middleName ` Middle name of the customer to search for.
+   ** `@property {string} middleNameSearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} address1 ` Address line 1 of the customer to search for.
+   ** `@property {string} address1SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} city ` The city name of the customer to search for.
+   ** `@property {string} citySearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} country ` The country or region name of the customer to search for.
+   ** `@property {string} countrySearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} email1 ` The primary e-mail address of the customer to search for.
+   ** `@property {string} email1SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} email2 ` The secondary e-mail address of the customer to search for.
+   ** `@property {string} email2SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} fax1 ` The primary fax number of the customer to search for.
+   ** `@property {string} fax1SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} fax2 ` The secondary fax number of the customer to search for.
+   ** `@property {string} fax2SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} field1 ` Customizable field1 to search for.
+   ** `@property {string} field1SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} field2 ` Customizable field1 to search for.
+   ** `@property {string} field2SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} phone1 ` The primary phone number of the customer to search for.
+   ** `@property {string} phone1SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} phone2 ` The secondary phone number of the customer to search for.
+   ** `@property {string} phone2SearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} state ` The state or province name of the customer to search for.
+   ** `@property {string} stateSearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+   ** `@property {string} zipcode `  ZIP or postal code of the customer to search for.
+   ** `@property {string} zipcodeSearchType ` The search type. The valid values are 1 (case sensitive and starts with), 2(case sensitive and contains), 3(case insensitive and starts with),4(case insensitive and contains), 5(case sensitive and exact match), 6(case insensitive and exact match),8(not equals)
+  */
   registeredUsersICanManage(
     parameters: any,
     headers?: any,
@@ -375,7 +413,9 @@ const personService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -386,17 +426,12 @@ const personService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/person' missing required parameter storeId"
+        "Request '/store/{storeId}/person' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["profileName"] !== undefined) {
       const name = "profileName";
@@ -412,12 +447,6 @@ const personService = {
     }
 
     queryParameters.set("q", "registeredUsersICanManage");
-
-    if (parameters["q"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/person' missing required parameter q"
-      );
-    }
 
     if (parameters["orderByTableName"] !== undefined) {
       const name = "orderByTableName";
@@ -512,6 +541,32 @@ const personService = {
 
     if (parameters["parentOrgNameSearchType"] !== undefined) {
       const name = "parentOrgNameSearchType";
+      const parameter = parameters[name];
+      delete parameters[name];
+      if (parameter instanceof Array) {
+        parameter.forEach((value) => {
+          queryParameters.append(name, value);
+        });
+      } else {
+        queryParameters.set(name, parameter);
+      }
+    }
+
+    if (parameters["firstName"] !== undefined) {
+      const name = "firstName";
+      const parameter = parameters[name];
+      delete parameters[name];
+      if (parameter instanceof Array) {
+        parameter.forEach((value) => {
+          queryParameters.append(name, value);
+        });
+      } else {
+        queryParameters.set(name, parameter);
+      }
+    }
+
+    if (parameters["firstNameSearchType"] !== undefined) {
+      const name = "firstNameSearchType";
       const parameter = parameters[name];
       delete parameters[name];
       if (parameter instanceof Array) {
@@ -947,16 +1002,13 @@ const personService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -993,6 +1045,28 @@ const personService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -1039,7 +1113,9 @@ const personService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -1050,17 +1126,12 @@ const personService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/person' missing required parameter storeId"
+        "Request '/store/{storeId}/person' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -1078,7 +1149,6 @@ const personService = {
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
     if (parameters["mode"] !== undefined) {
       const name = "mode";
       const parameter = parameters[name];
@@ -1100,16 +1170,13 @@ const personService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -1147,24 +1214,46 @@ const personService = {
       { ...parameters }
     );
 
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 
   /**
-     * Updates account data for a registered user.  This also supports resetting password for unauthenticated and authenticated users. When action is set to 'updateUserRegistration', user account data is updated using UserRegistrationUpdateCmd
-     * `@method`
-     * `@name Person#updatePerson`
-     *
-     * `@param {any} headers (optional)` will add headers to rest request
-     *
-     * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-     *
-     * `@param {any} parameters` have following properties:
+  * Updates account data for a registered user.  This also supports resetting password for unauthenticated and authenticated users. When action is set to 'updateUserRegistration', user account data is updated using UserRegistrationUpdateCmd
+  * `@method`
+  * `@name Person#updatePerson`
+  *
+  * `@param {any} headers (optional)` will add headers to rest request
+  *
+  * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
+  *
+  * `@param {any} parameters` have following properties:
      ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
-     ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
-     ** `@property {any} body ` Request body.
+   ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
+   ** `@property {any} body ` Request body.
 
-     */
+  */
   updatePerson(
     parameters: any,
     headers?: any,
@@ -1192,7 +1281,9 @@ const personService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -1203,17 +1294,12 @@ const personService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/person/@self' missing required parameter storeId"
+        "Request '/store/{storeId}/person/@self' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -1231,7 +1317,6 @@ const personService = {
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
     if (parameters["action"] !== undefined) {
       const name = "action";
       const parameter = parameters[name];
@@ -1253,16 +1338,13 @@ const personService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -1300,24 +1382,46 @@ const personService = {
       { ...parameters }
     );
 
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 
   /**
-     * Updates account data for a registered user.  This also supports resetting password for unauthenticated and authenticated users. When action is set to 'updateUserRegistration', user account data is updated using UserRegistrationUpdateCmd
-     * `@method`
-     * `@name Person#updatePersonOnUserRegistrationUpdate`
-     *
-     * `@param {any} headers (optional)` will add headers to rest request
-     *
-     * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-     *
-     * `@param {any} parameters` have following properties:
+  * Updates account data for a registered user.  This also supports resetting password for unauthenticated and authenticated users. When action is set to 'updateUserRegistration', user account data is updated using UserRegistrationUpdateCmd
+  * `@method`
+  * `@name Person#updatePersonOnUserRegistrationUpdate`
+  *
+  * `@param {any} headers (optional)` will add headers to rest request
+  *
+  * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
+  *
+  * `@param {any} parameters` have following properties:
      ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
-     ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
-     ** `@property {any} body ` Request body.
+   ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
+   ** `@property {any} body ` Request body.
 
-     */
+  */
   updatePersonOnUserRegistrationUpdate(
     parameters: any,
     headers?: any,
@@ -1345,7 +1449,9 @@ const personService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -1356,17 +1462,12 @@ const personService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/person/@self' missing required parameter storeId"
+        "Request '/store/{storeId}/person/@self' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["responseFormat"] !== undefined) {
       const name = "responseFormat";
@@ -1384,7 +1485,6 @@ const personService = {
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
     if (parameters["action"] !== undefined) {
       const name = "action";
       const parameter = parameters[name];
@@ -1406,16 +1506,13 @@ const personService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -1452,6 +1549,28 @@ const personService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -1497,7 +1616,9 @@ const personService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -1508,30 +1629,23 @@ const personService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/person/{userId}' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/person/{userId}' missing required parameter storeId"
-      );
-    }
-
-    requestUrl = requestUrl.replace("{userId}", parameters["userId"]);
-
     if (parameters["userId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/person/{userId}' missing required parameter userId"
+        "Request '/store/{storeId}/person/{userId}' missing path parameter userId"
       );
     }
+    requestUrl = requestUrl.replace("{userId}", parameters["userId"]);
 
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
     if (parameters.$queryParameters) {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
@@ -1540,16 +1654,13 @@ const personService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -1586,6 +1697,28 @@ const personService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -1631,7 +1764,9 @@ const personService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -1642,22 +1777,16 @@ const personService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
     if (parameters["storeId"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/person/updateMemberPassword' missing required parameter storeId"
+        "Request '/store/{storeId}/person/updateMemberPassword' missing path parameter storeId"
       );
     }
+    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
     if (parameters["mode"] !== undefined) {
       const name = "mode";
       const parameter = parameters[name];
@@ -1679,16 +1808,13 @@ const personService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -1726,8 +1852,30 @@ const personService = {
       { ...parameters }
     );
 
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 };
+
 export default personService;
-/* jshint ignore:end */

@@ -15,6 +15,7 @@ import { useHistory } from "react-router";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import getDisplayName from "react-display-name";
 //Redux
 import * as accountActions from "../../../redux/actions/account";
 import * as successActions from "../../../redux/actions/success";
@@ -24,12 +25,10 @@ import addressUtil from "../../../utils/addressUtil";
 import {
   ADDRESS_BOOK,
   ADDRESS_LINE,
-  IS_NEW,
   ADDRESS_SHIPPING,
   ADDRESSLINE1,
   ADDRESSLINE2,
   EMPTY_STRING,
-  STRING_TRUE,
 } from "../../../constants/common";
 import { ADDRESS_BOOK as ADDRESS_BOOK_ROUTE } from "../../../constants/routes";
 //Foundation libraries
@@ -51,6 +50,7 @@ import { Divider } from "@material-ui/core";
  * @param toggleShowAddressForm
  */
 function AddAddress() {
+  const widgetName = getDisplayName(AddAddress);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const addressFormDataInit = {
@@ -73,6 +73,7 @@ function AddAddress() {
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
   const payloadBase: any = {
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),
@@ -107,14 +108,13 @@ function AddAddress() {
     ) {
       newAddressData[ADDRESS_LINE].push(newAddressData[ADDRESSLINE2]);
     }
-    newAddressData[IS_NEW] = STRING_TRUE;
+    delete newAddressData[ADDRESSLINE1];
+    delete newAddressData[ADDRESSLINE2];
 
     personContactService
       .addPersonContact({
         body: newAddressData,
-        cancelToken: new CancelToken(function executor(c) {
-          cancels.push(c);
-        }),
+        ...payloadBase,
       })
       .then((res) => res.data)
       .then((addressData) => {

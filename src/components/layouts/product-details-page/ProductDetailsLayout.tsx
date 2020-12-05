@@ -9,16 +9,18 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import ReactHtmlParser from "react-html-parser";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import inventoryavailabilityService from "../../../_foundation/apis/transaction/inventoryavailability.service";
 import associatedPromotionCodeService from "../../../_foundation/apis/transaction/associatedPromotionCode.service";
 import productsService from "../../../_foundation/apis/search/products.service";
+import { useSite } from "../../../_foundation/hooks/useSite";
 //Custom libraries
 import {
   OFFER,
@@ -27,13 +29,16 @@ import {
   DESCRIPTIVE,
   STRING_TRUE,
 } from "../../../constants/common";
+import { AttachmentLayout } from "./AttachmentLayout";
 import { ATTR_IDENTIFIER } from "../../../constants/catalog";
 import FormattedPriceDisplay from "../../widgets/formatted-price-display";
 import ProductImage from "./ProductImage";
+import ProductThumbnails from "./ProductThumbnails";
 import ProductQuantity from "./ProductQuantity";
 import ProductAttributes from "./ProductAttributes";
 //Redux
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
+import { breadcrumbsSelector } from "../../../redux/selectors/catalog";
 import * as orderActions from "../../../redux/actions/order";
 //UI
 import {
@@ -45,6 +50,8 @@ import {
   ITabs,
 } from "../../StyledUI";
 import Hidden from "@material-ui/core/Hidden";
+//GA360
+import GADataService from "../../../_foundation/gtm/gaData.service";
 
 interface CurrentSelectionType {
   sku: any;
@@ -60,6 +67,8 @@ interface CurrentSelectionType {
  * @param storeId
  */
 function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
+  const widgetName = getDisplayName(ProductDetailsLayout);
+
   const ONLINE_STORE_KEY: string = "Online";
   const AVAILABLE_KEY: string = "Available";
   let cancels: Canceler[] = [];
@@ -80,6 +89,7 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
   };
 
   const [product, setProduct] = useState<any>(null);
+
   const [currentSelection, setCurrentSelection] = useState<
     CurrentSelectionType
   >(CURRENT_SELECTION_INIT);
@@ -99,15 +109,24 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
 
   const [definingAttrList, setDefiningAttrList] = useState<any[]>([]);
   const [availability, setAvailability] = useState<any[]>([]);
-
+  const [attachmentsList, setAttachmentsList] = useState<any[]>([]);
   const contract = useSelector(currentContractIdSelector);
+
+  const [showCarousel, setShowCarousel] = React.useState<boolean>(false);
+  const [carouselImages, setCarouselImages] = React.useState<any[]>([]);
+
+  const [skuColor, setSkuColor] = React.useState<string>("");
+  const [index, setIndex] = React.useState<number>(0);
 
   const payloadBase: any = {
     storeId: storeId,
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),
   };
+
+  const { mySite } = useSite();
 
   /**
    * Get product information based on its type
@@ -227,6 +246,20 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
       } else {
         setDisplayFullImage("");
       }
+      /**
+       * This behavior for attachment is:
+       * Product level attachments will be pushed down to its underlying SKUs which do not have its own attachment
+       * SKUs can have its own attachment override and Search can also index those SKU level attachment overrides, instead of inheriting from the product
+       * however,  these SKU level attachment overrides will not be "rolled" back up to the product level
+       */
+      if (catentry.attachments?.length > 0) {
+        setAttachmentsList(catentry.attachments);
+      } else if (productInfo?.attachments?.length > 0) {
+        //Fallback to product's attachments, this may not needed.
+        setAttachmentsList(productInfo.attachments);
+      } else {
+        setAttachmentsList([]);
+      }
     }
   };
 
@@ -252,6 +285,18 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
             productInfo,
             newSelection.sku.attributes
           );
+        }
+
+        if (newSelection.selectedAttributes["Color"]) {
+          let color = newSelection.selectedAttributes["Color"];
+          color = color.charAt(0).toUpperCase() + color.slice(1);
+          setSkuColor(color);
+        }
+
+        if (newSelection.sku.images?.length > 1) {
+          setIndex(0);
+          setCarouselImages(newSelection.sku.images);
+          setShowCarousel(true);
         }
       } else {
         setBuyableFlag(false);
@@ -464,9 +509,29 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
         } else {
           setBuyableFlag(false);
         }
+
+        if (newSelection.selectedAttributes["Color"]) {
+          let color = newSelection.selectedAttributes["Color"];
+          color = color.charAt(0).toUpperCase() + color.slice(1);
+          setSkuColor(color);
+        }
+
+        if (newSelection.sku.images?.length > 1) {
+          setIndex(index);
+          setCarouselImages(newSelection.sku.images);
+          setShowCarousel(true);
+          setDisplayFullImage(newSelection.sku.images[index]?.fullImageRaw);
+        }
       }
       setCurrentSelection(newSelection);
     }
+  };
+
+  const changeMainImage = (index: number) => {
+    setIndex(index);
+    const imageJson = carouselImages[index];
+    const fullImage = imageJson.fullImageRaw;
+    setDisplayFullImage(fullImage);
   };
 
   /**
@@ -507,17 +572,21 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
       partnumber: [currentSelection.sku.partNumber],
       quantity: [currentSelection.quantity.toString()],
       contractId: contract,
-      cancelToken: new CancelToken(function executor(c) {
-        cancels.push(c);
-      }),
+      ...payloadBase,
     };
     dispatch(orderActions.ADD_ITEM_ACTION(param));
+    //GA360
+    if (mySite.enableGA)
+      GADataService.sendAddToCartEvent(currentSelection, breadcrumbs);
   };
 
   React.useEffect(() => {
     const inputCatentryData = pdpData ? pdpData[0] : null;
     if (inputCatentryData !== undefined && inputCatentryData !== null) {
       getProduct(inputCatentryData);
+      if (inputCatentryData.attachments?.length > 0) {
+        setAttachmentsList(inputCatentryData.attachments);
+      }
     }
     return () => {
       cancels.forEach((cancel) => cancel());
@@ -534,11 +603,9 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
 
   if (displayLongDesc) {
     const descriptionElement = (
-      <>
-        <StyledTypography variant="body1">
-          {ReactHtmlParser(displayLongDesc)}
-        </StyledTypography>
-      </>
+      <StyledTypography variant="body1" style={{ maxWidth: "65ch" }}>
+        {ReactHtmlParser(displayLongDesc)}
+      </StyledTypography>
     );
     productDetailTabsChildren.push({
       title: t("productDetail.Description"),
@@ -551,28 +618,25 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
       <div
         id={`product-details-container_${productPartNumber}`}
         className="product-details-container">
-        <div className="product-details-list">
-          <ul className="product-attribute">
-            {displayDescriptiveAttrList.map((e: any) => (
-              <li
-                key={`li_${e.identifier}`}
-                id={`product_attribute_${productPartNumber}`}>
-                <span
-                  key={`span_name_${e.identifier}`}
-                  id={`product_desc_attribute_name_${e.identifier}_${productPartNumber}`}>
-                  {e.name}:
-                </span>
-                {e.values.map((value: any) => (
-                  <span
-                    id={`product_attribute_value_${value.identifier}_${productPartNumber}`}
-                    key={value.identifier}>
-                    {value.value}
-                  </span>
-                ))}
-              </li>
+        {displayDescriptiveAttrList.map((e: any) => (
+          <StyledTypography
+            variant="body1"
+            key={`li_${e.identifier}`}
+            id={`product_attribute_${productPartNumber}`}>
+            <b
+              key={`span_name_${e.identifier}`}
+              id={`product_desc_attribute_name_${e.identifier}_${productPartNumber}`}>
+              {e.name}:
+            </b>
+            {e.values.map((value: any) => (
+              <span
+                id={`product_attribute_value_${value.identifier}_${productPartNumber}`}
+                key={value.identifier}>
+                {" " + value.value}
+              </span>
             ))}
-          </ul>
-        </div>
+          </StyledTypography>
+        ))}
       </div>
     );
     productDetailTabsChildren.push({
@@ -581,6 +645,30 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
     });
   }
 
+  if (attachmentsList.length > 0) {
+    const productAttachmentElement = (
+      <AttachmentLayout
+        attachmentsList={attachmentsList}
+        productPartNumber={productPartNumber}
+      />
+    );
+    productDetailTabsChildren.push({
+      title: t("productDetail.Attachments"),
+      tabContent: productAttachmentElement,
+    });
+  }
+
+  //GA360
+  const breadcrumbs = useSelector(breadcrumbsSelector);
+  useEffect(() => {
+    if (mySite.enableGA) {
+      if (currentSelection && breadcrumbs.length !== 0) {
+        GADataService.sendPDPPageViewEvent(breadcrumbs);
+        GADataService.sendPDPDetailViewEvent(currentSelection, breadcrumbs);
+      }
+    }
+  }, [breadcrumbs]);
+
   return (
     <>
       {productPartNumber && product && (
@@ -588,157 +676,176 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
           itemScope
           itemType="http://schema.org/Product"
           id={`product-image-details_${productPartNumber}`}>
-          <StyledGrid container spacing={2}>
-            <Hidden smUp>
-              <StyledGrid item xs={1}></StyledGrid>
-              <StyledGrid item xs={10} className="product-image">
-                <ProductImage
-                  fullImage={displayFullImage}
-                  isAngleImage={false}
-                  alt={displayName}
-                />
-              </StyledGrid>
-            </Hidden>
-            <StyledGrid item xs={12} sm={6} md={6} lg={6} xl={5}>
-              {displayName && (
-                <StyledTypography
-                  variant="h4"
-                  itemProp="name"
-                  className="product-name">
-                  {displayName}
-                </StyledTypography>
-              )}
-              {displayPartNumber && (
-                <StyledTypography variant="body2" className="product-sku">
-                  {t("productDetail.SKU")}: {displayPartNumber}
-                </StyledTypography>
-              )}
-              {displayShortDesc && (
-                <StyledTypography
-                  variant="body1"
-                  itemProp="description"
-                  className="product-shortDescription">
-                  {displayShortDesc}
-                </StyledTypography>
-              )}
-              {promotion && (
-                <StyledTypography
-                  variant="body2"
-                  id={`product_advertisement_${productPartNumber}`}
-                  className="product-promo"
-                  gutterBottom>
-                  {promotion}
-                </StyledTypography>
-              )}
-              <div
-                itemProp="offers"
-                itemScope
-                itemType="http://schema.org/Offer">
-                {product.type !== "bundle" && (
-                  <>
-                    <StyledTypography
-                      variant="h5"
-                      className="product-price-container">
-                      {displayOfferPrice > 0 && (
-                        <span className="product-price">
-                          <FormattedPriceDisplay min={displayOfferPrice} />
-                        </span>
-                      )}
-                      {displayListPrice > 0 && (
-                        <span
-                          id={`product_price_${productPartNumber}`}
-                          className={
-                            displayListPrice > 0 ? "strikethrough" : ""
-                          }>
-                          <FormattedPriceDisplay min={displayListPrice} />
-                        </span>
-                      )}
-                      {displayOfferPrice === 0 && displayListPrice === 0 && (
-                        <span id={`product_offer_price_${productPartNumber}`}>
-                          {<FormattedPriceDisplay min={null} />}
-                        </span>
-                      )}
-                    </StyledTypography>
-                    {definingAttrList?.length > 0 && (
-                      <ProductAttributes
-                        attributeList={definingAttrList}
-                        onChangeHandler={onAttributeChange}
-                        currentSelection={currentSelection}
+          <StyledGrid container>
+            <StyledGrid container spacing={2} item xs={12}>
+              {showCarousel ? (
+                <>
+                  <StyledGrid item xs={12} md={1}>
+                    <ProductThumbnails
+                      imageList={carouselImages}
+                      changeMainImage={changeMainImage}
+                      index={index}
+                    />
+                  </StyledGrid>
+                  <Hidden smDown>
+                    <StyledGrid item xs={5} className="product-image">
+                      <ProductImage
+                        fullImage={displayFullImage}
+                        isAngleImage={false}
+                        alt={displayName}
                       />
-                    )}
-                    <>
-                      <StyledTypography variant="body2">
-                        {t("productDetail.Quantity")}
-                      </StyledTypography>
-                      <ProductQuantity
-                        updateProductQuantity={updateProductQuantity}
-                        value={currentSelection.quantity}
-                      />
-                      {availability?.length > 0 && (
-                        <>
-                          <StyledTypography variant="body2">
-                            {t("productDetail.Availability")}
-                          </StyledTypography>
-                          <StyledTypography variant="body1" component="div">
-                            {availability.map((e: any) => (
-                              <div key={`inventoryDetails_div_${e.storeId}`}>
-                                <div
-                                  key={`store-name_div_${e.storeId}`}
-                                  id={`product_availability_store_name_${productPartNumber}`}
-                                  className="store-name">
-                                  {e.storeName}
-                                </div>
-                                {e.inventoryStatus && (
-                                  <div
-                                    key={`inStock_div_${e.storeId}`}
-                                    className="inventory-status in-stock"
-                                    id={`product_availability_status_inStock_${productPartNumber}`}>
-                                    {t(
-                                      "CommerceEnvironment.inventoryStatus.Available"
-                                    )}
-                                  </div>
-                                )}
-                                {!e.inventoryStatus && (
-                                  <div
-                                    key={`outOfStock_div_${e.storeId}`}
-                                    className="store-inventory out-of-stock"
-                                    id={`product_availability_status_outOfStock_${productPartNumber}`}>
-                                    {t(
-                                      "CommerceEnvironment.inventoryStatus.OOS"
-                                    )}
-                                  </div>
-                                )}
-                              </div>
-                            ))}
-                          </StyledTypography>
-                        </>
-                      )}
-                      <StyledButton
-                        color="primary"
-                        size="small"
-                        className="product-add-to-cart"
-                        id={`product_add_to_cart_${productPartNumber}`}
-                        onClick={addToCart}
-                        disabled={!inventoryAvailableFlag || !buyableFlag}>
-                        {t("productDetail.AddToCart")}
-                      </StyledButton>
-                    </>
-                  </>
+                    </StyledGrid>
+                  </Hidden>
+                </>
+              ) : (
+                <StyledGrid item xs={12} md={6} className="product-image">
+                  <ProductImage
+                    fullImage={displayFullImage}
+                    isAngleImage={false}
+                    alt={displayName}
+                  />
+                </StyledGrid>
+              )}
+              <StyledGrid item xs={12} sm={6} lg={5}>
+                {displayName && (
+                  <StyledTypography
+                    variant="h4"
+                    itemProp="name"
+                    className="product-name">
+                    {displayName}
+                  </StyledTypography>
                 )}
-              </div>
-            </StyledGrid>
-            <Hidden xsDown>
-              <StyledGrid item xs={6} md={5} className="product-image">
-                <ProductImage
-                  fullImage={displayFullImage}
-                  isAngleImage={false}
-                  alt={displayName}
-                />
+                {displayPartNumber && (
+                  <StyledTypography variant="body2" className="product-sku">
+                    {t("productDetail.SKU")}: {displayPartNumber}
+                  </StyledTypography>
+                )}
+                {displayShortDesc && (
+                  <StyledTypography
+                    variant="body1"
+                    itemProp="description"
+                    className="product-shortDescription">
+                    {displayShortDesc}
+                  </StyledTypography>
+                )}
+                {promotion && (
+                  <StyledTypography
+                    variant="body2"
+                    id={`product_advertisement_${productPartNumber}`}
+                    className="product-promo"
+                    gutterBottom>
+                    {promotion}
+                  </StyledTypography>
+                )}
+                <div
+                  itemProp="offers"
+                  itemScope
+                  itemType="http://schema.org/Offer">
+                  {product.type !== "bundle" && (
+                    <>
+                      <StyledTypography
+                        variant="h5"
+                        className="product-price-container">
+                        {displayOfferPrice > 0 && (
+                          <span className="product-price">
+                            <FormattedPriceDisplay min={displayOfferPrice} />
+                          </span>
+                        )}
+                        {displayListPrice > 0 && (
+                          <span
+                            id={`product_price_${productPartNumber}`}
+                            className={
+                              displayListPrice > 0 ? "strikethrough" : ""
+                            }>
+                            <FormattedPriceDisplay min={displayListPrice} />
+                          </span>
+                        )}
+                        {displayOfferPrice === 0 && displayListPrice === 0 && (
+                          <span id={`product_offer_price_${productPartNumber}`}>
+                            {<FormattedPriceDisplay min={null} />}
+                          </span>
+                        )}
+                      </StyledTypography>
+                      {definingAttrList?.length > 0 && (
+                        <ProductAttributes
+                          skuColor={skuColor}
+                          attributeList={definingAttrList}
+                          onChangeHandler={onAttributeChange}
+                          currentSelection={currentSelection}
+                        />
+                      )}
+                      <>
+                        <StyledTypography
+                          variant="body2"
+                          className="product-quantity">
+                          {t("productDetail.Quantity")}
+                        </StyledTypography>
+                        <ProductQuantity
+                          updateProductQuantity={updateProductQuantity}
+                          value={currentSelection.quantity}
+                        />
+                        {availability?.length > 0 && (
+                          <>
+                            <StyledTypography
+                              variant="body2"
+                              className="product-availability">
+                              {t("productDetail.Availability")}
+                            </StyledTypography>
+                            <StyledTypography variant="body1" component="div">
+                              {availability.map((e: any) => (
+                                <div key={`inventoryDetails_div_${e.storeId}`}>
+                                  <div
+                                    key={`store-name_div_${e.storeId}`}
+                                    id={`product_availability_store_name_${productPartNumber}`}
+                                    className="store-name">
+                                    {e.storeName}
+                                  </div>
+                                  {e.inventoryStatus && (
+                                    <div
+                                      key={`inStock_div_${e.storeId}`}
+                                      className="inventory-status in-stock"
+                                      id={`product_availability_status_inStock_${productPartNumber}`}>
+                                      {t(
+                                        "CommerceEnvironment.inventoryStatus.Available"
+                                      )}
+                                    </div>
+                                  )}
+                                  {!e.inventoryStatus && (
+                                    <div
+                                      key={`outOfStock_div_${e.storeId}`}
+                                      className="store-inventory out-of-stock"
+                                      id={`product_availability_status_outOfStock_${productPartNumber}`}>
+                                      {t(
+                                        "CommerceEnvironment.inventoryStatus.OOS"
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
+                              ))}
+                            </StyledTypography>
+                          </>
+                        )}
+                        <StyledButton
+                          color="primary"
+                          size="small"
+                          className="product-add-to-cart"
+                          id={`product_add_to_cart_${productPartNumber}`}
+                          onClick={addToCart}
+                          disabled={!inventoryAvailableFlag || !buyableFlag}>
+                          {t("productDetail.AddToCart")}
+                        </StyledButton>
+                      </>
+                    </>
+                  )}
+                </div>
               </StyledGrid>
-            </Hidden>
-            <StyledGrid item xs={12} md={8}>
+            </StyledGrid>
+            <StyledGrid item xs={12}>
               {productDetailTabsChildren?.length > 0 && (
                 <StyledTabs
+                  key={currentSelection.sku.partNumber}
+                  // adding key here to make sure tab is full re-rendered
+                  //with new local state value according to different sku
                   childrenList={productDetailTabsChildren}
                   name="productDetails"
                 />

@@ -9,6 +9,7 @@
  *==================================================
  */
 import { palette } from "./color-palette";
+
 const fontSize = 14;
 const htmlFontSize = 16;
 const coef = fontSize / 14;
@@ -22,15 +23,25 @@ export const sharedOverrides = {
       },
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
   typography: {
+    htmlFontSize: 16,
     pxToRem: (size) => `${(size / htmlFontSize) * coef}rem`,
     fontFamily: ["Roboto", '"Helvetica Neue"', "Arial", "sans-serif"].join(","),
     h1: {
-      fontSize: 72,
+      fontSize: 56,
       fontWeight: 700,
     },
     h2: {
-      fontSize: 52,
+      fontSize: 48,
       fontWeight: 300,
     },
     h3: {
@@ -71,11 +82,11 @@ export const sharedOverrides = {
       textTransform: "none",
     },
     caption: {
-      fontSize: 13,
+      fontSize: 12,
       fontWeight: 400,
     },
     overline: {
-      fontSize: 13,
+      fontSize: 12,
       textTransform: "uppercase",
       fontWeight: 600,
       letterSpacing: 1,
@@ -161,4 +172,93 @@ export const merge = (...args) => {
     merger(args[i]);
   }
   return target;
+};
+
+export const textOverrides = {
+  h1: {
+    fontSize: 72,
+    fontWeight: 700,
+  },
+  h2: {
+    fontSize: 52,
+    fontWeight: 300,
+  },
+  h3: {
+    fontSize: 32,
+    fontWeight: 300,
+  },
+  h4: {
+    fontSize: 26,
+    fontWeight: 300,
+  },
+  h5: {
+    fontSize: 20,
+    fontWeight: 400,
+  },
+  h6: {
+    fontSize: 18,
+    fontWeight: 500,
+  },
+  subtitle1: {
+    fontSize: 18,
+    fontWeight: 500,
+  },
+  subtitle2: {
+    fontSize: 18,
+    fontWeight: 400,
+  },
+  body1: {
+    fontSize: 14,
+    fontWeight: 400,
+  },
+  body2: {
+    fontSize: 14,
+    fontWeight: 500,
+  },
+  button: {
+    fontSize: 15,
+    fontWeight: 400,
+    textTransform: "none",
+  },
+  caption: {
+    fontSize: 13,
+    fontWeight: 400,
+  },
+  overline: {
+    fontSize: 13,
+    textTransform: "uppercase",
+    fontWeight: 600,
+    letterSpacing: 1,
+  },
+};
+
+export const responsiveFontSizes = (theme) => {
+  const coef = theme.typography.htmlFontSize / 16;
+
+  const modifyRem = (value, coef) => {
+    return `${(parseFloat(value) / theme.typography.htmlFontSize) * coef}rem`;
+  };
+
+  for (const [variantName, variant] of Object.entries(theme.typography)) {
+    if (typeof variant === "object") {
+      theme.typography[variantName] = {
+        ...variant,
+        fontSize: modifyRem(variant.fontSize, coef - 0.05),
+        [theme.breakpoints.up("sm")]: {
+          fontSize: modifyRem(variant.fontSize, coef),
+        },
+        [theme.breakpoints.up("md")]: {
+          fontSize: modifyRem(variant.fontSize, coef + 0.05),
+        },
+        [theme.breakpoints.up("lg")]: {
+          fontSize: modifyRem(variant.fontSize, coef + 0.1),
+        },
+        [theme.breakpoints.up("xl")]: {
+          fontSize: modifyRem(variant.fontSize, coef + 0.15),
+        },
+      };
+    }
+  }
+
+  return theme;
 };

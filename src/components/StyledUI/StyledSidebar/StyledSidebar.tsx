@@ -84,7 +84,13 @@ const StyledSidebarWrapper = styled((props: any) => {
         background: ${theme.palette.primary.main};
       }
     }
-
+    .horizontal-margin{
+      margin-left: ${theme.spacing(1)}px;
+      margin-right: ${theme.spacing(1)}px;
+    }
+    .price-filter{
+      display: flex;
+    }
     .section-disabled {
       color: ${theme.palette.text.disabled};
     }

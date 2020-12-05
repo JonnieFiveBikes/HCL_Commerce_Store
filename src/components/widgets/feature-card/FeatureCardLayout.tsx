@@ -15,6 +15,8 @@ import { useDispatch } from "react-redux";
 import isEmpty from "lodash/isEmpty";
 import LazyLoadComponent from "react-intersection-observer-lazy-load";
 import { useTranslation } from "react-i18next";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Custom libraries
 import { DISPLAY, DEFINING, OFFER } from "../../../constants/common";
 import FormattedPriceDisplay from "../../widgets/formatted-price-display";
@@ -31,6 +33,7 @@ import {
 } from "../../StyledUI";
 
 function FeatureCardLayout({ renderingContext }: any) {
+  const widgetName = getDisplayName(FeatureCardLayout);
   const { t } = useTranslation();
   let productInfo = renderingContext?.productDesc?.data?.contents
     ? renderingContext.productDesc.data.contents[0]
@@ -46,9 +49,24 @@ function FeatureCardLayout({ renderingContext }: any) {
   const [attributeList, setAttributeList] = React.useState<Array<object>>();
   const dispatch = useDispatch();
 
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+  const payload = {
+    ...payloadBase,
+  };
+
   const informMarketingOfClick = (event) => {
     if (eSpotDesc && !isEmpty(eSpotDesc)) {
-      dispatch(CLICK_EVENT_TRIGGERED_ACTION({ eSpotRoot, eSpotDesc }));
+      dispatch(
+        CLICK_EVENT_TRIGGERED_ACTION({ eSpotRoot, eSpotDesc, ...payloadBase })
+      );
     }
   };
 
@@ -72,6 +90,9 @@ function FeatureCardLayout({ renderingContext }: any) {
       }
     }
     setAttributeList(colorList);
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
   }, []);
 
   return (

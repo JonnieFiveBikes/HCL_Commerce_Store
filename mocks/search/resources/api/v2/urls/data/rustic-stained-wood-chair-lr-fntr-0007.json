@@ -1,0 +1,24 @@
+{
+  "contents": [
+    {
+      "id": 56656,
+      "identifier": "rustic-stained-wood-chair-lr-fntr-0007",
+      "status": 1,
+      "tokenName": "ProductToken",
+      "tokenValue": "14049",
+      "tokenExternalValue": "LR-FNTR-0007",
+      "storeId": "11",
+      "language": "en_US",
+      "redirect": "",
+      "page": {
+        "name": "PRODUCT_PAGE",
+        "type": "ProductPage",
+        "layout": "",
+        "title": "Rustic-stained-wood-chair-lr-fntr-0007 | Emerald",
+        "metaKeyword": "Home Design ",
+        "metaDescription": "Essential piece of furniture finished in a medium-brown poliah.",
+        "imageAlternateDescription": "Image for rustic-stained-wood-chair-lr-fntr-0007 from Emerald"
+      }
+    }
+  ]
+}

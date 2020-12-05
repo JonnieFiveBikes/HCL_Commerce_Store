@@ -14,6 +14,8 @@ import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from "@reduxjs/toolkit";
 import cloneDeep from "lodash/cloneDeep";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Custom libraries
 import FormattedPriceDisplay from "../../../widgets/formatted-price-display";
 import { RECURRING_ORDERS, ORDER_DETAILS } from "../../../../constants/routes";
@@ -39,6 +41,7 @@ import {
   StyledProgressPlaceholder,
 } from "../../../StyledUI";
 const useRecurringOrderTable = () => {
+  const widgetName = getDisplayName(RecurringOrders);
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
 
@@ -50,6 +53,16 @@ const useRecurringOrderTable = () => {
     i18n.languages[0],
     dateFormatOptions
   );
+
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+
   const formatRecurringOrders = (od: any) => {
     if (od.length > 0) {
       return od.map((_o) => {
@@ -111,7 +124,9 @@ const useRecurringOrderTable = () => {
       key: "Confirmation.ScheduleOrderCancel",
       title: "Confirmation.CancelRecurringOrder",
       okAction: () =>
-        dispatch(CANCEL_RECURRING_ACTION({ subscriptionId, orderId })),
+        dispatch(
+          CANCEL_RECURRING_ACTION({ subscriptionId, orderId, ...payloadBase })
+        ),
     };
     if (frequency && frequency.nextOccurence) {
       const hours =
@@ -234,7 +249,10 @@ const useRecurringOrderTable = () => {
   };
 
   React.useEffect(() => {
-    dispatch(FETCH_RECURRING_ORDER_ACTION());
+    dispatch(FETCH_RECURRING_ORDER_ACTION({ ...payloadBase }));
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
   }, []);
 
   return {

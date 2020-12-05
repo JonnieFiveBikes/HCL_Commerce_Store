@@ -13,6 +13,8 @@ import React, { useEffect, ChangeEvent } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Custom libraries
 import { HOME } from "../../../constants/routes";
 //Redux
@@ -51,9 +53,20 @@ export const SessionErrorDialog = () => {
   const { errorTitleKey, errorMsgKey, handled, errorMessage } = useSelector(
     sessionErrorSelector
   );
+  const widgetName = getDisplayName(SessionErrorDialog);
   const dispatch = useDispatch();
 
   const usernameInput = React.createRef<HTMLInputElement>();
+
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
 
   const handleEntering = () => {
     if (usernameInput.current != null) {
@@ -81,12 +94,16 @@ export const SessionErrorDialog = () => {
           logonPassword: password,
         },
         skipErrorSnackbar: true,
+        ...payloadBase,
       })
     );
   };
   const handleCancel = () => {
     setOpen(false);
-    dispatch(CANCEL_SESSION_ERROR_ACTION());
+    let payload = {
+      ...payloadBase,
+    };
+    dispatch(CANCEL_SESSION_ERROR_ACTION(payload));
   };
 
   useEffect(() => {
@@ -112,6 +129,9 @@ export const SessionErrorDialog = () => {
         });
       }
     }
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
   }, [handled, dispatch, mySite]);
   if (handled === undefined || handled === null) {
     return <></>;

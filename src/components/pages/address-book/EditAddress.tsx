@@ -14,6 +14,7 @@ import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
+import getDisplayName from "react-display-name";
 
 //Redux
 import { addressDetailsSelector } from "../../../redux/selectors/account";
@@ -56,6 +57,7 @@ import { ADDRESS_BOOK as ADDRESS_BOOK_ROUTE } from "../../../constants/routes";
  * @param props/addressId
  */
 const EditAddress = (props) => {
+  const widgetName = getDisplayName(EditAddress);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { mySite } = useSite();
@@ -66,6 +68,7 @@ const EditAddress = (props) => {
   const history = useHistory();
   const addressDetails = useSelector(addressDetailsSelector);
   const payloadBase: any = {
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),

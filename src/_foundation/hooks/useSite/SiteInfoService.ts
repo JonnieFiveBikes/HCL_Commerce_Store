@@ -23,7 +23,13 @@ import {
   NEW_PREVIEW_SESSION,
   LANGID,
   LOCALE,
+  SHOW_API_FLOW,
 } from "../../../_foundation/constants/common";
+import {
+  GTM_ID,
+  GTM_AUTH,
+  GTM_PREVIEW,
+} from "../../../_foundation/constants/gtm";
 //custom library
 import { SiteInfo } from "../../../redux/reducers/reducerStateInterface";
 import { CommerceEnvironment } from "../../../constants/common";
@@ -45,6 +51,7 @@ export class SiteInfoService {
   private readonly B2B = "B2B";
   private readonly BMH = "BMH";
   private siteInfo: SiteInfo | null = null;
+
   public static getSiteInfo(): SiteInfoService {
     return SiteInfoService.mySiteInfo;
   }
@@ -89,6 +96,8 @@ export class SiteInfoService {
     }
     const langId = storeviewURL.searchParams.get(LANGID);
     const locale = storeviewURL.searchParams.get(LOCALE);
+    const showAPIFlow = storeviewURL.searchParams.get(SHOW_API_FLOW);
+
     if (langId !== null) {
       //check if it is part supported language.
       if (site.supportedLanguages.includes(langId)) {
@@ -120,10 +129,17 @@ export class SiteInfoService {
         localStorageUtil.remove(LOCALE);
       }
     }
+
+    if (showAPIFlow !== null) {
+      localStorageUtil.set(SHOW_API_FLOW, showAPIFlow, PERMANENT_STORE_DAYS);
+    }
   }
 
   private initializeSite(s: SiteInfoArgs): Promise<SiteInfo> {
     const _site: SiteInfoArgs = Object.assign({}, s);
+    //GA360
+    let gtmID: string, gtmAuth: string, gtmPreview: string;
+
     let storeId = typeof HCL_STORE_ID === undefined ? undefined : HCL_STORE_ID;
     if (!storeId) {
       storeId = storageStoreIdHandler.getStoreId4Initialization();
@@ -143,6 +159,16 @@ export class SiteInfoService {
             (s: any) =>
               s.relationshipType === "-4" && s.relatedStoreId !== _site.storeID
           ); // -4 is catalog-asset-store
+          //GA360
+          gtmID = storeCfg.userData[GTM_ID];
+          gtmAuth = storeCfg.userData[GTM_AUTH];
+          gtmPreview = storeCfg.userData[GTM_PREVIEW];
+          if (gtmID && gtmAuth && gtmPreview) {
+            _site.enableGA = true;
+            _site.gtmID = gtmID;
+            _site.gtmAuth = gtmAuth;
+            _site.gtmPreview = gtmPreview;
+          }
           _site.storeName = storeCfg.identifier;
           _site.storeID = storeCfg.storeId;
           _site.catalogStoreID = caStore.relatedStoreId;
@@ -160,6 +186,7 @@ export class SiteInfoService {
             storeCfg.supportedLanguages.supportedLanguages;
           _site.supportedCurrencies =
             storeCfg.supportedCurrencies.supportedCurrencies;
+
           this.initStorage(_site as SiteInfo);
           return _site as SiteInfo;
         });
@@ -173,6 +200,16 @@ export class SiteInfoService {
           (s: any) =>
             s.relationshipType === "-4" && s.relatedStoreId !== _site.storeID
         ); // -4 is catalog-asset-store
+        //GA360
+        gtmID = storeCfg.userData[GTM_ID];
+        gtmAuth = storeCfg.userData[GTM_AUTH];
+        gtmPreview = storeCfg.userData[GTM_PREVIEW];
+        if (gtmID && gtmAuth && gtmPreview) {
+          _site.enableGA = true;
+          _site.gtmID = gtmID;
+          _site.gtmAuth = gtmAuth;
+          _site.gtmPreview = gtmPreview;
+        }
         _site.storeName = storeCfg.identifier;
         _site.storeID = storeCfg.storeId;
         _site.catalogStoreID = caStore.relatedStoreId;
@@ -213,6 +250,8 @@ export class SiteInfoService {
   private getOnlineStoreData(s: any | SiteInfo) {
     return Axios.get(
       `${s.transactionContext}/store/${s.storeID}/online_store`
-    ).then((r) => r.data.resultList[0]);
+    ).then((r) => {
+      return r.data.resultList[0];
+    });
   }
 }

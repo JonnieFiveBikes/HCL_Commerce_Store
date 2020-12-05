@@ -61,6 +61,7 @@ function NumberInputWrapper(props: any) {
     <StyledTypography variant="body2" className={classList}>
       <NumericInput
         {...remainingProps}
+        disabled={disabled}
         mobile={mobile}
         onChange={(_value) => {
           callback(_value);

@@ -14,17 +14,13 @@ const StyledHeaderActions = styled.div`
   ${({ theme }) => `
     color: ${theme.palette.text.secondary};
     height: 100%;
-    padding-right: ${theme.spacing(1.25)}px;
 
     ${theme.breakpoints.down("sm")} {
-      padding: ${theme.spacing(0.5)}px;
-
       .MuiSvgIcon-root {
         color: ${theme.palette.text.secondary};
         vertical-align: middle;
         font-size: ${theme.spacing(1)}px;
       }
-  
     }
 
     .MuiSvgIcon-root {

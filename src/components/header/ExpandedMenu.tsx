@@ -46,27 +46,25 @@ const ExpandedMenu: React.FC<ExpandedMenuProps> = (props: any) => {
   }, [location]);
 
   return (
-    <>
-      <StyledBox className="expanded-menu-container">
-        <StyledContainer overflow="hidden">
-          <StyledBox
-            display="flex"
-            direction="row"
-            flexWrap="nowrap"
-            justifyContent="flex-start"
-            alignContent="flex-start">
-            {categories &&
-              categories.map((page: any, index: number) => (
-                <MenubarMenuItem
-                  key={page.id}
-                  selectedMenuItem={selectedMenuItem}
-                  selectMenuItem={selectMenuItem}
-                  page={page}></MenubarMenuItem>
-              ))}
-          </StyledBox>
-        </StyledContainer>
-      </StyledBox>
-    </>
+    <StyledBox className="expanded-menu-container">
+      <StyledContainer overflow="hidden">
+        <StyledBox
+          display="flex"
+          direction="row"
+          flexWrap="nowrap"
+          justifyContent="flex-start"
+          alignContent="flex-start">
+          {categories &&
+            categories.map((page: any, index: number) => (
+              <MenubarMenuItem
+                key={page.id}
+                selectedMenuItem={selectedMenuItem}
+                selectMenuItem={selectMenuItem}
+                page={page}></MenubarMenuItem>
+            ))}
+        </StyledBox>
+      </StyledContainer>
+    </StyledBox>
   );
 };
 

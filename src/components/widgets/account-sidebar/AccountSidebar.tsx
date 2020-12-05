@@ -12,6 +12,7 @@
 import React, { Fragment, useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import Axios, { Canceler } from "axios";
@@ -113,18 +114,24 @@ interface AccountSidebarProps {
 }
 
 const useSectionArray = (isB2B: boolean) => {
+  const widgetName = getDisplayName(AccountSidebar);
   const { t } = useTranslation();
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
   const userId = useSelector(userIdSelector);
 
-  const param = {
-    userId: userId,
-    profileName: IBM_ASSIGNED_ROLE_DETAILS,
+  const payloadBase: any = {
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),
+  };
+
+  const param = {
+    userId: userId,
+    profileName: IBM_ASSIGNED_ROLE_DETAILS,
+    ...payloadBase,
   };
 
   const [buyerRole, setBuyerRole] = useState<string[]>([]);

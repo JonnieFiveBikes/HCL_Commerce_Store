@@ -1,16 +1,25 @@
-/*
+/**
+ *==================================================
+ * Licensed Materials - Property of HCL Technologies
+ *
+ * HCL Commerce
+ *
  * (C) Copyright HCL Technologies Limited 2020
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ *
+ *==================================================
  */
-
+/**
+ * Do not modify, the file is generated.
+ */
+//Standard libraries
 import { AxiosRequestConfig, Method, AxiosPromise } from "axios";
+//Foundation libraries
 import { executeRequest } from "../../axios/axiosConfig";
 import { getSite } from "../../hooks/useSite";
+import { localStorageUtil } from "../../utils/storageUtil";
+import { PRODUCTION, SHOW_API_FLOW } from "../../constants/common";
+//Redux
+import { API_CALL_ACTION } from "../../../redux/actions/api";
 
 const assignedPromotionCodeService = {
   /**
@@ -53,7 +62,9 @@ const assignedPromotionCodeService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -64,26 +75,23 @@ const assignedPromotionCodeService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/cart/@self/assigned_promotion_code' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self/assigned_promotion_code' missing required parameter storeId"
-      );
-    }
-
     if (parameters["responseFormat"] !== undefined) {
-      const parameter = parameters["responseFormat"];
+      const name = "responseFormat";
+      const parameter = parameters[name];
+      delete parameters[name];
       if (parameter instanceof Array) {
         parameter.forEach((value) => {
-          queryParameters.append("responseFormat", value);
+          queryParameters.append(name, value);
         });
       } else {
-        queryParameters.set("responseFormat", parameter);
+        queryParameters.set(name, parameter);
       }
     }
 
@@ -95,16 +103,13 @@ const assignedPromotionCodeService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -141,6 +146,28 @@ const assignedPromotionCodeService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -186,7 +213,9 @@ const assignedPromotionCodeService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -197,39 +226,29 @@ const assignedPromotionCodeService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/cart/@self/assigned_promotion_code' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self/assigned_promotion_code' missing required parameter storeId"
-      );
-    }
-
     if (parameters["responseFormat"] !== undefined) {
-      const parameter = parameters["responseFormat"];
+      const name = "responseFormat";
+      const parameter = parameters[name];
+      delete parameters[name];
       if (parameter instanceof Array) {
         parameter.forEach((value) => {
-          queryParameters.append("responseFormat", value);
+          queryParameters.append(name, value);
         });
       } else {
-        queryParameters.set("responseFormat", parameter);
+        queryParameters.set(name, parameter);
       }
     }
 
     if (parameters["body"] !== undefined) {
       body = parameters["body"];
     }
-
-    if (parameters["body"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self/assigned_promotion_code' missing required parameter body"
-      );
-    }
-
     if (parameters.$queryParameters) {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
@@ -238,16 +257,13 @@ const assignedPromotionCodeService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -284,6 +300,28 @@ const assignedPromotionCodeService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
 
     return executeRequest(requestOptions);
   },
@@ -330,7 +368,9 @@ const assignedPromotionCodeService = {
     if (parameters === undefined) {
       parameters = {};
     }
-
+    if (parameters["storeId"] === undefined && site !== null) {
+      parameters["storeId"] = site.storeID;
+    }
     let headerValues: any = {};
     headerValues["Accept"] = [
       "application/json",
@@ -341,34 +381,30 @@ const assignedPromotionCodeService = {
     for (let val of headerValues["Accept"]) {
       header.append("Accept", val);
     }
-
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
+    if (parameters["storeId"] === undefined) {
+      throw new Error(
+        "Request '/store/{storeId}/cart/@self/assigned_promotion_code/{promoCode}' missing path parameter storeId"
+      );
     }
     requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
 
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self/assigned_promotion_code/{promoCode}' missing required parameter storeId"
-      );
-    }
-
-    requestUrl = requestUrl.replace("{promoCode}", parameters["promoCode"]);
-
     if (parameters["promoCode"] === undefined) {
       throw new Error(
-        "Request '/store/{storeId}/cart/@self/assigned_promotion_code/{promoCode}' missing required parameter promoCode"
+        "Request '/store/{storeId}/cart/@self/assigned_promotion_code/{promoCode}' missing path parameter promoCode"
       );
     }
+    requestUrl = requestUrl.replace("{promoCode}", parameters["promoCode"]);
 
     if (parameters["responseFormat"] !== undefined) {
-      const parameter = parameters["responseFormat"];
+      const name = "responseFormat";
+      const parameter = parameters[name];
+      delete parameters[name];
       if (parameter instanceof Array) {
         parameter.forEach((value) => {
-          queryParameters.append("responseFormat", value);
+          queryParameters.append(name, value);
         });
       } else {
-        queryParameters.set("responseFormat", parameter);
+        queryParameters.set(name, parameter);
       }
     }
 
@@ -380,16 +416,13 @@ const assignedPromotionCodeService = {
         queryParameters.set(parameterName, parameter);
       });
     }
-
     if (!header.get("Content-Type")) {
       header.append("Content-Type", "application/json; charset=utf-8");
     }
-
     const accept = header.get("Accept");
     if (accept !== null && accept.indexOf("application/json") > -1) {
       header.set("Accept", "application/json");
     }
-
     if (
       header.get("content-type") === "multipart/form-data" &&
       Object.keys(form).length > 0
@@ -427,7 +460,30 @@ const assignedPromotionCodeService = {
       { ...parameters }
     );
 
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Transaction: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 };
+
 export default assignedPromotionCodeService;

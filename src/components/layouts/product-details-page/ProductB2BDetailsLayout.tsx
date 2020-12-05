@@ -9,7 +9,7 @@
  *==================================================
  */
 //Standard libraries
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
@@ -17,11 +17,14 @@ import Hidden from "@material-ui/core/Hidden";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import associatedPromotionCodeService from "../../../_foundation/apis/transaction/associatedPromotionCode.service";
 import inventoryavailabilityService from "../../../_foundation/apis/transaction/inventoryavailability.service";
 import productsService from "../../../_foundation/apis/search/products.service";
+import { useSite } from "../../../_foundation/hooks/useSite";
 //Custom libraries
+import { AttachmentB2BLayout } from "./AttachmentB2BLayout";
 import {
   OFFER,
   DISPLAY,
@@ -29,6 +32,7 @@ import {
   DESCRIPTIVE,
   STRING_TRUE,
 } from "../../../constants/common";
+
 import { ATTR_IDENTIFIER } from "../../../constants/catalog";
 import { SIGNIN } from "../../../constants/routes";
 import FormattedPriceDisplay from "../../widgets/formatted-price-display";
@@ -38,6 +42,7 @@ import ReactHtmlParser from "react-html-parser";
 //Redux
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 import { loginStatusSelector } from "../../../redux/selectors/user";
+import { breadcrumbsSelector } from "../../../redux/selectors/catalog";
 import * as orderActions from "../../../redux/actions/order";
 import * as errorActions from "../../../redux/actions/error";
 //UI
@@ -47,7 +52,7 @@ import {
   StyledGrid,
   StyledTypography,
   StyledButton,
-  StyledTextField,
+  StyledNumberInput,
   StyledProductImage,
   StyledPDPContainer,
   StyledTable,
@@ -56,6 +61,8 @@ import {
   StyledTabs,
   ITabs,
 } from "../../StyledUI";
+//GA360
+import GADataService from "../../../_foundation/gtm/gaData.service";
 
 const StyledB2BDetailPanel = styled.div`
   ${({ theme }) => `
@@ -81,6 +88,8 @@ const StyledB2BDetailPanel = styled.div`
  * @param storeId
  */
 function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
+  const widgetName = getDisplayName(ProductB2BDetailsLayout);
+
   let cancels: Canceler[] = [];
   const CancelToken = Axios.CancelToken;
   const { t } = useTranslation();
@@ -127,6 +136,7 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
   const [descAttributeList, setDescAttributeList] = React.useState<
     Array<object>
   >([]);
+  const [attachmentsList, setAttachmentsList] = useState<any[]>([]);
   const [definingAttributeList, setDefiningAttributeList] = React.useState<
     Array<object>
   >([]);
@@ -152,6 +162,14 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
   );
   const [filterSkuState, setFilterSkuState] = React.useState<Array<any>>([]);
 
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+
+  const { mySite } = useSite();
   /**
    * Get product information based on its type
    */
@@ -177,9 +195,7 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
         storeId: storeId,
         id: productsId,
         contractId: contract,
-        cancelToken: new CancelToken(function executor(c) {
-          cancels.push(c);
-        }),
+        ...payloadBase,
       };
       productsService
         .findProductsUsingGET(parameters)
@@ -204,9 +220,7 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
       storeId: storeId,
       q: "byProduct",
       qProductId: pdpData[0].id,
-      cancelToken: new CancelToken(function executor(c) {
-        cancels.push(c);
-      }),
+      ...payloadBase,
     };
     associatedPromotionCodeService
       .findPromotionsByProduct(parameters)
@@ -266,6 +280,12 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
     setDefiningAttributeList(definingAttributes);
     setDescAttributeList(descAttributes);
     setProductData(productInfoData);
+    if (productInfoData.attachments?.length > 0) {
+      setAttachmentsList(productInfoData.attachments);
+    } else {
+      setAttachmentsList([]);
+    }
+
     getUniqueSkusAndInventory(productInfoData.items);
   };
 
@@ -412,22 +432,18 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
 
       if (inventory.get(s.id) && s.buyable === STRING_TRUE) {
         let availableQuantityTag = (
-          <StyledTextField
-            type="number"
-            id={`${s.partNumber}`}
-            pattern="/d*"
-            disabled={!loginStatus}
-            InputProps={{
-              inputProps: {
-                min: 1,
-              },
-            }}
+          <StyledNumberInput
             value={
               skuAndQuantities.get(s.partNumber)
                 ? skuAndQuantities.get(s.partNumber)
-                : ""
+                : null
             }
-            onChange={(e: any) => updateProductQuantity(e)}
+            min={0}
+            strict={true}
+            disabled={!loginStatus}
+            onChange={(quantity: number) =>
+              updateProductQuantity(quantity, s.partNumber)
+            }
           />
         );
         let availableImage = (
@@ -445,11 +461,8 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
         tablebodyDataMap.set("quantity", availableQuantityTag);
       } else {
         let unAvailableQuantityTag = (
-          <StyledTextField
-            type="number"
-            id={`${s.partNumber}`}
-            pattern="/d*"
-            disabled
+          <StyledNumberInput
+            disabled={true}
             value={
               skuAndQuantities.get(s.partNumber)
                 ? skuAndQuantities.get(s.partNumber)
@@ -637,16 +650,13 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
    * Product quantity input field value change event handler
    * @param e
    */
-  const updateProductQuantity = (e: any) => {
-    if (/^[1-9]+[0-9]*$/.test(e.target.value)) {
-      setSkuAndQuantities(
-        new Map(skuAndQuantities.set(e.target.id, e.target.value))
-      );
+  const updateProductQuantity = (quantity: number, id: string) => {
+    if (Number.isInteger(quantity) && quantity > 0) {
+      setSkuAndQuantities(new Map(skuAndQuantities.set(id, quantity)));
     } else {
       addToCartMap = skuAndQuantities;
-      addToCartMap.delete(e.target.id);
+      addToCartMap.delete(id);
       setSkuAndQuantities(new Map(addToCartMap));
-      e.target.value = "";
     }
   };
 
@@ -659,11 +669,21 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
         partnumber: Array.from(skuAndQuantities.keys()),
         quantity: Array.from(skuAndQuantities.values()),
         contractId: contract,
-        cancelToken: new CancelToken(function executor(c) {
-          cancels.push(c);
-        }),
+        ...payloadBase,
       };
       dispatch(orderActions.ADD_ITEM_ACTION(param));
+      //GA360
+      if (mySite.enableGA) {
+        const result = Array.from(skuAndQuantities).map(([key, value]) => ({
+          key,
+          value,
+        }));
+        GADataService.sendB2BAddToCartEvent(
+          currentProdSelect,
+          result,
+          breadcrumbs
+        );
+      }
     } else {
       let parameters: any = {
         errorMessage: t("productDetail.addToCartErrorMsg"),
@@ -715,9 +735,7 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
     let parameters: any = {
       storeId: storeId,
       productIds: productId,
-      cancelToken: new CancelToken(function executor(c) {
-        cancels.push(c);
-      }),
+      ...payloadBase,
     };
     inventoryavailabilityService
       .getInventoryAvailabilityByProductId(parameters)
@@ -771,6 +789,16 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
     });
   }
 
+  if (attachmentsList.length > 0) {
+    const productAttachmentElement = (
+      <AttachmentB2BLayout attachmentsList={attachmentsList} />
+    );
+    productDetailTabsChildren.push({
+      title: t("productDetail.Attachments"),
+      tabContent: productAttachmentElement,
+    });
+  }
+
   const MainImage = () =>
     currentProdSelect?.partNumber?.thumbnail ? (
       <ProductB2BImage
@@ -785,6 +813,17 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
         alt={productData.name}
       />
     );
+
+  //GA360
+  const breadcrumbs = useSelector(breadcrumbsSelector);
+  React.useEffect(() => {
+    if (mySite.enableGA) {
+      if (productPartNumber && breadcrumbs.length !== 0) {
+        GADataService.sendPDPPageViewEvent(breadcrumbs);
+        GADataService.sendB2BPDPDetailViewEvent(productPartNumber, breadcrumbs);
+      }
+    }
+  }, [breadcrumbs]);
 
   return (
     <>
@@ -868,8 +907,9 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
                     />
                   )}
                 </StyledGrid>
+
                 <Hidden xsDown>
-                  <StyledGrid item xs={6} md={5} className="product-image">
+                  <StyledGrid item xs={6} md={5} className="product-imageB2B">
                     <MainImage />
                   </StyledGrid>
                 </Hidden>

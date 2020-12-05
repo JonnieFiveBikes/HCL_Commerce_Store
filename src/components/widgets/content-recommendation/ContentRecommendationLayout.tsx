@@ -9,7 +9,7 @@
  *==================================================
  */
 //Standard libraries
-import React from "react";
+import React, { useState, lazy } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import ReactHtmlParser, { convertNodeToElement } from "react-html-parser";
@@ -17,10 +17,13 @@ import { withRouter } from "react-router-dom";
 import Axios, { Canceler } from "axios";
 import { Link } from "react-router-dom";
 import LazyLoadComponent from "react-intersection-observer-lazy-load";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import eSpotService from "../../../_foundation/apis/transaction/eSpot.service";
 import commonUtil from "../../../_foundation/utils/commonUtil";
+//Custom libraries
+import { HCL_Dx_PREFIX, CONTENT_FORMAT_ID } from "../../../constants/marketing";
 //Redux
 import { wcTokenSelector } from "../../../redux/selectors/user";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
@@ -28,8 +31,11 @@ import { ADD_ITEM_ACTION } from "../../../redux/actions/order";
 import { CLICK_EVENT_TRIGGERED_ACTION } from "../../../redux/actions/marketingEvent";
 //UI
 import { StyledProgressPlaceholder } from "../../StyledUI";
+//GA360
+import GADataService from "../../../_foundation/gtm/gaData.service";
 
 function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
+  const widgetName = getDisplayName(ContentRecommendationLayout);
   const ESPOT_TYPE_PAGE_PREFIX: string = "page-prefix";
   const ESPOT_TYPE_PAGE_SUFFIX: string = "page-suffix";
 
@@ -38,7 +44,7 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
 
   const dispatch = useDispatch();
   const { mySite } = useSite();
-  const [content, setContent] = React.useState<any>(null);
+  const [content, setContent] = useState<any>(null);
   const wcToken: string = useSelector(wcTokenSelector);
   const contract = useSelector(currentContractIdSelector);
 
@@ -46,6 +52,20 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
   const catlogID: string = mySite ? mySite.catalogID : "";
   const CancelToken = Axios.CancelToken;
   let cancel: Canceler;
+
+  const DXContentWrapper = lazy(
+    () => import("../dx-content-wrapper/DXContentWrapper")
+  );
+
+  let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+
   const initESpot = (pageName: string) => {
     let eSName = eSpotName;
     if (type === ESPOT_TYPE_PAGE_SUFFIX) {
@@ -57,9 +77,7 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
       storeId: storeID,
       name: eSName,
       catalogId: catlogID,
-      cancelToken: new CancelToken(function executor(c) {
-        cancel = c;
-      }),
+      ...payloadBase,
     };
     eSpotService
       .findByName(parameters)
@@ -69,20 +87,26 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
           ? eSpotRoot.marketingSpotDataTitle[0].marketingContentDescription[0]
               .marketingText
           : "";
-        const templates = processMarketingSpotData(eSpotRoot);
+        const templates = processMarketingSpotData(eSpotRoot, title);
         setContent({ templates, title });
+        //GA360
+        if (mySite.enableGA) GADataService.sendPromotionImpression(eSpotRoot);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const processMarketingSpotData = (eSpotRoot: any): string[] => {
+  const processMarketingSpotData = (eSpotRoot: any, title: any): string[] => {
     const d: any[] = [];
     const eSpotData = eSpotRoot.baseMarketingSpotActivityData || [];
     for (const eSpotDesc of eSpotData) {
       // Define the component using Component decorator.
-      let currentTemplate: any = { id: null, template: null };
+      let currentTemplate: any = {
+        id: null,
+        template: null,
+        isDxContent: false,
+      };
       const desc = eSpotDesc.marketingContentDescription;
       const assetSrc =
         eSpotDesc.attachmentAsset && eSpotDesc.attachmentAsset[0]
@@ -113,17 +137,32 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
           );
         }
       };
-      if (
+
+      if (eSpotDesc.contentFormatId === CONTENT_FORMAT_ID.EXTERNAL) {
+        currentTemplate.isDxContent = true;
+        //dx content using url field to save content reference.
+        if (
+          eSpotDesc.contentUrl &&
+          eSpotDesc.contentUrl.startsWith(HCL_Dx_PREFIX)
+        ) {
+          currentTemplate.template = eSpotDesc.contentUrl.substr(
+            HCL_Dx_PREFIX.length
+          );
+        } else {
+          currentTemplate.template = eSpotDesc.contentUrl || "";
+        }
+      } else if (
         desc &&
         desc[0] &&
         desc[0]["marketingText"] &&
         desc[0]["marketingText"].length > 0
       ) {
+        const marketingText = desc[0].marketingText.trim();
+
         //each template text suppose to only have one <a> tag
-        currentTemplate.template = ReactHtmlParser(
-          desc[0].marketingText.trim(),
-          { transform }
-        );
+        currentTemplate.template = ReactHtmlParser(marketingText, {
+          transform,
+        });
       } else {
         currentTemplate.template = (
           <div>
@@ -154,7 +193,9 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
     { eSpotRoot, eSpotDesc }: any
   ) => {
     event.preventDefault();
-    dispatch(CLICK_EVENT_TRIGGERED_ACTION({ eSpotRoot, eSpotDesc }));
+    dispatch(
+      CLICK_EVENT_TRIGGERED_ACTION({ eSpotRoot, eSpotDesc, ...payloadBase })
+    );
     const linkAction = commonUtil.parseConentUrl(eSpotDesc.contentUrl || "");
     if (linkAction) {
       switch (linkAction["action"]) {
@@ -179,6 +220,8 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
           break;
       }
     }
+    //GA360
+    if (mySite.enableGA) GADataService.sendPromotionClick(eSpotRoot);
   };
 
   React.useEffect(() => {
@@ -195,9 +238,7 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
       initESpot(pageName);
     }
     return () => {
-      if (cancel) {
-        cancel();
-      }
+      cancels.forEach((cancel) => cancel());
     };
   }, [page, mySite, wcToken]);
 
@@ -211,7 +252,11 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
             }>
             {content.title && <h2>{ReactHtmlParser(content.title)}</h2>}
             {content.templates.map((t: any) => {
-              return <React.Fragment key={t.id}>{t.template}</React.Fragment>;
+              return t.isDxContent ? (
+                <DXContentWrapper key={t.id} contentId={t.template} />
+              ) : (
+                <React.Fragment key={t.id}>{t.template}</React.Fragment>
+              );
             })}
           </LazyLoadComponent>
         </>

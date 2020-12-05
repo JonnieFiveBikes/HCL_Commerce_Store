@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
 import { Divider } from "@material-ui/core";
 import { useSelector } from "react-redux";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 //Custom libraries
@@ -33,6 +34,7 @@ import {
 } from "../../StyledUI";
 
 function PersonalInformationLayout() {
+  const widgetName = getDisplayName(PersonalInformationLayout);
   const addressDetails = useSelector(addressDetailsSelector);
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -47,6 +49,7 @@ function PersonalInformationLayout() {
   let cancels: Canceler[] = [];
 
   const payloadBase: any = {
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),

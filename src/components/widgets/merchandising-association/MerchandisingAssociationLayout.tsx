@@ -17,7 +17,7 @@ import ProductCardLayout from "../product-card/ProductCardLayout";
 import styled from "styled-components";
 import {
   StyledTypography,
-  PureReactSlider,
+  StyledProductRecommendationSlider,
   StyledProgressPlaceholder,
 } from "../../StyledUI";
 
@@ -77,7 +77,7 @@ function MerchandisingAssociationLayout({ pdpData, ...props }: any) {
       {slides && slides.length > 0 ? (
         <>
           <StyledTypography variant="h4">Recommended Products</StyledTypography>
-          <PureReactSlider slidesList={slides} />
+          <StyledProductRecommendationSlider slidesList={slides} />
         </>
       ) : (
         <StyledProgressPlaceholder className="vertical-padding-5" />

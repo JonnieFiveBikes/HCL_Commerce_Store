@@ -16,7 +16,20 @@ const StyledAccordionSummary = styled(({ ...props }) => (
   <AccordionSummary {...props} />
 ))`
   ${({ theme }) => `
-  & {
+    min-height: initial;
+
+    &.Mui-expanded {
+      min-height: initial;
+    }
+
+    .MuiAccordionSummary-content {
+      margin: 0;
+
+      &.Mui-expanded {
+        min-height: initial;
+      }
+    }
+
     &.shipment-group-summary {
       align-items: flex-start;
       .MuiAccordionSummary-expandIcon {
@@ -24,7 +37,6 @@ const StyledAccordionSummary = styled(({ ...props }) => (
         transition: none;
       }
     }
-  }
 `}
 `;
 

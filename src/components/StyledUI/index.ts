@@ -33,6 +33,8 @@ import {
   StyledDialogActions,
   StyledDialogContentText,
 } from "./StyledDialog";
+
+import StyledMarketingContent from "./StyledMarketingContent/StyledMarketingContent";
 import {
   StyledAccordion,
   StyledAccordionDetails,
@@ -77,7 +79,7 @@ import StyledPopover from "./StyledPopover/StyledPopover";
 import StyledPopper from "./StyledPopper/StyledPopper";
 import StyledAccountPopper from "./StyledPopper/StyledAccountPopper";
 import StyledProductImage from "./StyledProductImage/StyledProductImage";
-import PureReactSlider from "./StyledProductRecommendationSlider/PureReactSlider";
+import StyledProductRecommendationSlider from "./StyledProductRecommendationSlider/StyledProductRecommendationSlider";
 import StyledRadio from "./StyledRadio/StyledRadio";
 import StyledRadioGroup from "./StyledRadio/StyledRadioGroup";
 import StyledSearchBar, {
@@ -124,6 +126,7 @@ export {
   StyledDialogActions,
   StyledDialogContentText,
 };
+export { StyledMarketingContent };
 export { StyledAccordion, StyledAccordionDetails, StyledAccordionSummary };
 export { StyledFilterChipSection };
 export { StyledFooter };
@@ -165,7 +168,7 @@ export { StyledNumberInput };
 export { StyledPopover };
 export { StyledPopper, StyledAccountPopper };
 export { StyledProductImage };
-export { PureReactSlider };
+export { StyledProductRecommendationSlider };
 export { StyledRadio };
 export { StyledRadioGroup };
 export { StyledSearchBar, StyledSearchBarButton };

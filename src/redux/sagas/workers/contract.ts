@@ -28,9 +28,10 @@ import { loginStatusSelector } from "../../selectors/user";
 
 export function* fetchContract(action: any) {
   try {
-    const response = yield call(contractService.findEligible, {});
+    const payload = action.payload;
+    const response = yield call(contractService.findEligible, payload);
     yield put(FETCH_CONTRACT_SUCCESS_ACTION({ ...response.data }));
-    yield* preSelectContract({});
+    yield* preSelectContract(action);
   } catch (error) {
     yield put(FETCH_CONTRACT_ERROR_ACTION(error));
   }
@@ -39,7 +40,7 @@ export function* fetchContract(action: any) {
 export function* switchContract(action: any) {
   try {
     yield call(switchContractService.changeContract, action.payload);
-    yield put(USER_CONTEXT_REQUEST_ACTION());
+    yield put(USER_CONTEXT_REQUEST_ACTION(action.payload));
   } catch (error) {
     yield put(CONTRACT_SWITCH_ERROR_ACTION(error));
   }
@@ -57,8 +58,9 @@ export function* preSelectContract(action: any) {
       const contract = Object.keys(contracts)[0];
       yield call(switchContractService.changeContract, {
         $queryParameters: { contractId: String(contract) },
+        ...action.payload,
       });
-      yield put(USER_CONTEXT_REQUEST_ACTION());
+      yield put(USER_CONTEXT_REQUEST_ACTION(action.payload));
     }
   } catch (error) {
     yield put(CONTRACT_SWITCH_ERROR_ACTION(error));

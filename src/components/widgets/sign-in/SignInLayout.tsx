@@ -13,6 +13,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Redirect } from "react-router-dom";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 //Custom libraries
@@ -27,6 +29,8 @@ import {
   StyledButton,
   StyledTypography,
 } from "../../StyledUI";
+//GA360
+import GADataService from "../../../_foundation/gtm/gaData.service";
 
 interface SignInContext {
   cid: string;
@@ -34,6 +38,7 @@ interface SignInContext {
 }
 
 function SignInLayout({ cid, ...props }: SignInContext) {
+  const widgetName = getDisplayName(SignInLayout);
   const redirectRoute = props.redirectRoute ? props.redirectRoute : HOME;
   const loginStatus = useSelector(loginStatusSelector);
   const { mySite } = useSite();
@@ -45,6 +50,16 @@ function SignInLayout({ cid, ...props }: SignInContext) {
   const logonIdLabel = t("SignIn.Label.B2B");
   const emailLabel = t("SignIn.Label.Email");
 
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+
   const handleSubmit = (props: any) => {
     props.preventDefault();
     dispatch(
@@ -53,6 +68,7 @@ function SignInLayout({ cid, ...props }: SignInContext) {
           logonId: email,
           logonPassword: password,
         },
+        ...payloadBase,
       })
     );
   };
@@ -72,9 +88,14 @@ function SignInLayout({ cid, ...props }: SignInContext) {
         });
       }
     }
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
   }, [mySite]);
 
   if (loginStatus === true) {
+    //GA360
+    mySite.enableGA && GADataService.sendFormCompletionEvent("Sign In");
     return <Redirect to={redirectRoute} />;
   } else {
     return (

@@ -33,6 +33,8 @@ import {
   StyledTable,
   StyledTypography,
 } from "../../StyledUI";
+//GA360
+import GADataService from "../../../_foundation/gtm/gaData.service";
 
 interface OrderItemTableProps {
   data: any[];
@@ -331,6 +333,8 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
       fetchCatentries: true,
     };
     dispatch(orderActions.REMOVE_ITEM_ACTION(payload));
+    //GA360
+    if (mySite.enableGA) GADataService.sendRemoveFromCartEvent(item);
   }
 
   /**

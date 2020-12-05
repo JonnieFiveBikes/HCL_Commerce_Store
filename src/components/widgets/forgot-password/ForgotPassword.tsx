@@ -9,9 +9,11 @@
  *==================================================
  */
 //Standard libraries
-import React, { ChangeEvent } from "react";
+import React, { useEffect, ChangeEvent } from "react";
 import { OK } from "http-status-codes";
 import { useTranslation } from "react-i18next";
+import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import personService from "../../../_foundation/apis/transaction/person.service";
@@ -30,6 +32,7 @@ import {
 } from "../../StyledUI";
 
 const ForgotPassword: React.FC = (props: any) => {
+  const widgetName = getDisplayName(ForgotPassword);
   const [open, setOpen] = React.useState<boolean>(false);
   const [email, setEmail] = React.useState<string>("");
   const [forgotPasswordState, setForgotPasswordState] = React.useState<boolean>(
@@ -48,6 +51,16 @@ const ForgotPassword: React.FC = (props: any) => {
   const orLabel = t("ForgotPassword.ORLabel");
 
   const isB2b = site.isB2B;
+
+  const CancelToken = Axios.CancelToken;
+  let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
 
   const handleEmail = (
     evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -86,6 +99,7 @@ const ForgotPassword: React.FC = (props: any) => {
         resetPassword: "true",
         challengeAnswer: "-",
       },
+      ...payloadBase,
     };
     personService
       .updatePerson(parameters, null, site.transactionContext)
@@ -99,6 +113,12 @@ const ForgotPassword: React.FC = (props: any) => {
   const getForgotPasswordState = () => {
     return forgotPasswordState;
   };
+
+  useEffect(() => {
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+  });
 
   return (
     <div>

@@ -62,7 +62,10 @@ const MenubarMenuItem = (props) => {
         <StyledButton
           variant="text"
           onMouseOver={() => selectMenuItem(page.id)}>
-          <StyledTypography className="expanded-menu-text" variant="body1">
+          <StyledTypography
+            className="expanded-menu-text"
+            variant="body1"
+            data-testid="menubar-menuitem-button">
             {page.name}
           </StyledTypography>
         </StyledButton>

@@ -1,16 +1,25 @@
-/*
+/**
+ *==================================================
+ * Licensed Materials - Property of HCL Technologies
+ *
+ * HCL Commerce
+ *
  * (C) Copyright HCL Technologies Limited 2020
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ *
+ *==================================================
  */
-
+/**
+ * Do not modify, the file is generated.
+ */
+//Standard libraries
 import { AxiosRequestConfig, Method, AxiosPromise } from "axios";
+//Foundation libraries
 import { executeRequest } from "../../axios/axiosConfig";
 import { getSite } from "../../hooks/useSite";
+import { localStorageUtil } from "../../utils/storageUtil";
+import { PRODUCTION, SHOW_API_FLOW } from "../../constants/common";
+//Redux
+import { API_CALL_ACTION } from "../../../redux/actions/api";
 
 const productsService = {
   /**
@@ -37,7 +46,7 @@ const productsService = {
    ** `@property {array} partNumber ` The product part numbers.
    ** `@property {integer} productId ` The product identifier.
    ** `@property {string} profileName ` Profile name. Profiles determine the subset of data to be returned by a search query.
-   ** `@property {string} searchTerm (required)` The term to search for.
+   ** `@property {string} searchTerm ` The term to search for.
    ** `@property {integer} storeId (required)` The store ID.
    */
   findProductsUsingGET(
@@ -342,12 +351,7 @@ const productsService = {
         queryParameters.set(name, parameter);
       }
     }
-    // comment this out pending swagger spec change
-    // if (parameters["searchTerm"] === undefined) {
-    //   throw new Error(
-    //     "Request '/api/v2/products' missing required parameter searchTerm"
-    //   );
-    // }
+
     if (parameters["searchTerm"] !== undefined) {
       const name = "searchTerm";
       const parameter = parameters[name];
@@ -430,6 +434,29 @@ const productsService = {
       },
       { ...parameters }
     );
+
+    const showAPIFlow =
+      process.env.NODE_ENV !== PRODUCTION
+        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+        : false;
+    if (showAPIFlow) {
+      const from = parameters["widget"] ? parameters["widget"] : "Browser";
+      const store = require("../../../redux/store").default;
+      if (store) {
+        store.dispatch(
+          API_CALL_ACTION(
+            from +
+              " -> Search: " +
+              method +
+              " " +
+              requestUrl +
+              "?" +
+              queryParameters
+          )
+        );
+      }
+    }
+
     return executeRequest(requestOptions);
   },
 };

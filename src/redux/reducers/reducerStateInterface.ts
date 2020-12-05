@@ -166,11 +166,13 @@ export interface SiteInfo {
   catalogStoreID: string;
   searchContext: string;
   transactionContext?: string;
+  dxContext?: string;
   storeType: string;
   isB2B: boolean;
   inventorySystem: number;
   storeCfg: any;
   supportedLanguages: any[];
+  enableGA?: boolean;
   [extraPros: string]: any;
 }
 export interface OrderDetailsMapReducerState {
@@ -179,4 +181,8 @@ export interface OrderDetailsMapReducerState {
 
 export interface SiteReducerState {
   currentSite?: SiteInfo;
+}
+
+export interface ApiReducerState {
+  apiFlowList: string[]; //Tracks list of API calls for development use only. State will exist in Production but will not be used.
 }

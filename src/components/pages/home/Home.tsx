@@ -13,20 +13,29 @@ import React from "react";
 import { Suspense, lazy } from "react";
 import { paramCase } from "change-case";
 //Custom libraries
-
 import { homeConfig } from "./homeConstant";
 import { SectionContent } from "../../layouts/sectionContentType";
 import { StyledProgressPlaceholder } from "../../StyledUI";
+import { useSite } from "../../../_foundation/hooks/useSite";
+//GA360
+import GADataService from "../../../_foundation/gtm/gaData.service";
 
 const Home: React.FC = () => {
+  const { mySite, storeDisplayName } = useSite();
+  //GA360
+  if (mySite.enableGA) {
+    GADataService.setPageTitle(storeDisplayName);
+  }
+
   const banner: SectionContent[] = [
     {
       key: `home-${paramCase(homeConfig.banner.heroESpot.eSpotName)}`,
       CurrentComponent: () => {
-        const ContentRecommendationLayout = lazy(() =>
-          import(
-            "../../widgets/content-recommendation/ContentRecommendationLayout"
-          )
+        const ContentRecommendationLayout = lazy(
+          () =>
+            import(
+              "../../widgets/content-recommendation/ContentRecommendationLayout"
+            )
         );
 
         return (
@@ -48,10 +57,11 @@ const Home: React.FC = () => {
     {
       key: `home-${paramCase(homeConfig.sectionOne.freeDelivery.eSpotName)}`,
       CurrentComponent: () => {
-        const ContentRecommendationLayout = lazy(() =>
-          import(
-            "../../widgets/content-recommendation/ContentRecommendationLayout"
-          )
+        const ContentRecommendationLayout = lazy(
+          () =>
+            import(
+              "../../widgets/content-recommendation/ContentRecommendationLayout"
+            )
         );
 
         return (
@@ -74,10 +84,11 @@ const Home: React.FC = () => {
     {
       key: `home-${paramCase(homeConfig.sectionOne.produtRec)}`,
       CurrentComponent: () => {
-        const ProductRecommendationLayout = lazy(() =>
-          import(
-            "../../widgets/product-recommendation/ProductRecommendationLayout"
-          )
+        const ProductRecommendationLayout = lazy(
+          () =>
+            import(
+              "../../widgets/product-recommendation/ProductRecommendationLayout"
+            )
         );
 
         return (
@@ -99,10 +110,11 @@ const Home: React.FC = () => {
         homeConfig.sectionOne.twentyPercentOff.eSpotName
       )}`,
       CurrentComponent: () => {
-        const ContentRecommendationLayout = lazy(() =>
-          import(
-            "../../widgets/content-recommendation/ContentRecommendationLayout"
-          )
+        const ContentRecommendationLayout = lazy(
+          () =>
+            import(
+              "../../widgets/content-recommendation/ContentRecommendationLayout"
+            )
         );
 
         return (
@@ -124,10 +136,11 @@ const Home: React.FC = () => {
     {
       key: `home-${paramCase(homeConfig.sectionOne.featureProd)}`,
       CurrentComponent: () => {
-        const FeaturedProductRecommendationLayout = lazy(() =>
-          import(
-            "../../widgets/featured-product-recommendation/FeaturedProductRecommendationLayout"
-          )
+        const FeaturedProductRecommendationLayout = lazy(
+          () =>
+            import(
+              "../../widgets/featured-product-recommendation/FeaturedProductRecommendationLayout"
+            )
         );
 
         return (
@@ -147,10 +160,11 @@ const Home: React.FC = () => {
     {
       key: `home-${paramCase(homeConfig.sectionOne.categoryRec.eSpotName)}`,
       CurrentComponent: () => {
-        const CategoryRecommendationLayout = lazy(() =>
-          import(
-            "../../widgets/category-recommendation/CategoryRecommendationLayout"
-          )
+        const CategoryRecommendationLayout = lazy(
+          () =>
+            import(
+              "../../widgets/category-recommendation/CategoryRecommendationLayout"
+            )
         );
 
         return (
@@ -171,8 +185,8 @@ const Home: React.FC = () => {
     },
   ];
 
-  const HomePageLayout = lazy(() =>
-    import("../../layouts/home-page/HomePageLayout")
+  const HomePageLayout = lazy(
+    () => import("../../layouts/home-page/HomePageLayout")
   );
   return (
     <Suspense

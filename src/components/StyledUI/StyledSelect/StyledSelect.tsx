@@ -18,9 +18,10 @@ const StyledSelect = styled(({ ...props }) => <Select {...props} />)`
     .MuiOutlinedInput-input {
       padding: 0 ${theme.spacing(2)}px;
       padding-right: ${theme.spacing(4)}px;
-      height: ${dimensions.inputFields.height}px;
-      line-height: ${dimensions.inputFields.height}px;
+      height: ${dimensions.searchBar.height}px;
+      line-height: ${dimensions.searchBar.height}px;
       color: ${theme.palette.text.primary};
+
       &.Mui-disabled {
         color: ${theme.palette.action.disabled};
         background:  ${theme.palette.action.disabledBackground};;

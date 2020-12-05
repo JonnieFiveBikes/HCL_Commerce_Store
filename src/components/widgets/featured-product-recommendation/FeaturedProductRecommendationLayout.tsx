@@ -12,6 +12,7 @@
 import React, { lazy, Suspense } from "react";
 import ReactHtmlParser from "react-html-parser";
 import Axios, { Canceler } from "axios";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import eSpotService from "../../../_foundation/apis/transaction/eSpot.service";
@@ -27,6 +28,8 @@ function FeaturedProductRecommendationLayout({
   renderingContext,
   ...props
 }: any) {
+  const widgetName = getDisplayName(FeaturedProductRecommendationLayout);
+
   let title: string;
   let ctx: any;
   const { mySite } = useSite();
@@ -46,15 +49,21 @@ function FeaturedProductRecommendationLayout({
   ] = React.useState<any>(null);
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
+
+  const payloadBase: any = {
+    widget: widgetName,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+
   const generateCtxFromEspot = (name: string) => {
     let eSName = name;
     const parameters: any = {
       storeId: storeID,
       name: eSName,
       catalogId: catalogID,
-      cancelToken: new CancelToken(function executor(c) {
-        cancels.push(c);
-      }),
+      ...payloadBase,
     };
     eSpotService
       .findByName(parameters)
@@ -85,11 +94,8 @@ function FeaturedProductRecommendationLayout({
       storeId: storeID,
       catalogId: catalogID,
       partNumber: partNumber,
-      cancelToken: new CancelToken(function executor(c) {
-        cancels.push(c);
-      }),
+      ...payloadBase,
     };
-
     productsService
       .findProductsUsingGET(parameters)
       .then((productDescription) => {

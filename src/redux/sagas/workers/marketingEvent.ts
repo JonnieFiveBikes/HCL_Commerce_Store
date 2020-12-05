@@ -22,6 +22,7 @@ function* performClickEvent(action: any) {
   if (!!WCToken) {
     //only tract click with guest  of register user
     const { eSpotDesc, eSpotRoot } = action.payload;
+    const payload = action.payload;
     let body = {
       evtype: "CpgnClick",
       productId: eSpotDesc.productId || "",
@@ -44,6 +45,9 @@ function* performClickEvent(action: any) {
     const params = {
       body,
     };
+    if (payload.widget) {
+      params["widget"] = payload.widget;
+    }
     try {
       yield eventService.handleClickInfo(params);
     } catch (e) {
@@ -60,7 +64,9 @@ function* performTriggerMarketing(action: any) {
       const params = {
         body: action.payload,
       };
-
+      if (action?.payload?.widget) {
+        params["widget"] = action.payload.widget;
+      }
       yield eventService.triggerMarketing(params);
     } catch (e) {
       console.warn(e);

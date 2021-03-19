@@ -42,15 +42,15 @@ export const sharedOverrides = {
     },
     h2: {
       fontSize: 48,
-      fontWeight: 300,
+      fontWeight: 400,
     },
     h3: {
       fontSize: 32,
-      fontWeight: 300,
+      fontWeight: 400,
     },
     h4: {
       fontSize: 26,
-      fontWeight: 300,
+      fontWeight: 400,
     },
     h5: {
       fontSize: 20,

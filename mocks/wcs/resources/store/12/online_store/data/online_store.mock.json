@@ -1,6 +1,6 @@
 {
   "recordSetCount": 1,
-  "resourceId": "https://localhost:443/wcs/resources/store/12/online_store",
+  "resourceId": "https://app:5443/wcs/resources/store/12/online_store",
   "recordSetStartNumber": 0,
   "resourceName": "store",
   "resultList": [
@@ -360,7 +360,14 @@
       ],
       "storeType": "BMH",
       "userData": {
-        "wc.price.variant": "enabled"
+        "wc.search.priceMode.compatiblePriceIndex": "1.0",
+        "google.tag.manager.preview": "env-1",
+        "hcl.imagePath": "/ExtendedSitesCatalogAssetStore/",
+        "headlessStore": "true",
+        "wc.price.variant": "enabled",
+        "headlessStore.storeContextRoot": "/Sapphire",
+        "google.tag.manager.container.id": "GTM-N8GL22Q1",
+        "google.tag.manager.auth": "I6Eh9nH1fUQDJ9tqw9BRuQ"
       },
       "contactInfo": [
         {

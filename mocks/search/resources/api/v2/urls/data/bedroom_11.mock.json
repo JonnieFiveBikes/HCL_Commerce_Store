@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "bedroom",
+      "tokenName": "CategoryToken",
+      "tokenExternalValue": "Bedroom",
+      "language": "en_US",
+      "id": 56818,
+      "page": {
+        "imageAlternateDescription": "Image for Bedroom from Emerald",
+        "name": "CATEGORY_PAGE",
+        "title": "Bedroom | Emerald",
+        "type": "CategoryPage",
+        "metaDescription": "Furnish your bedrooms in style and make them your own",
+        "metaKeyword": "sleep, warm, beds, dressers, tables, sofas"
+      },
+      "storeId": "11",
+      "tokenValue": "10513",
+      "status": 1
+    }
+  ]
+}

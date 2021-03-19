@@ -5,6 +5,7 @@
     "GenericTitle": "一般错误",
     "TimeoutMsg": "您的会话已超时，并且已成功注销。请再次登录以访问您的商店。",
     "InvalidMsg": "您的登录标识可能已在其他位置使用。请再次登录以访问您的商店。",
+    "InvalidMsgB2C": "您的电子邮件地址可能已在其他位置使用。请再次登录以访问您的商店。",
     "Email": "电子邮件",
     "Password": "密码",
     "SubmitButton": "登录",

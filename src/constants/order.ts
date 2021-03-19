@@ -18,7 +18,7 @@ export const INVENTORY_STATUS = {
 export const PAYMENT = {
   paymentMethodName: {
     cod: "COD",
-    mc: "Master Card",
+    mc: "MasterCard",
     visa: "VISA",
     amex: "AMEX",
   },

@@ -52,7 +52,6 @@ const OrderConfirmation: React.FC = (props: any) => {
   emailList = [...new Set(emailList)];
   const emailListString = emailList.join(", ");
   const CancelToken = Axios.CancelToken;
-  let cancel: Canceler;
   let cancels: Canceler[] = [];
 
   const payloadBase: any = {
@@ -79,6 +78,7 @@ const OrderConfirmation: React.FC = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (localStorageUtil.get(ACCOUNT + HYPHEN + ORDER_ID + HYPHEN + orderId)) {

@@ -34,10 +34,10 @@
     "_ERR_AUTHENTICATION_ERROR_2000": "Type a logon ID in the Logon ID field.",
     "_ERR_AUTHENTICATION_ERROR_2010": "Either the logon ID or password entered is incorrect. Enter the information again.",
     "_ERR_AUTHENTICATION_ERROR_2020": "Either the logon ID or password entered is incorrect. Enter the information again.",
-    "_ERR_AUTHENTICATION_ERROR_2030": "Either the logon ID or password entered is incorrect. Enter the information again.",
+    "_ERR_AUTHENTICATION_ERROR_2030": "The logon credentials that you entered is not valid. Check your entry and try again.",
     "_ERR_PASSWORD_FAILED_CMN1019E": "Either the logon ID or password entered is incorrect. Enter the information again.",
     "_ERR_PERSON_ACCOUNT_DISABLED_2110": "This account is locked. Contact the store to unlock your account.",
-    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Your account has been locked due to excessive failed login attempts.  Please reset your password to continue.",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Due to {{0}} unsuccessful password attempts, you will be unable to sign in. Reset your password or contact your Customer Service Representative for assistance.",
     "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "Wait a few seconds before attempting to sign in again.",
     "_2400": "Your organization is locked. You cannot sign in at this time. ",
     "_2410": "You do not have the proper authority to sign in. Contact the store for further information.",
@@ -91,10 +91,15 @@
     "_ERR_FINDING_ORDER_230": "A system problem occurred while processing your order.",
     "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "A system problem occurred. Please contact the store for assistance.",
     "_ERR_REMOTE_EXCEPTION_CMN0412E": "A system problem occurred while processing your request. Please contact the store for assistance.",
+    "_ERR_REG_DUPE_ID_CMN0114S": "The logon ID you entered already exists. Type a different logon ID and try again.",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "The email that you entered is not valid. Check your entry and try again.",
+    "_ERR_CMD_INVALID_PARAM_2195": "The verification code that you entered is not valid. Check your entry and try again.",
     "B2B": {
-      "_ERR_LOGONID_ALREDY_EXIST_2030": "The logon ID you entered already exists. Type a different logon ID and try again."
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "The logon ID that you entered is not valid. Check your entry and try again.",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "The logon ID you entered already exists. Type a different logon ID and try again.",
+      "_ERR_BAD_PARMS_2010": "The logon ID that you entered is not valid. Check your entry and try again."
     },
-    "_ERR_PASSWORD_EXPIRED_2170": "The current password has expired.  A new password must be specified."
+    "_ERR_PASSWORD_EXPIRED_2170": "Your current password has expired. Please enter a new password."
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "Item was added to cart. ",
@@ -103,6 +108,8 @@
     "RecurringOrderCancelled": "The order has been successfully cancelled.",
     "ADD_ADDRESS_SUCCESS": "Your new address \"{{0}}\" has been added successfully",
     "EDIT_ADDRESS_SUCCESS": "Your address \"{{0}}\" has been updated successfully",
-    "DELETE_ADDRESS_SUCCESS": "Your address \"{{0}}\" has been deleted successfully"
+    "DELETE_ADDRESS_SUCCESS": "Your address \"{{0}}\" has been deleted successfully",
+    "RESEND_VERIFICATION_CODE": "The verification code has been sent to your email address successfully",
+    "PASSWORD_RESET_SUCCESS": "The password has been reset successfully"
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /*
  *==================================================
  * Licensed Materials - Property of HCL Technologies
@@ -40,15 +41,16 @@ import {
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 import { Extensions } from "./components/extensions";
+import { useCSRForUser } from "./_foundation/hooks/useCSRForUser";
+import SuccessMessageSnackbar from "./components/widgets/message-snackbar/SuccessMessageSnackbar";
+import ErrorMessageSnackbar from "./components/widgets/message-snackbar/ErrorMessageSnackbar";
+import { IFRAME_RESIZER } from "./_foundation/constants/csr";
 //Redux
-import { loginStatusSelector } from "./redux/selectors/user";
-import { FETCH_CONTRACT_REQUESTED_ACTION } from "./redux/actions/contract";
+import { forUserIdSelector, loginStatusSelector } from "./redux/selectors/user";
 import {
   INIT_STATE_FROM_STORAGE_ACTION,
   LISTEN_USER_FROM_STORAGE_ACTION,
 } from "./redux/actions/user";
-import { USER_CONTEXT_REQUEST_ACTION } from "./redux/actions/context";
-import { ENTITLED_ORG_ACTION } from "./redux/actions/organization";
 //UI
 import {
   StyledGrid,
@@ -57,30 +59,31 @@ import {
 } from "./components/StyledUI";
 import "./App.scss";
 //GA360
-import GADataService from "./_foundation/gtm/gaData.service";
-import GTMDLService from "./_foundation/gtm/gtmDataLayer.service";
+//UA
+import GTMDLService from "./_foundation/gtm/ua/gtmDataLayer.service";
+//GA4
+import GA4GTMDLService from "./_foundation/gtm/ga4/gtmDataLayer.service";
 
 const ScrollToTop = () => {
-  const location = useLocation();
   const { mySite } = useSite();
 
   React.useEffect(() => {
     //scroll to top on path change.
     setTimeout(() => {
       window.scrollTo(0, 0);
-      //GA360
-      if (mySite.enableGA) GADataService.setPagePath(location.pathname);
     });
-  }, [location.pathname]);
+  }, []);
   return <></>;
 };
 
 const App: React.FC = (props: any) => {
   const widgetName = getDisplayName(App);
   const loggedIn = useSelector(loginStatusSelector);
+  const forUserId = useSelector(forUserIdSelector);
   const dispatch = useDispatch<Dispatch<any>>();
   const { mySite, storeDisplayName } = useSite();
   const { i18n } = useTranslation();
+  const { receiveParentMessage } = useCSRForUser();
   const CancelToken = Axios.CancelToken;
 
   let cancels: Canceler[] = [];
@@ -137,9 +140,6 @@ const App: React.FC = (props: any) => {
 
   React.useEffect(() => {
     if (mySite) {
-      dispatch(USER_CONTEXT_REQUEST_ACTION({ ...payloadBase }));
-      dispatch(ENTITLED_ORG_ACTION({ ...payloadBase }));
-      dispatch(FETCH_CONTRACT_REQUESTED_ACTION({ ...payloadBase }));
       dispatch(INIT_STATE_FROM_STORAGE_ACTION({ ...payloadBase }));
       storageSessionHandler.triggerUserStorageListener(() =>
         dispatch(LISTEN_USER_FROM_STORAGE_ACTION({ ...payloadBase }))
@@ -148,11 +148,20 @@ const App: React.FC = (props: any) => {
       isDiscoverEnabled(mySite.storeID);
       //GA360
       if (mySite.enableGA) {
-        GTMDLService.initailizeGTM(
-          mySite.gtmID,
-          mySite.gtmAuth,
-          mySite.gtmPreview
-        );
+        if (mySite.enableUA) {
+          GTMDLService.initializeGTM(
+            mySite.gtmID,
+            mySite.gtmAuth,
+            mySite.gtmPreview
+          );
+        }
+        if (mySite.enableGA4 && !mySite.enableUA) {
+          GA4GTMDLService.initializeGTM(
+            mySite.gtmID,
+            mySite.gtmAuth,
+            mySite.gtmPreview
+          );
+        }
       }
     } else {
       initSite(site, dispatch);
@@ -161,6 +170,16 @@ const App: React.FC = (props: any) => {
       cancels.forEach((cancel) => cancel());
     };
   }, [mySite, dispatch]);
+
+  React.useEffect(() => {
+    if (forUserId) {
+      window[IFRAME_RESIZER] = {
+        onMessage: receiveParentMessage,
+      };
+    } else {
+      window[IFRAME_RESIZER] = undefined;
+    }
+  }, [forUserId]);
 
   const baseName = process.env.REACT_APP_ROUTER_BASENAME
     ? { basename: process.env.REACT_APP_ROUTER_BASENAME }
@@ -175,6 +194,8 @@ const App: React.FC = (props: any) => {
     mySite && (
       <BrowserRouter {...baseName}>
         <StyledWrapper data-testid="app-wrapper">
+          <SuccessMessageSnackbar />
+          <ErrorMessageSnackbar />
           <StyledGrid
             container
             direction="column"
@@ -191,6 +212,13 @@ const App: React.FC = (props: any) => {
                 {discover && (
                   <script
                     src={`${publicUrlPath}/discover/discoverui.js?q=${Date.now()}`}
+                    type="text/javascript"
+                    async
+                  />
+                )}
+                {window[IFRAME_RESIZER] && (
+                  <script
+                    src="/iframeResizer.contentWindow.min.js"
                     type="text/javascript"
                     async
                   />

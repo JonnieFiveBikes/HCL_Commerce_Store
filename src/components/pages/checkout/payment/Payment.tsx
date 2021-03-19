@@ -123,6 +123,7 @@ const Payment: React.FC = (props: any) => {
     PaymentInfoType[]
   >([]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const usableBillAddresses = useMemo(() => initUsableBillingAddresses(), [
     addressDetails,
     orgAddressDetails,
@@ -180,6 +181,7 @@ const Payment: React.FC = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite]);
 
   useEffect(() => {
@@ -219,6 +221,7 @@ const Payment: React.FC = (props: any) => {
         setUseMultiplePayment(true);
       } */
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
   useEffect(() => {
@@ -231,6 +234,7 @@ const Payment: React.FC = (props: any) => {
         setPONumber(poNumberFromStorage);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
   /** Handle toggle between single/multiple payments */
@@ -403,7 +407,7 @@ const Payment: React.FC = (props: any) => {
    * @param option The selected pay option
    */
   function togglePayOption(optionValue: number) {
-    let payment = payMethods.filter((x) => x.xumet_policyId == optionValue)[0];
+    let payment = payMethods.filter((x) => x.xumet_policyId === optionValue)[0];
 
     let paymentTCId = payment?.paymentTermConditionId;
 

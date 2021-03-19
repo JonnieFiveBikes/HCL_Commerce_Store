@@ -1,0 +1,71 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "defaultContentDisplaySequence": [
+        {
+          "resultId": "13003",
+          "resultFormat": "MarketingContent",
+          "displaySequence": "0.0"
+        }
+      ],
+      "marketingSpotIdentifier": "13503",
+      "behavior": "0",
+      "eSpotName": "FooterStoreLogo",
+      "baseMarketingSpotActivityData": [
+        {
+          "contentFormatName": "File",
+          "attachmentReferenceId": "4502",
+          "baseMarketingSpotActivityName": "FooterStoreLogo",
+          "attachmentDisplaySequence": "0.0",
+          "attachementExternalId": "FooterStoreLogo",
+          "contentClickAction": "Single",
+          "AttachmentDescription": [{}],
+          "contentId": "13003",
+          "baseMarketingSpotActivityID": "13003",
+          "contentName": "FooterStoreLogo",
+          "baseMarketingSpotDataType": "MarketingContent",
+          "attachmentImage": "images/attachments/usages/unassign_icon.jpg",
+          "contentUrl": "/",
+          "attachmentUsageName": "NOUSAGE",
+          "activityIdentifierID": "0",
+          "attachmentDescription": [
+            {
+              "attachmentName": "Footer Store Logo",
+              "attachmentShortDescription": "SapphireSAS",
+              "attachmentLanguage": "-1"
+            }
+          ],
+          "attachmentAsset": [
+            {
+              "attachmentAssetDirectoryPath": "type-icons/hcl-logo-footer.svg",
+              "attachmentAssetMimeType": "image/svg",
+              "attachmentAssetStoreId": "13001",
+              "attachmentLocalAsset": "true",
+              "attachmentAssetId": "6502",
+              "attachmentAssetRootDirectory": "SapphireSAS",
+              "attachmentAssetPath": "/SapphireSAS/images/type-icons/hcl-logo-footer.svg"
+            }
+          ],
+          "attachementId": "4502",
+          "contentFormatId": "1",
+          "contentMimeType": "image",
+          "activityPriority": "1",
+          "attachementStoreId": "13001",
+          "properties": [
+            {
+              "baseMarketingKey": "mktActivityDescription"
+            },
+            {
+              "baseMarketingValue": "0.0",
+              "baseMarketingKey": "displaySequence"
+            }
+          ],
+          "contentStoreId": "13001"
+        }
+      ]
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/12/espot/FooterStoreLogo?catalogId=10501&name=FooterStoreLogo&langId=-1",
+  "resourceName": "espot"
+}

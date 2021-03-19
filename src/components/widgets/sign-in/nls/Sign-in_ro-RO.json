@@ -2,12 +2,25 @@
   "SignIn": {
     "ReturningCustomer": "Client care se întoarce",
     "Password": "Parolă",
+    "ChangPassword": "Schimbare parolă",
+    "CurrentPassword": "Parolă curentă",
+    "PasswordVerify": "Verificare parolă",
     "RememberMe": "Reține-mă",
     "SignInButton": "Autentificare",
-    "ForgotPassword": "Parola uitată",
+    "Cancel": "Anulare",
+    "Submit": "Trimitere",
+    "ForgotPassword": "Ați uitat parola?",
+    "noAccount": "Nu aveţi un cont? ",
+    "registerNow": "Înregistrați-vă acum",
     "Label": {
       "B2B": "ID conectare",
-      "Email": "Adresă e-mail"
+      "Email": "Adresă e-mail",
+      "rememberMe": "Ține-mă minte"
+    },
+    "Msgs": {
+      "InvalidFormat": "Format nevalid.",
+      "PasswordNotMatch": "Parola și verificarea parolei nu se potrivesc.",
+      "OldPasswordReuse": "Parola introdusă a mai fost folosită. Introduceți o parolă nouă."
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "BuyerUserRegistration": {
-    "Title": "S'enregistrer en tant qu'acheteur dans votre organisation",
+    "Title": "Enregistrement d'acheteurs",
     "Description": "Si votre organisation dispose déjà d'un compte auprès de ce magasin, vous pouvez vous enregistrer afin de facturer vos achats sous ce compte et passer des commandes. Une fois votre enregistrement approuvé, vous pourrez vous connecter au magasin et effectuer des achats.",
     "OrgName": "Organisation",
     "Email": "Adresse électronique",
@@ -18,7 +18,12 @@
     "Password2": "Confirmer le mot de passe",
     "Language": "Langue préférée",
     "Currency": "Devise préférée",
-    "Submit": "Envoyer",
+    "AddressDetails": "Détails de l'adresse",
+    "AccountPreferences": "Préférences du compte",
+    "HaveAccount": "Vous avez déjà un compte ?",
+    "AddressLineAdd": "Ajouter une ligne d'adresse 2",
+    "SignIn": "Se connecter",
+    "Submit": "Terminer l'enregistrement",
     "Clear": "Effacer",
     "Success": "Votre demande d'activation de compte a bien été reçue. Activez votre compte pour pouvoir vous connecter.",
     "OK": "OK",

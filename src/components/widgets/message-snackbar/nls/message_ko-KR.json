@@ -34,10 +34,10 @@
     "_ERR_AUTHENTICATION_ERROR_2000": "로그온 ID 필드에 로그온 ID를 입력하십시오.",
     "_ERR_AUTHENTICATION_ERROR_2010": "입력된 로그온 ID 또는 암호가 올바르지 않습니다. 정보를 다시 입력하십시오.",
     "_ERR_AUTHENTICATION_ERROR_2020": "입력된 로그온 ID 또는 암호가 올바르지 않습니다. 정보를 다시 입력하십시오.",
-    "_ERR_AUTHENTICATION_ERROR_2030": "입력된 로그온 ID 또는 암호가 올바르지 않습니다. 정보를 다시 입력하십시오.",
+    "_ERR_AUTHENTICATION_ERROR_2030": "입력하신 로그온 자격 증명이 올바르지 않습니다. 입력한 내용을 확인하고 다시 시도하십시오.",
     "_ERR_PASSWORD_FAILED_CMN1019E": "입력된 로그온 ID 또는 암호가 올바르지 않습니다. 정보를 다시 입력하십시오.",
     "_ERR_PERSON_ACCOUNT_DISABLED_2110": "이 계정은 잠겨 있습니다 . 계정을 잠금 해제하려면 스토어에 문의하십시오.",
-    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "허용되는 로그인 시도 횟수를 초과하여 계정이 잠겼습니다. 계속하려면 암호를 재설정하십시오.",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "암호 시도 횟수 {{0}}회를 초과하여 로그인할 수 없습니다. 암호를 재설정하거나 고객 서비스 담당자에게 문의하여 지원을 요청하십시오.",
     "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "다시 로그인을 시도하기 전에 잠시 기다리십시오.",
     "_2400": "조직이 잠겨 있습니다. 지금은 로그인할 수 없습니다. ",
     "_2410": "적절한 로그인 권한이 없습니다. 자세한 내용은 스토어에 문의하십시오.",
@@ -90,9 +90,16 @@
     "_API_BAD_INV_2": "{{1}}개의 {{0}}을(를) 구입하기 위한 충분한 재고가 없습니다.",
     "_ERR_FINDING_ORDER_230": "주문을 처리하는 중에 시스템 문제가 발생했습니다.",
     "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "시스템 문제가 발생했습니다. 스토어에 연락하여 지원을 받으십시오.",
+    "_ERR_REMOTE_EXCEPTION_CMN0412E": "요청을 처리하는 중에 시스템 문제가 발생했습니다. 지원을 받으려면 스토어에 문의하십시오.",
+    "_ERR_REG_DUPE_ID_CMN0114S": "입력하신 로그온 ID가 이미 존재합니다. 다른 로그온 ID를 입력하고 다시 시도하십시오.",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "입력하신 이메일이 올바르지 않습니다. 입력한 내용을 확인하고 다시 시도하십시오.",
+    "_ERR_CMD_INVALID_PARAM_2195": "입력하신 확인 코드가 올바르지 않습니다. 입력한 내용을 확인하고 다시 시도하십시오.",
     "B2B": {
-      "_ERR_LOGONID_ALREDY_EXIST_2030": "입력하신 로그온 ID가 이미 존재합니다. 다른 로그온 ID를 입력하고 다시 시도하십시오."
-    }
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "입력하신 로그온 ID가 올바르지 않습니다. 입력한 내용을 확인하고 다시 시도하십시오.",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "입력하신 로그온 ID가 이미 존재합니다. 다른 로그온 ID를 입력하고 다시 시도하십시오.",
+      "_ERR_BAD_PARMS_2010": "입력하신 로그온 ID가 올바르지 않습니다. 입력한 내용을 확인하고 다시 시도하십시오."
+    },
+    "_ERR_PASSWORD_EXPIRED_2170": "현재 암호가 만료되었습니다. 새 암호를 입력하십시오."
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "품목이 장바구니에 추가되었습니다. ",
@@ -101,6 +108,8 @@
     "RecurringOrderCancelled": "주문이 성공적으로 취소되었습니다.",
     "ADD_ADDRESS_SUCCESS": "새 주소 \"{{0}}\"이(가) 성공적으로 추가되었습니다",
     "EDIT_ADDRESS_SUCCESS": "주소 \"{{0}}\"이(가) 성공적으로 업데이트되었습니다",
-    "DELETE_ADDRESS_SUCCESS": "주소 \"{{0}}\"이(가) 성공적으로 삭제되었습니다"
+    "DELETE_ADDRESS_SUCCESS": "주소 \"{{0}}\"이(가) 성공적으로 삭제되었습니다",
+    "RESEND_VERIFICATION_CODE": "이메일 주소로 확인 코드가 전송되었습니다.",
+    "PASSWORD_RESET_SUCCESS": "암호가 재설정되었습니다."
   }
 }

@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "lighting",
+      "tokenName": "CategoryToken",
+      "tokenExternalValue": "Hardware Lighting",
+      "language": "en_US",
+      "id": 12053,
+      "page": {
+        "imageAlternateDescription": "Image for Lighting from Sapphire",
+        "name": "CATEGORY_PAGE",
+        "title": "Lighting | Sapphire",
+        "type": "ProductListPage",
+        "metaDescription": "Light bulbs in every shape and size",
+        "metaKeyword": "lighting"
+      },
+      "storeId": "12",
+      "tokenValue": "13",
+      "status": 1
+    }
+  ]
+}

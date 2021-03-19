@@ -20,7 +20,7 @@
     "Status_W": "待审批",
     "Status_V": "已部分发货",
     "Status_X": "订单已取消",
-    "NotAvailable": "信息不可用",
+    "NotAvailable": "不适用",
     "OrderId": "订单标识",
     "PONumber": "采购订单号",
     "OrderDate": "订单日期",
@@ -60,6 +60,7 @@
     "OrderDetails": "订单详细信息",
     "OrderNumber": "订单号",
     "HistorySearchPlaceHolder": "按订单标识搜索",
-    "HistoryViewDetailTooltip": "查看订单详细信息"
+    "HistoryViewDetailTooltip": "查看订单详细信息",
+    "Pending": "待定"
   }
 }

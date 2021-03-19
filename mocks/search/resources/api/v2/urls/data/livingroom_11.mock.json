@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "living-room",
+      "tokenName": "CategoryToken",
+      "tokenExternalValue": "LivingRoom",
+      "language": "en_US",
+      "id": 56828,
+      "page": {
+        "imageAlternateDescription": "Image for Living Room from Emerald",
+        "name": "CATEGORY_PAGE",
+        "title": "Living Room | Emerald",
+        "type": "CategoryPage",
+        "metaDescription": "Bring your living space together with comfort and style",
+        "metaKeyword": "family, living room, sofas, chairs, couches, coffee tables, lamps"
+      },
+      "storeId": "11",
+      "tokenValue": "10501",
+      "status": 1
+    }
+  ]
+}

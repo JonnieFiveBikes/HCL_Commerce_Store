@@ -34,10 +34,10 @@
     "_ERR_AUTHENTICATION_ERROR_2000": "Entrez un ID de connexion dans la zone ID de connexion.",
     "_ERR_AUTHENTICATION_ERROR_2010": "L'ID de connexion ou le mot de passe saisi est incorrect. Entrez de nouveau les informations.",
     "_ERR_AUTHENTICATION_ERROR_2020": "L'ID de connexion ou le mot de passe saisi est incorrect. Entrez de nouveau les informations.",
-    "_ERR_AUTHENTICATION_ERROR_2030": "L'ID de connexion ou le mot de passe saisi est incorrect. Entrez de nouveau les informations.",
+    "_ERR_AUTHENTICATION_ERROR_2030": "Les informations de connexion que vous avez entrées ne sont pas valides. Vérifiez votre saisie et réessayez.",
     "_ERR_PASSWORD_FAILED_CMN1019E": "L'ID de connexion ou le mot de passe saisi est incorrect. Entrez de nouveau les informations.",
     "_ERR_PERSON_ACCOUNT_DISABLED_2110": "Ce compte est verrouillé. Contactez le magasin pour déverrouiller votre compte.",
-    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Votre compte a été verrouillé suite à de trop nombreux échecs de connexion. Veuillez réinitialiser votre mot de passe pour continuer.",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Votre ne serez pas en mesure en raison de {{0}} échecs de connexion. Veuillez réinitialiser votre mot de passe ou demander de l'aide à votre représentant du service client.",
     "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "Patientez quelques instants avant de tenter de vous connecter à nouveau.",
     "_2400": "Votre organisation est verrouillée. Vous ne pouvez pas vous connecter pour le moment.",
     "_2410": "Vous ne disposez pas des droits appropriés pour vous connecter. Prenez contact avec le magasin pour en savoir plus.",
@@ -90,9 +90,16 @@
     "_API_BAD_INV_2": "Le stock est insuffisant pour acheter {{1}} unités de {{0}}.",
     "_ERR_FINDING_ORDER_230": "Une erreur système est survenue lors du traitement de votre commande.",
     "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "Une erreur système est survenue. Veuillez contacter le magasin pour résoudre le problème.",
+    "_ERR_REMOTE_EXCEPTION_CMN0412E": "Une erreur système est apparue lors du traitement de votre demande. Veuillez contacter le magasin pour obtenir de l'aide.",
+    "_ERR_REG_DUPE_ID_CMN0114S": "L'ID de connexion que vous avez entré existe déjà. Indiquez-en un autre et faites une nouvelle tentative.",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "L'adresse électronique que vous avez entrée n'est pas valide. Vérifiez votre saisie et réessayez.",
+    "_ERR_CMD_INVALID_PARAM_2195": "Le code de vérification que vous avez entré n'est pas valide. Vérifiez votre saisie et réessayez.",
     "B2B": {
-      "_ERR_LOGONID_ALREDY_EXIST_2030": "L'ID de connexion que vous avez entré existe déjà. Indiquez-en un autre et faites une nouvelle tentative."
-    }
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "L'ID de connexion que vous avez entré n'est pas valide. Vérifiez votre saisie et réessayez.",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "L'ID de connexion que vous avez entré existe déjà. Indiquez-en un autre et faites une nouvelle tentative.",
+      "_ERR_BAD_PARMS_2010": "L'ID de connexion que vous avez entré n'est pas valide. Vérifiez votre saisie et réessayez."
+    },
+    "_ERR_PASSWORD_EXPIRED_2170": "Votre mot de passe a expiré. Veuillez en saisir un nouveau."
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "L'article a été ajouté au panier. ",
@@ -101,6 +108,8 @@
     "RecurringOrderCancelled": "La commande a été annulée avec succès.",
     "ADD_ADDRESS_SUCCESS": "Votre nouvelle adresse \"{{0}}\" a été ajoutée avec succès.",
     "EDIT_ADDRESS_SUCCESS": "Votre adresse \"{{0}}\" a été mise à jour avec succès.",
-    "DELETE_ADDRESS_SUCCESS": "Votre adresse \"{{0}}\" a été supprimée avec succès."
+    "DELETE_ADDRESS_SUCCESS": "Votre adresse \"{{0}}\" a été supprimée avec succès.",
+    "RESEND_VERIFICATION_CODE": "Le code de vérification a bien été envoyé sur votre adresse électronique.",
+    "PASSWORD_RESET_SUCCESS": "Le mot de passe a bien été réinitialisé."
   }
 }

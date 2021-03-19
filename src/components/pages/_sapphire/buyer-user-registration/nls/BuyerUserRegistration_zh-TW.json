@@ -1,6 +1,6 @@
 {
   "BuyerUserRegistration": {
-    "Title": "在您的組織中登錄為買方",
+    "Title": "買方登錄",
     "Description": "如果您的組織已有包含此商店的帳戶，請自行登錄，以便您可以在此帳戶下購物以及下訂單。當您的登錄被核准時，您就可以登入商店並購物。",
     "OrgName": "組織",
     "Email": "電子郵件",
@@ -18,7 +18,12 @@
     "Password2": "驗證密碼",
     "Language": "偏好語言",
     "Currency": "偏好貨幣",
-    "Submit": "提交",
+    "AddressDetails": "地址詳細資料",
+    "AccountPreferences": "帳戶喜好設定",
+    "HaveAccount": "已經有帳戶了嗎？",
+    "AddressLineAdd": "新增地址行 2",
+    "SignIn": "登入",
+    "Submit": "完成登錄",
     "Clear": "清除",
     "Success": "已收到您的帳戶啟動要求。請啟動您的帳戶來登入。",
     "OK": "確定",

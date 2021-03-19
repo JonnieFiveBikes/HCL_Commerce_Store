@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "rustic-stained-wood-chair-lr-fntr-0007",
+      "tokenName": "ProductToken",
+      "tokenExternalValue": "LR-FNTR-0007",
+      "language": "en_US",
+      "id": 56656,
+      "page": {
+        "imageAlternateDescription": "Image for Rustic Stained Wood Chair from Emerald",
+        "name": "PRODUCT_PAGE",
+        "title": "Rustic Stained Wood Chair | Emerald",
+        "type": "ProductPage",
+        "metaDescription": "Essential piece of furniture finished in a medium-brown polish.",
+        "metaKeyword": " Home Design"
+      },
+      "storeId": "11",
+      "tokenValue": "14049",
+      "status": 1
+    }
+  ]
+}

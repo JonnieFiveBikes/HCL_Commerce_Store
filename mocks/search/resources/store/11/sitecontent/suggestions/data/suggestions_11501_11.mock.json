@@ -1,0 +1,273 @@
+{
+  "suggestionView": [
+    {
+      "entry": [
+        {
+          "value": "10501",
+          "fullPath": "Living Room",
+          "fullPathCategoryIds": "10501",
+          "image": "/EmeraldCAS/images/catalog/livingroom/category/dep_livingroom.jpg",
+          "seo": {
+            "href": "/living-room"
+          },
+          "name": "Living Room",
+          "shortDescription": "Bring your living space together with comfort and style"
+        },
+        {
+          "value": "10502",
+          "fullPath": "Living Room > Furniture",
+          "fullPathCategoryIds": "10501 > 10502",
+          "image": "/EmeraldCAS/images/catalog/livingroom/category/furniture.jpg",
+          "seo": {
+            "href": "/furniture"
+          },
+          "name": "Furniture",
+          "shortDescription": "Beautiful chairs, couches and tables that fit any decor"
+        },
+        {
+          "value": "10503",
+          "fullPath": "Living Room > Lighting",
+          "fullPathCategoryIds": "10501 > 10503",
+          "image": "/EmeraldCAS/images/catalog/livingroom/category/livingroom-lighting.jpg",
+          "seo": {
+            "href": "/lighting-livingroomlighting"
+          },
+          "name": "Lighting",
+          "shortDescription": "Illuminate your living room with a variety of pendant lights and chandeliers"
+        },
+        {
+          "value": "10504",
+          "fullPath": "Living Room > Decoration",
+          "fullPathCategoryIds": "10501 > 10504",
+          "image": "/EmeraldCAS/images/catalog/livingroom/category/decoration.jpg",
+          "seo": {
+            "href": "/decoration"
+          },
+          "name": "Decoration",
+          "shortDescription": "Versatile pieces to accent all your surfaces and walls"
+        },
+        {
+          "value": "10505",
+          "fullPath": "Dining Room",
+          "fullPathCategoryIds": "10505",
+          "image": "/EmeraldCAS/images/catalog/diningroom/category/dep_diningroom.jpg",
+          "seo": {
+            "href": "/dining-room"
+          },
+          "name": "Dining Room",
+          "shortDescription": "Entertain your guests with dining room furniture and decor that fits any space"
+        },
+        {
+          "value": "10506",
+          "fullPath": "Dining Room > Tables",
+          "fullPathCategoryIds": "10505 > 10506",
+          "image": "/EmeraldCAS/images/catalog/diningroom/category/tables.jpg",
+          "seo": {
+            "href": "/tables"
+          },
+          "name": "Tables",
+          "shortDescription": "Find the perfect dining table for serving your guests in comfort and style"
+        },
+        {
+          "value": "10507",
+          "fullPath": "Dining Room > Chairs",
+          "fullPathCategoryIds": "10505 > 10507",
+          "image": "/EmeraldCAS/images/catalog/diningroom/category/chairs.jpg",
+          "seo": {
+            "href": "/chairs"
+          },
+          "name": "Chairs",
+          "shortDescription": "Sturdy seating that matches any dining room decor"
+        },
+        {
+          "value": "10508",
+          "fullPath": "Dining Room > Buffets",
+          "fullPathCategoryIds": "10505 > 10508",
+          "image": "/EmeraldCAS/images/catalog/diningroom/category/buffets.jpg",
+          "seo": {
+            "href": "/buffets"
+          },
+          "name": "Buffets",
+          "shortDescription": "Add fully-functional drawer, cabinet, and counter space to any dining room in style"
+        },
+        {
+          "value": "10509",
+          "fullPath": "Bath",
+          "fullPathCategoryIds": "10509",
+          "image": "/EmeraldCAS/images/catalog/bathroom/category/dep_bathroom.jpg",
+          "seo": {
+            "href": "/bath"
+          },
+          "name": "Bath",
+          "shortDescription": "Modernize your bath space with a variety of vanity fixtures and lighting options"
+        },
+        {
+          "value": "10510",
+          "fullPath": "Bath > Lighting",
+          "fullPathCategoryIds": "10509 > 10510",
+          "image": "/EmeraldCAS/images/catalog/bathroom/category/lighting.jpg",
+          "seo": {
+            "href": "/lighting"
+          },
+          "name": "Lighting",
+          "shortDescription": "Plenty of ceiling-mounted light fixtures to create bright, even lighting throughout your bathroom"
+        },
+        {
+          "value": "10511",
+          "fullPath": "Bath > Fixtures",
+          "fullPathCategoryIds": "10509 > 10511",
+          "image": "/EmeraldCAS/images/catalog/bathroom/category/fixtures.jpg",
+          "seo": {
+            "href": "/fixtures"
+          },
+          "name": "Fixtures",
+          "shortDescription": "Find the perfect faucet and showerhead to transform your master ensuite into an open, modern bath space"
+        },
+        {
+          "value": "10512",
+          "fullPath": "Bath > Accessories",
+          "fullPathCategoryIds": "10509 > 10512",
+          "image": "/EmeraldCAS/images/catalog/bathroom/category/accessories.jpg",
+          "seo": {
+            "href": "/accessories"
+          },
+          "name": "Accessories",
+          "shortDescription": "Accent your bath with stylish accessories and makeup mirrors"
+        },
+        {
+          "value": "10513",
+          "fullPath": "Bedroom",
+          "fullPathCategoryIds": "10513",
+          "image": "/EmeraldCAS/images/catalog/bedroom/category/dep_bedroom.jpg",
+          "seo": {
+            "href": "/bedroom"
+          },
+          "name": "Bedroom",
+          "shortDescription": "Furnish your bedrooms in style and make them your own"
+        },
+        {
+          "value": "10514",
+          "fullPath": "Bedroom > Beds",
+          "fullPathCategoryIds": "10513 > 10514",
+          "image": "/EmeraldCAS/images/catalog/bedroom/category/beds.jpg",
+          "seo": {
+            "href": "/beds"
+          },
+          "name": "Beds",
+          "shortDescription": "Functional and space-saving beds to extend any sleeping space"
+        },
+        {
+          "value": "10515",
+          "fullPath": "Bedroom > Dressers",
+          "fullPathCategoryIds": "10513 > 10515",
+          "image": "/EmeraldCAS/images/catalog/bedroom/category/dressers.jpg",
+          "seo": {
+            "href": "/dressers"
+          },
+          "name": "Dressers",
+          "shortDescription": "Highly-functional dressers that maximize both storage space and function"
+        },
+        {
+          "value": "10516",
+          "fullPath": "Kitchen",
+          "fullPathCategoryIds": "10516",
+          "image": "/EmeraldCAS/images/catalog/kitchen/category/dep_kitchen.jpg",
+          "seo": {
+            "href": "/kitchen"
+          },
+          "name": "Kitchen",
+          "shortDescription": "Create a kitchen that suits your needs and fits your lifestyle"
+        },
+        {
+          "value": "10517",
+          "fullPath": "Kitchen > Cabinets",
+          "fullPathCategoryIds": "10516 > 10517",
+          "image": "/EmeraldCAS/images/catalog/kitchen/category/cabinets.jpg",
+          "seo": {
+            "href": "/cabinets"
+          },
+          "name": "Cabinets",
+          "shortDescription": "Versatile cabinetry and shelving give your kitchen storage space in style"
+        },
+        {
+          "value": "10518",
+          "fullPath": "Kitchen > Countertops",
+          "fullPathCategoryIds": "10516 > 10518",
+          "image": "/EmeraldCAS/images/catalog/kitchen/category/countertops.jpg",
+          "seo": {
+            "href": "/countertops"
+          },
+          "name": "Countertops",
+          "shortDescription": "Heat, scratch, stain, and water resistant countertops for every kitchen"
+        }
+      ],
+      "categorySeparator": " > ",
+      "identifier": "Category"
+    },
+    {
+      "value": "mfName_ntk_cs",
+      "entry": [
+        {
+          "name": "Bender Home Fashions",
+          "value": "manufacturer.raw%3A%22Bender+Home+Fashions%22",
+          "count": "20"
+        },
+        {
+          "name": "Home Design",
+          "value": "manufacturer.raw%3A%22Home+Design%22",
+          "count": "15"
+        },
+        {
+          "name": "Kerry's Glass",
+          "value": "manufacturer.raw%3A%22Kerry%27s+Glass%22",
+          "count": "10"
+        },
+        {
+          "name": "Moderno",
+          "value": "manufacturer.raw%3A%22Moderno%22",
+          "count": "39"
+        },
+        {
+          "name": "Nordic",
+          "value": "manufacturer.raw%3A%22Nordic%22",
+          "count": "2"
+        },
+        {
+          "name": "Rugs America",
+          "value": "manufacturer.raw%3A%22Rugs+America%22",
+          "count": "9"
+        },
+        {
+          "name": "Sleepy Head",
+          "value": "manufacturer.raw%3A%22Sleepy+Head%22",
+          "count": "6"
+        },
+        {
+          "name": "Stockholm",
+          "value": "manufacturer.raw%3A%22Stockholm%22",
+          "count": "92"
+        },
+        {
+          "name": "Stonehenge",
+          "value": "manufacturer.raw%3A%22Stonehenge%22",
+          "count": "22"
+        },
+        {
+          "name": "Style Home",
+          "value": "manufacturer.raw%3A%22Style+Home%22",
+          "count": "93"
+        },
+        {
+          "name": "Supreme",
+          "value": "manufacturer.raw%3A%22Supreme%22",
+          "count": "5"
+        }
+      ],
+      "name": "ManufacturerName",
+      "identifier": "Brand"
+    }
+  ],
+  "resourceHandler": {
+    "resourceName": "sitecontent"
+  }
+}

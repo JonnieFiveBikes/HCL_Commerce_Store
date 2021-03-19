@@ -20,12 +20,14 @@ import {
 } from "../../actions/error";
 import { defaultStates } from "../../reducers/initStates";
 import { sessionErrorSelector } from "../../selectors/error";
-
+//Foundation libraries
+import { getSite } from "../../../_foundation/hooks/useSite";
 let handlingError = false;
 /**
  * Saga worker to invoke get orders API
  */
 export function* handleAxiosErrors(action: any) {
+  const mySite = getSite();
   const { payload: error } = action;
   const isLogoff =
     error.config &&
@@ -42,7 +44,9 @@ export function* handleAxiosErrors(action: any) {
         e.errorCode === ERRORS.EXPIRED_ACTIVITY_TOKEN_ERROR ||
         e.errorKey === ERRORS.EXPIRED_ACTIVITY_TOKEN_ERROR ||
         e.errorCode === ERRORS.PARTIAL_AUTHENTICATION_ERROR_CODE ||
-        e.errorKey === ERRORS.PARTIAL_AUTHENTICATION_ERROR_KEY
+        e.errorKey === ERRORS.PARTIAL_AUTHENTICATION_ERROR_KEY ||
+        e.errorCode === ERRORS.ACTIVITY_TOKEN_ERROR_CODE ||
+        e.errorKey === ERRORS.ACTIVITY_TOKEN_ERROR_KEY
       ) {
         const payload = {
           ...e,
@@ -62,7 +66,10 @@ export function* handleAxiosErrors(action: any) {
           ...e,
           handled: false,
           errorTitleKey: "SessionError.InvalidTitle",
-          errorMsgKey: "SessionError.InvalidMsg",
+          errorMsgKey:
+            mySite && mySite.isB2B
+              ? "SessionError.InvalidMsg"
+              : "SessionError.InvalidMsgB2C",
         };
         yield put(HANDLE_SESSION_ERROR_ACTION(payload));
       }

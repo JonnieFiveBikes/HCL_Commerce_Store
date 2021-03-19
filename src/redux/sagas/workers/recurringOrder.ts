@@ -26,6 +26,7 @@ import { userIdSelector } from "../../selectors/user";
 export function* fetchRecurringOrders(action: AnyAction) {
   const subscriptionTypeCode = "RecurringOrder";
   const profileName = "IBM_Store_Summary";
+  const payload = action.payload;
   try {
     const buyerId = yield select(userIdSelector);
     const response = yield call(
@@ -34,22 +35,33 @@ export function* fetchRecurringOrders(action: AnyAction) {
         buyerId,
         subscriptionTypeCode,
         profileName,
-      },
-      action.payload
+        ...payload,
+      }
     );
-    yield put(FETCH_RECURRING_SUCCESS_ACTION(response.data));
+
+    let fetchRecurringOrderPayload = response.data;
+    if (payload?.widget) {
+      fetchRecurringOrderPayload["widget"] = payload.widget;
+    }
+    yield put(FETCH_RECURRING_SUCCESS_ACTION(fetchRecurringOrderPayload));
   } catch (e) {
     yield put(FETCH_RECURRING_ERROR_ACTION(e));
   }
 }
 
 export function* cancelRecurringOrder(action: AnyAction) {
+  const payload = action.payload;
   try {
     const response = yield call(
       subscriptionService.cancelRecurringOrSubscription,
-      action.payload
+      payload
     );
-    yield put(CANCEL_RECURRING_SUCCESS_ACTION(response.data));
+
+    let cancelRecurringOrderPayload = response.data;
+    if (payload?.widget) {
+      cancelRecurringOrderPayload["widget"] = payload.widget;
+    }
+    yield put(CANCEL_RECURRING_SUCCESS_ACTION(cancelRecurringOrderPayload));
     const successMessage = {
       key: "success-message.RecurringOrderCancelled",
     };

@@ -16,11 +16,12 @@ import React, {
   Fragment,
   useRef,
 } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
 import getDisplayName from "react-display-name";
+import { trackWindowScroll } from "react-lazy-load-image-component";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 //Custom libraries
@@ -53,13 +54,12 @@ import {
   StyledFormControl,
   StyledChip,
   StyledSelect,
-  StyledMenuItem,
   StyledPagination,
   StyledButton,
   StyledTypography,
 } from "../../StyledUI";
 //GA360
-import GADataService from "../../../_foundation/gtm/gaData.service";
+import AsyncCall from "../../../_foundation/gtm/async.service";
 
 interface ProductGridProps {
   cid: string;
@@ -88,7 +88,7 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
   const selectedSortOption = useSelector(selectedSortOptionSelector);
   const selectedPageOffset = useSelector(selectedPageOffsetSelector);
   const contract = useSelector(currentContractIdSelector);
-  const breadcrumb = useSelector(breadcrumbsSelector);
+  const breadcrumbs = useSelector(breadcrumbsSelector);
 
   const sortOptions = getSortOptions();
   const suggestedKeywords = useSelector(keywordSelector);
@@ -134,6 +134,7 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
       dispatch(catalogActions.resetProductListAction());
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //GA360
@@ -144,26 +145,35 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
         mounted.current = true;
       } else {
         if (categoryId === "" && productListTotal >= 0) {
-          GADataService.sendSearchPageViewEvent(productListTotal, searchTerm);
+          AsyncCall.sendSearchPageViewEvent(
+            { productListTotal, searchTerm },
+            { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
+          );
           if (productListTotal > 0) {
-            GADataService.sendProductImpressionEvent(
-              productList,
-              false,
-              breadcrumb
+            AsyncCall.sendProductImpressionEvent(
+              {
+                productList,
+                listerFlag: false,
+                breadcrumbs,
+              },
+              { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
             );
           }
         } else if (categoryId !== "" && productListTotal >= 0) {
-          GADataService.sendListerPageViewEvent(productListTotal, breadcrumb);
+          AsyncCall.sendListerPageViewEvent(
+            { productListTotal, breadcrumb: breadcrumbs },
+            { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
+          );
           if (productListTotal > 0) {
-            GADataService.sendProductImpressionEvent(
-              productList,
-              true,
-              breadcrumb
+            AsyncCall.sendProductImpressionEvent(
+              { productList, listerFlag: true, breadcrumbs },
+              { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
             );
           }
         }
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productList]);
 
   /**
@@ -201,7 +211,6 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
   function onClearAll(event: MouseEvent<HTMLAnchorElement>) {
     event?.preventDefault();
     let newSelectedFacets = {};
-
     const newStates = {
       selectedFacets: newSelectedFacets,
       minPrice: -1,
@@ -346,7 +355,19 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
     );
     window.scrollTo(0, 0);
   }
-
+  const isValidUrl = (productList: any): boolean => {
+    if (
+      productList &&
+      productList.length > 0 &&
+      productList[0].seo &&
+      productList[0].seo.href &&
+      productList[0].seo.href != ""
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   return (
     <div className="product-listing-container productListingWidget top-margin-3">
       {(productListTotal === 0 || !productListTotal) && searchTerm !== "" && (
@@ -375,9 +396,15 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
           )}
         </div>
       )}
-
       {/* Summary info and sort options */}
-      {productListTotal > 0 && (
+
+      {productListTotal === 1 &&
+        isValidUrl(productList) &&
+        Object.keys(selectedFacets).length === 0 && (
+          <Redirect to={productList[0].seo.href} />
+        )}
+      {/* Summary info and sort options */}
+      {productListTotal > 1 && (
         <StyledGrid
           container
           className="bottom-margin-1"
@@ -502,4 +529,4 @@ const ProductGridLayout: React.FC<ProductGridProps> = (props: any) => {
   );
 };
 
-export default ProductGridLayout;
+export default trackWindowScroll(ProductGridLayout);

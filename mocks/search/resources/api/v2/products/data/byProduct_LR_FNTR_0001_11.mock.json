@@ -1,0 +1,727 @@
+{
+  "contents": [
+    {
+      "hasSingleSKU": false,
+      "buyable": "true",
+      "shortDescription": "A sturdy wooden angled chair that welcomes every guest into your living space in style. Includes a matching movable leg rest.",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_350.jpg",
+      "seo": {
+        "href": "/wooden-angled-chair-lr-fntr-0001"
+      },
+      "partNumber": "LR-FNTR-0001",
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10502",
+      "name": "Wooden Angled Chair",
+      "longDescription": "Give your living room a bold new look with the modern and comfortable blue armchair. The armchair features a compact design, comfortable oversized pillow, easy to clean polyester fabric, and button tufts along the lower backrest. The armchair's modern styling is complemented with durable light brown wooden legs. No assembly required.",
+      "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_600.jpg",
+      "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_600.jpg",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "800.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "749.99"
+        }
+      ],
+      "numberOfSKUs": 3,
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": "5.0",
+              "identifier": "blonde",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003005",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+              "value": "Blonde",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png"
+            },
+            {
+              "sequence": "9.0",
+              "identifier": "coffee",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003009",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_coffee.png",
+              "value": "Coffee",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_coffee.png"
+            },
+            {
+              "sequence": "10.0",
+              "identifier": "cedar",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003018",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_cedar.png",
+              "value": "Cedar",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_cedar.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        }
+      ],
+      "images": [
+        {
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_350.jpg",
+          "sequence": "-1000.0",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_350.jpg",
+          "name": "Wooden Angled Chair Main Image",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_600.jpg"
+        }
+      ],
+      "merchandisingAssociations": [
+        {
+          "buyable": "true",
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_a1_350.jpg",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_a1_350.jpg",
+          "shortDescription": "A contemporary styled coffee table that is suited towards large living rooms, providing plenty of space for refreshments.",
+          "parentCatalogGroupID": "/10501/10502",
+          "storeID": "11",
+          "type": "product",
+          "numberOfSKUs": 3,
+          "hasSingleSKU": false,
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "120.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "115.0"
+            }
+          ],
+          "name": "Abstract Wooden Coffee Table",
+          "partNumber": "LR-FNTR-TB-0001",
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "2.0",
+                  "identifier": "brown",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003002",
+                  "image1": "/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+                  "value": "Brown",
+                  "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_brown.png"
+                },
+                {
+                  "sequence": "5.0",
+                  "identifier": "blonde",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003005",
+                  "image1": "/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+                  "value": "Blonde",
+                  "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png"
+                },
+                {
+                  "sequence": "10.0",
+                  "identifier": "crimson",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003015",
+                  "image1": "/EmeraldCAS/images/catalog/swatches/sw_crimson.png",
+                  "value": "Crimson",
+                  "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_crimson.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "1.0",
+              "storeDisplay": "false",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "7000000000000000501",
+              "swatchable": "false"
+            }
+          ],
+          "id": "14156",
+          "seo": {
+            "href": "/abstract-wooden-coffee-table-lr-fntr-tb-0001"
+          },
+          "items": [
+            {
+              "hasSingleSKU": false,
+              "buyable": "true",
+              "shortDescription": "A contemporary styled coffee table that is suited towards large living rooms, providing plenty of space for refreshments.",
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_a1_350.jpg",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_a1_350.jpg",
+              "seo": {
+                "href": "/abstract-wooden-coffee-table-lr-fntr-tb-0001-0001"
+              },
+              "partNumber": "LR-FNTR-TB-0001-0001",
+              "storeID": "11",
+              "parentCatalogGroupID": "/10501/10502",
+              "name": "Abstract Wooden Coffee Table",
+              "parentCatalogEntryID": "14156",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_a1_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_a1_600.jpg",
+              "price": [
+                {
+                  "usage": "Display",
+                  "description": "L",
+                  "currency": "USD",
+                  "value": "120.0"
+                },
+                {
+                  "usage": "Offer",
+                  "contractId": "-11005",
+                  "description": "I",
+                  "currency": "USD",
+                  "value": "115.0"
+                }
+              ],
+              "attributes": [
+                {
+                  "identifier": "Color",
+                  "usage": "Defining",
+                  "values": [
+                    {
+                      "sequence": "5.0",
+                      "identifier": "blonde",
+                      "unitOfMeasure": "one",
+                      "unitID": "C62",
+                      "id": "7000000000000003005",
+                      "image1": "/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+                      "value": "Blonde",
+                      "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "1.0",
+                  "storeDisplay": "false",
+                  "name": "Color",
+                  "facetable": "true",
+                  "id": "7000000000000000501",
+                  "comparable": "true",
+                  "key": "7000000000000000501",
+                  "swatchable": "false"
+                }
+              ],
+              "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+              "id": "14157",
+              "type": "item"
+            },
+            {
+              "hasSingleSKU": false,
+              "buyable": "true",
+              "shortDescription": "A contemporary styled coffee table that is suited towards large living rooms, providing plenty of space for refreshments.",
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_b1_350.jpg",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_b1_350.jpg",
+              "seo": {
+                "href": "/abstract-wooden-coffee-table-lr-fntr-tb-0001-0002"
+              },
+              "partNumber": "LR-FNTR-TB-0001-0002",
+              "storeID": "11",
+              "parentCatalogGroupID": "/10501/10502",
+              "name": "Abstract Wooden Coffee Table",
+              "parentCatalogEntryID": "14156",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_b1_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_b1_600.jpg",
+              "price": [
+                {
+                  "usage": "Display",
+                  "description": "L",
+                  "currency": "USD",
+                  "value": "120.0"
+                },
+                {
+                  "usage": "Offer",
+                  "contractId": "-11005",
+                  "description": "I",
+                  "currency": "USD",
+                  "value": "115.0"
+                }
+              ],
+              "attributes": [
+                {
+                  "identifier": "Color",
+                  "usage": "Defining",
+                  "values": [
+                    {
+                      "sequence": "10.0",
+                      "identifier": "crimson",
+                      "unitOfMeasure": "one",
+                      "unitID": "C62",
+                      "id": "7000000000000003015",
+                      "image1": "/EmeraldCAS/images/catalog/swatches/sw_crimson.png",
+                      "value": "Crimson",
+                      "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_crimson.png"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "1.0",
+                  "storeDisplay": "false",
+                  "name": "Color",
+                  "facetable": "true",
+                  "id": "7000000000000000501",
+                  "comparable": "true",
+                  "key": "7000000000000000501",
+                  "swatchable": "false"
+                }
+              ],
+              "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+              "id": "14158",
+              "type": "item"
+            },
+            {
+              "hasSingleSKU": false,
+              "buyable": "true",
+              "shortDescription": "A contemporary styled coffee table that is suited towards large living rooms, providing plenty of space for refreshments.",
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_c1_350.jpg",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_c1_350.jpg",
+              "seo": {
+                "href": "/abstract-wooden-coffee-table-lr-fntr-tb-0001-0003"
+              },
+              "partNumber": "LR-FNTR-TB-0001-0003",
+              "storeID": "11",
+              "parentCatalogGroupID": "/10501/10502",
+              "name": "Abstract Wooden Coffee Table",
+              "parentCatalogEntryID": "14156",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_c1_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_c1_600.jpg",
+              "price": [
+                {
+                  "usage": "Display",
+                  "description": "L",
+                  "currency": "USD",
+                  "value": "120.0"
+                },
+                {
+                  "usage": "Offer",
+                  "contractId": "-11005",
+                  "description": "I",
+                  "currency": "USD",
+                  "value": "115.0"
+                }
+              ],
+              "attributes": [
+                {
+                  "identifier": "Color",
+                  "usage": "Defining",
+                  "values": [
+                    {
+                      "sequence": "2.0",
+                      "identifier": "brown",
+                      "unitOfMeasure": "one",
+                      "unitID": "C62",
+                      "id": "7000000000000003002",
+                      "image1": "/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+                      "value": "Brown",
+                      "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_brown.png"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "1.0",
+                  "storeDisplay": "false",
+                  "name": "Color",
+                  "facetable": "true",
+                  "id": "7000000000000000501",
+                  "comparable": "true",
+                  "key": "7000000000000000501",
+                  "swatchable": "false"
+                }
+              ],
+              "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+              "id": "14159",
+              "type": "item"
+            }
+          ]
+        },
+        {
+          "buyable": "true",
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable2_a1_350.jpg",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/ctable2_a1_350.jpg",
+          "shortDescription": "A contemporary styled coffee table that is suited towards large living rooms, providing plenty of space for refreshments.",
+          "parentCatalogGroupID": "/10501/10502",
+          "storeID": "11",
+          "type": "product",
+          "numberOfSKUs": 1,
+          "hasSingleSKU": false,
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "180.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "160.0"
+            }
+          ],
+          "name": "Abstract Wooden Coffee Table",
+          "partNumber": "LR-FNTR-TB-0002",
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "10.0",
+                  "identifier": "darkgrey",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003010",
+                  "image1": "/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+                  "value": "Dark Grey",
+                  "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "1.0",
+              "storeDisplay": "false",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "7000000000000000501",
+              "swatchable": "false"
+            }
+          ],
+          "id": "14160",
+          "seo": {
+            "href": "/abstract-wooden-coffee-table-lr-fntr-tb-0002"
+          },
+          "items": [
+            {
+              "hasSingleSKU": false,
+              "buyable": "true",
+              "shortDescription": "A contemporary styled coffee table that is suited towards large living rooms, providing plenty of space for refreshments.",
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable2_a1_350.jpg",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/ctable2_a1_350.jpg",
+              "seo": {
+                "href": "/abstract-wooden-coffee-table-lr-fntr-tb-0002-0001"
+              },
+              "partNumber": "LR-FNTR-TB-0002-0001",
+              "storeID": "11",
+              "parentCatalogGroupID": "/10501/10502",
+              "name": "Abstract Wooden Coffee Table",
+              "parentCatalogEntryID": "14160",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable2_a1_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/ctable2_a1_600.jpg",
+              "price": [
+                {
+                  "usage": "Display",
+                  "description": "L",
+                  "currency": "USD",
+                  "value": "180.0"
+                },
+                {
+                  "usage": "Offer",
+                  "contractId": "-11005",
+                  "description": "I",
+                  "currency": "USD",
+                  "value": "160.0"
+                }
+              ],
+              "attributes": [
+                {
+                  "identifier": "Color",
+                  "usage": "Defining",
+                  "values": [
+                    {
+                      "sequence": "10.0",
+                      "identifier": "darkgrey",
+                      "unitOfMeasure": "one",
+                      "unitID": "C62",
+                      "id": "7000000000000003010",
+                      "image1": "/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+                      "value": "Dark Grey",
+                      "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png"
+                    }
+                  ],
+                  "displayable": "true",
+                  "merchandisable": "true",
+                  "searchable": "true",
+                  "sequence": "1.0",
+                  "storeDisplay": "false",
+                  "name": "Color",
+                  "facetable": "true",
+                  "id": "7000000000000000501",
+                  "comparable": "true",
+                  "key": "7000000000000000501",
+                  "swatchable": "false"
+                }
+              ],
+              "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+              "id": "14161",
+              "type": "item"
+            }
+          ]
+        }
+      ],
+      "type": "product",
+      "id": "14018",
+      "items": [
+        {
+          "hasSingleSKU": false,
+          "buyable": "true",
+          "shortDescription": "A sturdy wooden angled chair that welcomes every guest into your living space in style. Includes a matching movable leg rest.",
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_350.jpg",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_350.jpg",
+          "seo": {
+            "href": "/wooden-angled-chair-lr-fntr-0001-0001"
+          },
+          "partNumber": "LR-FNTR-0001-0001",
+          "storeID": "11",
+          "parentCatalogGroupID": "/10501/10502",
+          "name": "Wooden Angled Chair",
+          "parentCatalogEntryID": "14018",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_600.jpg",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "800.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "749.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "5.0",
+                  "identifier": "blonde",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003005",
+                  "image1": "/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+                  "value": "Blonde",
+                  "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "1.0",
+              "storeDisplay": "false",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "7000000000000000501",
+              "swatchable": "false"
+            }
+          ],
+          "images": [
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_350.jpg",
+              "sequence": "-1000.0",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_350.jpg",
+              "name": "Wooden Angled Chair Main Image",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_600.jpg"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14019",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "buyable": "true",
+          "shortDescription": "A sturdy wooden angled chair that welcomes every guest into your living space in style. Includes a matching movable leg rest.",
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_b1_350.jpg",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_b1_350.jpg",
+          "seo": {
+            "href": "/wooden-angled-chair-lr-fntr-0001-0002"
+          },
+          "partNumber": "LR-FNTR-0001-0002",
+          "storeID": "11",
+          "parentCatalogGroupID": "/10501/10502",
+          "name": "Wooden Angled Chair",
+          "parentCatalogEntryID": "14018",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_b1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_b1_600.jpg",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "800.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "749.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "10.0",
+                  "identifier": "cedar",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003018",
+                  "image1": "/EmeraldCAS/images/catalog/swatches/sw_cedar.png",
+                  "value": "Cedar",
+                  "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_cedar.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "1.0",
+              "storeDisplay": "false",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "7000000000000000501",
+              "swatchable": "false"
+            }
+          ],
+          "images": [
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_b1_350.jpg",
+              "sequence": "-1000.0",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_b1_350.jpg",
+              "name": "Wooden Angled Chair Main Image",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_b1_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_b1_600.jpg"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14020",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "buyable": "true",
+          "shortDescription": "A sturdy wooden angled chair that welcomes every guest into your living space in style. Includes a matching movable leg rest.",
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_c1_350.jpg",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_c1_350.jpg",
+          "seo": {
+            "href": "/wooden-angled-chair-lr-fntr-0001-0003"
+          },
+          "partNumber": "LR-FNTR-0001-0003",
+          "storeID": "11",
+          "parentCatalogGroupID": "/10501/10502",
+          "name": "Wooden Angled Chair",
+          "parentCatalogEntryID": "14018",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_c1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_c1_600.jpg",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "800.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "749.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "9.0",
+                  "identifier": "coffee",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003009",
+                  "image1": "/EmeraldCAS/images/catalog/swatches/sw_coffee.png",
+                  "value": "Coffee",
+                  "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_coffee.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "1.0",
+              "storeDisplay": "false",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "7000000000000000501",
+              "swatchable": "false"
+            }
+          ],
+          "images": [
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_c1_350.jpg",
+              "sequence": "-1000.0",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_c1_350.jpg",
+              "name": "Wooden Angled Chair Main Image",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_c1_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_c1_600.jpg"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14021",
+          "type": "item"
+        }
+      ]
+    }
+  ],
+  "total": 1
+}

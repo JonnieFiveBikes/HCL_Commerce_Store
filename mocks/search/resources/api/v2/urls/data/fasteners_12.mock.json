@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "fasteners",
+      "tokenName": "CategoryToken",
+      "tokenExternalValue": "Fasteners",
+      "language": "en_US",
+      "id": 12052,
+      "page": {
+        "imageAlternateDescription": "Image for Fasteners from Sapphire",
+        "name": "CATEGORY_PAGE",
+        "title": "Fasteners | Sapphire",
+        "type": "CategoryPage",
+        "metaDescription": "Screws, bolts, and nuts for a wide range of fastening applications",
+        "metaKeyword": "fasteners"
+      },
+      "storeId": "12",
+      "tokenValue": "12",
+      "status": 1
+    }
+  ]
+}

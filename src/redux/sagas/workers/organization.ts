@@ -41,7 +41,7 @@ export function* getEntitledOrg(action: any) {
 export function* switchOrg(action: any) {
   try {
     yield call(switchOrganizationService.changeOrganization, action.payload);
-    yield put(FETCHING_CART_ACTION({}));
+    yield put(FETCHING_CART_ACTION(action.payload));
     yield put(USER_CONTEXT_REQUEST_ACTION(action.payload));
     yield put(FETCH_CONTRACT_REQUESTED_ACTION(action.payload));
   } catch (e) {

@@ -54,12 +54,12 @@ function ProductB2BAttributes({
           }}>
           <StyledAccordionSummary
             expandIcon={isMobile ? <ExpandMoreIcon /> : null}
-            key={index}>
-            <StyledTypography variant="body2" key={index}>
-              <strong key={index}>{attr.name}</strong>
+            key={attr.identifier}>
+            <StyledTypography variant="body2" key={attr.identifier}>
+              <strong key={attr.identifier}>{attr.name}</strong>
             </StyledTypography>
           </StyledAccordionSummary>
-          <StyledAccordionDetails key={index}>
+          <StyledAccordionDetails key={"AccordDetail_" + attr.identifier}>
             <StyledSwatchRadioGroup
               values={attr.values}
               name={attr.name}
@@ -67,7 +67,7 @@ function ProductB2BAttributes({
               onChangeHandler={onChangeHandler}
               useSwatches={false}
               //currently, swatch is not supported for B2B
-              key={index}
+              key={"RadioGrp_" + attr.identifier}
               isB2B={true}
               attributeState={attributeState}
             />

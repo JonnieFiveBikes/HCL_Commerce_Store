@@ -34,10 +34,10 @@
     "_ERR_AUTHENTICATION_ERROR_2000": "在「登入 ID」欄位中鍵入登入 ID。",
     "_ERR_AUTHENTICATION_ERROR_2010": "登入 ID 或輸入的密碼不正確。請重新輸入資訊。",
     "_ERR_AUTHENTICATION_ERROR_2020": "登入 ID 或輸入的密碼不正確。請重新輸入資訊。",
-    "_ERR_AUTHENTICATION_ERROR_2030": "登入 ID 或輸入的密碼不正確。請重新輸入資訊。",
+    "_ERR_AUTHENTICATION_ERROR_2030": "您輸入的登入認證無效。請檢查您的項目，然後再試一次。",
     "_ERR_PASSWORD_FAILED_CMN1019E": "登入 ID 或輸入的密碼不正確。請重新輸入資訊。",
     "_ERR_PERSON_ACCOUNT_DISABLED_2110": "此帳戶已遭鎖定。請聯絡商店來解除鎖定您的帳戶。",
-    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "由於過多的失敗登入嘗試，您的帳戶遭到鎖定。請重設您的密碼以繼續。",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "由於嘗試輸入密碼失敗 {{0}} 次，因此您將無法登入。請重設您的密碼或聯絡客戶服務代表以取得協助。",
     "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "請等待幾秒鐘，再嘗試重新登入。",
     "_2400": "您的組織已遭鎖定。您目前無法登入。",
     "_2410": "您沒有適當權限可供登入。如需進一步資訊，請聯絡商店。",
@@ -90,9 +90,16 @@
     "_API_BAD_INV_2": "庫存不足，無法購買 {{1}} 個單位（共 {{0}} 個）。",
     "_ERR_FINDING_ORDER_230": "處理您的訂單時發生系統問題。",
     "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "發生系統問題。請聯絡商店以尋求協助。",
+    "_ERR_REMOTE_EXCEPTION_CMN0412E": "處理您的要求時發生系統問題。請聯絡商店以尋求協助。",
+    "_ERR_REG_DUPE_ID_CMN0114S": "您輸入的登入 ID 已存在。請輸入不同的登入 ID，然後再試一次。",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "您輸入的電子郵件無效。請檢查您的項目，然後再試一次。",
+    "_ERR_CMD_INVALID_PARAM_2195": "您輸入的驗證碼無效。請檢查您的項目，然後再試一次。",
     "B2B": {
-      "_ERR_LOGONID_ALREDY_EXIST_2030": "您輸入的登入 ID 已存在。請鍵入不同的登入 ID，然後重試。"
-    }
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "您輸入的登入 ID 無效。請檢查您的項目，然後再試一次。",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "您輸入的登入 ID 已存在。請鍵入不同的登入 ID，然後重試。",
+      "_ERR_BAD_PARMS_2010": "您輸入的登入 ID 無效。請檢查您的項目，然後再試一次。"
+    },
+    "_ERR_PASSWORD_EXPIRED_2170": "您目前的密碼已到期。請輸入新密碼。"
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "商品已新增至購物車。",
@@ -101,6 +108,8 @@
     "RecurringOrderCancelled": "已順利完成取消訂單。",
     "ADD_ADDRESS_SUCCESS": "已順利新增您的新地址「{{0}}」。",
     "EDIT_ADDRESS_SUCCESS": "已順利更新您的地址「{{0}}」。",
-    "DELETE_ADDRESS_SUCCESS": "已順利刪除您的地址「{{0}}」。"
+    "DELETE_ADDRESS_SUCCESS": "已順利刪除您的地址「{{0}}」。",
+    "RESEND_VERIFICATION_CODE": "驗證碼已成功傳送至您的電子郵件地址",
+    "PASSWORD_RESET_SUCCESS": "已成功重設密碼"
   }
 }

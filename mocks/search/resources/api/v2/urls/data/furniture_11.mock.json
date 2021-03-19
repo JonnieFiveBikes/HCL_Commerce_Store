@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "furniture",
+      "tokenName": "CategoryToken",
+      "tokenExternalValue": "LivingRoomFurniture",
+      "language": "en_US",
+      "id": 56829,
+      "page": {
+        "imageAlternateDescription": "Image for Furniture from Emerald",
+        "name": "CATEGORY_PAGE",
+        "title": "Furniture | Emerald",
+        "type": "ProductListPage",
+        "metaDescription": "Beautiful chairs, couches and tables that fit any decor",
+        "metaKeyword": "couches, coffee tables, sofas, loveseat"
+      },
+      "storeId": "11",
+      "tokenValue": "10502",
+      "status": 1
+    }
+  ]
+}

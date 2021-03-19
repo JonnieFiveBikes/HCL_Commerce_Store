@@ -43,6 +43,7 @@ import { Divider } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import styled from "styled-components";
+import { forUserIdSelector } from "../../redux/selectors/user";
 
 const StyledB2BOrgSection = styled.div`
   ${({ theme }) => `
@@ -68,6 +69,7 @@ function AccountPopperContent(props: any): JSX.Element {
   const activeOrgId = useSelector(activeOrgSelector);
   const currentContractId = useSelector(currentContractIdSelector);
   const eligibleContracts = useSelector(contractSelector);
+  const forUserId = useSelector(forUserIdSelector);
 
   const [edit, setEdit] = useState<boolean>(false);
 
@@ -138,7 +140,10 @@ function AccountPopperContent(props: any): JSX.Element {
 
   const B2BOrgContractForm = () => {
     return (
-      <form name="headerOrgSwitchForm" id={`header-org-contract-form`}>
+      <form
+        name="headerOrgSwitchForm"
+        id={`header-org-contract-form`}
+        noValidate>
         {activeOrg && (
           <StyledFormControl variant="outlined">
             <StyledInputLabel
@@ -271,8 +276,12 @@ function AccountPopperContent(props: any): JSX.Element {
         )}
         <Divider component="li" />
         <AccountSetting />
-        <Divider component="li" />
-        <LogoutSection />
+        {!forUserId && (
+          <>
+            <Divider component="li" />
+            <LogoutSection />
+          </>
+        )}
       </StyledList>
     </>
   );

@@ -23,6 +23,7 @@ import {
   StyledDialog,
   StyledDialogContent,
 } from "../../../StyledUI";
+import { EMPTY_STRING } from "../../../../constants/common";
 
 const ChangePasswordSection: React.FC = (props: any) => {
   const [openSuccess, setOpenSuccess] = React.useState<boolean>(false);
@@ -100,13 +101,22 @@ const ChangePasswordSection: React.FC = (props: any) => {
         }
       });
   };
-
+  const canContinue = () => {
+    if (
+      passwordOld !== EMPTY_STRING &&
+      passwordNew !== EMPTY_STRING &&
+      passwordVerify !== EMPTY_STRING
+    ) {
+      return true;
+    }
+    return false;
+  };
   return (
     <div>
       <StyledTypography variant="body2" className="bottom-margin-2">
         {title}
       </StyledTypography>
-      <form name="signInForm" onSubmit={handleSubmit}>
+      <form name="signInForm" noValidate onSubmit={handleSubmit}>
         <StyledTextField
           margin="normal"
           required
@@ -140,7 +150,9 @@ const ChangePasswordSection: React.FC = (props: any) => {
           value={passwordVerify}
           onChange={(e) => handleVerifyPasswordChange(e, "logonPasswordVerify")}
         />
-        <StyledButton type="submit">{saveLabel}</StyledButton>
+        <StyledButton type="submit" disabled={!canContinue()}>
+          {saveLabel}
+        </StyledButton>
       </form>
       <StyledDialog
         open={openSuccess}

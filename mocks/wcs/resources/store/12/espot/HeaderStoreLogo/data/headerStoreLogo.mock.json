@@ -1,0 +1,77 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "defaultContentDisplaySequence": [
+        {
+          "resultId": "13002",
+          "resultFormat": "MarketingContent",
+          "displaySequence": "0.0"
+        }
+      ],
+      "marketingSpotIdentifier": "13502",
+      "behavior": "0",
+      "eSpotName": "HeaderStoreLogo",
+      "baseMarketingSpotActivityData": [
+        {
+          "contentFormatName": "File",
+          "attachmentReferenceId": "4501",
+          "baseMarketingSpotActivityName": "HeaderStoreLogo",
+          "attachmentDisplaySequence": "0.0",
+          "AttachmentDescription": [{}],
+          "contentId": "13002",
+          "baseMarketingSpotActivityID": "13002",
+          "attachmentImage": "images/attachments/usages/unassign_icon.jpg",
+          "MarketingContentDescription": [{}],
+          "attachmentDescription": [
+            {
+              "attachmentName": "Store Logo",
+              "attachmentShortDescription": "Store Logo",
+              "attachmentLanguage": "-1"
+            }
+          ],
+          "marketingContentDescription": [
+            {
+              "language": "-1"
+            }
+          ],
+          "contentMimeType": "image",
+          "activityPriority": "1",
+          "attachementStoreId": "13001",
+          "attachementExternalId": "HeaderStoreLogo",
+          "contentClickAction": "Single",
+          "contentName": "HeaderStoreLogo",
+          "baseMarketingSpotDataType": "MarketingContent",
+          "contentUrl": "/",
+          "attachmentUsageName": "NOUSAGE",
+          "activityIdentifierID": "0",
+          "attachmentAsset": [
+            {
+              "attachmentAssetDirectoryPath": "type-icons/hcl-logo.svg",
+              "attachmentAssetMimeType": "image/svg",
+              "attachmentAssetStoreId": "13001",
+              "attachmentLocalAsset": "true",
+              "attachmentAssetId": "6501",
+              "attachmentAssetRootDirectory": "SapphireSAS",
+              "attachmentAssetPath": "/SapphireSAS/images/type-icons/hcl-logo.svg"
+            }
+          ],
+          "attachementId": "4501",
+          "contentFormatId": "1",
+          "properties": [
+            {
+              "baseMarketingKey": "mktActivityDescription"
+            },
+            {
+              "baseMarketingValue": "0.0",
+              "baseMarketingKey": "displaySequence"
+            }
+          ],
+          "contentStoreId": "13001"
+        }
+      ]
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/12/espot/HeaderStoreLogo?catalogId=10501&name=HeaderStoreLogo&langId=-1",
+  "resourceName": "espot"
+}

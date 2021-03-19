@@ -21,8 +21,10 @@ import {
 } from "../actions/error";
 import {
   LOGIN_SUCCESS_ACTION,
+  LOGON_AND_CHANGE_PASSWORD_FAIL_ACTION,
   SESSION_ERROR_LOGIN_ERROR_ACTION,
 } from "../actions/user";
+import { EXPIRED_PASSWORD_PAGE_ERROR } from "../../_foundation/constants/common";
 
 /**
  * Session error reducer
@@ -32,18 +34,21 @@ const errorReducer = createReducer(initStates.error, (builder) => {
     HANDLE_SESSION_ERROR_ACTION,
     (state: ErrorReducerState | any, action: AnyAction) => {
       Object.assign(state, { ...action.payload });
+      delete state[EXPIRED_PASSWORD_PAGE_ERROR];
     }
   );
   builder.addCase(
     SESSION_ERROR_LOGIN_ERROR_ACTION,
     (state: ErrorReducerState | any, action: AnyAction) => {
       Object.assign(state, { sessionErrorLoginError: { ...action.payload } });
+      delete state[EXPIRED_PASSWORD_PAGE_ERROR];
     }
   );
   builder.addCase(
     LOGIN_SUCCESS_ACTION,
     (state: ErrorReducerState | any, action: AnyAction) => {
       if (state.handled === false) state.handled = true;
+      delete state[EXPIRED_PASSWORD_PAGE_ERROR];
     }
   );
   builder.addCase(
@@ -63,10 +68,18 @@ const errorReducer = createReducer(initStates.error, (builder) => {
       if (state.hasOwnProperty("sessionErrorLoginError")) {
         delete state.sessionErrorLoginError;
       }
+      delete state[EXPIRED_PASSWORD_PAGE_ERROR];
     }
   );
   builder.addCase(
     VALIDATION_ERROR_ACTION,
+    (state: ErrorReducerState | any, action: AnyAction) => {
+      Object.assign(state, { ...action.payload });
+      delete state[EXPIRED_PASSWORD_PAGE_ERROR];
+    }
+  );
+  builder.addCase(
+    LOGON_AND_CHANGE_PASSWORD_FAIL_ACTION,
     (state: ErrorReducerState | any, action: AnyAction) => {
       Object.assign(state, { ...action.payload });
     }

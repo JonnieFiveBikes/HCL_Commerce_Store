@@ -29,34 +29,41 @@ const appHost = `${
   process.env.HTTPS === "true" ? "https" : "http"
 }://localhost:${process.env.PORT ? process.env.PORT : 3000}`;
 
+let searchTerm = "";
+const minPrice = "100";
+const maxPrice = "500";
+
+const AppName = process.env.REACT_APP_STORENAME;
+
+if (AppName === "Emerald") {
+  searchTerm = "bed";
+} else {
+  searchTerm = "bolt";
+}
+
 const mockPathRewrite = (path, req) => {
-  let newPath = path.replace(/storeId=\d+/, "storeId=12101");
-  newPath = newPath.replace(/catalogId=\d+/, "catalogId=11051");
-  newPath = newPath.replace(/searchTerm=[a-zA-Z0-9]+/, "searchTerm=bed");
-  newPath = newPath.replace(/term=[a-zA-Z0-9]+/, "term=bed");
-  newPath = newPath.replace(
-    /contractId=[-]*\d+/,
-    "contractId=4000000000000000503"
+  let newPath = path.replace(
+    /searchTerm=[a-zA-Z0-9]+/,
+    "searchTerm=" + searchTerm
   );
-  newPath = newPath.replace(
-    /activeOrgId=[-]*\d+/,
-    "activeOrgId=7000000000000003002"
-  );
-  newPath = newPath.replace(/orderId=\d+/, "orderId=mockOrderId");
-  newPath = newPath.replace(/pageSize=\d+/, "pageSize=5");
-  newPath = newPath.replace(/pageNumber=\d+/, "pageNumber=1");
   if (
     newPath.indexOf("minPrice=0&") === -1 ||
     newPath.indexOf("maxPrice=500&") === -1
   ) {
-    newPath = newPath.replace(/minPrice=\d+/, "minPrice=0");
-    newPath = newPath.replace(/maxPrice=\d+/, "maxPrice=0");
+    newPath = newPath.replace(/minPrice=\d+/, "minPrice=" + minPrice);
+    newPath = newPath.replace(/maxPrice=\d+/, "maxPrice=" + maxPrice);
   }
   return newPath;
 };
 
-const storeAssetPathRewrite = (path, req) => {
-  return path.replace("/hclstore/", "/").replace("/wcsstore/", "/");
+const storeAssetPathRewrite = {
+  "^/EmeraldSAS": `/${AppName}/EmeraldSAS`,
+  "^/EmeraldCAS": `/${AppName}/EmeraldCAS`,
+  "^/SapphireSAS": `/${AppName}/SapphireSAS`,
+  "^/SapphireCAS": `/${AppName}/SapphireCAS`,
+  "^/hclstore": `/${AppName}/`,
+  "^/wcsstore": `/${AppName}/`,
+  "^/ExtendedSitesCatalogAssetStore": `/${AppName}/ExtendedSitesCatalogAssetStore`,
 };
 
 const options = {
@@ -108,7 +115,16 @@ module.exports = function (app) {
   );
   app.use("/wcs/resources/", createProxyMiddleware(transactionProxyContext));
   app.use(
-    ["/hclstore/", "/wcsstore/ExtendedSitesCatalogAssetStore"],
+    [
+      "/hclstore",
+      "/wcsstore",
+      "/EmeraldSAS",
+      "/EmeraldCAS",
+      "/SapphireSAS",
+      "/EmeraldPlusSAS",
+      "/SapphirePlusSAS",
+      "/ExtendedSitesCatalogAssetStore",
+    ],
     createProxyMiddleware(hclStoreAssetProxyContext)
   );
   app.use(

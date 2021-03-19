@@ -10,7 +10,11 @@
  */
 import styled from "styled-components";
 import { useRouteMatch } from "react-router-dom";
+import { useSelector } from "react-redux";
+//custom libraries
 import { HOME } from "../../../constants/routes";
+//custom redux
+import { forUserIdSelector } from "../../../redux/selectors/user";
 
 const StyledWrapper = styled.div`
   ${({ theme }) => {
@@ -19,6 +23,7 @@ const StyledWrapper = styled.div`
       strict: true,
       sensitive: true,
     });
+    const forUserId = useSelector(forUserIdSelector);
 
     let headingClasses = "";
 
@@ -108,17 +113,31 @@ const StyledWrapper = styled.div`
       .full-height {
         height: 100%;
       }
-      
+
       .full-width {
         width: 100%;
       }
 
       .full-viewport-height {
-        min-height: 100vh;
+        ${
+          forUserId !== undefined ? `min-height: 1000px;` : `min-height: 100vh;`
+        }
       }
 
       .full-viewport-width {
         width: 100vw;
+      }
+
+      .text-align-center {
+        text-align: center;
+      }
+
+      .text-align-right {
+        text-align: right;
+      }
+
+      .text-align-left {
+        text-align: left;
       }
 
       .marketing-button {
@@ -155,18 +174,18 @@ const StyledWrapper = styled.div`
         }
       }
 
-       
+
       }
 
       img {
         max-width: 100%;
       }
-      
+
       ${
         match && match.isExact
           ? `
           @supports ((perspective: 1px) and (not (-webkit-overflow-scrolling: touch))) {
-            height: 100vh;
+            ${forUserId === undefined && `height: 100vh;`}
             overflow-x: hidden;
             overflow-y: auto;
             perspective: 3px;
@@ -216,7 +235,7 @@ const StyledWrapper = styled.div`
         `
           : ``
       }
-      
+
     `;
   }}
 `;

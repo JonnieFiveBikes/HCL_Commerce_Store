@@ -46,7 +46,7 @@ const ThreeTierMenu: React.FC<ThreeTierMenuProps> = (props: any) => {
               alignContent="flex-start">
               {page.children.map((page2: any, index: number) => (
                 <StyledBox mt={2} mr={5} key={page2.id}>
-                  <Link key={index} to={page2.seo?.href}>
+                  <Link key={"Link_" + page2.id} to={page2.seo?.href}>
                     <StyledMenuTypography
                       variant="body2"
                       className="expanded-menu-bold">

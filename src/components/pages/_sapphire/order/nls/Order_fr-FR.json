@@ -1,6 +1,6 @@
 {
   "Order": {
-    "noPO": "AUCUN",
+    "noPO": "Aucun",
     "Status_A": "Autorisation de paiement devant être examinée",
     "Status_B": "En amont",
     "Status_C": "Paiement approuvé",
@@ -20,7 +20,7 @@
     "Status_W": "En attente d'approbation",
     "Status_V": "Expédition partielle",
     "Status_X": "Commande annulée",
-    "NotAvailable": "Informations indisponibles",
+    "NotAvailable": "N/A",
     "OrderId": "ID de la commande ",
     "PONumber": "Numéro de bon de commande",
     "OrderDate": "Date de la commande",
@@ -60,6 +60,7 @@
     "OrderDetails": "Détails de la commande",
     "OrderNumber": "Numéro de la commande",
     "HistorySearchPlaceHolder": "Rechercher par ID de commande",
-    "HistoryViewDetailTooltip": "Afficher les détails de la commande"
+    "HistoryViewDetailTooltip": "Afficher les détails de la commande",
+    "Pending": "En attente"
   }
 }

@@ -11,7 +11,7 @@
     },
     "Actions": {
       "SelectAddress": "Use this address",
-      "CreateNew": "Create new address",
+      "CreateNew": "Create a New Address",
       "Next": "Continue to Payment"
     },
     "Msgs": {

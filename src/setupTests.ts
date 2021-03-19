@@ -18,7 +18,7 @@ import { server } from "./testing/mocks/server";
 jest.mock("./_foundation/hooks/useSite/SiteInfoService", () => {
   return {
     SiteInfoService: {
-      getSiteInfo: jest.fn().mockImplementation(() => {
+      getSiteInfo: () => {
         return {
           getSiteValue: () => {
             //this is used by rest service only
@@ -39,7 +39,7 @@ jest.mock("./_foundation/hooks/useSite/SiteInfoService", () => {
             };
           },
         };
-      }),
+      },
     },
   };
 });

@@ -42,7 +42,7 @@ const AllCategoriesExpandedMenu: React.FC<AllCategoriesExpandedMenuProps> = (
           {pages &&
             pages.map((page: any, index: number) => (
               <StyledBox key={page.id} mr={5}>
-                <Link key={index} to={page.seo?.href}>
+                <Link key={"Link_" + index} to={page.seo?.href}>
                   <StyledMenuTypography
                     variant="body1"
                     className="expanded-menu-bold">

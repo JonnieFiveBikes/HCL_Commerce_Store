@@ -53,6 +53,7 @@ const LoginGuard: React.FC = () => {
         history.push(HOME);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location, loginStatus, mySite, userInited]);
 
   return <></>;

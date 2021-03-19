@@ -110,6 +110,7 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite]);
 
   function deleteAddress(nickName: string) {
@@ -122,7 +123,7 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
       const successMessage = {
         key: "success-message.DELETE_ADDRESS_SUCCESS",
         messageParameters: {
-          ["0"]: nickName,
+          "0": nickName,
         },
       };
       dispatch(successActions.HANDLE_SUCCESS_MESSAGE_ACTION(successMessage));
@@ -142,7 +143,7 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
         finalAddressData = contactMap[addressId];
       } else if (nickName !== "") {
         for (let key in contactMap) {
-          if (contactMap[key].nickName == nickName) {
+          if (contactMap[key].nickName === nickName) {
             finalAddressData = contactMap[key];
             break;
           }
@@ -284,7 +285,7 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
       )}
       {addressData.addressLine &&
         addressData.addressLine.map((line: string, index: number) => (
-          <Fragment key={index}>
+          <Fragment key={line + "_" + index}>
             {line && (
               <StyledTypography variant="body1" display="block" noWrap>
                 {line}
@@ -320,6 +321,7 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
   );
 
   // Memoized function to get the address card action based on dependencies/conditons
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const cardActions = useMemo(() => getCardActions(), [
     actions,
     setSelectedAddressId,

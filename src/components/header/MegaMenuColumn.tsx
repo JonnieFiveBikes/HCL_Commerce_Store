@@ -25,7 +25,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 //GA360
-import GTMDLService from "../../_foundation/gtm/gtmDataLayer.service";
+import AsyncCall from "../../_foundation/gtm/async.service";
 
 const MegaMenuLink = (props: any) => {
   const {
@@ -60,9 +60,8 @@ const MegaMenuLink = (props: any) => {
         <Link
           to={link}
           onClick={() => {
-            /*GA360*/
-            if (site.enableGA)
-              GTMDLService.measureNavigationClick(parentName, name);
+            //GA360
+            if (site.enableGA) AsyncCall.sendNavigationClick(parentName, name);
             closeMegaMenu();
           }}>
           <StyledMenuItem role="menuitem">
@@ -113,7 +112,7 @@ const MegaMenuColumn: React.FC<MegaMenuColumnProps> = (props: any) => {
     page.children.map(function (page: any, index: number) {
       const element = (
         <MegaMenuLink
-          key={index}
+          key={page.id}
           link={page.seo?.href}
           id={id}
           name={page.name}
@@ -161,9 +160,16 @@ const MegaMenuColumn: React.FC<MegaMenuColumnProps> = (props: any) => {
         <Link
           to={page.seo?.href}
           onClick={() => {
-            /*GA360 */
-            if (mySite.enableGA)
-              GTMDLService.measureNavigationClick("Main", page.name);
+            //GA360
+            if (mySite.enableGA) {
+              AsyncCall.sendNavigationClick(
+                { eventAction: "Main", eventLabel: page.name },
+                {
+                  enableUA: mySite.enableUA,
+                  enableGA4: mySite.enableGA4,
+                }
+              );
+            }
             closeMegaMenu();
           }}>
           <StyledMenuItem>

@@ -62,6 +62,18 @@ and attachments.
 This version of the React Store Application optionally includes support HCL Digital Experience if content is returned from a Marketing Spot that
 references a DX external content type.
 
+### 2021/03/19 HCL Commerce Version 9.1.6 - Refreshed Store Application
+
+The React Store Application (Emerald and Sapphire) has been updated with the following enhancements:
+
+1. Re-designed "Sign-in and Registration" page.
+1. Support for multiple languages using language dropdown menu.
+1. Support for forgot password resetting flow.
+1. Support for expired password resetting flow.
+1. Support for HCL Commerce CSR react app.
+
+This version of the React Store Application requires corresponding HCL Commerce CSR React App Version 9.1.6 to enable Customer Service capability.
+
 ## Limitations
 
 The list of latest features delivered in the React Store Applications are described for Emerald:

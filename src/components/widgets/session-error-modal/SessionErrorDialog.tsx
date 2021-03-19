@@ -9,7 +9,7 @@
  *==================================================
  */
 //Standard libraries
-import React, { useEffect, ChangeEvent } from "react";
+import React, { useEffect, ChangeEvent, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -24,7 +24,12 @@ import {
   RESET_SESSION_ERROR_ACTION,
   CANCEL_SESSION_ERROR_ACTION,
 } from "../../../redux/actions/error";
-import { logonIdSelector } from "../../../redux/selectors/user";
+import {
+  loginStatusSelector,
+  logonIdSelector,
+  userInitStatusSelector,
+  forUserIdSelector,
+} from "../../../redux/selectors/user";
 import { siteSelector } from "../../../redux/selectors/site";
 //UI
 import {
@@ -36,13 +41,17 @@ import {
   StyledDialogActions,
   StyledTypography,
 } from "../../StyledUI";
+import { useCSRForUser } from "../../../_foundation/hooks/useCSRForUser";
 
 export const SessionErrorDialog = () => {
   const un = useSelector(logonIdSelector);
+  const forUserId = useSelector(forUserIdSelector);
   const mySite = useSelector(siteSelector);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const [username, setUsername] = React.useState(un);
+  const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [disabled, setDisabled] = React.useState(true);
 
   const [open, setOpen] = React.useState(false);
   const [logonInputProps, setLogonInputProps] = React.useState<any>({});
@@ -55,6 +64,11 @@ export const SessionErrorDialog = () => {
   );
   const widgetName = getDisplayName(SessionErrorDialog);
   const dispatch = useDispatch();
+
+  const loginStatus = useSelector(loginStatusSelector);
+  const userInitStatus = useSelector(userInitStatusSelector);
+
+  const { handleForUserSessionError } = useCSRForUser();
 
   const usernameInput = React.createRef<HTMLInputElement>();
 
@@ -82,6 +96,7 @@ export const SessionErrorDialog = () => {
     if (type === "password") {
       setPassword(value || "");
     }
+    setDisabled(!formRef.current || !formRef.current.checkValidity());
   };
 
   const handleSubmit = (evt: any) => {
@@ -107,7 +122,13 @@ export const SessionErrorDialog = () => {
   };
 
   useEffect(() => {
-    setUsername(un);
+    if (userInitStatus && !loginStatus && handled === false) {
+      handleCancel();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loginStatus, userInitStatus, handled]);
+
+  useEffect(() => {
     setOpen(handled === false);
     if (handled === true) {
       dispatch(RESET_SESSION_ERROR_ACTION());
@@ -129,11 +150,27 @@ export const SessionErrorDialog = () => {
         });
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [handled, dispatch, mySite]);
+  useEffect(() => {
+    setUsername(un);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [un]);
+  useEffect(() => {
+    setDisabled(!formRef.current || !formRef.current.checkValidity());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formRef.current]);
+  useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
-  }, [handled, dispatch, mySite]);
-  if (handled === undefined || handled === null) {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (handled === undefined || handled === null || !loginStatus) {
+    return <></>;
+  } else if (forUserId) {
+    handleForUserSessionError(errorMsgKey);
     return <></>;
   } else {
     return (
@@ -144,7 +181,11 @@ export const SessionErrorDialog = () => {
           onEntering={handleEntering}
           maxWidth="sm"
           open={open}>
-          <form onSubmit={handleSubmit} name="signInForm">
+          <form
+            onSubmit={handleSubmit}
+            name="signInForm"
+            noValidate
+            ref={formRef}>
             <StyledDialogTitle
               title={t(errorTitleKey)}
               onClickHandler={handleCancel}
@@ -180,7 +221,11 @@ export const SessionErrorDialog = () => {
                   onClick={handleCancel}>
                   {t("SessionError.CancelButton")}
                 </StyledButton>
-                <StyledButton color="primary" size="small" type="submit">
+                <StyledButton
+                  color="primary"
+                  size="small"
+                  type="submit"
+                  disabled={disabled}>
                   {t("SessionError.SubmitButton")}
                 </StyledButton>
               </StyledDialogActions>

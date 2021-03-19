@@ -1,0 +1,12 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "marketingSpotIdentifier": "14506",
+      "behavior": "0",
+      "eSpotName": "Free Delivery"
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/12/espot/Free%20Delivery?catalogId=10501&name=Free+Delivery&langId=-1",
+  "resourceName": "espot"
+}

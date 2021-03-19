@@ -1,0 +1,51 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "defaultContentDisplaySequence": [
+        {
+          "resultId": "12509",
+          "resultFormat": "MarketingContent",
+          "displaySequence": "1.0"
+        }
+      ],
+      "marketingSpotIdentifier": "13009",
+      "behavior": "0",
+      "eSpotName": "LivingRoomHero",
+      "baseMarketingSpotActivityData": [
+        {
+          "contentFormatName": "Text",
+          "baseMarketingSpotActivityName": "LivingRoomHeroContent",
+          "contentClickAction": "Single",
+          "contentId": "12509",
+          "baseMarketingSpotActivityID": "12509",
+          "contentName": "LivingRoomHeroContent",
+          "baseMarketingSpotDataType": "MarketingContent",
+          "contentUrl": "/furniture",
+          "activityIdentifierID": "0",
+          "MarketingContentDescription": [{}],
+          "marketingContentDescription": [
+            {
+              "marketingText": "<div class=\"MuiGrid-root MuiGrid-container marketing-content marketing-backgroundImage marketing-heroImage LivingRoomHeroContent\"><img src=\"/EmeraldSAS/images/rooms/livingroom.jpg\"><div class=\"MuiGrid-root MuiGrid-item MuiGrid-grid-xs-10 MuiGrid-grid-md-6 MuiGrid-grid-lg-5 marketing-text marketing-text-vertical-center\"><h2 class=\"MuiTypography-root MuiTypography-h2 bottom-margin-1\">Living Room</h2><h5 class=\"MuiTypography-root MuiTypography-h5 bottom-margin-2\">Bring your living space together with comfort and style.</h5></div></div>",
+              "language": "-1"
+            }
+          ],
+          "contentFormatId": "2",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingKey": "mktActivityDescription"
+            },
+            {
+              "baseMarketingValue": "1.0",
+              "baseMarketingKey": "displaySequence"
+            }
+          ],
+          "contentStoreId": "12501"
+        }
+      ]
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/11/espot/LivingRoomHero?catalogId=11501&name=LivingRoomHero&langId=-1",
+  "resourceName": "espot"
+}

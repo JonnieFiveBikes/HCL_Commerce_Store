@@ -11,7 +11,7 @@
 //Standard libraries
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import ReactHtmlParser from "react-html-parser";
+import HTMLReactParser from "html-react-parser";
 //UI
 import { SnackbarOrigin } from "@material-ui/core";
 import { StyledSnackbar, StyledAlert } from "../../StyledUI";
@@ -44,10 +44,10 @@ const MessageSnackbar = ({
     return (
       <>
         {linkAction === null || linkAction === undefined ? (
-          message && ReactHtmlParser(message)
+          message && HTMLReactParser(message)
         ) : (
           <span>
-            {message && ReactHtmlParser(message)}
+            {message && HTMLReactParser(message)}
             <Link to={linkAction.url}>{linkAction.text}</Link>
           </span>
         )}
@@ -63,6 +63,7 @@ const MessageSnackbar = ({
   React.useEffect(() => {
     //close on location change.
     onClose();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
   return (
     <>

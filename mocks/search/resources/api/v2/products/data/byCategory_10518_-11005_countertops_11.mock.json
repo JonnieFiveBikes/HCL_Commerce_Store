@@ -1,0 +1,934 @@
+{
+  "breadCrumbTrailEntryView": [
+    {
+      "label": "Kitchen",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "10516",
+      "seo": {
+        "href": "/kitchen"
+      }
+    },
+    {
+      "label": "Countertops",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "10518",
+      "seo": {
+        "href": "/countertops"
+      }
+    }
+  ],
+  "contents": [
+    {
+      "hasSingleSKU": false,
+      "storeID": "11",
+      "parentCatalogGroupID": "/10516/10518",
+      "buyable": "true",
+      "shortDescription": "Wood-grained countertops add an elegant and warm design to your home's contempory or traditional kitchen.",
+      "seo": {
+        "href": "/dark-brown-wood-grained-countertop-ki-cttp-0001"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/kitchen/countertops/countertop1_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/kitchen/countertops/countertop1_a1_350.jpg",
+      "partNumber": "KI-CTTP-0001",
+      "name": "Dark Brown Wood-grained Countertop",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "120.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "115.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "standin",
+              "sequence": "10.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003013",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_standin.png",
+              "value": "Standin",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_standin.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ProductDimensions",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "15.0",
+              "identifier": "48x20x1",
+              "unitID": "INH",
+              "id": "7000000000000003092",
+              "value": "48\"x20\"x1\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Product Dimensions",
+          "facetable": "true",
+          "id": "7000000000000000510",
+          "comparable": "true",
+          "key": "7000000000000000510",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ItemWeight",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "30lbs",
+              "sequence": "3.0",
+              "unitID": "LBR",
+              "id": "7000000000000003099",
+              "value": "30 lbs"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Item Weight",
+          "facetable": "true",
+          "id": "7000000000000000511",
+          "comparable": "true",
+          "key": "7000000000000000511",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "ashwood",
+              "sequence": "8.0",
+              "unitID": "wood",
+              "id": "7000000000000003039",
+              "value": "Ash wood"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Pattern",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "2.0",
+              "identifier": "Wood-grained",
+              "id": "7000000000000003110",
+              "value": "Wood-grained"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Pattern",
+          "facetable": "true",
+          "id": "7000000000000000512",
+          "comparable": "true",
+          "key": "7000000000000000512",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14306"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "11",
+      "parentCatalogGroupID": "/10516/10518",
+      "buyable": "true",
+      "shortDescription": "Wood-grained countertops add an elegant and warm design to your home's contempory or traditional kitchen.",
+      "seo": {
+        "href": "/cherry-wood-grained-countertop-ki-cttp-0002"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/kitchen/countertops/countertop2_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/kitchen/countertops/countertop2_a1_350.jpg",
+      "partNumber": "KI-CTTP-0002",
+      "name": "Cherry Wood-grained Countertop",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "180.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "160.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "coffee",
+              "sequence": "9.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003009",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_coffee.png",
+              "value": "Coffee",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_coffee.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ProductDimensions",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "15.0",
+              "identifier": "48x20x1",
+              "unitID": "INH",
+              "id": "7000000000000003092",
+              "value": "48\"x20\"x1\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Product Dimensions",
+          "facetable": "true",
+          "id": "7000000000000000510",
+          "comparable": "true",
+          "key": "7000000000000000510",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ItemWeight",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "30lbs",
+              "sequence": "3.0",
+              "unitID": "LBR",
+              "id": "7000000000000003099",
+              "value": "30 lbs"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Item Weight",
+          "facetable": "true",
+          "id": "7000000000000000511",
+          "comparable": "true",
+          "key": "7000000000000000511",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "ashwood",
+              "sequence": "8.0",
+              "unitID": "wood",
+              "id": "7000000000000003039",
+              "value": "Ash wood"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Pattern",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "2.0",
+              "identifier": "Wood-grained",
+              "id": "7000000000000003110",
+              "value": "Wood-grained"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Pattern",
+          "facetable": "true",
+          "id": "7000000000000000512",
+          "comparable": "true",
+          "key": "7000000000000000512",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14308"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "11",
+      "parentCatalogGroupID": "/10516/10518",
+      "buyable": "true",
+      "shortDescription": "Wood-grained countertops add an elegant and warm design to your home's contempory or traditional kitchen.",
+      "seo": {
+        "href": "/brown-wood-grained-countertop-ki-cttp-0003"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/kitchen/countertops/countertop3_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/kitchen/countertops/countertop3_a1_350.jpg",
+      "partNumber": "KI-CTTP-0003",
+      "name": "Brown Wood-grained Countertop",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "155.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "145.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "toffee",
+              "sequence": "8.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003008",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_toffee.png",
+              "value": "Toffee",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_toffee.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ProductDimensions",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "15.0",
+              "identifier": "48x20x1",
+              "unitID": "INH",
+              "id": "7000000000000003092",
+              "value": "48\"x20\"x1\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Product Dimensions",
+          "facetable": "true",
+          "id": "7000000000000000510",
+          "comparable": "true",
+          "key": "7000000000000000510",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ItemWeight",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "30lbs",
+              "sequence": "3.0",
+              "unitID": "LBR",
+              "id": "7000000000000003099",
+              "value": "30 lbs"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Item Weight",
+          "facetable": "true",
+          "id": "7000000000000000511",
+          "comparable": "true",
+          "key": "7000000000000000511",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "ashwood",
+              "sequence": "8.0",
+              "unitID": "wood",
+              "id": "7000000000000003039",
+              "value": "Ash wood"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Pattern",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "2.0",
+              "identifier": "Wood-grained",
+              "id": "7000000000000003110",
+              "value": "Wood-grained"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Pattern",
+          "facetable": "true",
+          "id": "7000000000000000512",
+          "comparable": "true",
+          "key": "7000000000000000512",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14310"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "11",
+      "parentCatalogGroupID": "/10516/10518",
+      "buyable": "true",
+      "shortDescription": "Wood-grained countertops add an elegant and warm design to your home's contempory or traditional kitchen.",
+      "seo": {
+        "href": "/natural-wood-grained-countertop-ki-cttp-0004"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/kitchen/countertops/countertop4_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/kitchen/countertops/countertop4_a1_350.jpg",
+      "partNumber": "KI-CTTP-0004",
+      "name": "Natural Wood-grained Countertop",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "155.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "145.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "blonde",
+              "sequence": "5.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003005",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+              "value": "Blonde",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ProductDimensions",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "15.0",
+              "identifier": "48x20x1",
+              "unitID": "INH",
+              "id": "7000000000000003092",
+              "value": "48\"x20\"x1\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Product Dimensions",
+          "facetable": "true",
+          "id": "7000000000000000510",
+          "comparable": "true",
+          "key": "7000000000000000510",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ItemWeight",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "30lbs",
+              "sequence": "3.0",
+              "unitID": "LBR",
+              "id": "7000000000000003099",
+              "value": "30 lbs"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Item Weight",
+          "facetable": "true",
+          "id": "7000000000000000511",
+          "comparable": "true",
+          "key": "7000000000000000511",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "ashwood",
+              "sequence": "8.0",
+              "unitID": "wood",
+              "id": "7000000000000003039",
+              "value": "Ash wood"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Pattern",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "2.0",
+              "identifier": "Wood-grained",
+              "id": "7000000000000003110",
+              "value": "Wood-grained"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Pattern",
+          "facetable": "true",
+          "id": "7000000000000000512",
+          "comparable": "true",
+          "key": "7000000000000000512",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14312"
+    }
+  ],
+  "facets": [
+    {
+      "entry": [
+        {
+          "count": 0,
+          "label": "({* TO 32])",
+          "value": "price_usd%3A%28%7B*+TO+32%5D%29",
+          "extendedData": {
+            "uniqueId": "11211410599101951171151005840123423284793251509341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({32 TO 64])",
+          "value": "price_usd%3A%28%7B32+TO+64%5D%29",
+          "extendedData": {
+            "uniqueId": "1121141059910195117115100584012351503284793254529341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({64 TO 96])",
+          "value": "price_usd%3A%28%7B64+TO+96%5D%29",
+          "extendedData": {
+            "uniqueId": "1121141059910195117115100584012354523284793257549341"
+          }
+        },
+        {
+          "count": 1,
+          "label": "({96 TO 128])",
+          "value": "price_usd%3A%28%7B96+TO+128%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401235754328479324950569341"
+          }
+        },
+        {
+          "count": 3,
+          "label": "({128 TO 160])",
+          "value": "price_usd%3A%28%7B128+TO+160%5D%29",
+          "extendedData": {
+            "uniqueId": "11211410599101951171151005840123495056328479324954489341"
+          }
+        }
+      ],
+      "value": "price_usd",
+      "name": "OfferPrice_usd"
+    },
+    {
+      "value": "manufacturer.raw",
+      "name": "Brand",
+      "entry": [
+        {
+          "label": "Bender Home Fashions",
+          "value": "manufacturer.raw%3A%22Bender+Home+Fashions%22",
+          "count": "1",
+          "extendedData": {
+            "uniqueId": "661011101001011143272111109101327097115104105111110115"
+          }
+        },
+        {
+          "label": "Moderno",
+          "value": "manufacturer.raw%3A%22Moderno%22",
+          "count": "1",
+          "extendedData": {
+            "uniqueId": "77111100101114110111"
+          }
+        },
+        {
+          "label": "Stockholm",
+          "value": "manufacturer.raw%3A%22Stockholm%22",
+          "count": "2",
+          "extendedData": {
+            "uniqueId": "8311611199107104111108109"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Brand",
+        "propertyvalue": "manufacturer.raw",
+        "maximumValuesToDisplay": "6",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "0.0",
+        "name": "Brand",
+        "sortorder": "1",
+        "max_display": "6",
+        "fdesc": "The manufacturer",
+        "propertyId": "manufacturer.raw"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000510.value.raw",
+      "name": "Product Dimensions",
+      "entry": [
+        {
+          "label": "48\"x20\"x1\"",
+          "value": "attributes.7000000000000000510.value.raw%3A%2248%5C%22x20%5C%22x1%5C%22%22",
+          "count": "4",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "5256341205048341204934"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Product Dimensions",
+        "propertyvalue": "ProductDimensions",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "1.0",
+        "name": "Product Dimensions",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Product Dimensions",
+        "propertyId": "7000000000000000510"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000501.value.raw",
+      "name": "Color",
+      "entry": [
+        {
+          "label": "Toffee",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Toffee%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_toffee.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "8.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_toffee.png",
+            "uniqueId": "84111102102101101"
+          }
+        },
+        {
+          "label": "Standin",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Standin%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_standin.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_standin.png",
+            "uniqueId": "8311697110100105110"
+          }
+        },
+        {
+          "label": "Coffee",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Coffee%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_coffee.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "9.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_coffee.png",
+            "uniqueId": "67111102102101101"
+          }
+        },
+        {
+          "label": "Blonde",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Blonde%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "5.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+            "uniqueId": "66108111110100101"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Color",
+        "propertyvalue": "Color",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "1.0",
+        "name": "Color",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Color",
+        "propertyId": "7000000000000000501"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000511.value.raw",
+      "name": "Item Weight",
+      "entry": [
+        {
+          "label": "30 lbs",
+          "value": "attributes.7000000000000000511.value.raw%3A%2230+lbs%22",
+          "count": "4",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "51483210898115"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Item Weight",
+        "propertyvalue": "ItemWeight",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "2.0",
+        "name": "Item Weight",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Item Weight",
+        "propertyId": "7000000000000000511"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000503.value.raw",
+      "name": "Material",
+      "entry": [
+        {
+          "label": "Ash wood",
+          "value": "attributes.7000000000000000503.value.raw%3A%22Ash+wood%22",
+          "count": "4",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "6511510432119111111100"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Material",
+        "propertyvalue": "Materials",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "3.0",
+        "name": "Material",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Material",
+        "propertyId": "7000000000000000503"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000512.value.raw",
+      "name": "Pattern",
+      "entry": [
+        {
+          "label": "Wood-grained",
+          "value": "attributes.7000000000000000512.value.raw%3A%22Wood-grained%22",
+          "count": "4",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "871111111004510311497105110101100"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Pattern",
+        "propertyvalue": "Pattern",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "4.0",
+        "name": "Pattern",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Pattern",
+        "propertyId": "7000000000000000512"
+      }
+    }
+  ],
+  "previous": "/search/resources/api/v2/products?storeId=11&categoryId=10518&limit=12&offset=0",
+  "total": 4
+}

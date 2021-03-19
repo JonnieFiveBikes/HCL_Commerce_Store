@@ -1,0 +1,66 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "marketingSpotIdentifier": "13015",
+      "behavior": "0",
+      "eSpotName": "Featured_ProductRec",
+      "baseMarketingSpotActivityData": [
+        {
+          "baseMarketingSpotActivityName": "Flared Accent Chair",
+          "productId": "14022",
+          "description": [
+            {
+              "longDescription": "Give your living room an exciting and different look with the outgoing flared accent chair. The armchair features a compact design, comfortable oversized pillow, easy to clean polyester fabric, and a sloped backrest. The armchair's modern styling is complemented with durable dark brown wooden legs. No assembly required.",
+              "thumbnail": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_350.jpg",
+              "language": "-1",
+              "shortDescription": "A unique, modern armchair that offers flared styling on one side to accent your home's living room and decor.",
+              "fullImage": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_600.jpg",
+              "productName": "Flared Accent Chair"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "549.99",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Home featured product",
+          "baseMarketingSpotActivityID": "14022",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "LR-FNTR-0002",
+          "activityIdentifierID": "11003",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "549.99",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "600.00"
+        }
+      ]
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/11/espot/Featured_ProductRec?catalogId=11501&name=Featured_ProductRec&langId=-1",
+  "resourceName": "espot"
+}

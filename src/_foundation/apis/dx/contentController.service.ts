@@ -68,6 +68,7 @@ const contentControllerService = {
     if (parameters["storeId"] === undefined && site !== null) {
       parameters["storeId"] = site.storeID;
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     let headerValues: any = {};
     if (parameters["virtualportal"] !== undefined) {
       const name = "virtualportal";
@@ -117,8 +118,10 @@ const contentControllerService = {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
       ) {
-        var parameter = parameters.$queryParameters[parameterName];
-        queryParameters.set(parameterName, parameter);
+        const parameter = parameters.$queryParameters[parameterName];
+        if (parameter !== null && parameter !== undefined) {
+          queryParameters.set(parameterName, parameter);
+        }
       });
     }
     if (!header.get("Content-Type")) {

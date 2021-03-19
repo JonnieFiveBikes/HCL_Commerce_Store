@@ -23,7 +23,8 @@ function ProductAttributes({
   return (
     <>
       {attributeList.map(function (attr: any, index: number) {
-        const useSwatches = attr.values[0].image1path ? true : false;
+        const useSwatches =
+          attr.values && attr.values[0]?.image1path ? true : false;
         const productAttributeTabContent = (
           <StyledSwatchRadioGroup
             values={attr.values}
@@ -39,7 +40,7 @@ function ProductAttributes({
         return (
           <ProductAttribute
             skuColor={skuColor}
-            key={index}
+            key={attr.identifier}
             attributeType={attr.identifier}
             title={attr.name}
             element={productAttributeTabContent}

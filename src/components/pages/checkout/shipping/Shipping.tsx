@@ -91,12 +91,14 @@ const useShipping = (props) => {
   const [createNewAddress, setCreateNewAddress] = useState<boolean>(false);
   const [editAddress, setEditAddress] = useState<boolean>(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const usableShipAddresses = useMemo(() => initUsableShippingAddresses(), [
     usableShipInfos,
     addressDetails,
     orgAddressDetails,
   ]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const usableShippingMethods = useMemo(() => initUsableShippingMethods(), [
     usableShipInfos,
   ]);
@@ -427,6 +429,7 @@ const useShipping = (props) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite]);
 
   useEffect(() => {
@@ -459,6 +462,7 @@ const useShipping = (props) => {
         );
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [usableShipAddresses]);
 
   return {

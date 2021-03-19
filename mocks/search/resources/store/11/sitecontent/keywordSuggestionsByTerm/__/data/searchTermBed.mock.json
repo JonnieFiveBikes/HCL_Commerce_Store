@@ -1,0 +1,21 @@
+{
+  "suggestionView": [
+    {
+      "identifier": "Keyword",
+      "entry": [
+        {
+          "term": "beds",
+          "frequency": "16"
+        },
+        {
+          "term": "bedroom",
+          "frequency": "16"
+        },
+        {
+          "term": "bed",
+          "frequency": "4"
+        }
+      ]
+    }
+  ]
+}

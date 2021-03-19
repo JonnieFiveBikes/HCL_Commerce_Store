@@ -20,7 +20,7 @@
     "Status_W": "承認は保留中です",
     "Status_V": "一部発送されました",
     "Status_X": "オーダーはキャンセルされました",
-    "NotAvailable": "情報を入手できません",
+    "NotAvailable": "該当なし",
     "OrderId": "オーダー ID",
     "PONumber": "注文書番号",
     "OrderDate": "オーダー日付",
@@ -60,6 +60,7 @@
     "OrderDetails": "オーダー詳細情報",
     "OrderNumber": "オーダー番号",
     "HistorySearchPlaceHolder": "オーダー ID で検索",
-    "HistoryViewDetailTooltip": "オーダーの詳細情報を表示"
+    "HistoryViewDetailTooltip": "オーダーの詳細情報を表示",
+    "Pending": "保留"
   }
 }

@@ -9,7 +9,7 @@
     "Actions": {
       "showMore": "詳細表示",
       "showLess": "簡略表示",
-      "Go": "実行"
+      "Filter": "フィルター"
     }
   }
 }

@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "kitchen",
+      "tokenName": "CategoryToken",
+      "tokenExternalValue": "Kitchen",
+      "language": "en_US",
+      "id": 56825,
+      "page": {
+        "imageAlternateDescription": "Image for Kitchen from Emerald",
+        "name": "CATEGORY_PAGE",
+        "title": "Kitchen | Emerald",
+        "type": "CategoryPage",
+        "metaDescription": "Create a kitchen that suits your needs and fits your lifestyle",
+        "metaKeyword": "kitchen, cabinets, countertops, maple, smooth, storage space, modern, drawers"
+      },
+      "storeId": "11",
+      "tokenValue": "10516",
+      "status": 1
+    }
+  ]
+}

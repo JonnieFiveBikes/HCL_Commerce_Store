@@ -9,173 +9,28 @@
  *==================================================
  */
 //Standard libraries
-import React, { useEffect, ChangeEvent } from "react";
-import { OK } from "http-status-codes";
-import { useTranslation } from "react-i18next";
-import Axios, { Canceler } from "axios";
-import getDisplayName from "react-display-name";
-//Foundation libraries
-import { useSite } from "../../../_foundation/hooks/useSite";
-import personService from "../../../_foundation/apis/transaction/person.service";
+import React from "react";
 //Custom libraries
-import { ResetPassword } from "../reset-password";
-//UI
-import {
-  StyledDialog,
-  StyledDialogTitle,
-  StyledDialogContent,
-  StyledDialogContentText,
-  StyledDialogActions,
-  StyledButton,
-  StyledTextField,
-  StyledTypography,
-} from "../../StyledUI";
+import ForgotPasswordLayout from "./ForgotPasswordLayout";
+import { StandardPageHero2BlocksLayout } from "../../layouts/standard-page-hero-2-blocks";
+import { SectionContent } from "../../layouts/sectionContentType";
 
 const ForgotPassword: React.FC = (props: any) => {
-  const widgetName = getDisplayName(ForgotPassword);
-  const [open, setOpen] = React.useState<boolean>(false);
-  const [email, setEmail] = React.useState<string>("");
-  const [forgotPasswordState, setForgotPasswordState] = React.useState<boolean>(
-    true
-  );
-  const { mySite: site } = useSite();
-  const { t } = useTranslation();
-  const forgotPasswordTitle = t("ForgotPassword.Title");
-  const resetPasswordTitle = t("ResetPassword.Title");
-  const logonIdLabel = t("ForgotPassword.LogonIDLabel");
-  const emailLabel = t("ForgotPassword.EmailLabel");
-  const submitButton = t("ForgotPassword.SubmitButton");
-  const contentText = t("ForgotPassword.ContentText");
-  const contentTextB2B = t("ForgotPassword.ContentTextLogonID");
-  const validationCodeButton = t("ForgotPassword.ValidationCodeButton");
-  const orLabel = t("ForgotPassword.ORLabel");
-
-  const isB2b = site.isB2B;
-
-  const CancelToken = Axios.CancelToken;
-  let cancels: Canceler[] = [];
-
-  const payloadBase: any = {
-    widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
-  };
-
-  const handleEmail = (
-    evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    type: string
-  ) => {
-    const val: string | null = evt.target.value;
-    setEmail(val);
-  };
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    setForgotPasswordState(true);
-  };
-
-  const handleForgotPasswordState = () => {
-    setForgotPasswordState(false);
-  };
-
-  const handleSuccess = () => {
-    handleForgotPasswordState();
-  };
-
-  const handleSubmit = (props: any) => {
-    props.preventDefault();
-    props.stopPropagation();
-    const storeID = site.storeID;
-    const parameters: any = {
-      responseFormat: "application/json",
-      storeId: storeID,
-      body: {
-        logonId: email,
-        resetPassword: "true",
-        challengeAnswer: "-",
+  const forgotPassword: SectionContent[] = [
+    {
+      key: "forgot-password-page-forgotpassword",
+      CurrentComponent: () => {
+        return <ForgotPasswordLayout />;
       },
-      ...payloadBase,
-    };
-    personService
-      .updatePerson(parameters, null, site.transactionContext)
-      .then((res) => {
-        if (res.status === OK) {
-          handleSuccess();
-        }
-      });
-  };
-
-  const getForgotPasswordState = () => {
-    return forgotPasswordState;
-  };
-
-  useEffect(() => {
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
-  });
+    },
+  ];
 
   return (
-    <div>
-      <StyledButton
-        onClick={handleClickOpen}
-        variant="text"
-        color="primary"
-        className="bottom-margin-1">
-        {forgotPasswordTitle}
-      </StyledButton>
-
-      <StyledDialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="forgot-password-dialog">
-        <StyledDialogTitle
-          onClickHandler={handleClose}
-          title={
-            getForgotPasswordState() ? forgotPasswordTitle : resetPasswordTitle
-          }
-        />
-        {getForgotPasswordState() ? (
-          <StyledDialogContent>
-            <StyledDialogContentText>
-              {isB2b ? contentTextB2B : contentText}
-            </StyledDialogContentText>
-            <form name="forgotPasswordForm" onSubmit={handleSubmit}>
-              <StyledTextField
-                margin="normal"
-                required
-                size="small"
-                label={isB2b ? logonIdLabel : emailLabel}
-                autoFocus
-                fullWidth
-                name="email"
-                type={isB2b ? "text" : "email"}
-                onChange={(e) => handleEmail(e, "email")}
-              />
-              <StyledDialogActions>
-                <StyledButton color="primary" type="submit">
-                  {submitButton}
-                </StyledButton>
-                <StyledTypography variant="body1">{orLabel}</StyledTypography>
-                <StyledButton
-                  color="secondary"
-                  onClick={handleForgotPasswordState}>
-                  {validationCodeButton}
-                </StyledButton>
-              </StyledDialogActions>
-            </form>
-          </StyledDialogContent>
-        ) : (
-          <ResetPassword />
-        )}
-      </StyledDialog>
-    </div>
+    <StandardPageHero2BlocksLayout
+      cid="forgot-password-page"
+      sectionOne={forgotPassword}
+    />
   );
 };
 
-export { ForgotPassword };
+export default ForgotPassword;

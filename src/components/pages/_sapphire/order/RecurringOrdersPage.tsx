@@ -253,6 +253,7 @@ const useRecurringOrderTable = () => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {

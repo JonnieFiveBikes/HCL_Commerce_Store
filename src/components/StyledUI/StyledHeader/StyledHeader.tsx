@@ -60,7 +60,11 @@ const StyledHeader = styled.header`
   }
 
   .header-actionsButton {
-    margin: ${theme.spacing(1)}px;
+    padding: ${theme.spacing(1)}px;
+
+    &.header-actionsButton-languageToggle .MuiTypography-body1 {
+      line-height: 26px;
+    }
   }
 
   .header-branding {

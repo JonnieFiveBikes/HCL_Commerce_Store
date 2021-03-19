@@ -12,11 +12,11 @@
 import React, { useState, lazy } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import ReactHtmlParser, { convertNodeToElement } from "react-html-parser";
+import HTMLReactParser, { DomElement, domToReact } from "html-react-parser";
 import { withRouter } from "react-router-dom";
 import Axios, { Canceler } from "axios";
 import { Link } from "react-router-dom";
-import LazyLoadComponent from "react-intersection-observer-lazy-load";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
@@ -25,14 +25,14 @@ import commonUtil from "../../../_foundation/utils/commonUtil";
 //Custom libraries
 import { HCL_Dx_PREFIX, CONTENT_FORMAT_ID } from "../../../constants/marketing";
 //Redux
-import { wcTokenSelector } from "../../../redux/selectors/user";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 import { ADD_ITEM_ACTION } from "../../../redux/actions/order";
 import { CLICK_EVENT_TRIGGERED_ACTION } from "../../../redux/actions/marketingEvent";
 //UI
 import { StyledProgressPlaceholder } from "../../StyledUI";
 //GA360
-import GADataService from "../../../_foundation/gtm/gaData.service";
+import { DISABLED_ESPOT_LIST } from "../../../_foundation/constants/gtm";
+import AsyncCall from "../../../_foundation/gtm/async.service";
 
 function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
   const widgetName = getDisplayName(ContentRecommendationLayout);
@@ -45,13 +45,11 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
   const dispatch = useDispatch();
   const { mySite } = useSite();
   const [content, setContent] = useState<any>(null);
-  const wcToken: string = useSelector(wcTokenSelector);
   const contract = useSelector(currentContractIdSelector);
 
   const storeID: string = mySite ? mySite.storeID : "";
   const catlogID: string = mySite ? mySite.catalogID : "";
   const CancelToken = Axios.CancelToken;
-  let cancel: Canceler;
 
   const DXContentWrapper = lazy(
     () => import("../dx-content-wrapper/DXContentWrapper")
@@ -65,6 +63,9 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
       cancels.push(c);
     }),
   };
+
+  const allowGAEvent = (eSpotRoot) =>
+    !DISABLED_ESPOT_LIST.includes(eSpotRoot.eSpotName);
 
   const initESpot = (pageName: string) => {
     let eSName = eSpotName;
@@ -90,7 +91,16 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
         const templates = processMarketingSpotData(eSpotRoot, title);
         setContent({ templates, title });
         //GA360
-        if (mySite.enableGA) GADataService.sendPromotionImpression(eSpotRoot);
+        if (
+          mySite.enableGA &&
+          eSpotRoot.baseMarketingSpotActivityData &&
+          allowGAEvent(eSpotRoot)
+        ) {
+          AsyncCall.sendPromotionImpression(eSpotRoot, {
+            enableUA: mySite.enableUA,
+            enableGA4: mySite.enableGA4,
+          });
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -117,24 +127,25 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
           ? eSpotDesc.attachmentDescription[0]["attachmentName"]
           : "";
 
-      const transform = (node, index) => {
-        if (node.type === "tag" && node.name === "a") {
+      const replace = (node: DomElement) => {
+        if (
+          node.type &&
+          node.type === "tag" &&
+          node.name &&
+          node.name === "a"
+        ) {
           return (
             <Link
-              key={`a_${eSpotDesc.contentId}_${index}`}
+              key={`a_${eSpotDesc.contentId}}`}
               to={eSpotDesc.contentUrl}
               onClick={(event) =>
                 performClick(event, { eSpotRoot, eSpotDesc })
               }>
-              {node.children.map((n, i) => (
-                <React.Fragment key={`${eSpotDesc.contentId}_${i}`}>
-                  {convertNodeToElement(n, i, () => {
-                    return;
-                  })}
-                </React.Fragment>
-              ))}
+              {node.children && domToReact(node.children)}
             </Link>
           );
+        } else {
+          return;
         }
       };
 
@@ -160,8 +171,8 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
         const marketingText = desc[0].marketingText.trim();
 
         //each template text suppose to only have one <a> tag
-        currentTemplate.template = ReactHtmlParser(marketingText, {
-          transform,
+        currentTemplate.template = HTMLReactParser(marketingText, {
+          replace,
         });
       } else {
         currentTemplate.template = (
@@ -221,16 +232,16 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
       }
     }
     //GA360
-    if (mySite.enableGA) GADataService.sendPromotionClick(eSpotRoot);
+    if (mySite.enableGA && allowGAEvent(eSpotRoot)) {
+      AsyncCall.sendPromotionClick(eSpotRoot, {
+        enableUA: mySite.enableUA,
+        enableGA4: mySite.enableGA4,
+      });
+    }
   };
 
   React.useEffect(() => {
-    if (
-      mySite !== null &&
-      mySite !== undefined &&
-      page !== undefined &&
-      page !== null
-    ) {
+    if (mySite && page) {
       let pageName = page.name;
       if (page.externalContext?.identifier) {
         pageName = page.externalContext.identifier;
@@ -240,7 +251,8 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
-  }, [page, mySite, wcToken]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, mySite]);
 
   return (
     <>
@@ -250,7 +262,7 @@ function ContentRecommendationLayout({ cid, eSpot, ...props }: any) {
             placeholder={
               <StyledProgressPlaceholder className="vertical-padding-20" />
             }>
-            {content.title && <h2>{ReactHtmlParser(content.title)}</h2>}
+            {content.title && <h2>{HTMLReactParser(content.title)}</h2>}
             {content.templates.map((t: any) => {
               return t.isDxContent ? (
                 <DXContentWrapper key={t.id} contentId={t.template} />

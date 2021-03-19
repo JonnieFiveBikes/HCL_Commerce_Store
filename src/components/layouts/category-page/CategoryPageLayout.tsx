@@ -15,7 +15,7 @@ import { useSite } from "../../../_foundation/hooks/useSite";
 //UI
 import { StyledGrid, StyledContainer } from "../../StyledUI";
 //GA360
-import GADataService from "../../../_foundation/gtm/gaData.service";
+import AsyncCall from "../../../_foundation/gtm/async.service";
 
 const CategoryPageLayout: React.FC<any> = ({
   cid,
@@ -71,8 +71,12 @@ const CategoryPageLayout: React.FC<any> = ({
   //GA360
   React.useEffect(() => {
     if (mySite.enableGA) {
-      GADataService.sendContentPageViewEvent(cid);
+      AsyncCall.sendContentPageViewEvent(cid, {
+        enableUA: mySite.enableUA,
+        enableGA4: mySite.enableGA4,
+      });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

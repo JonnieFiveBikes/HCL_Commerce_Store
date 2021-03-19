@@ -5,6 +5,7 @@
     "GenericTitle": "Błąd ogólny",
     "TimeoutMsg": "Sesja wygasła i użytkownik został wylogowany. Zaloguj się ponownie, aby uzyskać dostęp do sklepu.",
     "InvalidMsg": "Twój identyfikator logowania mógł zostać użyty w innym miejscu. Zaloguj się ponownie, aby uzyskać dostęp do sklepu.",
+    "InvalidMsgB2C": "Twój adres e-mail mógł zostać użyty w innym miejscu. Zaloguj się ponownie, aby uzyskać dostęp do sklepu.",
     "Email": "Adres e-mail",
     "Password": "Hasło",
     "SubmitButton": "Zaloguj się",

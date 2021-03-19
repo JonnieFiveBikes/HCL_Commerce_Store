@@ -3,7 +3,7 @@
     "buyerManagement": "買方管理",
     "orgAndBuyer": "買方與訂單核准",
     "orgManagement": "組織管理",
-    "buyerManagementDesc": "建立編輯或移除組織中的買方",
+    "buyerManagementDesc": "建立、編輯或移除組織之下的買方",
     "orgAndBuyerDesc": "核准或拒絕買方登錄和訂單",
     "orgManagementDesc": "新增和檢視您的組織",
     "adminTools": "管理工具"

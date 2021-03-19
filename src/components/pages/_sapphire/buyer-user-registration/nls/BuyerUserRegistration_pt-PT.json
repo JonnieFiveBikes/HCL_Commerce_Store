@@ -1,6 +1,6 @@
 {
   "BuyerUserRegistration": {
-    "Title": "Registar-se como comprador na sua organização",
+    "Title": "Registo de comprador",
     "Description": "Se a sua organização já tiver uma conta nesta loja, registe-se para que possa fazer compras com a conta e efetuar pedidos. Quando o seu registo for aprovado, poderá iniciar sessão na loja e fazer compras.",
     "OrgName": "Organização",
     "Email": "E-mail",
@@ -18,7 +18,12 @@
     "Password2": "Verificar palavra-passe",
     "Language": "Idioma preferido",
     "Currency": "Moeda preferida",
-    "Submit": "Submeter",
+    "AddressDetails": "Detalhes do endereço",
+    "AccountPreferences": "Preferências de conta",
+    "HaveAccount": "Já tem uma conta?",
+    "AddressLineAdd": "Adicionar linha de endereço 2",
+    "SignIn": "Iniciar sessão",
+    "Submit": "Concluir registo",
     "Clear": "Limpar",
     "Success": "O seu pedido de ativação de conta foi recebido. Ative a conta para iniciar sessão.",
     "OK": "OK",

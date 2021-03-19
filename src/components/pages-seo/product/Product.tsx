@@ -164,6 +164,7 @@ const Product: React.FC = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite, contract]);
   return (
     <ProductPageLayout

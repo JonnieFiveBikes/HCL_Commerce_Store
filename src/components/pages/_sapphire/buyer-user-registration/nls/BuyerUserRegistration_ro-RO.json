@@ -1,6 +1,6 @@
 {
   "BuyerUserRegistration": {
-    "Title": "Înregistrați-vă ca un cumpărător în organizația dvs.",
+    "Title": "Înregistrare cumpărător",
     "Description": "Dacă organizația dvs. are deja un cont la acest magazin, înregistrați-vă singur pentru a putea cumpăra din cont și plasa comenzi. Atunci când înregistrarea se aprobă, vă puteți autentifica în magazin și puteți cumpăra.",
     "OrgName": "Organizație",
     "Email": "E-mail",
@@ -18,7 +18,12 @@
     "Password2": "Verificare parolă",
     "Language": "Limbă preferată",
     "Currency": "Valută preferată",
-    "Submit": "Trimitere",
+    "AddressDetails": "Detalii adresă",
+    "AccountPreferences": "Preferințe cont",
+    "HaveAccount": "Aveți deja un cont?",
+    "AddressLineAdd": "Adăugare Adresă - Linia 2",
+    "SignIn": "Autentificare",
+    "Submit": "Finalizare înregistrare",
     "Clear": "Golire",
     "Success": "Solicitarea de activare a contului dvs. a fost primită. Activați-vă contul pentru conectare.",
     "OK": "OK",

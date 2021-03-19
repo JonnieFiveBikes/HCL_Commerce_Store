@@ -1,6 +1,6 @@
 {
   "BuyerUserRegistration": {
-    "Title": "Registra come acquirente nell'organizzazione",
+    "Title": "Registrazione acquirente",
     "Description": "Se l'organizzazione dispone già di un presso questo negozio, effettuare la registrazione in modo da poter effettuare acquisti con tale account ed emettere ordini. Quando la registrazione è approvata, è possibile effettuare l'accesso al negozio e fare acquisti.",
     "OrgName": "Organizzazione",
     "Email": "E-mail",
@@ -18,7 +18,12 @@
     "Password2": "Verifica password",
     "Language": "Lingua preferita",
     "Currency": "Valuta preferita",
-    "Submit": "Invia",
+    "AddressDetails": "Dettagli indirizzo",
+    "AccountPreferences": "Preferenze dell'account",
+    "HaveAccount": "Hai già un account?",
+    "AddressLineAdd": "Aggiungi riga 2 indirizzo",
+    "SignIn": "Accedi",
+    "Submit": "Completa registrazione",
     "Clear": "Cancella",
     "Success": "La richiesta di attivazione dell'account è stata ricevuta. Per effettuare l'accesso, attivare l'account.",
     "OK": "OK",

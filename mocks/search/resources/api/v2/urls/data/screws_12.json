@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "screws",
+      "tokenName": "CategoryToken",
+      "tokenExternalValue": "Screws",
+      "language": "en_US",
+      "id": 12056,
+      "page": {
+        "imageAlternateDescription": "Image for Screws from Sapphire",
+        "name": "CATEGORY_PAGE",
+        "title": "Screws | Sapphire",
+        "type": "ProductListPage",
+        "metaDescription": "Top-quality screws to suit all your fastening needs",
+        "metaKeyword": "screws"
+      },
+      "storeId": "12",
+      "tokenValue": "16",
+      "status": 1
+    }
+  ]
+}

@@ -20,7 +20,7 @@
     "Status_W": "擱置中的核准",
     "Status_V": "部分已出貨",
     "Status_X": "訂單已取消",
-    "NotAvailable": "無法提供資訊",
+    "NotAvailable": "不適用",
     "OrderId": "訂單 ID",
     "PONumber": "採購單號碼",
     "OrderDate": "訂購日期",
@@ -60,6 +60,7 @@
     "OrderDetails": "訂單詳細資料",
     "OrderNumber": "訂單號碼",
     "HistorySearchPlaceHolder": "依訂單 ID 搜尋",
-    "HistoryViewDetailTooltip": "檢視訂單詳細資料"
+    "HistoryViewDetailTooltip": "檢視訂單詳細資料",
+    "Pending": "擱置中"
   }
 }

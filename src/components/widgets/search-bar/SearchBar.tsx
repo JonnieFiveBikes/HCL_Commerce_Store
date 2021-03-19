@@ -43,7 +43,6 @@ import { InputAdornment, ClickAwayListener } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import SearchIcon from "@material-ui/icons/Search";
 
-
 const SearchBar: React.FC<SearchBarProps> = ({
   showSearchBar,
   openSearchBar,
@@ -155,15 +154,17 @@ const SearchBar: React.FC<SearchBarProps> = ({
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite]);
 
   useEffect(() => {
     const queryString = location.search;
     const params = new URLSearchParams(queryString);
     const searchTermValue = params.get(SEARCHTERM);
-    if (searchTermValue == null) {
+    if (searchTermValue === null) {
       setInput("");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   const generateCategoriesList = (categoriesResponse: any[]) => {
@@ -419,7 +420,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   return (
     <ClickAwayListener onClickAway={clickAway}>
       <StyledSearchBar>
-        <form onSubmit={submitSearch}>
+        <form onSubmit={submitSearch} noValidate>
           <StyledTextField
             margin="normal"
             size="small"

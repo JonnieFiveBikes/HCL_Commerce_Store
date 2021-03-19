@@ -5,6 +5,7 @@
     "GenericTitle": "Generic Error",
     "TimeoutMsg": "Your session has timed out and you have been successfully logged off. Sign in again to access your store.",
     "InvalidMsg": "Your logon ID may have been used in another location. Sign in again to access your store.",
+    "InvalidMsgB2C": "Your email address may have been used in another location. Sign in again to access your store.",
     "Email": "Email",
     "Password": "Password",
     "SubmitButton": "Sign In",

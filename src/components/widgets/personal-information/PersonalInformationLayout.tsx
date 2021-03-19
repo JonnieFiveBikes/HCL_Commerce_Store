@@ -23,6 +23,7 @@ import { ChangePassword } from "../../widgets/change-password";
 //Redux
 import * as userAction from "../../../redux/actions/user";
 import { addressDetailsSelector } from "../../../redux/selectors/account";
+import { forUserIdSelector } from "../../../redux/selectors/user";
 import { GET_ADDRESS_DETAIL_ACTION } from "../../../redux/actions/account";
 //UI
 import {
@@ -36,6 +37,7 @@ import {
 function PersonalInformationLayout() {
   const widgetName = getDisplayName(PersonalInformationLayout);
   const addressDetails = useSelector(addressDetailsSelector);
+  const forUserId = useSelector(forUserIdSelector);
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const AccountInformation = t("PersonalInformation.AccountInformation");
@@ -72,6 +74,7 @@ function PersonalInformationLayout() {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite]);
 
   return (
@@ -87,13 +90,15 @@ function PersonalInformationLayout() {
           </StyledTypography>
         </StyledGrid>
         <StyledGrid item>
-          <StyledButton
-            size="small"
-            fullWidth
-            color="primary"
-            onClick={logOutUser}>
-            {SignOut}
-          </StyledButton>
+          {!forUserId && (
+            <StyledButton
+              size="small"
+              fullWidth
+              color="primary"
+              onClick={logOutUser}>
+              {SignOut}
+            </StyledButton>
+          )}
         </StyledGrid>
       </StyledGrid>
       <Divider />
@@ -102,7 +107,10 @@ function PersonalInformationLayout() {
           <StyledTypography variant="overline">
             {AccountInformation}
           </StyledTypography>
-          <StyledTypography variant="body1" className="bottom-margin-1">
+          <StyledTypography
+            variant="body1"
+            className="bottom-margin-1"
+            component="div">
             {[
               addressDetails?.email1,
               addressDetails?.phone1,
@@ -110,7 +118,7 @@ function PersonalInformationLayout() {
             ].map(
               (item: string, index: number) =>
                 item && (
-                  <StyledTypography variant="body1" component="div" key={index}>
+                  <StyledTypography variant="body1" component="div" key={item}>
                     {item}
                   </StyledTypography>
                 )

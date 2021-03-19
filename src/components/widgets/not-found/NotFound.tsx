@@ -11,7 +11,7 @@
 //Standard libraries
 import React from "react";
 import { useTranslation } from "react-i18next";
-import ReactHtmlParser from "react-html-parser";
+import HTMLReactParser from "html-react-parser";
 //Custom libraries
 import { ProductRecommendationLayout } from "../product-recommendation";
 //UI
@@ -23,7 +23,7 @@ const NotFound: React.FC = () => {
   return (
     <StyledContainer>
       <StyledTypography variant="subtitle2">
-        {ReactHtmlParser(errorMessage)}
+        {HTMLReactParser(errorMessage)}
       </StyledTypography>
       <ProductRecommendationLayout
         cid={`notfound-produtRec`}

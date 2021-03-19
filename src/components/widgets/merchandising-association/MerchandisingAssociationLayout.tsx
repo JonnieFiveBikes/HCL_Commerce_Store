@@ -70,6 +70,7 @@ function MerchandisingAssociationLayout({ pdpData, ...props }: any) {
 
   React.useEffect(() => {
     getMerchandisingAssociationDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return productList && productList.length > 0 ? (

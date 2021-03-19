@@ -12,7 +12,7 @@
     "Images": "Imágenes",
     "Videos": "Vídeos",
     "Documents": "Documentos",
-    "PricePending": "Pendiente de precio",
+    "PricePending": "Precio pendiente",
     "addToCartErrorMsg": "Los campos de Cantidades tienen valores no válidos o están vacíos. Asegúrese de que los valores sean números enteros positivos y vuelva a intentarlo.",
     "any": "Cualquiera",
     "showAttributes": "Mostrar atributos",

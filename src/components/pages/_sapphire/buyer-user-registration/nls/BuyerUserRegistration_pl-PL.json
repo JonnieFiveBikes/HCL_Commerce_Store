@@ -1,6 +1,6 @@
 {
   "BuyerUserRegistration": {
-    "Title": "Zarejestruj się jako kupujący w swojej organizacji",
+    "Title": "Rejestracja nabywcy",
     "Description": "Jeśli Twoja organizacja ma już konto w tym sklepie, zarejestruj się, aby mieć możliwość robienia zakupów w ramach konta i składania zamówień. Po zatwierdzeniu rejestracji możesz się zalogować i rozpocząć zakupy.",
     "OrgName": "Organizacja",
     "Email": "Adres e-mail",
@@ -18,7 +18,12 @@
     "Password2": "Potwierdź hasło",
     "Language": "Preferowany język",
     "Currency": "Preferowana waluta",
-    "Submit": "Wyślij",
+    "AddressDetails": "Dane adresowe",
+    "AccountPreferences": "Preferencje konta",
+    "HaveAccount": "Masz już konto?",
+    "AddressLineAdd": "Dodaj 2. wiersz adresu",
+    "SignIn": "Zaloguj się",
+    "Submit": "Zakończ rejestrowanie",
     "Clear": "Wyczyść",
     "Success": "Otrzymano żądanie aktywacji Twojego konta. Aktywuj swoje konto, aby się zalogować.",
     "OK": "OK",

@@ -34,10 +34,10 @@
     "_ERR_AUTHENTICATION_ERROR_2000": "Digite um ID de logon no campo de ID de Logon.",
     "_ERR_AUTHENTICATION_ERROR_2010": "O ID de logon ou a senha inseridos estão incorretos. Insira as informações novamente.",
     "_ERR_AUTHENTICATION_ERROR_2020": "O ID de logon ou a senha inseridos estão incorretos. Insira as informações novamente.",
-    "_ERR_AUTHENTICATION_ERROR_2030": "O ID de logon ou a senha inseridos estão incorretos. Insira as informações novamente.",
+    "_ERR_AUTHENTICATION_ERROR_2030": "As credenciais de logon inseridas não são válidas. Verifique os dados e tente novamente.",
     "_ERR_PASSWORD_FAILED_CMN1019E": "O ID de logon ou a senha inseridos estão incorretos. Insira as informações novamente.",
     "_ERR_PERSON_ACCOUNT_DISABLED_2110": "Esta conta está bloqueada. Entre em contato com a loja para desbloquear sua conta.",
-    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Sua conta foi bloqueada devido a um excesso de tentativas de login com falha.  Redefina sua senha para continuar.",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Devido a {{0}} tentativas de logon com falha, não será possível entrar. Redefina sua senha ou entre em contato com o representante de atendimento ao cliente para obter ajuda.",
     "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "Aguarde alguns segundos antes de tentar entrar novamente.",
     "_2400": "Sua organização está bloqueada. Não é possível entrar no momento. ",
     "_2410": "Você não tem a autoridade necessária para entrar. Entre em contato com a loja para obter mais informações.",
@@ -90,9 +90,16 @@
     "_API_BAD_INV_2": "Não há estoque suficiente para comprar {{1}} unidades de {{0}}.",
     "_ERR_FINDING_ORDER_230": "Ocorreu um problema no sistema durante o processamento de seu pedido.",
     "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "Ocorreu um problema no sistema. Entre em contato com a loja para obter assistência.",
+    "_ERR_REMOTE_EXCEPTION_CMN0412E": "Ocorreu um problema de sistema ao processar sua solicitação. Entre em contato com a loja para obter assistência.",
+    "_ERR_REG_DUPE_ID_CMN0114S": "O ID de logon que você inseriu já existe. Digite outro ID de logon e tente novamente.",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "O e-mail inserido não é válido. Verifique as informações e tente novamente.",
+    "_ERR_CMD_INVALID_PARAM_2195": "O código de verificação inserido não é válido. Verifique as informações e tente novamente.",
     "B2B": {
-      "_ERR_LOGONID_ALREDY_EXIST_2030": "O ID de logon que você inseriu já existe. Digite outro ID de logon e tente novamente."
-    }
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "O ID de logon inserido não é válido. Verifique as informações e tente novamente.",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "O ID de logon que você inseriu já existe. Digite outro ID de logon e tente novamente.",
+      "_ERR_BAD_PARMS_2010": "O ID de logon inserido não é válido. Verifique as informações e tente novamente."
+    },
+    "_ERR_PASSWORD_EXPIRED_2170": "Sua senha atual expirou. Insira uma nova senha."
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "O item foi incluído no carrinho. ",
@@ -101,6 +108,8 @@
     "RecurringOrderCancelled": "O pedido foi cancelado com êxito.",
     "ADD_ADDRESS_SUCCESS": "Seu novo endereço \"{{0}}\" foi incluído com êxito",
     "EDIT_ADDRESS_SUCCESS": "Seu endereço \"{{0}}\" foi atualizado com êxito",
-    "DELETE_ADDRESS_SUCCESS": "Seu endereço \"{{0}}\" foi excluído com êxito"
+    "DELETE_ADDRESS_SUCCESS": "Seu endereço \"{{0}}\" foi excluído com êxito",
+    "RESEND_VERIFICATION_CODE": "O código de verificação foi enviado para seu endereço de e-mail com sucesso",
+    "PASSWORD_RESET_SUCCESS": "A senha foi redefinida com sucesso"
   }
 }

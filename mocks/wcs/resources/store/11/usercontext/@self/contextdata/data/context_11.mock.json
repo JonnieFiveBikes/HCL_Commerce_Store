@@ -1,0 +1,31 @@
+{
+  "globalization": {
+    "preferredCurrency": "USD",
+    "languageId": -1,
+    "currency": "USD",
+    "preferredLanguageId": -1
+  },
+  "catalog": {
+    "catalogId": 11501,
+    "masterCatalog": false
+  },
+  "bcsversion": {
+    "lastUpdateTime": null
+  },
+  "resourceName": "usercontext",
+  "entitlement": {
+    "eligibleTradingAgreementIds": [-11005],
+    "hostingContractId": -11004,
+    "currentTradingAgreementIds": [-11005],
+    "activeOrganizationId": -2000,
+    "sessionTradingAgreementIds": null
+  },
+  "isPartiallyAuthenticated": false,
+  "basicInfo": {
+    "runAsId": -1002,
+    "callerId": -1002,
+    "registerType": "G",
+    "storeId": 11,
+    "channelId": -4
+  }
+}

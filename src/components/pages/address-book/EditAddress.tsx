@@ -176,7 +176,7 @@ const EditAddress = (props) => {
           const successMessage = {
             key: EDIT_SUCCESS_MSG,
             messageParameters: {
-              ["0"]: updatedAddressData.nickName,
+              "0": updatedAddressData.nickName,
             },
           };
           dispatch(
@@ -191,7 +191,7 @@ const EditAddress = (props) => {
   };
 
   useEffect(() => {
-    if (mySite && addressDetails == null) {
+    if (mySite && addressDetails === null) {
       dispatch(GET_ADDRESS_DETAIL_ACTION(payload));
     }
     if (addressDetails !== null) {
@@ -200,6 +200,7 @@ const EditAddress = (props) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite, addressDetails]);
 
   return (

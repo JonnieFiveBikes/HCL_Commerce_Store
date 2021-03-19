@@ -56,7 +56,7 @@ const OrderShippingInfo: React.FC<OrderShippingInfoProps> = (props: any) => {
     }
     return groups;
   };
-  const shippingGroups = useMemo(formatShippingGroup, orderItems);
+  const shippingGroups = useMemo(formatShippingGroup, [orderItems]);
 
   return (
     <>

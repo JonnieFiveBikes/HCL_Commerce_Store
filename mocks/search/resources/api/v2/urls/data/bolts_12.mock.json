@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "bolts",
+      "tokenName": "CategoryToken",
+      "tokenExternalValue": "Bolts",
+      "language": "en_US",
+      "id": 12054,
+      "page": {
+        "imageAlternateDescription": "Image for Bolts from Sapphire",
+        "name": "CATEGORY_PAGE",
+        "title": "Bolts | Sapphire",
+        "type": "ProductListPage",
+        "metaDescription": "Bolts designed to hold fast over the long term",
+        "metaKeyword": "bolts"
+      },
+      "storeId": "12",
+      "tokenValue": "14",
+      "status": 1
+    }
+  ]
+}

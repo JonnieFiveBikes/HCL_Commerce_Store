@@ -30,15 +30,23 @@ import {
   StyledTypography,
   StyledFormControlLabel,
   StyledCheckbox,
+  StyledGrid,
+  StyledPaper,
 } from "../../StyledUI";
+import Divider from "@material-ui/core/Divider";
 //GA360
-import GADataService from "../../../_foundation/gtm/gaData.service";
+import AsyncCall from "../../../_foundation/gtm/async.service";
 
 interface RegistrationContext {
   cid: string;
+  showSignInPage: any;
 }
 
-function RegistrationLayout({ cid, ...props }: RegistrationContext) {
+function RegistrationLayout({
+  cid,
+  showSignInPage,
+  ...props
+}: RegistrationContext) {
   const widgetName = getDisplayName(RegistrationLayout);
   const dispatch = useDispatch();
   const registrationStatus = useSelector(registrationStatusSelector);
@@ -55,6 +63,27 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
   const [phone, setPhone] = useState<string>("");
   const [receiveEmail, setReceiveEmail] = useState<boolean>(true);
 
+  /**
+   * Form validation function
+   * Return true when all mandatory field has been entered and are valid
+   * else false
+   */
+  const canCreate = (): boolean => {
+    if (
+      email.trim() !== "" &&
+      firstName.trim() !== "" &&
+      lastName.trim() !== "" &&
+      password1.trim() !== "" &&
+      password2.trim() !== ""
+    ) {
+      return (
+        addressUtil.validateEmail(email) &&
+        addressUtil.validatePhoneNumber(phone)
+      );
+    }
+    return false;
+  };
+
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
@@ -70,8 +99,8 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
     dispatch(
       userAction.registrationAction({
         body: {
-          firstName: firstName,
-          lastName: lastName,
+          firstName: firstName.trim(),
+          lastName: lastName.trim(),
           logonId: email,
           logonPassword: password1,
           logonPasswordVerify: password2,
@@ -83,6 +112,12 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
           catalogId,
           preferredLanguage,
           receiveEmail: receiveEmail,
+          receiveEmailPreference: [
+            {
+              value: receiveEmail,
+              storeID: storeId,
+            },
+          ],
           challengeQuestion: "-",
           challengeAnswer: "-",
         },
@@ -90,7 +125,6 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
       })
     );
   };
-
   useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
@@ -99,18 +133,24 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
 
   if (registrationStatus) {
     //GA360
-    if (mySite.enableGA) GADataService.sendFormCompletionEvent("Register");
+    if (mySite.enableGA) {
+      AsyncCall.sendFormCompletionEvent("Register", {
+        enableUA: mySite.enableUA,
+        enableGA4: mySite.enableGA4,
+      });
+    }
     return <Redirect to={HOME} />;
   } else {
     return (
-      <div>
+      <StyledPaper className="top-margin-5 horizontal-padding-2 vertical-padding-3">
         <StyledTypography
           component="h1"
           variant="h4"
           className="bottom-margin-1">
-          {t("RegistrationLayout.NewCustomer")}
+          {t("RegistrationLayout.Register")}
         </StyledTypography>
         <form
+          noValidate
           name="registrationForm"
           id={`registration_form_5_${cid}`}
           onSubmit={handleSubmit}>
@@ -120,10 +160,12 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
             fullWidth
             label={t("RegistrationLayout.Email")}
             name="email"
+            autoComplete="email"
+            autoFocus
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             inputProps={{
-              maxLength: 35,
+              maxLength: 100,
               type: "email",
               placeholder: "name@domain.com",
             }}
@@ -134,35 +176,44 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
                 : ""
             }
           />
-          <StyledTextField
-            margin="normal"
-            fullWidth
-            required
-            label={t("RegistrationLayout.FirstName")}
-            name="firstName"
-            onChange={(e) => setFirstName(e.target.value)}
-            value={firstName}
-            inputProps={{
-              maxLength: 40,
-            }}
-          />
-          <StyledTextField
-            margin="normal"
-            required
-            fullWidth
-            label={t("RegistrationLayout.LastName")}
-            name="lastName"
-            onChange={(e) => setLastName(e.target.value)}
-            value={lastName}
-            inputProps={{
-              maxLength: 40,
-            }}
-          />
-          <StyledTextField
+
+          <StyledGrid container item spacing={1}>
+            <StyledGrid item xs={12} sm={6}>
+              <StyledTextField
+                margin="normal"
+                required
+                fullWidth
+                label={t("RegistrationLayout.FirstName")}
+                name="firstName"
+                onChange={(e) => setFirstName(e.target.value)}
+                value={firstName}
+                inputProps={{
+                  maxLength: 40,
+                }}
+              />
+            </StyledGrid>
+            <StyledGrid item xs={12} sm={6}>
+              <StyledTextField
+                margin="normal"
+                required
+                fullWidth
+                label={t("RegistrationLayout.LastName")}
+                name="lastName"
+                onChange={(e) => setLastName(e.target.value)}
+                value={lastName}
+                inputProps={{
+                  maxLength: 40,
+                }}
+              />
+            </StyledGrid>
+          </StyledGrid>
+
+          {/* <StyledTextField
             margin="normal"
             fullWidth
             label={t("RegistrationLayout.Phone")}
             name="phone"
+            autoComplete="phone"
             onChange={(e) => setPhone(e.target.value)}
             value={phone}
             inputProps={{
@@ -175,51 +226,76 @@ function RegistrationLayout({ cid, ...props }: RegistrationContext) {
                 ? t("RegistrationLayout.Msgs.InvalidFormat")
                 : ""
             }
-          />
-          <StyledTextField
-            margin="normal"
-            required
-            fullWidth
-            label={t("RegistrationLayout.Password")}
-            name="password1"
-            onChange={(e) => setPassword1(e.target.value)}
-            value={password1}
-            inputProps={{
-              maxLength: 50,
-              type: "password",
-            }}
-          />
-          <StyledTextField
-            margin="normal"
-            required
-            fullWidth
-            label={t("RegistrationLayout.VerifyPassword")}
-            name="password2"
-            onChange={(e) => setPassword2(e.target.value)}
-            value={password2}
-            inputProps={{
-              maxLength: 50,
-              type: "password",
-            }}
-          />
+          /> */}
+          <StyledGrid container item spacing={1}>
+            <StyledGrid item xs={12} sm={6}>
+              <StyledTextField
+                margin="normal"
+                required
+                fullWidth
+                label={t("RegistrationLayout.Password")}
+                name="password1"
+                autoComplete="new-password"
+                onChange={(e) => setPassword1(e.target.value)}
+                value={password1}
+                inputProps={{
+                  maxLength: 50,
+                  type: "password",
+                }}
+              />
+            </StyledGrid>
+            <StyledGrid item xs={12} sm={6}>
+              <StyledTextField
+                margin="normal"
+                required
+                fullWidth
+                label={t("RegistrationLayout.VerifyPassword")}
+                name="password2"
+                autoComplete="new-password"
+                onChange={(e) => setPassword2(e.target.value)}
+                value={password2}
+                inputProps={{
+                  maxLength: 50,
+                  type: "password",
+                }}
+              />
+            </StyledGrid>
+          </StyledGrid>
           <div>
             <StyledFormControlLabel
               control={
                 <StyledCheckbox
                   value="receiveEmail"
                   color="primary"
-                  defaultChecked
                   onChange={(e) => setReceiveEmail(e.target.checked)}
                 />
               }
               label={t("RegistrationLayout.TextContent")}
             />
           </div>
-          <StyledButton type="submit" color="primary">
-            {t("RegistrationLayout.Register")}
-          </StyledButton>
+          <div className="text-align-center">
+            <StyledButton
+              type="submit"
+              color="primary"
+              disabled={!canCreate()}
+              className="login-process-button top-margin-1">
+              {t("RegistrationLayout.RegisterComplete")}
+            </StyledButton>
+
+            <Divider className="top-margin-3" />
+            <p className="makeStyles-TextCenter-16 text-align-center">
+              {t("RegistrationLayout.Account")}
+            </p>
+
+            <StyledButton
+              color="secondary"
+              onClick={() => showSignInPage(true)}
+              className="login-process-button">
+              {t("RegistrationLayout.SignIn")}
+            </StyledButton>
+          </div>
         </form>
-      </div>
+      </StyledPaper>
     );
   }
 }

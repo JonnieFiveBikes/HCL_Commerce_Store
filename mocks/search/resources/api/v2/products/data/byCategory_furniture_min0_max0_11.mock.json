@@ -1,0 +1,25 @@
+{
+  "metaData": {
+    "price": "1"
+  },
+  "breadCrumbTrailEntryView": [
+    {
+      "label": "Living Room",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "10501",
+      "seo": {
+        "href": "/living-room"
+      }
+    },
+    {
+      "label": "Furniture",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "10502",
+      "seo": {
+        "href": "/furniture"
+      }
+    }
+  ],
+  "facets": [],
+  "total": 0
+}

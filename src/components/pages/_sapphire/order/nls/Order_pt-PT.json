@@ -1,6 +1,6 @@
 {
   "Order": {
-    "noPO": "NENHUM",
+    "noPO": "Nenhum",
     "Status_A": "A autorização de pagamento requer uma anállise",
     "Status_B": "Pedido novamente",
     "Status_C": "Pagamento aprovado",
@@ -20,7 +20,7 @@
     "Status_W": "Aprovação pendente",
     "Status_V": "Enviado parcialmente",
     "Status_X": "Pedido cancelado",
-    "NotAvailable": "Informações não disponíveis",
+    "NotAvailable": "N/D",
     "OrderId": "ID do pedido",
     "PONumber": "Número da PO",
     "OrderDate": "Data do pedido",
@@ -60,6 +60,7 @@
     "OrderDetails": "Detalhes do pedido",
     "OrderNumber": "Número do pedido",
     "HistorySearchPlaceHolder": "Procurar por ID do pedido",
-    "HistoryViewDetailTooltip": "Ver dados do pedido"
+    "HistoryViewDetailTooltip": "Ver dados do pedido",
+    "Pending": "Pendente"
   }
 }

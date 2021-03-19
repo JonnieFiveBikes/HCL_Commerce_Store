@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 //Custom libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import MessageSnackbar from "./MesssageSnackbar";
+import { useCSRForUser } from "../../../_foundation/hooks/useCSRForUser";
 //Redux
 import { RESET_ERROR_ACTION } from "../../../redux/actions/error";
 import { genericErrorSelector } from "../../../redux/selectors/error";
@@ -31,6 +32,7 @@ const useErrorMessageSnackbar = () => {
   const { t, i18n } = useTranslation();
   const { mySite } = useSite();
   const error: any = useSelector(genericErrorSelector);
+  const { handleLockOrderError, isOrderLockError } = useCSRForUser();
 
   let errorKeys: string[] = [];
   let errorKey = error.errorKey || "";
@@ -38,7 +40,7 @@ const useErrorMessageSnackbar = () => {
   let errorParameters = error.errorParameters;
   let errorParameterKey: string | undefined = undefined;
 
-  if (typeof errorParameters == "string") {
+  if (typeof errorParameters === "string") {
     errorParameters = errorParameters.split(",");
   }
   if (!errorParameters) {
@@ -80,25 +82,45 @@ const useErrorMessageSnackbar = () => {
   if (errorKeys.length > 0) {
     errorMessage = t(errorKeys, { ...errorParameters });
   }
+
   const handleClose = () => {
     dispatch(RESET_ERROR_ACTION());
   };
 
-  return { anchorOrigin, handleClose, errorMessage };
+  return {
+    anchorOrigin,
+    handleClose,
+    errorMessage,
+    error,
+    isOrderLockError,
+    handleLockOrderError,
+  };
 };
 
 const ErrorMessageSnackbar = () => {
-  const { anchorOrigin, handleClose, errorMessage } = useErrorMessageSnackbar();
+  const {
+    anchorOrigin,
+    handleClose,
+    errorMessage,
+    error,
+    isOrderLockError,
+    handleLockOrderError,
+  } = useErrorMessageSnackbar();
+  if (isOrderLockError(error)) {
+    handleLockOrderError(error);
+  }
   return (
     <>
-      <MessageSnackbar
-        handleClose={handleClose}
-        anchorOrigin={anchorOrigin}
-        severity="error"
-        message={errorMessage}
-        ClickAwayListenerProps={{
-          mouseEvent: "onMouseDown",
-        }}></MessageSnackbar>
+      {!isOrderLockError(error) && (
+        <MessageSnackbar
+          handleClose={handleClose}
+          anchorOrigin={anchorOrigin}
+          severity="error"
+          message={errorMessage}
+          ClickAwayListenerProps={{
+            mouseEvent: "onMouseDown",
+          }}></MessageSnackbar>
+      )}
     </>
   );
 };

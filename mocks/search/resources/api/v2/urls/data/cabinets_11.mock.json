@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "cabinets",
+      "tokenName": "CategoryToken",
+      "tokenExternalValue": "Cabinets",
+      "language": "en_US",
+      "id": 56826,
+      "page": {
+        "imageAlternateDescription": "Image for Cabinets from Emerald",
+        "name": "CATEGORY_PAGE",
+        "title": "Cabinets | Emerald",
+        "type": "ProductListPage",
+        "metaDescription": "Versatile cabinetry and shelving give your kitchen storage space in style",
+        "metaKeyword": "wood, maple, sleek, elegant, sturdy, spacious"
+      },
+      "storeId": "11",
+      "tokenValue": "10517",
+      "status": 1
+    }
+  ]
+}

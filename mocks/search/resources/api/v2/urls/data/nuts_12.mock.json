@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "nuts",
+      "tokenName": "CategoryToken",
+      "tokenExternalValue": "Nuts",
+      "language": "en_US",
+      "id": 12055,
+      "page": {
+        "imageAlternateDescription": "Image for Nuts from Sapphire",
+        "name": "CATEGORY_PAGE",
+        "title": "Nuts | Sapphire",
+        "type": "ProductListPage",
+        "metaDescription": "High-strength nuts in various finishes",
+        "metaKeyword": "nuts"
+      },
+      "storeId": "12",
+      "tokenValue": "15",
+      "status": 1
+    }
+  ]
+}

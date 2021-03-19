@@ -39,7 +39,7 @@ function OrderDetailsPage(props: any) {
   const { location } = props;
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
-  const { orderId } = useParams();
+  const { orderId } = useParams<any>();
   const recurringOrder = location.state?.recurringOrder;
   const [showHistoryLink, setShowHistoryLink] = useState<boolean>(
     !!recurringOrder
@@ -82,6 +82,7 @@ function OrderDetailsPage(props: any) {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderId, mySite, defaultCurrencyID]);
 
   const loading = orderId && orderDetails === undefined;

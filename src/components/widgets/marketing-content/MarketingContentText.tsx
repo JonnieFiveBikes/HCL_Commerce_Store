@@ -10,10 +10,10 @@
  *==================================================
  */
 import React from "react";
-import ReactHtmlParser from "react-html-parser";
+import HTMLReactParser from "html-react-parser";
 
 const MarketingContentText = ({ content }) => {
-  return <div>{ReactHtmlParser(content)}</div>;
+  return <div>{HTMLReactParser(content)}</div>;
 };
 
 export default MarketingContentText;

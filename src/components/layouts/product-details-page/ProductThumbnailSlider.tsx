@@ -18,7 +18,6 @@ import {
   Slide,
   ButtonBack,
   ButtonNext,
-  Dot,
   DotGroup,
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
@@ -27,6 +26,8 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ProductImage from "./ProductImage";
+//Custom libraries
+import commonUtil from "../../../_foundation/utils/commonUtil";
 
 const StyledCarouselProvider = styled(({ ...props }) => (
   <CarouselProvider {...props} />
@@ -153,7 +154,10 @@ const ProductThumbnailSlider = ({ slidesList, chooseImage, index }) => {
             <ProductImage
               isThumbnail={mobile ? false : true}
               isSelected={i === index ? true : false}
-              fullImage={e.thumbnailRaw}
+              fullImage={commonUtil.getThumbnailImagePath(
+                e.thumbnail,
+                e.fullImage
+              )}
               isAngleImage={false}
               alt={e.name}
             />

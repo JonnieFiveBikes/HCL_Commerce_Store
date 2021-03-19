@@ -1,9 +1,11 @@
 {
   "RegistrationB2BLayout": {
-    "Title": "Nouveau client ?",
+    "Title": "S'inscrire",
     "Actions": {
-      "BuyerReg": "Enregistrement d'acheteurs",
-      "OrgReg": "Enregistrement de l'organisation"
+      "BuyerReg": "Enregistrement d'un acheteur",
+      "OrgReg": "Enregistrer une organisation",
+      "AddBuyer": "Ajouter un acheteur à une organisation existante",
+      "AddOrg": "Ajouter une nouvelle organisation, et un compte administrateur"
     }
   }
 }

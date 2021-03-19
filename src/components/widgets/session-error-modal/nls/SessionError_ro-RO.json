@@ -5,6 +5,7 @@
     "GenericTitle": "Eroare generică",
     "TimeoutMsg": "Sesiunea dvs. a expirat și ați fost deconectat cu succes. Autentificați-vă din nou pentru a vă accesa magazinul.",
     "InvalidMsg": "ID-ul de conectare s-ar putea să fi fost folosit într-o altă locație. Autentificați-vă din nou pentru a vă accesa magazinul.",
+    "InvalidMsgB2C": "Este posibil ca adresa dvs. de e-mail să fi fost folosită într-o altă locație. Autentificați-vă din nou pentru a vă accesa magazinul.",
     "Email": "E-mail",
     "Password": "Parolă",
     "SubmitButton": "Autentificare",

@@ -9,7 +9,7 @@
     "Actions": {
       "showMore": "顯示較多",
       "showLess": "顯示較少",
-      "Go": "執行"
+      "Filter": "篩選"
     }
   }
 }

@@ -1,0 +1,51 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "defaultContentDisplaySequence": [
+        {
+          "resultId": "12505",
+          "resultFormat": "MarketingContent",
+          "displaySequence": "1.0"
+        }
+      ],
+      "marketingSpotIdentifier": "13005",
+      "behavior": "0",
+      "eSpotName": "Home Hero",
+      "baseMarketingSpotActivityData": [
+        {
+          "contentFormatName": "Text",
+          "baseMarketingSpotActivityName": "HomeHeroContent",
+          "contentClickAction": "Single",
+          "contentId": "12505",
+          "baseMarketingSpotActivityID": "12505",
+          "contentName": "HomeHeroContent",
+          "baseMarketingSpotDataType": "MarketingContent",
+          "contentUrl": "/living-room",
+          "activityIdentifierID": "0",
+          "MarketingContentDescription": [{}],
+          "marketingContentDescription": [
+            {
+              "marketingText": "<div class=\"marketing-fullscreen-banner marketing-content marketing-backgroundImage marketing-heroImage HomeHeroContent textShadow\"><div class=\"parallax__layer parallax__layer--back\"><img src=\"/EmeraldSAS/images/hero/hero-home_1024w.jpg\" srcset=\"/EmeraldSAS/images/hero/hero-home_1024w.jpg 1024w, /EmeraldSAS/images/hero/hero-home_2000w.jpg 2000w\" /></div><div class=\"MuiContainer-root MuiContainer-maxWidthLg parallax__layer parallax__layer--base\"><div class=\"MuiGrid-root MuiGrid-container marketing-content marketing-backgroundImage marketing-heroImage HomeHeroContent\"><div class=\"MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8 MuiGrid-grid-md-6 MuiGrid-grid-lg-5 marketing-text marketing-text-vertical-center\"><h2 class=\"MuiTypography-root MuiTypography-h2\">Explore Dozens of New Arrivals</h2><div class=\"vertical-margin-2\"><h5 class=\"MuiTypography-root MuiTypography-h5\">Freshen up your living space with all new furniture, lighting, and decor that fit any living room style.</h5></div><a href=\"/living-room\"><button class=\"marketing-button primary\" tabindex=\"0\" type=\"text\"><span class=\"MuiButton-label\">Shop Living Room</span><span class=\"MuiTouchRipple-root\"></span></button></a></div></div></div></div>",
+              "language": "-1"
+            }
+          ],
+          "contentFormatId": "2",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingKey": "mktActivityDescription"
+            },
+            {
+              "baseMarketingValue": "1.0",
+              "baseMarketingKey": "displaySequence"
+            }
+          ],
+          "contentStoreId": "12501"
+        }
+      ]
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/11/espot/Home%20Hero?catalogId=11501&name=Home+Hero&langId=-1",
+  "resourceName": "espot"
+}

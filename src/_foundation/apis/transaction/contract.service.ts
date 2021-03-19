@@ -100,8 +100,10 @@ const contractService = {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
       ) {
-        var parameter = parameters.$queryParameters[parameterName];
-        queryParameters.set(parameterName, parameter);
+        const parameter = parameters.$queryParameters[parameterName];
+        if (parameter !== null && parameter !== undefined) {
+          queryParameters.set(parameterName, parameter);
+        }
       });
     }
     if (!header.get("Content-Type")) {
@@ -272,8 +274,10 @@ const contractService = {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
       ) {
-        var parameter = parameters.$queryParameters[parameterName];
-        queryParameters.set(parameterName, parameter);
+        const parameter = parameters.$queryParameters[parameterName];
+        if (parameter !== null && parameter !== undefined) {
+          queryParameters.set(parameterName, parameter);
+        }
       });
     }
     if (!header.get("Content-Type")) {
@@ -360,13 +364,13 @@ const contractService = {
 
 
    ** `@property {string} paymentTCId (required)` Payment terms & conditions id. The payment Term & Condition identifier for this payment instruction.
-   ** `@property {integer} changeableFlag ` 
-   ** `@property {string} displayName ` 
-   ** `@property {integer} mandatoryFlag ` 
-   ** `@property {integer} memberId ` 
-   ** `@property {string} nickName ` 
-   ** `@property {integer} tcSequence ` 
-   ** `@property {integer} tradingId ` 
+   ** `@property {integer} changeableFlag `
+   ** `@property {string} displayName `
+   ** `@property {integer} mandatoryFlag `
+   ** `@property {integer} memberId `
+   ** `@property {string} nickName `
+   ** `@property {integer} tcSequence `
+   ** `@property {integer} tradingId `
   */
   byPaymentTermConditionId(
     parameters: any,
@@ -556,8 +560,10 @@ const contractService = {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
       ) {
-        var parameter = parameters.$queryParameters[parameterName];
-        queryParameters.set(parameterName, parameter);
+        const parameter = parameters.$queryParameters[parameterName];
+        if (parameter !== null && parameter !== undefined) {
+          queryParameters.set(parameterName, parameter);
+        }
       });
     }
     if (!header.get("Content-Type")) {
@@ -695,8 +701,10 @@ const contractService = {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
       ) {
-        var parameter = parameters.$queryParameters[parameterName];
-        queryParameters.set(parameterName, parameter);
+        const parameter = parameters.$queryParameters[parameterName];
+        if (parameter !== null && parameter !== undefined) {
+          queryParameters.set(parameterName, parameter);
+        }
       });
     }
     if (!header.get("Content-Type")) {

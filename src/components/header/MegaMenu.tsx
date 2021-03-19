@@ -44,7 +44,7 @@ const MegaMenu: React.FC<MegaMenuProps> = (props: any) => {
       {pages &&
         pages.map((page: any, index: number) => {
           return (
-            <StyledGrid item xs={12} sm={4} md={3} lg={2} key={index}>
+            <StyledGrid item xs={12} sm={4} md={3} lg={2} key={page.id}>
               <MegaMenuColumn
                 page={page}
                 activeMenuId={activeMenuId}

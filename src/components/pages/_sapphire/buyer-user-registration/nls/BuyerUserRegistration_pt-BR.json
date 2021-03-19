@@ -1,6 +1,6 @@
 {
   "BuyerUserRegistration": {
-    "Title": "Registre-se como comprador em sua organização",
+    "Title": "Registro do comprador",
     "Description": "Se sua organização já conta com esse armazenamento, registre-se para que possa comprar na conta e fazer pedidos. Quando seu registro for aprovado, você poderá entrar na loja e comprar.",
     "OrgName": "Organização",
     "Email": "E-mail",
@@ -18,7 +18,12 @@
     "Password2": "Confirmar senha",
     "Language": "Idioma de preferência",
     "Currency": "Moeda de preferência",
-    "Submit": "Enviar",
+    "AddressDetails": "Detalhes do endereço",
+    "AccountPreferences": "Preferências de conta",
+    "HaveAccount": "Já tem uma conta?",
+    "AddressLineAdd": "Incluir linha 2 do endereço",
+    "SignIn": "Entrar",
+    "Submit": "Concluir o registro",
     "Clear": "Limpar",
     "Success": "Sua solicitação de ativação de conta foi recebida. Ative sua conta para fazer logon.",
     "OK": "OK",

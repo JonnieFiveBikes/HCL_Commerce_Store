@@ -1,6 +1,6 @@
 {
   "BuyerUserRegistration": {
-    "Title": "Als Käufer in Ihrer Organisation registrieren",
+    "Title": "Käuferregistrierung",
     "Description": "Wenn Ihre Organisation bereits ein Konto bei diesem Geschäft hat, registrieren Sie sich selbst, damit Sie unter dem Konto einkaufen und Bestellungen aufgeben können. Wenn Ihre Registrierung genehmigt wurde, können Sie sich im Geschäft anmelden und einkaufen.",
     "OrgName": "Organisation",
     "Email": "E-Mail-Adresse",
@@ -18,7 +18,12 @@
     "Password2": "Kennwort bestätigen",
     "Language": "Bevorzugte Sprache",
     "Currency": "Bevorzugte Währung",
-    "Submit": "Senden",
+    "AddressDetails": "Addressendetails",
+    "AccountPreferences": "Kontoeinstellungen",
+    "HaveAccount": "Sie haben bereits ein Konto?",
+    "AddressLineAdd": "Adresszeile 2 hinzufügen",
+    "SignIn": "Anmelden",
+    "Submit": "Registrierung abschließen",
     "Clear": "Löschen",
     "Success": "Ihre Kontoaktivierungsanfrage wurde empfangen. Aktivieren Sie Ihr Konto, um sich anzumelden.",
     "OK": "OK",

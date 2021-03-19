@@ -1,0 +1,1781 @@
+{
+  "breadCrumbTrailEntryView": [
+    {
+      "label": "Living Room",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "10501",
+      "seo": {
+        "href": "/living-room"
+      }
+    },
+    {
+      "label": "Lighting",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "10503",
+      "seo": {
+        "href": "/lighting-livingroomlighting"
+      }
+    }
+  ],
+  "contents": [
+    {
+      "hasSingleSKU": false,
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10503",
+      "buyable": "true",
+      "shortDescription": "A versatile pendant light that creates a modern atmosphere in your living room.",
+      "seo": {
+        "href": "/modern-pendant-light-lr-litb-0001"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/lighting/light1_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/lighting/light1_a1_350.jpg",
+      "partNumber": "LR-LITB-0001",
+      "name": "Modern Pendant Light",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "140.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "135.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "grey",
+              "sequence": "3.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003003",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_grey.png",
+              "value": "Grey",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_grey.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ProductDimensions",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "9.0",
+              "identifier": "10x24x12",
+              "unitID": "INH",
+              "id": "7000000000000003086",
+              "value": "10\"x24\"x12\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Product Dimensions",
+          "facetable": "true",
+          "id": "7000000000000000510",
+          "comparable": "true",
+          "key": "7000000000000000510",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ItemWeight",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "6lbs",
+              "sequence": "10.0",
+              "unitID": "LBR",
+              "id": "7000000000000003106",
+              "value": "6 lbs"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Item Weight",
+          "facetable": "true",
+          "id": "7000000000000000511",
+          "comparable": "true",
+          "key": "7000000000000000511",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "metal_glass",
+              "sequence": "5.0",
+              "unitID": "Glass",
+              "id": "7000000000000003034",
+              "value": "Metal, Glass"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "NumberOfBulbs",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "1bulb",
+              "sequence": "1.0",
+              "id": "7000000000000003113",
+              "value": "1"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Number of Light Bulbs",
+          "facetable": "false",
+          "id": "7000000000000000513",
+          "comparable": "true",
+          "key": "7000000000000000513",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14181"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10503",
+      "buyable": "true",
+      "shortDescription": "A rustic pendant light fixture that adds a vintage feel to any living space.",
+      "seo": {
+        "href": "/weathered-pendant-light-lr-litb-0002"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/lighting/light2_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/lighting/light2_a1_350.jpg",
+      "partNumber": "LR-LITB-0002",
+      "name": "Weathered Pendant Light",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "180.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "160.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "gold",
+              "sequence": "10.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003012",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_gold.png",
+              "value": "Gold",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_gold.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ProductDimensions",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "9.0",
+              "identifier": "10x24x12",
+              "unitID": "INH",
+              "id": "7000000000000003086",
+              "value": "10\"x24\"x12\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Product Dimensions",
+          "facetable": "true",
+          "id": "7000000000000000510",
+          "comparable": "true",
+          "key": "7000000000000000510",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ItemWeight",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "6lbs",
+              "sequence": "10.0",
+              "unitID": "LBR",
+              "id": "7000000000000003106",
+              "value": "6 lbs"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Item Weight",
+          "facetable": "true",
+          "id": "7000000000000000511",
+          "comparable": "true",
+          "key": "7000000000000000511",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "metal_glass",
+              "sequence": "5.0",
+              "unitID": "Glass",
+              "id": "7000000000000003034",
+              "value": "Metal, Glass"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "NumberOfBulbs",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "1bulb",
+              "sequence": "1.0",
+              "id": "7000000000000003113",
+              "value": "1"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Number of Light Bulbs",
+          "facetable": "false",
+          "id": "7000000000000000513",
+          "comparable": "true",
+          "key": "7000000000000000513",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14183"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10503",
+      "buyable": "true",
+      "shortDescription": "A simple pendant light fixture that's easy to coordinate with any living room color scheme and decor.",
+      "seo": {
+        "href": "/solid-pendant-light-lr-litb-0003"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/lighting/light3_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/lighting/light3_a1_350.jpg",
+      "partNumber": "LR-LITB-0003",
+      "name": "Solid Pendant Light",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "155.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "145.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "crimson",
+              "sequence": "10.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003015",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_crimson.png",
+              "value": "Crimson",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_crimson.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ProductDimensions",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "9.0",
+              "identifier": "10x24x12",
+              "unitID": "INH",
+              "id": "7000000000000003086",
+              "value": "10\"x24\"x12\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Product Dimensions",
+          "facetable": "true",
+          "id": "7000000000000000510",
+          "comparable": "true",
+          "key": "7000000000000000510",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ItemWeight",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "6lbs",
+              "sequence": "10.0",
+              "unitID": "LBR",
+              "id": "7000000000000003106",
+              "value": "6 lbs"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Item Weight",
+          "facetable": "true",
+          "id": "7000000000000000511",
+          "comparable": "true",
+          "key": "7000000000000000511",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "metal_glass",
+              "sequence": "5.0",
+              "unitID": "Glass",
+              "id": "7000000000000003034",
+              "value": "Metal, Glass"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "NumberOfBulbs",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "1bulb",
+              "sequence": "1.0",
+              "id": "7000000000000003113",
+              "value": "1"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Number of Light Bulbs",
+          "facetable": "false",
+          "id": "7000000000000000513",
+          "comparable": "true",
+          "key": "7000000000000000513",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14185"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10503",
+      "buyable": "true",
+      "shortDescription": "A fixed-height pendant light that perfectly complements your modern living room space.",
+      "seo": {
+        "href": "/brushed-pendant-light-lr-litb-0004"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/lighting/light4_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/lighting/light4_a1_350.jpg",
+      "partNumber": "LR-LITB-0004",
+      "name": "Brushed Pendant Light",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "140.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "135.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "lightgrey",
+              "sequence": "6.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003006",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_lightgrey.png",
+              "value": "Light Grey",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_lightgrey.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ProductDimensions",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "9.0",
+              "identifier": "10x24x12",
+              "unitID": "INH",
+              "id": "7000000000000003086",
+              "value": "10\"x24\"x12\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Product Dimensions",
+          "facetable": "true",
+          "id": "7000000000000000510",
+          "comparable": "true",
+          "key": "7000000000000000510",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ItemWeight",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "6lbs",
+              "sequence": "10.0",
+              "unitID": "LBR",
+              "id": "7000000000000003106",
+              "value": "6 lbs"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Item Weight",
+          "facetable": "true",
+          "id": "7000000000000000511",
+          "comparable": "true",
+          "key": "7000000000000000511",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "metal_glass",
+              "sequence": "5.0",
+              "unitID": "Glass",
+              "id": "7000000000000003034",
+              "value": "Metal, Glass"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "NumberOfBulbs",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "1bulb",
+              "sequence": "1.0",
+              "id": "7000000000000003113",
+              "value": "1"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Number of Light Bulbs",
+          "facetable": "false",
+          "id": "7000000000000000513",
+          "comparable": "true",
+          "key": "7000000000000000513",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14187"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10503",
+      "buyable": "true",
+      "shortDescription": "A modern ceiling light fixture that helps project light directly underneath it, while creating accent lighting through its surrounds.",
+      "seo": {
+        "href": "/circular-chandelier-lr-litb-0005"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/lighting/light5_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/lighting/light5_a1_350.jpg",
+      "partNumber": "LR-LITB-0005",
+      "name": "Circular Chandelier",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "400.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "349.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "darkgrey",
+              "sequence": "10.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003010",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+              "value": "Dark Grey",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ProductDimensions",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "7.0",
+              "identifier": "16x28x14",
+              "unitID": "INH",
+              "id": "7000000000000003084",
+              "value": "16\"x28\"x14\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Product Dimensions",
+          "facetable": "true",
+          "id": "7000000000000000510",
+          "comparable": "true",
+          "key": "7000000000000000510",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ItemWeight",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "15lbs",
+              "sequence": "6.0",
+              "unitID": "LBR",
+              "id": "7000000000000003102",
+              "value": "15 lbs"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Item Weight",
+          "facetable": "true",
+          "id": "7000000000000000511",
+          "comparable": "true",
+          "key": "7000000000000000511",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "metal_glass_plastic",
+              "sequence": "5.0",
+              "unitID": "Plastic",
+              "id": "7000000000000003035",
+              "value": "Metal, Glass, Plastic"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "NumberOfBulbs",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "3bulbs",
+              "sequence": "2.0",
+              "id": "7000000000000003114",
+              "value": "3"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Number of Light Bulbs",
+          "facetable": "false",
+          "id": "7000000000000000513",
+          "comparable": "true",
+          "key": "7000000000000000513",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14189"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10503",
+      "buyable": "true",
+      "shortDescription": "A raindrop style chandelier that surrounds your room in full, elegant bright white light.",
+      "seo": {
+        "href": "/raindrop-chandelier-lr-litb-0006"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/lighting/light6_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/lighting/light6_a1_350.jpg",
+      "partNumber": "LR-LITB-0006",
+      "name": "Raindrop Chandelier",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "1800.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "1749.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "chrome",
+              "sequence": "1.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003001",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_whitegrey.png",
+              "value": "Chrome",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_whitegrey.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ProductDimensions",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "7.0",
+              "identifier": "16x28x14",
+              "unitID": "INH",
+              "id": "7000000000000003084",
+              "value": "16\"x28\"x14\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Product Dimensions",
+          "facetable": "true",
+          "id": "7000000000000000510",
+          "comparable": "true",
+          "key": "7000000000000000510",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ItemWeight",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "15lbs",
+              "sequence": "6.0",
+              "unitID": "LBR",
+              "id": "7000000000000003102",
+              "value": "15 lbs"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Item Weight",
+          "facetable": "true",
+          "id": "7000000000000000511",
+          "comparable": "true",
+          "key": "7000000000000000511",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "metal_glass",
+              "sequence": "5.0",
+              "unitID": "Glass",
+              "id": "7000000000000003034",
+              "value": "Metal, Glass"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "NumberOfBulbs",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "5bulbs",
+              "sequence": "3.0",
+              "id": "7000000000000003115",
+              "value": "5"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Number of Light Bulbs",
+          "facetable": "false",
+          "id": "7000000000000000513",
+          "comparable": "true",
+          "key": "7000000000000000513",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14191"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10503",
+      "buyable": "true",
+      "shortDescription": "A warm light fixture that creates an elegant atmosphere in contemporary living rooms.",
+      "seo": {
+        "href": "/rattan-ceiling-light-lr-litb-0007"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/lighting/light7_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/lighting/light7_a1_350.jpg",
+      "partNumber": "LR-LITB-0007",
+      "name": "Rattan Ceiling Light",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "800.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "749.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["brown", "grey", "darkgrey", "purple"],
+              "sequence": ["2.0", "3.0", "10.0", "10.0"],
+              "unitOfMeasure": ["one", "one", "one", "one"],
+              "unitID": ["C62", "C62", "C62", "C62"],
+              "id": [
+                "7000000000000003002",
+                "7000000000000003003",
+                "7000000000000003010",
+                "7000000000000003016"
+              ],
+              "image1": [
+                "/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+                "/EmeraldCAS/images/catalog/swatches/sw_grey.png",
+                "/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+                "/EmeraldCAS/images/catalog/swatches/sw_purple.png"
+              ],
+              "value": ["Brown", "Grey", "Dark Grey", "Purple"],
+              "image1path": [
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_grey.png",
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_purple.png"
+              ]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ProductDimensions",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "19.0",
+              "identifier": "12x12x12",
+              "unitID": "INH",
+              "id": "7000000000000003096",
+              "value": "12\"x12\"x12\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Product Dimensions",
+          "facetable": "true",
+          "id": "7000000000000000510",
+          "comparable": "true",
+          "key": "7000000000000000510",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ItemWeight",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "6lbs",
+              "sequence": "10.0",
+              "unitID": "LBR",
+              "id": "7000000000000003106",
+              "value": "6 lbs"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Item Weight",
+          "facetable": "true",
+          "id": "7000000000000000511",
+          "comparable": "true",
+          "key": "7000000000000000511",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "rattan_metal",
+              "sequence": "5.0",
+              "unitID": "Metal",
+              "id": "7000000000000003036",
+              "value": "Rattan, Metal"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "NumberOfBulbs",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "1bulb",
+              "sequence": "1.0",
+              "id": "7000000000000003113",
+              "value": "1"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Number of Light Bulbs",
+          "facetable": "false",
+          "id": "7000000000000000513",
+          "comparable": "true",
+          "key": "7000000000000000513",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14193"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10503",
+      "buyable": "true",
+      "shortDescription": "A modern and sleek lamp that brightens up and accents your home's living room.",
+      "seo": {
+        "href": "/nordic-lamp-lr-litb-0008"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/lighting/light8_a1_600.png",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/lighting/light8_a1_600.png",
+      "partNumber": "LR-LITB-0008",
+      "name": "Nordic Lamp",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "300.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "249.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "chrome",
+              "sequence": "1.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003001",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_whitegrey.png",
+              "value": "Chrome",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_whitegrey.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ProductDimensions",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "6.0",
+              "identifier": "28x13x13",
+              "unitID": "INH",
+              "id": "7000000000000003083",
+              "value": "28\"x13\"x23\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Product Dimensions",
+          "facetable": "true",
+          "id": "7000000000000000510",
+          "comparable": "true",
+          "key": "7000000000000000510",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ItemWeight",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "10lbs",
+              "sequence": "1.0",
+              "unitID": "LBR",
+              "id": "7000000000000003097",
+              "value": "10 lbs"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Item Weight",
+          "facetable": "true",
+          "id": "7000000000000000511",
+          "comparable": "true",
+          "key": "7000000000000000511",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "cotton-steel",
+              "sequence": "13.0",
+              "unitID": "Steel",
+              "id": "7000000000000003044",
+              "value": "Cotton, Steel"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Pattern",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "2.0",
+              "identifier": "Solid",
+              "unitID": "Solid",
+              "id": "7000000000000003109",
+              "value": "Solid"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Pattern",
+          "facetable": "true",
+          "id": "7000000000000000512",
+          "comparable": "true",
+          "key": "7000000000000000512",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "shade-diameter",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "1.0",
+              "identifier": "13",
+              "id": "7000000000000003118",
+              "value": "13"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Lamp Shade Diameter",
+          "facetable": "false",
+          "id": "7000000000000000520",
+          "comparable": "true",
+          "key": "7000000000000000520",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "bulb-type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "E26",
+              "sequence": "1.0",
+              "unitID": "E26",
+              "id": "7000000000000003119",
+              "value": "E26"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "6.0",
+          "storeDisplay": "false",
+          "name": "Light Bulb Type",
+          "facetable": "false",
+          "id": "7000000000000000521",
+          "comparable": "true",
+          "key": "7000000000000000521",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "maximun-bulb-waltage",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "60watts",
+              "sequence": "1.0",
+              "unitID": "watts",
+              "id": "7000000000000003120",
+              "value": "60 watts"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "7.0",
+          "storeDisplay": "false",
+          "name": "Maximum Light Bulb Wattage",
+          "facetable": "false",
+          "id": "7000000000000000522",
+          "comparable": "true",
+          "key": "7000000000000000522",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14198"
+    }
+  ],
+  "facets": [
+    {
+      "entry": [
+        {
+          "count": 5,
+          "label": "({* TO 349])",
+          "value": "price_usd%3A%28%7B*+TO+349%5D%29",
+          "extendedData": {
+            "uniqueId": "1121141059910195117115100584012342328479325152579341"
+          }
+        },
+        {
+          "count": 1,
+          "label": "({349 TO 698])",
+          "value": "price_usd%3A%28%7B349+TO+698%5D%29",
+          "extendedData": {
+            "uniqueId": "11211410599101951171151005840123515257328479325457569341"
+          }
+        },
+        {
+          "count": 1,
+          "label": "({698 TO 1047])",
+          "value": "price_usd%3A%28%7B698+TO+1047%5D%29",
+          "extendedData": {
+            "uniqueId": "1121141059910195117115100584012354575632847932494852559341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({1047 TO 1396])",
+          "value": "price_usd%3A%28%7B1047+TO+1396%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401234948525532847932495157549341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({1396 TO 1745])",
+          "value": "price_usd%3A%28%7B1396+TO+1745%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401234951575432847932495552539341"
+          }
+        }
+      ],
+      "value": "price_usd",
+      "name": "OfferPrice_usd"
+    },
+    {
+      "value": "manufacturer.raw",
+      "name": "Brand",
+      "entry": [
+        {
+          "label": "Bender Home Fashions",
+          "value": "manufacturer.raw%3A%22Bender+Home+Fashions%22",
+          "count": "1",
+          "extendedData": {
+            "uniqueId": "661011101001011143272111109101327097115104105111110115"
+          }
+        },
+        {
+          "label": "Kerry's Glass",
+          "value": "manufacturer.raw%3A%22Kerry%27s+Glass%22",
+          "count": "3",
+          "extendedData": {
+            "uniqueId": "7510111411412139115327110897115115"
+          }
+        },
+        {
+          "label": "Stockholm",
+          "value": "manufacturer.raw%3A%22Stockholm%22",
+          "count": "3",
+          "extendedData": {
+            "uniqueId": "8311611199107104111108109"
+          }
+        },
+        {
+          "label": "Style Home",
+          "value": "manufacturer.raw%3A%22Style+Home%22",
+          "count": "1",
+          "extendedData": {
+            "uniqueId": "831161211081013272111109101"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Brand",
+        "propertyvalue": "manufacturer.raw",
+        "maximumValuesToDisplay": "6",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "0.0",
+        "name": "Brand",
+        "sortorder": "1",
+        "max_display": "6",
+        "fdesc": "The manufacturer",
+        "propertyId": "manufacturer.raw"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000510.value.raw",
+      "name": "Product Dimensions",
+      "entry": [
+        {
+          "label": "10\"x24\"x12\"",
+          "value": "attributes.7000000000000000510.value.raw%3A%2210%5C%22x24%5C%22x12%5C%22%22",
+          "count": "4",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "494834120505234120495034"
+          }
+        },
+        {
+          "label": "16\"x28\"x14\"",
+          "value": "attributes.7000000000000000510.value.raw%3A%2216%5C%22x28%5C%22x14%5C%22%22",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "495434120505634120495234"
+          }
+        },
+        {
+          "label": "28\"x13\"x23\"",
+          "value": "attributes.7000000000000000510.value.raw%3A%2228%5C%22x13%5C%22x23%5C%22%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "505634120495134120505134"
+          }
+        },
+        {
+          "label": "12\"x12\"x12\"",
+          "value": "attributes.7000000000000000510.value.raw%3A%2212%5C%22x12%5C%22x12%5C%22%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "495034120495034120495034"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Product Dimensions",
+        "propertyvalue": "ProductDimensions",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "1.0",
+        "name": "Product Dimensions",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Product Dimensions",
+        "propertyId": "7000000000000000510"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000501.value.raw",
+      "name": "Color",
+      "entry": [
+        {
+          "label": "Dark Grey",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Dark+Grey%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+            "uniqueId": "68971141073271114101121"
+          }
+        },
+        {
+          "label": "Chrome",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Chrome%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_whitegrey.png",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "1.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_whitegrey.png",
+            "uniqueId": "67104114111109101"
+          }
+        },
+        {
+          "label": "Grey",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Grey%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_grey.png",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "3.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_grey.png",
+            "uniqueId": "71114101121"
+          }
+        },
+        {
+          "label": "Brown",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Brown%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "2.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+            "uniqueId": "66114111119110"
+          }
+        },
+        {
+          "label": "Gold",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Gold%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_gold.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_gold.png",
+            "uniqueId": "71111108100"
+          }
+        },
+        {
+          "label": "Purple",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Purple%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_purple.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_purple.png",
+            "uniqueId": "80117114112108101"
+          }
+        },
+        {
+          "label": "Crimson",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Crimson%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_crimson.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_crimson.png",
+            "uniqueId": "67114105109115111110"
+          }
+        },
+        {
+          "label": "Light Grey",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Light+Grey%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_lightgrey.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "6.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_lightgrey.png",
+            "uniqueId": "761051031041163271114101121"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Color",
+        "propertyvalue": "Color",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "1.0",
+        "name": "Color",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Color",
+        "propertyId": "7000000000000000501"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000511.value.raw",
+      "name": "Item Weight",
+      "entry": [
+        {
+          "label": "6 lbs",
+          "value": "attributes.7000000000000000511.value.raw%3A%226+lbs%22",
+          "count": "5",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "543210898115"
+          }
+        },
+        {
+          "label": "15 lbs",
+          "value": "attributes.7000000000000000511.value.raw%3A%2215+lbs%22",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "49533210898115"
+          }
+        },
+        {
+          "label": "10 lbs",
+          "value": "attributes.7000000000000000511.value.raw%3A%2210+lbs%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "49483210898115"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Item Weight",
+        "propertyvalue": "ItemWeight",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "2.0",
+        "name": "Item Weight",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Item Weight",
+        "propertyId": "7000000000000000511"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000503.value.raw",
+      "name": "Material",
+      "entry": [
+        {
+          "label": "Metal, Glass",
+          "value": "attributes.7000000000000000503.value.raw%3A%22Metal%2C+Glass%22",
+          "count": "5",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "771011169710844327110897115115"
+          }
+        },
+        {
+          "label": "Cotton, Steel",
+          "value": "attributes.7000000000000000503.value.raw%3A%22Cotton%2C+Steel%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "67111116116111110443283116101101108"
+          }
+        },
+        {
+          "label": "Metal, Glass, Plastic",
+          "value": "attributes.7000000000000000503.value.raw%3A%22Metal%2C+Glass%2C+Plastic%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "7710111697108443271108971151154432801089711511610599"
+          }
+        },
+        {
+          "label": "Rattan, Metal",
+          "value": "attributes.7000000000000000503.value.raw%3A%22Rattan%2C+Metal%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "82971161169711044327710111697108"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Material",
+        "propertyvalue": "Materials",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "3.0",
+        "name": "Material",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Material",
+        "propertyId": "7000000000000000503"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000512.value.raw",
+      "name": "Pattern",
+      "entry": [
+        {
+          "label": "Solid",
+          "value": "attributes.7000000000000000512.value.raw%3A%22Solid%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "83111108105100"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Pattern",
+        "propertyvalue": "Pattern",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "4.0",
+        "name": "Pattern",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Pattern",
+        "propertyId": "7000000000000000512"
+      }
+    }
+  ],
+  "previous": "/search/resources/api/v2/products?storeId=11&categoryId=10503&limit=12&offset=0",
+  "total": 8
+}

@@ -9,7 +9,7 @@
     "Actions": {
       "showMore": "Afficher la suite",
       "showLess": "Afficher moins",
-      "Go": "Aller à"
+      "Filter": "Filtre"
     }
   }
 }

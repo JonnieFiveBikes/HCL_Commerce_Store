@@ -146,6 +146,7 @@ export const INVENTORY = {
 };
 
 export const SUCCESS_MSG_PREFIX = "success-message.";
+export const DEFAULT_LANG_ID = "-1";
 
 // Shipping
 export const IS_PERSONAL_ADDRESS_ALLOWED =
@@ -154,6 +155,7 @@ export const ORG_ADDRESS_DETAILS = "orgAddressDetails";
 export const ORG_ADDRESS = "orgAddress";
 export const ORDER_ID = "orderid";
 export const HYPHEN = "-";
+export const UNDERSCORE = "_";
 
 // Discover
 export const DISCOVER_FEATURE = "Discover";
@@ -161,3 +163,6 @@ export const DISCOVER_FEATURE = "Discover";
 export const IMAGE = "IMAGE";
 export const VIDEO = "VIDEO";
 export const ATTACHMENTS = "Attachments";
+//DX
+export const DX_IMAGE_PATH_STARTS_WITH = "/dx/";
+export const DX_IMAGE_THUMBNAIL_TRUE = "?thumbnail=true";

@@ -41,7 +41,7 @@ export const BUYER_REGISTRATION = "/buyer-registration";
 export const ORG_REGISTRATION = "/organization-registration";
 export const ACCOUNT = "/account";
 export const DASHBOARD = "/dashboard";
-
+export const FORGOT_PASSWORD = "/forgot-password";
 //Search
 export const SEARCH = "/search";
 

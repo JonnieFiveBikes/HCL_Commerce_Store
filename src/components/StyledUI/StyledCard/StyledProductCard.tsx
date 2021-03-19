@@ -11,6 +11,7 @@
 //Standard libraries
 import React from "react";
 import { Link } from "react-router-dom";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 //Custom libraries
 import FormattedPriceDisplay from "../../widgets/formatted-price-display";
 //UI
@@ -78,7 +79,9 @@ export function ProductCard(props: ProductCardProps) {
       {thumbnailLoading ? (
         <StyledProgressPlaceholder className="vertical-padding-8" />
       ) : (
-        <StyledCardMedia image={thumbnail} title={name} component="div" />
+        <LazyLoadComponent>
+          <StyledCardMedia image={thumbnail} title={name} component="div" />
+        </LazyLoadComponent>
       )}
       <StyledTypography
         variant="body2"

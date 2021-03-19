@@ -10,7 +10,7 @@
  */
 //Standard libraries
 import React, { lazy, Suspense } from "react";
-import ReactHtmlParser from "react-html-parser";
+import HTMLReactParser from "html-react-parser";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import Axios, { Canceler } from "axios";
@@ -179,6 +179,7 @@ function CategoryRecommendationLayout({ cid, eSpot, ...props }: any) {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite, page, contract]);
 
   return showEspot ? (
@@ -187,7 +188,7 @@ function CategoryRecommendationLayout({ cid, eSpot, ...props }: any) {
         <>
           {categoryTitle && (
             <StyledTypography variant="h4" className="vertical-margin-4">
-              {ReactHtmlParser(categoryTitle)}
+              {HTMLReactParser(categoryTitle)}
             </StyledTypography>
           )}
         </>

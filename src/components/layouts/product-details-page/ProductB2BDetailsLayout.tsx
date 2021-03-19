@@ -17,6 +17,7 @@ import Hidden from "@material-ui/core/Hidden";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import HTMLReactParser from "html-react-parser";
 import getDisplayName from "react-display-name";
 //Foundation libraries
 import associatedPromotionCodeService from "../../../_foundation/apis/transaction/associatedPromotionCode.service";
@@ -38,13 +39,13 @@ import { SIGNIN } from "../../../constants/routes";
 import FormattedPriceDisplay from "../../widgets/formatted-price-display";
 import ProductB2BImage from "./ProductB2BImage";
 import ProductB2BAttributes from "./ProductB2BAttributes";
-import ReactHtmlParser from "react-html-parser";
 //Redux
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 import { loginStatusSelector } from "../../../redux/selectors/user";
 import { breadcrumbsSelector } from "../../../redux/selectors/catalog";
 import * as orderActions from "../../../redux/actions/order";
 import * as errorActions from "../../../redux/actions/error";
+import { cartSelector } from "../../../redux/selectors/order";
 //UI
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
@@ -62,7 +63,7 @@ import {
   ITabs,
 } from "../../StyledUI";
 //GA360
-import GADataService from "../../../_foundation/gtm/gaData.service";
+import AsyncCall from "../../../_foundation/gtm/async.service";
 
 const StyledB2BDetailPanel = styled.div`
   ${({ theme }) => `
@@ -168,7 +169,10 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
       cancels.push(c);
     }),
   };
-
+  const cart = useSelector(cartSelector);
+  const [addItemActionTriggered, setAddItemActionTriggered] = useState<boolean>(
+    false
+  );
   const { mySite } = useSite();
   /**
    * Get product information based on its type
@@ -269,8 +273,9 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
         if (currentSelection.partNumber.attributes) {
           for (const att of currentSelection.partNumber.attributes) {
             if (att.values.length) {
-              currentSelection.selectedAttributes[att.identifier] =
-                att.values[0].identifier;
+              currentSelection.selectedAttributes[att.identifier] = att.values
+                ? att.values[0]?.identifier
+                : undefined;
             }
           }
         }
@@ -297,13 +302,19 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
     currentSelection.selectedAttributes = {};
     if (attr) {
       for (const att of attr) {
-        currentSelection.selectedAttributes[att.identifier] =
-          att.values[0].identifier;
+        if (att.usage && att.usage === DEFINING) {
+          currentSelection.selectedAttributes[att.identifier] = att.values
+            ? att.values[0].identifier
+            : undefined;
+        }
       }
     } else {
       for (const att of currentSelection.partNumber.attributes) {
-        currentSelection.selectedAttributes[att.identifier] =
-          att.values[0].identifier;
+        if (att.usage && att.usage === DEFINING) {
+          currentSelection.selectedAttributes[att.identifier] = att.values
+            ? att.values[0].identifier
+            : undefined;
+        }
       }
     }
     const sku = resolveSKU(
@@ -330,7 +341,7 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
       for (const s of skus) {
         if (s.attributes) {
           const values = s.attributes.reduce((value: any, a: any) => {
-            value[a.identifier] = a.values[0].identifier;
+            value[a.identifier] = a.values ? a.values[0].identifier : undefined;
             return value;
           }, {});
           let match = true;
@@ -408,7 +419,7 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
     for (const s of skus) {
       tablebodyDataMap.set("sku", s.partNumber);
       for (const a of s.attributes) {
-        tablebodyDataMap.set(a.name, a.values[0].value);
+        tablebodyDataMap.set(a.name, a.values ? a.values[0]?.value : undefined);
       }
       let offerPrice: number = 0;
       let displayPrice: number = 0;
@@ -544,7 +555,9 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
       return {};
     }
     return attrs.reduce((obj: any, attr: any) => {
-      obj[attr.identifier] = attr.values[0].identifier;
+      obj[attr.identifier] = attr.values
+        ? attr.values[0]?.identifier
+        : undefined;
       return obj;
     }, {});
   };
@@ -614,7 +627,7 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
     filteredSkus = new Set<any>();
     for (const s of uniqueSkuList) {
       const values = s.attributes.reduce((value: any, a: any) => {
-        value[a.identifier] = a.values[0].identifier;
+        value[a.identifier] = a.values ? a.values[0]?.identifier : undefined;
         return value;
       }, {});
       let match = true;
@@ -660,6 +673,23 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
     }
   };
 
+  React.useEffect(() => {
+    if (addItemActionTriggered) {
+      //GA360
+      if (mySite.enableGA) {
+        const result = Array.from(skuAndQuantities).map(([key, value]) => ({
+          key,
+          value,
+        }));
+        AsyncCall.sendB2BAddToCartEvent(
+          { cart, currentProdSelect, result, breadcrumbs },
+          { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
+        );
+      }
+      setAddItemActionTriggered(false);
+    }
+  }, [cart]);
+
   /**
    *Add the selected product and its quantities to the shopping cart
    */
@@ -672,18 +702,7 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
         ...payloadBase,
       };
       dispatch(orderActions.ADD_ITEM_ACTION(param));
-      //GA360
-      if (mySite.enableGA) {
-        const result = Array.from(skuAndQuantities).map(([key, value]) => ({
-          key,
-          value,
-        }));
-        GADataService.sendB2BAddToCartEvent(
-          currentProdSelect,
-          result,
-          breadcrumbs
-        );
-      }
+      setAddItemActionTriggered(true);
     } else {
       let parameters: any = {
         errorMessage: t("productDetail.addToCartErrorMsg"),
@@ -771,6 +790,7 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skuAndQuantities, filterSkuState]);
 
   let productDetailTabsChildren: ITabs[] = [];
@@ -779,7 +799,7 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
     const descriptionElement = (
       <>
         <StyledTypography variant="body1">
-          {ReactHtmlParser(product.longDescription)}
+          {HTMLReactParser(product.longDescription)}
         </StyledTypography>
       </>
     );
@@ -819,10 +839,17 @@ function ProductB2BDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
   React.useEffect(() => {
     if (mySite.enableGA) {
       if (productPartNumber && breadcrumbs.length !== 0) {
-        GADataService.sendPDPPageViewEvent(breadcrumbs);
-        GADataService.sendB2BPDPDetailViewEvent(productPartNumber, breadcrumbs);
+        AsyncCall.sendPDPPageViewEvent(breadcrumbs, {
+          enableUA: mySite.enableUA,
+          enableGA4: mySite.enableGA4,
+        });
+        AsyncCall.sendB2BPDPDetailViewEvent(
+          { productData, productPartNumber, breadcrumbs },
+          { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
+        );
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [breadcrumbs]);
 
   return (

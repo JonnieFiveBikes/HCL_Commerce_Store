@@ -34,10 +34,10 @@
     "_ERR_AUTHENTICATION_ERROR_2000": "Escreva um ID de início de sessão no campo ID de início de sessão.",
     "_ERR_AUTHENTICATION_ERROR_2010": "O ID de início de sessão ou a palavra-passe introduzidos não estão corretos. Introduza as informações novamente.",
     "_ERR_AUTHENTICATION_ERROR_2020": "O ID de início de sessão ou a palavra-passe introduzidos não estão corretos. Introduza as informações novamente.",
-    "_ERR_AUTHENTICATION_ERROR_2030": "O ID de início de sessão ou a palavra-passe introduzidos não estão corretos. Introduza as informações novamente.",
+    "_ERR_AUTHENTICATION_ERROR_2030": "As credenciais de início de sessão que introduziu não são válidas. Verifique a sua entrada e tente novamente.",
     "_ERR_PASSWORD_FAILED_CMN1019E": "O ID de início de sessão ou a palavra-passe introduzidos não estão corretos. Introduza as informações novamente.",
     "_ERR_PERSON_ACCOUNT_DISABLED_2110": "A conta está bloqueada. Contacte a loja para desbloquear a conta.",
-    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "A conta foi bloqueada devido a um excesso de tentativas falhadas de início de sessão. Reponha a palavra-passe para continuar.",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Devido a {{0}} tentativas de palavra-passe sem êxito, não poderá iniciar sessão. Reponha a sua palavra-passe ou contacte o representante do Serviço de apoio ao cliente para obter ajuda.",
     "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "Aguarde uns segundos antes de tentar iniciar sessão novamente.",
     "_2400": "A sua organização está bloqueada. Não pode iniciar sessão neste momento. ",
     "_2410": "Não possui a autoridade devida para iniciar sessão. Contacte a loja para mais informações.",
@@ -90,9 +90,16 @@
     "_API_BAD_INV_2": "Inventário insuficiente para comprar {{1}} unidades de {{0}}.",
     "_ERR_FINDING_ORDER_230": "Ocorreu um problema de sistema ao processar o seu pedido.",
     "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "Ocorreu um problema no sistema. Contacte a loja para obter assistência.",
+    "_ERR_REMOTE_EXCEPTION_CMN0412E": "Ocorreu um problema de sistema ao processar o seu pedido. Contacte a loja para obter assistência.",
+    "_ERR_REG_DUPE_ID_CMN0114S": "O ID de início de sessão que introduziu já existe. Experimente outro e tente novamente.",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "O e-mail que introduziu não é válido. Verifique a sua entrada e tente novamente.",
+    "_ERR_CMD_INVALID_PARAM_2195": "O código de verificação que introduziu não é válido. Verifique a sua entrada e tente novamente.",
     "B2B": {
-      "_ERR_LOGONID_ALREDY_EXIST_2030": "O ID de início de sessão introduzido já existe. Experimente outro e tente novamente."
-    }
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "O ID de início de sessão que introduziu não é válido. Verifique a sua entrada e tente novamente.",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "O ID de início de sessão introduzido já existe. Experimente outro e tente novamente.",
+      "_ERR_BAD_PARMS_2010": "O ID de início de sessão que introduziu não é válido. Verifique a sua entrada e tente novamente."
+    },
+    "_ERR_PASSWORD_EXPIRED_2170": "A sua palavra-passe atual expirou. Introduza uma nova palavra-passe."
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "O item foi adicionado ao carrinho. ",
@@ -101,6 +108,8 @@
     "RecurringOrderCancelled": "O pedido foi cancelado com êxito.",
     "ADD_ADDRESS_SUCCESS": "O seu novo endereço \"{{0}}\" foi adicionado com êxito",
     "EDIT_ADDRESS_SUCCESS": "O seu endereço \"{{0}}\" foi atualizado com êxito",
-    "DELETE_ADDRESS_SUCCESS": "O seu endereço \"{{0}}\" foi eliminado com êxito"
+    "DELETE_ADDRESS_SUCCESS": "O seu endereço \"{{0}}\" foi eliminado com êxito",
+    "RESEND_VERIFICATION_CODE": "O código de verificação foi enviado para o seu endereço de e-mail com êxito",
+    "PASSWORD_RESET_SUCCESS": "A palavra-passe foi reposta com êxito"
   }
 }

@@ -1,0 +1,430 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "marketingSpotIdentifier": "13014",
+      "behavior": "0",
+      "eSpotName": "Home_ProductRec",
+      "baseMarketingSpotActivityData": [
+        {
+          "baseMarketingSpotActivityName": "Stonehenge UltraCozy Single Sofa",
+          "productId": "14033",
+          "description": [
+            {
+              "longDescription": "The sofa has a short back rest but a long width to get lazy while sitting lazy. With a matte fabric finish and a soft center, this is the perfect sofa to indulge someone to get lazy and stay back.",
+              "thumbnail": "/EmeraldCAS/images/catalog/livingroom/furniture/chair4_a1_350.jpg",
+              "language": "-1",
+              "shortDescription": "Very cozy short design single sofa.",
+              "fullImage": "/EmeraldCAS/images/catalog/livingroom/furniture/chair4_a1_600.jpg",
+              "productName": "Stonehenge UltraCozy Single Sofa"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "749.99",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Home recommended products",
+          "baseMarketingSpotActivityID": "14033",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "LR-FNTR-0004",
+          "activityIdentifierID": "11002",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "749.99",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "800.00"
+        },
+        {
+          "baseMarketingSpotActivityName": "Casual Sofa",
+          "productId": "14100",
+          "description": [
+            {
+              "longDescription": "Modernize your living room space with the casual sofa. The sofa features cool tones, removable seat pillows, easy to clean polyester fabric, and an additional accent pillow along the backrest. The armchair's modern styling is complemented with durable brushed steel legs along its corners and center, for extra support. No assembly required.",
+              "thumbnail": "/EmeraldCAS/images/catalog/livingroom/furniture/couch6_a1_350.jpg",
+              "language": "-1",
+              "shortDescription": "A casual yet elegant sofa that offers comfort and modern styling to accent your home's living room.",
+              "fullImage": "/EmeraldCAS/images/catalog/livingroom/furniture/couch6_a1_600.jpg",
+              "productName": "Casual Sofa"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "549.99",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Home recommended products",
+          "baseMarketingSpotActivityID": "14100",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "LR-FNTR-CO-0006",
+          "activityIdentifierID": "11002",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "549.99",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "600.00"
+        },
+        {
+          "baseMarketingSpotActivityName": "Style Home Modern Plain Single Large Sofa",
+          "productId": "14057",
+          "description": [
+            {
+              "longDescription": "This large sofa from Style Home looks and feels very sophisticated with its plain design and hard memory foam. Its neither soft nor hard so that your guests don't sag in neither feel they are sitting on a counter.",
+              "thumbnail": "/EmeraldCAS/images/catalog/livingroom/furniture/couch1_a1_350.jpg",
+              "language": "-1",
+              "shortDescription": "Sophisticated modern sofa design.",
+              "fullImage": "/EmeraldCAS/images/catalog/livingroom/furniture/couch1_a1_600.jpg",
+              "productName": "Style Home Modern Plain Single Large Sofa"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "749.99",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Home recommended products",
+          "baseMarketingSpotActivityID": "14057",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "LR-FNTR-CO-0001",
+          "activityIdentifierID": "11002",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "749.99",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "800.00"
+        },
+        {
+          "baseMarketingSpotActivityName": "Soft Plush Sofa",
+          "productId": "14111",
+          "description": [
+            {
+              "longDescription": "Add tons of comfortable seating area with this extra comfortable sofa. The sofa features a simple, clean design, wide armrests, rounded cushioning, and easy to clean polyester fabric. The sofa's modern styling sits low to the ground for easy display of your favorite decor on the walls above it. No assembly required.",
+              "thumbnail": "/EmeraldCAS/images/catalog/livingroom/furniture/couch7_a1_350.jpg",
+              "language": "-1",
+              "shortDescription": "An extra soft, extra plush sofa that comfortably seats you and your guests. Ideal for placing along far-reaching walls or corridors.",
+              "fullImage": "/EmeraldCAS/images/catalog/livingroom/furniture/couch7_a1_600.jpg",
+              "productName": "Soft Plush Sofa"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "639.99",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Home recommended products",
+          "baseMarketingSpotActivityID": "14111",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "LR-FNTR-CO-0007",
+          "activityIdentifierID": "11002",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "639.99",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "700.00"
+        },
+        {
+          "baseMarketingSpotActivityName": "Plump Leather Sofa",
+          "productId": "14082",
+          "description": [
+            {
+              "longDescription": "Modernize your living space with a space-saving designed sofa that features leather throughout, and integrated armrests that gives it a clean, flowing look. The sofa's modern styling sits low to the ground for the most serious of slouchers. No assembly required.",
+              "thumbnail": "/EmeraldCAS/images/catalog/livingroom/furniture/couch4_a1_350.jpg",
+              "language": "-1",
+              "shortDescription": "A versatile and interesting approach to the modern leather soda, idea for cozy living spaces.",
+              "fullImage": "/EmeraldCAS/images/catalog/livingroom/furniture/couch4_a1_600.jpg",
+              "productName": "Plump Leather Sofa"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "749.99",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Home recommended products",
+          "baseMarketingSpotActivityID": "14082",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "LR-FNTR-CO-0004",
+          "activityIdentifierID": "11002",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "749.99",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "800.00"
+        },
+        {
+          "baseMarketingSpotActivityName": "Nordic Loveseat",
+          "productId": "14178",
+          "description": [
+            {
+              "longDescription": "Give your living room an open and modern feel with the Nordic loveseat. The loveseat features a modern simple design, wide armrests, layered cushioning, and easy to clean polyester fabric. The loveseat's modern styling is complemented with wide brushed steel legs. No assembly required.",
+              "thumbnail": "/EmeraldCAS/images/catalog/livingroom/furniture/furniture5_a1_600.png",
+              "language": "-1",
+              "shortDescription": "A simple and modern casual loveseat that offers comfort and contemporary styling to accent your home's living room.",
+              "fullImage": "/EmeraldCAS/images/catalog/livingroom/furniture/furniture5_a1_600.png",
+              "productName": "Nordic Loveseat"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "1999.99",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Home recommended products",
+          "baseMarketingSpotActivityID": "14178",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "LR-FUCH-0005",
+          "activityIdentifierID": "11002",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "1999.99",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "2500.00"
+        },
+        {
+          "baseMarketingSpotActivityName": "Abstract Wooden Coffee Table",
+          "productId": "14156",
+          "description": [
+            {
+              "longDescription": "Use this highly-functional wooden coffee table's ample round surface to serve your guest's favourite coffee, tea, and desserts. Its table top features durable wood, and its stylish angled legs draws attention to its abstract features.",
+              "thumbnail": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_a1_350.jpg",
+              "language": "-1",
+              "shortDescription": "A contemporary styled coffee table that is suited towards large living rooms, providing plenty of space for refreshments.",
+              "fullImage": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_a1_600.jpg",
+              "productName": "Abstract Wooden Coffee Table"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "115.00",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Home recommended products",
+          "baseMarketingSpotActivityID": "14156",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "LR-FNTR-TB-0001",
+          "activityIdentifierID": "11002",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "115.00",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "120.00"
+        },
+        {
+          "baseMarketingSpotActivityName": "Ant Chair",
+          "productId": "14220",
+          "description": [
+            {
+              "longDescription": "Treat your guests to the ultimate in comfort and modern style with the ant chair. Its shape is designed to suit your modern living decor, while providing longlasting comfort. Its wooden surface is easy to clean, and its compact design is stackable for easy storage. The chair's classic styling is complemented with chrome legs and rubber feet. Some assembly required.",
+              "thumbnail": "/EmeraldCAS/images/catalog/diningroom/chairs/dinchair2_a1_350.jpg",
+              "language": "-1",
+              "shortDescription": "A modern ant chair that combines form and function to make your dining experience comfortable and elegant.",
+              "fullImage": "/EmeraldCAS/images/catalog/diningroom/chairs/dinchair2_a1_600.jpg",
+              "productName": "Ant Chair"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "99.99",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Home recommended products",
+          "baseMarketingSpotActivityID": "14220",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "DR-CHRS-0002",
+          "activityIdentifierID": "11002",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "99.99",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "100.00"
+        }
+      ]
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/11/espot/Home_ProductRec?name=Home_ProductRec&langId=-1",
+  "resourceName": "espot"
+}

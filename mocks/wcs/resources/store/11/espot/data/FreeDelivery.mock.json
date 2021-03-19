@@ -1,0 +1,50 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "defaultContentDisplaySequence": [
+        {
+          "resultId": "12506",
+          "resultFormat": "MarketingContent",
+          "displaySequence": "1.0"
+        }
+      ],
+      "marketingSpotIdentifier": "13006",
+      "behavior": "0",
+      "eSpotName": "Free Delivery",
+      "baseMarketingSpotActivityData": [
+        {
+          "contentFormatName": "Text",
+          "baseMarketingSpotActivityName": "FreeDeliveryContent",
+          "contentClickAction": "None",
+          "contentId": "12506",
+          "baseMarketingSpotActivityID": "12506",
+          "contentName": "FreeDeliveryContent",
+          "baseMarketingSpotDataType": "MarketingContent",
+          "activityIdentifierID": "0",
+          "MarketingContentDescription": [{}],
+          "marketingContentDescription": [
+            {
+              "marketingText": "<div class=\"MuiGrid-root MuiGrid-container marketing-content marketing-backgroundImage FreeDeliveryContent top-margin-4\"><img src=\"/EmeraldSAS/images/promotion/promo-lg-1200px.jpg\" /><div class=\"marketing-text marketing-text-vertical-center marketing-text-horizontal-center\"><h4 class=\"MuiTypography-root MuiTypography-overline\">Free Shipping Promotion</h4><p class=\"MuiTypography-root MuiTypography-h4 bottom-margin-1\">Free regular delivery right to your doorstep with orders over $70</p></div></div>",
+              "language": "-1"
+            }
+          ],
+          "contentFormatId": "2",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingKey": "mktActivityDescription"
+            },
+            {
+              "baseMarketingValue": "1.0",
+              "baseMarketingKey": "displaySequence"
+            }
+          ],
+          "contentStoreId": "12501"
+        }
+      ]
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/11/espot/Free%20Delivery?catalogId=11501&name=Free+Delivery&langId=-1",
+  "resourceName": "espot"
+}

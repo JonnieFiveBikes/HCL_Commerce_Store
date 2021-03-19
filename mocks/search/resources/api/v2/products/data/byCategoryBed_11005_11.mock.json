@@ -1,0 +1,638 @@
+{
+  "contents": [
+    {
+      "hasSingleSKU": false,
+      "groupingProperties": {
+        "groupCount": 1,
+        "groupOwner": "14272",
+        "groupHero": "14273"
+      },
+      "storeID": "11",
+      "parentCatalogGroupID": "/10513/10514",
+      "buyable": "true",
+      "shortDescription": "Very low design double bed.",
+      "seo": {
+        "href": "/sleepy-head-low-key-double-bed-bd-beds-0004"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/bedroom/beds/bed4_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/bedroom/beds/bed4_a1_350.jpg",
+      "partNumber": "BD-BEDS-0004",
+      "name": "Sleepy Head Low Key Double Bed",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "1800.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "1499.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "low_bed",
+              "sequence": "3.0",
+              "unitID": "bed",
+              "id": "7000000000000003060",
+              "value": "Low bed"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Style",
+          "facetable": "true",
+          "id": "7000000000000000504",
+          "comparable": "true",
+          "key": "7000000000000000504",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Finish",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "smooth",
+              "sequence": "1.0",
+              "unitID": "Smooth",
+              "id": "7000000000000003072",
+              "value": "Smooth"
+            }
+          ],
+          "displayable": "false",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Finish",
+          "facetable": "false",
+          "id": "7000000000000000507",
+          "comparable": "false",
+          "key": "7000000000000000507",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Assembly",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "1.0",
+              "identifier": "self_assembly",
+              "id": "7000000000000003074",
+              "value": "Self-assembly"
+            }
+          ],
+          "displayable": "false",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Assembly",
+          "facetable": "false",
+          "id": "7000000000000000508",
+          "comparable": "false",
+          "key": "7000000000000000508",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "hardwood",
+              "sequence": "6.0",
+              "unitID": "wood",
+              "id": "7000000000000003037",
+              "value": "Hard wood"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14272"
+    },
+    {
+      "hasSingleSKU": false,
+      "groupingProperties": {
+        "groupCount": 1,
+        "groupOwner": "14270",
+        "groupHero": "14271"
+      },
+      "storeID": "11",
+      "parentCatalogGroupID": "/10513/10514",
+      "buyable": "true",
+      "shortDescription": "Kids low double bed made of wood.",
+      "seo": {
+        "href": "/sleepy-head-storytime-double-bed-bd-beds-0003"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/bedroom/beds/bed3_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/bedroom/beds/bed3_a1_350.jpg",
+      "partNumber": "BD-BEDS-0003",
+      "name": "Sleepy Head Storytime Double Bed",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "999.99"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "945.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "kids_bed",
+              "sequence": "2.0",
+              "unitID": "bed",
+              "id": "7000000000000003059",
+              "value": "Kids bed"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Style",
+          "facetable": "true",
+          "id": "7000000000000000504",
+          "comparable": "true",
+          "key": "7000000000000000504",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Finish",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "smooth",
+              "sequence": "1.0",
+              "unitID": "Smooth",
+              "id": "7000000000000003072",
+              "value": "Smooth"
+            }
+          ],
+          "displayable": "false",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Finish",
+          "facetable": "false",
+          "id": "7000000000000000507",
+          "comparable": "false",
+          "key": "7000000000000000507",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Assembly",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "1.0",
+              "identifier": "self_assembly",
+              "id": "7000000000000003074",
+              "value": "Self-assembly"
+            }
+          ],
+          "displayable": "false",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Assembly",
+          "facetable": "false",
+          "id": "7000000000000000508",
+          "comparable": "false",
+          "key": "7000000000000000508",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "hardwood",
+              "sequence": "6.0",
+              "unitID": "wood",
+              "id": "7000000000000003037",
+              "value": "Hard wood"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14270"
+    },
+    {
+      "hasSingleSKU": false,
+      "groupingProperties": {
+        "groupCount": 1,
+        "groupOwner": "14268",
+        "groupHero": "14269"
+      },
+      "storeID": "11",
+      "parentCatalogGroupID": "/10513/10514",
+      "buyable": "true",
+      "shortDescription": "Elegant queen bed for your master bedroom.",
+      "seo": {
+        "href": "/sleepy-head-elegant-queen-bed-bd-beds-0002"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/bedroom/beds/bed2_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/bedroom/beds/bed2_a1_350.jpg",
+      "partNumber": "BD-BEDS-0002",
+      "name": "Sleepy Head Elegant Queen Bed",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "1500.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "1249.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "elegant",
+              "sequence": "1.0",
+              "unitID": "Elegant",
+              "id": "7000000000000003058",
+              "value": "Elegant"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Style",
+          "facetable": "true",
+          "id": "7000000000000000504",
+          "comparable": "true",
+          "key": "7000000000000000504",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Finish",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "smooth",
+              "sequence": "1.0",
+              "unitID": "Smooth",
+              "id": "7000000000000003072",
+              "value": "Smooth"
+            }
+          ],
+          "displayable": "false",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Finish",
+          "facetable": "false",
+          "id": "7000000000000000507",
+          "comparable": "false",
+          "key": "7000000000000000507",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Assembly",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "1.0",
+              "identifier": "self_assembly",
+              "id": "7000000000000003074",
+              "value": "Self-assembly"
+            }
+          ],
+          "displayable": "false",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Assembly",
+          "facetable": "false",
+          "id": "7000000000000000508",
+          "comparable": "false",
+          "key": "7000000000000000508",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "hardwood",
+              "sequence": "6.0",
+              "unitID": "wood",
+              "id": "7000000000000003037",
+              "value": "Hard wood"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14268"
+    },
+    {
+      "hasSingleSKU": false,
+      "shortDescription": "A functional and space-saving twin bunk bed that helps extend the sleeping space in your child's bedroom.",
+      "groupingProperties": {
+        "groupCount": 1,
+        "groupOwner": "14266",
+        "groupHero": "14267"
+      },
+      "seo": {
+        "href": "/twin-bunk-bed-bd-beds-0001"
+      },
+      "storeID": "11",
+      "parentCatalogGroupID": "/10513/10514",
+      "buyable": "true",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/bedroom/beds/bed1_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/bedroom/beds/bed1_a1_350.jpg",
+      "partNumber": "BD-BEDS-0001",
+      "name": "Twin Bunk Bed",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "650.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "559.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "ProductDimensions",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "13.0",
+              "identifier": "81x45x63",
+              "unitID": "INH",
+              "id": "7000000000000003090",
+              "value": "81\"x45\"x63\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Product Dimensions",
+          "facetable": "true",
+          "id": "7000000000000000510",
+          "comparable": "true",
+          "key": "7000000000000000510",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ItemWeight",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "130lbs",
+              "sequence": "8.0",
+              "unitID": "LBR",
+              "id": "7000000000000003104",
+              "value": "130 lbs"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Item Weight",
+          "facetable": "true",
+          "id": "7000000000000000511",
+          "comparable": "true",
+          "key": "7000000000000000511",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "wood",
+              "sequence": "12.0",
+              "unitID": "Wood",
+              "id": "7000000000000003055",
+              "value": "Wood"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14266"
+    }
+  ],
+  "facets": [
+    {
+      "entry": [
+        {
+          "count": 0,
+          "label": "({* TO 299])",
+          "value": "price_usd%3A%28%7B*+TO+299%5D%29",
+          "extendedData": {
+            "uniqueId": "1121141059910195117115100584012342328479325057579341"
+          }
+        },
+        {
+          "count": 1,
+          "label": "({299 TO 598])",
+          "value": "price_usd%3A%28%7B299+TO+598%5D%29",
+          "extendedData": {
+            "uniqueId": "11211410599101951171151005840123505757328479325357569341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({598 TO 897])",
+          "value": "price_usd%3A%28%7B598+TO+897%5D%29",
+          "extendedData": {
+            "uniqueId": "11211410599101951171151005840123535756328479325657559341"
+          }
+        },
+        {
+          "count": 1,
+          "label": "({897 TO 1196])",
+          "value": "price_usd%3A%28%7B897+TO+1196%5D%29",
+          "extendedData": {
+            "uniqueId": "1121141059910195117115100584012356575532847932494957549341"
+          }
+        },
+        {
+          "count": 1,
+          "label": "({1196 TO 1495])",
+          "value": "price_usd%3A%28%7B1196+TO+1495%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401234949575432847932495257539341"
+          }
+        }
+      ],
+      "value": "price_usd",
+      "name": "OfferPrice_usd"
+    },
+    {
+      "value": "manufacturer.raw",
+      "name": "Brand",
+      "entry": [
+        {
+          "label": "Bender Home Fashions",
+          "value": "manufacturer.raw%3A%22Bender+Home+Fashions%22",
+          "count": "1",
+          "extendedData": {
+            "uniqueId": "661011101001011143272111109101327097115104105111110115"
+          }
+        },
+        {
+          "label": "Sleepy Head",
+          "value": "manufacturer.raw%3A%22Sleepy+Head%22",
+          "count": "3",
+          "extendedData": {
+            "uniqueId": "83108101101112121327210197100"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Brand",
+        "propertyvalue": "manufacturer.raw",
+        "maximumValuesToDisplay": "6",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "0.0",
+        "name": "Brand",
+        "sortorder": "1",
+        "max_display": "6",
+        "fdesc": "The manufacturer",
+        "propertyId": "manufacturer.raw"
+      }
+    },
+    {
+      "value": "parentCatgroup_id_search",
+      "name": "ParentCatalogGroup",
+      "entry": [
+        {
+          "label": "Bedroom",
+          "value": "10513",
+          "count": "4",
+          "extendedData": {
+            "uniqueId": "10513"
+          }
+        },
+        {
+          "label": "Beds",
+          "value": "10514",
+          "count": "4",
+          "extendedData": {
+            "uniqueId": "10514",
+            "parentIds": "10513"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Category",
+        "propertyvalue": "path",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "false",
+        "displaySequence": "0.0",
+        "name": "Category",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "The category",
+        "propertyId": "path"
+      }
+    }
+  ],
+  "previous": "/search/resources/api/v2/products?storeId=11&searchTerm=bed&limit=12&offset=0",
+  "total": 4
+}

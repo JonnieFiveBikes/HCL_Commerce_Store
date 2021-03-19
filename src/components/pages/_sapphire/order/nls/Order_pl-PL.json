@@ -1,6 +1,6 @@
 {
   "Order": {
-    "noPO": "BRAK",
+    "noPO": "Brak",
     "Status_A": "Autoryzacja płatności wymaga zatwierdzenia",
     "Status_B": "Zamówienie z opóźnioną realizacją",
     "Status_C": "Płatność zatwierdzona",
@@ -20,7 +20,7 @@
     "Status_W": "Oczekiwanie na zatwierdzenie",
     "Status_V": "Częściowo wysłane",
     "Status_X": "Zamówienie anulowane",
-    "NotAvailable": "Informacje niedostępne",
+    "NotAvailable": "N/D",
     "OrderId": "Identyfikator zamówienia",
     "PONumber": "Numer zlecenia zakupu",
     "OrderDate": "Data zamówienia",
@@ -60,6 +60,7 @@
     "OrderDetails": "Szczegóły zamówienia",
     "OrderNumber": "Numer zamówienia",
     "HistorySearchPlaceHolder": "Szukaj według identyfikatora zamówienia",
-    "HistoryViewDetailTooltip": "Wyświetl szczegóły zamówienia"
+    "HistoryViewDetailTooltip": "Wyświetl szczegóły zamówienia",
+    "Pending": "W toku"
   }
 }

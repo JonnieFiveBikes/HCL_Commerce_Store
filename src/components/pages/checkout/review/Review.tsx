@@ -39,10 +39,8 @@ import {
 import { GET_ADDRESS_DETAIL_ACTION } from "../../../../redux/actions/account";
 import { GET_CART_ACTION } from "../../../../redux/actions/order";
 import { RESET_CART_ACTION } from "../../../../redux/actions/order";
-//UI
-import { StyledGrid } from "../../../StyledUI";
 //GA360
-import GADataService from "../../../../_foundation/gtm/gaData.service";
+import AsyncCall from "../../../../_foundation/gtm/async.service";
 
 /**
  * Review Order section
@@ -109,6 +107,7 @@ const Review: React.FC = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite]);
 
   function canContinue() {
@@ -192,11 +191,17 @@ const Review: React.FC = (props: any) => {
       localStorageUtil.remove(ACCOUNT + "-" + PO_NUMBER + "-" + cart.orderId);
       //GA360
       if (mySite.enableGA) {
-        GADataService.sendCheckoutPageViewEvent(
-          "Order Confirmation",
-          ROUTES.ORDER_CONFIRMATION
+        AsyncCall.sendCheckoutPageViewEvent(
+          {
+            pageSubCategory: "Order Confirmation",
+            pathname: ROUTES.ORDER_CONFIRMATION,
+          },
+          { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
         );
-        GADataService.sendPurchaseEvent(cart, orderItems);
+        AsyncCall.sendPurchaseEvent(
+          { cart, orderItems },
+          { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
+        );
       }
     }
   }

@@ -1,9 +1,11 @@
 {
   "RegistrationB2BLayout": {
-    "Title": "New Customer?",
+    "Title": "Register",
     "Actions": {
-      "BuyerReg": "Buyer Registration",
-      "OrgReg": "Organization Registration"
+      "BuyerReg": "Register a Buyer",
+      "OrgReg": "Register an Organization",
+      "AddBuyer": "Add a buyer within an existing organization",
+      "AddOrg": "Add a new organization, and an administrator account"
     }
   }
 }

@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "compact-fluorescent-bulb",
+      "tokenName": "ProductToken",
+      "tokenExternalValue": "LA042_4201",
+      "language": "en_US",
+      "id": 13347,
+      "page": {
+        "imageAlternateDescription": "Image for Compact Fluorescent Bulb from Sapphire",
+        "name": "PRODUCT_PAGE",
+        "title": "Compact Fluorescent Bulb | Sapphire",
+        "type": "ProductPage",
+        "metaDescription": "Energy-efficient, screw-in spiral bulb",
+        "metaKeyword": " Glomor Lighting"
+      },
+      "storeId": "12",
+      "tokenValue": "13842",
+      "status": 1
+    }
+  ]
+}

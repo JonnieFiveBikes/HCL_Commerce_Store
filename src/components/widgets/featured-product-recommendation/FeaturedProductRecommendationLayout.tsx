@@ -10,7 +10,7 @@
  */
 //Standard libraries
 import React, { lazy, Suspense } from "react";
-import ReactHtmlParser from "react-html-parser";
+import HTMLReactParser from "html-react-parser";
 import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
 //Foundation libraries
@@ -40,9 +40,10 @@ function FeaturedProductRecommendationLayout({
   );
 
   let eSpot: any;
-  const [recommendedProductTitle, setRecommendedProductTitle] = React.useState<
-    string
-  >();
+  const [
+    recommendedProductTitle,
+    setRecommendedProductTitle,
+  ] = React.useState<string>();
   const [
     recommendedProductContext,
     setRecommendedProductContext,
@@ -119,12 +120,13 @@ function FeaturedProductRecommendationLayout({
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eSpotName, mySite]);
   return (
     <>
       {recommendedProductTitle && (
         <StyledTypography variant="h4" className="vertical-margin-4">
-          {ReactHtmlParser(recommendedProductTitle)}
+          {HTMLReactParser(recommendedProductTitle)}
         </StyledTypography>
       )}
       {recommendedProductContext && (

@@ -1,6 +1,6 @@
 {
   "Order": {
-    "noPO": "KEINE",
+    "noPO": "Keine",
     "Status_A": "Zahlungsgenehmigung erfordert Überprüfung",
     "Status_B": "Im Lieferrückstand",
     "Status_C": "Zahlung genehmigt",
@@ -60,6 +60,7 @@
     "OrderDetails": "Bestelldetails",
     "OrderNumber": "Bestellnummer",
     "HistorySearchPlaceHolder": "Nach Bestell-ID suchen",
-    "HistoryViewDetailTooltip": "Bestelldetails anzeigen"
+    "HistoryViewDetailTooltip": "Bestelldetails anzeigen",
+    "Pending": "Ausstehend"
   }
 }

@@ -8,6 +8,11 @@
  *
  *==================================================
  */
+//Custom libraries
+import {
+  DX_IMAGE_PATH_STARTS_WITH,
+  DX_IMAGE_THUMBNAIL_TRUE,
+} from "../../constants/common";
 
 const commonUtil = {
   /**
@@ -65,6 +70,22 @@ const commonUtil = {
         toLink: link,
       };
     }
+  },
+
+  // Returns thumbnail image path for DX-DAM -- Only for EmeraldPlus & SapphirePlus
+  // If Search does not return thumbnailImage, check fullImage and
+  // If fullImage exists, set as thumbnailImage and append "?thumbnail=true" at end of fullImage
+  getThumbnailImagePath(thumbnail: string, fullImage: string): string {
+    let thumbnailImagePath: string = "";
+    if (thumbnail) {
+      thumbnailImagePath = thumbnail;
+    } else if (
+      fullImage &&
+      fullImage.toLowerCase().startsWith(DX_IMAGE_PATH_STARTS_WITH)
+    ) {
+      thumbnailImagePath = fullImage + DX_IMAGE_THUMBNAIL_TRUE;
+    }
+    return thumbnailImagePath;
   },
 };
 

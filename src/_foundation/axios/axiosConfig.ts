@@ -17,12 +17,17 @@ import Axios, {
 } from "axios";
 import i18n from "i18next";
 import { parse as losslessParse } from "lossless-json";
-import { NOT_FOUND, INTERNAL_SERVER_ERROR } from "http-status-codes";
+import { NOT_FOUND } from "http-status-codes";
 //Foundation libraries
 import { axiosHeaderIgnoredServices } from "../configs/axiosHeaderIgnoredService";
 import { userRequiredServices } from "../configs/userRequiredService";
 import { numberParserRequiredServices } from "../configs/numberParserRequiredService";
-import { WC_PREVIEW_TOKEN } from "../constants/common";
+import {
+  WC_PREVIEW_TOKEN,
+  LANGID,
+  FOR_USER_ID,
+  SKIP_WC_TOKEN_HEADER,
+} from "../constants/common";
 import { site } from "../constants/site";
 import { PERSONALIZATION_ID } from "../constants/user";
 import {
@@ -73,6 +78,13 @@ const dispatchObject = {
   },
 };
 
+const processForUserParameter = (params: URLSearchParams) => {
+  const currentUser = storageSessionHandler.getCurrentUserAndLoadAccount();
+  if (currentUser && currentUser.forUserId) {
+    params.set(FOR_USER_ID, currentUser.forUserId);
+  }
+};
+
 const processTransactionHeader = (header: any) => {
   const currentUser = storageSessionHandler.getCurrentUserAndLoadAccount();
   if (currentUser) {
@@ -99,6 +111,15 @@ const processTransactionHeader = (header: any) => {
 };
 
 const processSearchHeader = (header: any) => {
+  const currentUser = storageSessionHandler.getCurrentUserAndLoadAccount();
+  if (currentUser) {
+    if (!header["WCTrustedToken"]) {
+      header["WCTrustedToken"] = currentUser.WCTrustedToken;
+    }
+    if (!header["WCToken"]) {
+      header["WCToken"] = currentUser.WCToken;
+    }
+  }
   const previewToken = storageSessionHandler.getPreviewToken();
   if (previewToken && previewToken[WC_PREVIEW_TOKEN]) {
     header["WCPreviewToken"] = previewToken[WC_PREVIEW_TOKEN];
@@ -141,7 +162,9 @@ const initAxios = (dispatch: any) => {
         !isServiceInList(request, axiosHeaderIgnoredServices)
       ) {
         const header = request.headers;
-        processTransactionHeader(header);
+        if (!request[SKIP_WC_TOKEN_HEADER]) {
+          processTransactionHeader(header);
+        }
       }
       if (request.url?.startsWith(site.searchContext)) {
         const header = request.headers;
@@ -168,15 +191,16 @@ const initAxios = (dispatch: any) => {
 
 const executeRequest = (request: AxiosRequestConfig): AxiosPromise<any> => {
   const params: URLSearchParams = request.params;
+  processForUserParameter(params);
   //verify active storeId in localStorage.
   storageStoreIdHandler.verifyActiveStoreId();
-  if (!params.has("langId")) {
+  if (!params.has(LANGID)) {
     // add language Id
     const langId =
       CommerceEnvironment.reverseLanguageMap[
         i18n.languages[0].split("-").join("_")
       ];
-    params.set("langId", langId);
+    params.set(LANGID, langId);
   }
   if (isNumberParserRequiredService(request)) {
     request.transformResponse = [transformNumberResponse];

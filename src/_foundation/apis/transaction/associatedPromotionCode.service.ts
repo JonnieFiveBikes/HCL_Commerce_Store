@@ -50,9 +50,9 @@ const associatedPromotionCodeService = {
    ** `@property {string} qShipModeId ` The ship mode ID.
    ** `@property {string} qUserId ` The user ID.
 
-   ** `@property {integer} qCategoryId ` 
-   ** `@property {integer} qDisplayLevel ` 
-   ** `@property {integer} qStoreId ` 
+   ** `@property {integer} qCategoryId `
+   ** `@property {integer} qDisplayLevel `
+   ** `@property {integer} qStoreId `
   */
   findPromotionsByProduct(
     parameters: any,
@@ -359,8 +359,10 @@ const associatedPromotionCodeService = {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
       ) {
-        var parameter = parameters.$queryParameters[parameterName];
-        queryParameters.set(parameterName, parameter);
+        const parameter = parameters.$queryParameters[parameterName];
+        if (parameter !== null && parameter !== undefined) {
+          queryParameters.set(parameterName, parameter);
+        }
       });
     }
     if (!header.get("Content-Type")) {

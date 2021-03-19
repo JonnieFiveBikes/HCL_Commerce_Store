@@ -21,6 +21,9 @@ const Cart = lazy(() => import("../components/pages/cart/Cart"));
 
 //component
 const SignIn = lazy(() => import("../components/pages/sign-in/SignIn"));
+const ForgotPassword = lazy(
+  () => import("../components/widgets/forgot-password/ForgotPassword")
+);
 const AddressBook = lazy(
   () => import("../components/pages/address-book/AddressBook")
 );
@@ -135,6 +138,13 @@ const B2BRouteConfig: RouteConfig[] = [
     exact: true,
     isProtected: ROUTES.GENERIC_PROTECTED,
     component: SignIn,
+  },
+  {
+    key: ROUTES.FORGOT_PASSWORD,
+    path: ROUTES.FORGOT_PASSWORD,
+    exact: true,
+    isProtected: ROUTES.GENERIC_PROTECTED,
+    component: ForgotPassword,
   },
   {
     key: ROUTES.ORG_REGISTRATION,
@@ -265,6 +275,13 @@ const B2CRouteConfig: RouteConfig[] = [
     exact: true,
     isProtected: ROUTES.GENERIC_PROTECTED,
     component: SignIn,
+  },
+  {
+    key: ROUTES.FORGOT_PASSWORD,
+    path: ROUTES.FORGOT_PASSWORD,
+    exact: true,
+    isProtected: ROUTES.GENERIC_PROTECTED,
+    component: ForgotPassword,
   },
   {
     key: ROUTES.CHECKOUT,

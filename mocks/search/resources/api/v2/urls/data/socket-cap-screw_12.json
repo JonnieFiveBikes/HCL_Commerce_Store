@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "socket-cap-screw",
+      "tokenName": "ProductToken",
+      "tokenExternalValue": "FSC039_3901",
+      "language": "en_US",
+      "id": 13337,
+      "page": {
+        "imageAlternateDescription": "Image for Socket Cap Screw from Sapphire",
+        "name": "PRODUCT_PAGE",
+        "title": "Socket Cap Screw | Sapphire",
+        "type": "ProductPage",
+        "metaDescription": "Durable hex drive cap screw with fine thread",
+        "metaKeyword": " Veerman Tools"
+      },
+      "storeId": "12",
+      "tokenValue": "13631",
+      "status": 1
+    }
+  ]
+}

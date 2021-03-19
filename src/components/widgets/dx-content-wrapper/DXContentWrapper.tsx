@@ -122,6 +122,7 @@ const DXContentWrapper: React.FC<DXContentWrapperProps> = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel("Cancel due to component unmounted"));
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite]);
 
   return contentType === CONTENT_TYPE_VIDEO ? (

@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 //Custom libraries
@@ -34,7 +35,7 @@ import {
   StyledTypography,
 } from "../../StyledUI";
 //GA360
-import GADataService from "../../../_foundation/gtm/gaData.service";
+import AsyncCall from "../../../_foundation/gtm/async.service";
 
 interface OrderItemTableProps {
   data: any[];
@@ -54,6 +55,7 @@ interface OrderItemTableProps {
  * @param props
  */
 const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
+  const widgetName = getDisplayName(OrderItemTable);
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { mySite } = useSite();
@@ -148,12 +150,14 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
           </StyledTypography>
           {!miniCartView &&
             rowData.attributes &&
-            rowData.attributes.map((attribute: any, index: number) =>
-              attribute.values.map((value: any, index: number) => (
-                <StyledTypography variant="body1" key={value.id}>
-                  {attribute.name}: {value.value}
-                </StyledTypography>
-              ))
+            rowData.attributes.map(
+              (attribute: any, index: number) =>
+                attribute.values &&
+                attribute.values.map((value: any, index: number) => (
+                  <StyledTypography variant="body1" key={value.id}>
+                    {attribute.name}: {value.value}
+                  </StyledTypography>
+                ))
             )}
           {rowData.freeGift === "true" && (
             <StyledTypography variant="overline" color="textSecondary">
@@ -184,7 +188,7 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
       title: t("OrderItemTable.Labels.Status"),
       field: "orderItemInventoryStatus",
       render: (rowData: any) =>
-        rowData.availableDate == ""
+        rowData.availableDate === ""
           ? rowData.orderItemInventoryStatus === INVENTORY_STATUS.available ||
             rowData.orderItemInventoryStatus === INVENTORY_STATUS.allocated
             ? t("CommerceEnvironment.inventoryStatus.Available")
@@ -272,6 +276,7 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
   const payloadBase: any = {
     currency: defaultCurrencyID,
     contractId: contractId,
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),
@@ -282,6 +287,7 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataProps]);
 
   /**
@@ -334,7 +340,12 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
     };
     dispatch(orderActions.REMOVE_ITEM_ACTION(payload));
     //GA360
-    if (mySite.enableGA) GADataService.sendRemoveFromCartEvent(item);
+    if (mySite.enableGA) {
+      AsyncCall.sendRemoveFromCartEvent(item, {
+        enableUA: mySite.enableUA,
+        enableGA4: mySite.enableGA4,
+      });
+    }
   }
 
   /**

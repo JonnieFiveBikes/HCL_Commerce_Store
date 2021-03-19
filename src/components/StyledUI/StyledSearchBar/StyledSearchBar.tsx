@@ -8,7 +8,10 @@
  *
  *==================================================
  */
+import React from "react";
+import Button from "@material-ui/core/Button";
 import styled from "styled-components";
+
 import { dimensions } from "../../../themes/variables";
 
 const searchBarWidth = dimensions.searchBar.width;
@@ -60,6 +63,7 @@ const StyledSearchBar = styled.div`
   
     .MuiOutlinedInput-input {
       height: ${searchBarHeight}px;
+      padding-left: ${theme.spacing(2)}px;
     }
   }
 
@@ -71,29 +75,26 @@ const StyledSearchBar = styled.div`
     padding-right: 0;
     padding-left: 0;
   }
-
   `}
 `;
 
 export default StyledSearchBar;
 
-export const StyledSearchBarButton = styled.button`
+export const StyledSearchBarButton = styled(({ ...props }) => (
+  <Button {...props} />
+))`
   ${({ theme }) => `
-    background: none;
-    border: none;
-    cursor: pointer;
+    display: flex; 
     width: ${theme.spacing(4.5)}px;
     height: ${theme.spacing(4.5)}px;
-    border-radius: 50%;
 
     ${theme.breakpoints.down("sm")} {
-      width: ${theme.spacing(4)}px;
-      height: ${theme.spacing(4)}px;
+      min-width: ${theme.spacing(3)}px;
+      height: auto;
     }
 
     .MuiSvgIcon-root {
       color: ${theme.palette.text.secondary};
-      vertical-align: middle;
     }
     
     &:hover {

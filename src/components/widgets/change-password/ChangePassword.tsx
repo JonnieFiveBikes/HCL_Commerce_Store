@@ -17,6 +17,8 @@ import getDisplayName from "react-display-name";
 //Foundation libraries
 import personService from "../../../_foundation/apis/transaction/person.service";
 import { useSite } from "../../../_foundation/hooks/useSite";
+//Custom libraries
+import { EMPTY_STRING } from "../../../constants/common";
 //UI
 import {
   StyledDialog,
@@ -87,6 +89,9 @@ const ChangePassword: React.FC = (props: any) => {
 
   const handleClose = () => {
     setOpen(false);
+    setOldPassword("");
+    setVerifyPassword("");
+    setNewPassword("");
   };
 
   const handleSuccess = () => {
@@ -120,6 +125,16 @@ const ChangePassword: React.FC = (props: any) => {
         }
       });
   };
+  const canContinue = () => {
+    if (
+      passwordOld.trim() !== EMPTY_STRING &&
+      passwordNew.trim() !== EMPTY_STRING &&
+      passwordVerify.trim() !== EMPTY_STRING
+    ) {
+      return true;
+    }
+    return false;
+  };
 
   useEffect(() => {
     return () => {
@@ -137,7 +152,7 @@ const ChangePassword: React.FC = (props: any) => {
         aria-labelledby="change-password-dialog">
         <StyledDialogTitle title={title} onClickHandler={handleClose} />
         <StyledDialogContent>
-          <form name="signInForm" onSubmit={handleSubmit}>
+          <form name="signInForm" noValidate onSubmit={handleSubmit}>
             <StyledTextField
               margin="normal"
               required
@@ -172,7 +187,10 @@ const ChangePassword: React.FC = (props: any) => {
               }
             />
             <StyledDialogActions>
-              <StyledButton color="primary" type="submit">
+              <StyledButton
+                color="primary"
+                type="submit"
+                disabled={!canContinue()}>
                 {saveLabel}
               </StyledButton>
               <StyledButton

@@ -1,0 +1,12 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "marketingSpotIdentifier": "14509",
+      "behavior": "0",
+      "eSpotName": "Home_ProductRec"
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/12/espot/Home_ProductRec?name=Home_ProductRec&langId=-1",
+  "resourceName": "espot"
+}

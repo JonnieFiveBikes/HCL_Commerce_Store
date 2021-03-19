@@ -34,10 +34,10 @@
     "_ERR_AUTHENTICATION_ERROR_2000": "在“登录标识”字段中输入登录标识。",
     "_ERR_AUTHENTICATION_ERROR_2010": "输入的登录标识或密码不正确。请重新输入相关信息。",
     "_ERR_AUTHENTICATION_ERROR_2020": "输入的登录标识或密码不正确。请重新输入相关信息。",
-    "_ERR_AUTHENTICATION_ERROR_2030": "输入的登录标识或密码不正确。请重新输入相关信息。",
+    "_ERR_AUTHENTICATION_ERROR_2030": "您输入的登录凭据无效。请检查您的输入，然后重试。",
     "_ERR_PASSWORD_FAILED_CMN1019E": "输入的登录标识或密码不正确。请重新输入相关信息。",
     "_ERR_PERSON_ACCOUNT_DISABLED_2110": "此帐户已被锁定。请与商店联系以解锁您的帐户。",
-    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "由于尝试登录失败次数过多，您的帐户已被锁定。请重设密码以继续。",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "由于不成功密码尝试已达 {{0}} 次，您将无法登录。请重置您的密码或者联系客户服务代表寻求帮助。",
     "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "请等待几秒钟，然后再尝试登录。",
     "_2400": "您的组织已被锁定。您目前无法登录。",
     "_2410": "您没有适当的登录权限。请与商店联系以获取更多信息。",
@@ -90,9 +90,16 @@
     "_API_BAD_INV_2": "库存不足，无法购买 {{1}} 件 {{0}}。",
     "_ERR_FINDING_ORDER_230": "处理您的订单时发生系统问题。",
     "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "发生系统问题。请联系商店获取帮助。",
+    "_ERR_REMOTE_EXCEPTION_CMN0412E": "处理您的请求时发生系统问题。请联系商店获取帮助。",
+    "_ERR_REG_DUPE_ID_CMN0114S": "您输入的登录标识已存在。请输入其他登录标识，然后重试。",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "您输入的电子邮件无效。请检查您的输入，然后重试。",
+    "_ERR_CMD_INVALID_PARAM_2195": "您输入的验证码无效。请检查您的输入，然后重试。",
     "B2B": {
-      "_ERR_LOGONID_ALREDY_EXIST_2030": "您输入的登录标识已存在。请输入其他登录标识，然后重试。"
-    }
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "您输入的登录标识无效。请检查您的输入，然后重试。",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "您输入的登录标识已存在。请输入其他登录标识，然后重试。",
+      "_ERR_BAD_PARMS_2010": "您输入的登录标识无效。请检查您的输入，然后重试。"
+    },
+    "_ERR_PASSWORD_EXPIRED_2170": "您当前的密码已过期。 请输入新密码。"
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "商品已添加到购物车。",
@@ -101,6 +108,8 @@
     "RecurringOrderCancelled": "订单已成功取消。",
     "ADD_ADDRESS_SUCCESS": "已成功添加新地址“{{0}}”。",
     "EDIT_ADDRESS_SUCCESS": "已成功更新地址“{{0}}”",
-    "DELETE_ADDRESS_SUCCESS": "已成功删除地址“{{0}}”"
+    "DELETE_ADDRESS_SUCCESS": "已成功删除地址“{{0}}”",
+    "RESEND_VERIFICATION_CODE": "验证码已成功发送到您的电子邮件地址",
+    "PASSWORD_RESET_SUCCESS": "密码已成功重置"
   }
 }

@@ -1,6 +1,8 @@
 {
   "RegistrationLayout": {
     "NewCustomer": "Neuer Kunde?",
+    "SignIn": "Anmelden",
+    "Account": " Sie haben bereits ein Konto? ",
     "FirstName": "Vorname",
     "LastName": "Nachname",
     "Email": "E-Mail-Adresse",
@@ -9,6 +11,7 @@
     "VerifyPassword": "Kennwort bestätigen",
     "TextContent": "Erhalten Sie Ideen für das Wohndesign, die an Ihren Posteingang gesendet werden.",
     "Register": "Registrieren",
+    "RegisterComplete": "Registrierung abschließen ",
     "Msgs": {
       "InvalidFormat": "Ungültiges Format"
     }

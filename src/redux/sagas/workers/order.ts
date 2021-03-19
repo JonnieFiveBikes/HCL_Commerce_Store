@@ -225,6 +225,11 @@ export function* fetchCart(action: any) {
     const checkInventory: boolean = payload.checkInventory
       ? payload.checkInventory
       : false;
+
+    if (payload.widget) {
+      parameters["widget"] = payload.widget;
+    }
+
     const responseCart = yield call(cartService.getCart, { ...parameters });
 
     let catentries: any = null;
@@ -329,7 +334,10 @@ export function* fetchShipInfo(action: any) {
   try {
     const payload = action.payload;
     const response = yield call(cartService.getUsableShippingInfo, payload);
-    yield put({ type: ACTIONS.SHIPINFO_GET_SUCCESS, response: response.data });
+    yield put({
+      type: ACTIONS.SHIPINFO_GET_SUCCESS,
+      response: response.data,
+    });
   } catch (error) {
     yield put({ type: ACTIONS.SHIPINFO_GET_ERROR, error });
   }
@@ -342,7 +350,10 @@ export function* fetchShipModes(action: any) {
   try {
     const payload = action.payload;
     const response = yield call(cartService.getUsableShippingMode, payload);
-    yield put({ type: ACTIONS.SHIPMODES_GET_SUCCESS, response: response.data });
+    yield put({
+      type: ACTIONS.SHIPMODES_GET_SUCCESS,
+      response: response.data,
+    });
   } catch (error) {
     yield put({ type: ACTIONS.SHIPMODES_GET_ERROR, error });
   }

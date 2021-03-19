@@ -1,0 +1,12 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "marketingSpotIdentifier": "14508",
+      "behavior": "0",
+      "eSpotName": "FastenersHero"
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/12/espot/FastenersHero?catalogId=10501&name=FastenersHero&langId=-1",
+  "resourceName": "espot"
+}

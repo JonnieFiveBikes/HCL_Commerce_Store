@@ -34,10 +34,10 @@
     "_ERR_AUTHENTICATION_ERROR_2000": "Geben Sie eine Anmelde-ID in das Feld Anmelde-ID ein.",
     "_ERR_AUTHENTICATION_ERROR_2010": "Entweder die Anmelde-ID oder das eingegebene Kennwort ist falsch. Geben Sie die Informationen erneut ein.",
     "_ERR_AUTHENTICATION_ERROR_2020": "Entweder die Anmelde-ID oder das eingegebene Kennwort ist falsch. Geben Sie die Informationen erneut ein.",
-    "_ERR_AUTHENTICATION_ERROR_2030": "Entweder die Anmelde-ID oder das eingegebene Kennwort ist falsch. Geben Sie die Informationen erneut ein.",
+    "_ERR_AUTHENTICATION_ERROR_2030": "Die von Ihnen eingegebenen Anmeldedaten sind nicht gültig. Prüfen Sie Ihre Eingabe und versuchen Sie es erneut.",
     "_ERR_PASSWORD_FAILED_CMN1019E": "Entweder die Anmelde-ID oder das eingegebene Kennwort ist falsch. Geben Sie die Informationen erneut ein.",
     "_ERR_PERSON_ACCOUNT_DISABLED_2110": "Dieses Konto ist gesperrt. Wenden Sie sich an Ihr Geschäft, um Ihr Konto zu entsperren.",
-    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Ihr Konto wurde aufgrund zu vieler ungültiger Anmeldeversuche gesperrt.  Bitte setzen Sie Ihr Kennwort zurück, um fortzufahren.",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Aufgrund von {{0}} erfolglosen Kennwortversuchen ist eine Anmeldung nicht möglich. Setzen Sie Ihr Kennwort zurück oder wenden Sie sich an den Kundenservicemitarbeiter, um Hilfe zu erhalten.",
     "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "Warten Sie einige Sekunden, bevor Sie versuchen, sich erneut anzumelden.",
     "_2400": "Ihre Organisation ist gesperrt. Sie können sich zum jetztigen Zeitpunkt nicht anmelden. ",
     "_2410": "Sie verfügen nicht über die korrekte Berechtigung zum Anmelden. Wenden Sie sich an das Geschäft, um weitere Informationen zu erhalten.",
@@ -90,9 +90,16 @@
     "_API_BAD_INV_2": "Es ist kein ausreichender Bestand vorhanden, um {{1}} Stück {{0}} zu kaufen.",
     "_ERR_FINDING_ORDER_230": "Bei der Verarbeitung Ihrer Bestellung ist ein Systemproblem aufgetreten.",
     "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "Es ist ein Systemfehler aufgetreten. Bitte wenden Sie sich für Unterstützung an das Geschäft.",
+    "_ERR_REMOTE_EXCEPTION_CMN0412E": "Bei der Bearbeitung Ihrer Anfrage ist ein Systemproblem aufgetreten. Bitte wenden Sie sich an das Geschäft, um Unterstützung zu erhalten.",
+    "_ERR_REG_DUPE_ID_CMN0114S": "Die eingegebene Anmelde-ID ist bereits vorhanden. Geben Sie eine andere Anmelde-ID ein und versuchen Sie es erneut.",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "Die von Ihnen eingegebene E-Mail-Adresse ist nicht gültig. Überprüfen Sie Ihre Eingabe und versuchen Sie es erneut.",
+    "_ERR_CMD_INVALID_PARAM_2195": "Der eingegebene Bestätigungscode ist nicht gültig. Prüfen Sie Ihre Eingabe und versuchen Sie es erneut.",
     "B2B": {
-      "_ERR_LOGONID_ALREDY_EXIST_2030": "Die eingegebene Anmelde-ID ist bereits vorhanden. Geben Sie eine andere Anmelde-ID ein und versuchen Sie es erneut."
-    }
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "Die eingegebene Anmelde-ID ist nicht gültig. Prüfen Sie Ihre Eingabe und versuchen Sie es erneut.",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "Die eingegebene Anmelde-ID ist bereits vorhanden. Geben Sie eine andere Anmelde-ID ein und versuchen Sie es erneut.",
+      "_ERR_BAD_PARMS_2010": "Die eingegebene Anmelde-ID ist nicht gültig. Prüfen Sie Ihre Eingabe und versuchen Sie es erneut."
+    },
+    "_ERR_PASSWORD_EXPIRED_2170": "Ihr aktuelles Kennwort ist abgelaufen. Bitte geben Sie ein neues Kennwort ein."
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "Artikel wurde zum Warenkorb hinzugefügt. ",
@@ -101,6 +108,8 @@
     "RecurringOrderCancelled": "Die Bestellung wurde erfolgreich storniert.",
     "ADD_ADDRESS_SUCCESS": "Ihre neue Adresse \"{{0}}\" wurde erfolgreich hinzugefügt",
     "EDIT_ADDRESS_SUCCESS": "Ihre Adresse \"{{0}}\" wurde erfolgreich aktualisiert",
-    "DELETE_ADDRESS_SUCCESS": "Ihre Adresse \"{{0}}\" wurde erfolgreich gelöscht"
+    "DELETE_ADDRESS_SUCCESS": "Ihre Adresse \"{{0}}\" wurde erfolgreich gelöscht",
+    "RESEND_VERIFICATION_CODE": "Der Bestätigungscode wurde erfolgreich an Ihre E-Mail-Adresse gesendet",
+    "PASSWORD_RESET_SUCCESS": "Das Kennwort wurde erfolgreich zurückgesetzt"
   }
 }

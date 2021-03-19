@@ -78,9 +78,6 @@ function AddAddress() {
       cancels.push(c);
     }),
   };
-  const payload = {
-    ...payloadBase,
-  };
   const history = useHistory();
 
   /**
@@ -119,11 +116,13 @@ function AddAddress() {
       .then((res) => res.data)
       .then((addressData) => {
         if (addressData.addressId) {
-          dispatch(accountActions.GET_ADDRESS_DETAIL_ACTION(payload));
+          dispatch(
+            accountActions.GET_ADDRESS_DETAIL_ACTION({ ...payloadBase })
+          );
           const successMessage = {
             key: "success-message.ADD_ADDRESS_SUCCESS",
             messageParameters: {
-              ["0"]: newAddressData.nickName,
+              "0": newAddressData.nickName,
             },
           };
           dispatch(
@@ -141,6 +140,7 @@ function AddAddress() {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

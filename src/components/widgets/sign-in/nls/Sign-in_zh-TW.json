@@ -2,12 +2,25 @@
   "SignIn": {
     "ReturningCustomer": "回購客戶",
     "Password": "密碼",
+    "ChangPassword": "變更密碼",
+    "CurrentPassword": "目前的密碼",
+    "PasswordVerify": "驗證密碼",
     "RememberMe": "記住我",
     "SignInButton": "登入",
-    "ForgotPassword": "忘記密碼",
+    "Cancel": "取消",
+    "Submit": "提交",
+    "ForgotPassword": "忘記密碼了嗎？",
+    "noAccount": "還沒有帳戶嗎？",
+    "registerNow": "立即登錄",
     "Label": {
       "B2B": "登入 ID",
-      "Email": "電子郵件地址"
+      "Email": "電子郵件地址",
+      "rememberMe": "記住我"
+    },
+    "Msgs": {
+      "InvalidFormat": "無效格式。",
+      "PasswordNotMatch": "密碼與驗證密碼不相符。",
+      "OldPasswordReuse": "先前已使用所輸入的密碼。請輸入新密碼。"
     }
   }
 }

@@ -69,6 +69,7 @@ const AdminTools = () => {
     return () => {
       cmcService.reset();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [iframeRef.current, cmcService, location, handled]);
 
   return (

@@ -34,10 +34,10 @@
     "_ERR_AUTHENTICATION_ERROR_2000": "Escriba un ID de inicio de sesión en el campo ID de inicio de sesión.",
     "_ERR_AUTHENTICATION_ERROR_2010": "El ID de inicio de sesión o la contraseña introducida son incorrectos. Vuelva a introducir la información.",
     "_ERR_AUTHENTICATION_ERROR_2020": "El ID de inicio de sesión o la contraseña introducida son incorrectos. Vuelva a introducir la información.",
-    "_ERR_AUTHENTICATION_ERROR_2030": "El ID de inicio de sesión o la contraseña introducida son incorrectos. Vuelva a introducir la información.",
+    "_ERR_AUTHENTICATION_ERROR_2030": "Los credenciales de inicio de sesión que ha introducido no son válido. Verifíquelos e inténtelo de nuevo.",
     "_ERR_PASSWORD_FAILED_CMN1019E": "El ID de inicio de sesión o la contraseña introducida son incorrectos. Vuelva a introducir la información.",
     "_ERR_PERSON_ACCOUNT_DISABLED_2110": "Esta cuenta está bloqueada. Póngase en contacto con la tienda para desbloquear la cuenta.",
-    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Se ha bloqueado su cuenta debido a demasiados intentos de inicio de sesión incorrectos. Restablezca la contraseña para continuar.",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "No podrá iniciar sesión debido a que ha realizado {{0}} intentos de inicio de sesión incorrectos. Restablezca su contraseña o póngase en contacto con su representante de atención al cliente para obtener ayuda.",
     "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "Espere unos segundos antes de intentar iniciar sesión de nuevo.",
     "_2400": "Su organización está bloqueada. No puede iniciar sesión en este momento. ",
     "_2410": "No dispone de la autoridad adecuada para iniciar sesión. Póngase en contacto con la tienda para obtener más información.",
@@ -90,9 +90,16 @@
     "_API_BAD_INV_2": "No hay inventario suficiente para comprar {{1}} unidades de {{0}}.",
     "_ERR_FINDING_ORDER_230": "Se ha producido un problema en el sistema durante el procesamiento de su pedido.",
     "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "Ha ocurrido un error en el sistema. Póngase en contacto con la tienda para recibir ayuda.",
+    "_ERR_REMOTE_EXCEPTION_CMN0412E": "Se ha producido un error en el sistema al procesar su solicitud. Póngase en contacto con la tienda para obtener ayuda.",
+    "_ERR_REG_DUPE_ID_CMN0114S": "El ID de inicio de sesión que ha introducido ya existe. Escriba un ID de inicio de sesión diferente e inténtelo de nuevo.",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "El correo electrónico que ha introducido no es válido. Verifíquelo e inténtelo de nuevo.",
+    "_ERR_CMD_INVALID_PARAM_2195": "El código de verificación que ha introducido no es válido. Verifíquelo e inténtelo de nuevo.",
     "B2B": {
-      "_ERR_LOGONID_ALREDY_EXIST_2030": "El ID de inicio de sesión que ha introducido ya existe. Escriba un ID de inicio de sesión diferente e inténtelo de nuevo."
-    }
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "El ID de inicio de sesión que ha introducido no es válido. Verifíquelo e inténtelo de nuevo.",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "El ID de inicio de sesión que ha introducido ya existe. Escriba un ID de inicio de sesión diferente e inténtelo de nuevo.",
+      "_ERR_BAD_PARMS_2010": "El ID de inicio de sesión que ha introducido no es válido. Verifíquelo e inténtelo de nuevo."
+    },
+    "_ERR_PASSWORD_EXPIRED_2170": "Su contraseña ha caducado. Escriba una contraseña nueva."
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "Se ha añadido el artículo al carro.",
@@ -101,6 +108,8 @@
     "RecurringOrderCancelled": "El pedido se ha cancelado correctamente.",
     "ADD_ADDRESS_SUCCESS": "Se ha añadido su nueva dirección \"{{0}}\" correctamente",
     "EDIT_ADDRESS_SUCCESS": "Se ha actualizado su dirección \"{{0}}\" correctamente",
-    "DELETE_ADDRESS_SUCCESS": "Se ha eliminado su dirección \"{{0}}\" correctamente"
+    "DELETE_ADDRESS_SUCCESS": "Se ha eliminado su dirección \"{{0}}\" correctamente",
+    "RESEND_VERIFICATION_CODE": "Se ha enviado el código de verificación a su dirección de correo electrónico correctamente.",
+    "PASSWORD_RESET_SUCCESS": "Se ha restablecido la contraseña correctamente"
   }
 }

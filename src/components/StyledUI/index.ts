@@ -12,6 +12,7 @@ import StyledAlert from "./StyledAlert/StyledAlert";
 import StyledBox from "./StyledBox/StyledBox";
 import StyledBreadcrumbs from "./StyledBreadcrumbs/StyledBreadcrumbs";
 import StyledButton from "./StyledButton/StyledButton";
+import StyledB2BLandingPageButton from "./StyledB2BLandingPageButton/StyledB2BLandingPageButton";
 import {
   StyledCard,
   StyledCardActions,
@@ -106,7 +107,7 @@ import StyledWrapper from "./StyledWrapper/StyledWrapper";
 export { StyledAlert };
 export { StyledBox };
 export { StyledBreadcrumbs };
-export { StyledButton };
+export { StyledButton, StyledB2BLandingPageButton };
 export {
   StyledCard,
   StyledCardActions,

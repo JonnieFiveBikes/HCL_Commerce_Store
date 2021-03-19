@@ -10,7 +10,6 @@
  */
 //Standard libraries
 import React from "react";
-import Currency from "react-currency-formatter";
 import { useTranslation } from "react-i18next";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
@@ -39,9 +38,6 @@ const FormattedPriceDisplay: React.FC<FormattedPriceDisplayProps> = (
     : mySite
     ? mySite.defaultCurrencyID
     : "";
-  const locale = props.locale
-    ? props.locale
-    : i18n.languages[0].split("-").join("_");
 
   const { t } = useTranslation();
 
@@ -53,13 +49,21 @@ const FormattedPriceDisplay: React.FC<FormattedPriceDisplayProps> = (
             min === null ? (
               <>{t("PriceDisplay.Labels.Pending")}</>
             ) : (
-              <Currency quantity={min} currency={currency} locale={locale} />
+              <>
+                {Intl.NumberFormat(i18n.languages[0], {
+                  style: "currency",
+                  currency,
+                }).format(min)}
+              </>
             )
           ) : (
-            <>
-              <Currency quantity={min} currency={currency} locale={locale} /> -{" "}
-              <Currency quantity={max} currency={currency} locale={locale} />
-            </>
+            <>{`${Intl.NumberFormat(i18n.languages[0], {
+              style: "currency",
+              currency,
+            }).format(min)} - ${Intl.NumberFormat(i18n.languages[0], {
+              style: "currency",
+              currency,
+            }).format(max)}`}</>
           )}
         </>
       )}

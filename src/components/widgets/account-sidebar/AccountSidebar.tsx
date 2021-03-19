@@ -33,7 +33,10 @@ import {
   // SAVED_ORDERS,
   // APPROVE_ORDERS
 } from "../../../constants/routes";
-import { userIdSelector } from "../../../redux/selectors/user";
+import {
+  forUserIdSelector,
+  userIdSelector,
+} from "../../../redux/selectors/user";
 import personService from "../../../_foundation/apis/transaction/person.service";
 import {
   IBM_ASSIGNED_ROLE_DETAILS,
@@ -120,6 +123,7 @@ const useSectionArray = (isB2B: boolean) => {
   let cancels: Canceler[] = [];
 
   const userId = useSelector(userIdSelector);
+  const forUserId = useSelector(forUserIdSelector);
 
   const payloadBase: any = {
     widget: widgetName,
@@ -128,15 +132,14 @@ const useSectionArray = (isB2B: boolean) => {
     }),
   };
 
-  const param = {
-    userId: userId,
-    profileName: IBM_ASSIGNED_ROLE_DETAILS,
-    ...payloadBase,
-  };
-
   const [buyerRole, setBuyerRole] = useState<string[]>([]);
 
   const getPerson = () => {
+    const param = {
+      userId: forUserId ?? userId,
+      profileName: IBM_ASSIGNED_ROLE_DETAILS,
+      ...payloadBase,
+    };
     personService
       .findByUserId(param)
       .then((response) => response.data)
@@ -260,16 +263,18 @@ const useSectionArray = (isB2B: boolean) => {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const sectionsArray = useMemo(() => formatSectionArray(), [buyerRole, isB2B]);
 
   React.useEffect(() => {
-    if (userId) {
+    if (userId || forUserId) {
       getPerson();
     }
     return () => {
       cancels.forEach((cancel) => cancel());
     };
-  }, [userId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId, forUserId]);
 
   return { sectionsArray };
 };

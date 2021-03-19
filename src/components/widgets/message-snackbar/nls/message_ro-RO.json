@@ -34,10 +34,10 @@
     "_ERR_AUTHENTICATION_ERROR_2000": "Tastați un ID de conectare în câmpul ID conectare.",
     "_ERR_AUTHENTICATION_ERROR_2010": "ID-ul de conectare sau parola introdusă nu este corectă. Introduceți din nou informațiile.",
     "_ERR_AUTHENTICATION_ERROR_2020": "ID-ul de conectare sau parola introdusă nu este corectă. Introduceți din nou informațiile.",
-    "_ERR_AUTHENTICATION_ERROR_2030": "ID-ul de conectare sau parola introdusă nu este corectă. Introduceți din nou informațiile.",
+    "_ERR_AUTHENTICATION_ERROR_2030": "Acreditările de conectare introduse nu sunt valide. Verificați ce ați introdus și încercați din nou.",
     "_ERR_PASSWORD_FAILED_CMN1019E": "ID-ul de conectare sau parola introdusă nu este corectă. Introduceți din nou informațiile.",
     "_ERR_PERSON_ACCOUNT_DISABLED_2110": "Acest cont este blocat. Contactați magazinul pentru a vă debloca contul.",
-    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Contul a fost blocat din cauza încercărilor excesive de conectare. Resetați-vă parola pentru a continua.",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Din cauza a {{0}} încercări nereușite de introducere a parolei, nu veți putea să vă autentificați. Resetați-vă parola sau contactați Reprezentantul de service al clientului pentru asistență.",
     "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "Așteptați câteva secunde înainte de a încerca din nou autentificarea.",
     "_2400": "Organizația dvs. este blocată. Momentan nu vă puteți autentifica. ",
     "_2410": "Nu aveți autoritatea corespunzătoare pentru autentificare. Contactați magazinul pentru mai multe informații.",
@@ -90,9 +90,16 @@
     "_API_BAD_INV_2": "Nu există un inventar suficient pentru a cumpăra {{1}} bucăți din {{0}}.",
     "_ERR_FINDING_ORDER_230": "A apărut o problemă de sistem în timpul procesării comenzii.",
     "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "A apărut o problemă de sistem. Contactați magazinul pentru asistență.",
+    "_ERR_REMOTE_EXCEPTION_CMN0412E": "A apărut o problemă de sistem în timpul procesării solicitării dvs. Contactați magazinul pentru asistență.",
+    "_ERR_REG_DUPE_ID_CMN0114S": "ID-ul de conectare introdus există deja. Tastați un ID de conectare diferit și încercați din nou.",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "E-mailul introdus nu este valid. Verificați ce ați introdus și încercați din nou.",
+    "_ERR_CMD_INVALID_PARAM_2195": "Codul de verificare introdus nu este valid. Verificați ce ați introdus și încercați din nou.",
     "B2B": {
-      "_ERR_LOGONID_ALREDY_EXIST_2030": "ID-ul de conectare introdus există deja. Tastați un ID de conectare diferit și încercați din nou."
-    }
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "ID-ul de conectare introdus nu este valid. Verificați ce ați introdus și încercați din nou.",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "ID-ul de conectare introdus există deja. Tastați un ID de conectare diferit și încercați din nou.",
+      "_ERR_BAD_PARMS_2010": "ID-ul de conectare introdus nu este valid. Verificați ce ați introdus și încercați din nou."
+    },
+    "_ERR_PASSWORD_EXPIRED_2170": "Parola dvs. curentă a expirat. Introduceți o parolă nouă."
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "Articolul a fost adăugat în coș. ",
@@ -101,6 +108,8 @@
     "RecurringOrderCancelled": "Comanda a fost anulată cu succes.",
     "ADD_ADDRESS_SUCCESS": "Noua adresă \"{{0}}\" a fost adăugată cu succes",
     "EDIT_ADDRESS_SUCCESS": "Adresa \"{{0}}\" a fost actualizată cu succes",
-    "DELETE_ADDRESS_SUCCESS": "Adresa \"{{0}}\" a fost ștearsă cu succes"
+    "DELETE_ADDRESS_SUCCESS": "Adresa \"{{0}}\" a fost ștearsă cu succes",
+    "RESEND_VERIFICATION_CODE": "Codul de verificare a fost trimis cu succes la adresa dvs. de e-mail",
+    "PASSWORD_RESET_SUCCESS": "Parola a fost resetată cu succes"
   }
 }

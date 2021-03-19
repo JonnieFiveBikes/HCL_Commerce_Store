@@ -50,7 +50,11 @@ import {
   isRecurringOrderDisabledSelector,
   isFetchingSelector,
 } from "../../../redux/selectors/order";
-import { loginStatusSelector } from "../../../redux/selectors/user";
+import {
+  forUserIdSelector,
+  loginStatusSelector,
+  userIdSelector,
+} from "../../../redux/selectors/user";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 //UI
 import { Divider } from "@material-ui/core";
@@ -84,6 +88,8 @@ import {
   ru,
   ro,
 } from "date-fns/locale";
+//GA360
+import AsyncCall from "../../../_foundation/gtm/async.service";
 
 /**
  * Shopping cart component
@@ -93,14 +99,17 @@ import {
 const Cart: React.FC = (props: any) => {
   const widgetName = getDisplayName(Cart);
 
+  const userId = useSelector(userIdSelector);
+  const forUserId = useSelector(forUserIdSelector);
   const contractId = useSelector(currentContractIdSelector);
   const cart = useSelector(cartSelector);
   const orderItems = useSelector(orderItemsSelector);
   const isCheckoutDisabled = useSelector(isCheckoutDisabledSelector);
   const [isRecurringOrder, setIsRecurringOrder] = useState<boolean>(false);
-  const [recurringOrderFrequency, setRecurringOrderFrequency] = useState<
-    string
-  >("0");
+  const [
+    recurringOrderFrequency,
+    setRecurringOrderFrequency,
+  ] = useState<string>("0");
   const [recurringOrderStartDate, setRecurringOrderStartDate] = useState<Date>(
     () => new Date()
   );
@@ -129,18 +138,24 @@ const Cart: React.FC = (props: any) => {
       ? cart.promotionCode
       : []
     : [];
-  const isCartLocked: boolean = cart
-    ? cart.locked === "true" || cart.locked === true
-      ? true
-      : false
-    : false;
+  const isCartLocked = (): boolean => {
+    if (forUserId) {
+      return false;
+    } else {
+      return cart
+        ? cart.locked === "true" || cart.locked === true
+          ? true
+          : false
+        : false;
+    }
+  };
   const frequencyOptions = RECURRING_ORDER_OPTIONS;
   const hasDiscounts = cart && cart.adjustment ? true : false;
 
   const dispatch = useDispatch();
   const history = useHistory();
   const { t, i18n } = useTranslation();
-  const { mySite } = useSite();
+  const { mySite, storeDisplayName } = useSite();
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
 
@@ -182,7 +197,23 @@ const Cart: React.FC = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite, contractId, defaultCurrencyID]);
+
+  //GA360
+  React.useEffect(() => {
+    if (mySite.enableGA) {
+      AsyncCall.sendCartPageViewEvent(
+        { pageTitle: storeDisplayName },
+        { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
+      );
+      AsyncCall.sendViewCartEvent(
+        { cart, orderItems },
+        { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function initLocaleMap() {
     let localeMap = {};
@@ -209,14 +240,20 @@ const Cart: React.FC = (props: any) => {
 
   function applyPromotionCode() {
     const code = promoCode.trim();
+
     if (code !== "") {
       let payload = {
         ...payloadBase,
         promoCode: code,
       };
       const body = {
-        body: payload,
+        body: { ...payload },
       };
+
+      if (payload?.widget) {
+        body["widget"] = payload.widget;
+      }
+
       assignedPromotionCode
         .applyPromotioncode(body)
         .then((res) => {
@@ -270,8 +307,13 @@ const Cart: React.FC = (props: any) => {
         ...payloadBase,
         promoCode: code,
       };
+
+      if (payloadBase?.widget) {
+        parameters["widget"] = payloadBase.widget;
+      }
+
       assignedPromotionCode
-        .removePromotionCode(parameters)
+        .removePromotionCode({ ...parameters })
         .then((res) => {
           let payload = {
             ...payloadBase,
@@ -307,7 +349,7 @@ const Cart: React.FC = (props: any) => {
    */
   function canContinue() {
     return (
-      !isCartLocked &&
+      !isCartLocked() &&
       !isCheckoutDisabled &&
       (!isRecurringOrder ||
         (isRecurringOrder &&
@@ -473,7 +515,7 @@ const Cart: React.FC = (props: any) => {
                   </StyledGrid>
                   <StyledGrid container spacing={1}>
                     {selectedPromoCodes.map((promoCode: any, index: number) => (
-                      <StyledGrid item xs={12} sm={6} key={index}>
+                      <StyledGrid item xs={12} sm={6} key={promoCode.code}>
                         <StyledChip
                           size="medium"
                           label={promoCode.code}

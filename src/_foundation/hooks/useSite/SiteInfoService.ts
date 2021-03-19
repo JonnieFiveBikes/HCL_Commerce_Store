@@ -29,6 +29,9 @@ import {
   GTM_ID,
   GTM_AUTH,
   GTM_PREVIEW,
+  GA_VERSIONS,
+  GA_VERSION_UA,
+  GA_VERSION_GA4,
 } from "../../../_foundation/constants/gtm";
 //custom library
 import { SiteInfo } from "../../../redux/reducers/reducerStateInterface";
@@ -138,7 +141,7 @@ export class SiteInfoService {
   private initializeSite(s: SiteInfoArgs): Promise<SiteInfo> {
     const _site: SiteInfoArgs = Object.assign({}, s);
     //GA360
-    let gtmID: string, gtmAuth: string, gtmPreview: string;
+    let gtmID: string, gtmAuth: string, gtmPreview: string, gaVersions: string;
 
     let storeId = typeof HCL_STORE_ID === undefined ? undefined : HCL_STORE_ID;
     if (!storeId) {
@@ -163,8 +166,16 @@ export class SiteInfoService {
           gtmID = storeCfg.userData[GTM_ID];
           gtmAuth = storeCfg.userData[GTM_AUTH];
           gtmPreview = storeCfg.userData[GTM_PREVIEW];
+          gaVersions = storeCfg.userData[GA_VERSIONS];
           if (gtmID && gtmAuth && gtmPreview) {
             _site.enableGA = true;
+            if (gaVersions) {
+              _site.enableUA = gaVersions.includes(GA_VERSION_UA);
+              _site.enableGA4 = gaVersions.includes(GA_VERSION_GA4);
+            } else {
+              _site.enableUA = false;
+              _site.enableGA4 = false;
+            }
             _site.gtmID = gtmID;
             _site.gtmAuth = gtmAuth;
             _site.gtmPreview = gtmPreview;
@@ -204,8 +215,16 @@ export class SiteInfoService {
         gtmID = storeCfg.userData[GTM_ID];
         gtmAuth = storeCfg.userData[GTM_AUTH];
         gtmPreview = storeCfg.userData[GTM_PREVIEW];
+        gaVersions = storeCfg.userData[GA_VERSIONS];
         if (gtmID && gtmAuth && gtmPreview) {
           _site.enableGA = true;
+          if (gaVersions) {
+            _site.enableUA = gaVersions.includes(GA_VERSION_UA);
+            _site.enableGA4 = gaVersions.includes(GA_VERSION_GA4);
+          } else {
+            _site.enableUA = false;
+            _site.enableGA4 = false;
+          }
           _site.gtmID = gtmID;
           _site.gtmAuth = gtmAuth;
           _site.gtmPreview = gtmPreview;

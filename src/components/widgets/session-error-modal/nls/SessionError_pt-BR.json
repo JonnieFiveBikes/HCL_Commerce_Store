@@ -5,6 +5,7 @@
     "GenericTitle": "Erro genérico",
     "TimeoutMsg": "Sua sessão expirou e você foi desconectado com sucesso. Entre novamente para acessar sua loja.",
     "InvalidMsg": "Seu ID de logon pode ter sido usado em outro local. Entre novamente para acessar sua loja.",
+    "InvalidMsgB2C": "Seu endereço de e-mail pode ter sido usado em outro local. Entre novamente para acessar sua loja.",
     "Email": "E-mail",
     "Password": "Senha",
     "SubmitButton": "Entrar",

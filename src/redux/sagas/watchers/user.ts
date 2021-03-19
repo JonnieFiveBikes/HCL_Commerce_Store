@@ -34,6 +34,10 @@ export function* watchSaga() {
   //login
   yield takeLatest(ACTIONS.LOGIN_REQUESTED, WORKERS.login);
   yield takeLatest(
+    ACTIONS.LOGON_AND_CHANGE_PASSWORD_REQUESTED,
+    WORKERS.logonAndChangePassword
+  );
+  yield takeLatest(
     SESSION_ERROR_LOGIN_REQUESTED_ACTION,
     WORKERS.sessionErrorReLogin
   );

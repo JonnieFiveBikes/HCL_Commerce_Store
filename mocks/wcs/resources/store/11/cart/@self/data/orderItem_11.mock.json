@@ -1,0 +1,113 @@
+{
+  "totalShippingCharge": "0.00000",
+  "resourceId": "https://app:5443/wcs/resources/store/11/cart/@self?sortOrderItemBy=orderItemID&langId=-1",
+  "orderId": "1058697616",
+  "lastUpdateDate": "2021-01-06T12:36:29.732Z",
+  "channel": {
+    "channelIdentifer": {
+      "channelName": "Telesales",
+      "uniqueID": "-4"
+    },
+    "userData": null,
+    "description": {
+      "language": "-1",
+      "value": "Used when operations performed by a telesales representative."
+    }
+  },
+  "orderStatus": "P",
+  "x_isPurchaseOrderNumberRequired": "false",
+  "totalShippingChargeCurrency": "USD",
+  "grandTotalCurrency": "USD",
+  "buyerId": "2036",
+  "recordSetCount": "1",
+  "x_isPersonalAddressesAllowedForShipping": "true",
+  "storeNameIdentifier": "Emerald",
+  "totalProductPriceCurrency": "USD",
+  "totalProductPrice": "549.99000",
+  "locked": "false",
+  "recordSetComplete": "true",
+  "totalAdjustmentCurrency": "USD",
+  "totalSalesTaxCurrency": "USD",
+  "totalSalesTax": "0.00000",
+  "grandTotal": "524.99000",
+  "orderItem": [
+    {
+      "unitUom": "C62",
+      "shippingChargeCurrency": "USD",
+      "lastUpdateDate": "2021-01-06T12:36:29.812Z",
+      "expectedShipDate": "2021-01-06T12:36:30.371Z",
+      "description": "Mail",
+      "language": "-1",
+      "salesTax": "0.00000",
+      "xitem_isPersonalAddressesAllowedForShipping": "true",
+      "correlationGroup": "20008",
+      "shippingTax": "0.00000",
+      "orderItemStatus": "P",
+      "offerID": "4000000000000008045",
+      "currency": "USD",
+      "shippingCharge": "0.00000",
+      "orderItemPrice": "549.99000",
+      "shipModeLanguage": "-1",
+      "createDate": "2021-01-06T12:36:29.712Z",
+      "unitPrice": "549.99000",
+      "salesTaxCurrency": "USD",
+      "quantity": "1.0",
+      "shipModeCode": "Mail",
+      "productId": "14023",
+      "shipModeDescription": "Mail",
+      "orderItemId": "20008",
+      "fulfillmentCenterId": "13001",
+      "fulfillmentCenterName": "Emerald",
+      "shipModeId": "14001",
+      "isExpedited": "false",
+      "orderItemFulfillmentStatus": "Unreleased",
+      "shippingTaxCurrency": "USD",
+      "carrier": "Mail",
+      "UOM": "C62",
+      "freeGift": "false",
+      "unitQuantity": "1.0",
+      "contractId": "-11005",
+      "adjustment": [
+        {
+          "amount": "-25.00000",
+          "code": "Save $25 on all orders over $200 USD",
+          "displayLevel": "Order",
+          "usage": "Discount",
+          "descriptionLanguage": "-1",
+          "description": "Save $25 on all orders over $200 USD",
+          "language": "-1",
+          "currency": "USD"
+        }
+      ],
+      "partNumber": "LR-FNTR-0002-0001",
+      "totalAdjustment": {
+        "currency": "USD",
+        "value": "-25.00000"
+      },
+      "orderItemInventoryStatus": "Available"
+    }
+  ],
+  "storeUniqueID": "11",
+  "recordSetStartNumber": "0",
+  "resourceName": "cart",
+  "recordSetTotal": "1",
+  "shipAsComplete": "true",
+  "x_trackingIds": "",
+  "totalShippingTax": "0.00000",
+  "totalShippingTaxCurrency": "USD",
+  "prepareIndicator": "false",
+  "adjustment": [
+    {
+      "amount": "-25.00000",
+      "code": "Save $25 on all orders over $200 USD",
+      "displayLevel": "Order",
+      "usage": "Discount",
+      "xadju_calUsageId": "-1",
+      "descriptionLanguage": "-1",
+      "description": "Save $25 on all orders over $200 USD",
+      "language": "-1",
+      "currency": "USD"
+    }
+  ],
+  "totalAdjustment": "-25.00000"
+}

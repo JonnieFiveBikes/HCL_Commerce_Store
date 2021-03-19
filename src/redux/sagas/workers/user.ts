@@ -12,7 +12,10 @@
 import { call, put, select } from "redux-saga/effects";
 //Foundation libraries
 import { PERSONALIZATION_ID } from "../../../_foundation/constants/user";
-import { WC_PREVIEW_TOKEN } from "../../../_foundation/constants/common";
+import {
+  EXPIRED_PASSWORD_PAGE_ERROR,
+  WC_PREVIEW_TOKEN,
+} from "../../../_foundation/constants/common";
 import loginIdentity from "../../../_foundation/apis/transaction/loginIdentity.service";
 import {
   localStorageUtil,
@@ -29,8 +32,13 @@ import {
   FETCH_USER_DETAILS_SUCCESS_ACTION,
   SESSION_ERROR_LOGIN_ERROR_ACTION,
   GUEST_LOGIN_SUCCESS_ACTION,
+  LOGON_AND_CHANGE_PASSWORD_FAIL_ACTION,
 } from "../../actions/user";
 import { userLastUpdatedSelector } from "../../selectors/user";
+import { CART_LOCKED } from "../../../constants/errors";
+import { USER_CONTEXT_REQUEST_ACTION } from "../../actions/context";
+import { ENTITLED_ORG_ACTION } from "../../actions/organization";
+import { FETCH_CONTRACT_REQUESTED_ACTION } from "../../actions/contract";
 
 function* loginAndFetchDetail(payload: any) {
   const response = yield call(loginIdentity.login, payload);
@@ -39,8 +47,43 @@ function* loginAndFetchDetail(payload: any) {
     loginPayload["widget"] = payload.widget;
   }
   yield put(LOGIN_SUCCESS_ACTION(loginPayload));
-  const response2 = yield call(personService.findPersonBySelf, payload);
-  yield put(FETCH_USER_DETAILS_SUCCESS_ACTION(response2.data));
+
+  const response2 = yield call(personService.findPersonBySelf, {
+    widget: payload.widget,
+  });
+  let loginPayload2 = response2.data;
+  yield put(FETCH_USER_DETAILS_SUCCESS_ACTION(loginPayload2));
+}
+
+const preProcessLogonAndChangePasswordError = (error: any) => {
+  if (
+    error?.isAxiosError &&
+    error.response?.data?.errors &&
+    error.response.data.errors[0]
+  ) {
+    return {
+      ...error.response.data.errors[0],
+      [EXPIRED_PASSWORD_PAGE_ERROR]: true,
+    };
+  } else {
+    return {
+      errorMessage: error.toLocaleString(),
+      [EXPIRED_PASSWORD_PAGE_ERROR]: true,
+    };
+  }
+};
+
+export function* logonAndChangePassword(action: any) {
+  try {
+    const payload = action.payload;
+    yield* loginAndFetchDetail(payload);
+  } catch (error) {
+    yield put(
+      LOGON_AND_CHANGE_PASSWORD_FAIL_ACTION(
+        preProcessLogonAndChangePasswordError(error)
+      )
+    );
+  }
 }
 
 export function* login(action: any) {
@@ -88,9 +131,18 @@ export function* registration(action: any) {
   try {
     const payload = action.payload;
     const response = yield call(personService.registerPerson, payload);
-    yield put(REGISTRATION_SUCCESS_ACTION(response.data));
-    const response2 = yield call(personService.findPersonBySelf, payload);
-    yield put(FETCH_USER_DETAILS_SUCCESS_ACTION(response2.data));
+
+    let registrationPayload = response.data;
+    if (payload?.widget) {
+      registrationPayload["widget"] = payload.widget;
+    }
+    yield put(REGISTRATION_SUCCESS_ACTION(registrationPayload));
+
+    const response2 = yield call(personService.findPersonBySelf, {
+      widget: payload.widget,
+    });
+    let registrationPayload2 = response2.data;
+    yield put(FETCH_USER_DETAILS_SUCCESS_ACTION(registrationPayload2));
   } catch (error) {
     yield put({ type: ACTIONS.REGISTRATION_ERROR, error });
   }
@@ -111,10 +163,17 @@ export function* initStateFromStorage(action: any) {
         }
       }
     }
-    if (action?.payload?.widget) {
-      currentUser["widget"] = action.payload.widget;
-    }
     yield put(INIT_USER_FROM_STORAGE_SUCCESS_ACTION(currentUser));
+    if (currentUser && currentUser.WCToken) {
+      const response2 = yield call(personService.findPersonBySelf, {
+        ...action.payload,
+      });
+      let loginPayload2 = response2.data;
+      yield put(FETCH_USER_DETAILS_SUCCESS_ACTION(loginPayload2));
+    }
+    yield put(USER_CONTEXT_REQUEST_ACTION({ ...action.payload }));
+    yield put(ENTITLED_ORG_ACTION({ ...action.payload }));
+    yield put(FETCH_CONTRACT_REQUESTED_ACTION({ ...action.payload }));
   } catch (e) {
     console.warn(e);
   }
@@ -123,20 +182,20 @@ export function* initStateFromStorage(action: any) {
 export function* updateStateFromStorage(action: any) {
   try {
     let currentUser = storageSessionHandler.getCurrentUserAndLoadAccount();
+    if (currentUser && currentUser.forUserId) {
+      return;
+    }
     const userLastUpdated = yield select(userLastUpdatedSelector);
     if (
       currentUser &&
       currentUser.lastUpdated &&
       (!userLastUpdated || userLastUpdated < currentUser.lastUpdated)
     ) {
-      if (action?.payload?.widget) {
-        currentUser["widget"] = action.payload.widget;
-      }
       yield put(INIT_USER_FROM_STORAGE_SUCCESS_ACTION(currentUser));
       if (currentUser.isGuest) {
-        yield put(GUEST_LOGIN_SUCCESS_ACTION(action.payload));
+        yield put(GUEST_LOGIN_SUCCESS_ACTION(null));
       } else {
-        yield put(LOGIN_SUCCESS_ACTION(action.payload));
+        yield put(LOGIN_SUCCESS_ACTION(null));
       }
     }
   } catch (e) {

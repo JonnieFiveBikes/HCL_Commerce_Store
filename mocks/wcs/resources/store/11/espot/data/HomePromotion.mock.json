@@ -1,0 +1,51 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "defaultContentDisplaySequence": [
+        {
+          "resultId": "12507",
+          "resultFormat": "MarketingContent",
+          "displaySequence": "1.0"
+        }
+      ],
+      "marketingSpotIdentifier": "13007",
+      "behavior": "0",
+      "eSpotName": "Home_Promotion",
+      "baseMarketingSpotActivityData": [
+        {
+          "contentFormatName": "Text",
+          "baseMarketingSpotActivityName": "20PercentOffContent",
+          "contentClickAction": "Single",
+          "contentId": "12507",
+          "baseMarketingSpotActivityID": "12507",
+          "contentName": "20PercentOffContent",
+          "baseMarketingSpotDataType": "MarketingContent",
+          "contentUrl": "/bedroom",
+          "activityIdentifierID": "0",
+          "MarketingContentDescription": [{}],
+          "marketingContentDescription": [
+            {
+              "marketingText": "<div class=\"MuiGrid-root MuiGrid-container marketing-content bottom-margin-4 PercentOffContent\"><div class=\"MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 marketing-backgroundImage\" ><img src=\"/EmeraldSAS/images/promotion/promo-large-2000px.jpg\"></div><div class=\"MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 marketing-text\" ><div class=\"marketing-text marketing-text-vertical-center left-padding-3\"><h4 class=\"MuiTypography-root MuiTypography-h4 bottom-margin-2\">Receive 20% Off All Bedroom Purchases</h4><a href=\"/bedroom\"><button class=\"marketing-button\" tabindex=\"0\" type=\"text\"><span class=\"MuiButton-label\">Shop Bedroom</span></button></a></div></div></div>",
+              "language": "-1"
+            }
+          ],
+          "contentFormatId": "2",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingKey": "mktActivityDescription"
+            },
+            {
+              "baseMarketingValue": "1.0",
+              "baseMarketingKey": "displaySequence"
+            }
+          ],
+          "contentStoreId": "12501"
+        }
+      ]
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/11/espot/Home_Promotion?catalogId=11501&name=Home_Promotion&langId=-1",
+  "resourceName": "espot"
+}

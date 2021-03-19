@@ -8,14 +8,40 @@
  *
  *==================================================
  */
+import React from "react";
 import styled from "styled-components";
 
-const StyledIcon = styled.div`
-  ${({ theme }) => `
-  .MuiSvgIcon-fontSizeLarge{
-    font-size: ${theme.spacing(13)}px;
-  }
-`}
-`;
+function StyledIcon({
+  icon,
+  iconSize,
+  backgroundSize,
+  iconColor,
+  backgroundColor,
+}: any) {
+  const StyledIconWrapper = styled(({ ...props }) => <div {...props} />)`
+    ${({ theme }) => `
+      position: relative;
+      display: inline-block;
+      height: ${backgroundSize}px;
+      width: ${backgroundSize}px;
+      background-color: ${backgroundColor};
+      border-radius: 50%;
+      color: ${iconColor ? iconColor : theme.palette.primary.dark};
+      opacity: 0.9;
+      
+      &:hover {
+        opacity: 1;
+      }
+
+      .MuiSvgIcon {
+        font-size: ${iconSize}px;
+      }
+    `}
+  `;
+
+  return (
+    <StyledIconWrapper className="StyledIcon-root">{icon}</StyledIconWrapper>
+  );
+}
 
 export default StyledIcon;

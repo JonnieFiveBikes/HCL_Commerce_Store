@@ -387,8 +387,9 @@ const storageSessionHandler = {
    * Save current user to storage
    */
   saveCurrentUser: (currentUser: any) => {
-    _localStorageUtil.set(constants.CURRENT_USER, currentUser);
-    //sessionStorageUtil.set(constants.CURRENT_USER, currentUser);
+    if (!currentUser.forUserId) {
+      _localStorageUtil.set(constants.CURRENT_USER, currentUser);
+    }
   },
   /**
    * Remove current user from storage.
@@ -403,6 +404,17 @@ const storageSessionHandler = {
    * Get current user from storage and load any account-related keys from storage
    */
   getCurrentUserAndLoadAccount: (): any => {
+    //forUserSession
+    const _forUser = _sessionStorageUtil.get(constants.FOR_USER_SESSION);
+    const _inForUserSession =
+      window.parent === window.top &&
+      window.top !== window.self &&
+      window.parent.location.pathname
+        .toLocaleLowerCase()
+        .endsWith(constants.SHOP_ON_BEHALF_PATH);
+    if (_forUser !== null && _inForUserSession) {
+      return _forUser;
+    }
     //handle refresh use both session and local
     const lCurrentUser = _localStorageUtil.get(constants.CURRENT_USER);
     const sCurrentUser = _sessionStorageUtil.get(constants.CURRENT_USER);
@@ -431,28 +443,20 @@ const storageSessionHandler = {
   /**
    * Save previewToken to storage
    */
-  savePreviewToken: (currentUser: any) => {
-    _localStorageUtil.set(constants.WC_PREVIEW_TOKEN, currentUser);
+  savePreviewToken: (token: any) => {
+    _sessionStorageUtil.set(constants.WC_PREVIEW_TOKEN, token);
   },
   /**
    * Remove previewToke to storage
    */
   removePreviewToken: () => {
-    _localStorageUtil.remove(constants.WC_PREVIEW_TOKEN);
     _sessionStorageUtil.remove(constants.WC_PREVIEW_TOKEN);
   },
   /**
    * Get previewToken from storage.
    */
   getPreviewToken: (): any => {
-    //handle refresh use both session and local
-    const lToken = _localStorageUtil.get(constants.WC_PREVIEW_TOKEN);
-    const sToken = _sessionStorageUtil.get(constants.WC_PREVIEW_TOKEN);
-    if (lToken === null && sToken) {
-      _localStorageUtil.set(constants.WC_PREVIEW_TOKEN, sToken);
-      _sessionStorageUtil.remove(constants.WC_PREVIEW_TOKEN);
-    }
-    return _localStorageUtil.get(constants.WC_PREVIEW_TOKEN);
+    return _sessionStorageUtil.get(constants.WC_PREVIEW_TOKEN);
   },
   /**
    * Replicate session info from LocalStorage to SessionStorage to
@@ -463,10 +467,6 @@ const storageSessionHandler = {
     if (currentUser) {
       _sessionStorageUtil.set(constants.CURRENT_USER, currentUser);
     }
-    const previewToken = _localStorageUtil.get(constants.WC_PREVIEW_TOKEN);
-    if (previewToken) {
-      _sessionStorageUtil.set(constants.WC_PREVIEW_TOKEN, previewToken);
-    }
 
     const accountKeys = _localStorageUtil.getKeysStartsWith(constants.ACCOUNT);
     accountKeys.forEach((key) => {
@@ -475,7 +475,6 @@ const storageSessionHandler = {
     });
   },
   clearLocalStorageSessionInfo: () => {
-    _localStorageUtil.remove(constants.WC_PREVIEW_TOKEN);
     _localStorageUtil.remove(constants.CURRENT_USER);
     _localStorageUtil.removeStartsWith(constants.ACCOUNT);
   },
@@ -492,12 +491,21 @@ const windowRegistryHandler = {
    * Add new window/tab to window counter.
    */
   registerWindow: () => {
-    const windowId: string = Date.now().toString();
-    _sessionStorageUtil.set(constants.WINDOW_ID, windowId);
-    const windowCounter: string[] =
-      _localStorageUtil.get(constants.WINDOW_COUNTER) || [];
-    windowCounter.push(windowId);
-    _localStorageUtil.set(constants.WINDOW_COUNTER, windowCounter);
+    const _forUser = _sessionStorageUtil.get(constants.FOR_USER_SESSION);
+    const _inForUserSession =
+      window.parent === window.top &&
+      window.top !== window.self &&
+      window.parent.location.pathname
+        .toLocaleLowerCase()
+        .endsWith(constants.SHOP_ON_BEHALF_PATH);
+    if (_forUser === null || !_inForUserSession) {
+      const windowId: string = Date.now().toString();
+      _sessionStorageUtil.set(constants.WINDOW_ID, windowId);
+      const windowCounter: string[] =
+        _localStorageUtil.get(constants.WINDOW_COUNTER) || [];
+      windowCounter.push(windowId);
+      _localStorageUtil.set(constants.WINDOW_COUNTER, windowCounter);
+    }
   },
   /**
    * Remove window counter from window counter upon window unload,
@@ -505,29 +513,38 @@ const windowRegistryHandler = {
    * and also the current user.
    */
   unRegisterWindow: () => {
-    const windowCounter: string[] =
-      _localStorageUtil.get(constants.WINDOW_COUNTER) || [];
-    storageSessionHandler.replicateSession();
-    if (windowCounter.length < 2) {
-      //only one tab is open
-      _localStorageUtil.remove(constants.WINDOW_COUNTER);
-      //only remove from localStorage, sessionStorage is handled by browser
-      storageSessionHandler.clearLocalStorageSessionInfo();
-      if (_localStorageUtil.getTotalWindowCount() === 0) {
-        //remove storeId from storage upon all windows/tab close
-        //so that new window open will start a new store session
-        //using default store or the storeId in url.
-        _localStorageUtil.removeStoreId();
+    const _forUser = _sessionStorageUtil.get(constants.FOR_USER_SESSION);
+    const _inForUserSession =
+      window.parent === window.top &&
+      window.top !== window.self &&
+      window.parent.location.pathname
+        .toLocaleLowerCase()
+        .endsWith(constants.SHOP_ON_BEHALF_PATH);
+    if (_forUser === null || !_inForUserSession) {
+      const windowCounter: string[] =
+        _localStorageUtil.get(constants.WINDOW_COUNTER) || [];
+      storageSessionHandler.replicateSession();
+      if (windowCounter.length < 2) {
+        //only one tab is open
+        _localStorageUtil.remove(constants.WINDOW_COUNTER);
+        //only remove from localStorage, sessionStorage is handled by browser
+        storageSessionHandler.clearLocalStorageSessionInfo();
+        if (_localStorageUtil.getTotalWindowCount() === 0) {
+          //remove storeId from storage upon all windows/tab close
+          //so that new window open will start a new store session
+          //using default store or the storeId in url.
+          _localStorageUtil.removeStoreId();
+        }
+      } else {
+        const windowId: string = _sessionStorageUtil.get(constants.WINDOW_ID);
+        const index: number = windowCounter.findIndex((wid) => {
+          return wid === windowId;
+        });
+        windowCounter.splice(index, 1);
+        _localStorageUtil.set(constants.WINDOW_COUNTER, windowCounter);
       }
-    } else {
-      const windowId: string = _sessionStorageUtil.get(constants.WINDOW_ID);
-      const index: number = windowCounter.findIndex((wid) => {
-        return wid === windowId;
-      });
-      windowCounter.splice(index, 1);
-      _localStorageUtil.set(constants.WINDOW_COUNTER, windowCounter);
+      _sessionStorageUtil.remove(constants.WINDOW_ID);
     }
-    _sessionStorageUtil.remove(constants.WINDOW_ID);
   },
 };
 

@@ -1,6 +1,6 @@
 {
   "BuyerUserRegistration": {
-    "Title": "조직의 구매자로 등록",
+    "Title": "구매자 등록",
     "Description": "조직에서 이미 이 스토어의 계정을 가지고 있는 경우 이 계정으로 쇼핑하고 주문할 수 있도록 자신을 등록하십시오. 등록이 승인되면 스토어에 로그인하고 쇼핑할 수 있습니다.",
     "OrgName": "조직",
     "Email": "이메일",
@@ -18,7 +18,12 @@
     "Password2": "암호 확인",
     "Language": "선호 언어",
     "Currency": "선호 통화",
-    "Submit": "제출",
+    "AddressDetails": "상세 주소",
+    "AccountPreferences": "계정 환경 설정",
+    "HaveAccount": "계정이 이미 있으십니까?",
+    "AddressLineAdd": "주소(2행) 추가",
+    "SignIn": "로그인",
+    "Submit": "등록 완료",
     "Clear": "지우기",
     "Success": "계정 활성화 요청이 접수되었습니다. 로그온하려면 계정을 활성화하십시오.",
     "OK": "확인",

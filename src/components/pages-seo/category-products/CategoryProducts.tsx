@@ -92,10 +92,11 @@ function CategoryProducts(props: any) {
       DM_ReqCmd: CATEGORY_DISPLAY,
       ...payloadBase,
     };
+    dispatch(TRIGGER_MARKETING_ACTION(mtkParam));
     return () => {
       cancels.forEach((cancel) => cancel());
     };
-    dispatch(TRIGGER_MARKETING_ACTION(mtkParam));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -35,6 +35,10 @@ const userIdSelector = (state: RootReducerState) => {
   return state.user.userId;
 };
 
+const forUserIdSelector = (state: RootReducerState) => {
+  return state.user.forUserId;
+};
+
 const userNameSelector = (state: RootReducerState) => {
   const firstName = state.user.details?.firstName || "";
   const lastName = state.user.details?.lastName || "";
@@ -65,4 +69,5 @@ export {
   userIdSelector,
   userInitStatusSelector,
   userLastUpdatedSelector,
+  forUserIdSelector,
 };

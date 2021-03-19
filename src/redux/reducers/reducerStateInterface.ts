@@ -173,6 +173,8 @@ export interface SiteInfo {
   storeCfg: any;
   supportedLanguages: any[];
   enableGA?: boolean;
+  enableUA?: boolean;
+  enableGA4?: boolean;
   [extraPros: string]: any;
 }
 export interface OrderDetailsMapReducerState {

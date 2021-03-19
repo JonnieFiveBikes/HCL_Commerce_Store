@@ -34,10 +34,10 @@
     "_ERR_AUTHENTICATION_ERROR_2000": "Immettere un ID di accesso nel campo ID di accesso.",
     "_ERR_AUTHENTICATION_ERROR_2010": "L'ID di accesso o la password immessi sono errati. Immettere di nuovo le informazioni.",
     "_ERR_AUTHENTICATION_ERROR_2020": "L'ID di accesso o la password immessi sono errati. Immettere di nuovo le informazioni.",
-    "_ERR_AUTHENTICATION_ERROR_2030": "L'ID di accesso o la password immessi sono errati. Immettere di nuovo le informazioni.",
+    "_ERR_AUTHENTICATION_ERROR_2030": "Le credenziali di accesso immesse non sono valide. Verificare le informazioni e riprovare.",
     "_ERR_PASSWORD_FAILED_CMN1019E": "L'ID di accesso o la password immessi sono errati. Immettere di nuovo le informazioni.",
     "_ERR_PERSON_ACCOUNT_DISABLED_2110": "Questo account è bloccato. Contattare il negozio per sbloccare l'account.",
-    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "L'account è stato bloccato a causa di troppi tentativi di accesso non riusciti. Per proseguire reimpostare la password.",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "A causa di {{0}} tentativi di immissione password non riusciti, l'accesso è stato bloccato. Reimpostare la password o contattare il rappresentante del servizio clienti.",
     "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "Attendere alcuni secondi prima di tentare di effettuare nuovamente l'accesso.",
     "_2400": "L'organizzazione è bloccata. Non è possibile effettuare l'accesso. ",
     "_2410": "Non si dispone dell'autorità adeguata per effettuare l'accesso. Contattare il negozio per ulteriori informazioni.",
@@ -90,9 +90,16 @@
     "_API_BAD_INV_2": "È presente un inventario insufficiente per l'acquisto di {{1}} unità di {{0}}.",
     "_ERR_FINDING_ORDER_230": "Si è verificato un problema di sistema durante l'elaborazione dell'ordine.",
     "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "Si è verificato un problema di sistema. Contattare il negozio per ricevere assistenza.",
+    "_ERR_REMOTE_EXCEPTION_CMN0412E": "Si è verificato un problema di sistema durante l'elaborazione della richiesta. Contatta il negozio per ricevere assistenza.",
+    "_ERR_REG_DUPE_ID_CMN0114S": "L'ID di accesso immesso esiste già. Immettere un ID di accesso diverso e riprovare.",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "L'e-mail immessa non è valida. Verificare le informazioni e riprovare.",
+    "_ERR_CMD_INVALID_PARAM_2195": "Il codice di verifica immesso non è valido. Verificare le informazioni e riprovare.",
     "B2B": {
-      "_ERR_LOGONID_ALREDY_EXIST_2030": "L'ID di accesso immesso esiste già. Immettere un ID di accesso diverso e riprovare."
-    }
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "L'ID di accesso immesso non è valido. Verificare le informazioni e riprovare.",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "L'ID di accesso immesso esiste già. Immettere un ID di accesso diverso e riprovare.",
+      "_ERR_BAD_PARMS_2010": "L'ID di accesso immesso non è valido. Verificare le informazioni e riprovare."
+    },
+    "_ERR_PASSWORD_EXPIRED_2170": "La password corrente è scaduta. Inserisci una nuova password."
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "Elemento aggiunto al carrello. ",
@@ -101,6 +108,8 @@
     "RecurringOrderCancelled": "L'ordine è stato annullato correttamente.",
     "ADD_ADDRESS_SUCCESS": "Il nuovo indirizzo \"{{0}}\" è stato aggiunto correttamente",
     "EDIT_ADDRESS_SUCCESS": "L'indirizzo \"{{0}}\" è stato aggiornato correttamente",
-    "DELETE_ADDRESS_SUCCESS": "L'indirizzo \"{{0}}\" è stato eliminato correttamente"
+    "DELETE_ADDRESS_SUCCESS": "L'indirizzo \"{{0}}\" è stato eliminato correttamente",
+    "RESEND_VERIFICATION_CODE": "Il codice di verifica è stato inviato all'indirizzo e-mail indicato",
+    "PASSWORD_RESET_SUCCESS": "La password è stata reimpostata"
   }
 }

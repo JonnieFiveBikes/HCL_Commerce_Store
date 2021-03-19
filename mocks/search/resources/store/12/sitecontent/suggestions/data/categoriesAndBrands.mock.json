@@ -1,0 +1,110 @@
+{
+  "suggestionView": [
+    {
+      "entry": [
+        {
+          "value": "12",
+          "fullPath": "Fasteners",
+          "fullPathCategoryIds": "12",
+          "image": "images/catalog/hardware/fasteners/category/catr_hw_fasteners.png",
+          "seo": {
+            "href": "/fasteners"
+          },
+          "name": "Fasteners",
+          "shortDescription": "Screws, bolts, and nuts for a wide range of fastening applications"
+        },
+        {
+          "value": "13",
+          "fullPath": "Lighting",
+          "fullPathCategoryIds": "13",
+          "image": "images/catalog/hardware/lighting/category/catr_hw_lighting.png",
+          "seo": {
+            "href": "/lighting"
+          },
+          "name": "Lighting",
+          "shortDescription": "Light bulbs in every shape and size"
+        },
+        {
+          "value": "14",
+          "fullPath": "Fasteners > Bolts",
+          "fullPathCategoryIds": "12 > 14",
+          "image": "images/catalog/hardware/fasteners/category/catr_fbo_bolts.png",
+          "seo": {
+            "href": "/bolts"
+          },
+          "name": "Bolts",
+          "shortDescription": "Bolts designed to hold fast over the long term"
+        },
+        {
+          "value": "15",
+          "fullPath": "Fasteners > Nuts",
+          "fullPathCategoryIds": "12 > 15",
+          "image": "images/catalog/hardware/fasteners/category/catr_fnu_nuts.png",
+          "seo": {
+            "href": "/nuts"
+          },
+          "name": "Nuts",
+          "shortDescription": "High-strength nuts in various finishes"
+        },
+        {
+          "value": "16",
+          "fullPath": "Fasteners > Screws",
+          "fullPathCategoryIds": "12 > 16",
+          "image": "images/catalog/hardware/fasteners/category/catr_fsc_screws.png",
+          "seo": {
+            "href": "/screws"
+          },
+          "name": "Screws",
+          "shortDescription": "Top-quality screws to suit all your fastening needs"
+        }
+      ],
+      "categorySeparator": " > ",
+      "identifier": "Category"
+    },
+    {
+      "value": "mfName_ntk_cs",
+      "entry": [
+        {
+          "name": "Arcarocco",
+          "value": "manufacturer.raw%3A%22Arcarocco%22",
+          "count": "151"
+        },
+        {
+          "name": "Baddeck Worldwide",
+          "value": "manufacturer.raw%3A%22Baddeck+Worldwide%22",
+          "count": "27"
+        },
+        {
+          "name": "Black Key Fasteners",
+          "value": "manufacturer.raw%3A%22Black+Key+Fasteners%22",
+          "count": "202"
+        },
+        {
+          "name": "Glomor Lighting",
+          "value": "manufacturer.raw%3A%22Glomor+Lighting%22",
+          "count": "37"
+        },
+        {
+          "name": "Newtonbrook Steel",
+          "value": "manufacturer.raw%3A%22Newtonbrook+Steel%22",
+          "count": "170"
+        },
+        {
+          "name": "Pirini Inc.",
+          "value": "manufacturer.raw%3A%22Pirini+Inc.%22",
+          "count": "8"
+        },
+        {
+          "name": "Veerman Tools",
+          "value": "manufacturer.raw%3A%22Veerman+Tools%22",
+          "count": "154"
+        }
+      ],
+      "name": "ManufacturerName",
+      "identifier": "Brand"
+    }
+  ],
+  "resourceHandler": {
+    "resourceName": "sitecontent"
+  }
+}

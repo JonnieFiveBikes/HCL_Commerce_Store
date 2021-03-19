@@ -14,7 +14,7 @@ import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import ReactHtmlParser from "react-html-parser";
+import HTMLReactParser from "html-react-parser";
 import getDisplayName from "react-display-name";
 //Foundation libraries
 import inventoryavailabilityService from "../../../_foundation/apis/transaction/inventoryavailability.service";
@@ -40,6 +40,7 @@ import ProductAttributes from "./ProductAttributes";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 import { breadcrumbsSelector } from "../../../redux/selectors/catalog";
 import * as orderActions from "../../../redux/actions/order";
+import { cartSelector } from "../../../redux/selectors/order";
 //UI
 import {
   StyledGrid,
@@ -51,7 +52,7 @@ import {
 } from "../../StyledUI";
 import Hidden from "@material-ui/core/Hidden";
 //GA360
-import GADataService from "../../../_foundation/gtm/gaData.service";
+import AsyncCall from "../../../_foundation/gtm/async.service";
 
 interface CurrentSelectionType {
   sku: any;
@@ -90,9 +91,10 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
 
   const [product, setProduct] = useState<any>(null);
 
-  const [currentSelection, setCurrentSelection] = useState<
-    CurrentSelectionType
-  >(CURRENT_SELECTION_INIT);
+  const [
+    currentSelection,
+    setCurrentSelection,
+  ] = useState<CurrentSelectionType>(CURRENT_SELECTION_INIT);
 
   const [displayName, setDisplayName] = useState<string>("");
   const [displayPartNumber, setDisplayPartNumber] = useState<string>(
@@ -125,7 +127,10 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
       cancels.push(c);
     }),
   };
-
+  const cart = useSelector(cartSelector);
+  const [addItemActionTriggered, setAddItemActionTriggered] = useState<boolean>(
+    false
+  );
   const { mySite } = useSite();
 
   /**
@@ -277,6 +282,7 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
       }
       if (productInfo.items?.length > 0) {
         newSelection.sku = productInfo.items[0];
+        const skuAttributes = newSelection.sku?.attributes || attr || [];
         if (attr) {
           initializeSelectedAttributes(newSelection, productInfo, attr);
         } else if (newSelection.sku.attributes) {
@@ -288,9 +294,15 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
         }
 
         if (newSelection.selectedAttributes["Color"]) {
-          let color = newSelection.selectedAttributes["Color"];
-          color = color.charAt(0).toUpperCase() + color.slice(1);
-          setSkuColor(color);
+          for (const att of skuAttributes) {
+            if (att.identifier === "Color") {
+              for (const v of att.values || []) {
+                if (v.identifier === newSelection.selectedAttributes["Color"]) {
+                  setSkuColor(v.value);
+                }
+              }
+            }
+          }
         }
 
         if (newSelection.sku.images?.length > 1) {
@@ -318,13 +330,19 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
       newSelection.selectedAttributes = {};
       if (attr) {
         for (const att of attr) {
-          newSelection.selectedAttributes[att.identifier] =
-            att.values[0].identifier;
+          if (att.usage && att.usage === DEFINING) {
+            newSelection.selectedAttributes[att.identifier] = att.values
+              ? att.values[0]?.identifier
+              : undefined;
+          }
         }
       } else {
         for (const att of newSelection.sku.attributes) {
-          newSelection.selectedAttributes[att.identifier] =
-            att.values[0].identifier;
+          if (att.usage && att.usage === DEFINING) {
+            newSelection.selectedAttributes[att.identifier] = att.values
+              ? att.values[0].identifier
+              : undefined;
+          }
         }
       }
 
@@ -356,7 +374,9 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
       for (const s of skus) {
         if (s.attributes) {
           const values = s.attributes.reduce((value: any, a: any) => {
-            value[a.identifier] = a.values[0].identifier;
+            value[a.identifier] = a.values
+              ? a.values[0]?.identifier
+              : undefined;
             return value;
           }, {});
 
@@ -511,16 +531,22 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
         }
 
         if (newSelection.selectedAttributes["Color"]) {
-          let color = newSelection.selectedAttributes["Color"];
-          color = color.charAt(0).toUpperCase() + color.slice(1);
-          setSkuColor(color);
+          for (const att of newSelection.sku?.attributes || []) {
+            if (att.identifier === "Color") {
+              for (const v of att.values || []) {
+                if (v.identifier === newSelection.selectedAttributes["Color"]) {
+                  setSkuColor(v.value);
+                }
+              }
+            }
+          }
         }
 
         if (newSelection.sku.images?.length > 1) {
           setIndex(index);
           setCarouselImages(newSelection.sku.images);
           setShowCarousel(true);
-          setDisplayFullImage(newSelection.sku.images[index]?.fullImageRaw);
+          setDisplayFullImage(newSelection.sku.images[index]?.fullImage);
         }
       }
       setCurrentSelection(newSelection);
@@ -530,7 +556,7 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
   const changeMainImage = (index: number) => {
     setIndex(index);
     const imageJson = carouselImages[index];
-    const fullImage = imageJson.fullImageRaw;
+    const fullImage = imageJson.fullImage;
     setDisplayFullImage(fullImage);
   };
 
@@ -564,6 +590,19 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
     setCurrentSelection(newSelection);
   };
 
+  useEffect(() => {
+    if (addItemActionTriggered) {
+      //GA360
+      if (mySite.enableGA) {
+        AsyncCall.sendAddToCartEvent(
+          { cart, currentSelection, breadcrumbs },
+          { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
+        );
+      }
+      setAddItemActionTriggered(false);
+    }
+  }, [cart]);
+
   /**
    *Add the selected product to the shopping cart
    */
@@ -574,10 +613,8 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
       contractId: contract,
       ...payloadBase,
     };
+    setAddItemActionTriggered(true);
     dispatch(orderActions.ADD_ITEM_ACTION(param));
-    //GA360
-    if (mySite.enableGA)
-      GADataService.sendAddToCartEvent(currentSelection, breadcrumbs);
   };
 
   React.useEffect(() => {
@@ -591,12 +628,14 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
     if (currentSelection?.sku?.id) {
       getInventory(currentSelection.sku.id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSelection?.sku]);
 
   let productDetailTabsChildren: ITabs[] = [];
@@ -604,7 +643,7 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
   if (displayLongDesc) {
     const descriptionElement = (
       <StyledTypography variant="body1" style={{ maxWidth: "65ch" }}>
-        {ReactHtmlParser(displayLongDesc)}
+        {HTMLReactParser(displayLongDesc)}
       </StyledTypography>
     );
     productDetailTabsChildren.push({
@@ -663,10 +702,17 @@ function ProductDetailsLayout({ productPartNumber, pdpData, storeId }: any) {
   useEffect(() => {
     if (mySite.enableGA) {
       if (currentSelection && breadcrumbs.length !== 0) {
-        GADataService.sendPDPPageViewEvent(breadcrumbs);
-        GADataService.sendPDPDetailViewEvent(currentSelection, breadcrumbs);
+        AsyncCall.sendPDPPageViewEvent(breadcrumbs, {
+          enableUA: mySite.enableUA,
+          enableGA4: mySite.enableGA4,
+        });
+        AsyncCall.sendPDPDetailViewEvent(
+          { currentProdSelect: currentSelection, breadcrumbs },
+          { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
+        );
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [breadcrumbs]);
 
   return (

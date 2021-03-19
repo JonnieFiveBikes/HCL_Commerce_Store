@@ -5,6 +5,7 @@
     "GenericTitle": "Generischer Fehler",
     "TimeoutMsg": "Ihre Sitzung ist abgelaufen und Sie wurden erfolgreich abgemeldet. Melden Sie sich erneut an, um auf Ihr Geschäft zuzugreifen.",
     "InvalidMsg": "Ihre Anmelde-ID wurde möglicherweise an einem anderen Standort verwendet. Melden Sie sich erneut an, um auf Ihr Geschäft zuzugreifen.",
+    "InvalidMsgB2C": "Ihre E-Mail-Adresse wurde möglicherweise an einem anderen Ort verwendet. Melden Sie sich erneut an, um auf Ihr Geschäft zuzugreifen.",
     "Email": "E-Mail-Adresse",
     "Password": "Kennwort",
     "SubmitButton": "Anmelden",

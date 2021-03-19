@@ -175,4 +175,4 @@ function Footer(props: any) {
   );
 }
 
-export default Footer;
+export default React.memo(Footer);

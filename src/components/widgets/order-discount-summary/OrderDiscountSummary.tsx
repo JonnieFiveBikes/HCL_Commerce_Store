@@ -65,7 +65,7 @@ const OrderDiscountSummary: React.FC<OrderDiscountSummaryProps> = (
       {totalDiscounts !== null && totalDiscounts !== 0 && (
         <>
           {discountList.map((discount: any, index: number) => (
-            <Fragment key={index}>
+            <Fragment key={discount.code}>
               <StyledGrid item xs={6}>
                 <StyledTypography gutterBottom>
                   {discount.description

@@ -2,12 +2,25 @@
   "SignIn": {
     "ReturningCustomer": "Wiederkehrender Kunde",
     "Password": "Kennwort",
+    "ChangPassword": "Kennwort ändern",
+    "CurrentPassword": "Aktuelles Kennwort",
+    "PasswordVerify": "Kennwort bestätigen",
     "RememberMe": "Angemeldet bleiben",
     "SignInButton": "Anmelden",
-    "ForgotPassword": "Kennwort vergessen",
+    "Cancel": "Abbrechen",
+    "Submit": "Senden",
+    "ForgotPassword": "Kennwort vergessen?",
+    "noAccount": "Sie haben kein Konto? ",
+    "registerNow": "Jetzt registrieren",
     "Label": {
       "B2B": "Anmelde-ID",
-      "Email": "E-Mail-Adresse"
+      "Email": "E-Mail-Adresse",
+      "rememberMe": "Angemeldet bleiben"
+    },
+    "Msgs": {
+      "InvalidFormat": "Ungültiges Format.",
+      "PasswordNotMatch": "Kennwort und Bestätigungskennwort stimmt nicht überein.",
+      "OldPasswordReuse": "Das eingegebene Kennwort wurde bereits verwendet. Geben Sie ein neues Kennwort ein."
     }
   }
 }

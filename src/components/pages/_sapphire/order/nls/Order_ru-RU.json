@@ -1,6 +1,6 @@
 {
   "Order": {
-    "noPO": "НЕТ",
+    "noPO": "Нет",
     "Status_A": "Для авторизации платежа требуется проверка",
     "Status_B": "Нет на складе",
     "Status_C": "Платеж утвержден",
@@ -20,7 +20,7 @@
     "Status_W": "Ожидание утверждения",
     "Status_V": "Частично отправлено",
     "Status_X": "Заказ отменен",
-    "NotAvailable": "Сведения недоступны",
+    "NotAvailable": "Н/Д",
     "OrderId": "ИД заказа",
     "PONumber": "Номер заказа",
     "OrderDate": "Дата заказа",
@@ -60,6 +60,7 @@
     "OrderDetails": "Сведения о заказе",
     "OrderNumber": "Число заказа",
     "HistorySearchPlaceHolder": "Поиск по ИД заказа",
-    "HistoryViewDetailTooltip": "Просмотр сведений о заказе"
+    "HistoryViewDetailTooltip": "Просмотр сведений о заказе",
+    "Pending": "В ожидании"
   }
 }

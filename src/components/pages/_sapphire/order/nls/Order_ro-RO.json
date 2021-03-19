@@ -1,6 +1,6 @@
 {
   "Order": {
-    "noPO": "NICIUNA",
+    "noPO": "Niciuna",
     "Status_A": "Autorizarea plății necesită revizuire",
     "Status_B": "Comandat înapoi",
     "Status_C": "Plată aprobată",
@@ -20,7 +20,7 @@
     "Status_W": "Aprobare în așteptare",
     "Status_V": "Livrată parțial",
     "Status_X": "Comandă anulată",
-    "NotAvailable": "Informațiile nu sunt disponibile",
+    "NotAvailable": "Nu sunt disponibile informații",
     "OrderId": "Id comandă",
     "PONumber": "Număr comandă",
     "OrderDate": "Data comenzii",
@@ -60,6 +60,7 @@
     "OrderDetails": "Detalii comandă",
     "OrderNumber": "Număr comandă",
     "HistorySearchPlaceHolder": "Căutare în funcție de ID comandă",
-    "HistoryViewDetailTooltip": "Vizualizare detalii comandă"
+    "HistoryViewDetailTooltip": "Vizualizare detalii comandă",
+    "Pending": "În așteptare"
   }
 }

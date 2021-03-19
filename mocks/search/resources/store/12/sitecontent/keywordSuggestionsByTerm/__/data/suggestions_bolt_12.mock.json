@@ -1,0 +1,17 @@
+{
+  "suggestionView": [
+    {
+      "identifier": "Keyword",
+      "entry": [
+        {
+          "term": "bolts",
+          "frequency": "36"
+        },
+        {
+          "term": "bolt",
+          "frequency": "9"
+        }
+      ]
+    }
+  ]
+}

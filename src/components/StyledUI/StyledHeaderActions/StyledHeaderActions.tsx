@@ -27,7 +27,6 @@ const StyledHeaderActions = styled.div`
       color: ${theme.palette.text.secondary};
       vertical-align: middle;
       font-size: ${theme.spacing(3)}px;
-      margin-right: ${theme.spacing(0.5)}px;
     }
 
     &:hover {

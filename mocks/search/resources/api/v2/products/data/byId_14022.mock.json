@@ -1,0 +1,407 @@
+{
+  "contents": [
+    {
+      "hasSingleSKU": false,
+      "buyable": "true",
+      "shortDescription": "A unique, modern armchair that offers flared styling on one side to accent your home's living room and decor.",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_350.jpg",
+      "seo": {
+        "href": "/flared-accent-chair-lr-fntr-0002"
+      },
+      "partNumber": "LR-FNTR-0002",
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10502",
+      "name": "Flared Accent Chair",
+      "longDescription": "Give your living room an exciting and different look with the outgoing flared accent chair. The armchair features a compact design, comfortable oversized pillow, easy to clean polyester fabric, and a sloped backrest. The armchair's modern styling is complemented with durable dark brown wooden legs. No assembly required.",
+      "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_600.jpg",
+      "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_600.jpg",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "600.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "549.99"
+        }
+      ],
+      "numberOfSKUs": 4,
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": "10.0",
+              "identifier": "sky",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003019",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_sky.png",
+              "value": "Sky",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_sky.png"
+            },
+            {
+              "sequence": "10.0",
+              "identifier": "tan",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003017",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_tan.png",
+              "value": "Tan",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_tan.png"
+            },
+            {
+              "sequence": "10.0",
+              "identifier": "crimson",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003015",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_crimson.png",
+              "value": "Crimson",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_crimson.png"
+            },
+            {
+              "sequence": "10.0",
+              "identifier": "purple",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003016",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_purple.png",
+              "value": "Purple",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_purple.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.1",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        }
+      ],
+      "images": [
+        {
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_350.jpg",
+          "sequence": "-1000.0",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_350.jpg",
+          "name": "Flared Accent Chair Main Image",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_600.jpg"
+        }
+      ],
+      "type": "product",
+      "id": "14022",
+      "items": [
+        {
+          "hasSingleSKU": false,
+          "buyable": "true",
+          "shortDescription": "A unique, modern armchair that offers flared styling on one side to accent your home's living room and decor.",
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_350.jpg",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_350.jpg",
+          "seo": {
+            "href": "/flared-accent-chair-lr-fntr-0002-0001"
+          },
+          "partNumber": "LR-FNTR-0002-0001",
+          "storeID": "11",
+          "parentCatalogGroupID": "/10501/10502",
+          "name": "Flared Accent Chair",
+          "parentCatalogEntryID": "14022",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_600.jpg",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "600.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "549.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "10.0",
+                  "identifier": "crimson",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003015",
+                  "image1": "/EmeraldCAS/images/catalog/swatches/sw_crimson.png",
+                  "value": "Crimson",
+                  "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_crimson.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "1.1",
+              "storeDisplay": "false",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "7000000000000000501",
+              "swatchable": "false"
+            }
+          ],
+          "images": [
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_350.jpg",
+              "sequence": "-1000.0",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_350.jpg",
+              "name": "Flared Accent Chair Main Image",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_a1_600.jpg"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14023",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "buyable": "true",
+          "shortDescription": "A unique, modern armchair that offers flared styling on one side to accent your home's living room and decor.",
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_b1_350.jpg",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_b1_350.jpg",
+          "seo": {
+            "href": "/flared-accent-chair-lr-fntr-0002-0002"
+          },
+          "partNumber": "LR-FNTR-0002-0002",
+          "storeID": "11",
+          "parentCatalogGroupID": "/10501/10502",
+          "name": "Flared Accent Chair",
+          "parentCatalogEntryID": "14022",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_b1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_b1_600.jpg",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "600.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "569.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "10.0",
+                  "identifier": "purple",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003016",
+                  "image1": "/EmeraldCAS/images/catalog/swatches/sw_purple.png",
+                  "value": "Purple",
+                  "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_purple.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "1.2",
+              "storeDisplay": "false",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "7000000000000000501",
+              "swatchable": "false"
+            }
+          ],
+          "images": [
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_b1_350.jpg",
+              "sequence": "-1000.0",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_b1_350.jpg",
+              "name": "Flared Accent Chair Main Image",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_b1_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_b1_600.jpg"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14024",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "buyable": "true",
+          "shortDescription": "A unique, modern armchair that offers flared styling on one side to accent your home's living room and decor.",
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_c1_350.jpg",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_c1_350.jpg",
+          "seo": {
+            "href": "/flared-accent-chair-lr-fntr-0002-0003"
+          },
+          "partNumber": "LR-FNTR-0002-0003",
+          "storeID": "11",
+          "parentCatalogGroupID": "/10501/10502",
+          "name": "Flared Accent Chair",
+          "parentCatalogEntryID": "14022",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_c1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_c1_600.jpg",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "600.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "569.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "10.0",
+                  "identifier": "tan",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003017",
+                  "image1": "/EmeraldCAS/images/catalog/swatches/sw_tan.png",
+                  "value": "Tan",
+                  "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_tan.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "1.3",
+              "storeDisplay": "false",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "7000000000000000501",
+              "swatchable": "false"
+            }
+          ],
+          "images": [
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_c1_350.jpg",
+              "sequence": "-1000.0",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_c1_350.jpg",
+              "name": "Flared Accent Chair Main Image",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_c1_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_c1_600.jpg"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14025",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "buyable": "true",
+          "shortDescription": "A unique, modern armchair that offers flared styling on one side to accent your home's living room and decor.",
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_d1_350.jpg",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_d1_350.jpg",
+          "seo": {
+            "href": "/flared-accent-chair-lr-fntr-0002-0004"
+          },
+          "partNumber": "LR-FNTR-0002-0004",
+          "storeID": "11",
+          "parentCatalogGroupID": "/10501/10502",
+          "name": "Flared Accent Chair",
+          "parentCatalogEntryID": "14022",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_d1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_d1_600.jpg",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "600.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "579.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "10.0",
+                  "identifier": "sky",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003019",
+                  "image1": "/EmeraldCAS/images/catalog/swatches/sw_sky.png",
+                  "value": "Sky",
+                  "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_sky.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "1.4",
+              "storeDisplay": "false",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "7000000000000000501",
+              "swatchable": "false"
+            }
+          ],
+          "images": [
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_d1_350.jpg",
+              "sequence": "-1000.0",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_d1_350.jpg",
+              "name": "Flared Accent Chair Main Image",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair2_d1_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair2_d1_600.jpg"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14026",
+          "type": "item"
+        }
+      ]
+    }
+  ],
+  "total": 1
+}

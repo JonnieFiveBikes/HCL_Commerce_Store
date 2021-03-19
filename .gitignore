@@ -12,7 +12,10 @@ coverage/
 .env.production
 .env.development
 .env.development.local
-.env.development.local.template
+.env.test.local
+.eslintcache
 tools/docker-compose.yaml
 tools/source-map-explorer*
 react-store/
+**/.DS_Store
+debug.log

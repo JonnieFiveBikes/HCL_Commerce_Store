@@ -11,6 +11,7 @@
 //Standard libraries
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router";
 import { CREATED } from "http-status-codes";
 import { Redirect } from "react-router-dom";
 import Axios, { Canceler } from "axios";
@@ -21,6 +22,7 @@ import { useSite } from "../../../../_foundation/hooks/useSite";
 //Custom libraries
 import addressUtil from "../../../../utils/addressUtil";
 import { SIGNIN } from "../../../../constants/routes";
+import { EMPTY_STRING } from "../../../../constants/common";
 //UI
 import {
   StyledGrid,
@@ -36,46 +38,93 @@ import {
   StyledTextField,
   StyledButton,
   StyledSelect,
-  StyledMenuItem,
+  StyledPaper,
+  StyledStepper,
+  StyledStep,
+  StyledStepLabel,
+  StyledLink,
 } from "../../../StyledUI";
+import { Divider } from "@material-ui/core";
 //GA360
-import GADataService from "../../../../_foundation/gtm/gaData.service";
+import AsyncCall from "../../../../_foundation/gtm/async.service";
 
 const BuyerOrganizationRegistration = (props: any) => {
   const widgetName = getDisplayName(BuyerOrganizationRegistration);
   const { mySite } = useSite();
+  const history = useHistory();
   const defaultLanguageID = mySite?.defaultLanguageID;
   const defaultCurrencyID = mySite?.defaultCurrencyID;
   const supportedLanguages = mySite?.supportedLanguages;
   const supportedCurrencies = mySite?.supportedCurrencies;
   const { t } = useTranslation();
-  const [orgName, setOrgName] = React.useState<string>("");
-  const [orgAddr1, setOrgAddr1] = React.useState<string>("");
-  const [orgAddr2, setOrgAddr2] = React.useState<string>("");
-  const [orgCity, setOrgCity] = React.useState<string>("");
-  const [orgCountry, setOrgCountry] = React.useState<string>("");
-  const [orgState, setOrgState] = React.useState<string>("");
-  const [orgZipCode, setOrgZipCode] = React.useState<string>("");
-  const [orgEmail, setOrgEmail] = React.useState<string>("");
-  const [orgPhone, setOrgPhone] = React.useState<string>("");
-  const [useOrg, setUseOrg] = React.useState<boolean>(false);
-  const [logonId, setLogonId] = React.useState<string>("");
-  const [password, setPassword] = React.useState<string>("");
-  const [passwordVerify, setPasswordVerify] = React.useState<string>("");
-  const [firstName, setFirstName] = React.useState<string>("");
-  const [lastName, setLastName] = React.useState<string>("");
-  const [address1, setAddress1] = React.useState<string>("");
-  const [address2, setAddress2] = React.useState<string>("");
-  const [city, setCity] = React.useState<string>("");
-  const [country, setCountry] = React.useState<string>("");
-  const [state, setState] = React.useState<string>("");
-  const [zipCode, setZipCode] = React.useState<string>("");
-  const [email, setEmail] = React.useState<string>("");
-  const [phone, setPhone] = React.useState<string>("");
+  const [organizationName, setOrganizationName] = React.useState<string>(
+    EMPTY_STRING
+  );
+  const [
+    organizationAddress1,
+    setOrganizationAddress1,
+  ] = React.useState<string>(EMPTY_STRING);
+  const [
+    organizationAddress2,
+    setOrganizationAddress2,
+  ] = React.useState<string>(EMPTY_STRING);
+  const [organizationCity, setOrganizationCity] = React.useState<string>(
+    EMPTY_STRING
+  );
+  const [organizationCountry, setOrganizationCountry] = React.useState<string>(
+    EMPTY_STRING
+  );
+  const [organizationState, setOrganizationState] = React.useState<string>(
+    EMPTY_STRING
+  );
+  const [organizationZipCode, setOrganizationZipCode] = React.useState<string>(
+    EMPTY_STRING
+  );
+  const [organizationEmail, setOrganizationEmail] = React.useState<string>(
+    EMPTY_STRING
+  );
+  const [organizationPhone, setOrganizationPhone] = React.useState<string>(
+    EMPTY_STRING
+  );
+  const [
+    useOrganizationAddress,
+    setUseOrganizationAddress,
+  ] = React.useState<boolean>(false);
+  const [logonId, setLogonId] = React.useState<string>(EMPTY_STRING);
+  const [password, setPassword] = React.useState<string>(EMPTY_STRING);
+  const [passwordVerify, setPasswordVerify] = React.useState<string>(
+    EMPTY_STRING
+  );
+  const [firstName, setFirstName] = React.useState<string>(EMPTY_STRING);
+  const [lastName, setLastName] = React.useState<string>(EMPTY_STRING);
+  const [email, setEmail] = React.useState<string>(EMPTY_STRING);
+  const [phone, setPhone] = React.useState<string>(EMPTY_STRING);
+  const [adminAddress1, setAdminAddress1] = React.useState<string>(
+    EMPTY_STRING
+  );
+  const [adminAddress2, setAdminAddress2] = React.useState<string>(
+    EMPTY_STRING
+  );
+  const [city, setCity] = React.useState<string>(EMPTY_STRING);
+  const [country, setCountry] = React.useState<string>(EMPTY_STRING);
+  const [state, setState] = React.useState<string>(EMPTY_STRING);
+  const [zipCode, setZipCode] = React.useState<string>(EMPTY_STRING);
   const [language, setLanguage] = React.useState<string>(defaultLanguageID);
   const [currency, setCurrency] = React.useState<string>(defaultCurrencyID);
   const [openSuccess, setOpenSuccess] = React.useState<boolean>(false);
   const [redirect, setRedirect] = React.useState<boolean>(false);
+  const [buyerAdminAddress2, setBuyerAdminAddress2] = React.useState<boolean>(
+    false
+  );
+  const [stepperActive, setStepperActive] = React.useState<number>(0);
+  const [
+    showBuyerAdminRegForm,
+    setShowBuyerAdminRegForm,
+  ] = React.useState<boolean>(false);
+  const [showAddress2Field, setShowAddress2Field] = React.useState<boolean>(
+    false
+  );
+  const steps = ["OrganizationRegistration", "BuyerAdminRegistration"];
 
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
@@ -87,25 +136,79 @@ const BuyerOrganizationRegistration = (props: any) => {
     }),
   };
 
+  /**
+   * Form validation function
+   * Return true when all mandatory field has been entered and valid
+   * else false
+   */
+  const canCreate = (): boolean => {
+    if (
+      canValidStepper() &&
+      logonId.trim() !== EMPTY_STRING &&
+      password !== EMPTY_STRING &&
+      passwordVerify.trim() !== EMPTY_STRING &&
+      firstName.trim() !== EMPTY_STRING &&
+      lastName.trim() !== EMPTY_STRING &&
+      email.trim() !== EMPTY_STRING
+    ) {
+      // Ignoring personal address fields depending on useOrganizationAddress address checkbox
+      if (!useOrganizationAddress) {
+        if (
+          adminAddress1.trim() === EMPTY_STRING ||
+          city.trim() === EMPTY_STRING ||
+          country.trim() === EMPTY_STRING ||
+          state.trim() === EMPTY_STRING ||
+          zipCode.trim() === EMPTY_STRING
+        ) {
+          return false;
+        }
+      }
+      return (
+        addressUtil.validateEmail(email) &&
+        addressUtil.validatePhoneNumber(phone) &&
+        addressUtil.validateEmail(organizationEmail) &&
+        addressUtil.validatePhoneNumber(organizationPhone)
+      );
+    }
+    return false;
+  };
+
+  const canValidStepper = (): boolean => {
+    if (
+      organizationName.trim() !== EMPTY_STRING &&
+      organizationEmail.trim() !== EMPTY_STRING &&
+      organizationAddress1.trim() !== EMPTY_STRING &&
+      organizationZipCode.trim() !== EMPTY_STRING &&
+      organizationState.trim() !== EMPTY_STRING &&
+      organizationCity.trim() !== EMPTY_STRING &&
+      organizationCountry.trim() !== EMPTY_STRING
+    ) {
+      return (
+        addressUtil.validateEmail(organizationEmail) &&
+        addressUtil.validatePhoneNumber(organizationPhone)
+      );
+    }
+    return false;
+  };
   const handleSubmit = (props: any) => {
     props.preventDefault();
-    let addr1Param = "";
-    let addr2Param = "";
-    let cityParam = "";
-    let countryParam = "";
-    let stateParam = "";
-    let zipCodeParam = "";
+    let addr1Param = EMPTY_STRING;
+    let addr2Param = EMPTY_STRING;
+    let cityParam = EMPTY_STRING;
+    let countryParam = EMPTY_STRING;
+    let stateParam = EMPTY_STRING;
+    let zipCodeParam = EMPTY_STRING;
 
-    if (useOrg) {
-      addr1Param = orgAddr1;
-      addr2Param = orgAddr2;
-      cityParam = orgCity;
-      countryParam = orgCountry;
-      stateParam = orgState;
-      zipCodeParam = orgZipCode;
+    if (useOrganizationAddress) {
+      addr1Param = organizationAddress1;
+      addr2Param = organizationAddress2;
+      cityParam = organizationCity;
+      countryParam = organizationCountry;
+      stateParam = organizationState;
+      zipCodeParam = organizationZipCode;
     } else {
-      addr1Param = address1;
-      addr2Param = address2;
+      addr1Param = adminAddress1;
+      addr2Param = adminAddress2;
       cityParam = city;
       countryParam = country;
       stateParam = state;
@@ -127,15 +230,15 @@ const BuyerOrganizationRegistration = (props: any) => {
         usr_profileType: "B",
         approvalGroups: "orderProcess",
         registerOrg: true,
-        org_orgEntityName: orgName,
-        org_address1: orgAddr1,
-        org_address2: orgAddr2,
-        org_city: orgCity,
-        org_country: orgCountry,
-        org_state: orgState,
-        org_zipCode: orgZipCode,
-        org_email1: orgEmail,
-        org_phone1: orgPhone.trim(),
+        org_orgEntityName: organizationName,
+        org_address1: organizationAddress1,
+        org_address2: organizationAddress2,
+        org_city: organizationCity,
+        org_country: organizationCountry,
+        org_state: organizationState,
+        org_zipCode: organizationZipCode,
+        org_email1: organizationEmail,
+        org_phone1: organizationPhone.trim(),
         usr_logonId: logonId,
         usr_logonPassword: password,
         usr_logonPasswordVerify: passwordVerify,
@@ -166,28 +269,28 @@ const BuyerOrganizationRegistration = (props: any) => {
   };
 
   const clearAll = () => {
-    setOrgName("");
-    setOrgAddr1("");
-    setOrgAddr2("");
-    setOrgCity("");
-    setOrgCountry("");
-    setOrgState("");
-    setOrgZipCode("");
-    setOrgEmail("");
-    setOrgPhone("");
-    setLogonId("");
-    setPassword("");
-    setPasswordVerify("");
-    setFirstName("");
-    setLastName("");
-    setAddress1("");
-    setAddress2("");
-    setCity("");
-    setCountry("");
-    setState("");
-    setZipCode("");
-    setEmail("");
-    setPhone("");
+    setOrganizationName(EMPTY_STRING);
+    setOrganizationAddress1(EMPTY_STRING);
+    setOrganizationAddress2(EMPTY_STRING);
+    setOrganizationCity(EMPTY_STRING);
+    setOrganizationCountry(EMPTY_STRING);
+    setOrganizationState(EMPTY_STRING);
+    setOrganizationZipCode(EMPTY_STRING);
+    setOrganizationEmail(EMPTY_STRING);
+    setOrganizationPhone(EMPTY_STRING);
+    setLogonId(EMPTY_STRING);
+    setPassword(EMPTY_STRING);
+    setPasswordVerify(EMPTY_STRING);
+    setFirstName(EMPTY_STRING);
+    setLastName(EMPTY_STRING);
+    setAdminAddress1(EMPTY_STRING);
+    setAdminAddress2(EMPTY_STRING);
+    setCity(EMPTY_STRING);
+    setCountry(EMPTY_STRING);
+    setState(EMPTY_STRING);
+    setZipCode(EMPTY_STRING);
+    setEmail(EMPTY_STRING);
+    setPhone(EMPTY_STRING);
     setLanguage(defaultLanguageID);
     setCurrency(defaultCurrencyID);
   };
@@ -200,6 +303,7 @@ const BuyerOrganizationRegistration = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite]);
 
   const closeAndRedirect = () => {
@@ -209,420 +313,645 @@ const BuyerOrganizationRegistration = (props: any) => {
 
   if (redirect) {
     //GA360
-    if (mySite.enableGA)
-      GADataService.sendFormCompletionEvent("Register your organization");
+    if (mySite.enableGA) {
+      AsyncCall.sendFormCompletionEvent("Register your organization", {
+        enableUA: mySite.enableUA,
+        enableGA4: mySite.enableGA4,
+      });
+    }
     return <Redirect to={SIGNIN} />;
   } else {
     return (
-      <StyledContainer className="page">
-        <form name="buyerAdminOrgRegistrationForm" onSubmit={handleSubmit}>
-          <StyledTypography
-            component="h1"
-            variant="h5"
-            className="bottom-margin-2">
-            {t("BuyerOrganizationRegistration.Title")}
-          </StyledTypography>
-          <StyledTypography variant="body1" className="bottom-margin-5">
-            {t("BuyerOrganizationRegistration.Description")}
-          </StyledTypography>
-          <StyledTypography variant="body2" className="bottom-margin-2">
-            {t("BuyerOrganizationRegistration.OrgDetails")}
-          </StyledTypography>
-
-          <StyledGrid container item xs={12} md={6} spacing={2}>
-            <StyledGrid item xs={12}>
-              <StyledTextField
-                required
-                label={t("BuyerOrganizationRegistration.OrgName")}
-                name="orgName"
-                autoFocus
-                fullWidth
-                value={orgName}
-                onChange={(e) => setOrgName(e.target.value)}
-                inputProps={{
-                  maxLength: 254,
-                }}
-              />
-            </StyledGrid>
-            <StyledGrid item xs={12}>
-              <StyledTextField
-                required
-                inputProps={{
-                  maxLength: 50,
-                  type: "email",
-                }}
-                label={t("BuyerOrganizationRegistration.Email")}
-                name="orgEmail"
-                fullWidth
-                value={orgEmail}
-                onChange={(e) => setOrgEmail(e.target.value)}
-                error={!addressUtil.validateEmail(orgEmail)}
-                helperText={
-                  !addressUtil.validateEmail(orgEmail)
-                    ? t("BuyerOrganizationRegistration.Msgs.InvalidFormat")
-                    : ""
-                }
-              />
-            </StyledGrid>
-            <StyledGrid item xs={12}>
-              <StyledTextField
-                required
-                inputProps={{
-                  maxLength: 99,
-                }}
-                label={t("BuyerOrganizationRegistration.Address1")}
-                name="orgAddr1"
-                fullWidth
-                value={orgAddr1}
-                onChange={(e) => setOrgAddr1(e.target.value)}
-              />
-            </StyledGrid>
-            <StyledGrid item xs={12}>
-              <StyledTextField
-                inputProps={{
-                  maxLength: 49,
-                }}
-                label={t("BuyerOrganizationRegistration.Address2")}
-                name="orgAddr2"
-                fullWidth
-                value={orgAddr2}
-                onChange={(e) => setOrgAddr2(e.target.value)}
-              />
-            </StyledGrid>
-            <StyledGrid item xs={12}>
-              <StyledTextField
-                required
-                inputProps={{
-                  maxLength: 40,
-                }}
-                label={t("BuyerOrganizationRegistration.City")}
-                name="orgCity"
-                fullWidth
-                value={orgCity}
-                onChange={(e) => setOrgCity(e.target.value)}
-              />
-            </StyledGrid>
-            <StyledGrid item xs={12} sm={6}>
-              <StyledTextField
-                required
-                inputProps={{
-                  maxLength: 40,
-                }}
-                label={t("BuyerOrganizationRegistration.Country")}
-                name="orgCountry"
-                fullWidth
-                value={orgCountry}
-                onChange={(e) => setOrgCountry(e.target.value)}
-              />
-            </StyledGrid>
-            <StyledGrid item xs={12} sm={6}>
-              <StyledTextField
-                required
-                inputProps={{
-                  maxLength: 40,
-                }}
-                label={t("BuyerOrganizationRegistration.State")}
-                name="orgState"
-                fullWidth
-                value={orgState}
-                onChange={(e) => setOrgState(e.target.value)}
-              />
-            </StyledGrid>
-            <StyledGrid item xs={12} sm={6}>
-              <StyledTextField
-                required
-                inputProps={{
-                  maxLength: 30,
-                }}
-                label={t("BuyerOrganizationRegistration.ZipCode")}
-                name="orgZipCode"
-                fullWidth
-                value={orgZipCode}
-                onChange={(e) => setOrgZipCode(e.target.value)}
-              />
-            </StyledGrid>
-            <StyledGrid item xs={12} sm={6}>
-              <StyledTextField
-                inputProps={{
-                  maxLength: 32,
-                  type: "tel",
-                }}
-                label={t("BuyerOrganizationRegistration.Phone")}
-                name="orgPhone"
-                fullWidth
-                value={orgPhone}
-                onChange={(e) => setOrgPhone(e.target.value)}
-                error={!addressUtil.validatePhoneNumber(orgPhone)}
-                helperText={
-                  !addressUtil.validatePhoneNumber(orgPhone)
-                    ? t("BuyerOrganizationRegistration.Msgs.InvalidFormat")
-                    : ""
-                }
-              />
+      <>
+        <StyledContainer>
+          <StyledGrid
+            container
+            spacing={2}
+            justify="center"
+            alignItems="center">
+            <StyledGrid item xs={12} md={6}>
+              <StyledPaper className="top-margin-5">
+                <StyledStepper activeStep={stepperActive}>
+                  {steps.map((key, i) => (
+                    <StyledStep key={key}>
+                      <StyledStepLabel>
+                        {t(`BuyerOrganizationRegistration.${key}`)}
+                      </StyledStepLabel>
+                    </StyledStep>
+                  ))}
+                </StyledStepper>
+              </StyledPaper>
             </StyledGrid>
           </StyledGrid>
-
-          <StyledTypography
-            variant="body2"
-            className="top-margin-5 bottom-margin-2">
-            {t("BuyerOrganizationRegistration.UserDetails")}
-          </StyledTypography>
-
-          <StyledGrid container item xs={12} md={6} spacing={2}>
-            <StyledGrid item xs={12}>
-              <StyledTextField
-                required
-                inputProps={{
-                  maxLength: 128,
-                }}
-                label={t("BuyerOrganizationRegistration.LogonId")}
-                name="logonId"
-                fullWidth
-                value={logonId}
-                onChange={(e) => setLogonId(e.target.value)}
-              />
-            </StyledGrid>
-            <StyledGrid item xs={12} sm={6}>
-              <StyledTextField
-                required
-                inputProps={{
-                  maxLength: 50,
-                  type: "password",
-                }}
-                label={t("BuyerOrganizationRegistration.Password")}
-                name="password"
-                fullWidth
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </StyledGrid>
-            <StyledGrid item xs={12} sm={6}>
-              <StyledTextField
-                required
-                inputProps={{
-                  maxLength: 50,
-                  type: "password",
-                }}
-                label={t("BuyerOrganizationRegistration.Password2")}
-                name="passwordVerify"
-                fullWidth
-                value={passwordVerify}
-                onChange={(e) => setPasswordVerify(e.target.value)}
-              />
-            </StyledGrid>
-            <StyledGrid item xs={12} sm={6}>
-              <StyledTextField
-                required
-                inputProps={{
-                  maxLength: 40,
-                }}
-                label={t("BuyerOrganizationRegistration.FirstName")}
-                name="firstName"
-                fullWidth
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </StyledGrid>
-            <StyledGrid item xs={12} sm={6}>
-              <StyledTextField
-                required
-                inputProps={{
-                  maxLength: 40,
-                }}
-                label={t("BuyerOrganizationRegistration.LastName")}
-                name="lastName"
-                fullWidth
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </StyledGrid>
-            <StyledGrid item xs={12} sm={6}>
-              <StyledTextField
-                inputProps={{
-                  maxLength: 32,
-                  type: "tel",
-                }}
-                label={t("BuyerOrganizationRegistration.Phone")}
-                name="phone"
-                fullWidth
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                error={!addressUtil.validatePhoneNumber(phone)}
-                helperText={
-                  !addressUtil.validatePhoneNumber(phone)
-                    ? t("BuyerOrganizationRegistration.Msgs.InvalidFormat")
-                    : ""
-                }
-              />
-            </StyledGrid>
-            <StyledGrid item xs={12}>
-              <StyledTextField
-                required
-                inputProps={{
-                  maxLength: 35,
-                  type: "email",
-                }}
-                label={t("BuyerOrganizationRegistration.Email")}
-                name="email"
-                fullWidth
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                error={!addressUtil.validateEmail(email)}
-                helperText={
-                  !addressUtil.validateEmail(email)
-                    ? t("BuyerOrganizationRegistration.Msgs.InvalidFormat")
-                    : ""
-                }
-              />
-            </StyledGrid>
-            <StyledGrid item xs={12} sm={6}>
-              <StyledFormControl variant="outlined">
-                <StyledInputLabel shrink>
-                  {t("BuyerOrganizationRegistration.Language")}
-                </StyledInputLabel>
-                <StyledSelect
-                  value={`${language}`}
-                  name="language"
-                  native
-                  onChange={(e) => setLanguage(e.target.value)}
-                  fullWidth>
-                  {supportedLanguages?.map((e: any) => (
-                    <option value={e} key={e}>
-                      {t(`CommerceEnvironment.language.${e}`)}
-                    </option>
-                  ))}
-                </StyledSelect>
-              </StyledFormControl>
-            </StyledGrid>
-            <StyledGrid item xs={12} sm={6}>
-              <StyledFormControl variant="outlined">
-                <StyledInputLabel shrink>
-                  {t("BuyerOrganizationRegistration.Currency")}
-                </StyledInputLabel>
-                <StyledSelect
-                  value={`${currency}`}
-                  name="currency"
-                  native
-                  onChange={(e) => setCurrency(e.target.value)}
-                  fullWidth>
-                  {supportedCurrencies?.map((e: any) => (
-                    <option value={e} key={e}>
-                      {t(`CommerceEnvironment.currency.${e}`)}
-                    </option>
-                  ))}
-                </StyledSelect>
-              </StyledFormControl>
-            </StyledGrid>
-
-            <StyledGrid item xs={12}>
-              <StyledFormControlLabel
-                control={
-                  <StyledCheckbox
-                    color="primary"
-                    onChange={(e) => setUseOrg(e.target.checked)}
-                  />
-                }
-                label={t("BuyerOrganizationRegistration.UseOrg")}
-              />
-            </StyledGrid>
-
-            {!useOrg && (
-              <>
-                <StyledGrid item xs={12}>
-                  <StyledTextField
-                    required
-                    inputProps={{
-                      maxLength: 99,
-                    }}
-                    label={t("BuyerOrganizationRegistration.Address1")}
-                    name="address1"
-                    fullWidth
-                    value={address1}
-                    onChange={(e) => setAddress1(e.target.value)}
-                  />
+          <form
+            name="buyerAdminOrgRegistrationForm"
+            noValidate
+            onSubmit={handleSubmit}>
+            <>
+              {!showBuyerAdminRegForm && (
+                <StyledGrid container justify="center">
+                  <StyledGrid item xs={12} md={6}>
+                    <StyledPaper className="top-margin-2 horizontal-padding-4 vertical-padding-4">
+                      <StyledGrid container spacing={2}>
+                        <StyledGrid item>
+                          <StyledTypography variant="h4">
+                            {t("BuyerOrganizationRegistration.Title")}
+                          </StyledTypography>
+                        </StyledGrid>
+                        <StyledGrid item xs={12}>
+                          <StyledTextField
+                            required
+                            label={t(
+                              "BuyerOrganizationRegistration.OrganizationName"
+                            )}
+                            name="organizationName"
+                            autoFocus
+                            fullWidth
+                            value={organizationName}
+                            onChange={(e) =>
+                              setOrganizationName(e.target.value)
+                            }
+                            inputProps={{
+                              maxLength: 254,
+                            }}
+                          />
+                        </StyledGrid>
+                        <StyledGrid item xs={12} sm={6}>
+                          <StyledTextField
+                            required
+                            inputProps={{
+                              maxLength: 50,
+                              type: "email",
+                            }}
+                            label={t("BuyerOrganizationRegistration.Email")}
+                            name="organizationEmail"
+                            fullWidth
+                            value={organizationEmail}
+                            onChange={(e) =>
+                              setOrganizationEmail(e.target.value)
+                            }
+                            error={
+                              !addressUtil.validateEmail(organizationEmail)
+                            }
+                            helperText={
+                              !addressUtil.validateEmail(organizationEmail)
+                                ? t(
+                                    "BuyerOrganizationRegistration.Msgs.InvalidFormat"
+                                  )
+                                : EMPTY_STRING
+                            }
+                          />
+                        </StyledGrid>
+                        <StyledGrid item xs={12} sm={6}>
+                          <StyledTextField
+                            inputProps={{
+                              maxLength: 32,
+                              type: "tel",
+                            }}
+                            label={t("BuyerOrganizationRegistration.Phone")}
+                            name="organizationPhone"
+                            fullWidth
+                            value={organizationPhone}
+                            onChange={(e) =>
+                              setOrganizationPhone(e.target.value)
+                            }
+                            error={
+                              !addressUtil.validatePhoneNumber(
+                                organizationPhone
+                              )
+                            }
+                            helperText={
+                              !addressUtil.validatePhoneNumber(
+                                organizationPhone
+                              )
+                                ? t(
+                                    "BuyerOrganizationRegistration.Msgs.InvalidFormat"
+                                  )
+                                : EMPTY_STRING
+                            }
+                          />
+                        </StyledGrid>
+                        <StyledGrid item xs={12}>
+                          <Divider className="top-margin-2" />
+                        </StyledGrid>
+                        <StyledGrid item xs={12}>
+                          <StyledTypography variant="h6">
+                            {t("BuyerOrganizationRegistration.AddressDetails")}
+                          </StyledTypography>
+                        </StyledGrid>
+                        <StyledGrid item xs={12}>
+                          <StyledTextField
+                            required
+                            inputProps={{
+                              maxLength: 99,
+                            }}
+                            label={t("BuyerOrganizationRegistration.Address1")}
+                            name="organizationAddress1"
+                            fullWidth
+                            value={organizationAddress1}
+                            onChange={(e) =>
+                              setOrganizationAddress1(e.target.value)
+                            }
+                          />
+                        </StyledGrid>
+                        {!buyerAdminAddress2 && (
+                          <StyledGrid item xs={12}>
+                            <StyledButton
+                              variant="text"
+                              color="primary"
+                              onClick={() => {
+                                setBuyerAdminAddress2(true);
+                              }}>
+                              {t(
+                                "BuyerOrganizationRegistration.AddressLineAdd"
+                              )}
+                            </StyledButton>
+                          </StyledGrid>
+                        )}
+                        {buyerAdminAddress2 && (
+                          <StyledGrid item xs={12}>
+                            <StyledTextField
+                              inputProps={{
+                                maxLength: 49,
+                              }}
+                              label={t(
+                                "BuyerOrganizationRegistration.Address2"
+                              )}
+                              name="organizationAddress2"
+                              fullWidth
+                              value={organizationAddress2}
+                              onChange={(e) =>
+                                setOrganizationAddress2(e.target.value)
+                              }
+                            />
+                          </StyledGrid>
+                        )}
+                        <StyledGrid item xs={12} sm={6}>
+                          <StyledTextField
+                            required
+                            inputProps={{
+                              maxLength: 30,
+                            }}
+                            label={t("BuyerOrganizationRegistration.ZipCode")}
+                            name="organizationZipCode"
+                            fullWidth
+                            value={organizationZipCode}
+                            onChange={(e) =>
+                              setOrganizationZipCode(e.target.value)
+                            }
+                          />
+                        </StyledGrid>
+                        <StyledGrid item xs={12} sm={6}>
+                          <StyledTextField
+                            required
+                            inputProps={{
+                              maxLength: 40,
+                            }}
+                            label={t("BuyerOrganizationRegistration.State")}
+                            name="organizationState"
+                            fullWidth
+                            value={organizationState}
+                            onChange={(e) =>
+                              setOrganizationState(e.target.value)
+                            }
+                          />
+                        </StyledGrid>
+                        <StyledGrid item xs={12} sm={6}>
+                          <StyledTextField
+                            required
+                            inputProps={{
+                              maxLength: 40,
+                            }}
+                            label={t("BuyerOrganizationRegistration.City")}
+                            name="organizationCity"
+                            fullWidth
+                            value={organizationCity}
+                            onChange={(e) =>
+                              setOrganizationCity(e.target.value)
+                            }
+                          />
+                        </StyledGrid>
+                        <StyledGrid item xs={12} sm={6}>
+                          <StyledTextField
+                            required
+                            inputProps={{
+                              maxLength: 40,
+                            }}
+                            label={t("BuyerOrganizationRegistration.Country")}
+                            name="organizationCountry"
+                            fullWidth
+                            value={organizationCountry}
+                            onChange={(e) =>
+                              setOrganizationCountry(e.target.value)
+                            }
+                          />
+                        </StyledGrid>
+                        <StyledGrid item xs={12}>
+                          <StyledGrid
+                            container
+                            justify="space-between"
+                            spacing={2}>
+                            <StyledGrid item>
+                              <StyledButton
+                                color="secondary"
+                                onClick={() => {
+                                  history.push(SIGNIN);
+                                }}>
+                                {t("BuyerOrganizationRegistration.Back")}
+                              </StyledButton>
+                            </StyledGrid>
+                            <StyledGrid item>
+                              <StyledButton
+                                color="primary"
+                                onClick={() => {
+                                  setStepperActive(1);
+                                  setShowBuyerAdminRegForm(true);
+                                }}
+                                disabled={!canValidStepper()}>
+                                {t(
+                                  "BuyerOrganizationRegistration.NextRegister"
+                                )}
+                              </StyledButton>
+                            </StyledGrid>
+                          </StyledGrid>
+                        </StyledGrid>
+                      </StyledGrid>
+                    </StyledPaper>
+                  </StyledGrid>
                 </StyledGrid>
-                <StyledGrid item xs={12}>
-                  <StyledTextField
-                    inputProps={{
-                      maxLength: 49,
-                    }}
-                    label={t("BuyerOrganizationRegistration.Address2")}
-                    name="address2"
-                    fullWidth
-                    value={address2}
-                    onChange={(e) => setAddress2(e.target.value)}
-                  />
-                </StyledGrid>
-                <StyledGrid item xs={12}>
-                  <StyledTextField
-                    required
-                    inputProps={{
-                      maxLength: 40,
-                    }}
-                    label={t("BuyerOrganizationRegistration.City")}
-                    name="city"
-                    fullWidth
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                  />
-                </StyledGrid>
-                <StyledGrid item xs={12} sm={6}>
-                  <StyledTextField
-                    required
-                    inputProps={{
-                      maxLength: 40,
-                    }}
-                    label={t("BuyerOrganizationRegistration.Country")}
-                    name="country"
-                    fullWidth
-                    value={country}
-                    onChange={(e) => setCountry(e.target.value)}
-                  />
-                </StyledGrid>
-                <StyledGrid item xs={12} sm={6}>
-                  <StyledTextField
-                    required
-                    inputProps={{
-                      maxLength: 40,
-                    }}
-                    label={t("BuyerOrganizationRegistration.State")}
-                    name="state"
-                    fullWidth
-                    value={state}
-                    onChange={(e) => setState(e.target.value)}
-                  />
-                </StyledGrid>
-                <StyledGrid item xs={12} sm={6}>
-                  <StyledTextField
-                    required
-                    inputProps={{
-                      maxLength: 30,
-                    }}
-                    label={t("BuyerOrganizationRegistration.ZipCode")}
-                    name="zipCode"
-                    fullWidth
-                    value={zipCode}
-                    onChange={(e) => setZipCode(e.target.value)}
-                  />
-                </StyledGrid>
-              </>
-            )}
+              )}
+              {showBuyerAdminRegForm && (
+                <StyledGrid container justify="center">
+                  <StyledGrid item xs={12} md={6}>
+                    <StyledPaper className="top-margin-2 horizontal-padding-4 vertical-padding-4">
+                      <StyledGrid container spacing={2}>
+                        <StyledGrid item xs={12}>
+                          <StyledTypography variant="h4">
+                            {t(
+                              "BuyerOrganizationRegistration.BuyerAdminRegistration"
+                            )}
+                          </StyledTypography>
+                        </StyledGrid>
+                        <StyledGrid item xs={12}>
+                          <StyledTextField
+                            required
+                            inputProps={{
+                              maxLength: 128,
+                            }}
+                            label={t("BuyerOrganizationRegistration.LogonId")}
+                            name="logonId"
+                            fullWidth
+                            value={logonId}
+                            onChange={(e) => setLogonId(e.target.value)}
+                          />
+                        </StyledGrid>
+                        <StyledGrid item xs={12} sm={6}>
+                          <StyledTextField
+                            required
+                            inputProps={{
+                              maxLength: 40,
+                            }}
+                            label={t("BuyerOrganizationRegistration.FirstName")}
+                            name="firstName"
+                            fullWidth
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                          />
+                        </StyledGrid>
+                        <StyledGrid item xs={12} sm={6}>
+                          <StyledTextField
+                            required
+                            inputProps={{
+                              maxLength: 40,
+                            }}
+                            label={t("BuyerOrganizationRegistration.LastName")}
+                            name="lastName"
+                            fullWidth
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                          />
+                        </StyledGrid>
+                        <StyledGrid item xs={12} sm={6}>
+                          <StyledTextField
+                            required
+                            inputProps={{
+                              maxLength: 35,
+                              type: "email",
+                            }}
+                            label={t("BuyerOrganizationRegistration.Email")}
+                            name="email"
+                            fullWidth
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            error={!addressUtil.validateEmail(email)}
+                            helperText={
+                              !addressUtil.validateEmail(email)
+                                ? t(
+                                    "BuyerOrganizationRegistration.Msgs.InvalidFormat"
+                                  )
+                                : EMPTY_STRING
+                            }
+                          />
+                        </StyledGrid>
+                        <StyledGrid item xs={12} sm={6}>
+                          <StyledTextField
+                            inputProps={{
+                              maxLength: 32,
+                              type: "tel",
+                            }}
+                            label={t("BuyerOrganizationRegistration.Phone")}
+                            name="phone"
+                            fullWidth
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            error={!addressUtil.validatePhoneNumber(phone)}
+                            helperText={
+                              !addressUtil.validatePhoneNumber(phone)
+                                ? t(
+                                    "BuyerOrganizationRegistration.Msgs.InvalidFormat"
+                                  )
+                                : EMPTY_STRING
+                            }
+                          />
+                        </StyledGrid>
+                        <StyledGrid item xs={12} sm={6}>
+                          <StyledTextField
+                            required
+                            inputProps={{
+                              maxLength: 50,
+                              type: "password",
+                            }}
+                            label={t("BuyerOrganizationRegistration.Password")}
+                            name="password"
+                            fullWidth
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                          />
+                        </StyledGrid>
+                        <StyledGrid item xs={12} sm={6}>
+                          <StyledTextField
+                            required
+                            inputProps={{
+                              maxLength: 50,
+                              type: "password",
+                            }}
+                            label={t("BuyerOrganizationRegistration.Password2")}
+                            name="passwordVerify"
+                            fullWidth
+                            value={passwordVerify}
+                            onChange={(e) => setPasswordVerify(e.target.value)}
+                          />
+                        </StyledGrid>
+                        <StyledGrid item xs={12}>
+                          <Divider className="top-margin-2" />
+                        </StyledGrid>
+                        <StyledGrid item xs={12}>
+                          <StyledGrid
+                            container
+                            justify="space-between"
+                            spacing={2}>
+                            <StyledGrid item>
+                              <StyledTypography variant="h6">
+                                {t(
+                                  "BuyerOrganizationRegistration.AddressDetails"
+                                )}
+                              </StyledTypography>
+                            </StyledGrid>
+                            <StyledGrid item>
+                              <StyledFormControlLabel
+                                control={
+                                  <StyledCheckbox
+                                    checked={useOrganizationAddress}
+                                    color="primary"
+                                    onChange={(e) =>
+                                      setUseOrganizationAddress(
+                                        e.target.checked
+                                      )
+                                    }
+                                  />
+                                }
+                                label={t(
+                                  "BuyerOrganizationRegistration.UseOrganizationAddress"
+                                )}
+                              />
+                            </StyledGrid>
+                          </StyledGrid>
+                        </StyledGrid>
+                        {!useOrganizationAddress && (
+                          <>
+                            <StyledGrid item xs={12}>
+                              <StyledTextField
+                                required
+                                inputProps={{
+                                  maxLength: 99,
+                                }}
+                                label={t(
+                                  "BuyerOrganizationRegistration.Address1"
+                                )}
+                                name="adminAddress1"
+                                fullWidth
+                                value={adminAddress1}
+                                onChange={(e) =>
+                                  setAdminAddress1(e.target.value)
+                                }
+                              />
+                            </StyledGrid>
 
-            <StyledGrid container item xs={12} spacing={2}>
-              <StyledGrid item xs={12} sm={6}>
-                <StyledButton onClick={clearAll} color="secondary" fullWidth>
-                  {t("BuyerOrganizationRegistration.Clear")}
-                </StyledButton>
-              </StyledGrid>
-              <StyledGrid item xs={12} sm={6}>
-                <StyledButton type="submit" color="primary" fullWidth>
-                  {t("BuyerOrganizationRegistration.Submit")}
-                </StyledButton>
-              </StyledGrid>
-            </StyledGrid>
-          </StyledGrid>
-        </form>
+                            <StyledGrid item xs={12}>
+                              {!showAddress2Field && (
+                                <StyledButton
+                                  variant="text"
+                                  color="primary"
+                                  onClick={() => {
+                                    setShowAddress2Field(true);
+                                  }}>
+                                  {t(
+                                    "BuyerOrganizationRegistration.AddressLineAdd"
+                                  )}
+                                </StyledButton>
+                              )}
+                              {showAddress2Field && (
+                                <StyledTextField
+                                  inputProps={{
+                                    maxLength: 49,
+                                  }}
+                                  label={t(
+                                    "BuyerOrganizationRegistration.Address2"
+                                  )}
+                                  name="adminAddress2"
+                                  fullWidth
+                                  value={adminAddress2}
+                                  onChange={(e) =>
+                                    setAdminAddress2(e.target.value)
+                                  }
+                                />
+                              )}
+                            </StyledGrid>
 
+                            <StyledGrid item xs={12} sm={6}>
+                              <StyledTextField
+                                required
+                                inputProps={{
+                                  maxLength: 30,
+                                }}
+                                label={t(
+                                  "BuyerOrganizationRegistration.ZipCode"
+                                )}
+                                name="zipCode"
+                                fullWidth
+                                value={zipCode}
+                                onChange={(e) => setZipCode(e.target.value)}
+                              />
+                            </StyledGrid>
+
+                            <StyledGrid item xs={12} sm={6}>
+                              <StyledTextField
+                                required
+                                inputProps={{
+                                  maxLength: 40,
+                                }}
+                                label={t("BuyerOrganizationRegistration.State")}
+                                name="state"
+                                fullWidth
+                                value={state}
+                                onChange={(e) => setState(e.target.value)}
+                              />
+                            </StyledGrid>
+
+                            <StyledGrid item xs={12} sm={6}>
+                              <StyledTextField
+                                required
+                                inputProps={{
+                                  maxLength: 40,
+                                }}
+                                label={t("BuyerOrganizationRegistration.City")}
+                                name="city"
+                                fullWidth
+                                value={city}
+                                onChange={(e) => setCity(e.target.value)}
+                              />
+                            </StyledGrid>
+                            <StyledGrid item xs={12} sm={6}>
+                              <StyledTextField
+                                required
+                                inputProps={{
+                                  maxLength: 40,
+                                }}
+                                label={t(
+                                  "BuyerOrganizationRegistration.Country"
+                                )}
+                                name="country"
+                                fullWidth
+                                value={country}
+                                onChange={(e) => setCountry(e.target.value)}
+                              />
+                            </StyledGrid>
+                          </>
+                        )}
+                        <StyledGrid item xs={12}>
+                          <Divider className="top-margin-2" />
+                        </StyledGrid>
+                        <StyledGrid item xs={12}>
+                          <StyledTypography variant="h6">
+                            {t(
+                              "BuyerOrganizationRegistration.AccountPreferences"
+                            )}
+                          </StyledTypography>
+                        </StyledGrid>
+
+                        <StyledGrid item xs={12} sm={6}>
+                          <StyledFormControl variant="outlined">
+                            <StyledInputLabel shrink>
+                              {t("BuyerOrganizationRegistration.Language")}
+                            </StyledInputLabel>
+                            <StyledSelect
+                              value={`${language}`}
+                              name="language"
+                              native
+                              onChange={(e) => setLanguage(e.target.value)}
+                              fullWidth>
+                              {supportedLanguages?.map((e: any) => (
+                                <option value={e} key={e}>
+                                  {t(`CommerceEnvironment.language.${e}`)}
+                                </option>
+                              ))}
+                            </StyledSelect>
+                          </StyledFormControl>
+                        </StyledGrid>
+                        <StyledGrid item xs={12} sm={6}>
+                          <StyledFormControl variant="outlined">
+                            <StyledInputLabel shrink>
+                              {t("BuyerOrganizationRegistration.Currency")}
+                            </StyledInputLabel>
+                            <StyledSelect
+                              value={`${currency}`}
+                              name="currency"
+                              native
+                              onChange={(e) => setCurrency(e.target.value)}
+                              fullWidth>
+                              {supportedCurrencies?.map((e: any) => (
+                                <option value={e} key={e}>
+                                  {t(`CommerceEnvironment.currency.${e}`)}
+                                </option>
+                              ))}
+                            </StyledSelect>
+                          </StyledFormControl>
+                        </StyledGrid>
+                        <StyledGrid item xs={12}>
+                          <StyledGrid
+                            container
+                            justify="space-between"
+                            spacing={2}>
+                            <StyledGrid item>
+                              <StyledButton
+                                color="secondary"
+                                onClick={() => {
+                                  setStepperActive(0);
+                                  setShowBuyerAdminRegForm(false);
+                                }}>
+                                {t("BuyerOrganizationRegistration.Back")}
+                              </StyledButton>
+                            </StyledGrid>
+
+                            <StyledGrid item>
+                              <StyledButton
+                                type="submit"
+                                color="primary"
+                                disabled={!canCreate()}>
+                                {t(
+                                  "BuyerOrganizationRegistration.CompleteRegistration"
+                                )}
+                              </StyledButton>
+                            </StyledGrid>
+                          </StyledGrid>
+                        </StyledGrid>
+                        <StyledGrid item xs={12}>
+                          <Divider className="top-margin-2" />
+                        </StyledGrid>
+                        <StyledGrid item xs={12}>
+                          <StyledGrid container justify="center">
+                            <StyledGrid item>
+                              <StyledTypography variant="body1">
+                                {t(
+                                  "BuyerOrganizationRegistration.HereAnAccount"
+                                )}
+                                <StyledLink
+                                  className="left-margin-1"
+                                  to={SIGNIN}>
+                                  {t("BuyerOrganizationRegistration.SignIn")}
+                                </StyledLink>
+                              </StyledTypography>
+                            </StyledGrid>
+                          </StyledGrid>
+                        </StyledGrid>
+                      </StyledGrid>
+                    </StyledPaper>
+                  </StyledGrid>
+                </StyledGrid>
+              )}
+            </>
+          </form>
+        </StyledContainer>
         <StyledDialog
           open={openSuccess}
           onClose={closeAndRedirect}
@@ -630,13 +959,13 @@ const BuyerOrganizationRegistration = (props: any) => {
           <StyledDialogContent>
             {t("BuyerOrganizationRegistration.Success")}
             <StyledDialogActions>
-              <StyledButton onClick={closeAndRedirect} color="primary">
+              <StyledButton color="primary" onClick={closeAndRedirect}>
                 {t("BuyerOrganizationRegistration.OK")}
               </StyledButton>
             </StyledDialogActions>
           </StyledDialogContent>
         </StyledDialog>
-      </StyledContainer>
+      </>
     );
   }
 };

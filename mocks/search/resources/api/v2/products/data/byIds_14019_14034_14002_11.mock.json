@@ -1,0 +1,320 @@
+{
+  "contents": [
+    {
+      "hasSingleSKU": false,
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10504",
+      "parentCatalogEntryID": "14001",
+      "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/decoration/mirror1_a1_600.jpg",
+      "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/decoration/mirror1_a1_600.jpg",
+      "buyable": "true",
+      "shortDescription": "A decorative wall mirror that can be used as an accent in a contemporary living room.",
+      "seo": {
+        "href": "/accent-mirror-lr-deco-0001-0001"
+      },
+      "longDescription": "Bring your living room together in style with a wall mirror that contains just the right amount of subtle, effective accents. Includes hanging wire. Hang vertically for optimum effect.",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/decoration/mirror1_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/decoration/mirror1_a1_350.jpg",
+      "partNumber": "LR-DECO-0001-0001",
+      "name": "Accent Mirror",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "40.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "35.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "ProductDimensions",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "16.0",
+              "identifier": "12x30x1",
+              "unitID": "INH",
+              "id": "7000000000000003093",
+              "value": "12\"x30\"x1\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Product Dimensions",
+          "facetable": "true",
+          "id": "7000000000000000510",
+          "comparable": "true",
+          "key": "7000000000000000510",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ItemWeight",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "23lbs",
+              "sequence": "2.0",
+              "unitID": "LBR",
+              "id": "7000000000000003098",
+              "value": "23 lbs"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Item Weight",
+          "facetable": "true",
+          "id": "7000000000000000511",
+          "comparable": "true",
+          "key": "7000000000000000511",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "metal_glass",
+              "sequence": "5.0",
+              "unitID": "Glass",
+              "id": "7000000000000003034",
+              "value": "Metal, Glass"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "key": "7000000000000000503",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Shape",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "oval",
+              "sequence": "1.0",
+              "unitID": "Oval",
+              "id": "7000000000000003076",
+              "value": "Oval"
+            }
+          ],
+          "displayable": "false",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Shape",
+          "facetable": "false",
+          "id": "7000000000000000509",
+          "comparable": "false",
+          "key": "7000000000000000509",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "DescriptiveColor",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "black",
+              "sequence": "2.0",
+              "unitID": "Black",
+              "id": "7000000000000003068",
+              "value": "Black"
+            }
+          ],
+          "displayable": "false",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "false",
+          "id": "7000000000000000505",
+          "comparable": "false",
+          "key": "7000000000000000505",
+          "swatchable": "false"
+        }
+      ],
+      "images": [
+        {
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/decoration/mirror1_a1_350.jpg",
+          "sequence": "-1000.0",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/decoration/mirror1_a1_350.jpg",
+          "name": "Accent Mirror Main Image",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/decoration/mirror1_a1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/decoration/mirror1_a1_600.jpg"
+        }
+      ],
+      "type": "item",
+      "id": "14002"
+    },
+    {
+      "hasSingleSKU": false,
+      "buyable": "true",
+      "shortDescription": "A sturdy wooden angled chair that welcomes every guest into your living space in style. Includes a matching movable leg rest.",
+      "seo": {
+        "href": "/wooden-angled-chair-lr-fntr-0001-0001"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_350.jpg",
+      "partNumber": "LR-FNTR-0001-0001",
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10502",
+      "name": "Wooden Angled Chair",
+      "longDescription": "Give your living room a bold new look with the modern and comfortable blue armchair. The armchair features a compact design, comfortable oversized pillow, easy to clean polyester fabric, and button tufts along the lower backrest. The armchair's modern styling is complemented with durable light brown wooden legs. No assembly required.",
+      "parentCatalogEntryID": "14018",
+      "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_600.jpg",
+      "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_600.jpg",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "800.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "749.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": "5.0",
+              "identifier": "blonde",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003005",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+              "value": "Blonde",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        }
+      ],
+      "images": [
+        {
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_350.jpg",
+          "sequence": "-1000.0",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_350.jpg",
+          "name": "Wooden Angled Chair Main Image",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair1_a1_600.jpg"
+        }
+      ],
+      "type": "item",
+      "id": "14019"
+    },
+    {
+      "hasSingleSKU": false,
+      "buyable": "true",
+      "shortDescription": "Very cozy short design single sofa.",
+      "seo": {
+        "href": "/stonehenge-ultracozy-single-sofa-lr-fntr-0004-0001"
+      },
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair4_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair4_a1_350.jpg",
+      "partNumber": "LR-FNTR-0004-0001",
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10502",
+      "name": "Stonehenge UltraCozy Single Sofa",
+      "longDescription": "The sofa has a short back rest but a long width to get lazy while sitting lazy. With a matte fabric finish and a soft center, this is the perfect sofa to indulge someone to get lazy and stay back.",
+      "parentCatalogEntryID": "14033",
+      "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair4_a1_600.jpg",
+      "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair4_a1_600.jpg",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "800.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "749.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": "10.0",
+              "identifier": "darkgrey",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003010",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+              "value": "Dark Grey",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        }
+      ],
+      "images": [
+        {
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair4_a1_350.jpg",
+          "sequence": "-1000.0",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair4_a1_350.jpg",
+          "name": "Stonehenge UltraCozy Single Sofa Main Image",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair4_a1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair4_a1_600.jpg"
+        }
+      ],
+      "type": "item",
+      "id": "14034"
+    }
+  ],
+  "total": 3
+}

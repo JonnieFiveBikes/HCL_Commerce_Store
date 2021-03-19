@@ -1,6 +1,6 @@
 {
   "BuyerUserRegistration": {
-    "Title": "組織の購入担当者の登録",
+    "Title": "購入者登録",
     "Description": "組織がこのストアのアカウントを既にお持ちの場合は、お客様ご自身で登録してこのアカウントでショッピングやオーダーを行うことができます。登録が承認されたら、サインインしてショッピングすることができます。",
     "OrgName": "組織",
     "Email": "E メール",
@@ -18,7 +18,12 @@
     "Password2": "パスワードの確認",
     "Language": "使用言語",
     "Currency": "優先通貨",
-    "Submit": "送信",
+    "AddressDetails": "住所の詳細",
+    "AccountPreferences": "アカウント設定",
+    "HaveAccount": "既にアカウントをお持ちですか?",
+    "AddressLineAdd": "住所行 2 を追加",
+    "SignIn": "サインイン",
+    "Submit": "登録を完了",
     "Clear": "クリア",
     "Success": "アカウントのアクティブ化要求が受信されました。アカウントをアクティブ化してログオンしてください。",
     "OK": "OK",

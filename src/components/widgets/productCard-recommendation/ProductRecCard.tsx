@@ -12,7 +12,7 @@
 import React from "react";
 import isEmpty from "lodash/isEmpty";
 import { useDispatch } from "react-redux";
-import LazyLoadComponent from "react-intersection-observer-lazy-load";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
 //Custom libraries
@@ -63,7 +63,11 @@ function ProductRecCard({ renderingContext }: any) {
     }
     if (product.attributes) {
       for (const attribute of product.attributes) {
-        if (attribute.usage === DEFINING && attribute.values[0].image1path) {
+        if (
+          attribute.usage === DEFINING &&
+          attribute.values &&
+          attribute.values[0]?.image1path
+        ) {
           for (const attributeColor of attribute.values) {
             colorList.push(attributeColor);
           }
@@ -86,6 +90,7 @@ function ProductRecCard({ renderingContext }: any) {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product]);
 
   let swatches: any[] = [];

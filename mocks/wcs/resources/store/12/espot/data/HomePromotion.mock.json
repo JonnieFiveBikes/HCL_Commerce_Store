@@ -1,0 +1,50 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "defaultContentDisplaySequence": [
+        {
+          "resultId": "13506",
+          "resultFormat": "MarketingContent",
+          "displaySequence": "1.0"
+        }
+      ],
+      "marketingSpotIdentifier": "14507",
+      "behavior": "0",
+      "eSpotName": "Home_Promotion",
+      "baseMarketingSpotActivityData": [
+        {
+          "contentFormatName": "Text",
+          "baseMarketingSpotActivityName": "SapphirePercentOffContent",
+          "contentClickAction": "None",
+          "contentId": "13506",
+          "baseMarketingSpotActivityID": "13506",
+          "contentName": "SapphirePercentOffContent",
+          "baseMarketingSpotDataType": "MarketingContent",
+          "activityIdentifierID": "0",
+          "MarketingContentDescription": [{}],
+          "marketingContentDescription": [
+            {
+              "marketingText": "<div class=\"MuiGrid-root MuiGrid-container marketing-content marketing-backgroundImage SapphirePercentOffContent top-margin-4\"><img src=\"/SapphireSAS/images/promotion/percentoff.jpg\"><div class=\"marketing-text marketing-text-vertical-center left-padding-4\" ><h4 class=\"MuiTypography-root MuiTypography-overline\">Use Promo Code: LIGHTING15</h4><p class=\"MuiTypography-root MuiTypography-h4 bottom-margin-1\">Receive 15% Off Lighting orders over $2000</p></div></div>",
+              "language": "-1"
+            }
+          ],
+          "contentFormatId": "2",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingKey": "mktActivityDescription"
+            },
+            {
+              "baseMarketingValue": "1.0",
+              "baseMarketingKey": "displaySequence"
+            }
+          ],
+          "contentStoreId": "13001"
+        }
+      ]
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/12/espot/Home_Promotion?catalogId=10501&name=Home_Promotion&langId=-1",
+  "resourceName": "espot"
+}

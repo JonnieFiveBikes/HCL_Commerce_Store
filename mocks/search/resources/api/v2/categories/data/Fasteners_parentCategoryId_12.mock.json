@@ -1,0 +1,64 @@
+{
+  "contents": [
+    {
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_fbo_bolts.png",
+      "seo": {
+        "href": "/bolts"
+      },
+      "name": "Bolts",
+      "identifier": "Bolts",
+      "storeID": "12",
+      "sequence": "1.0",
+      "id": "14",
+      "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=12&id=12"
+        },
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=12&id=14"
+        }
+      },
+      "description": "Bolts designed to hold fast over the long term"
+    },
+    {
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_fnu_nuts.png",
+      "seo": {
+        "href": "/nuts"
+      },
+      "name": "Nuts",
+      "identifier": "Nuts",
+      "storeID": "12",
+      "sequence": "1.0",
+      "id": "15",
+      "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=12&id=12"
+        },
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=12&id=15"
+        }
+      },
+      "description": "High-strength nuts in various finishes"
+    },
+    {
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_fsc_screws.png",
+      "seo": {
+        "href": "/screws"
+      },
+      "name": "Screws",
+      "identifier": "Screws",
+      "storeID": "12",
+      "sequence": "1.0",
+      "id": "16",
+      "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=12&id=12"
+        },
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=12&id=16"
+        }
+      },
+      "description": "Top-quality screws to suit all your fastening needs"
+    }
+  ]
+}

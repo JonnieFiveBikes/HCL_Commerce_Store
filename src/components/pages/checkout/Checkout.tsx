@@ -42,7 +42,9 @@ import {
   StyledLink,
 } from "../../StyledUI";
 //GA360
-import GADataService from "../../../_foundation/gtm/gaData.service";
+import UADataService from "../../../_foundation/gtm/ua/uaData.service";
+import GA4DataService from "../../../_foundation/gtm/ga4/ga4Data.service";
+import AsyncCall from "../../../_foundation/gtm/async.service";
 
 /**
  * Checkout component
@@ -83,6 +85,7 @@ const Checkout: React.FC = (props: any) => {
       return steps.indexOf(path);
     }
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const activeStep = useMemo(calculateStep, [location, match]);
 
   const defaultCurrencyID: string = mySite ? mySite.defaultCurrencyID : "";
@@ -109,7 +112,14 @@ const Checkout: React.FC = (props: any) => {
       : {};
 
   //GA360
-  if (mySite.enableGA) GADataService.setPageTitle(storeDisplayName);
+  if (mySite.enableGA) {
+    if (mySite.enableUA) {
+      UADataService.setPageTitle(storeDisplayName);
+    }
+    if (mySite.enableGA4) {
+      GA4DataService.setPageTitle(storeDisplayName);
+    }
+  }
 
   useEffect(() => {
     if (mySite && contractId && defaultCurrencyID) {
@@ -122,29 +132,40 @@ const Checkout: React.FC = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite, contractId, defaultCurrencyID]);
 
-  /**GA360: checkout process and  purchase event */
+  //GA360: checkout process and  purchase event
   const orderItems = useSelector(orderItemsSelector);
   useEffect(() => {
     if (mySite.enableGA) {
-      GADataService.sendCheckoutPageViewEvent(
-        steps[activeStep],
-        location.pathname
+      AsyncCall.sendCheckoutPageViewEvent(
+        { pageSubCategory: steps[activeStep], pathname: location.pathname },
+        { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
       );
       let step = activeStep + 1;
       switch (step) {
         case 1:
-          GADataService.sendCheckoutEvent(orderItems, step, steps[0]);
+          AsyncCall.sendCheckoutEvent(
+            { cart, orderItems, step, value: steps[0] },
+            { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
+          );
           break;
         case 2:
-          GADataService.sendCheckoutEvent(orderItems, step, steps[1]);
+          AsyncCall.sendCheckoutEvent(
+            { cart, orderItems, step, value: steps[1] },
+            { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
+          );
           break;
         case 3:
-          GADataService.sendCheckoutEvent(orderItems, step, steps[2]);
+          AsyncCall.sendCheckoutEvent(
+            { cart, orderItems, step, value: steps[2] },
+            { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
+          );
           break;
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeStep]);
 
   return isFetching === undefined || isFetching ? (

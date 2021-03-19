@@ -2,12 +2,25 @@
   "SignIn": {
     "ReturningCustomer": "이미 등록한 고객",
     "Password": "암호",
+    "ChangPassword": "암호 변경",
+    "CurrentPassword": "현재 암호",
+    "PasswordVerify": "암호 확인",
     "RememberMe": "저장",
     "SignInButton": "로그인",
-    "ForgotPassword": "암호를 잊었습니다",
+    "Cancel": "취소",
+    "Submit": "제출",
+    "ForgotPassword": "암호를 잊으셨습니까?",
+    "noAccount": "계정이 없으십니까? ",
+    "registerNow": "지금 등록",
     "Label": {
       "B2B": "로그온 ID",
-      "Email": "이메일 주소"
+      "Email": "이메일 주소",
+      "rememberMe": "저장"
+    },
+    "Msgs": {
+      "InvalidFormat": "올바르지 않은 형식입니다.",
+      "PasswordNotMatch": "암호와 암호 확인이 일치하지 않습니다.",
+      "OldPasswordReuse": "이전에 사용된 암호가 입력되었습니다. 새 암호를 입력하십시오."
     }
   }
 }

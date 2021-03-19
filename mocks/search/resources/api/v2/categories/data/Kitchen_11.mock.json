@@ -1,0 +1,24 @@
+{
+  "contents": [
+    {
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/kitchen/category/dep_kitchen.jpg",
+      "seo": {
+        "href": "/kitchen"
+      },
+      "name": "Kitchen",
+      "identifier": "Kitchen",
+      "storeID": "11",
+      "id": "10516",
+      "links": {
+        "children": [
+          "href: /search/resources/api/v2/categories?storeId=11&id=10517",
+          "href: /search/resources/api/v2/categories?storeId=11&id=10518"
+        ],
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10516"
+        }
+      },
+      "description": "Create a kitchen that suits your needs and fits your lifestyle"
+    }
+  ]
+}

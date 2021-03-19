@@ -18,14 +18,30 @@ import { SectionContent } from "../../layouts/sectionContentType";
 import { StyledProgressPlaceholder } from "../../StyledUI";
 import { useSite } from "../../../_foundation/hooks/useSite";
 //GA360
-import GADataService from "../../../_foundation/gtm/gaData.service";
+import AsyncCall from "../../../_foundation/gtm/async.service";
+//UA
+import UADataService from "../../../_foundation/gtm/ua/uaData.service";
+//GA4
+import GA4DataService from "../../../_foundation/gtm/ga4/ga4Data.service";
 
 const Home: React.FC = () => {
   const { mySite, storeDisplayName } = useSite();
-  //GA360
-  if (mySite.enableGA) {
-    GADataService.setPageTitle(storeDisplayName);
-  }
+
+  React.useEffect(() => {
+    //GA360
+    if (mySite.enableGA) {
+      if (mySite.enableUA) {
+        UADataService.setPageTitle(storeDisplayName);
+      }
+      if (mySite.enableGA4) {
+        GA4DataService.setPageTitle(storeDisplayName);
+      }
+      AsyncCall.measureHomePageView(
+        {},
+        { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
+      );
+    }
+  }, []);
 
   const banner: SectionContent[] = [
     {
@@ -63,7 +79,6 @@ const Home: React.FC = () => {
               "../../widgets/content-recommendation/ContentRecommendationLayout"
             )
         );
-
         return (
           <Suspense
             fallback={

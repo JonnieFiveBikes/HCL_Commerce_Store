@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "heavy-hex-nut",
+      "tokenName": "ProductToken",
+      "tokenExternalValue": "FNU040_4001",
+      "language": "en_US",
+      "id": 13327,
+      "page": {
+        "imageAlternateDescription": "Image for Heavy Hex Nut from Sapphire",
+        "name": "PRODUCT_PAGE",
+        "title": "Heavy Hex Nut | Sapphire",
+        "type": "ProductPage",
+        "metaDescription": "High-strength, general purpose fastening nut",
+        "metaKeyword": " Black Key Fasteners"
+      },
+      "storeId": "12",
+      "tokenValue": "13357",
+      "status": 1
+    }
+  ]
+}

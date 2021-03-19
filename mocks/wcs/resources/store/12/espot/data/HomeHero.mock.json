@@ -1,0 +1,43 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "marketingSpotIdentifier": "14505",
+      "behavior": "0",
+      "eSpotName": "Home Hero",
+      "baseMarketingSpotActivityData": [
+        {
+          "contentFormatName": "Text",
+          "baseMarketingSpotActivityName": "SapphireOrderManagementContent",
+          "contentClickAction": "Single",
+          "contentId": "13519",
+          "activityFormat": "web",
+          "activityIdentifierName": "Home recommended content",
+          "baseMarketingSpotActivityID": "13519",
+          "contentName": "SapphireOrderManagementContent",
+          "baseMarketingSpotDataType": "MarketingContent",
+          "contentUrl": "/sign-in",
+          "activityIdentifierID": "11501",
+          "MarketingContentDescription": [{}],
+          "marketingContentDescription": [
+            {
+              "marketingText": "<div class=\"marketing-content SapphireOrderManagementContent\"><div class=\"MuiGrid-root MuiGrid-container marketing-backgroundImage marketing-heroImage\"><img src=\"/SapphireSAS/images/promotion/ordermanagement.jpg\"></div><div class=\"MuiGrid-root MuiGrid-container marketing-backgroundImage marketing-heroImage increaseTextContrast\" style=\"position: absolute; top: 0;\"><div class=\"MuiContainer-root MuiContainer-maxWidthLg marketing-content\"><div class=\"MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8 MuiGrid-grid-md-6 MuiGrid-grid-lg-5 marketing-text marketing-text-vertical-center\"><h2 class=\"MuiTypography-root MuiTypography-h2\">Streamlined B2B Order Management</h2><h5 class=\"MuiTypography-root MuiTypography-h5 vertical-margin-2\">Quickly view order status, order history, and manage recurring orders with our Dashboard.</h5><a href=\"/sign-in\"><button class=\"marketing-button primary\" tabindex=\"0\" type=\"text\"><span class=\"MuiButton-label\">Sign In or Register</span><span class=\"MuiTouchRipple-root\"></span></button></a></div></div></div></div>",
+              "language": "-1"
+            }
+          ],
+          "contentFormatId": "2",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend content to a guest shopper.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "contentStoreId": "13001"
+        }
+      ]
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/12/espot/Home%20Hero?catalogId=10501&name=Home+Hero&langId=-1",
+  "resourceName": "espot"
+}

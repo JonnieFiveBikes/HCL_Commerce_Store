@@ -19,7 +19,10 @@ import { SectionContent } from "../../../layouts/sectionContentType";
 import { StandardPageLayout } from "../../../layouts/standard-page";
 import { AccountLinksLayout } from "../../../widgets/account-links-layout";
 import { OrderLinksLayout } from "../../../widgets/order-links-layout-b2b";
-import { userIdSelector } from "../../../../redux/selectors/user";
+import {
+  forUserIdSelector,
+  userIdSelector,
+} from "../../../../redux/selectors/user";
 import personService from "../../../../_foundation/apis/transaction/person.service";
 import {
   BUYER_ADMIN_ROLE,
@@ -40,6 +43,7 @@ function Dashboard() {
   const { t } = useTranslation();
   const title = t("Dashboard.Title");
   const userId = useSelector(userIdSelector);
+  const forUserId = useSelector(forUserIdSelector);
   const [buyerRole, setBuyerRole] = useState<string[]>([]);
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
@@ -51,13 +55,12 @@ function Dashboard() {
     }),
   };
 
-  const param = {
-    userId: userId,
-    profileName: IBM_ASSIGNED_ROLE_DETAILS,
-    ...payloadBase,
-  };
-
   const getPerson = () => {
+    const param = {
+      userId: forUserId ?? userId,
+      profileName: IBM_ASSIGNED_ROLE_DETAILS,
+      ...payloadBase,
+    };
     return personService
       .findByUserId(param)
       .then((response) => {
@@ -86,6 +89,7 @@ function Dashboard() {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sectionOne: SectionContent[] = [

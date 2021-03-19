@@ -35,7 +35,6 @@ import {
   StyledGrid,
   StyledProgressPlaceholder,
   StyledTypography,
-  StyledBox,
   StyledIconLabel,
 } from "../../StyledUI";
 import ReccuringOrderIcon from "@material-ui/icons/Repeat";
@@ -191,6 +190,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [order?.buyerPONumber]);
 
   return (

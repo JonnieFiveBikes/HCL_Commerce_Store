@@ -18,13 +18,14 @@ import { useSite } from "../../../_foundation/hooks/useSite";
 import productsService from "../../../_foundation/apis/search/products.service";
 //Custom libraries
 import { DEFINING, OFFER } from "../../../constants/common";
+import commonUtil from "../../../_foundation/utils/commonUtil";
 //Redux
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 import { breadcrumbsSelector } from "../../../redux/selectors/catalog";
 //UI
 import { StyledProductCard, StyledSwatch } from "../../StyledUI";
 //GA360
-import GADataService from "../../../_foundation/gtm/gaData.service";
+import AsyncCall from "../../../_foundation/gtm/async.service";
 
 interface ProductCardProps {
   product: any;
@@ -68,6 +69,7 @@ export default function ProductCard(props: ProductCardProps) {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function getOfferPrice(prices: any[]) {
@@ -88,7 +90,7 @@ export default function ProductCard(props: ProductCardProps) {
   ) {
     event.preventDefault();
     setThumbnailLoading(true);
-    if (productData == null) {
+    if (productData === null) {
       getProductInfo(attrValueId);
     } else {
       changeProductImage(attrValueId, productData);
@@ -122,14 +124,20 @@ export default function ProductCard(props: ProductCardProps) {
   function changeProductImage(attrValueId: string, product: any) {
     if (product) {
       if (product.items) {
-        product.items.map((sku: any, index: number) => {
-          sku.attributes.map((attribute: any, index2: number) => {
-            attribute.values.map((value: any, index3: number) => {
-              if (value.id === attrValueId) {
-                setThumbnailLoading(false);
-                setSkuThumbnail(sku.thumbnail);
-              }
-            });
+        product.items.forEach((sku: any, index: number) => {
+          sku.attributes.forEach((attribute: any, index2: number) => {
+            attribute.values &&
+              attribute.values.forEach((value: any, index3: number) => {
+                if (value.id === attrValueId) {
+                  setThumbnailLoading(false);
+                  setSkuThumbnail(
+                    commonUtil.getThumbnailImagePath(
+                      sku.thumbnail,
+                      sku.fullImage
+                    )
+                  );
+                }
+              });
           });
         });
       }
@@ -137,7 +145,7 @@ export default function ProductCard(props: ProductCardProps) {
   }
 
   productAttributes.map((attribute: any, index: number) => {
-    if (attribute.usage === DEFINING) {
+    if (attribute.usage === DEFINING && attribute.values) {
       attribute.values.map((attributeValue: any, index2: number) => {
         if (
           attributeValue.image1path !== undefined &&
@@ -181,11 +189,14 @@ export default function ProductCard(props: ProductCardProps) {
   const breadcrumbs = useSelector(breadcrumbsSelector);
   const gaProductClick = () => {
     let listerCategoryFlag = breadcrumbs.length > 0 ? true : false;
-    GADataService.sendProductClickEvent(
-      product,
-      null,
-      listerCategoryFlag,
-      breadcrumbs
+    AsyncCall.sendProductClickEvent(
+      {
+        product,
+        index: null,
+        listerFlag: listerCategoryFlag,
+        breadcrumbs,
+      },
+      { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
     );
   };
   const clickProductGA = mySite.enableGA && { onClick: gaProductClick };

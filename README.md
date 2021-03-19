@@ -15,7 +15,7 @@ only in styling, messages, and page flows. The applications use common React lib
 various capabilities including for routing and display.
 
 The application provides a set of foundational React components for interacting with HCL Commerce business logic
-that can be used as the basis for creating and managing your custom store and allow web developers to focus on  
+that can be used as the basis for creating and managing your custom store and allow web developers to focus on
 customizing and replacing the display and view aspects of the store. All aspects of the React application, including the
 foundation, are customizable by web developers and are provided as references to interact with HCL Commerce REST APIs and session management.
 
@@ -33,8 +33,8 @@ within this project for details.
 
 The project can be loaded on any environment supporting Node.js development. We recommend:
 
-- Node.js 12.6.1 or higher
-- npm 6.13.4 or higher
+- Node.js 14.15.1 or higher
+- npm 6.14.8 or higher
 
 ### Development environment Transaction Server and Search Query Server proxy config
 
@@ -47,7 +47,7 @@ pages in the following modes:
 
 In the `src\setupProxy.js` file, update the following constants with the proper SEARCH_HOST server name and port number (search-query-app)
 and TRANSACTION_HOST server name and port number (ts-app). Note: this project is designed to work with only
-Elasticsearch V2 APIs.
+Elasticsearch V2 APIs. The CMC_HOST constant is for accessing admin tools inside B2B store. Please update it with CMC server name and port number. The port number differs for how we are setting up the new CMC tooling web component. If we setup the new CMC tooling web component in development (node) environment, the port number is 7443, otherwise(docker run time environment) the port number is 8000. The DX_HOST constant is for HCL Commerce - DX integration and update it with HCL DX server name and port number accordingly.
 
 ```js
 // update to point to your Search Query Server (if remote docker, replace with https://<hostname or ip>:30901)
@@ -55,6 +55,12 @@ const SEARCH_HOST = "https://localhost:30901";
 
 // update to point to your Transaction Server (if remote docker, replace with https://<hostname or ip>:5443)
 const TRANSACTION_HOST = "https://localhost";
+
+// update to point to your CMC - Management centre (Replace with https://<hostname or ip>:8000 or 7443)
+const CMC_HOST = "https://localhost:8000";
+
+// update to point to your HCL DX server (Replace with https://<hostname or ip>:port)
+const DX_HOST = "https://localhost";
 ```
 
 To complete the setup, run the following commands from the project directory:
@@ -130,7 +136,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 ### Translation support to our app
 
 - See https://react.i18next.com/ for instructions about how to use, Hook, HOC, Trans components and others.
-- To create translatable JSON file, create an nls folder under the component directory, and name your file xxxx_en-US.json (Note: i18next using hyphen instead of underscore in locale string). Refer to file src\components\widgets\session-error-modal\nls\SessionError_en-US.json as an example.
+- To create translatable JSON file, create an nls folder under the component directory, and name your file xxxx_en-US.json (Note: i18next using hyphen instead of underscore in locale string). Refer to file src\components\pages\sign-in\nls\SignIn_en-US.json as an example.
 
   ![translate1](./readmeImages/translate1.png)
 
@@ -156,11 +162,11 @@ The rest service JS code is output to the `src/apis` folder, the generated code 
 
 Swagger v1.X example:
 
-`npm run generate-rest -- --name GuestIdentity --resourceDomain Transaction --spec tools/scripts/codeGen/swaggerSpec/commerce/guestIdentity.swagger.json --ops 'getCart,addTocart'`
+`npm run generate-rest -- --name guestIdentity --resourceDomain Transaction --spec tools/scripts/codeGen/swaggerSpec/commerce/guestIdentity.swagger.json --ops 'login,logout'`
 
 Swagger v2.x example with tag:
 
-`npm run generate-rest -- --name ProductView --resourceDomain Search --spec tools/scripts/codeGen/swaggerSpec/commerce/search.swagger.json --tag ProductView --ops 'getCart,addTocart'`
+`npm run generate-rest -- --name products --resourceDomain Search --spec tools/scripts/codeGen/swaggerSpec/commerce/searchV2.swagger.json --tag v-2-product-view-resources --ops 'findProductsUsingGET'`
 
 ### Axios call in component.
 
@@ -239,7 +245,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/an
 ### Making a Progressive Web App
 
 The sample Emerald and Sapphire applications are implemented with support for Progressive Web App (PWA) and the resulting store can be
-installed as an app on devices supporting PWA.  
+installed as an app on devices supporting PWA.
 For more information on PWA, see: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
 ### Advanced Configuration

@@ -24,7 +24,10 @@ import { seoSelector } from "../../redux/selectors/seo";
 //UI
 import { StyledProgressPlaceholder } from "../../components/StyledUI";
 //GA360
-import GADataService from "../gtm/gaData.service";
+//UA
+import UADataService from "../gtm/ua/uaData.service";
+//GA4
+import GA4DataService from "../gtm/ga4/ga4Data.service";
 
 function SEO(props: any): JSX.Element {
   const widgetName = getDisplayName(SEO);
@@ -49,6 +52,10 @@ function SEO(props: any): JSX.Element {
         GET_SEO_CONFIG_ACTION({ identifier: url.substr(1), ...payloadBase })
       );
     }
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [site, url, dispatch]);
 
   const ActiveComponent = () => {
@@ -56,8 +63,14 @@ function SEO(props: any): JSX.Element {
       const c = seoConfig[url.substr(1)];
       const ActiveC = c.component;
       //GA360
-      if (site.enableGA && seoConfig[url.substr(1)].page)
-        GADataService.setPageTitle(seoConfig[url.substr(1)].page.title);
+      if (site.enableGA && seoConfig[url.substr(1)].page) {
+        if (site.enableUA) {
+          UADataService.setPageTitle(seoConfig[url.substr(1)].page.title);
+        }
+        if (site.enableGA4) {
+          GA4DataService.setPageTitle(seoConfig[url.substr(1)].page.title);
+        }
+      }
 
       return c.redirect && c.redirect.trim() !== "" ? (
         <Redirect to={c.redirect} />

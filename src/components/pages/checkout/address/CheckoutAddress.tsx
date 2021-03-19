@@ -177,7 +177,7 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
           const successMessage = {
             key: ADD_SUCCESS_MSG,
             messageParameters: {
-              ["0"]: newAddressData.nickName,
+              "0": newAddressData.nickName,
             },
           };
           dispatch(
@@ -222,7 +222,7 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
           const successMessage = {
             key: EDIT_SUCCESS_MSG,
             messageParameters: {
-              ["0"]: updatedAddressData.nickName,
+              "0": updatedAddressData.nickName,
             },
           };
           dispatch(
@@ -251,6 +251,7 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [createNew, editAddress]);
 
   return (
@@ -302,7 +303,6 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
               <StyledGrid item xs={12}>
                 <StyledButton
                   data-testid="checkout-new-address-button"
-                  size="small"
                   color="secondary"
                   onClick={(event) => {
                     toggleCreateNew(true);
@@ -343,16 +343,15 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
           spacing={2}
           className="checkout-actions">
           <StyledGrid item>
-            <StyledButton size="small" onClick={cancelButtonAction}>
-              {t("CheckoutAddress.Actions.Cancel")}
+            <StyledButton onClick={cancelButtonAction} color="secondary">
+              {t("AddressBook.Cancel")}
             </StyledButton>
           </StyledGrid>
           <StyledGrid item>
             <StyledButton
               color="primary"
               disabled={!canContinue()}
-              onClick={() => submit(createNew, editAddress)}
-              className="MuiButton-containedSecondary">
+              onClick={() => submit(createNew, editAddress)}>
               {t("CheckoutAddress.Actions.Submit")}
             </StyledButton>
           </StyledGrid>

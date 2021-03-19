@@ -1,0 +1,12 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "marketingSpotIdentifier": "14510",
+      "behavior": "0",
+      "eSpotName": "Featured_ProductRec"
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/12/espot/Featured_ProductRec?catalogId=10501&name=Featured_ProductRec&langId=-1",
+  "resourceName": "espot"
+}

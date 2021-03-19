@@ -1,6 +1,6 @@
 {
   "recordSetCount": 1,
-  "resourceId": "https://localhost:443/wcs/resources/store/11/online_store",
+  "resourceId": "https://app:5443/wcs/resources/store/11/online_store",
   "recordSetStartNumber": 0,
   "resourceName": "store",
   "resultList": [
@@ -360,7 +360,13 @@
       ],
       "storeType": "MHS",
       "userData": {
-        "headlessStore": "true"
+        "wc.search.priceMode.compatiblePriceIndex": "1.0",
+        "hcl.imagePath": "/hclstore",
+        "google.tag.manager.preview": "env-1",
+        "headlessStore": "true",
+        "headlessStore.storeContextRoot": "/Emerald",
+        "google.tag.manager.container.id": "GTM-W2Z2JXX",
+        "google.tag.manager.auth": "JhLgsM5REbf1I4GUhGW4pQ"
       },
       "contactInfo": [
         {

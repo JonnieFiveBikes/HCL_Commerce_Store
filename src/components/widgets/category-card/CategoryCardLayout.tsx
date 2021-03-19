@@ -12,7 +12,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import isEmpty from "lodash/isEmpty";
-import LazyLoadComponent from "react-intersection-observer-lazy-load";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
 //Redux
@@ -27,6 +27,8 @@ import {
   StyledLink,
   StyledProgressPlaceholder,
 } from "../../StyledUI";
+//Custom libraries
+import commonUtil from "../../../_foundation/utils/commonUtil";
 
 const StyledCategoryCard = styled(({ ...props }) =>
   props.to ? <StyledLink {...props} /> : <StyledBox {...props} />
@@ -120,11 +122,13 @@ function CategoryCardLayout({ renderingContext }: any) {
                 placeholder={
                   <StyledProgressPlaceholder className="vertical-padding-20" />
                 }>
-                {" "}
                 <StyledGrid item xs={5} sm={4} md={6}>
-                  {category.thumbnail && (
-                    <img alt="" src={category.thumbnail}></img>
-                  )}
+                  <img
+                    alt=""
+                    src={commonUtil.getThumbnailImagePath(
+                      category.thumbnail,
+                      category.fullImage
+                    )}></img>
                 </StyledGrid>
               </LazyLoadComponent>
               <StyledGrid

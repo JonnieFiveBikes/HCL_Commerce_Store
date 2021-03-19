@@ -8,7 +8,7 @@
  *
  *==================================================
  */
-import React, { useState, MouseEvent } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Card from "@material-ui/core/Card";
 import { Divider } from "@material-ui/core";
@@ -121,13 +121,13 @@ const StyledCard: React.FC<StyledParameterizedCardProps> = (props: any) => {
             <StyledCardActions className="horizontal-padding-2 vertical-padding-2">
               {cardActions.map((v: any, index: number) =>
                 v.link ? (
-                  <StyledLink to={v.link} key={index}>
+                  <StyledLink to={v.link} key={v.text + "_" + index}>
                     {v.text}
                   </StyledLink>
                 ) : (
                   <StyledButton
                     variant="text"
-                    key={index}
+                    key={v.text + "_" + index}
                     onClick={() => {
                       if (v.enableConfirmation) {
                         toggleConfirm(index);

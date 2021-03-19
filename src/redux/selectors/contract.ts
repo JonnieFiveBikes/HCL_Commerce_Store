@@ -15,7 +15,8 @@ const contractSelector = (state: RootReducerState) => {
   return state.contract;
 };
 const currentContractIdSelector = (state: RootReducerState) => {
-  let contractId = state.context.entitlement?.currentTradingAgreementIds[0];
+  let contractId = (state.context?.entitlement?.currentTradingAgreementIds ??
+    [])[0];
   if (!contractId && state.contract) {
     contractId = Object.keys(state.contract)[0];
   }

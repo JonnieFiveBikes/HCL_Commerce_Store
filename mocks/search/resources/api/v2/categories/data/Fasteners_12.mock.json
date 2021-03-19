@@ -1,0 +1,25 @@
+{
+  "contents": [
+    {
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_hw_fasteners.png",
+      "seo": {
+        "href": "/fasteners"
+      },
+      "name": "Fasteners",
+      "identifier": "Fasteners",
+      "storeID": "12",
+      "id": "12",
+      "links": {
+        "children": [
+          "href: /search/resources/api/v2/categories?storeId=12&id=14",
+          "href: /search/resources/api/v2/categories?storeId=12&id=15",
+          "href: /search/resources/api/v2/categories?storeId=12&id=16"
+        ],
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=12&id=12"
+        }
+      },
+      "description": "Screws, bolts, and nuts for a wide range of fastening applications"
+    }
+  ]
+}

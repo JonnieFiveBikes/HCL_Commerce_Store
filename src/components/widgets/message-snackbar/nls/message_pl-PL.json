@@ -34,10 +34,10 @@
     "_ERR_AUTHENTICATION_ERROR_2000": "W polu Identyfikator logowania wpisz identyfikator logowania.",
     "_ERR_AUTHENTICATION_ERROR_2010": "Identyfikator logowanie lub wprowadzone hasło są niepoprawne. Wprowadź dane ponownie.",
     "_ERR_AUTHENTICATION_ERROR_2020": "Identyfikator logowanie lub wprowadzone hasło są niepoprawne. Wprowadź dane ponownie.",
-    "_ERR_AUTHENTICATION_ERROR_2030": "Identyfikator logowanie lub wprowadzone hasło są niepoprawne. Wprowadź dane ponownie.",
+    "_ERR_AUTHENTICATION_ERROR_2030": "Wprowadzone poświadczenia logowania są nieprawidłowe. Sprawdź wprowadzone dane i spróbuj ponownie.",
     "_ERR_PASSWORD_FAILED_CMN1019E": "Identyfikator logowanie lub wprowadzone hasło są niepoprawne. Wprowadź dane ponownie.",
     "_ERR_PERSON_ACCOUNT_DISABLED_2110": "To konto zostało zablokowane. Aby odblokować konto, skontaktuj się ze sklepem.",
-    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Twoje konto zostało zablokowane z powodu przekroczenia limitu nieudanych prób logowania. Zresetuj swoje hasło, aby kontynuować.",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Z powodu nieudanych prób wprowadzenia hasła w liczbie {{0}} nie będziesz mieć możliwości zalogowania. Zresetuj hasło albo skontaktuj się z przedstawicielem działu obsługi klienta, aby uzyskać pomoc.",
     "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "Odczekaj kilka sekund, zanim spróbujesz się ponownie zalogować.",
     "_2400": "Twoja organizacja została zablokowana. Nie możesz się zalogować w tej chwili. ",
     "_2410": "Nie masz odpowiednich uprawnień, aby się zalogować. Aby uzyskać dodatkowe informacje, skontaktuj się ze sklepem.",
@@ -90,9 +90,16 @@
     "_API_BAD_INV_2": "Stan magazynowy jest niewystarczający do zakupienia {{1}} jednostek produktu {{0}}.",
     "_ERR_FINDING_ORDER_230": "Podczas przetwarzania zamówienia wystąpił problem z systemem.",
     "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "Wystąpił problem z systemem. Skontaktuj się ze sklepem, aby uzyskać pomoc.",
+    "_ERR_REMOTE_EXCEPTION_CMN0412E": "Wystąpił problem systemowy podczas przetwarzania Twojego żądania. Skontaktuj się ze sklepem w celu uzyskania pomocy.",
+    "_ERR_REG_DUPE_ID_CMN0114S": "Wprowadzony identyfikator logowania już istnieje. Wpisz inny identyfikator logowania i spróbuj ponownie.",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "Wprowadzony adres e-mail jest nieprawidłowy. Sprawdź wprowadzony adres i spróbuj ponownie.",
+    "_ERR_CMD_INVALID_PARAM_2195": "Wprowadzony kod weryfikacyjny jest nieprawidłowy. Sprawdź wprowadzony kod i spróbuj ponownie.",
     "B2B": {
-      "_ERR_LOGONID_ALREDY_EXIST_2030": "Wprowadzony identyfikator logowania już istnieje. Wpisz inny identyfikator logowania i spróbuj ponownie."
-    }
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "Wprowadzony identyfikator logowania jest nieprawidłowy. Sprawdź wprowadzony identyfikator i spróbuj ponownie.",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "Wprowadzony identyfikator logowania już istnieje. Wpisz inny identyfikator logowania i spróbuj ponownie.",
+      "_ERR_BAD_PARMS_2010": "Wprowadzony identyfikator logowania jest nieprawidłowy. Sprawdź wprowadzony identyfikator i spróbuj ponownie."
+    },
+    "_ERR_PASSWORD_EXPIRED_2170": "Twoje bieżące hasło utraciło ważność. Wprowadź nowe hasło."
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "Pozycja została dodana do koszyka. ",
@@ -101,6 +108,8 @@
     "RecurringOrderCancelled": "Zamówienie zostało pomyślnie anulowane.",
     "ADD_ADDRESS_SUCCESS": "Nowy adres „{{0}}” został dodany",
     "EDIT_ADDRESS_SUCCESS": "Adres „{{0}}” został zaktualizowany",
-    "DELETE_ADDRESS_SUCCESS": "Adres „{{0}}” został usunięty"
+    "DELETE_ADDRESS_SUCCESS": "Adres „{{0}}” został usunięty",
+    "RESEND_VERIFICATION_CODE": "Pomyślnie wysłano kod weryfikacyjny na Twój adres e-mail",
+    "PASSWORD_RESET_SUCCESS": "Pomyślnie zresetowano hasło"
   }
 }

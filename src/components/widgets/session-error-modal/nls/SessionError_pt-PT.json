@@ -5,6 +5,7 @@
     "GenericTitle": "Erro genérico",
     "TimeoutMsg": "A sua sessão expirou e foi encerrada com êxito. Inicie sessão novamente para aceder à loja.",
     "InvalidMsg": "O seu ID de início de sessão foi utilizado noutra localização. Inicie sessão novamente para aceder à loja.",
+    "InvalidMsgB2C": "O seu endereço de e-mail foi utilizado noutra localização. Inicie sessão novamente para aceder à loja.",
     "Email": "E-mail",
     "Password": "Palavra-passe",
     "SubmitButton": "Iniciar sessão",

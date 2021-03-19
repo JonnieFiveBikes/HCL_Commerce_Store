@@ -9,7 +9,7 @@
     "Actions": {
       "showMore": "자세히 표시",
       "showLess": "간단히 표시",
-      "Go": "이동"
+      "Filter": "필터"
     }
   }
 }

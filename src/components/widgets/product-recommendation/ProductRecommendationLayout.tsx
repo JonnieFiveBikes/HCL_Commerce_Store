@@ -10,7 +10,7 @@
  */
 //Standard libraries
 import React, { lazy, Suspense } from "react";
-import ReactHtmlParser from "react-html-parser";
+import HTMLReactParser from "html-react-parser";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Axios, { Canceler } from "axios";
@@ -45,9 +45,10 @@ function ProductRecommendationLayout({
   const [productList, setProductList] = React.useState<Array<object>>();
   const [showEspot, setShowEspot] = React.useState<boolean>(true);
   const CancelToken = Axios.CancelToken;
-  const [recommendedProductTitle, setRecommendedProductTitle] = React.useState<
-    string
-  >();
+  const [
+    recommendedProductTitle,
+    setRecommendedProductTitle,
+  ] = React.useState<string>();
 
   let cancels: Canceler[] = [];
 
@@ -187,6 +188,7 @@ function ProductRecommendationLayout({
     return () => {
       cancels.forEach((cancel) => cancel("Cancel due to component unmounted"));
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eSpotName, mySite]);
 
   let slides: JSX.Element[] = [];
@@ -211,7 +213,7 @@ function ProductRecommendationLayout({
         <>
           {recommendedProductTitle && (
             <StyledTypography variant="h4">
-              {ReactHtmlParser(recommendedProductTitle)}
+              {HTMLReactParser(recommendedProductTitle)}
             </StyledTypography>
           )}
           <StyledProductRecommendationSlider slidesList={slides} />

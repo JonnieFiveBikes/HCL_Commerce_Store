@@ -18,8 +18,15 @@ import {
   ORG_REGISTRATION,
 } from "../../../constants/routes";
 //UI
-import { StyledGrid, StyledButton, StyledTypography } from "../../StyledUI";
-
+import {
+  StyledGrid,
+  StyledB2BLandingPageButton,
+  StyledTypography,
+  StyledPaper,
+  StyledIcon,
+} from "../../StyledUI";
+import RegisterBuyer from "@material-ui/icons/PersonOutlineOutlined";
+import RegisterOrg from "@material-ui/icons/Business";
 interface RegistrationB2BContext {
   cid: string;
 }
@@ -37,33 +44,102 @@ const RegistrationB2BLayout: React.FC<RegistrationB2BContext> = (
 
   return (
     <>
-      <StyledTypography
-        component="h1"
-        variant="h4"
-        id={`registration_h4_3_${cid}`}
-        className="bottom-margin-2">
-        {t("RegistrationB2BLayout.Title")}
-      </StyledTypography>
-      <StyledGrid container direction="column" spacing={3}>
-        <StyledGrid item xs={12} md={6}>
-          <StyledButton
-            component={Link}
-            to={BUYER_REGISTRATION}
-            color="primary"
-            fullWidth>
-            {t("RegistrationB2BLayout.Actions.BuyerReg")}
-          </StyledButton>
+      <StyledPaper className="top-margin-5 horizontal-padding-2 vertical-padding-3 bottom-padding-3">
+        <StyledGrid container spacing={4}>
+          <StyledGrid item xs={12}>
+            <StyledTypography
+              variant="h4"
+              id={`registration_h4_3_${cid}`}
+              className="bottom-margin-2">
+              {t("RegistrationB2BLayout.Title")}
+            </StyledTypography>
+          </StyledGrid>
+          <StyledGrid item className="bottom-margin-8">
+            <StyledGrid container direction="row" spacing={1}>
+              <StyledGrid item xs={12} md={6}>
+                <StyledB2BLandingPageButton
+                  component={Link}
+                  to={BUYER_REGISTRATION}
+                  color="secondary"
+                  fullWidth>
+                  <StyledGrid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                    spacing={1}>
+                    <StyledGrid item>
+                      <StyledIcon
+                        icon={<RegisterBuyer className="full-center" />}
+                        iconSize={24}
+                        backgroundSize={60}
+                        iconColor="#ffffff"
+                        backgroundColor="rgba(0, 145, 255, 0.6)"
+                      />
+                    </StyledGrid>
+                    <StyledGrid item>
+                      <StyledTypography
+                        variant="caption"
+                        className="shipment-group-heading">
+                        {t("RegistrationB2BLayout.Actions.BuyerReg")}
+                      </StyledTypography>
+                    </StyledGrid>
+                    <StyledGrid item className="bottom-margin-1">
+                      <StyledTypography
+                        variant="caption"
+                        display="block"
+                        gutterBottom
+                        align="center">
+                        {t("RegistrationB2BLayout.Actions.AddBuyer")}
+                      </StyledTypography>
+                    </StyledGrid>
+                  </StyledGrid>
+                </StyledB2BLandingPageButton>
+              </StyledGrid>
+              <StyledGrid item xs={12} md={6}>
+                <StyledB2BLandingPageButton
+                  component={Link}
+                  to={ORG_REGISTRATION}
+                  color="secondary"
+                  fullWidth>
+                  <StyledGrid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                    spacing={1}>
+                    <StyledGrid item>
+                      <StyledIcon
+                        icon={<RegisterOrg className="full-center" />}
+                        iconSize={24}
+                        backgroundSize={60}
+                        iconColor="#ffffff"
+                        backgroundColor="rgba(0, 145, 255, 0.6)"
+                      />
+                    </StyledGrid>
+                    <StyledGrid item>
+                      <StyledTypography
+                        variant="caption"
+                        className="shipment-group-heading">
+                        {t("RegistrationB2BLayout.Actions.OrgReg")}
+                      </StyledTypography>
+                    </StyledGrid>
+                    <StyledGrid item className="bottom-margin-1">
+                      <StyledTypography
+                        variant="caption"
+                        display="block"
+                        gutterBottom
+                        align="center">
+                        {t("RegistrationB2BLayout.Actions.AddOrg")}
+                      </StyledTypography>
+                    </StyledGrid>
+                  </StyledGrid>
+                </StyledB2BLandingPageButton>
+              </StyledGrid>
+            </StyledGrid>
+          </StyledGrid>
         </StyledGrid>
-        <StyledGrid item xs={12} md={6}>
-          <StyledButton
-            component={Link}
-            to={ORG_REGISTRATION}
-            color="primary"
-            fullWidth>
-            {t("RegistrationB2BLayout.Actions.OrgReg")}
-          </StyledButton>
-        </StyledGrid>
-      </StyledGrid>
+      </StyledPaper>
     </>
   );
 };

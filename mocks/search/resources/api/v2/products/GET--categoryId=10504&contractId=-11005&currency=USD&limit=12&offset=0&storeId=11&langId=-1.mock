@@ -1,0 +1,4 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+#import "./data/byCategory_10504_-11005_decoration_11.mock.json";

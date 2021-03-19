@@ -19,12 +19,15 @@ import {
 } from "../../actions/context";
 
 export function* getUserContext(action: any) {
+  const payload = action.payload;
   try {
-    const response = yield call(
-      userContextService.getContextData,
-      action.payload
-    );
-    yield put(USER_CONTEXT_REQUEST_SUCCESS_ACTION(response.data));
+    const response = yield call(userContextService.getContextData, payload);
+
+    let userPayload = response.data;
+    if (payload?.widget) {
+      userPayload["widget"] = payload.widget;
+    }
+    yield put(USER_CONTEXT_REQUEST_SUCCESS_ACTION(userPayload));
   } catch (e) {
     yield put(USER_CONTEXT_REQUEST_ERROR_ACTION(e));
   }

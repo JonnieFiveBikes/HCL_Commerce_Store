@@ -113,8 +113,10 @@ const loginIdentityService = {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
       ) {
-        var parameter = parameters.$queryParameters[parameterName];
-        queryParameters.set(parameterName, parameter);
+        const parameter = parameters.$queryParameters[parameterName];
+        if (parameter !== null && parameter !== undefined) {
+          queryParameters.set(parameterName, parameter);
+        }
       });
     }
     if (!header.get("Content-Type")) {
@@ -273,8 +275,10 @@ const loginIdentityService = {
       Object.keys(parameters.$queryParameters).forEach(function (
         parameterName
       ) {
-        var parameter = parameters.$queryParameters[parameterName];
-        queryParameters.set(parameterName, parameter);
+        const parameter = parameters.$queryParameters[parameterName];
+        if (parameter !== null && parameter !== undefined) {
+          queryParameters.set(parameterName, parameter);
+        }
       });
     }
     if (!header.get("Content-Type")) {

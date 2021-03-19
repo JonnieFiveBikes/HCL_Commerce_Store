@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "flared-accent-chair-lr-fntr-0002-0001",
+      "tokenName": "ProductToken",
+      "tokenExternalValue": "LR-FNTR-0002-0001",
+      "language": "en_US",
+      "id": 56630,
+      "page": {
+        "imageAlternateDescription": "Image for Flared Accent Chair from Emerald",
+        "name": "PRODUCT_PAGE",
+        "title": "Flared Accent Chair | Emerald",
+        "type": "ItemPage",
+        "metaDescription": "A unique, modern armchair that offers flared styling on one side to accent your home's living room and decor.",
+        "metaKeyword": " Stockholm"
+      },
+      "storeId": "11",
+      "tokenValue": "14023",
+      "status": 1
+    }
+  ]
+}

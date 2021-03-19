@@ -20,7 +20,7 @@
     "Status_W": "승인 보류 중",
     "Status_V": "부분 출고됨",
     "Status_X": "주문 취소됨",
-    "NotAvailable": "정보 없음",
+    "NotAvailable": "해당 사항 없음",
     "OrderId": "주문 ID",
     "PONumber": "PO 번호",
     "OrderDate": "주문 날짜",
@@ -60,6 +60,7 @@
     "OrderDetails": "주문 정보",
     "OrderNumber": "주문 번호",
     "HistorySearchPlaceHolder": "주문 ID로 검색",
-    "HistoryViewDetailTooltip": "주문 정보 보기"
+    "HistoryViewDetailTooltip": "주문 정보 보기",
+    "Pending": "보류 중"
   }
 }

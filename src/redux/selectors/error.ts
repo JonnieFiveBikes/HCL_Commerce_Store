@@ -19,14 +19,19 @@ import {
   PARTIAL_AUTHENTICATION_ERROR_CODE,
   PARTIAL_AUTHENTICATION_ERROR_KEY,
   CMC_SESSION_ERROR_KEY,
+  ACTIVITY_TOKEN_ERROR_KEY,
+  ACTIVITY_TOKEN_ERROR_CODE,
 } from "../../constants/errors";
 import { defaultStates } from "../reducers/initStates";
 import { ErrorReducerState } from "../reducers/reducerStateInterface";
+import { EXPIRED_PASSWORD_PAGE_ERROR } from "../../_foundation/constants/common";
 
 const sessionErrors = [
   EXPIRED_ACTIVITY_TOKEN_ERROR,
   INVALID_COOKIE_ERROR_CODE,
   INVALID_COOKIE_ERROR_KEY,
+  ACTIVITY_TOKEN_ERROR_CODE,
+  ACTIVITY_TOKEN_ERROR_KEY,
   PARTIAL_AUTHENTICATION_ERROR_CODE,
   PARTIAL_AUTHENTICATION_ERROR_KEY,
   CMC_SESSION_ERROR_KEY,
@@ -45,6 +50,9 @@ const sessionErrorSelector = (state: RootReducerState) => {
   let sessionError: ErrorReducerState | any = {
     ...defaultStates.error,
   };
+  if (state.error[EXPIRED_PASSWORD_PAGE_ERROR]) {
+    return sessionError;
+  }
   if (
     (errorCode && sessionErrors.includes(errorCode)) ||
     (errorKey && sessionErrors.includes(errorKey))
@@ -64,10 +72,9 @@ const passwordExpiredErrorSelector = (state: RootReducerState) => {
       : state.error.errorKey;
   let passwordExpiredError = {};
   if (
-    !(
-      (errorCode && passwordExpiredErrors.includes(errorCode)) ||
-      (errorKey && passwordExpiredErrors.includes(errorKey))
-    )
+    (errorCode && passwordExpiredErrors.includes(errorCode)) ||
+    (errorKey && passwordExpiredErrors.includes(errorKey)) ||
+    state.error[EXPIRED_PASSWORD_PAGE_ERROR]
   ) {
     passwordExpiredError = state.error;
   }
@@ -84,9 +91,14 @@ const genericErrorSelector = (state: RootReducerState) => {
       ? undefined
       : state.error.errorKey;
   let error = {};
+  if (state.error[EXPIRED_PASSWORD_PAGE_ERROR]) {
+    return error;
+  }
   if (
     !(errorCode && sessionErrors.includes(errorCode)) &&
-    !(errorKey && sessionErrors.includes(errorKey))
+    !(errorKey && sessionErrors.includes(errorKey)) &&
+    !(errorCode && passwordExpiredErrors.includes(errorCode)) &&
+    !(errorKey && passwordExpiredErrors.includes(errorKey))
   ) {
     error = state.error;
   } else if (

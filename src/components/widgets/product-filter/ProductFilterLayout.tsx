@@ -144,6 +144,7 @@ const ProductFilterLayout: React.FC<ProductFilterProps> = (props: any) => {
       dispatch(catalogActions.resetProductListAction());
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId, mySite, contract]);
 
   useEffect(() => {

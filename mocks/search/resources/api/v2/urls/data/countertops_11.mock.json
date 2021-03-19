@@ -1,0 +1,22 @@
+{
+  "contents": [
+    {
+      "identifier": "countertops",
+      "tokenName": "CategoryToken",
+      "tokenExternalValue": "Countertops",
+      "language": "en_US",
+      "id": 56827,
+      "page": {
+        "imageAlternateDescription": "Image for Countertops from Emerald",
+        "name": "CATEGORY_PAGE",
+        "title": "Countertops | Emerald",
+        "type": "ProductListPage",
+        "metaDescription": "Heat, scratch, stain, and water resistant countertops for every kitchen",
+        "metaKeyword": "durable, marble, vinyl, countertops, smooth"
+      },
+      "storeId": "11",
+      "tokenValue": "10518",
+      "status": 1
+    }
+  ]
+}

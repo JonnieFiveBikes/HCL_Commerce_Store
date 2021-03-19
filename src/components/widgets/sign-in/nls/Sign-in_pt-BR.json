@@ -2,12 +2,25 @@
   "SignIn": {
     "ReturningCustomer": "Cliente recorrente",
     "Password": "Senha",
+    "ChangPassword": "Alterar senha",
+    "CurrentPassword": "Senha atual",
+    "PasswordVerify": "Confirmar senha",
     "RememberMe": "Lembrar de mim",
     "SignInButton": "Entrar",
-    "ForgotPassword": "Esqueci a senha",
+    "Cancel": "Cancelar",
+    "Submit": "Enviar",
+    "ForgotPassword": "Esqueceu sua senha?",
+    "noAccount": "Não tem uma conta? ",
+    "registerNow": "Registrar agora",
     "Label": {
       "B2B": "ID de logon",
-      "Email": "Endereço de e-mail"
+      "Email": "Endereço de e-mail",
+      "rememberMe": "Lembrar de mim"
+    },
+    "Msgs": {
+      "InvalidFormat": "Formato inválido.",
+      "PasswordNotMatch": "A senha e a senha de verificação não correspondem.",
+      "OldPasswordReuse": "A senha inserida já foi usada anteriormente. Insira outra senha."
     }
   }
 }

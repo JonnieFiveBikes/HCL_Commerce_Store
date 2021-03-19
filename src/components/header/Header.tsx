@@ -19,6 +19,8 @@ import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../_foundation/hooks/useSite";
 import categoryService from "../../_foundation/apis/search/categories.service";
+import { LOCALE } from "../../_foundation/constants/common";
+import { localStorageUtil } from "../../_foundation/utils/storageUtil";
 
 //Custom libraries
 import { headerConfig } from "./headerConstant";
@@ -27,12 +29,11 @@ import { MINICART_CONFIGS } from "../../configs/order";
 import * as ROUTES from "../../constants/routes";
 import { ContentRecommendationLayout } from "../widgets/content-recommendation";
 import MiniCart from "./MiniCart";
+import LanguageToggle from "./LanguageToggle";
 import MegaMenu from "./MegaMenu";
 import ExpandedMenu from "./ExpandedMenu";
 import { SearchBar } from "../widgets/search-bar";
 import AccountPopperContent from "./AccountPopperContent";
-import SuccessMessageSnackbar from "../widgets/message-snackbar/SuccessMessageSnackbar";
-import ErrorMessageSnackbar from "../widgets/message-snackbar/ErrorMessageSnackbar";
 
 //Redux
 import { userNameSelector } from "../../redux/selectors/user";
@@ -43,10 +44,10 @@ import { currentContractIdSelector } from "../../redux/selectors/contract";
 import { successSelector } from "../../redux/selectors/success";
 import { SuccessMessageReducerState } from "../../redux/reducers/reducerStateInterface";
 //UI
-import MenuIcon from "@material-ui/icons/Menu";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 import { ClickAwayListener } from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -91,6 +92,12 @@ const Header: React.FC<HeaderProps> = (props: any) => {
   const [miniCartPopperOpen, setMiniCartPopperOpen] = useState<boolean>(false);
   const miniCartElRef = useRef<HTMLButtonElement>(null);
 
+  const [
+    languageTogglePopperOpen,
+    setLanguageTogglePopperOpen,
+  ] = useState<boolean>(false);
+  const languageToggleElRef = useRef<HTMLButtonElement>(null);
+
   const { mySite } = useSite();
   const { t } = useTranslation();
   const theme = useTheme();
@@ -99,6 +106,8 @@ const Header: React.FC<HeaderProps> = (props: any) => {
   const { firstName, lastName } = useSelector(userNameSelector);
   const contractId = useSelector(currentContractIdSelector);
   const success: SuccessMessageReducerState = useSelector(successSelector);
+
+  const locale = localStorageUtil.get(LOCALE);
 
   const isB2B = Boolean(mySite?.isB2B);
   const loggedIn = props.loggedIn;
@@ -109,6 +118,7 @@ const Header: React.FC<HeaderProps> = (props: any) => {
 
   const myAccountPopperId = "HEADER_MY_ACCOUNT_Popper";
   const miniCartPopperId = "HEADER_MINI_CART_Popper";
+  const languageTogglePopperId = "HEADER_LANGUAGE_TOGGLE_Popper";
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
   const payloadBase: any = {
@@ -124,12 +134,14 @@ const Header: React.FC<HeaderProps> = (props: any) => {
   const handleMyAccountClick = () => {
     setMyAccountPopperOpen(true);
     setMiniCartPopperOpen(false);
+    setLanguageTogglePopperOpen(false);
   };
   const handleMyAccountPopperClose = () => setMyAccountPopperOpen(false);
 
   const handleMiniCartClick = () => {
     setMiniCartPopperOpen(true);
     setMyAccountPopperOpen(false);
+    setLanguageTogglePopperOpen(false);
 
     setTimeout(() => {
       window.scrollTo(0, 0);
@@ -140,7 +152,17 @@ const Header: React.FC<HeaderProps> = (props: any) => {
       }
     }, 100);
   };
+
   const handleMiniCartPopperClose = () => setMiniCartPopperOpen(false);
+
+  const handleLanguageToggleClick = () => {
+    setLanguageTogglePopperOpen(true);
+    setMiniCartPopperOpen(false);
+    setMyAccountPopperOpen(false);
+  };
+  const handleLanguageTogglePopperClose = () => {
+    setLanguageTogglePopperOpen(false);
+  };
 
   const handleOrgChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     event.persist();
@@ -202,7 +224,8 @@ const Header: React.FC<HeaderProps> = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
-  }, [mySite, contractId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mySite, contractId, locale]);
 
   useEffect(() => {
     if (success && success.key) {
@@ -217,186 +240,200 @@ const Header: React.FC<HeaderProps> = (props: any) => {
       <StyledHeader>
         <StyledContainer>
           <StyledGrid container justify="space-between" alignItems="center">
-            <StyledGrid
-              className="header-topbarSection"
-              item
-              container
-              alignItems="center"
-              spacing={2}>
-              <Hidden mdUp>
+            <StyledGrid item>
+              <StyledGrid
+                className="header-topbarSection"
+                container
+                alignItems="center"
+                spacing={2}>
                 <StyledGrid item>
-                  <button
-                    className="menu-hamburger"
-                    data-testid="menu-hamburger-element"
-                    onClick={() => setOpen(!open)}>
-                    <MenuIcon />
-                  </button>
+                  <Hidden mdUp>
+                    <button
+                      className="menu-hamburger"
+                      data-testid="menu-hamburger-element"
+                      onClick={() => setOpen(!open)}>
+                      <MenuIcon />
+                    </button>
+                  </Hidden>
                 </StyledGrid>
-              </Hidden>
-              {mySite != null && (
-                <StyledGrid item>
-                  <div className="header-branding">
-                    <ContentRecommendationLayout
-                      cid="header"
-                      eSpot={headerConfig.espot}
-                      page={headerConfig.page}></ContentRecommendationLayout>
-                  </div>
-                </StyledGrid>
-              )}
-
-              <Hidden smDown>
-                <StyledGrid
-                  item
-                  data-testid="search-bar-desktop-largetablet-element">
-                  <SearchBar
-                    showSearchBar={showSearchBar}
-                    closeSearchBar={() => setShowSearchBar(false)}
-                    openSearchBar={() => setShowSearchBar(true)}
-                  />
-                </StyledGrid>
-              </Hidden>
+                {mySite != null && (
+                  <StyledGrid item>
+                    <div className="header-branding">
+                      <ContentRecommendationLayout
+                        cid="header"
+                        eSpot={headerConfig.espot}
+                        page={headerConfig.page}></ContentRecommendationLayout>
+                    </div>
+                  </StyledGrid>
+                )}
+                <Hidden smDown>
+                  <StyledGrid
+                    item
+                    data-testid="search-bar-desktop-largetablet-element">
+                    <SearchBar
+                      showSearchBar={showSearchBar}
+                      closeSearchBar={() => setShowSearchBar(false)}
+                      openSearchBar={() => setShowSearchBar(true)}
+                    />
+                  </StyledGrid>
+                </Hidden>
+              </StyledGrid>
             </StyledGrid>
+            <StyledGrid item>
+              <StyledGrid
+                className="header-topbarSection"
+                container
+                alignItems="center"
+                direction="row">
+                <Hidden mdUp>
+                  <StyledGrid item data-testid="search-bar-mobile-element">
+                    <StyledSearchBarButton
+                      onClick={() => setShowSearchBar(!showSearchBar)}
+                      className={`header-actionsButton ${
+                        showSearchBar && "active"
+                      }`}
+                      variant="text"
+                      color="secondary">
+                      <SearchIcon />
+                    </StyledSearchBarButton>
+                  </StyledGrid>
+                </Hidden>
+                {isShoppingEnabled && (
+                  <StyledGrid item>
+                    <MiniCart
+                      id={miniCartPopperId}
+                      open={miniCartPopperOpen}
+                      handleClick={handleMiniCartClick}
+                      handleClose={handleMiniCartPopperClose}
+                      ref={miniCartElRef}
+                    />
+                  </StyledGrid>
+                )}
+                {loggedIn ? (
+                  <StyledGrid item>
+                    <StyledButton
+                      ref={myAccountElRef}
+                      variant="text"
+                      color="secondary"
+                      className="header-actionsButton"
+                      onClick={handleMyAccountClick}>
+                      {isTablet ? (
+                        <StyledHeaderActions>
+                          <AccountBoxIcon />
+                          <StyledTypography variant="body1" component="p">
+                            {isMobile
+                              ? t("Header.Actions.Account")
+                              : t("Header.Actions.YourAccount")}
+                          </StyledTypography>
+                        </StyledHeaderActions>
+                      ) : (
+                        <StyledBox
+                          className="welcome-text"
+                          display="flex"
+                          flexDirection="column">
+                          <StyledTypography variant="button" component="p">
+                            {firstName
+                              ? t("Header.Actions.WelcomeFirstname", {
+                                  firstName,
+                                })
+                              : t("Header.Actions.WelcomeNoFirstname", {
+                                  lastName,
+                                })}
+                          </StyledTypography>
 
-            <StyledGrid
-              className="header-topbarSection"
-              item
-              container
-              alignItems="center">
-              <Hidden mdUp>
-                <StyledGrid item data-testid="search-bar-mobile-element">
-                  <StyledSearchBarButton
-                    onClick={() => setShowSearchBar(!showSearchBar)}
-                    className={`header-actionsButton ${
-                      showSearchBar && "active"
-                    }`}>
-                    <SearchIcon />
-                  </StyledSearchBarButton>
-                </StyledGrid>
-              </Hidden>
-              {isShoppingEnabled && (
+                          <StyledBox
+                            display="flex"
+                            flexDirection="row"
+                            alignItems="center"
+                            flexWrap="wrap">
+                            <StyledTypography variant="body2">
+                              {t("Header.Actions.YourAccount")}
+                            </StyledTypography>
+                            {myAccountPopperOpen ? (
+                              <ExpandLessIcon />
+                            ) : (
+                              <ExpandMoreIcon />
+                            )}
+                          </StyledBox>
+                        </StyledBox>
+                      )}
+                    </StyledButton>
+                    <StyledAccountPopper
+                      id={myAccountPopperId}
+                      open={myAccountPopperOpen}
+                      anchorEl={myAccountElRef.current}
+                      onClose={handleMyAccountPopperClose}
+                      placement="bottom-end"
+                      modifiers={{
+                        flip: {
+                          enabled: false,
+                        },
+                        preventOverflow: {
+                          enabled: false,
+                          boundariesElement: "scrollParent",
+                        },
+                        hide: {
+                          enabled: true,
+                        },
+                      }}
+                      className="account-popper">
+                      <ClickAwayListener
+                        onClickAway={handleMyAccountPopperClose}>
+                        <StyledPaper className="horizontal-padding-2">
+                          <StyledTypography variant="body1" component="div">
+                            <AccountPopperContent
+                              handleClose={handleMyAccountPopperClose}
+                              handleOrgChange={handleOrgChange}
+                              handleContractChange={handleContractChange}
+                              handleLogout={handleLogout}
+                              isB2B={isB2B}
+                              userName={{ firstName, lastName }}
+                            />
+                          </StyledTypography>
+                        </StyledPaper>
+                      </ClickAwayListener>
+                    </StyledAccountPopper>
+                  </StyledGrid>
+                ) : (
+                  <StyledGrid item>
+                    <StyledLink to={ROUTES.SIGNIN}>
+                      {isMobile ? (
+                        <StyledButton
+                          className="header-actionsButton"
+                          variant="text"
+                          color="secondary">
+                          <StyledHeaderActions>
+                            <AccountBoxIcon />
+                            <StyledTypography variant="body1">
+                              {t("Header.Actions.SignIn")}
+                            </StyledTypography>
+                          </StyledHeaderActions>
+                        </StyledButton>
+                      ) : (
+                        <StyledButton
+                          className="header-actionsButton "
+                          variant="text"
+                          color="secondary">
+                          <StyledHeaderActions>
+                            <StyledTypography variant="body1" component="p">
+                              {t("Header.Actions.SignInRegister")}
+                            </StyledTypography>
+                          </StyledHeaderActions>
+                        </StyledButton>
+                      )}
+                    </StyledLink>
+                  </StyledGrid>
+                )}
                 <StyledGrid item>
-                  <MiniCart
-                    id={miniCartPopperId}
-                    open={miniCartPopperOpen}
-                    handleClick={handleMiniCartClick}
-                    handleClose={handleMiniCartPopperClose}
-                    ref={miniCartElRef}
+                  <LanguageToggle
+                    id={languageTogglePopperId}
+                    open={languageTogglePopperOpen}
+                    handleClick={handleLanguageToggleClick}
+                    handleClose={handleLanguageTogglePopperClose}
+                    ref={languageToggleElRef}
                   />
                 </StyledGrid>
-              )}
-              {loggedIn ? (
-                <StyledGrid item>
-                  <StyledButton
-                    ref={myAccountElRef}
-                    variant="text"
-                    color="secondary"
-                    className="header-actionsButton"
-                    onClick={handleMyAccountClick}>
-                    {isTablet ? (
-                      <StyledHeaderActions>
-                        <AccountBoxIcon />
-                        <StyledTypography variant="body1" component="p">
-                          {isMobile
-                            ? t("Header.Actions.Account")
-                            : t("Header.Actions.YourAccount")}
-                        </StyledTypography>
-                      </StyledHeaderActions>
-                    ) : (
-                      <StyledBox
-                        className="welcome-text"
-                        display="flex"
-                        flexDirection="column">
-                        <StyledTypography variant="button" component="p">
-                          {firstName
-                            ? t("Header.Actions.WelcomeFirstname", {
-                                firstName,
-                              })
-                            : t("Header.Actions.WelcomeNoFirstname", {
-                                lastName,
-                              })}
-                        </StyledTypography>
-
-                        <StyledBox
-                          display="flex"
-                          flexDirection="row"
-                          alignItems="center"
-                          flexWrap="wrap">
-                          <StyledTypography variant="body2">
-                            {t("Header.Actions.YourAccount")}​​​​​
-                          </StyledTypography>
-                          {myAccountPopperOpen ? (
-                            <ExpandLessIcon />
-                          ) : (
-                            <ExpandMoreIcon />
-                          )}
-                        </StyledBox>
-                      </StyledBox>
-                    )}
-                  </StyledButton>
-                  <StyledAccountPopper
-                    id={myAccountPopperId}
-                    open={myAccountPopperOpen}
-                    anchorEl={myAccountElRef.current}
-                    onClose={handleMyAccountPopperClose}
-                    placement="bottom-end"
-                    modifiers={{
-                      flip: {
-                        enabled: false,
-                      },
-                      preventOverflow: {
-                        enabled: false,
-                        boundariesElement: "scrollParent",
-                      },
-                      hide: {
-                        enabled: true,
-                      },
-                    }}
-                    className="account-popper">
-                    <ClickAwayListener onClickAway={handleMyAccountPopperClose}>
-                      <StyledPaper className="horizontal-padding-2">
-                        <StyledTypography variant="body1" component="div">
-                          <AccountPopperContent
-                            handleClose={handleMyAccountPopperClose}
-                            handleOrgChange={handleOrgChange}
-                            handleContractChange={handleContractChange}
-                            handleLogout={handleLogout}
-                            isB2B={isB2B}
-                            userName={{ firstName, lastName }}
-                          />
-                        </StyledTypography>
-                      </StyledPaper>
-                    </ClickAwayListener>
-                  </StyledAccountPopper>
-                </StyledGrid>
-              ) : (
-                <StyledLink to={ROUTES.SIGNIN}>
-                  {isMobile ? (
-                    <StyledButton
-                      className="header-actionsButton"
-                      variant="text"
-                      color="secondary">
-                      <StyledHeaderActions>
-                        <AccountBoxIcon />
-                        <StyledTypography variant="body1" component="p">
-                          {t("Header.Actions.SignIn")}
-                        </StyledTypography>
-                      </StyledHeaderActions>
-                    </StyledButton>
-                  ) : (
-                    <StyledButton
-                      className="header-actionsButton"
-                      variant="text"
-                      color="secondary">
-                      <StyledHeaderActions>
-                        <AccountBoxIcon />
-                        <StyledTypography variant="body1" component="p">
-                          {t("Header.Actions.SignIn")}
-                        </StyledTypography>
-                      </StyledHeaderActions>
-                    </StyledButton>
-                  )}
-                </StyledLink>
-              )}
+              </StyledGrid>
             </StyledGrid>
           </StyledGrid>
         </StyledContainer>
@@ -437,8 +474,6 @@ const Header: React.FC<HeaderProps> = (props: any) => {
           </StyledContainer>
         </StyledSwipeableDrawer>
       </StyledHeader>
-      <SuccessMessageSnackbar />
-      <ErrorMessageSnackbar />
     </>
   );
 };

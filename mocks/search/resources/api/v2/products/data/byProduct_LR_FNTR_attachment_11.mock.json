@@ -1,0 +1,495 @@
+{
+  "contents": [
+    {
+      "hasSingleSKU": false,
+      "shortDescription": "Essential piece of furniture finished in a medium-brown polish.",
+      "seo": {
+        "href": "/rustic-stained-wood-chair-lr-fntr-0007"
+      },
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10502",
+      "longDescription": "Beautifully crafted from Indian hardwood, our Rustic Stained Wood Chair essential piece of furniture is finished in a medium-brown polish that highlights the pattern on the grain. Four wooden legs support the seat and back which guarantee sturdiness and stability, making this chair perfect addition to a rustic style venue or home while being reliable and functional.",
+      "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_600.jpg",
+      "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_600.jpg",
+      "buyable": "true",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_350.jpg",
+      "partNumber": "LR-FNTR-0007",
+      "name": "Rustic Stained Wood Chair",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "399.99"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "349.99"
+        }
+      ],
+      "numberOfSKUs": 3,
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": "10.0",
+              "identifier": "oak",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003025",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_oak.png",
+              "value": "Oak",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_oak.png"
+            },
+            {
+              "sequence": "10.0",
+              "identifier": "mahogany",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003026",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_mahogany.png",
+              "value": "Mahogany",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_mahogany.png"
+            },
+            {
+              "sequence": "10.0",
+              "identifier": "walnut",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003027",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_walnut.png",
+              "value": "Walnut",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_walnut.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        }
+      ],
+      "attachments": [
+        {
+          "image": "images/attachments/usages/images_icon.jpg",
+          "identifier": "Rustic Wood Chair PDF Images",
+          "sequence": "4.0",
+          "catentry_id": "14049",
+          "usage": "IMAGES",
+          "name": "Chair PDF Images",
+          "shortdesc": "Chair PDF Images",
+          "attachmentAssetPathRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_images.pdf",
+          "attachmentAssetID": "6037",
+          "mimeType": "application/pdf",
+          "attachmentAssetPath": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_images.pdf"
+        },
+        {
+          "image": "images/attachments/usages/images_icon.jpg",
+          "identifier": "Rustic Wood Chair Video",
+          "sequence": "5.0",
+          "catentry_id": "14049",
+          "usage": "MEDIA",
+          "name": "Rustic Chair Videos",
+          "shortdesc": "Rustic Chair Videos",
+          "attachmentAssetPathRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_video.mp4",
+          "attachmentAssetID": "6038",
+          "mimeType": "video/mp4",
+          "attachmentAssetPath": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_video.mp4"
+        }
+      ],
+      "images": [
+        {
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_350.jpg",
+          "sequence": "-1000.0",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_350.jpg",
+          "name": "Rustic Stained Wood Chair Main Image",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_600.jpg"
+        },
+        {
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a2_350.jpg",
+          "sequence": "2.0",
+          "catentry_id": "14049",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a2_350.jpg",
+          "name": "Rustic Wood Chair Angle 2",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a2_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a2_600.jpg"
+        },
+        {
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a3_350.jpg",
+          "sequence": "3.0",
+          "catentry_id": "14049",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a3_350.jpg",
+          "name": "Rustic Wood Chair Angle 3",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a3_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a3_600.jpg"
+        },
+        {
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a4_350.jpg",
+          "sequence": "4.0",
+          "catentry_id": "14049",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a4_350.jpg",
+          "name": "Rustic Wood Chair Angle 4",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a4_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a4_600.jpg"
+        },
+        {
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a5_350.jpg",
+          "sequence": "5.0",
+          "catentry_id": "14049",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a5_350.jpg",
+          "name": "Rustic Wood Chair Angle 5",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a5_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a5_600.jpg"
+        }
+      ],
+      "type": "product",
+      "id": "14049",
+      "items": [
+        {
+          "hasSingleSKU": false,
+          "shortDescription": "Essential piece of furniture finished in a medium-brown polish.",
+          "seo": {
+            "href": "/rustic-stained-wood-chair-lr-fntr-0007-0001"
+          },
+          "storeID": "11",
+          "parentCatalogGroupID": "/10501/10502",
+          "parentCatalogEntryID": "14049",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_600.jpg",
+          "buyable": "true",
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_350.jpg",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_350.jpg",
+          "partNumber": "LR-FNTR-0007-0001",
+          "name": "Rustic Stained Wood Chair",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "399.99"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "349.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "10.0",
+                  "identifier": "walnut",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003027",
+                  "image1": "/EmeraldCAS/images/catalog/swatches/sw_walnut.png",
+                  "value": "Walnut",
+                  "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_walnut.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "1.0",
+              "storeDisplay": "false",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "7000000000000000501",
+              "swatchable": "false"
+            }
+          ],
+          "images": [
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_350.jpg",
+              "sequence": "-1000.0",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_350.jpg",
+              "name": "Rustic Stained Wood Chair Main Image",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_600.jpg"
+            },
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a2_350.jpg",
+              "sequence": "2.0",
+              "catentry_id": "14050",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a2_350.jpg",
+              "name": "Rustic Wood Chair Angle 2",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a2_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a2_600.jpg"
+            },
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a3_350.jpg",
+              "sequence": "3.0",
+              "catentry_id": "14050",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a3_350.jpg",
+              "name": "Rustic Wood Chair Angle 3",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a3_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a3_600.jpg"
+            },
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a4_350.jpg",
+              "sequence": "4.0",
+              "catentry_id": "14050",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a4_350.jpg",
+              "name": "Rustic Wood Chair Angle 4",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a4_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a4_600.jpg"
+            },
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a5_350.jpg",
+              "sequence": "5.0",
+              "catentry_id": "14050",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a5_350.jpg",
+              "name": "Rustic Wood Chair Angle 5",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a5_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a5_600.jpg"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14050",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "shortDescription": "Essential piece of furniture finished in a medium-brown polish.",
+          "seo": {
+            "href": "/rustic-stained-wood-chair-lr-fntr-0007-0002"
+          },
+          "storeID": "11",
+          "parentCatalogGroupID": "/10501/10502",
+          "parentCatalogEntryID": "14049",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b1_600.jpg",
+          "buyable": "true",
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b1_350.jpg",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b1_350.jpg",
+          "partNumber": "LR-FNTR-0007-0002",
+          "name": "Rustic Stained Wood Chair",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "399.99"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "349.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "10.0",
+                  "identifier": "oak",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003025",
+                  "image1": "/EmeraldCAS/images/catalog/swatches/sw_oak.png",
+                  "value": "Oak",
+                  "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_oak.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "1.0",
+              "storeDisplay": "false",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "7000000000000000501",
+              "swatchable": "false"
+            }
+          ],
+          "images": [
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b1_350.jpg",
+              "sequence": "-1000.0",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b1_350.jpg",
+              "name": "Rustic Stained Wood Chair Main Image",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b1_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b1_600.jpg"
+            },
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b2_350.jpg",
+              "sequence": "2.0",
+              "catentry_id": "14051",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b2_350.jpg",
+              "name": "Rustic Wood Chair Angle 2",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b2_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b2_600.jpg"
+            },
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b3_350.jpg",
+              "sequence": "3.0",
+              "catentry_id": "14051",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b3_350.jpg",
+              "name": "Rustic Wood Chair Angle 3",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b3_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b3_600.jpg"
+            },
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b4_350.jpg",
+              "sequence": "4.0",
+              "catentry_id": "14051",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b4_350.jpg",
+              "name": "Rustic Wood Chair Angle 4",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b4_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b4_600.jpg"
+            },
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b5_350.jpg",
+              "sequence": "5.0",
+              "catentry_id": "14051",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b5_350.jpg",
+              "name": "Rustic Wood Chair Angle 5",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b5_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_b5_600.jpg"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14051",
+          "type": "item"
+        },
+        {
+          "hasSingleSKU": false,
+          "shortDescription": "Essential piece of furniture finished in a medium-brown polish.",
+          "seo": {
+            "href": "/rustic-stained-wood-chair-lr-fntr-0007-0003"
+          },
+          "storeID": "11",
+          "parentCatalogGroupID": "/10501/10502",
+          "parentCatalogEntryID": "14049",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c1_600.jpg",
+          "buyable": "true",
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c1_350.jpg",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c1_350.jpg",
+          "partNumber": "LR-FNTR-0007-0003",
+          "name": "Rustic Stained Wood Chair",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "399.99"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "349.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "usage": "Defining",
+              "values": [
+                {
+                  "sequence": "10.0",
+                  "identifier": "mahogany",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003026",
+                  "image1": "/EmeraldCAS/images/catalog/swatches/sw_mahogany.png",
+                  "value": "Mahogany",
+                  "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_mahogany.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "1.0",
+              "storeDisplay": "false",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "key": "7000000000000000501",
+              "swatchable": "false"
+            }
+          ],
+          "images": [
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c1_350.jpg",
+              "sequence": "-1000.0",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c1_350.jpg",
+              "name": "Rustic Stained Wood Chair Main Image",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c1_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c1_600.jpg"
+            },
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c2_350.jpg",
+              "sequence": "2.0",
+              "catentry_id": "14052",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c2_350.jpg",
+              "name": "Rustic Wood Chair Angle 2",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c2_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c2_600.jpg"
+            },
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c3_350.jpg",
+              "sequence": "3.0",
+              "catentry_id": "14052",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c3_350.jpg",
+              "name": "Rustic Wood Chair Angle 3",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c3_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c3_600.jpg"
+            },
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c4_350.jpg",
+              "sequence": "4.0",
+              "catentry_id": "14052",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c4_350.jpg",
+              "name": "Rustic Wood Chair Angle 4",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c4_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c4_600.jpg"
+            },
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c5_350.jpg",
+              "sequence": "5.0",
+              "catentry_id": "14052",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c5_350.jpg",
+              "name": "Rustic Wood Chair Angle 5",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c5_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_c5_600.jpg"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14052",
+          "type": "item"
+        }
+      ]
+    }
+  ],
+  "total": 1
+}

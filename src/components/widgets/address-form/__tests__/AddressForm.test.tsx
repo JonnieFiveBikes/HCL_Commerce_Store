@@ -10,8 +10,7 @@
  */
 //Standard libraries
 import React from "react";
-import { renderHook, act } from "@testing-library/react-hooks";
-import userEvent from "@testing-library/user-event";
+import { renderHook } from "@testing-library/react-hooks";
 //Test setup libraries
 import {
   render,
@@ -120,7 +119,7 @@ describe("AddressForm UT", () => {
     const { result } = renderHook(() => useInitFormDataState());
 
     // Render AddressForm component
-    render(
+    const { getByLabelText } = render(
       <AddressForm
         cid={NEW_ADDRESS_CID}
         setAddressFormData={result.current.setNewAddressFormData}
@@ -131,56 +130,57 @@ describe("AddressForm UT", () => {
 
     // Enter new address details after page loading and check the input form field's react hook state value
     // Address Name
-    const addressName = screen.getByLabelText(/AddressForm.Labels.NickName/i);
-    await act(() => userEvent.type(addressName, "Tokyo Address"));
+    const addressName = getByLabelText(
+      /AddressForm.Labels.NickName/i
+    ) as HTMLInputElement;
+    fireEvent.change(addressName, { target: { value: "Tokyo Address" } });
     expect(result.current.newAddressFormData.nickName).toBe("Tokyo Address");
     // First Name
-    const firstName = screen.getByLabelText(/AddressForm.Labels.FirstName/i);
-    await act(() => userEvent.type(firstName, "John"));
+    const firstName = getByLabelText(/AddressForm.Labels.FirstName/i);
+    fireEvent.change(firstName, { target: { value: "John" } });
     expect(result.current.newAddressFormData.firstName).toBe("John");
     // Last Name
-    const lastName = screen.getByLabelText(/AddressForm.Labels.LastName/i);
-    await act(() => userEvent.type(lastName, "Matsumoto"));
+    const lastName = getByLabelText(/AddressForm.Labels.LastName/i);
+    fireEvent.change(lastName, { target: { value: "Matsumoto" } });
     expect(result.current.newAddressFormData.lastName).toBe("Matsumoto");
     // Address Line 1
-    const address1 = screen.getByLabelText(/AddressForm.Labels.Address1/i);
-    await act(() => userEvent.type(address1, "Motosumiyoshi"));
+    const address1 = getByLabelText(/AddressForm.Labels.Address1/i);
+    fireEvent.change(address1, { target: { value: "Motosumiyoshi" } });
     expect(result.current.newAddressFormData.addressLine1).toBe(
       "Motosumiyoshi"
     );
     // Address Line 2
-    const address2 = screen.getByLabelText(/AddressForm.Labels.Address2/i);
-    await act(() => userEvent.type(address2, "Ida"));
+    const address2 = getByLabelText(/AddressForm.Labels.Address2/i);
+    fireEvent.change(address2, { target: { value: "Ida" } });
     expect(result.current.newAddressFormData.addressLine2).toBe("Ida");
     // City
-    const city = screen.getByLabelText(/AddressForm.Labels.City/i);
-    await act(() => userEvent.type(city, "Kawasaki"));
+    const city = getByLabelText(/AddressForm.Labels.City/i);
+    fireEvent.change(city, { target: { value: "Kawasaki" } });
     expect(result.current.newAddressFormData.city).toBe("Kawasaki");
     // Country
-    const country = screen.getByLabelText(/AddressForm.Labels.Country/i);
-    await act(() => userEvent.type(country, "Japan"));
+    const country = getByLabelText(/AddressForm.Labels.Country/i);
+    fireEvent.change(country, { target: { value: "Japan" } });
     expect(result.current.newAddressFormData.country).toBe("Japan");
     // State
-    const state = screen.getByLabelText(/AddressForm.Labels.State/i);
-    await act(() => userEvent.type(state, "Kanagawa"));
+    const state = getByLabelText(/AddressForm.Labels.State/i);
+    fireEvent.change(state, { target: { value: "Kanagawa" } });
     expect(result.current.newAddressFormData.state).toBe("Kanagawa");
     // ZipCode
-    const zipCode = screen.getByLabelText(/AddressForm.Labels.ZipCode/i);
-    await act(() => userEvent.type(zipCode, "211015"));
+    const zipCode = getByLabelText(/AddressForm.Labels.ZipCode/i);
+    fireEvent.change(zipCode, { target: { value: "211015" } });
     expect(result.current.newAddressFormData.zipCode).toBe("211015");
     // Phone
-    const phone = screen.getByLabelText(/AddressForm.Labels.Phone/i);
-    await act(() => userEvent.type(phone, "123-456-7894"));
+    const phone = getByLabelText(/AddressForm.Labels.Phone/i);
+    fireEvent.change(phone, { target: { value: "123-456-7894" } });
     expect(result.current.newAddressFormData.phone1).toBe("123-456-7894");
     // Email
-    const email = screen.getByLabelText(/AddressForm.Labels.Email/i);
-    await act(() => userEvent.type(email, "john@mail.com"));
+    const email = getByLabelText(/AddressForm.Labels.Email/i);
+    fireEvent.change(email, { target: { value: "john@mail.com" } });
     expect(result.current.newAddressFormData.email1).toBe("john@mail.com");
     // AddressType - Select Billing type
-    const billing = screen.getByLabelText(/AddressForm.Labels.Billing/i);
-    act(() => {
-      fireEvent.click(billing);
-    });
+    const billing = getByLabelText(/AddressForm.Labels.Billing/i);
+
+    fireEvent.click(billing);
     expect(result.current.newAddressFormData.addressType).toBe("Billing");
   });
 

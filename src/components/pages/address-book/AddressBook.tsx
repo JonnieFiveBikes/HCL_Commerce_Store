@@ -15,6 +15,7 @@ import { useHistory } from "react-router";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
 import { Redirect } from "react-router-dom";
+import getDisplayName from "react-display-name";
 //Foundation libraries
 import { SIGNIN } from "../../../constants/routes";
 //Redux
@@ -44,6 +45,7 @@ import {
 import { ADD_ADDRESS } from "../../../constants/routes";
 
 const AddressBook: React.FC = (props: any) => {
+  const widgetName = getDisplayName(AddressBook);
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
   const dispatch = useDispatch();
@@ -53,6 +55,7 @@ const AddressBook: React.FC = (props: any) => {
   const [addressList, setAddressList] = useState<any[]>([]);
   const [type, setType] = useState<number>(0);
   const payloadBase: any = {
+    widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),
@@ -70,6 +73,7 @@ const AddressBook: React.FC = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -79,6 +83,7 @@ const AddressBook: React.FC = (props: any) => {
       setType(id);
       checkFilterType(id.toString());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addressDetails]);
 
   const handleChange = (props: any) => {

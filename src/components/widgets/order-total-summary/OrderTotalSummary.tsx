@@ -14,7 +14,10 @@ import { useTranslation } from "react-i18next";
 //Custom libraries
 import FormattedPriceDisplay from "../formatted-price-display";
 //UI
-import { StyledGrid, StyledTypography } from "../../StyledUI";
+import {
+  StyledGrid,
+  StyledTypography,
+} from "@hcl-commerce-store-sdk/react-component";
 
 interface OrderTotalSummaryProps {
   order: any;

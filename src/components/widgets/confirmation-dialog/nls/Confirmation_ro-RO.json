@@ -1,9 +1,0 @@
-{
-  "Confirmation": {
-    "ScheduleOrderCancel": "Toate viitoarele livrări pentru această comandă vor fi anulate.",
-    "ScheduleOrderCancelNotification": "Anularea comenzii necesită o notificare de 12 ore. Toate comenzile ulterioare vor fi anulate, cu excepția comenzii pentru {{next}} care va fi livrată conform programului. Sigur doriți să anulați?",
-    "CancelRecurringOrder": "Anulare comandă recursivă",
-    "SubmitButton": "OK",
-    "CancelButton": "Anulare"
-  }
-}

@@ -19,7 +19,7 @@ import AccountLinksSection from "../account-links-section";
 import HistoryIcon from "@material-ui/icons/History";
 import ListIcon from "@material-ui/icons/List";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
-import { StyledLinkBox } from "../../StyledUI";
+import { StyledLinkBox } from "@hcl-commerce-store-sdk/react-component";
 
 function AccountLinksGridViewLayout() {
   const { t } = useTranslation();
@@ -28,6 +28,7 @@ function AccountLinksGridViewLayout() {
   const linkAddressBookDescription = t(
     "AccountLinksGridView.AddressBookDescription"
   );
+  const disabledTitle = t("AccountLinks.DisabledMessage");
   const linkAddressBookURL = ROUTES.ADDRESS_BOOK;
 
   const linkOrderHistoryText = t("AccountLinksGridView.OrderHistoryText");
@@ -42,19 +43,21 @@ function AccountLinksGridViewLayout() {
 
   let linkList: JSX.Element[] = [
     <StyledLinkBox
+      disabledTitle={disabledTitle}
       title={linkAddressBookText}
       description={linkAddressBookDescription}
       url={linkAddressBookURL}
       icon={<LibraryBooksIcon />}
     />,
     <StyledLinkBox
+      disabledTitle={disabledTitle}
       title={linkOrderHistoryText}
       description={linkOrderHistoryDescription}
       url={linkOrderHistoryURL}
       icon={<HistoryIcon />}
-      disabled
     />,
     <StyledLinkBox
+      disabledTitle={disabledTitle}
       title={linkWishListText}
       description={linkWishListDescription}
       url={linkWishListURL}

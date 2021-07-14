@@ -10,6 +10,7 @@
  */
 //Standard libraries
 import React, { useEffect, ChangeEvent } from "react";
+import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { OK } from "http-status-codes";
 import Axios, { Canceler } from "axios";
@@ -17,6 +18,8 @@ import getDisplayName from "react-display-name";
 //Foundation libraries
 import personService from "../../../_foundation/apis/transaction/person.service";
 import { useSite } from "../../../_foundation/hooks/useSite";
+//Redux
+import { forUserIdSelector } from "../../../redux/selectors/user";
 //Custom libraries
 import { EMPTY_STRING } from "../../../constants/common";
 //UI
@@ -27,7 +30,7 @@ import {
   StyledDialogActions,
   StyledButton,
   StyledTextField,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 const ChangePassword: React.FC = (props: any) => {
   const widgetName = getDisplayName(ChangePassword);
@@ -48,6 +51,7 @@ const ChangePassword: React.FC = (props: any) => {
   const cancelLabel = t("ChangePassword.CancelLabel");
   const successLabel = t("ChangePassword.SuccessLabel");
   const okLabel = t("ChangePassword.OkLabel");
+  const forUserId = useSelector(forUserIdSelector);
 
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
@@ -117,13 +121,11 @@ const ChangePassword: React.FC = (props: any) => {
       },
       ...payloadBase,
     };
-    personService
-      .updatePerson(parameters, null, site.transactionContext)
-      .then((res) => {
-        if (res.status === OK) {
-          handleSuccess();
-        }
-      });
+    personService.updatePerson(parameters).then((res) => {
+      if (res.status === OK) {
+        handleSuccess();
+      }
+    });
   };
   const canContinue = () => {
     if (
@@ -140,10 +142,16 @@ const ChangePassword: React.FC = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div>
-      <StyledButton size="small" color="secondary" onClick={handleClickOpen}>
+      <StyledButton
+        size="small"
+        color="secondary"
+        onClick={handleClickOpen}
+        disabled={forUserId}>
         {title}
       </StyledButton>
       <StyledDialog

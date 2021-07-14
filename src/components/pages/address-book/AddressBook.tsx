@@ -31,7 +31,7 @@ import {
   StyledSelect,
   StyledFormHelperText,
   StyledFormControl,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import Add from "@material-ui/icons/Add";
 //Custom libraries
 import AccountSidebar from "../../widgets/account-sidebar/AccountSidebar";

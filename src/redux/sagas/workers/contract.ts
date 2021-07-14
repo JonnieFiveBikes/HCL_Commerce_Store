@@ -57,7 +57,7 @@ export function* preSelectContract(action: any) {
     if (isLogin && entitledContracts.length !== 1) {
       const contract = Object.keys(contracts)[0];
       yield call(switchContractService.changeContract, {
-        $queryParameters: { contractId: String(contract) },
+        query: { contractId: String(contract) },
         ...action.payload,
       });
       yield put(USER_CONTEXT_REQUEST_ACTION(action.payload));

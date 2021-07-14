@@ -14,7 +14,10 @@ import { useTranslation } from "react-i18next";
 //Custom libraries
 import { AddressCard } from "../address-card";
 //UI
-import { StyledIconLabel, StyledBox } from "../../StyledUI";
+import {
+  StyledIconLabel,
+  StyledBox,
+} from "@hcl-commerce-store-sdk/react-component";
 import ContactsIcon from "@material-ui/icons/Contacts";
 
 interface OrderBillingInfoProps {

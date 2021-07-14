@@ -14,7 +14,10 @@ import { useTranslation } from "react-i18next";
 //Custom libraries
 //UI
 import DescriptionIcon from "@material-ui/icons/Description";
-import { StyledGrid, StyledIconLabel } from "../../StyledUI";
+import {
+  StyledGrid,
+  StyledIconLabel,
+} from "@hcl-commerce-store-sdk/react-component";
 
 interface PurchaseOrderSelectionProps {}
 

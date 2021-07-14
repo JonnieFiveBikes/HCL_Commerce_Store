@@ -1,0 +1,1014 @@
+{
+  "Footer": {
+    "CompanyLinks": {
+      "Label": "会社",
+      "OurStory": "企業沿革",
+      "Careers": "経歴"
+    },
+    "Copyright": "Copyright HCL Technologies Limited 2020. All rights reserved.",
+    "CustomerService": {
+      "Label": "お客様サービス",
+      "ContactUs": "連絡先",
+      "ContactUsDescription": "連絡先",
+      "PrivacyPolicy": "プライバシー・ポリシー"
+    },
+    "FollowUs": "フォローする",
+    "Description": "このストアフロントのサンプルは React および HCL Commerce をベースにして構築されています。HCL Commerce は大規模なアジャイル・コマースを実現します。",
+    "DisabledMessage": "申し訳ありません。このページはまだ開発中です。"
+  },
+  "Header": {
+    "Actions": {
+      "SignIn": "サインイン",
+      "SignInRegister": "サインイン/登録",
+      "WelcomeFirstname": "ようこそ、{{firstName}} 様",
+      "WelcomeNoFirstname": "ようこそ、{{lastName}} 様",
+      "WishList": "買い物候補リスト",
+      "YourAccount": "アカウント",
+      "Account": "アカウント"
+    },
+    "AccountPopper": {
+      "Welcome": "ようこそ、{{lastName}} {{firstName}} 様",
+      "Organization": "組織",
+      "Contract": "契約",
+      "Edit": "編集",
+      "AccountSetting": "アカウントの設定",
+      "SignOut": "サインアウト",
+      "Cart": "カート ({{count}} 個の商品)",
+      "Cart_plural": "カート ({{count}} 個の商品)"
+    }
+  },
+  "MegaMenu": {
+    "Title": "商品",
+    "Actions": {
+      "ViewAll": "すべて表示"
+    }
+  },
+  "AllCategoriesExpandedMenu": {
+    "AllCategoriesLabel": "すべてのカテゴリー"
+  },
+  "MiniCart": {
+    "Items": "{{count}} 個の商品",
+    "Items_plural": "{{count}} 個の商品",
+    "Title": "現在のオーダー",
+    "Subtotal": "{{count}} 個の商品の小計",
+    "Subtotal_plural": "{{count}} 個の商品の小計",
+    "Empty": "カートに商品がありません。",
+    "Actions": {
+      "Cart": "カートの中身をすべて表示"
+    }
+  },
+  "Language": {
+    "-1": "英語 (米国)",
+    "-2": "フランス語",
+    "-3": "ドイツ語",
+    "-4": "イタリア語",
+    "-5": "スペイン語",
+    "-6": "ブラジル・ポルトガル語",
+    "-7": "中国語 (簡体字)",
+    "-8": "中国語 (繁体字)",
+    "-10": "日本語",
+    "-20": "ロシア語",
+    "-21": "ルーマニア語"
+  },
+  "productDetail": {
+    "Quantity": "数量",
+    "QtyError": "数量は 1 以上である必要があります。",
+    "Availability": "在庫状況",
+    "AddToCart": "カートに追加",
+    "Description": "説明",
+    "ProductDetails": "商品詳細情報",
+    "Attachments": "アタッチメント",
+    "AllAttachments": "すべてのアタッチメント",
+    "ViewAll": "すべて表示",
+    "Images": "イメージ",
+    "Videos": "動画",
+    "Documents": "文書",
+    "PricePending": "価格保留",
+    "addToCartErrorMsg": "「数量」フィールドの値が無効または空です。値が正の整数であることを確認して、再試行してください。",
+    "any": "任意",
+    "showAttributes": "属性の表示",
+    "attributeFilter": "属性フィルター",
+    "addToCurrentOrder": "現在のオーダーに追加",
+    "SignIn": "ショップにサインインしてください",
+    "noproductsToDisplay": "表示する製品がありません。属性フィルターを変更して、再試行してください。",
+    "SKU": "SKU",
+    "Price": "価格",
+    "Online_Availability": "オンラインで入手可能"
+  },
+  "AddressBook": {
+    "AddrMsg": "新しい住所を追加",
+    "AddButton": "住所の追加",
+    "Title": "アドレス帳",
+    "FilterLabel": "住所のタイプ別にフィルター",
+    "NoAddrMsg": "保存された住所がありません。",
+    "NoAddrForFilterMsg": "このフィルター・タイプに一致する住所はありません。",
+    "ShowAllLabel": "すべて表示",
+    "ShippingLabel": "配送先",
+    "BillingLabel": "請求書",
+    "ShippingBillingLabel": "配送先および請求先",
+    "CreateAddress": "住所の作成",
+    "SaveChanges": "変更の保存",
+    "Cancel": "キャンセル",
+    "EditAddress": "住所の編集"
+  },
+  "Cart": {
+    "Title": "ショッピング・カート",
+    "Msgs": {
+      "Empty": "ショッピング・カートが空です。新しいアイテムが毎日届いています。今、お買い求めください!",
+      "PromoCode": "販売促進コードを入力してください"
+    },
+    "Labels": {
+      "PromoCode": "販売促進コード",
+      "RecurringOrder": "定期オーダーとしてスケジュール",
+      "Frequency": "頻度",
+      "StartDate": "開始日",
+      "OrderSummary": "オーダー要約"
+    },
+    "Actions": {
+      "Checkout": "チェックアウト",
+      "Apply": "適用"
+    }
+  },
+  "CheckoutAddress": {
+    "Actions": {
+      "Submit": "この住所を保存して選択する",
+      "Cancel": "キャンセル"
+    },
+    "Payment": {
+      "ChooseFirst": "最初に支払方法を選択してください。"
+    }
+  },
+  "Checkout": {
+    "Title": "チェックアウト",
+    "Labels": {
+      "shipping": "配送先",
+      "payment": "支払い",
+      "review": "オーダーのレビュー"
+    },
+    "Actions": {
+      "ReturnCart": "カートに戻る",
+      "BackTo": "{{step}} に戻る",
+      "ContinueTo": "{{step}} を続ける",
+      "PlaceOrder": "オーダーの発行"
+    }
+  },
+  "Payment": {
+    "Title": "支払いの詳細",
+    "Msgs": {
+      "InvalidFormat": "無効な形式です"
+    },
+    "Labels": {
+      "UseMultiple": "複数の支払方法を使用する",
+      "PaymentMethod": "支払方法 {{number}}",
+      "AddNewAddress": "新規住所を追加",
+      "BillingAddress": "請求先住所"
+    },
+    "Actions": {
+      "Back": "配送の詳細に戻る",
+      "Next": "オーダーのレビュー",
+      "Finish": "完了",
+      "SaveAndAdd": "保存して別の支払方法を追加",
+      "AddAnotherPayMethod": "別の支払方法を追加"
+    }
+  },
+  "MultipleShipmentTable": {
+    "Labels": {
+      "ItemDetails": "商品の詳細",
+      "SKU": "SKU: ",
+      "Quantity": "数量",
+      "ShippingDetails": "配送の詳細",
+      "SelectShippingAddressAndMethod": "配送先住所と配送方法の選択",
+      "ChangeSelection": "選択の変更"
+    }
+  },
+  "Shipping": {
+    "Title": "配送の詳細",
+    "Labels": {
+      "UseMultiple": "複数の住所に配送する",
+      "ShippingAddress": "配送先住所",
+      "ShippingMethod": "配送方法",
+      "SelectShippingMethod": "配送方法を選択",
+      "AddNewAddress": "新規住所を追加",
+      "EditAddress": "住所の編集",
+      "SelectedCount": "{{all}} 個のうち {{selected}} 個のアイテムが選択されました",
+      "ItemsSelected": "{{itemsSelected}} 個のアイテムが選択されました"
+    },
+    "Actions": {
+      "SelectAddress": "この住所を使用する",
+      "CreateNew": "新規住所を作成する",
+      "Next": "支払いを続行する",
+      "Confirm": "選択の確認",
+      "Cancel": "キャンセル",
+      "SelectShippingAddress": "配送先住所と配送方法の選択"
+    },
+    "Msgs": {
+      "UseSavedAddress": "または保存された住所から選択する:",
+      "SelectShippingAddress": "最初に配送先住所を選択してください"
+    }
+  },
+  "OrderConfirmation": {
+    "Title": "オーダーの確認",
+    "Msgs": {
+      "Heading": "オーダーを受領しました",
+      "Pending": "オーダーは保留中です",
+      "OrderNumber": "オーダー #{{orderId}}",
+      "Details": "受領書のコピーを {{emails}} に送信しました。",
+      "PendingDetails": "オーダーは許容される上限額を超えています。続行する前に管理者の承認を得る必要があります。",
+      "ThankYou": "{{storeName}} でご購入いただきありがとうございました。"
+    }
+  },
+  "SignInPage": {
+    "Title": "サインイン/登録"
+  },
+  "Account": {
+    "Title": "マイ・アカウント"
+  },
+  "AccountSummary": {
+    "Title": "個人情報"
+  },
+  "ChangePasswordSection": {
+    "Title": "パスワードの変更",
+    "CurrentPasswordLabel": "現行パスワード",
+    "NewPasswordLabel": "新規パスワード",
+    "VerifyPasswordLabel": "パスワードの確認",
+    "SaveLabel": "更新",
+    "SuccessLabel": "パスワードが正常に変更されました",
+    "OkLabel": "OK"
+  },
+  "PersonalInformationSection": {
+    "Title": "個人情報",
+    "Name": "名前",
+    "EmailAddress": "E メール・アドレス",
+    "PhoneNumber": "電話番号",
+    "Address": "アドレス",
+    "SaveChanges": "変更の保存",
+    "UpdateSuccessful": "正常に更新されました"
+  },
+  "WelcomeUserSection": {
+    "Title": "ようこそ、",
+    "Message": "これはアカウントの要約です。個人情報の変更や、アカウントに使用できるオプションの管理が可能です。"
+  },
+  "AdminTools": {
+    "buyerManagement": "購入者管理",
+    "orgAndBuyer": "購入者およびオーダーの承認",
+    "orgManagement": "組織管理",
+    "buyerManagementDesc": "組織に所属する購入者を作成、編集、削除する",
+    "orgAndBuyerDesc": "購入者登録およびオーダーを承認または却下する",
+    "orgManagementDesc": "組織を追加して表示する",
+    "adminTools": "管理用ツール"
+  },
+  "BuyerOrganizationRegistration": {
+    "OrganizationRegistration": "組織の登録",
+    "BuyerAdminRegistration": "アドミニストレーターの登録",
+    "Title": "組織登録",
+    "AddressDetails": "住所の詳細",
+    "AddressLineAdd": "住所行 2 を追加",
+    "Back": "戻る",
+    "NextRegister": "次に、アドミニストレーターを登録",
+    "CompleteRegistration": "登録を完了",
+    "HereAnAccount": "既にアカウントをお持ちですか?",
+    "SignIn": "サインイン",
+    "OrganizationName": "組織名",
+    "AccountPreferences": "アカウント設定",
+    "Email": "E メール",
+    "Address1": "住所行 1",
+    "Address2": "住所行 2 (オプション)",
+    "City": "市区町村",
+    "Country": "国",
+    "State": "都道府県",
+    "ZipCode": "郵便番号",
+    "FirstName": "名",
+    "LastName": "姓",
+    "LogonId": "ログイン ID",
+    "Phone": "電話番号 (任意)",
+    "Password": "パスワード",
+    "Password2": "パスワードの確認",
+    "Language": "使用言語",
+    "Currency": "優先通貨",
+    "UseOrganizationAddress": "組織と同じ住所を使用する",
+    "Submit": "送信",
+    "Clear": "クリア",
+    "Success": "登録要求が受信されました。アカウントは承認の待機中です。アカウントが承認されるまではログオンできません。",
+    "OK": "OK",
+    "Msgs": {
+      "InvalidFormat": "無効な形式です"
+    }
+  },
+  "BuyerUserRegistration": {
+    "Title": "購入者登録",
+    "Description": "組織がこのストアのアカウントを既にお持ちの場合は、お客様ご自身で登録してこのアカウントでショッピングやオーダーを行うことができます。登録が承認されたら、サインインしてショッピングすることができます。",
+    "OrgName": "組織",
+    "Email": "E メール",
+    "Address1": "住所行 1",
+    "Address2": "住所行 2 (オプション)",
+    "City": "市区町村",
+    "Country": "国",
+    "State": "都道府県",
+    "ZipCode": "郵便番号",
+    "FirstName": "名",
+    "LastName": "姓",
+    "LogonId": "ログイン ID",
+    "Phone": "電話番号 (任意)",
+    "Password": "パスワード",
+    "Password2": "パスワードの確認",
+    "Language": "使用言語",
+    "Currency": "優先通貨",
+    "AddressDetails": "住所の詳細",
+    "AccountPreferences": "アカウント設定",
+    "HaveAccount": "既にアカウントをお持ちですか?",
+    "AddressLineAdd": "住所行 2 を追加",
+    "SignIn": "サインイン",
+    "Submit": "登録を完了",
+    "Clear": "クリア",
+    "Success": "アカウントのアクティブ化要求が受信されました。アカウントをアクティブ化してログオンしてください。",
+    "OK": "OK",
+    "Msgs": {
+      "InvalidFormat": "無効な形式です"
+    }
+  },
+  "Dashboard": {
+    "Title": "ダッシュボード",
+    "AccountSettings": "アカウントの設定",
+    "PersonalInformation": "個人情報",
+    "AddressBook": "アドレス帳",
+    "OrderManagement": "オーダー管理",
+    "OrderHistory": "オーダー履歴",
+    "RecurringOrders": "定期オーダー",
+    "RequisitionLists": "要求リスト",
+    "SavedOrders": "保存済みオーダー",
+    "ApproveOrders": "オーダーの承認"
+  },
+  "Order": {
+    "noPO": "なし",
+    "Status_A": "支払い許可を確認する必要があります",
+    "Status_B": "バックオーダー済み",
+    "Status_C": "支払いは承認されました",
+    "Status_D": "オーダーが完了しました",
+    "Status_E": "現在、ストアによって編集されています",
+    "Status_F": "オーダーがフルフィルメントに入りました",
+    "Status_G": "オーダー処理",
+    "Status_I": "送信済み",
+    "Status_K": "返品が関連付けられました",
+    "Status_L": "在庫が不足しています",
+    "Status_M": "オーダーが受信され、処理の準備ができました",
+    "Status_N": "承認が拒否されました",
+    "Status_P": "オーダーは保留中です",
+    "Status_R": "在庫が補充されました",
+    "Status_S": "オーダーが発送されました",
+    "Status_T": "現在、ストアによってロックされています",
+    "Status_W": "承認は保留中です",
+    "Status_V": "一部発送されました",
+    "Status_X": "オーダーはキャンセルされました",
+    "NotAvailable": "該当なし",
+    "OrderId": "オーダー ID",
+    "PONumber": "注文書番号",
+    "OrderDate": "オーダー日付",
+    "Schedule": "オーダー・スケジュール",
+    "NextOrder": "次のオーダー",
+    "Status": "状況",
+    "TotalPrice": "総額",
+    "Actions": "アクション",
+    "RowCount": "{from} ～ {to}/{count} を表示しています",
+    "NoRecord": "オーダーが見つかりません。",
+    "InvalidOrderId": "有効なオーダー ID を入力してください。",
+    "Search": "検索",
+    "PageSizeLabel": "行",
+    "FirstPage": "最初のページ",
+    "LastPage": "最後のページ",
+    "PreviousPage": "前のページ",
+    "NextPage": "次のページ",
+    "OrderHistory": "オーダー履歴",
+    "RecurringOrders": "定期オーダー",
+    "Once": "1 回限り",
+    "EveryXDAY": "{{frequency}} 日ごと",
+    "EveryXDAY_plural": "{{frequency}} 日ごと",
+    "EveryXWEE": "{{frequency}} 週ごと",
+    "EveryXWEE_plural": "{{frequency}} 週ごと",
+    "EveryXMON": "{{frequency}} か月ごと",
+    "EveryXMON_plural": "{{frequency}} か月ごと",
+    "StateInactive": "非アクティブ",
+    "StateActive": "アクティブ",
+    "StateExpired": "期限切れ",
+    "StateCancelled": "キャンセル済み",
+    "StateCompleted": "完了",
+    "StateSuspended": "中断状態",
+    "StatePendingCancel": "キャンセルを保留中です",
+    "TooltipCancel": "キャンセル",
+    "TooltipReOrder": "再オーダー",
+    "FilterResults": "フィルター結果",
+    "OrderDetails": "オーダー詳細情報",
+    "OrderNumber": "オーダー番号",
+    "HistorySearchPlaceHolder": "オーダー ID で検索",
+    "HistoryViewDetailTooltip": "オーダーの詳細情報を表示",
+    "Pending": "保留"
+  },
+  "Category": {},
+  "AccountLinksGridView": {
+    "Title": "マイ・アカウント・ツール",
+    "AddressBookText": "アドレス帳",
+    "AddressBookDescription": "保存したアドレスを管理および編集します",
+    "OrderHistoryText": "オーダー履歴",
+    "OrderHistoryDescription": "発注したオーダーと承認待ちオーダー、および個々のオーダーの詳細を表示します",
+    "WishListText": "買い物候補リスト",
+    "WishListDescription": "買い物候補リスト"
+  },
+  "AccountLinks": {
+    "Title": "アカウントの設定",
+    "PersonalInformationText": "個人情報",
+    "PersonalInformationDescription": "個人のアカウント情報を表示および編集します",
+    "AddressBookText": "アドレス帳",
+    "AddressBookDescription": "保存したアドレスを管理および編集します",
+    "DisabledMessage": "申し訳ありません。このページはまだ開発中です。"
+  },
+  "MyAccount": {
+    "Title": "マイ・アカウント",
+    "AccountSettings": "アカウントの設定",
+    "PersonalInformation": "個人情報",
+    "AddressBook": "アドレス帳",
+    "OrderHistory": "オーダー履歴",
+    "Wishlists": "買い物候補リスト"
+  },
+  "AddressCard": {
+    "EditButton": "編集",
+    "DeleteButton": "削除",
+    "Confirm": "削除の確認",
+    "Cancel": "キャンセル",
+    "UseAddress": "この住所を使用する"
+  },
+  "AddressForm": {
+    "Msgs": {
+      "InvalidFormat": "無効な形式です",
+      "InvalidAddressName": "住所名には英数字 (A～Z、a～z、0～9) と空白文字のみを使用できます。"
+    },
+    "Labels": {
+      "FirstName": "名",
+      "LastName": "姓",
+      "Address1": "住所行 1",
+      "Address2": "住所行 2 (オプション)",
+      "City": "市区町村",
+      "Country": "国",
+      "State": "都道府県",
+      "ZipCode": "郵便番号",
+      "Phone": "電話番号 (任意)",
+      "Email": "E メール",
+      "NickName": "住所の名前",
+      "AddressType": "住所のタイプ",
+      "Shipping": "配送先",
+      "Billing": "請求書",
+      "ShippingAndBilling": "配送先および請求先"
+    }
+  },
+  "ChangePassword": {
+    "Title": "パスワード変更",
+    "CurrentPasswordLabel": "現行パスワード",
+    "NewPasswordLabel": "新規パスワード",
+    "VerifyPasswordLabel": "パスワードの確認",
+    "SaveLabel": "保存",
+    "CancelLabel": "キャンセル",
+    "SuccessLabel": "パスワードが正常に変更されました",
+    "OkLabel": "OK"
+  },
+  "ChildPimCategories": {
+    "title": "すべての {{name}}"
+  },
+  "Confirmation": {
+    "ScheduleOrderCancel": "このオーダーの今後の出荷はすべてキャンセルされます。",
+    "ScheduleOrderCancelNotification": "オーダーのキャンセルには 12 時間前までの通知が必要です。今後のすべてのオーダーはキャンセルされますが、{{next}} のオーダーはスケジュールどおり出荷されます。キャンセルしますか?",
+    "CancelRecurringOrder": "定期オーダーのキャンセル",
+    "SubmitButton": "OK",
+    "CancelButton": "キャンセル"
+  },
+  "FeaturedCard": {
+    "ShopNow": "新しいアイテムが毎日届いています。今、お買い求めください"
+  },
+  "ForgotPassword": {
+    "Title": "パスワードをお忘れですか?",
+    "EmailLabel": "E メール・アドレス",
+    "SubmitButton": "送信",
+    "LogonIDLabel": "ログイン ID",
+    "ContentText": "E メール・アドレスを入力してください。パスワードのリセットに使用する確認コードが届きます。",
+    "ContentTextLogonID": "ログイン ID を入力してください。パスワードをリセットするための確認コードがアカウントの E メールで送信されます。",
+    "ValidationCodeButton": "確認コードの入力",
+    "SendVerificationCodeButton": "確認コードを送ってください",
+    "CodeRecieved": "既に確認コードを受け取っていますか?",
+    "AccountInfoRemember": "アカウント情報を覚えていますか?",
+    "SignIn": "今すぐサインイン",
+    "Msgs": {
+      "InvalidFormat": "無効な形式です"
+    }
+  },
+  "PriceDisplay": {
+    "Labels": {
+      "Pending": "価格保留"
+    }
+  },
+  "error-message": {
+    "_ERR_CMD_INVALID_PARAM_2020": "「ログイン ID」フィールドにログイン ID を入力してください。",
+    "_ERR_CMD_INVALID_PARAM_2050": "「パスワード」フィールドにパスワードを入力してください。",
+    "_ERR_CMD_INVALID_PARAM_2070": "「パスワードの確認」フィールドにパスワードを入力してください。",
+    "_ERR_CMD_INVALID_PARAM_5060": "「姓」フィールドに名前を入力してください。",
+    "_ERR_CMD_INVALID_PARAM_5066": "「名」フィールドに名前を入力してください。",
+    "_ERR_CMD_INVALID_PARAM_5210": "「E メール」フィールドに E メール・アドレスを入力してください。",
+    "_ERR_CMD_INVALID_PARAM_2190": "確認コードの値が正しくありません。",
+    "_ERR_CMD_INVALID_PARAM_2080": "入力された確認用パスワードが新しいパスワードと一致しません。",
+    "_ERR_CMD_INVALID_PARAM": "登録中にエラーが発生しました。後で再試行するか、詳しくはストアにお問い合わせください。",
+    "_ERR_LOGONID_ALREDY_EXIST_2030": "入力された E メールは既に存在します。別の E メールを入力して再試行してください。",
+    "_ERR_PASSWORDS_NOT_SAME_2080": "入力された確認用パスワードがパスワードと一致しません。パスワードを「パスワードの確認」フィールドに入力して再試行してください。",
+    "_ERR_USER_ALREADY_REGISTERD": "既にストアにサインインしています。サインアウトしてもう一度登録してください。",
+    "_ERR_AUTHENTICATION_MINIMUMLENGTH_PASSWORD_2200": "入力されたパスワードの長さが {{0}} 文字未満です。パスワードの長さは {{0}} 文字以上で、{{1}} 個の数字と {{2}} 個の文字を使用する必要があります。別のパスワードを入力してください。",
+    "_ERR_AUTHENTICATION_MAXCONSECUTIVECHAR_PASSWORD_2210": "パスワードに同じ文字が連続して {{0}} 回より多く使用されています。別のパスワードを入力してください。",
+    "_ERR_AUTHENTICATION_MAXINTANCECHAR_PASSWORD_2220": "パスワードに同じ文字が {{0}} 回より多く使用されています。別のパスワードを入力してください。",
+    "_ERR_AUTHENTICATION_MINIMUMLETTERS_PASSWORD_2230": "パスワードに {{0}} 個の文字が使用されていません。パスワードの長さは {{1}} 文字以上で、{{2}} 個の数字と {{0}} 個の文字を使用する必要があります。別のパスワードを入力してください。",
+    "_ERR_AUTHENTICATION_MINIMUMDIGITS_PASSWORD_2240": "パスワードに {{0}} 個の数字が使用されていません。パスワードの長さは {{1}} 文字以上で、{{0}} 個の数字と {{2}} 個の文字を使用する必要があります。別のパスワードを入力してください。",
+    "_ERR_AUTHENTICATION_USERIDMATCH_PASSWORD_2250": "パスワードがログイン ID と同じです。ログイン ID と異なるパスワードを入力してください。",
+    "_ERR_AUTHENTICATION_REUSEOLD_PASSWORD_2260": "入力されたパスワードは前に使用されています。新しいパスワードを入力してください。",
+    "_2040": "「現行パスワード」フィールドに現行パスワードを入力してください。",
+    "_2060": "「パスワード」フィールドにパスワードを入力してください。",
+    "_2070": "「パスワードの確認」フィールドにパスワードを入力してください。",
+    "_2200": "入力されたパスワードが {{0}} 文字未満です。パスワードの長さは {{0}} 文字以上で、{{1}} 個の数字と {{2}} 個の文字を使用する必要があります。別のパスワードを入力してください。",
+    "_2210": "パスワードに同じ文字が連続して {{0}} 回より多く使用されています。別のパスワードを入力してください。",
+    "_2220": "パスワードに同じ文字が {{0}} 回より多く使用されています。別のパスワードを入力してください。",
+    "_2230": "パスワードに {{0}} 個の文字が使用されていません。パスワードの長さは {{1}} 文字以上で、{{2}} 個の数字と {{0}} 個の文字を使用する必要があります。別のパスワードを入力してください。",
+    "_2240": "パスワードに {{0}} 個の数字が使用されていません。パスワードの長さは {{1}} 文字以上で、{{0}} 個の数字と {{2}} 個の文字を使用する必要があります。別のパスワードを入力してください。",
+    "_ERR_BAD_PARMS_2050": "入力されたパスワードは正しくありません。「現行パスワード」フィールドに現行パスワードを入力して再試行してください。",
+    "_ERR_BAD_PARMS_2080": "入力された確認用パスワードが新しいパスワードと一致しません。パスワードを「パスワードの確認」フィールドに入力して再試行してください。",
+    "_2250": "パスワードがログイン ID と同じです。ログイン ID と異なるパスワードを入力してください。",
+    "_2260": "入力されたパスワードは前に使用されています。新しいパスワードを入力してください。",
+    "_ERR_AUTHENTICATION_ERROR_2000": "「ログイン ID」フィールドにログイン ID を入力してください。",
+    "_ERR_AUTHENTICATION_ERROR_2010": "入力されたログイン ID またはパスワードが正しくありません。情報をもう一度入力してください。",
+    "_ERR_AUTHENTICATION_ERROR_2020": "入力されたログイン ID またはパスワードが正しくありません。情報をもう一度入力してください。",
+    "_ERR_AUTHENTICATION_ERROR_2030": "入力したログオン資格情報が無効です。入力内容を確認して再試行してください。",
+    "_ERR_PASSWORD_FAILED_CMN1019E": "入力されたログイン ID またはパスワードが正しくありません。情報をもう一度入力してください。",
+    "_ERR_PERSON_ACCOUNT_DISABLED_2110": "このアカウントはロックされています。アカウントのロックを解除するにはストアにお問い合わせください。",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "パスワードの試行に {{0}} 回失敗したため、サインインできません。パスワードをリセットするか、お客様サービス担当者にお問い合わせください。",
+    "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "数分待ってからもう一度サインインしてください。",
+    "_2400": "組織はロックされています。現時点ではサインインできません。",
+    "_2410": "サインインするための正しい権限がありません。詳しくはストアにお問い合わせください。",
+    "_2420": "アカウントはアクティブ化されていません。受信したアクティブ化 E メールに応答する必要があります。",
+    "_2450": "アカウントはアクティブ化されていません。受信したアクティブ化 E メールに応答する必要があります。",
+    "_2430": "パスワードはリセットされています。E メールから一時パスワードを取得し、もう一度サインインしてください。",
+    "_2570": "アカウントはアクティブ化されていません。受信したアクティブ化 E メールに既に応答している場合は、ストアにお問い合わせください。",
+    "_ERR_GENERIC_2110": "アカウントはロックされています。アカウントのロックを解除するにはストアにお問い合わせください。",
+    "_ERR_MISSING_PARMS_2000": "「ログイン ID」フィールドにログイン ID を入力してください。",
+    "_ERR_MISSING_PARMS_2010": "入力されたログイン ID は有効ではありません。入力内容を確認して再試行してください。",
+    "_ERR_BAD_PARMS_2010": "入力された E メールは有効ではありません。入力内容を確認して再試行してください。",
+    "_ERR_CMD_MISSING_PARAM_2020": "「パスワード」フィールドにパスワードを入力してください。",
+    "_ERR_MISSING_PARMS_2040": "「現行パスワード」フィールドに現行パスワードを入力してください。",
+    "_ERR_MISSING_PARMS_2060": "「パスワード」フィールドに新しいいパスワードを入力してください。",
+    "_ERR_MISSING_PARMS_2070": "「パスワードの確認」フィールドに新しいパスワードを入力してください。",
+    "_ERR_MISSING_PARMS_2100": "このユーザーには E メール・アドレスがありません。",
+    "_ERR_BAD_PARMS_1020": "このログイン ID のパスワードをリセットできません。詳しくはストアにお問い合わせください。",
+    "_ERR_CMD_INVALID_PARAM_5080": "「番地」フィールドに住所を入力してください。",
+    "_ERR_CMD_INVALID_PARAM_5100": "「市町村」フィールドに市町村の名前を入力してください。",
+    "_ERR_CMD_INVALID_PARAM_5120": "「都道府県」フィールドに都道府県名を入力してください。",
+    "_ERR_CMD_INVALID_PARAM_5140": "「郵便番号」フィールドに郵便番号を入力してください。",
+    "_ERR_CMD_INVALID_PARAM_5160": "「国/地域」フィールドに国または地域の名前を入力してください。",
+    "_ERR_CMD_INVALID_PARAM_5030": "「ニックネーム」フィールドに名前を入力してください。",
+    "_ERR_NICKNAME_ALREDY_EXIST_5040": "入力された住所の名前 \"{{0}}\" は既に存在します。「名前」フィールドに別の名前を入力して再試行してください。",
+    "_ERR_CMD_MISSING_PARAM_2000": "「E メール」フィールドにログオン ID (E メール) を入力してください。",
+    "_ERR_CMD_INVALID_PARAM_2010": "入力されたログイン ID (E メール) は有効ではありません。入力内容を確認して再試行してください。",
+    "ERR_PROMOTION_CODE_INVALID_-1200": "入力されたプロモーション・コードは有効ではありません。コードを確認して再試行してください。",
+    "ERR_PROMOTION_NOT_AVAILABLE_AT_THIS_TIME_-2200": "入力されたプロモーション・コードは現時点では利用できません。後で再試行してください。",
+    "ERR_PROMOTION_PER_SHOPPER_LIMIT_EXCEEDED_-1800": "再実行されたプロモーションはオーダーに適用できません: お客様ごとの {{1}} の制限数に達しています。",
+    "ERR_PROMOTION_OVERALL_LIMIT_EXCEEDED_-1900": "再実行されたプロモーションはオーダーに適用できません: このプロモーションで許可される償還の合計数における {{1}} の制限数に達しています。",
+    "ERR_PROMOTION_SYSTEM_ERR_-2700": "入力されたプロモーション・コードは処理できませんでした。ページ下部にある「連絡先」リンクをクリックしてお客様サービスにアクセスしてください。",
+    "ERR_PROMOTION_CODE_DUPLICATED_-1150": "入力された販売促進コード \"{{0}}\" が重複しています。",
+    "ERR_PROMOTION_UNKNOWN_ERR_-2600": "入力されたプロモーション・コードは処理できませんでした。ページ下部にある「連絡先」リンクをクリックしてお客様サービスにアクセスしてください。",
+    "_ERR_FORMAT_PROMOCODES_NOT_CORRECT_-2820": "入力されたプロモーション・コードはシステムで認識される形式になっていません。コードを確認して再試行してください。",
+    "_ERR_PARAMETER_MISSING_-2810": "プロモーション・コードまたはクーポンのプロモーション名が見つかりません。プロモーション・コードまたはクーポンのプロモーション名を入力してください。",
+    "_ERR_FORMAT_ORDERIDS_NOT_CORRECT_-2830": "入力されたプロモーション・コードは処理できませんでした。ページ下部にある「連絡先」リンクをクリックしてお客様サービスにアクセスしてください。",
+    "_ERR_PAY_CARD_NUMBER_MISSING_190": "「クレジット・カード」フィールドにクレジット・カード番号を入力してください。",
+    "_ERR_PAY_CARD_BRAND_MISSING_190": "クレジット・カードの種類を選択して再試行してください。",
+    "_ERR_CREATE_PAYMENT_METHOD": "オーダーの処理中にシステムの問題が発生しました。",
+    "_ERR_CREATE_PAYMENT_METHOD_1007": "オーダーの処理中にシステムの問題が発生しました。",
+    "_ERR_PAY_CARD_NUMBER_INVALID_1005": "クレジット・カード番号は有効ではありません。「クレジット・カード番号」フィールドにクレジット・カードの番号を入力して再試行してください。",
+    "_DBG_API_PAY_BAD_LEN_OR_PREFIX_1005": "クレジット・カード番号は有効ではありません。「クレジット・カード番号」フィールドにクレジット・カードの番号を入力して再試行してください。",
+    "_DBG_API_DO_PAYMENT_BAD_XDATE_1006": "入力された有効期限が有効ではありません。カード上の日付を確認して再試行してください。",
+    "_ERR_PAY_EXPIRY_DATE_INVALID_1006": "入力された有効期限が有効ではありません。カード上の日付を確認して再試行してください。",
+    "_ERR_CREATE_PAYMENT_METHOD_CMN1112E": "支払いに関する説明の更新中に支払いシステムにエラーが発生しました。",
+    "_ERR_RDN_ALREADY_EXIST": "入力された組織名は既に存在します。別の名前を入力して再試行してください。",
+    "_ERR_CMD_INVALID_PARAM_parentMemberId": "「組織」フィールドに入力された組織名は有効ではありません。正確な組織名を入力する必要があります。正確な名前が不明な場合は、このストアに対して組織を管理している会社内の担当者に確認してください。組織に親組織がある場合は、入力に <b>organization/parent_organization</b> (例: <b>ABC Company US/ABC Company Worldwide</b>) の形式を使用する必要があります。",
+    "_ERR_CMD_INVALID_PARAM_parentMember": "「組織」フィールドに入力された組織名は有効ではありません。正確な組織名を入力する必要があります。正確な名前が不明な場合は、このストアに対して組織を管理している会社内の担当者に確認してください。組織に親組織がある場合は、入力に <b>organization/parent_organization</b> (例: <b>ABC Company US/ABC Company Worldwide</b>) の形式を使用する必要があります。",
+    "_ERR_CMD_INVALID_PARAM_org_orgEntityName": "「組織名」フィールドに組織名を入力してください。",
+    "_API_BAD_INV_2": "{{1}} 個の {{0}} を購入するための在庫が不足しています。",
+    "_ERR_FINDING_ORDER_230": "オーダーの処理中にシステムの問題が発生しました。",
+    "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "システム上の問題が発生しました。詳しくはストアにお問い合わせください。",
+    "_ERR_REMOTE_EXCEPTION_CMN0412E": "要求の処理中にシステムの問題が発生しました。サポートが必要な場合は、ストアにお問い合わせください。",
+    "_ERR_REG_DUPE_ID_CMN0114S": "入力されたログイン ID は既に存在します。別のログイン ID を入力して再試行してください。",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "入力された E メールは有効ではありません。入力内容を確認して再試行してください。",
+    "_ERR_CMD_INVALID_PARAM_2195": "入力された確認コードは有効ではありません。入力内容を確認して再試行してください。",
+    "B2B": {
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "入力されたログイン ID は有効ではありません。入力内容を確認して再試行してください。",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "入力されたログイン ID は既に存在します。別のログイン ID を入力して再試行してください。",
+      "_ERR_BAD_PARMS_2010": "入力されたログイン ID は有効ではありません。入力内容を確認して再試行してください。"
+    },
+    "_ERR_PASSWORD_EXPIRED_2170": "現在のパスワードの有効期限が切れています。新規パスワードを入力してください。"
+  },
+  "success-message": {
+    "ITEM_ADD_SUCCESS": "商品がカートに追加されました。",
+    "ViewCart": "カートの表示",
+    "COPY_CART_SUCCESS": "オーダーがカートに追加されました。",
+    "RecurringOrderCancelled": "オーダーは正常にキャンセルされました。",
+    "ADD_ADDRESS_SUCCESS": "新しい住所 \"{{0}}\" が正常に追加されました",
+    "EDIT_ADDRESS_SUCCESS": "新しい住所 \"{{0}}\" が正常に更新されました",
+    "DELETE_ADDRESS_SUCCESS": "新しい住所 \"{{0}}\" が正常に削除されました",
+    "RESEND_VERIFICATION_CODE": "確認コードは E メール・アドレス宛に正常に送信されました",
+    "PASSWORD_RESET_SUCCESS": "パスワードは正常にリセットされました"
+  },
+  "notFound": {
+    "notFound": "<p>お探しの商品は見つかりませんでした。</p>"
+  },
+  "OrderBillingInfo": {
+    "Title": "請求情報",
+    "Labels": {
+      "BillAddress": "請求先住所"
+    }
+  },
+  "OrderDetails": {
+    "Title": "オーダー詳細情報",
+    "Actions": {
+      "Back": "支払いの詳細情報に戻る",
+      "Next": "オーダーの発行",
+      "NextRecurringOrder": "定期オーダーの発行"
+    },
+    "Labels": {
+      "PaymentDetails": "支払いの詳細",
+      "OrderSummary": "オーダー要約"
+    }
+  },
+  "OrderDiscountSummary": {
+    "Title": "適用された割引",
+    "Labels": {
+      "Total": "合計"
+    }
+  },
+  "OrderItemTable": {
+    "Title": "オーダー商品",
+    "Labels": {
+      "ItemDetails": "商品の詳細",
+      "SKU": "SKU:",
+      "Status": "在庫状況",
+      "Quantity": "数量",
+      "Price": "価格",
+      "Actions": "アクション",
+      "Gift": "無料ギフト",
+      "NonRecurring": "定期オーダーではない商品",
+      "PageSizeLabel": "行",
+      "FirstPage": "最初のページ",
+      "LastPage": "最後のページ",
+      "PreviousPage": "前のページ",
+      "NextPage": "次のページ",
+      "RowCount": "{from} ～ {to}/{count} を表示しています"
+    },
+    "Actions": {
+      "Delete": "削除"
+    }
+  },
+  "OrderLinks": {
+    "Title": "オーダー管理",
+    "OrderHistoryText": "オーダー履歴",
+    "OrderHistoryDescription": "発注したオーダーと承認待ちオーダー、および個々のオーダーの詳細を表示します。",
+    "SavedOrdersText": "保存済みオーダー",
+    "SavedOrdersDescription": "保存済みのオーダーを表示および管理します",
+    "RecurringOrdersText": "定期オーダー",
+    "RecurringOrdersDescription": "定期オーダーのリストを表示および管理します",
+    "ApproveOrdersText": "オーダーの承認",
+    "ApproveOrdersDescription": "オーダーを承認または拒否します",
+    "RequisitionListsText": "要求リスト",
+    "RequisitionListsDescription": "要求リストを表示、管理、および作成します"
+  },
+  "OrderPaymentInfo": {
+    "Title": "支払情報",
+    "Labels": {
+      "BillMethod": "支払方法"
+    }
+  },
+  "OrderShippingInfo": {
+    "Labels": {
+      "ShipAddress": "配送先住所",
+      "ShipMethod": "配送方法",
+      "CartDetails": "カートの詳細",
+      "ShippingDetails": "配送の詳細",
+      "ShipmentGroup": "配送グループ {{index}}",
+      "HideGroupDetails": "グループの詳細を非表示にする",
+      "ShowGroupDetails": "グループの詳細を表示する"
+    }
+  },
+  "OrderTotalSummary": {
+    "Labels": {
+      "Subtotal": "小計",
+      "Tax": "税金",
+      "Shipping": "配送先",
+      "ShippingTax": "配送税",
+      "Discount": "合計割引",
+      "Total": "合計"
+    }
+  },
+  "PaymentInfoCard": {
+    "Title": "支払方法 {{number}}",
+    "Labels": {
+      "CreditCard": "クレジット・カード:",
+      "AmountToPay": "支払い金額",
+      "ExpiryDate": "有効期限:",
+      "BillingAddress": "請求先住所"
+    },
+    "Actions": {
+      "Edit": "編集",
+      "Delete": "削除"
+    }
+  },
+  "PaymentInfoList": {
+    "Title": "支払方法 - オーダー合計: ",
+    "Msgs": {
+      "PayMethodRequired": "少なくとも 1 つの支払方法が必要です。",
+      "InsufficientPayment": "支払方法全体でオーダー合計 {{grandTotal}} を保証する必要があります。"
+    },
+    "Actions": {
+      "AddPayMethod": "支払方法の追加"
+    }
+  },
+  "PaymentMethodSelection": {
+    "Title": "支払方法",
+    "Msgs": {
+      "CreditCard": "安全なオンライン決済をご利用ください。使用できるクレジット・カード: {{cards}}",
+      "CVV": "署名欄の下 3 桁の数字",
+      "InvalidCardNumber": "無効なカード番号またはタイプ",
+      "InvalidFormat": "無効な形式です"
+    },
+    "Labels": {
+      "COD": "着払い",
+      "CreditCard": "クレジット・カード",
+      "CCNumber": "クレジット・カード番号",
+      "ExpiryDate": "有効期限",
+      "CVV": "CVV 番号",
+      "OrderTotal": "オーダー合計",
+      "RemainingAmount": "支払い残額",
+      "AmountToPay": "支払い金額"
+    },
+    "Actions": {
+      "PayRemaining": "支払い残額"
+    }
+  },
+  "PersonalInformation": {
+    "UpdateSuccessful": "正常に更新されました",
+    "AccountInformation": "アカウント情報:",
+    "Edit": "編集",
+    "Password": "パスワード:",
+    "ChangePassword": "パスワード変更",
+    "EditAccountInformation": "アカウント情報の編集",
+    "FirstName": "名",
+    "LastName": "姓",
+    "Email": "E メール",
+    "PhoneNumber": "電話番号 (任意)",
+    "PreferredCurrency": "優先通貨",
+    "Gender": "性別",
+    "SelectGender": "性別の選択",
+    "BirthYear": "生まれた年",
+    "BirthMonth": "生まれた月",
+    "BirthDate": "生まれた日",
+    "SelectYear": "年の選択",
+    "SelectMonth": "月の選択",
+    "SelectDate": "日付の選択",
+    "DateOfBirthEmpty": "この情報の機密性を保持したい場合は、誕生日の値を指定しないでください",
+    "Cancel": "キャンセル",
+    "SaveChanges": "変更の保存",
+    "CurrentPassword": "現行パスワード",
+    "NewPassword": "新規パスワード",
+    "VerifyPassword": "パスワードの確認",
+    "SignOutButton": "サインアウト",
+    "actingAs": "次のユーザーとして操作: ",
+    "resetPass": "ユーザー・パスワードのリセット",
+    "resetSure": "このユーザーのパスワードをリセットしてもよろしいですか?",
+    "resetNo": "いいえ",
+    "resetYes": "はい",
+    "stopActing": "ユーザーとしての操作を中断",
+    "guestUser": "ゲスト",
+    "register": "登録",
+    "enableUser": "ユーザーの有効化",
+    "disableUser": "ユーザーの無効化",
+    "disabledMessage": "申し訳ありません。このページはまだ開発中です。"
+  },
+  "ProductFilter": {
+    "Labels": {
+      "filterBy": "フィルター基準",
+      "price": "価格",
+      "minPrice": "分",
+      "maxPrice": "最大"
+    },
+    "Actions": {
+      "showMore": "詳細表示",
+      "showLess": "簡略表示",
+      "Filter": "フィルター"
+    }
+  },
+  "ProductGrid": {
+    "Labels": {
+      "filteredBy": "フィルター基準:",
+      "productFound": "{{count}} 個の製品が見つかりました",
+      "productFound_plural": "{{count}} 個の製品が見つかりました",
+      "productSearchFound": "\"{{searchTerm}}\" について {{count}} 個の製品が見つかりました",
+      "productSearchFound_plural": "\"{{searchTerm}}\" について {{count}} 個の製品が見つかりました",
+      "noMatches": "\"{{searchTerm}}\" の検索結果は 0 件です。",
+      "searchAgain": "\"{{searchTerm}}\" に該当するものが見つかりませんでした。条件を変更して検索してください。",
+      "suggestion": "もしかして:",
+      "noProductsFound": "<b>{{keyword}}</b> に該当する商品は見つかりませんでした。<br/>検索条件を変えていただくか、検索のヒントを確認してから再度お試しください",
+      "noProductsFoundForFilter": "選択したフィルターに一致する商品は見つかりませんでした。"
+    },
+    "Actions": {
+      "clearAll": "すべてクリア"
+    }
+  },
+  "PurchaseOrderNumber": {
+    "Title": "購入オーダー番号",
+    "Msgs": {
+      "PONumberRequired": "購入オーダー番号が必要です"
+    },
+    "Labels": {
+      "PONumber": "購入オーダー番号: "
+    }
+  },
+  "PurchaseOrderSelection": {
+    "Title": "購入オーダー",
+    "Msgs": {
+      "InvalidFormat": "無効な形式です"
+    },
+    "Labels": {
+      "PONumber": "注文書番号"
+    }
+  },
+  "RecurringOrderInfo": {
+    "Title": "定期オーダー",
+    "Labels": {
+      "RecurringOrderNumber": "定期オーダー番号",
+      "OrderSchedule": "頻度",
+      "StartDate": "開始日",
+      "NextDelivery": "次回のスケジュールされたオーダー",
+      "OrderHistoryButton": "{{orderId}} のオーダー履歴"
+    }
+  },
+  "RegistrationLayout": {
+    "NewCustomer": "はじめてご利用になる場合",
+    "SignIn": "サインイン",
+    "Account": " 既にアカウントをお持ちですか?",
+    "FirstName": "名",
+    "LastName": "姓",
+    "Email": "E メール・アドレス",
+    "Phone": "電話番号 (任意)",
+    "Password": "パスワード",
+    "VerifyPassword": "パスワードの確認",
+    "TextContent": "ホーム・デザインのアイデアを受信トレイで受け取る",
+    "Register": "登録",
+    "RegisterComplete": "登録を完了",
+    "Msgs": {
+      "InvalidFormat": "無効な形式です"
+    }
+  },
+  "RegistrationB2BLayout": {
+    "Title": "登録",
+    "Actions": {
+      "BuyerReg": "購入者を登録",
+      "OrgReg": "組織を登録",
+      "AddBuyer": "既存の組織内に購入者を追加",
+      "AddOrg": "新規の組織とアドミニストレーター・アカウントを追加"
+    }
+  },
+  "ResetPassword": {
+    "Title": "新規パスワードの設定",
+    "ValidationCodeLabel": "確認コード",
+    "NewPasswordLabel": "新規パスワード",
+    "VerifyPasswordLabel": "新規パスワードの確認",
+    "SubmitButton": "パスワードの設定",
+    "ContentText": "送信された E メールに記載されている確認コードと新しいパスワードを以下に入力してください。",
+    "ContentTextLogonID": "ログイン ID を入力してください。パスワードのリセットに使用できる確認コードが記載された E メールが届きます。",
+    "EmailLabel": "E メール・アドレス",
+    "LogonIDLabel": "ログイン ID",
+    "SuccessMsg": "成功",
+    "PasswordNotRecieved": "確認コードを受け取っていませんか?",
+    "ResendVerificationCode": "確認コードの再送信",
+    "AccountInfoRemember": "アカウント情報を覚えていますか?",
+    "SignIn": "今すぐサインイン",
+    "Msgs": {
+      "InvalidFormat": "無効な形式です"
+    }
+  },
+  "SearchBar": {
+    "SearchField": "検索",
+    "KeywordTitle": "キーワード",
+    "CategoryTitle": "カテゴリー",
+    "BrandTitle": "ブランド",
+    "Clear": "検索のクリア"
+  },
+  "SessionError": {
+    "TimeoutTitle": "セッション・タイムアウト",
+    "InvalidTitle": "無効なセッションのエラー",
+    "GenericTitle": "一般エラー",
+    "TimeoutMsg": "セッションがタイムアウトし、正常にログオフしました。ストアにアクセスするには再度サインインしてください。",
+    "InvalidMsg": "ログイン ID が別の場所で使用されています。ストアにアクセスするには再度サインインしてください。",
+    "InvalidMsgB2C": "E メール・アドレスが別の場所で使用されています。ストアにアクセスするには再度サインインしてください。",
+    "Email": "E メール",
+    "Password": "パスワード",
+    "SubmitButton": "サインイン",
+    "CancelButton": "キャンセル",
+    "ActionIncomplete": "ログイン ID が別の場所で使用されている可能性があるため、要求を完了できませんでした。続行するには再度サインインしてください。"
+  },
+  "SignIn": {
+    "ReturningCustomer": "登録済みのお客様",
+    "Password": "パスワード",
+    "ChangPassword": "パスワード変更",
+    "CurrentPassword": "現行パスワード",
+    "PasswordVerify": "パスワードの確認",
+    "RememberMe": "記憶する",
+    "SignInButton": "サインイン",
+    "Cancel": "キャンセル",
+    "Submit": "送信",
+    "ForgotPassword": "パスワードをお忘れですか?",
+    "noAccount": "アカウントをお持ちでない場合",
+    "registerNow": "今すぐ登録",
+    "Label": {
+      "B2B": "ログイン ID",
+      "Email": "E メール・アドレス",
+      "rememberMe": "記憶する"
+    },
+    "Msgs": {
+      "InvalidFormat": "無効な形式です。",
+      "PasswordNotMatch": "パスワードとパスワードの確認が一致しません。",
+      "OldPasswordReuse": "入力されたパスワードは前に使用されています。新規パスワードを入力してください。"
+    }
+  },
+  "CommerceEnvironment": {
+    "listSettings": {
+      "relevance": "関連性",
+      "brands": "ブランド",
+      "name": "名前",
+      "priceLowToHigh": "価格 (価格の安い順)",
+      "priceHighToLow": "価格 (価格の高い順)"
+    },
+    "inventoryStatus": {
+      "Available": "在庫中",
+      "Allocated": "在庫中",
+      "Unallocated": "未割り振り",
+      "Backordered": "バックオーダー済み",
+      "OOS": "在庫切れ",
+      "NA": "利用不可"
+    },
+    "recurringOrderFrequency": {
+      "Everyday": "毎日",
+      "EveryWeek": "毎週",
+      "EveryTwoWeeks": "2 週間ごと",
+      "EveryThreeWeeks": "3 週間ごと",
+      "EveryFourWeeks": "4 週間ごと"
+    },
+    "currency": {
+      "ROL": "ルーマニア・レウ",
+      "RON": "ルーマニア・レウ",
+      "ARS": "アルゼンチン・ペソ",
+      "ATS": "オーストリア・シリング",
+      "AUD": "オーストラリア・ドル",
+      "BEF": "ベルギー・フラン",
+      "BRL": "ブラジル・レアル",
+      "CAD": "カナダ・ドル",
+      "CNY": "中国元",
+      "DEM": "ドイツ・マルク",
+      "ESP": "スペイン・ペセタ",
+      "EUR": "ユーロ G",
+      "FRF": "フランス・フラン",
+      "GBP": "イギリス・ポンド",
+      "HKD": "香港ドル",
+      "ITL": "イタリア・リラ",
+      "JPY": "日本円",
+      "KRW": "韓国ウォン",
+      "SGD": "シンガポール・ドル",
+      "TWD": "台湾ドル",
+      "USD": "米国ドル",
+      "ZAR": "南アフリカ・ランド",
+      "FIM": "フィンランド・マルカ",
+      "IEP": "アイルランド・プント",
+      "LUF": "ルクセンブルク・フラン",
+      "NLG": "オランダ・ギルダー",
+      "PTE": "ポルトガル・エスクード",
+      "NOK": "ノルウェー・クローネ",
+      "SEK": "スウェーデン・スウェーデン・クローナ",
+      "DKK": "デンマーク・デンマーク・クローネ",
+      "CHF": "スイス・フラン",
+      "PLN": "ポーランド・ズウォティ",
+      "RUB": "ロシア・ルーブル",
+      "EGP": "エジプト・ポンド"
+    },
+    "language": {
+      "-1": "アメリカ英語",
+      "-2": "フランス語",
+      "-3": "ドイツ語",
+      "-4": "イタリア語",
+      "-5": "スペイン語",
+      "-6": "ブラジル・ポルトガル語",
+      "-7": "中国語 (簡体字)",
+      "-8": "中国語 (繁体字)",
+      "-10": "日本語",
+      "-21": "ルーマニア語",
+      "-20": "ロシア語",
+      "-9": "韓国語",
+      "-22": "ポーランド語",
+      "-23": "アラビア語"
+    }
+  }
+}

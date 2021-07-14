@@ -34,12 +34,13 @@ import {
   StyledButton,
   StyledContainer,
   StyledGrid,
-  StyledTable,
-  StyledTableIcons,
   StyledTypography,
   StyledLink,
-  StyledMTableFilterRow,
-} from "../../../StyledUI";
+  StyledTable,
+  StyledTableIcons,
+} from "@hcl-commerce-store-sdk/react-component";
+import { StyledMTableFilterRow } from "../../../StyledUI";
+import { useSite } from "../../../../_foundation/hooks/useSite/useSite";
 const useOrderHistoryTable = () => {
   const widgetName = getDisplayName(OrderHistoryPage);
   const { t, i18n } = useTranslation();
@@ -55,26 +56,43 @@ const useOrderHistoryTable = () => {
 
   const noPO = "noPO";
   const noPoString = t(`Order.${noPO}`);
-  const dateFormatOptions = { year: "numeric", month: "long", day: "numeric" };
+  const dateFormatOptions: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   const dateFormatter = new Intl.DateTimeFormat(
     i18n.languages[0],
     dateFormatOptions
   );
+  const [tableColumn, setTableColumn] = useState<any>();
+  const { mySite } = useSite();
 
-  const statusLookup = {
-    N: t(`Order.Status_N`),
-    M: t(`Order.Status_M`),
-    A: t(`Order.Status_A`),
-    B: t(`Order.Status_B`),
-    C: t(`Order.Status_C`),
-    R: t(`Order.Status_R`),
-    S: t(`Order.Status_S`),
-    D: t(`Order.Status_D`),
-    F: t(`Order.Status_F`),
-    G: t(`Order.Status_G`),
-    L: t(`Order.Status_L`),
-    W: t(`Order.Status_W`),
-  };
+  const statusLookup = mySite.isB2B
+    ? {
+        N: t(`Order.Status_N`),
+        M: t(`Order.Status_M`),
+        A: t(`Order.Status_A`),
+        B: t(`Order.Status_B`),
+        C: t(`Order.Status_C`),
+        R: t(`Order.Status_R`),
+        S: t(`Order.Status_S`),
+        D: t(`Order.Status_D`),
+        F: t(`Order.Status_F`),
+        G: t(`Order.Status_G`),
+        L: t(`Order.Status_L`),
+        W: t(`Order.Status_W`),
+      }
+    : {
+        M: t(`Order.Status_M`),
+        B: t(`Order.Status_B`),
+        R: t(`Order.Status_R`),
+        S: t(`Order.Status_S`),
+        D: t(`Order.Status_D`),
+        F: t(`Order.Status_F`),
+        G: t(`Order.Status_G`),
+        L: t(`Order.Status_L`),
+      };
   const title = t("Order.OrderHistory");
   const columns = [
     {
@@ -200,6 +218,14 @@ const useOrderHistoryTable = () => {
     ),
     FilterRow: (props) => <StyledMTableFilterRow {...props} />,
   };
+
+  React.useEffect(() => {
+    if (!mySite.isB2B) {
+      columns.splice(1, 1);
+    }
+    setTableColumn(columns);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
@@ -335,26 +361,28 @@ const useOrderHistoryTable = () => {
     components,
     actions,
     cancels,
+    tableColumn,
   };
 };
 
 function OrderHistoryPage(props: any) {
   const {
     options,
-    columns,
     localization,
     getOrderHistories,
     title,
     components,
     actions,
     cancels,
+    tableColumn,
   } = useOrderHistoryTable();
 
   useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <StyledContainer className="page">
@@ -371,7 +399,7 @@ function OrderHistoryPage(props: any) {
         <StyledGrid item xs={12} md={9}>
           <StyledTable
             icons={StyledTableIcons}
-            columns={columns}
+            columns={tableColumn}
             data={(query) => {
               return getOrderHistories(query);
             }}

@@ -40,7 +40,7 @@ import {
   StyledStepper,
   StyledProgressPlaceholder,
   StyledLink,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 //GA360
 import UADataService from "../../../_foundation/gtm/ua/uaData.service";
 import GA4DataService from "../../../_foundation/gtm/ga4/ga4Data.service";
@@ -129,9 +129,6 @@ const Checkout: React.FC = (props: any) => {
       };
       dispatch(orderActions.GET_CART_ACTION({ ...payload }));
     }
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite, contractId, defaultCurrencyID]);
 
@@ -167,6 +164,13 @@ const Checkout: React.FC = (props: any) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeStep]);
+
+  useEffect(() => {
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return isFetching === undefined || isFetching ? (
     <StyledProgressPlaceholder className="vertical-padding-15" />

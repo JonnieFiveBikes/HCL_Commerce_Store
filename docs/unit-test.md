@@ -19,7 +19,7 @@ We are using:
    - `src/testing/mocks/handler.ts` and `src/testing/mocks/server.ts` are config/setup for [MSW REST API mock](https://mswjs.io/docs/getting-started/mocks/rest-api). The `handler` can be overridden in each individual test, if a service handler is not defined in the test, calling the service in the test will fallback to this global handler. Currently, the global handler is returning 404.
 3. component folder structure.
 
-   ![Category recommendation](../readmeImages/ut1.png)
+   ![Add Address Book](../readmeImages/ut1.png)
 
    - test file in `__tests__` folder.
    - MSW test specific config/setup and other test specific data setup(e.g. redux state object for particular test) in `mocks` folder.
@@ -27,109 +27,79 @@ We are using:
 4. example (explanation in comments):
 
    ```ts
+   //Standard libraries
    import React from "react";
-   /**
-    * Importing custom render and
-    * waitForElement(re-exported in test-utils from react testing library)
-    */
+   import userEvent from "@testing-library/user-event";
+   //Test setup libraries
    import {
      render,
-     waitForElement,
+     screen,
+     fireEvent,
    } from "../../../../testing/utils/test-utils";
-   import { CategoryRecommendationLayout } from "../";
-   /**
-    * importing mock state and other data for the purpose of testing this component only.
-    */
-   import { initStates, cidIValue, eSpotIValue, page } from "../mocks/data";
-   // Importing global MSW server
-   import { server } from "../../../../testing/mocks/server";
-   // importing test specific MSW handler
-   import { handlers } from "../mocks/handlers";
+   // UT component
+   import AddAddress from "../AddAddress";
+   //Foundation libraries
+   import personContactService from "../../../../_foundation/apis/transaction/personContact.service";
+   describe("AddAddress UT", () => {
+   test("Check AddAddress component is rendered normally", () => {
+   // Render Add Address component
+   const { container } = render(<AddAddress />);
 
-   /* mock CategoryCardLayout
-    * It is used by Category Recommendation, since we are testing
-    * Category recommendation only, so we mock the child component CategoryCardLayout.
-    */
-   jest.mock(
-     "../../category-card/CategoryCardLayout",
-     () => ({ renderingContext }) => (
-       <div data-testid={`category-${renderingContext.id}`} />
-     )
-   );
-   describe("Category Recommendation Layout", () => {
-     test("renders empty Category Recommendation when eSpot not found", async () => {
-       const { container, queryByTestId } = render(
-         <CategoryRecommendationLayout
-           cid={cidIValue}
-           eSpot={eSpotIValue}
-           page={page}
-         />,
-         {
-           //calling custom render with mock state object.
-           initialState: initStates as any,
-         }
-       );
-       const element = await waitForElement(() =>
-         container.querySelector(".vertical-padding-2")
-       );
-       expect(element).toBeTruthy();
-       const cat = await waitForElement(() =>
-         queryByTestId("category-Kitchen")
-       ).catch((e) => null);
-       expect(cat).toBeFalsy();
-     });
-
-     test("renders Category Recommendation with eSpot and category data", async () => {
-       // use test specific MSW handler.
-       server.use(...handlers);
-       const { queryByTestId } = render(
-         <CategoryRecommendationLayout
-           cid={cidIValue}
-           eSpot={eSpotIValue}
-           page={page}
-         />,
-         {
-           initialState: initStates as any,
-         }
-       );
-       const cat = await waitForElement(() =>
-         queryByTestId("category-Kitchen")
-       );
-       expect(cat).toBeTruthy();
-     });
-   });
+    // Check the breadcrums
+    // AddressBook - hyperlink
+    screen.getByText("AddressBook.Title");
+    expect(screen.getByText("AddressBook.Title").closest("a")).toHaveAttribute(
+      "href",
+      "/address-book"
+    );
+    // StyledIcon check -  ">"
+    const svgIcon = container.querySelector(".MuiSvgIcon-root");
+    expect(svgIcon).toBeInTheDocument();
+    // Add a new adress text check
+    screen.getByText("AddressBook.AddrMsg");
+    // Cancel button
+    screen.getByRole("button", { name: "AddressBook.Cancel" });
+    expect(screen.getByText("AddressBook.Cancel").closest("a")).toHaveAttribute(
+      "href",
+      "/address-book"
+    );
+    expect(screen.getByRole("button", { name: "AddressBook.Cancel" }))
+      .toBeEnabled;
+    // Create Address button - disabled state
+    screen.getByRole("button", { name: "AddressBook.CreateAddress" });
+    expect(
+      screen.getByRole("button", { name: "AddressBook.CreateAddress" })
+    ).toBeDisabled();
+    });
    ```
+
 ### Further tips
 
 When you render a component to test, you can query text rendered by the component, in order to set some baselines for the test or even assertions. This is separate than querying elements by class selector or test ids. This is done using the screen import from test utils react testing library.
 
-This is how to import screen ```import {
-     render,
-     waitForElement,
-     screen
-   } from "../../../../testing/utils/test-utils";```
-   
-So say you render Address Book component.  You can then ensure it is rendered by querying the title "Address Book" which is always rendered in the component. 
+This is how to import screen `import { render, waitForElement, screen } from "../../../../testing/utils/test-utils";`
 
-```expect(screen.queryByText("Address Book")).toBeDefined;```
+So say you render Address Book component. You can then ensure it is rendered by querying the title "Address Book" which is always rendered in the component.
+
+`expect(screen.queryByText("Address Book")).toBeDefined;`
 
 You can also check for data assertions. If you know what data is being rendered by the component then you can search for some text on screen. For example, if you pass a list of addresses to the Address List component to be rendered, you know that it will create a list of address cards for each address in the list. These cards should have an address name. So you can test that the cards are rendered by checking for the names. If the names exist, the cards are rendered, the data is passed properly to address list, and thus it is working as intended
 
-```expect(screen.queryByText("billing-joe")).toBeDefined;```
+`expect(screen.queryByText("billing-joe")).toBeDefined;`
 
 You can also check for negative assertions with "toBeUndefined"
 
 Whenever we fire an event or any function call that triggers react hook state update and because we're not in the React call-stack we're ended up getting below warning.
 
-```not wrapped in act(...)```
+`not wrapped in act(...)`
 
 So lets wrap that in act(...)! Please see below link for more details and how to fix it.
 
 [https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning](https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning)
 
 Asserting the HTML elements are present or not present can be done by using below
-```toBeInTheDocument()```
-```not.toBeInTheDocument()```
+`toBeInTheDocument()`
+`not.toBeInTheDocument()`
 
 For more information, please check below link
 [https://testing-library.com/docs/guide-disappearance#asserting-elements-are-not-present](https://testing-library.com/docs/guide-disappearance#asserting-elements-are-not-present)

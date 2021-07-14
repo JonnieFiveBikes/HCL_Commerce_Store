@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 //Redux
 import { userNameSelector } from "../../../../redux/selectors/user";
 //UI
-import { StyledTypography } from "../../../StyledUI";
+import { StyledTypography } from "@hcl-commerce-store-sdk/react-component";
 
 function WelcomeUserSection() {
   const { t } = useTranslation();

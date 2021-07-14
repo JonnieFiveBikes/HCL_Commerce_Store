@@ -35,7 +35,6 @@ import {
   LOGON_AND_CHANGE_PASSWORD_FAIL_ACTION,
 } from "../../actions/user";
 import { userLastUpdatedSelector } from "../../selectors/user";
-import { CART_LOCKED } from "../../../constants/errors";
 import { USER_CONTEXT_REQUEST_ACTION } from "../../actions/context";
 import { ENTITLED_ORG_ACTION } from "../../actions/organization";
 import { FETCH_CONTRACT_REQUESTED_ACTION } from "../../actions/contract";

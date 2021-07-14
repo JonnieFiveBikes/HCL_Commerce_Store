@@ -33,7 +33,7 @@ import {
   StyledIcon,
   StyledPaper,
   StyledTypography,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 /**
  * Order Confirmation component

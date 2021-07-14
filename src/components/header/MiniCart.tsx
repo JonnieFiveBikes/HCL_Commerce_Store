@@ -22,7 +22,7 @@ import {
   StyledButton,
   StyledTypography,
   StyledHeaderActions,
-} from "../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 interface MiniCartProps {

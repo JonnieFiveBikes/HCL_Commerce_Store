@@ -24,7 +24,7 @@ import {
   StyledIconLabel,
   StyledBox,
   StyledButton,
-} from "../../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ListIcon from "@material-ui/icons/List";
 import OrderDetailSubsection from "../../order-detail-subsection/OrderDetailSubsection";

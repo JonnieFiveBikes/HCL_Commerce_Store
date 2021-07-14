@@ -103,12 +103,15 @@ const Review: React.FC = (props: any) => {
       //Refresh address list to get any new shipping/billing addresses created
       dispatch(GET_ADDRESS_DETAIL_ACTION({ ...payloadBase }));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mySite]);
 
+  useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mySite]);
+  }, []);
 
   function canContinue() {
     return (
@@ -153,7 +156,7 @@ const Review: React.FC = (props: any) => {
             const payload: any = {
               ...payloadBase,
               orderId: cart.orderId,
-              $queryParameters: { ...payloadBodyBase }, //PO must be specified in the params too else API throws error
+              query: { ...payloadBodyBase }, //PO must be specified in the params too else API throws error
               body: {
                 ...payloadBodyBase, //API uses the PO number value from body
                 fulfillmentInterval: fulfillmentInterval,
@@ -167,9 +170,15 @@ const Review: React.FC = (props: any) => {
         }
       } else {
         await cartService.preCheckout({ ...payloadBase });
+        let param = {
+          notifyOrderSubmitted: "1",
+          notifyMerchant: "1",
+          notifyShopper: "1",
+          ...payloadBodyBase,
+        };
         await cartService.checkOut({
           ...payloadBase,
-          body: { ...payloadBodyBase },
+          body: param,
         });
       }
 

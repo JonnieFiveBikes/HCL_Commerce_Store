@@ -23,7 +23,11 @@ import { PaymentInfoType } from "../../pages/checkout/payment/Payment";
 import { addressDetailsSelector } from "../../../redux/selectors/account";
 import { GET_ADDRESS_DETAIL_ACTION } from "../../../redux/actions/account";
 //UI
-import { StyledGrid, StyledTypography, StyledCard } from "../../StyledUI";
+import {
+  StyledGrid,
+  StyledTypography,
+  StyledCard,
+} from "@hcl-commerce-store-sdk/react-component";
 
 interface PaymentInfoCardProps {
   paymentInfo: PaymentInfoType;
@@ -61,11 +65,15 @@ const PaymentInfoCard: React.FC<PaymentInfoCardProps> = (props: any) => {
     if (mySite && addressDetails === null) {
       dispatch(GET_ADDRESS_DETAIL_ACTION({ ...payloadBase }));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mySite]);
+
+  useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mySite]);
+  }, []);
 
   function getAddress() {
     let finalAddressData: any = {};

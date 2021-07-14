@@ -18,7 +18,7 @@ import { PRODUCTION, SHOW_API_FLOW } from "../../_foundation/constants/common";
 //Redux
 import { apiFlowListSelector } from "../../redux/selectors/api";
 //UI
-import { StyledBox } from "../../components/StyledUI";
+import { StyledBox } from "@hcl-commerce-store-sdk/react-component";
 
 /**
  * API Sequence Diagram

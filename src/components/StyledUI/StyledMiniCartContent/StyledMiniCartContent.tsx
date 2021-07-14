@@ -21,7 +21,7 @@ import {
   StyledGrid,
   StyledPaper,
   StyledTypography,
-} from "../index";
+} from "@hcl-commerce-store-sdk/react-component";
 
 interface MiniCartContentProps {
   title: string;

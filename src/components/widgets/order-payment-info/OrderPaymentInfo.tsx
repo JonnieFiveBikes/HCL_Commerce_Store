@@ -12,7 +12,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 //UI
-import { StyledTypography, StyledIconLabel, StyledBox } from "../../StyledUI";
+import {
+  StyledTypography,
+  StyledIconLabel,
+  StyledBox,
+} from "@hcl-commerce-store-sdk/react-component";
 import PaymentIcon from "@material-ui/icons/Payment";
 
 interface OrderPaymentInfoProps {

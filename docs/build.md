@@ -4,9 +4,11 @@ HCL Commerce Store React SDK build process supports build multiple APPs.
 
 ### Default build process
 
+Our build process is built on top of existing `react-script` from [Create React App](https://create-react-app.dev/) with very minimum customization. 
+
 The SDK has two default Apps predefined: B2C Store based `Emerald` app and B2B Store based `Sapphire` app. The production build, by running `npm run build -- --appName Emerald,Sapphire`, will output bundle files into `dist/Emerald` and `dist/Sapphire` folder with both apps's React route `basename` default to `Emerald` and `Sapphire` respectively.
 
-The build process is built on top of existing `react-script` from [Create React App](https://create-react-app.dev/). The build scripts and assets are located in following folder:
+The build scripts and assets are located in following folder:
 
 - build scripts folder: `tools/scripts`
 
@@ -88,9 +90,11 @@ To rename app in order for build app bundle into different name, a list of files
       ```
 4. run `npm run build` or `npm start` script.
 
-#### Build app bundle without React route basename
+#### Build app bundle without React route basename(blank context root)
 
-In cases that basename is not applicable, we can remove the basename for app. To do this, in `assets/template` folder, remove `REACT_APP_ROUTER_BASENAME` entries in `.env` template files. For example,
+`basename` plays a role similar to context root in [React Router](https://reactrouter.com) world. 
+
+In cases that `basename` is not applicable, we can remove the basename for app. To do this, in `assets/template` folder, remove `REACT_APP_ROUTER_BASENAME` entries in all `.env` template files. For example,
 
 ```diff
 PORT={{port}}
@@ -100,3 +104,21 @@ REACT_APP_STORENAME={{appName}}
 - REACT_APP_ROUTER_BASENAME={{appName}}
 + REACT_APP_ROUTER_BASENAME=
 ```
+
+`basename` is a React Router concept, for details regarding `basename`, please refer to https://reactrouter.com/web/api/BrowserRouter.
+
+#### App serving from document root of a web server
+
+In case that the bundle needs to be deployed into document root of a web server, the `PUBLIC_URL` [Create React App](https://create-react-app.dev/) built in env variable needs to be removed from .env files. For more information regarding this please look at here [Using the Public Folder](https://create-react-app.dev/docs/using-the-public-folder)
+
+```diff
+
+REACT_APP_STORENAME={{appName}}
+REACT_APP_ROUTER_BASENAME={{appName}}
+- PUBLIC_URL=/{{appName}}
+
+```
+
+#### Web Server rewrite for Single Page App
+
+Please refer to Create React App [Serving Apps with Client-Side Routing](https://create-react-app.dev/docs/deployment/#serving-apps-with-client-side-routing) for different deployment options and web server config. 

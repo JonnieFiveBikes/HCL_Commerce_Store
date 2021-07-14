@@ -36,7 +36,7 @@ import {
   StyledTypography,
   StyledSelect,
   StyledLink,
-} from "../../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import Divider from "@material-ui/core/Divider";
 //GA360
 import AsyncCall from "../../../../_foundation/gtm/async.service";
@@ -150,14 +150,12 @@ const BuyerUserRegistration = (props: any) => {
       ...payloadBase,
     };
 
-    personService
-      .registerPerson(parameters, null, mySite?.transactionContext)
-      .then((res) => {
-        if (res.status === CREATED) {
-          setOpenSuccess(true);
-          clearAll();
-        }
-      });
+    personService.registerPerson(parameters).then((res) => {
+      if (res.status === CREATED) {
+        setOpenSuccess(true);
+        clearAll();
+      }
+    });
   };
 
   const clearAll = () => {
@@ -188,7 +186,8 @@ const BuyerUserRegistration = (props: any) => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (redirect) {
     //GA360

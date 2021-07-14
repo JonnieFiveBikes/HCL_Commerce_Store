@@ -20,7 +20,7 @@ import {
   StyledAccordion,
   StyledAccordionDetails,
   StyledAccordionSummary,
-} from "../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";

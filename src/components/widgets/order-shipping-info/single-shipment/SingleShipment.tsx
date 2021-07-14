@@ -21,7 +21,7 @@ import {
   StyledTypography,
   StyledIconLabel,
   StyledBox,
-} from "../../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import LocalShippingIcon from "@material-ui/icons/LocalShipping";
 import HomeIcon from "@material-ui/icons/Home";
 

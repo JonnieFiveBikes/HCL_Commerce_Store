@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+#==================================================
+# Licensed Materials - Property of HCL Technologies
+#
+# HCL Commerce
+#
+# (C) Copyright HCL Technologies Limited 2021
+#
+#==================================================
+#
+
+. "$(dirname "$0")/_/husky.sh"
+
+npm run pretty-quick -- --staged
+./tools/scripts/hooks/verifyCopyright.sh
+./tools/scripts/hooks/filterPackageLock.sh
+./tools/scripts/hooks/lint.sh

@@ -32,7 +32,7 @@ import {
   StyledTypography,
   StyledLink,
   StyledBox,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import { Divider } from "@material-ui/core";
 //redux
 import * as successActions from "../../../redux/actions/success";
@@ -92,9 +92,6 @@ function ResetPassword(props) {
         });
       }
     }
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
   }, [site]);
 
   const handleEmailLogonIdChange = (
@@ -162,7 +159,7 @@ function ResetPassword(props) {
       ...payloadBase,
     };
     personService
-      .updatePerson(parameters, null, site.transactionContext)
+      .updatePerson(parameters)
       .then((res) => {
         if (res.status === OK) {
           history.push(ROUTES.SIGNIN);
@@ -181,7 +178,8 @@ function ResetPassword(props) {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <form noValidate>

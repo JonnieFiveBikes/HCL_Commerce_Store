@@ -30,7 +30,7 @@ import {
   StyledPaper,
   StyledSwatch,
   StyledProgressPlaceholder,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 function FeatureCardLayout({ renderingContext }: any) {
   const widgetName = getDisplayName(FeatureCardLayout);
@@ -57,9 +57,6 @@ function FeatureCardLayout({ renderingContext }: any) {
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);
     }),
-  };
-  const payload = {
-    ...payloadBase,
   };
 
   const informMarketingOfClick = (event) => {

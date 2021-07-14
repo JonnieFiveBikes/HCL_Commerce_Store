@@ -12,11 +12,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { paramCase } from "change-case";
 //Foundation libraries
 import { useSite } from "../../_foundation/hooks/useSite";
 //Custom libraries
 import { footerConfig } from "./footerConstant";
-import { ContentRecommendationLayout } from "../widgets/content-recommendation";
+import ContentRecommendationWidget from "../commerce-widgets/content-recommendation-widget";
 import { SessionErrorDialog } from "../widgets/session-error-modal";
 import ConfirmationDialog from "../widgets/confirmation-dialog/ConfirmationDialog";
 //UI
@@ -29,7 +30,7 @@ import {
   StyledTypography,
   StyledFooter,
   StyledTooltip,
-} from "../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 function Footer(props: any) {
   const { t } = useTranslation();
@@ -37,10 +38,18 @@ function Footer(props: any) {
   const Logo = () => {
     return mySite != null ? (
       <div className="footer-logo">
-        <ContentRecommendationLayout
-          cid="footer"
-          eSpot={footerConfig.espot}
-          page={footerConfig.page}></ContentRecommendationLayout>
+        <ContentRecommendationWidget
+          {...{
+            widget: {
+              id: `footer-${paramCase(footerConfig.espot.eSpotName)}`,
+              widgetName: "content-recommendation-widget",
+              name: footerConfig.espot.eSpotName,
+              properties: {
+                emsName: footerConfig.espot.eSpotName,
+              },
+            },
+            page: { name: "" },
+          }}></ContentRecommendationWidget>
       </div>
     ) : null;
   };

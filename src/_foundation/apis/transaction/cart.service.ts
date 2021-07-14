@@ -12,24 +12,27 @@
  * Do not modify, the file is generated.
  */
 //Standard libraries
-import { AxiosRequestConfig, Method, AxiosPromise } from "axios";
+import { AxiosPromise } from "axios";
+import i18n from "../../../i18n";
 //Foundation libraries
-import { executeRequest } from "../../axios/axiosConfig";
 import { getSite } from "../../hooks/useSite";
-import { localStorageUtil } from "../../utils/storageUtil";
-import { PRODUCTION, SHOW_API_FLOW } from "../../constants/common";
-//Redux
-import { API_CALL_ACTION } from "../../../redux/actions/api";
+import {
+  CartApi,
+  ShippingInfoApi,
+} from "@hcl-commerce-store-sdk/typescript-axios-transaction";
+import { site } from "../../constants/site";
+import { CommerceEnvironment } from "../../../constants/common";
 
+const cartApiInstance = new CartApi(undefined, site.transactionContext);
+const shippingInfoApiInstance = new ShippingInfoApi(
+  undefined,
+  site.transactionContext
+);
 const cartService = {
   /**
    * Gets order details for the shopping cart.
    * `@method`
    * `@name Cart#getCart`
-   *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
    *
    * `@param {any} parameters` have following properties:
    ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
@@ -40,204 +43,35 @@ const cartService = {
    ** `@property {string} sortOrderItemBy ` The order the results are sorted by ie:orderItemID
    ** `@property {string} profileName ` Profile name. Profiles determine the subset of data to be returned by a query.
    */
-  getCart(parameters: any, headers?: any, url?: string): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart/@self";
-    let requestUrl = domain + path;
-    let method: Method = "GET";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+  getCart(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      responseFormat,
+      pageNumber,
+      pageSize,
+      currency,
+      sortOrderItemBy,
+      profileName,
+      ...options
+    } = parameters;
 
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
+    const langId =
+      CommerceEnvironment.reverseLanguageMap[
+        i18n.languages[0].split("-").join("_")
+      ];
 
-    if (parameters["pageNumber"] !== undefined) {
-      const name = "pageNumber";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["pageSize"] !== undefined) {
-      const name = "pageSize";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["currency"] !== undefined) {
-      const name = "currency";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["sortOrderItemBy"] !== undefined) {
-      const name = "sortOrderItemBy";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["profileName"] !== undefined) {
-      const name = "profileName";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
+    return cartApiInstance.cartGetCart(
+      storeId,
+      langId,
+      responseFormat,
+      pageNumber,
+      pageSize,
+      currency,
+      sortOrderItemBy,
+      profileName,
+      options
     );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
   },
 
   /**
@@ -245,151 +79,26 @@ const cartService = {
    * `@method`
    * `@name Cart#copyOrder`
    *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-   *
    * `@param {any} parameters` have following properties:
    ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
    ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
    ** `@property {any} body ` The request object for copy order.
    */
-  copyOrder(parameters: any, headers?: any, url?: string): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart/copy_order";
-    let requestUrl = domain + path;
-    let method: Method = "POST";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/copy_order' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+  copyOrder(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      responseFormat,
+      body,
+      ...options
+    } = parameters;
 
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["body"] !== undefined) {
-      body = parameters["body"];
-    }
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
+    return cartApiInstance.cartCopyOrder(
+      storeId,
+      responseFormat,
+      body,
+      options
     );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
   },
 
   /**
@@ -397,155 +106,26 @@ const cartService = {
    * `@method`
    * `@name Cart#deleteOrderItem`
    *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-   *
    * `@param {any} parameters` have following properties:
    ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
    ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
    ** `@property {any} body ` The request body for deleting an order item.
    */
-  deleteOrderItem(
-    parameters: any,
-    headers?: any,
-    url?: string
-  ): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart/@self/delete_order_item";
-    let requestUrl = domain + path;
-    let method: Method = "PUT";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self/delete_order_item' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+  deleteOrderItem(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      responseFormat,
+      body,
+      ...options
+    } = parameters;
 
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["body"] !== undefined) {
-      body = parameters["body"];
-    }
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
+    return cartApiInstance.cartDeleteOrderItem(
+      storeId,
+      responseFormat,
+      body,
+      options
     );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
   },
 
   /**
@@ -553,10 +133,6 @@ const cartService = {
    * `@method`
    * `@name Cart#getUsableShippingInfo`
    *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-   *
    * `@param {any} parameters` have following properties:
    ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
    ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
@@ -564,182 +140,25 @@ const cartService = {
    ** `@property {integer} pageSize ` Page size. Used to limit the amount of data returned by a query. Valid values include positive integers of 1 and above. The "pageNumber" must be specified for paging to work.
    ** `@property {string} orderId ` The order ID.
    */
-  getUsableShippingInfo(
-    parameters: any,
-    headers?: any,
-    url?: string
-  ): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart/@self/usable_shipping_info";
-    let requestUrl = domain + path;
-    let method: Method = "GET";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self/usable_shipping_info' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+  getUsableShippingInfo(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      responseFormat,
+      pageNumber,
+      pageSize,
+      orderId,
+      ...options
+    } = parameters;
 
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["pageNumber"] !== undefined) {
-      const name = "pageNumber";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["pageSize"] !== undefined) {
-      const name = "pageSize";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["orderId"] !== undefined) {
-      const name = "orderId";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
+    return shippingInfoApiInstance.cartGetUsableShippingInfo(
+      storeId,
+      responseFormat,
+      pageNumber,
+      pageSize,
+      orderId,
+      options
     );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
   },
 
   /**
@@ -747,10 +166,6 @@ const cartService = {
    * `@method`
    * `@name Cart#getUsableShippingMode`
    *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-   *
    * `@param {any} parameters` have following properties:
    ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
    ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
@@ -758,182 +173,25 @@ const cartService = {
    ** `@property {integer} pageSize ` Page size. Used to limit the amount of data returned by a query. Valid values include positive integers of 1 and above. The "pageNumber" must be specified for paging to work.
    ** `@property {string} orderId ` The order ID.
    */
-  getUsableShippingMode(
-    parameters: any,
-    headers?: any,
-    url?: string
-  ): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart/@self/usable_shipping_mode";
-    let requestUrl = domain + path;
-    let method: Method = "GET";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self/usable_shipping_mode' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+  getUsableShippingMode(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      responseFormat,
+      pageNumber,
+      pageSize,
+      orderId,
+      ...options
+    } = parameters;
 
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["pageNumber"] !== undefined) {
-      const name = "pageNumber";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["pageSize"] !== undefined) {
-      const name = "pageSize";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["orderId"] !== undefined) {
-      const name = "orderId";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
+    return cartApiInstance.getUsableShippingMode(
+      storeId,
+      responseFormat,
+      pageNumber,
+      pageSize,
+      orderId,
+      options
     );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
   },
 
   /**
@@ -941,10 +199,6 @@ const cartService = {
    * `@method`
    * `@name Cart#getUsablePaymentInfo`
    *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-   *
    * `@param {any} parameters` have following properties:
    ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
    ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
@@ -952,182 +206,25 @@ const cartService = {
    ** `@property {integer} pageSize ` Page size. Used to limit the amount of data returned by a query. Valid values include positive integers of 1 and above. The "pageNumber" must be specified for paging to work.
    ** `@property {string} orderId ` The order ID.
    */
-  getUsablePaymentInfo(
-    parameters: any,
-    headers?: any,
-    url?: string
-  ): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart/@self/usable_payment_info";
-    let requestUrl = domain + path;
-    let method: Method = "GET";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self/usable_payment_info' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+  getUsablePaymentInfo(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      responseFormat,
+      pageNumber,
+      pageSize,
+      orderId,
+      ...options
+    } = parameters;
 
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["pageNumber"] !== undefined) {
-      const name = "pageNumber";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["pageSize"] !== undefined) {
-      const name = "pageSize";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["orderId"] !== undefined) {
-      const name = "orderId";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
+    return cartApiInstance.cartGetUsablePaymentInfo(
+      storeId,
+      responseFormat,
+      pageNumber,
+      pageSize,
+      orderId,
+      options
     );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
   },
 
   /**
@@ -1135,155 +232,26 @@ const cartService = {
    * `@method`
    * `@name Cart#addOrderItem`
    *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-   *
    * `@param {any} parameters` have following properties:
    ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
    ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
    ** `@property {any} body ` The request object for AddOrderItem.
    */
-  addOrderItem(
-    parameters: any,
-    headers?: any,
-    url?: string
-  ): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart";
-    let requestUrl = domain + path;
-    let method: Method = "POST";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+  addOrderItem(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      responseFormat,
+      body,
+      ...options
+    } = parameters;
 
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["body"] !== undefined) {
-      body = parameters["body"];
-    }
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
+    return cartApiInstance.cartAddOrderItem(
+      storeId,
+      responseFormat,
+      body,
+      options
     );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
   },
 
   /**
@@ -1291,155 +259,26 @@ const cartService = {
    * `@method`
    * `@name Cart#updateOrderItem`
    *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-   *
    * `@param {any} parameters` have following properties:
    ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
    ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
    ** `@property {any} body ` Update order item body.
    */
-  updateOrderItem(
-    parameters: any,
-    headers?: any,
-    url?: string
-  ): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart/@self/update_order_item";
-    let requestUrl = domain + path;
-    let method: Method = "PUT";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self/update_order_item' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+  updateOrderItem(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      responseFormat,
+      body,
+      ...options
+    } = parameters;
 
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["body"] !== undefined) {
-      body = parameters["body"];
-    }
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
+    return cartApiInstance.cartUpdateOrderItem(
+      storeId,
+      responseFormat,
+      body,
+      options
     );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
   },
 
   /**
@@ -1447,151 +286,26 @@ const cartService = {
    * `@method`
    * `@name Cart#preCheckout`
    *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-   *
    * `@param {any} parameters` have following properties:
    ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
    ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
    ** `@property {any} body ` The request object for preCheckout.
    */
-  preCheckout(parameters: any, headers?: any, url?: string): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart/@self/precheckout";
-    let requestUrl = domain + path;
-    let method: Method = "PUT";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self/precheckout' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+  preCheckout(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      responseFormat,
+      body,
+      ...options
+    } = parameters;
 
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["body"] !== undefined) {
-      body = parameters["body"];
-    }
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
+    return cartApiInstance.cartPreCheckout(
+      storeId,
+      responseFormat,
+      body,
+      options
     );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
   },
 
   /**
@@ -1599,151 +313,21 @@ const cartService = {
    * `@method`
    * `@name Cart#checkOut`
    *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-   *
    * `@param {any} parameters` have following properties:
    ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
    ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
    ** `@property {any} body ` The request object for checkout.
    */
-  checkOut(parameters: any, headers?: any, url?: string): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart/@self/checkout";
-    let requestUrl = domain + path;
-    let method: Method = "POST";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self/checkout' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+  checkOut(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      responseFormat,
+      body,
+      ...options
+    } = parameters;
 
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["body"] !== undefined) {
-      body = parameters["body"];
-    }
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
-    );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
+    return cartApiInstance.cartCheckOut(storeId, responseFormat, body, options);
   },
 
   /**
@@ -1751,155 +335,21 @@ const cartService = {
    * `@method`
    * `@name Cart#lockCart`
    *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-   *
    * `@param {any} parameters` have following properties:
    ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
    ** `@property {string} cartId (required)` The child property of `Parameters`.Order identifier.
    ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
    */
-  lockCart(parameters: any, headers?: any, url?: string): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart/{cartId}/lock";
-    let requestUrl = domain + path;
-    let method: Method = "POST";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/lock' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+  lockCart(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      responseFormat,
+      body,
+      ...options
+    } = parameters;
 
-    if (parameters["cartId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/lock' missing path parameter cartId"
-      );
-    }
-    requestUrl = requestUrl.replace("{cartId}", parameters["cartId"]);
-
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
-    );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
+    return cartApiInstance.cartLockCart(storeId, body, responseFormat, options);
   },
 
   /**
@@ -1907,10 +357,6 @@ const cartService = {
    * `@method`
    * `@name Cart#lockCartOnBehalf`
    *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-   *
    * `@param {any} parameters` have following properties:
    ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
    ** `@property {string} cartId (required)` The child property of `Parameters`.Order identifier.
@@ -1918,176 +364,25 @@ const cartService = {
    ** `@property {string} forUser ` User name to act on behalf of.
    ** `@property {string} forUserId ` User identifier to act on behalf of.
    */
-  lockCartOnBehalf(
-    parameters: any,
-    headers?: any,
-    url?: string
-  ): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart/{cartId}/lockOnBehalf";
-    let requestUrl = domain + path;
-    let method: Method = "POST";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/lockOnBehalf' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+  lockCartOnBehalf(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      cartId,
+      responseFormat,
+      forUser,
+      forUserId,
+      ...options
+    } = parameters;
 
-    if (parameters["cartId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/lockOnBehalf' missing path parameter cartId"
-      );
-    }
-    requestUrl = requestUrl.replace("{cartId}", parameters["cartId"]);
-
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["forUser"] !== undefined) {
-      const name = "forUser";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["forUserId"] !== undefined) {
-      const name = "forUserId";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
+    return cartApiInstance.cartLockCartOnBehalf(
+      storeId,
+      cartId,
+      responseFormat,
+      forUser,
+      forUserId,
+      options
     );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
   },
 
   /**
@@ -2095,165 +390,32 @@ const cartService = {
    * `@method`
    * `@name Cart#unlockCart`
    *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-   *
    * `@param {any} parameters` have following properties:
    ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
    ** `@property {string} cartId (required)` The child property of `Parameters`.Order identifier.
    ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
    */
   unlockCart(parameters: any, headers?: any, url?: string): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart/{cartId}/unlock";
-    let requestUrl = domain + path;
-    let method: Method = "POST";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/unlock' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      cartId,
+      responseFormat,
+      ...options
+    } = parameters;
 
-    if (parameters["cartId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/unlock' missing path parameter cartId"
-      );
-    }
-    requestUrl = requestUrl.replace("{cartId}", parameters["cartId"]);
-
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
+    return cartApiInstance.cartUnlockCart(
+      storeId,
+      cartId,
+      responseFormat,
+      options
     );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
   },
 
   /**
    * Unlocks the shopping cart when the buyer administrator/CSR has established a session to act on behalf of a user.
    * `@method`
    * `@name Cart#unlockCartOnBehalf`
-   *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
    *
    * `@param {any} parameters` have following properties:
    ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
@@ -2262,484 +424,25 @@ const cartService = {
    ** `@property {string} forUser ` User name to act on behalf of.
    ** `@property {string} forUserId ` User identifier to act on behalf of.
    */
-  unlockCartOnBehalf(
-    parameters: any,
-    headers?: any,
-    url?: string
-  ): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart/{cartId}/unlockOnBehalf";
-    let requestUrl = domain + path;
-    let method: Method = "POST";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/unlockOnBehalf' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+  unlockCartOnBehalf(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      cartId,
+      responseFormat,
+      forUser,
+      forUserId,
+      ...options
+    } = parameters;
 
-    if (parameters["cartId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/{cartId}/unlockOnBehalf' missing path parameter cartId"
-      );
-    }
-    requestUrl = requestUrl.replace("{cartId}", parameters["cartId"]);
-
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["forUser"] !== undefined) {
-      const name = "forUser";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["forUserId"] !== undefined) {
-      const name = "forUserId";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
+    return cartApiInstance.cartUnlockCartOnBehalf(
+      storeId,
+      cartId,
+      responseFormat,
+      forUser,
+      forUserId,
+      options
     );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
-  },
-
-  /**
-   * Cancel the apple pay order.
-   * `@method`
-   * `@name Cart#cancelApplePayOrder`
-   *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-   *
-   * `@param {any} parameters` have following properties:
-   ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
-   ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
-   */
-  cancelApplePayOrder(
-    parameters: any,
-    headers?: any,
-    url?: string
-  ): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart/@self/applepay_cancel";
-    let requestUrl = domain + path;
-    let method: Method = "POST";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self/applepay_cancel' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
-    );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
-  },
-
-  /**
-   * Update the apple pay order.
-   * `@method`
-   * `@name Cart#updateApplePayOrder`
-   *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-   *
-   * `@param {any} parameters` have following properties:
-   ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
-   ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
-   ** `@property {any} body ` The request object for Apple pay order update.
-   */
-  updateApplePayOrder(
-    parameters: any,
-    headers?: any,
-    url?: string
-  ): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/cart/@self/applepay_update";
-    let requestUrl = domain + path;
-    let method: Method = "PUT";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self/applepay_update' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["body"] !== undefined) {
-      body = parameters["body"];
-    }
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
-    );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
   },
 
   /**
@@ -2747,177 +450,29 @@ const cartService = {
    * `@method`
    * `@name Cart#getBuyerPurchaseOrderDataBean`
    *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
-   *
    * `@param {any} parameters` have following properties:
    ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
    ** `@property {string} buyerPurchaseOrderId (required)` The child property of `Parameters`.The buyer purchase order identifier.
    ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
    ** `@property {string} profileName ` Profile name. Profiles determine the subset of data to be returned by a query.
    */
-  getBuyerPurchaseOrderDataBean(
-    parameters: any,
-    headers?: any,
-    url?: string
-  ): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.transactionContext || "";
-    }
-    let domain = url || siteContext;
-    let path =
-      "/store/{storeId}/cart/@self/buyer_purchase_order/{buyerPurchaseOrderId}";
-    let requestUrl = domain + path;
-    let method: Method = "GET";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = [
-      "application/json",
-      "application/xml",
-      "application/xhtml+xml",
-      "application/atom+xml",
-    ];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self/buyer_purchase_order/{buyerPurchaseOrderId}' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
+  getBuyerPurchaseOrderDataBean(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      buyerPurchaseOrderId,
+      responseFormat,
+      profileName,
+      ...options
+    } = parameters;
 
-    if (parameters["buyerPurchaseOrderId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/cart/@self/buyer_purchase_order/{buyerPurchaseOrderId}' missing path parameter buyerPurchaseOrderId"
-      );
-    }
-    requestUrl = requestUrl.replace(
-      "{buyerPurchaseOrderId}",
-      parameters["buyerPurchaseOrderId"]
+    return cartApiInstance.cartGetBuyerPurchaseOrderDataBean(
+      storeId,
+      buyerPurchaseOrderId,
+      responseFormat,
+      profileName,
+      options
     );
-
-    if (parameters["responseFormat"] !== undefined) {
-      const name = "responseFormat";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["profileName"] !== undefined) {
-      const name = "profileName";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
-    );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Transaction: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
   },
 };
 

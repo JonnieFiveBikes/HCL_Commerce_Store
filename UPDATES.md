@@ -3,7 +3,7 @@
 [//]: #
 [//]: # "HCL Commerce"
 [//]: #
-[//]: # "(C) Copyright HCL Technologies Limited 2020"
+[//]: # "(C) Copyright HCL Technologies Limited 2020, 2021"
 [//]: #
 [//]: # "================================================="
 
@@ -49,13 +49,13 @@ The React Store Application (Emerald and Sapphire) has been updated with the fol
 
 1. Support for content and digital assets managed and served from HCL Digital Experience (DX) product.
 
-- Support for 'Marketing Content' template from DX within Marketing Spots on any page
-- Support for 'Marketing Video Content' template from DX within Marketing Spots on any page
-- Multiple language support for DX Content
+   - Support for 'Marketing Content' template from DX within Marketing Spots on any page
+   - Support for 'Marketing Video Content' template from DX within Marketing Spots on any page
+   - Multiple language support for DX Content
 
-1. Support for multiple images displayed as carousel on products, variants and skus on Product Display Page
-1. Support for attachments to products, variants and skus on Product Display Page
-1. Support for developers to view generated API flow diagrams when run in development mode of SDK
+2. Support for multiple images displayed as carousel on products, variants and skus on Product Display Page
+3. Support for attachments to products, variants and skus on Product Display Page
+4. Support for developers to view generated API flow diagrams when run in development mode of SDK
 
 This version of the React Store Application requires corresponding HCL Commerce Version 9.1.4 Search services for multiple angle image support
 and attachments.
@@ -73,6 +73,46 @@ The React Store Application (Emerald and Sapphire) has been updated with the fol
 1. Support for HCL Commerce CSR react app.
 
 This version of the React Store Application requires corresponding HCL Commerce CSR React App Version 9.1.6 to enable Customer Service capability.
+
+### 2021/07/23 HCL Commerce Version 9.1.7 - Refreshed Store Application
+
+The React Store Application (Emerald and Sapphire) has been updated with the following enhancements:
+
+1. Added new Page Composer support.
+2. Removed generate REST client util, use OpenApi generator instead and moved it to a separated NPM local package.
+3. Re-structure project setup moved some components to newly introduced separated NPM local packages
+   1. `@hcl-commerce-store-sdk/react-component`,
+   2. `@hcl-commerce-store-sdk/typescript-axios-es`.
+   3. `@hcl-commerce-store-sdk/typescript-axios-transaction`
+4. Consolidate translation into `assets/common/public/locales` folder
+5. Added multiple-shipment support.
+6. Added order history view for Emerald store.
+7. Moved storybook to NPM local component package.
+8. OOTB Page Composer Layouts:
+   - Product Page(`product-page.tsx`)
+   - B2B Product Page(`b2b-product-page.tsx`)
+   - Product Listing Page(`product-listing-page.tsx`, leaf category with products)
+   - Category Landing Page(`category-landing-page.tsx`, non-leaf category)
+   - Home Page(`home-page.tsx`)
+9. OOTB Page Composer Widgets:
+   - Marketing widgets:
+     - Content Recommendation(AKA Marketing Content, `content-recommendation-widget.tsx`)
+     - Catalog Entry Recommendation(AKA Recommend Products, `catalog-entry-recommendation-widget.tsx`)
+     - Featured Product(`featured-product-recommendation-widget.tsx`)
+     - Category Recommendation(AKA Recommend Categories, `category-recommendation-widget.tsx`)
+     - E-Marketing Spot(`e-marketing-spot-widget.tsx`)
+   - Catalog widgets:
+     - Breadcrumb Trail(`breadcrumb-trail-widget.tsx`)
+     - Facet Navigation(`facet-navigation-widget.tsx`)
+     - Catalog Entry List(AKA Product List, `catalog-entry-list-widget.tsx`)
+     - Child Category Grid(AKA Subcategory List, `child-category-grid-widget.tsx`)
+     - Product Details(`product-details.tsx`)
+     - Merchandising Association(AKA Related Products, `merchandising-association-widget.tsx`)
+     - Product Summary(AKA Product information, `product-information-widget.tsx`)
+     - SKU List(`sku-list-widget.tsx`)
+     - Attribute Filter(`attribute-filter-widget.tsx`)
+
+This version of the React Store Application requires corresponding HCL Commerce Version 9.1.7 to enable Page Composer capability.
 
 ## Limitations
 
@@ -99,7 +139,7 @@ There are specific limitations in the React store applications that developers a
    in other tabs even after reload and the shopper and may need to restart checkout flow.
 
 1. Support for Organization, Users and Approvals administrative tools for buyer administrators or buyer approvers within the store will launch the
-   corresponding UI from Management Center from with the store UI as described here: https://help.hcltechsw.com/commerce/9.1.0/storeseparation/refs/react_b2bbuyers.html.  
+   corresponding UI from Management Center from with the store UI as described here: https://help.hcltechsw.com/commerce/9.1.0/storeseparation/refs/react_b2bbuyers.html.
    A user can access these administrative tools within the store with the same session when logging in from the store's login page.
    If the same user logs in to Management Center from another browser tab or window, this action will terminate the same user's session in the store.
    Returning to the browser window in the store UI will require relogging in to the store. To avoid such issues, consider blocking access
@@ -110,6 +150,10 @@ There are specific limitations in the React store applications that developers a
    of the fields available in the marketing content tool. The source code is provided and can be customized to render in the storefront while making use of
    additional fields. Some Marketing content fields that are NOT currently used by the react component in the application include:
 
-- Any Marketing content type with 'click action type' = 'Predefined click action'
-- Any Marketing content type with 'click action type' = 'Predefined click action for promotion'
-- Marketing content type 'Asset' with 'Number of click action' = 'Multiple (Image Map)'
+   - Any Marketing content type with 'click action type' = 'Predefined click action'
+   - Any Marketing content type with 'click action type' = 'Predefined click action for promotion'
+   - Marketing content type 'Asset' with 'Number of click action' = 'Multiple (Image Map)'
+
+1. Among Page Composer enabled widgets and layouts:
+   1. `Product Summary`, `SKU List`, `Attribute filter` are designed for B2B Product Page.
+   2. `Product Details` is designed for Product page.

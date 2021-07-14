@@ -17,19 +17,22 @@ import AccountLinksSection from "../account-links-section";
 //UI
 import PersonIcon from "@material-ui/icons/Person";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
-import { StyledLinkBox } from "../../StyledUI";
+import { StyledLinkBox } from "@hcl-commerce-store-sdk/react-component";
 
 function AccountLinksLayout() {
   const { t } = useTranslation();
+  const disabledTitle = t("AccountLinks.DisabledMessage");
 
   let linkList: JSX.Element[] = [
     <StyledLinkBox
+      disabledTitle={disabledTitle}
       title={t("AccountLinks.PersonalInformationText")}
       description={t("AccountLinks.PersonalInformationDescription")}
       url={ROUTES.PERSONAL_INFORMATION}
       icon={<PersonIcon />}
     />,
     <StyledLinkBox
+      disabledTitle={disabledTitle}
       title={t("AccountLinks.AddressBookText")}
       description={t("AccountLinks.AddressBookDescription")}
       url={ROUTES.ADDRESS_BOOK}

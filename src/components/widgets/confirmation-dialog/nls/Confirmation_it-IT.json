@@ -1,9 +1,0 @@
-{
-  "Confirmation": {
-    "ScheduleOrderCancel": "Tutte le spedizioni future per questo ordine verranno annullate.",
-    "ScheduleOrderCancelNotification": "L'annullamento dell'ordine richiede un preavviso di 12 ore. Tutti gli ordini futuri verranno annullati ad eccezione dell'ordine per {{next}} che verrà spedito secondo la pianificazione. Annullare?",
-    "CancelRecurringOrder": "Annulla ordine ricorrente",
-    "SubmitButton": "OK",
-    "CancelButton": "Annulla"
-  }
-}

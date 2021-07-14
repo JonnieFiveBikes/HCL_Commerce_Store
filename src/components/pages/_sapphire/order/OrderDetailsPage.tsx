@@ -18,7 +18,7 @@ import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../../_foundation/hooks/useSite";
 //Custom libraries
-import { NotFound } from "../../../widgets/not-found";
+import NotFound from "../../../commerce-layouts/not-found";
 import { OrderDetails } from "../../../widgets/order-details";
 //Redux
 import { RootReducerState } from "../../../../redux/reducers";
@@ -32,7 +32,7 @@ import {
   StyledCircularProgress,
   StyledTypography,
   StyledLink,
-} from "../../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 function OrderDetailsPage(props: any) {
   const widgetName = getDisplayName(OrderDetailsPage);
@@ -52,7 +52,12 @@ function OrderDetailsPage(props: any) {
     (state: RootReducerState) => state.orderDetails[String(orderId)]
   );
   const orderItems = orderDetails?.detailedOrderItems;
-  const dateFormatOptions = { year: "numeric", month: "long", day: "numeric" };
+
+  const dateFormatOptions: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   const dateFormatter = new Intl.DateTimeFormat(
     i18n.languages[0],
     dateFormatOptions
@@ -79,11 +84,15 @@ function OrderDetailsPage(props: any) {
         })
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orderId, mySite, defaultCurrencyID]);
+
+  React.useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [orderId, mySite, defaultCurrencyID]);
+  }, []);
 
   const loading = orderId && orderDetails === undefined;
   const notFound = !orderId || (orderDetails && orderDetails.error);

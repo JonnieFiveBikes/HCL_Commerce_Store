@@ -16,76 +16,35 @@ import { RouteConfig } from "react-router-config";
 
 //Common pages
 const SEO = lazy(() => import("../_foundation/seo/SEO"));
-const Home = lazy(() => import("../components/pages/home/Home"));
 const Cart = lazy(() => import("../components/pages/cart/Cart"));
 
 //component
 const SignIn = lazy(() => import("../components/pages/sign-in/SignIn"));
-const ForgotPassword = lazy(
-  () => import("../components/widgets/forgot-password/ForgotPassword")
-);
-const AddressBook = lazy(
-  () => import("../components/pages/address-book/AddressBook")
-);
-const EditAddress = lazy(
-  () => import("../components/pages/address-book/EditAddress")
-);
-const AddAddress = lazy(
-  () => import("../components/pages/address-book/AddAddress")
-);
-const SearchResults = lazy(
-  () => import("../components/pages/search-results/SearchResults")
-);
+const ForgotPassword = lazy(() => import("../components/pages/forgot-password/ForgotPassword"));
+const AddressBook = lazy(() => import("../components/pages/address-book/AddressBook"));
+const EditAddress = lazy(() => import("../components/pages/address-book/EditAddress"));
+const AddAddress = lazy(() => import("../components/pages/address-book/AddAddress"));
+const SearchResults = lazy(() => import("../components/pages/search-results/SearchResults"));
 
 //checkout
 const Checkout = lazy(() => import("../components/pages/checkout/Checkout"));
-const Shipping = lazy(
-  () => import("../components/pages/checkout/shipping/Shipping")
-);
-const Billing = lazy(
-  () => import("../components/pages/checkout/payment/Payment")
-);
+const Shipping = lazy(() => import("../components/pages/checkout/shipping/Shipping"));
+const Billing = lazy(() => import("../components/pages/checkout/payment/Payment"));
 const Review = lazy(() => import("../components/pages/checkout/review/Review"));
-const OrderConfirmation = lazy(
-  () => import("../components/pages/order-confirmation/OrderConfirmation")
-);
+const OrderConfirmation = lazy(() => import("../components/pages/order-confirmation/OrderConfirmation"));
 
 //Emerald pages
-const Account = lazy(
-  () => import("../components/pages/_emerald/account/Account")
-);
+const Account = lazy(() => import("../components/pages/_emerald/account/Account"));
 
 //Sapphire pages
-const Dashboard = lazy(
-  () => import("../components/pages/_sapphire/dashboard/Dashboard")
-);
-const OrderHistoryPage = lazy(
-  () => import("../components/pages/_sapphire/order/OrderHistoryPage")
-);
-const RecurringOrders = lazy(
-  () => import("../components/pages/_sapphire/order/RecurringOrdersPage")
-);
-const OrderDetailsPage = lazy(
-  () => import("../components/pages/_sapphire/order/OrderDetailsPage")
-);
-const AccountSummary = lazy(
-  () => import("../components/pages/_sapphire/account-summary/AccountSummary")
-);
-const BuyerUserRegistration = lazy(
-  () =>
-    import(
-      "../components/pages/_sapphire/buyer-user-registration/BuyerUserRegistration"
-    )
-);
-const BuyerOrganizationRegistration = lazy(
-  () =>
-    import(
-      "../components/pages/_sapphire/buyer-organization-registration/BuyerOrganizationRegistration"
-    )
-);
-const AdminTools = lazy(
-  () => import("../components/pages/_sapphire/adminTools/AdminTools")
-);
+const Dashboard = lazy(() => import("../components/pages/_sapphire/dashboard/Dashboard"));
+const OrderHistoryPage = lazy(() => import("../components/pages/_sapphire/order/OrderHistoryPage"));
+const RecurringOrders = lazy(() => import("../components/pages/_sapphire/order/RecurringOrdersPage"));
+const OrderDetailsPage = lazy(() => import("../components/pages/_sapphire/order/OrderDetailsPage"));
+const AccountSummary = lazy(() => import("../components/pages/_sapphire/account-summary/AccountSummary"));
+const BuyerUserRegistration = lazy(() => import("../components/pages/_sapphire/buyer-user-registration/BuyerUserRegistration"));
+const BuyerOrganizationRegistration = lazy(() => import("../components/pages/_sapphire/buyer-organization-registration/BuyerOrganizationRegistration"));
+const AdminTools = lazy(() => import("../components/pages/_sapphire/adminTools/AdminTools"));
 
 const CheckoutRouteConfig: RouteConfig[] = [
   {
@@ -105,12 +64,6 @@ const CheckoutRouteConfig: RouteConfig[] = [
   },
 ];
 const B2BRouteConfig: RouteConfig[] = [
-  {
-    key: ROUTES.HOME,
-    path: ROUTES.HOME,
-    exact: true,
-    component: Home,
-  },
   {
     key: ROUTES.DASHBOARD,
     path: ROUTES.DASHBOARD,
@@ -258,12 +211,6 @@ const B2BRouteConfig: RouteConfig[] = [
 ];
 const B2CRouteConfig: RouteConfig[] = [
   {
-    key: ROUTES.HOME,
-    path: ROUTES.HOME,
-    exact: true,
-    component: Home,
-  },
-  {
     key: ROUTES.CART,
     path: ROUTES.CART,
     exact: true,
@@ -327,6 +274,20 @@ const B2CRouteConfig: RouteConfig[] = [
     exact: true,
     isProtected: ROUTES.REGISTER_PROTECTED,
     component: AddAddress,
+  },
+  {
+    key: ROUTES.ORDER_HISTORY,
+    path: ROUTES.ORDER_HISTORY,
+    exact: true,
+    isProtected: ROUTES.REGISTER_PROTECTED,
+    component: OrderHistoryPage,
+  },
+  {
+    key: ROUTES.ORDER_DETAILS,
+    path: ROUTES.ORDER_DETAILS_ROUTE,
+    exact: true,
+    isProtected: ROUTES.REGISTER_PROTECTED,
+    component: OrderDetailsPage,
   },
   {
     key: "other",

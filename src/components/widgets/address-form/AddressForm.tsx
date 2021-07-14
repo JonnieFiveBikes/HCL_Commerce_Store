@@ -31,7 +31,7 @@ import {
   StyledRadioGroup,
   StyledFormControlLabel,
   StyledRadio,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 interface AddressFormProps {
   cid: string;
@@ -212,7 +212,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
         />
       </StyledGrid>
       <StyledGrid item xs={12} sm={6}>
-        {/* TODO: states need to reload based on country selection and can either be dropdown 
+        {/* TODO: states need to reload based on country selection and can either be dropdown
       (fetch list from transaction server) or textbox */}
         <StyledTextField
           required

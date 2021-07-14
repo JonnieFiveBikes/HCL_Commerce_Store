@@ -12,7 +12,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 //Custom libraries
-import { SectionContent } from "../../../layouts/sectionContentType";
+import { SectionContent } from "../../../../_foundation/constants/section-content-type";
 import { StandardPageLayout } from "../../../layouts/standard-page";
 import { PersonalInformationSection } from "./PersonalInformationSection";
 import { ChangePasswordSection } from "./ChangePasswordSection";
@@ -24,7 +24,7 @@ import {
   StyledPaper,
   StyledTypography,
   StyledContainer,
-} from "../../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 /**
  * Account component

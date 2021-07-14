@@ -1,0 +1,48 @@
+{
+  "layout": {
+    "id": "3074457345618271107",
+    "name": "Product Detail Page Layout",
+    "containerName": "product-page",
+    "startDate": null,
+    "endDate": null,
+    "priority": 0,
+    "slots": [
+      {
+        "id": "1",
+        "name": "1",
+        "widgets": [
+          {
+            "id": "3074457345618261611",
+            "name": "Breadcrumb Trail Widget",
+            "widgetName": "breadcrumb-trail-widget",
+            "sequence": 0
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "2",
+        "widgets": [
+          {
+            "id": "3074457345618261612",
+            "name": "Product Details Widget",
+            "widgetName": "product-details-widget",
+            "sequence": 0
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "name": "3",
+        "widgets": [
+          {
+            "id": "3074457345618261613",
+            "name": "Merchandising Associationn Widget",
+            "widgetName": "merchandising-association-widget",
+            "sequence": 0
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -20,7 +20,10 @@ import { useSite } from "../../../../_foundation/hooks/useSite";
 import { addressDetailsSelector } from "../../../../redux/selectors/account";
 import { GET_ADDRESS_DETAIL_ACTION } from "../../../../redux/actions/account";
 //UI
-import { StyledTextField, StyledTypography } from "../../../StyledUI";
+import {
+  StyledTextField,
+  StyledTypography,
+} from "@hcl-commerce-store-sdk/react-component";
 
 function PersonalInformationSection() {
   const widgetName = getDisplayName(PersonalInformationSection);
@@ -96,11 +99,15 @@ function PersonalInformationSection() {
       };
       dispatch(GET_ADDRESS_DETAIL_ACTION(payload));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mySite]);
+
+  React.useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mySite]);
+  }, []);
 
   return (
     <>

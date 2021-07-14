@@ -42,7 +42,7 @@ import {
   StyledLink,
   StyledTypography,
   StyledGrid,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import { Divider } from "@material-ui/core";
 
 /**

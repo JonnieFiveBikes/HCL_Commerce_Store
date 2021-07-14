@@ -26,6 +26,7 @@ export const SEARCHTERM = "searchTerm";
 export const EMPTY_STRING = "";
 export const STRING_TRUE = "true";
 export const STRING_FALSE = "false";
+export const SLOTID = "id";
 
 //Address Form
 export const CHECKOUT = "checkout";
@@ -59,13 +60,6 @@ export const KEY_CODES = {
 };
 
 export const CommerceEnvironment = {
-  categorySkeleton: {
-    id: "",
-    type: "Child PIM categories",
-    categoryInternal: {},
-    eSpotInternal: {},
-    eSpotDescInternal: {},
-  },
   productSkeleton: {
     id: "",
     type: "Product",
@@ -156,13 +150,7 @@ export const ORG_ADDRESS = "orgAddress";
 export const ORDER_ID = "orderid";
 export const HYPHEN = "-";
 export const UNDERSCORE = "_";
+export const SLASH = "/";
 
 // Discover
 export const DISCOVER_FEATURE = "Discover";
-//Image
-export const IMAGE = "IMAGE";
-export const VIDEO = "VIDEO";
-export const ATTACHMENTS = "Attachments";
-//DX
-export const DX_IMAGE_PATH_STARTS_WITH = "/dx/";
-export const DX_IMAGE_THUMBNAIL_TRUE = "?thumbnail=true";

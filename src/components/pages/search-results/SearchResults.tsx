@@ -4,7 +4,7 @@
  *
  * HCL Commerce
  *
- * (C) Copyright HCL Technologies Limited 2020
+ * (C) Copyright HCL Technologies Limited 2020, 2021
  *
  *==================================================
  */
@@ -12,16 +12,16 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 //Custom libraries
-import { TwoColumnsLeftFilterLayout } from "../../layouts/two-colums-left-filter";
-import { SectionContent } from "../../layouts/sectionContentType";
-import { ProductFilterLayout } from "../../widgets/product-filter";
-import { ProductGridLayout } from "../../widgets/product-grid";
+import { ProductListingPageLayout } from "@hcl-commerce-store-sdk/react-component";
+import { SectionContent } from "../../../_foundation/constants/section-content-type";
+import FacetNavigationWidget from "../../commerce-widgets/facet-navigation-widget";
+import CatalogEntryListWidget from "../../commerce-widgets/catalog-entry-list-widget";
 import { SEARCHTERM } from "../../../constants/common";
 //UI
-import { StyledContainer } from "../../StyledUI";
+import { StyledContainer } from "@hcl-commerce-store-sdk/react-component";
 
 const SearchResults: React.FC = (props: any) => {
-  const { page } = props;
+  const { widget, page } = props;
   const location = useLocation();
 
   let searchTerm = "";
@@ -39,8 +39,9 @@ const SearchResults: React.FC = (props: any) => {
       key: `search-results-rightContentSection-product-grid-${searchTerm}`,
       CurrentComponent: () => {
         return (
-          <ProductGridLayout
+          <CatalogEntryListWidget
             cid={`search-results-${searchTerm}`}
+            page={page}
             searchTerm={searchTerm}
           />
         );
@@ -60,22 +61,26 @@ const SearchResults: React.FC = (props: any) => {
       key: `search-results-leftNavigationSection-product-filter-${searchTerm}`,
       CurrentComponent: () => {
         return (
-          <ProductFilterLayout
-            cid={`search-results-${searchTerm}`}
-            searchTerm={searchTerm}
+          <FacetNavigationWidget
+            widget={widget}
+            page={page}
+            {...{ searchTerm }}
           />
         );
       },
     },
   ];
 
+  const slots: { [key: string]: SectionContent[] } = {
+    2: leftNavigationSection,
+    3: rightContentSection,
+  };
+
   return (
     <StyledContainer className="page">
-      <TwoColumnsLeftFilterLayout
+      <ProductListingPageLayout
         cid={`search-results-${searchTerm}`}
-        leftNavigationSection={leftNavigationSection}
-        rightContentSection={rightContentSection}
-        page={page}
+        slots={slots}
       />
     </StyledContainer>
   );

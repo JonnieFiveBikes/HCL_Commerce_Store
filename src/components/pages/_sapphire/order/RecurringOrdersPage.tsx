@@ -33,13 +33,12 @@ import { OPEN_CONFIRMATION_ACTION } from "../../../../redux/actions/confirmation
 import { AddShoppingCart, Cancel } from "@material-ui/icons";
 import {
   StyledLink,
-  StyledTable,
-  StyledTableIcons,
   StyledTypography,
   StyledContainer,
   StyledGrid,
   StyledProgressPlaceholder,
-} from "../../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
+import { StyledTable, StyledTableIcons } from "../../../StyledUI";
 const useRecurringOrderTable = () => {
   const widgetName = getDisplayName(RecurringOrders);
   const { t, i18n } = useTranslation();
@@ -48,7 +47,11 @@ const useRecurringOrderTable = () => {
   //12 hours
   const cancelRecurringOrderNoticePeriod: number = 12;
   const nextAvailableStates = ["Active", "InActive", "PendingCancel"];
-  const dateFormatOptions = { year: "numeric", month: "long", day: "numeric" };
+  const dateFormatOptions: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   const dateFormatter = new Intl.DateTimeFormat(
     i18n.languages[0],
     dateFormatOptions

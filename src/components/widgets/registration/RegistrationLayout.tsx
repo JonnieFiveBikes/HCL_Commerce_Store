@@ -9,7 +9,7 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Redirect } from "react-router-dom";
@@ -32,7 +32,7 @@ import {
   StyledCheckbox,
   StyledGrid,
   StyledPaper,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import Divider from "@material-ui/core/Divider";
 //GA360
 import AsyncCall from "../../../_foundation/gtm/async.service";
@@ -60,7 +60,7 @@ function RegistrationLayout({
   const [email, setEmail] = useState<string>("");
   const [password1, setPassword1] = useState<string>("");
   const [password2, setPassword2] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
+  const [phone] = useState<string>("");
   const [receiveEmail, setReceiveEmail] = useState<boolean>(true);
 
   /**
@@ -125,11 +125,13 @@ function RegistrationLayout({
       })
     );
   };
+
   useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (registrationStatus) {
     //GA360

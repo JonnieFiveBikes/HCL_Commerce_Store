@@ -36,7 +36,7 @@ import {
   StyledGrid,
   StyledTypography,
   StylediFrame,
-} from "../../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 const AdminTools = () => {
   const { i18n } = useTranslation();

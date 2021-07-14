@@ -15,12 +15,13 @@ import v2CategoryResourceService from "../../apis/search/categories.service";
 
 let PAGETITLE = "";
 let PAGEPATH = "";
+
 const GA4DataService = {
   setPageTitle(title: any) {
-    PAGETITLE = title;
+    PAGETITLE = title; // eslint-disable-line @typescript-eslint/no-unused-vars
   },
   setPagePath(path: any) {
-    PAGEPATH = path;
+    PAGEPATH = path; // eslint-disable-line @typescript-eslint/no-unused-vars
   },
   async sendAddToCartEvent(cart, currentProdSelect, breadcrumbs) {
     const cartObj = {
@@ -119,6 +120,7 @@ const GA4DataService = {
       currency = order.currency;
       if (arr && arr.length >= 1) {
         let catgroupID = arr[arr.length - 1];
+        catgroupID = catgroupID.substring(catgroupID.indexOf("_") + 1);
         partNumberCatgroupMap.set(order.partNumber, catgroupID);
       }
       return {
@@ -140,10 +142,17 @@ const GA4DataService = {
           if (partNumberCatgroupMap.get(partNumber)) {
             const categoryId = partNumberCatgroupMap.get(partNumber);
             const categoryName = value.get(categoryId);
-
             if (categoryName) {
               return {
                 category: categoryName || "Search Results",
+                id: element.id,
+                name: element.name,
+                price: element.price,
+                quantity: element.quantity,
+              };
+            } else {
+              return {
+                category: categoryId,
                 id: element.id,
                 name: element.name,
                 price: element.price,

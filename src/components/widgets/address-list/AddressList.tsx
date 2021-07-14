@@ -13,7 +13,7 @@ import React from "react";
 //Custom libraries
 import { AddressCard } from "../address-card";
 //UI
-import { StyledGrid } from "../../StyledUI";
+import { StyledGrid } from "@hcl-commerce-store-sdk/react-component";
 
 interface AddressListProps {
   cid: string;

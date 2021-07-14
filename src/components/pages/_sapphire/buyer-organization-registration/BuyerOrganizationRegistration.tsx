@@ -43,7 +43,7 @@ import {
   StyledStep,
   StyledStepLabel,
   StyledLink,
-} from "../../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import { Divider } from "@material-ui/core";
 //GA360
 import AsyncCall from "../../../../_foundation/gtm/async.service";
@@ -258,14 +258,12 @@ const BuyerOrganizationRegistration = (props: any) => {
       ...payloadBase,
     };
 
-    organizationService
-      .registerBuyerOrganization(parameters, null, mySite?.transactionContext)
-      .then((res) => {
-        if (res.status === CREATED) {
-          setOpenSuccess(true);
-          clearAll();
-        }
-      });
+    organizationService.registerBuyerOrganization(parameters).then((res) => {
+      if (res.status === CREATED) {
+        setOpenSuccess(true);
+        clearAll();
+      }
+    });
   };
 
   const clearAll = () => {
@@ -300,11 +298,15 @@ const BuyerOrganizationRegistration = (props: any) => {
       setLanguage(defaultLanguageID);
       setCurrency(defaultCurrencyID);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mySite]);
+
+  React.useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mySite]);
+  }, []);
 
   const closeAndRedirect = () => {
     setOpenSuccess(false);

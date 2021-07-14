@@ -15,7 +15,7 @@ import Axios, { Canceler } from "axios";
 import { useSelector } from "react-redux";
 import getDisplayName from "react-display-name";
 //Custom libraries
-import { SectionContent } from "../../../layouts/sectionContentType";
+import { SectionContent } from "../../../../_foundation/constants/section-content-type";
 import { StandardPageLayout } from "../../../layouts/standard-page";
 import { AccountLinksLayout } from "../../../widgets/account-links-layout";
 import { OrderLinksLayout } from "../../../widgets/order-links-layout-b2b";
@@ -30,7 +30,10 @@ import {
   BUYER_APPROVAL_ROLE,
 } from "../../../../constants/common";
 //UI
-import { StyledTypography, StyledContainer } from "../../../StyledUI";
+import {
+  StyledTypography,
+  StyledContainer,
+} from "@hcl-commerce-store-sdk/react-component";
 import { AdministrativeToolsLayout } from "../../../widgets/administrative-tools";
 
 /**

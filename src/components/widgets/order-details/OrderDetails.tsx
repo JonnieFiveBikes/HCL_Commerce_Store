@@ -36,7 +36,7 @@ import {
   StyledProgressPlaceholder,
   StyledTypography,
   StyledIconLabel,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import ReccuringOrderIcon from "@material-ui/icons/Repeat";
 
 interface OrderDetailsProps {
@@ -187,11 +187,15 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
 
   useEffect(() => {
     resolvePONumber();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [order?.buyerPONumber]);
+
+  useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [order?.buyerPONumber]);
+  }, []);
 
   return (
     <StyledGrid container spacing={2}>

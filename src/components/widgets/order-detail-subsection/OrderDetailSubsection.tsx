@@ -12,7 +12,10 @@
 import React, { Fragment } from "react";
 
 //UI
-import { StyledPaper, StyledContainer } from "../../StyledUI";
+import {
+  StyledPaper,
+  StyledContainer,
+} from "@hcl-commerce-store-sdk/react-component";
 import { Divider } from "@material-ui/core";
 
 interface OrderDetailSubSectionProps {

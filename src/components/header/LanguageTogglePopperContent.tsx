@@ -19,7 +19,7 @@ import {
   StyledListItemText,
   StyledButton,
   StyledGrid,
-} from "../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 interface LanguageTogglePopperContentProps {
   handleClose: Function;

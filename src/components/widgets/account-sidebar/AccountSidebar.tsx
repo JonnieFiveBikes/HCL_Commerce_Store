@@ -52,7 +52,7 @@ import {
   StyledSidebar,
   StyledTooltip,
   StyledTypography,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 interface CustomAccountSidebarProps {
   sectionsArray: any[];
@@ -176,7 +176,7 @@ const useSectionArray = (isB2B: boolean) => {
         },
         {
           title: t("MyAccount.OrderHistory"),
-          link: "",
+          link: ORDER_HISTORY,
         },
         {
           title: t("MyAccount.Wishlists"),
@@ -270,11 +270,15 @@ const useSectionArray = (isB2B: boolean) => {
     if (userId || forUserId) {
       getPerson();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId, forUserId]);
+
+  React.useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userId, forUserId]);
+  }, []);
 
   return { sectionsArray };
 };

@@ -19,3 +19,4 @@ tools/source-map-explorer*
 react-store/
 **/.DS_Store
 debug.log
+#*.tgz

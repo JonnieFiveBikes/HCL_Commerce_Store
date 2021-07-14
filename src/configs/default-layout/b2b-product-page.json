@@ -1,0 +1,72 @@
+{
+  "layout": {
+    "id": "3074457345618271107",
+    "name": "Product B2B Page Layout",
+    "containerName": "b2b-product-page",
+    "startDate": null,
+    "endDate": null,
+    "priority": 0,
+    "slots": [
+      {
+        "id": "1",
+        "name": "1",
+        "widgets": [
+          {
+            "id": "3074457345618261611",
+            "name": "Breadcrumb Trail Widget",
+            "widgetName": "breadcrumb-trail-widget",
+            "sequence": 0
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "2",
+        "widgets": [
+          {
+            "id": "3074457345618261612",
+            "name": "Product Information Widget",
+            "widgetName": "product-information-widget",
+            "sequence": 0
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "name": "3",
+        "widgets": [
+          {
+            "id": "3074457345618261613",
+            "name": "Attribute Filter Widget",
+            "widgetName": "attribute-filter-widget",
+            "sequence": 0
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "name": "4",
+        "widgets": [
+          {
+            "id": "3074457345618261614",
+            "name": "SKU List Widget",
+            "widgetName": "sku-list-widget",
+            "sequence": 0
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "name": "5",
+        "widgets": [
+          {
+            "id": "3074457345618261615",
+            "name": "Merchandising Association Widget",
+            "widgetName": "merchandising-association-widget",
+            "sequence": 0
+          }
+        ]
+      }
+    ]
+  }
+}

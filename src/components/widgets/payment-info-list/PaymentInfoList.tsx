@@ -26,7 +26,7 @@ import {
   StyledIconLabel,
   StyledButton,
   StyledTypography,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 interface PaymentInfoListProps {
   selectedPaymentInfoList: PaymentInfoType[];

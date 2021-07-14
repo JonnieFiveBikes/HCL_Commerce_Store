@@ -60,20 +60,22 @@ const GTMDLService = {
    **
    **/
   measurePageView(pageObj) {
-    const tagManagerArgs = {
-      dataLayer: {
-        event: PAGE_LOAD,
-        login: pageObj.login,
-        userID: pageObj.userID || 0,
-        pageTitle: pageObj.pageTitle,
-        pagePath: pageObj.pagePath,
-        pageCategory: pageObj.pageCategory || "",
-        pageSubCategory: pageObj.pageSubCategory || "",
-        listerResults: pageObj.listerResults || "",
-      },
-      dataLayerName: DATALAYER_NAME,
-    };
-    TagManager.dataLayer(tagManagerArgs);
+    if (pageObj) {
+      const tagManagerArgs = {
+        dataLayer: {
+          event: PAGE_LOAD,
+          login: pageObj.login,
+          userID: pageObj.userID || 0,
+          pageTitle: pageObj.pageTitle,
+          pagePath: pageObj.pagePath,
+          pageCategory: pageObj.pageCategory || "",
+          pageSubCategory: pageObj.pageSubCategory || "",
+          listerResults: pageObj.listerResults || "",
+        },
+        dataLayerName: DATALAYER_NAME,
+      };
+      TagManager.dataLayer(tagManagerArgs);
+    }
   },
   /**
    * Measure search keyword
@@ -100,7 +102,7 @@ const GTMDLService = {
         onsiteSearch: pageObj.onsiteSearch || "",
         searchTerm: pageObj.searchTerm || "",
         productResults:
-          pageObj.productResults == 0 ? 0 : pageObj.productResults,
+          pageObj.productResults === 0 ? 0 : pageObj.productResults,
       },
       dataLayerName: DATALAYER_NAME,
     };

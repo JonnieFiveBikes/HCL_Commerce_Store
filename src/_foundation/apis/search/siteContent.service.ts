@@ -12,24 +12,24 @@
  * Do not modify, the file is generated.
  */
 //Standard libraries
-import { AxiosRequestConfig, Method, AxiosPromise } from "axios";
-//Foundation libraries
-import { executeRequest } from "../../axios/axiosConfig";
-import { getSite } from "../../hooks/useSite";
-import { localStorageUtil } from "../../utils/storageUtil";
-import { PRODUCTION, SHOW_API_FLOW } from "../../constants/common";
-//Redux
-import { API_CALL_ACTION } from "../../../redux/actions/api";
+import { AxiosPromise } from "axios";
+import i18n from "../../../i18n";
 
+//Foundation libraries
+import { getSite } from "../../hooks/useSite";
+import { SiteContentResourceApi } from "@hcl-commerce-store-sdk/typescript-axios-es";
+import { site } from "../../constants/site";
+import { CommerceEnvironment } from "../../../constants/common";
+
+const siteContentResourceApiInstance = new SiteContentResourceApi(
+  undefined,
+  site.searchContext
+);
 const siteContentService = {
   /**
    * Provides keyword suggestions with type-ahead for search result page based on a term.
    * `@method`
    * `@name SiteContent#findKeywordSuggestionsByTermUsingGET`
-   *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
    *
    * `@param {any} parameters` have following properties:
    ** `@property {integer} catalogId ` The catalog identifier. If none is specified, the store default catalog will be used.
@@ -42,233 +42,38 @@ const siteContentService = {
    ** `@property {string} term (required)` The child property of `Parameters`.The search term.
    ** `@property {boolean} termsSort ` The sorting to be used in the returned result, "count" or "index". By default, it is "count".
    */
-  findKeywordSuggestionsByTermUsingGET(
-    parameters: any,
-    headers?: any,
-    url?: string
-  ): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.searchContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/sitecontent/keywordSuggestionsByTerm/{term}";
-    let requestUrl = domain + path;
-    let method: Method = "GET";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = ["application/json"];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["catalogId"] !== undefined) {
-      const name = "catalogId";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["contractId"] !== undefined) {
-      const name = "contractId";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["count"] !== undefined) {
-      const name = "count";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["langId"] !== undefined) {
-      const name = "langId";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["limit"] !== undefined) {
-      const name = "limit";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["profileName"] !== undefined) {
-      const name = "profileName";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/sitecontent/keywordSuggestionsByTerm/{term}' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
-    if (parameters["term"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/sitecontent/keywordSuggestionsByTerm/{term}' missing path parameter term"
-      );
-    }
-    requestUrl = requestUrl.replace("{term}", parameters["term"]);
-
-    if (parameters["termsSort"] !== undefined) {
-      const name = "termsSort";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
+  findKeywordSuggestionsByTermUsingGET(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      langId = CommerceEnvironment.reverseLanguageMap[
+        i18n.languages[0].split("-").join("_")
+      ],
+      term,
+      limit,
+      contractId,
+      termsSort,
+      catalogId,
+      profileName,
+      ...options
+    } = parameters;
+    return siteContentResourceApiInstance.findKeywordSuggestionsByTerm(
+      storeId,
+      term,
+      limit,
+      contractId,
+      langId,
+      termsSort,
+      catalogId,
+      profileName,
+      options
     );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Search: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
   },
 
   /**
    * Provides suggestions with type-ahead for search result page.
    * `@method`
    * `@name SiteContent#findSuggestionsUsingGET`
-   *
-   * `@param {any} headers (optional)` will add headers to rest request
-   *
-   * `@param {string} url (optional)` will override the default domain used by the service. Url can be relative or absolute
    *
    * `@param {any} parameters` have following properties:
    ** `@property {integer} catalogId ` The catalog identifier. If none is specified, the store default catalog will be used.
@@ -281,229 +86,34 @@ const siteContentService = {
    ** `@property {string} term ` The search term.
    ** `@property {boolean} termsSort ` The sorting to be used in the returned result, "count" or "index". By default, it is "count".
    */
-  findSuggestionsUsingGET(
-    parameters: any,
-    headers?: any,
-    url?: string
-  ): AxiosPromise<any> {
-    let site = getSite();
-    let siteContext: string = "";
-    if (site) {
-      siteContext = site.searchContext || "";
-    }
-    let domain = url || siteContext;
-    let path = "/store/{storeId}/sitecontent/suggestions";
-    let requestUrl = domain + path;
-    let method: Method = "GET";
-    let form: any = {};
-    let body = {};
-    let header: Headers;
-    let queryParameters = new URLSearchParams();
-    let formParams = new URLSearchParams();
-    if (typeof headers === "undefined" || headers === null) {
-      header = new Headers();
-    } else {
-      header = new Headers(headers);
-    }
-    if (parameters === undefined) {
-      parameters = {};
-    }
-    if (parameters["storeId"] === undefined && site !== null) {
-      parameters["storeId"] = site.storeID;
-    }
-    let headerValues: any = {};
-    headerValues["Accept"] = ["application/json"];
-    for (let val of headerValues["Accept"]) {
-      header.append("Accept", val);
-    }
-    if (parameters["catalogId"] !== undefined) {
-      const name = "catalogId";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["contractId"] !== undefined) {
-      const name = "contractId";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["count"] !== undefined) {
-      const name = "count";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["langId"] !== undefined) {
-      const name = "langId";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["limit"] !== undefined) {
-      const name = "limit";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["storeId"] === undefined) {
-      throw new Error(
-        "Request '/store/{storeId}/sitecontent/suggestions' missing path parameter storeId"
-      );
-    }
-    requestUrl = requestUrl.replace("{storeId}", parameters["storeId"]);
-
-    if (parameters["suggestType"] !== undefined) {
-      const name = "suggestType";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["term"] !== undefined) {
-      const name = "term";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters["termsSort"] !== undefined) {
-      const name = "termsSort";
-      const parameter = parameters[name];
-      delete parameters[name];
-      if (parameter instanceof Array) {
-        parameter.forEach((value) => {
-          queryParameters.append(name, value);
-        });
-      } else {
-        queryParameters.set(name, parameter);
-      }
-    }
-
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
-        if (parameter !== null && parameter !== undefined) {
-          queryParameters.set(parameterName, parameter);
-        }
-      });
-    }
-    if (!header.get("Content-Type")) {
-      header.append("Content-Type", "application/json; charset=utf-8");
-    }
-    const accept = header.get("Accept");
-    if (accept !== null && accept.indexOf("application/json") > -1) {
-      header.set("Accept", "application/json");
-    }
-    if (
-      header.get("content-type") === "multipart/form-data" &&
-      Object.keys(form).length > 0
-    ) {
-      let formData = new FormData();
-      for (let p in form) {
-        if (form[p].name !== undefined) {
-          formData.append(p, form[p], form[p].name);
-        } else {
-          formData.append(p, form[p]);
-        }
-      }
-      body = formData;
-    } else if (Object.keys(form).length > 0) {
-      header.set("content-type", "application/x-www-form-urlencoded");
-      for (let p in form) {
-        formParams.append(p, form[p]);
-      }
-      formParams.sort();
-      body = formParams;
-    }
-    const headerObject: any = {};
-    for (let headerPair of header.entries()) {
-      headerObject[headerPair[0]] = headerPair[1];
-    }
-    queryParameters.sort();
-    let requestOptions: AxiosRequestConfig = Object.assign(
-      {
-        params: queryParameters,
-        method: method,
-        headers: headerObject,
-        data: body,
-        url: requestUrl,
-      },
-      { ...parameters }
+  findSuggestionsUsingGET(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      langId = CommerceEnvironment.reverseLanguageMap[
+        i18n.languages[0].split("-").join("_")
+      ],
+      suggestType,
+      term,
+      limit,
+      count,
+      contractId,
+      termsSort,
+      catalogId,
+      ...options
+    } = parameters;
+    return siteContentResourceApiInstance.findSuggestions(
+      storeId,
+      suggestType,
+      term,
+      limit,
+      count,
+      contractId,
+      langId,
+      termsSort,
+      catalogId,
+      options
     );
-
-    const showAPIFlow =
-      process.env.NODE_ENV !== PRODUCTION
-        ? localStorageUtil.get(SHOW_API_FLOW) === "true"
-        : false;
-    if (showAPIFlow) {
-      const from = parameters["widget"] ? parameters["widget"] : "Browser";
-      const store = require("../../../redux/store").default;
-      if (store) {
-        store.dispatch(
-          API_CALL_ACTION(
-            from +
-              " -> Search: " +
-              method +
-              " " +
-              requestUrl +
-              "?" +
-              queryParameters
-          )
-        );
-      }
-    }
-
-    return executeRequest(requestOptions);
   },
 };
 

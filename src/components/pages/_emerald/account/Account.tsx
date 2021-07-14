@@ -13,14 +13,14 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 //Custom libraries
-import { SectionContent } from "../../../layouts/sectionContentType";
+import { SectionContent } from "../../../../_foundation/constants/section-content-type";
 import { StandardPageLayout } from "../../../layouts/standard-page";
 import { PersonalInformationLayout } from "../../../widgets/personal-information";
 import { AccountLinksGridViewLayout } from "../../../widgets/account-links-gridview";
 //Redux
 import * as ACTIONS from "../../../../redux/actions/account";
 //UI
-import { StyledTypography } from "../../../StyledUI";
+import { StyledTypography } from "@hcl-commerce-store-sdk/react-component";
 
 /**
  * Account component

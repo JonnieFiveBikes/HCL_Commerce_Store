@@ -13,6 +13,7 @@ import React from "react";
 import {
   render,
   waitForElement,
+  waitFor,
   fireEvent,
 } from "../../../../../testing/utils/test-utils";
 import Shipping from "../Shipping";
@@ -27,12 +28,12 @@ describe("Checkout shipping", () => {
     expect(
       queryByText("Shipping.Msgs.UseSavedAddress")
     ).not.toBeInTheDocument();
-    const shipmethodSelect = await waitForElement(() =>
+    const shipmethodSelect = await waitFor(() =>
       queryByTestId("shipping-method-select")
     ).catch((e) => null);
     expect(shipmethodSelect).toBeInTheDocument();
     //continue button disabled, since no address.
-    const continueButton = await waitForElement(() =>
+    const continueButton = await waitFor(() =>
       queryByTestId("shipping-can-continue")
     ).catch((e) => null);
     expect(continueButton).toBeDisabled();
@@ -46,16 +47,16 @@ describe("Checkout shipping", () => {
     expect(newAddressButton).toBeInTheDocument();
     fireEvent.click(newAddressButton as HTMLButtonElement);
     //address form show up
-    const newAddressForm = await waitForElement(() =>
+    const newAddressForm = await waitFor(() =>
       queryByTestId("checkout-address-form")
     ).catch((e) => null);
     expect(newAddressForm).toBeInTheDocument();
 
     //wait to make sure that element disappear.
-    const newAddressButton2 = await waitForElement(() => {
+    const newAddressButton2 = await waitFor(() => {
       queryByTestId("checkout-new-address-button");
     }).catch((e) => null);
-    expect(newAddressButton2).not.toBeInTheDocument();
+    expect(newAddressButton2).toBeUndefined();
   });
 
   test("renders shipping with list of addresses", async () => {
@@ -63,7 +64,7 @@ describe("Checkout shipping", () => {
       initialState: inistatesWithAddress as any,
     });
     //continue button enabled, since address is preselected.
-    const continueButton = await waitForElement(() =>
+    const continueButton = await waitFor(() =>
       queryByTestId("shipping-can-continue")
     ).catch((e) => null);
     expect(continueButton).toBeEnabled();

@@ -57,7 +57,7 @@ import {
   StyledPaper,
   StyledSwitch,
   StyledTypography,
-} from "../../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 interface CreditCardFormDataType {
   account: string;
@@ -164,6 +164,13 @@ const Payment: React.FC = (props: any) => {
   };
 
   useEffect(() => {
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     if (mySite) {
       let payload = {
         ...payloadBase,
@@ -177,10 +184,6 @@ const Payment: React.FC = (props: any) => {
       };
       dispatch(organizationAction.GET_ORGANIZATION_ADDRESS_ACTION(param));
     }
-
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite]);
 
@@ -380,6 +383,8 @@ const Payment: React.FC = (props: any) => {
               }
             }
           }
+          return false;
+        } else {
           return false;
         }
       });

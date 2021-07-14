@@ -24,7 +24,7 @@ import {
   StyledTypography,
   StyledPaper,
   StyledIcon,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import RegisterBuyer from "@material-ui/icons/PersonOutlineOutlined";
 import RegisterOrg from "@material-ui/icons/Business";
 interface RegistrationB2BContext {

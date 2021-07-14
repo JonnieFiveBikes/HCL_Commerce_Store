@@ -13,7 +13,7 @@ import React, { useState } from "react";
 //Custom libraries
 import MegaMenuColumn from "./MegaMenuColumn";
 //UI
-import { StyledGrid } from "../StyledUI";
+import { StyledGrid } from "@hcl-commerce-store-sdk/react-component";
 
 interface MegaMenuProps {
   menutitle?: string;

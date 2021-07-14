@@ -38,7 +38,7 @@ import {
   StyledFormControl,
   StyledInputLabel,
   StyledProgressPlaceholder,
-} from "../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import { Divider } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
@@ -251,6 +251,7 @@ function AccountPopperContent(props: any): JSX.Element {
 
   const LogoutSection = () => {
     return (
+      // eslint-disable-next-line jsx-a11y/anchor-is-valid
       <a href="#" onClick={(event) => handleLogout(event)}>
         <StyledListItem>
           <StyledListItemIcon>

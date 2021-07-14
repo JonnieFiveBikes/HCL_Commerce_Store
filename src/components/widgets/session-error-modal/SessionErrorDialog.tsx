@@ -40,7 +40,7 @@ import {
   StyledDialogContent,
   StyledDialogActions,
   StyledTypography,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import { useCSRForUser } from "../../../_foundation/hooks/useCSRForUser";
 
 export const SessionErrorDialog = () => {
@@ -152,14 +152,17 @@ export const SessionErrorDialog = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handled, dispatch, mySite]);
+
   useEffect(() => {
     setUsername(un);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [un]);
+
   useEffect(() => {
     setDisabled(!formRef.current || !formRef.current.checkValidity());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formRef.current]);
+
   useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());

@@ -10,7 +10,6 @@
  */
 //Standard libraries
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 //Custom libraries
@@ -18,10 +17,9 @@ import { SignInLayout } from "../../widgets/sign-in";
 import { RegistrationLayout } from "../../widgets/registration";
 import { RegistrationB2BLayout } from "../../widgets/registration-b2b";
 import { StandardPageHero2BlocksLayout } from "../../layouts/standard-page-hero-2-blocks";
-import { SectionContent } from "../../layouts/sectionContentType";
+import { SectionContent } from "../../../_foundation/constants/section-content-type";
 
 const Sign: React.FC = (props: any) => {
-  const { t } = useTranslation();
   const { mySite } = useSite();
   const isB2B: boolean = mySite?.isB2B ? mySite.isB2B : false;
   const [showSignIn, setShowSignIn] = useState(true);

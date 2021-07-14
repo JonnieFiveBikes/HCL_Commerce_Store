@@ -36,7 +36,7 @@ import {
   StyledPaper,
   StyledBox,
   StyledLink,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import Divider from "@material-ui/core/Divider";
 //GA360
 import AsyncCall from "../../../_foundation/gtm/async.service";
@@ -152,9 +152,6 @@ function SignInLayout({ cid, showRegistrationPage, ...props }: SignInContext) {
         });
       }
     }
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite]);
 
@@ -178,7 +175,9 @@ function SignInLayout({ cid, showRegistrationPage, ...props }: SignInContext) {
   useEffect(() => {
     return () => {
       dispatch(RESET_ERROR_ACTION());
+      cancels.forEach((cancel) => cancel());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loginStatus === true) {

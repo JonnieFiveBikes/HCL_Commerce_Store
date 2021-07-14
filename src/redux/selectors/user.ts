@@ -14,6 +14,7 @@ import { RootReducerState } from "../reducers";
 const loginStatusSelector = (state: RootReducerState) => {
   return state.user.userLoggedIn || false;
 };
+
 const loginErrorMsgSelector = (state: RootReducerState) => {
   return state.user.userLoginErrorMsg;
 };

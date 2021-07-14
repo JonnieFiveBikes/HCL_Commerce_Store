@@ -26,7 +26,7 @@ import {
   StyledDialogActions,
   StyledButton,
   StyledTypography,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 function ConfirmationDialog() {
   const { t } = useTranslation();

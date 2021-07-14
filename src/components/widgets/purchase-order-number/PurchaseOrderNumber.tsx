@@ -18,7 +18,7 @@ import {
   StyledGrid,
   StyledTextField,
   StyledTypography,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import DescriptionIcon from "@material-ui/icons/Description";
 
 interface PurchaseOrderNumberProps {

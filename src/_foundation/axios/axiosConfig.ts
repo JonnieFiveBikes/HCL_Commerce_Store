@@ -9,12 +9,7 @@
  *---------------------------------------------------
  */
 //Standard libraries
-import Axios, {
-  AxiosRequestConfig,
-  AxiosResponse,
-  AxiosPromise,
-  AxiosError,
-} from "axios";
+import Axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import i18n from "i18next";
 import { parse as losslessParse } from "lossless-json";
 import { NOT_FOUND } from "http-status-codes";
@@ -27,6 +22,10 @@ import {
   LANGID,
   FOR_USER_ID,
   SKIP_WC_TOKEN_HEADER,
+  PRODUCTION,
+  SHOW_API_FLOW,
+  SHOW_API_FLOW_TRANSACTION,
+  SHOW_API_FLOW_SEARCH,
 } from "../constants/common";
 import { site } from "../constants/site";
 import { PERSONALIZATION_ID } from "../constants/user";
@@ -41,6 +40,7 @@ import { CommerceEnvironment } from "../../constants/common";
 //Redux
 import { WATCH_AXIOS_ERROR_ACTION } from "../../redux/actions/error";
 import { GUEST_LOGIN_SUCCESS_ACTION } from "../../redux/actions/user";
+import { API_CALL_ACTION } from "../../redux/actions/api";
 
 const GUEST_IDENTITY: string = "guestidentity";
 
@@ -76,13 +76,6 @@ const dispatchObject = {
   get dispatch(): any {
     return this._dispatch;
   },
-};
-
-const processForUserParameter = (params: URLSearchParams) => {
-  const currentUser = storageSessionHandler.getCurrentUserAndLoadAccount();
-  if (currentUser && currentUser.forUserId) {
-    params.set(FOR_USER_ID, currentUser.forUserId);
-  }
 };
 
 const processTransactionHeader = (header: any) => {
@@ -153,23 +146,127 @@ const useSnackbarHandleError = (error: AxiosError) => {
   );
 };
 
+const showAPIFlow = (
+  method: any,
+  requestUrl: any,
+  widget: any = "Browser",
+  server: string
+) => {
+  const isShowAPIFlow =
+    process.env.NODE_ENV !== PRODUCTION
+      ? localStorageUtil.get(SHOW_API_FLOW) === "true"
+      : false;
+  if (isShowAPIFlow) {
+    const store = require("../../redux/store").default;
+    if (store) {
+      store.dispatch(
+        API_CALL_ACTION(
+          widget + " -> " + server + ": " + method + " " + requestUrl
+        )
+      );
+    }
+  }
+};
+
+const processForUserParameter = (request: AxiosRequestConfig) => {
+  const currentUser = storageSessionHandler.getCurrentUserAndLoadAccount();
+  if (
+    currentUser &&
+    currentUser.forUserId &&
+    request.url &&
+    request.url.indexOf(FOR_USER_ID) === -1
+  ) {
+    const searchParam = request.url.split("?")[1];
+    if (searchParam) {
+      request.url =
+        request.url + "&" + FOR_USER_ID + "=" + currentUser.forUserId;
+    } else {
+      request.url =
+        request.url + "?" + FOR_USER_ID + "=" + currentUser.forUserId;
+    }
+  }
+};
+
+const processLangIdParameter = (request: AxiosRequestConfig) => {
+  if (
+    request.url &&
+    !isServiceInList(request, axiosHeaderIgnoredServices) &&
+    request.url.indexOf(LANGID) === -1
+  ) {
+    const searchParam = request.url.split("?")[1];
+    const langId =
+      CommerceEnvironment.reverseLanguageMap[
+        i18n.languages[0].split("-").join("_")
+      ];
+    if (searchParam) {
+      request.url = request.url + "&" + LANGID + "=" + langId;
+    } else {
+      request.url = request.url + "?" + LANGID + "=" + langId;
+    }
+  }
+};
+
 const initAxios = (dispatch: any) => {
   dispatchObject.dispatch = dispatch;
   Axios.interceptors.request.use(
-    (request: AxiosRequestConfig) => {
-      if (
-        request.url?.startsWith(site.transactionContext) &&
-        !isServiceInList(request, axiosHeaderIgnoredServices)
-      ) {
-        const header = request.headers;
-        if (!request[SKIP_WC_TOKEN_HEADER]) {
-          processTransactionHeader(header);
+    async (request: AxiosRequestConfig) => {
+      if (request.url?.startsWith(site.transactionContext)) {
+        showAPIFlow(
+          request.method,
+          request.url,
+          request["widget"],
+          SHOW_API_FLOW_TRANSACTION
+        );
+        if (!isServiceInList(request, axiosHeaderIgnoredServices)) {
+          const header = request.headers;
+          if (!request[SKIP_WC_TOKEN_HEADER]) {
+            processTransactionHeader(header);
+          }
         }
       }
       if (request.url?.startsWith(site.searchContext)) {
         const header = request.headers;
         processSearchHeader(header);
+        showAPIFlow(
+          request.method,
+          request.url,
+          request["widget"],
+          SHOW_API_FLOW_SEARCH
+        );
       }
+
+      //verify active storeId in localStorage.
+      storageStoreIdHandler.verifyActiveStoreId();
+      if (isNumberParserRequiredService(request)) {
+        request.transformResponse = [transformNumberResponse];
+      }
+
+      if (
+        !request.url ||
+        (request.url.indexOf(GUEST_IDENTITY) === -1 &&
+          request.url.startsWith(site.transactionContext))
+      ) {
+        let currentUser = storageSessionHandler.getCurrentUserAndLoadAccount();
+        if (!currentUser && isUserRequiredService(request)) {
+          const payload = {
+            widget: "axiosConfig",
+          };
+          await guestIdentityService
+            .login(payload)
+            .then((resp: AxiosResponse) => {
+              currentUser = resp.data;
+              const dispatch = dispatchObject.dispatch;
+              dispatch(
+                GUEST_LOGIN_SUCCESS_ACTION({ ...currentUser, ...payload })
+              );
+            })
+            .catch((error) => {
+              throw error;
+            });
+        }
+      }
+      processForUserParameter(request);
+      processLangIdParameter(request);
       return request;
     },
     function (error: any) {
@@ -188,50 +285,4 @@ const initAxios = (dispatch: any) => {
     }
   );
 };
-
-const executeRequest = (request: AxiosRequestConfig): AxiosPromise<any> => {
-  const params: URLSearchParams = request.params;
-  processForUserParameter(params);
-  //verify active storeId in localStorage.
-  storageStoreIdHandler.verifyActiveStoreId();
-  if (!params.has(LANGID)) {
-    // add language Id
-    const langId =
-      CommerceEnvironment.reverseLanguageMap[
-        i18n.languages[0].split("-").join("_")
-      ];
-    params.set(LANGID, langId);
-  }
-  if (isNumberParserRequiredService(request)) {
-    request.transformResponse = [transformNumberResponse];
-  }
-  if (
-    !request.url ||
-    (request.url.indexOf(GUEST_IDENTITY) === -1 &&
-      request.url.startsWith(site.transactionContext))
-  ) {
-    let currentUser = storageSessionHandler.getCurrentUserAndLoadAccount();
-    if (!currentUser && isUserRequiredService(request)) {
-      const payload = {
-        widget: "axiosConfig",
-      };
-      return guestIdentityService
-        .login(payload)
-        .then((resp: AxiosResponse) => {
-          currentUser = resp.data;
-          const dispatch = dispatchObject.dispatch;
-          dispatch(GUEST_LOGIN_SUCCESS_ACTION({ ...currentUser, ...payload }));
-          return Axios(request);
-        })
-        .catch((error) => {
-          throw error;
-        });
-    } else {
-      return Axios(request);
-    }
-  } else {
-    return Axios(request);
-  }
-};
-
-export { initAxios, executeRequest };
+export { initAxios };

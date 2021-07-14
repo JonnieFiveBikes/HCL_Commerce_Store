@@ -12,9 +12,8 @@
  * Do not modify, the file is generated.
  */
 //Standard libraries
-import { AxiosRequestConfig, Method, AxiosPromise } from "axios";
+import Axios, { AxiosRequestConfig, Method, AxiosPromise } from "axios";
 //Foundation libraries
-import { executeRequest } from "../../axios/axiosConfig";
 import { getSite } from "../../hooks/useSite";
 import { localStorageUtil } from "../../utils/storageUtil";
 import { PRODUCTION, SHOW_API_FLOW } from "../../constants/common";
@@ -114,11 +113,9 @@ const contentControllerService = {
       }
     }
 
-    if (parameters.$queryParameters) {
-      Object.keys(parameters.$queryParameters).forEach(function (
-        parameterName
-      ) {
-        const parameter = parameters.$queryParameters[parameterName];
+    if (parameters.query) {
+      Object.keys(parameters.query).forEach(function (parameterName) {
+        const parameter = parameters.query[parameterName];
         if (parameter !== null && parameter !== undefined) {
           queryParameters.set(parameterName, parameter);
         }
@@ -190,7 +187,7 @@ const contentControllerService = {
       }
     }
 
-    return executeRequest(requestOptions);
+    return Axios(requestOptions);
   },
 };
 

@@ -11,7 +11,10 @@
 //Standard libraries
 import React from "react";
 //UI
-import { StyledGrid, StyledContainer } from "../../StyledUI";
+import {
+  StyledGrid,
+  StyledContainer,
+} from "@hcl-commerce-store-sdk/react-component";
 
 function StandardPageLayout({
   cid,

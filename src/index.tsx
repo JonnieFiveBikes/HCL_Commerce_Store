@@ -23,7 +23,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { StylesProvider } from "@material-ui/styles";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
-import { StyledCircularProgress } from "./components/StyledUI";
+import { StyledCircularProgress } from "@hcl-commerce-store-sdk/react-component";
 import { CurrentTheme } from "./themes";
 import "./index.scss";
 

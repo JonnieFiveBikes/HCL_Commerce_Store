@@ -8,6 +8,6 @@
  *
  *==================================================
  */
-import FormattedPriceDisplay from "./FormattedPriceDisplay";
+import FormattedPriceDisplay from "./formatted-price-display";
 
 export default FormattedPriceDisplay;

@@ -17,7 +17,8 @@ import { HOME } from "../../../constants/routes";
 import { forUserIdSelector } from "../../../redux/selectors/user";
 
 const StyledWrapper = styled.div`
-  ${({ theme }) => {
+  ${(props) => {
+    const theme = props.theme;
     const match = useRouteMatch({
       path: HOME,
       strict: true,

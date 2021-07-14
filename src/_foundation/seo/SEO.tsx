@@ -9,7 +9,7 @@
  *==================================================
  */
 //Standard libraries
-import React from "react";
+import React, { lazy } from "react";
 import { Redirect } from "react-router";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
@@ -18,11 +18,12 @@ import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../_foundation/hooks/useSite";
+import { HOME } from "../constants/common";
 //Redux
 import { GET_SEO_CONFIG_ACTION } from "../../redux/actions/seo";
 import { seoSelector } from "../../redux/selectors/seo";
 //UI
-import { StyledProgressPlaceholder } from "../../components/StyledUI";
+import { StyledProgressPlaceholder } from "@hcl-commerce-store-sdk/react-component";
 //GA360
 //UA
 import UADataService from "../gtm/ua/uaData.service";
@@ -45,30 +46,41 @@ function SEO(props: any): JSX.Element {
       cancels.push(c);
     }),
   };
-
+  const identifier = url.substr(1) || HOME;
   React.useEffect(() => {
     if (site !== null && url) {
       dispatch(
-        GET_SEO_CONFIG_ACTION({ identifier: url.substr(1), ...payloadBase })
+        GET_SEO_CONFIG_ACTION({
+          identifier: identifier,
+          ...payloadBase,
+        })
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [site, url, dispatch]);
+  React.useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [site, url, dispatch]);
+  }, []);
 
   const ActiveComponent = () => {
-    if (seoConfig && seoConfig[url.substr(1)]) {
-      const c = seoConfig[url.substr(1)];
-      const ActiveC = c.component;
+    if (seoConfig && seoConfig[identifier]) {
+      const c = seoConfig[identifier];
+      const ActiveC = lazy(
+        () =>
+          import(`../../components/commerce-layouts/${c.layout.containerName}`)
+      );
+      const slots = c.layout.slots;
+
       //GA360
-      if (site.enableGA && seoConfig[url.substr(1)].page) {
+      if (site.enableGA && seoConfig[identifier].page) {
         if (site.enableUA) {
-          UADataService.setPageTitle(seoConfig[url.substr(1)].page.title);
+          UADataService.setPageTitle(seoConfig[identifier].page.title);
         }
         if (site.enableGA4) {
-          GA4DataService.setPageTitle(seoConfig[url.substr(1)].page.title);
+          GA4DataService.setPageTitle(seoConfig[identifier].page.title);
         }
       }
 
@@ -83,7 +95,7 @@ function SEO(props: any): JSX.Element {
               <meta name="keywords" content={c.page.metaKeyword}></meta>
               <title>{c.page.title}</title>
             </Helmet>
-            <ActiveC page={c.page} {...props} />
+            <ActiveC page={c.page} slots={slots} {...props} />
           </div>
         </>
       );

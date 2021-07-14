@@ -20,7 +20,6 @@ import {
 } from "../../actions/order";
 import {
   LOGIN_SUCCESS_ACTION,
-  LOGOUT_SUCCESS_ACTION,
   GUEST_LOGIN_SUCCESS_ACTION,
   INIT_USER_FROM_STORAGE_SUCCESS_ACTION,
 } from "../../actions/user";

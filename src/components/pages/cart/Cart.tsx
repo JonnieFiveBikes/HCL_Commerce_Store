@@ -53,7 +53,6 @@ import {
 import {
   forUserIdSelector,
   loginStatusSelector,
-  userIdSelector,
 } from "../../../redux/selectors/user";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 //UI
@@ -74,7 +73,7 @@ import {
   StyledMuiPickersUtilsProvider,
   StyledInputLabel,
   StyledProgressPlaceholder,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import {
   enUS,
   fr,
@@ -98,8 +97,6 @@ import AsyncCall from "../../../_foundation/gtm/async.service";
  */
 const Cart: React.FC = (props: any) => {
   const widgetName = getDisplayName(Cart);
-
-  const userId = useSelector(userIdSelector);
   const forUserId = useSelector(forUserIdSelector);
   const contractId = useSelector(currentContractIdSelector);
   const cart = useSelector(cartSelector);
@@ -194,9 +191,7 @@ const Cart: React.FC = (props: any) => {
       };
       dispatch(orderActions.FETCHING_CART_ACTION({ ...payload }));
     }
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite, contractId, defaultCurrencyID]);
 
@@ -212,6 +207,9 @@ const Cart: React.FC = (props: any) => {
         { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
       );
     }
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

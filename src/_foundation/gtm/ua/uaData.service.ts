@@ -304,6 +304,7 @@ const UADataService = {
       currency = order.currency;
       if (arr && arr.length >= 1) {
         let catgroupID = arr[arr.length - 1];
+        catgroupID = catgroupID.substring(catgroupID.indexOf("_") + 1);
         partNumberCatgroupMap.set(order.partNumber, catgroupID);
       }
       return {
@@ -328,6 +329,14 @@ const UADataService = {
             if (categoryName) {
               return {
                 category: categoryName,
+                id: element.id,
+                name: element.name,
+                price: element.price,
+                quantity: element.quantity,
+              };
+            } else {
+              return {
+                category: categoryId,
                 id: element.id,
                 name: element.name,
                 price: element.price,

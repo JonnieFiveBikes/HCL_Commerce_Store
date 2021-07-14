@@ -25,7 +25,7 @@ import {
   StyledButton,
   StyledTypography,
   StyledHeaderActions,
-} from "../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Hidden } from "@material-ui/core";
 

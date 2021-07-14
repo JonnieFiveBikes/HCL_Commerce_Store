@@ -9,12 +9,13 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
+import { paramCase } from "change-case";
 
 //Foundation libraries
 import { useSite } from "../../_foundation/hooks/useSite";
@@ -27,7 +28,7 @@ import { headerConfig } from "./headerConstant";
 import { TOP_CATEGORIES_DEPTH_LIMIT } from "../../configs/catalog";
 import { MINICART_CONFIGS } from "../../configs/order";
 import * as ROUTES from "../../constants/routes";
-import { ContentRecommendationLayout } from "../widgets/content-recommendation";
+import ContentRecommendationWidget from "../commerce-widgets/content-recommendation-widget";
 import MiniCart from "./MiniCart";
 import LanguageToggle from "./LanguageToggle";
 import MegaMenu from "./MegaMenu";
@@ -36,7 +37,10 @@ import { SearchBar } from "../widgets/search-bar";
 import AccountPopperContent from "./AccountPopperContent";
 
 //Redux
-import { userNameSelector } from "../../redux/selectors/user";
+import {
+  userNameSelector,
+  loginStatusSelector,
+} from "../../redux/selectors/user";
 import { ORG_SWITCH_ACTION } from "../../redux/actions/organization";
 import { CONTRACT_SWITCH_ACTION } from "../../redux/actions/contract";
 import { LOGOUT_REQUESTED_ACTION } from "../../redux/actions/user";
@@ -66,7 +70,7 @@ import {
   StyledPaper,
   StyledBox,
   StyledSearchBarButton,
-} from "../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 interface HeaderProps {
   loggedIn: boolean;
@@ -84,18 +88,15 @@ const Header: React.FC<HeaderProps> = (props: any) => {
   const [open, setOpen] = useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = useState<boolean>(false);
   const [topCategories, setTopCategories] = useState<Array<any>>([]);
-  const [myAccountPopperOpen, setMyAccountPopperOpen] = useState<boolean>(
-    false
-  );
+  const [myAccountPopperOpen, setMyAccountPopperOpen] =
+    useState<boolean>(false);
   const myAccountElRef = useRef<HTMLButtonElement>(null);
 
   const [miniCartPopperOpen, setMiniCartPopperOpen] = useState<boolean>(false);
   const miniCartElRef = useRef<HTMLButtonElement>(null);
 
-  const [
-    languageTogglePopperOpen,
-    setLanguageTogglePopperOpen,
-  ] = useState<boolean>(false);
+  const [languageTogglePopperOpen, setLanguageTogglePopperOpen] =
+    useState<boolean>(false);
   const languageToggleElRef = useRef<HTMLButtonElement>(null);
 
   const { mySite } = useSite();
@@ -106,6 +107,8 @@ const Header: React.FC<HeaderProps> = (props: any) => {
   const { firstName, lastName } = useSelector(userNameSelector);
   const contractId = useSelector(currentContractIdSelector);
   const success: SuccessMessageReducerState = useSelector(successSelector);
+  const userLoggedIn = useSelector(loginStatusSelector);
+  const userPreviousLoggedIn = useRef();
 
   const locale = localStorageUtil.get(LOCALE);
 
@@ -170,7 +173,7 @@ const Header: React.FC<HeaderProps> = (props: any) => {
     const orgId = event.target.value;
     dispatch(
       ORG_SWITCH_ACTION({
-        $queryParameters: { activeOrgId: String(orgId) },
+        query: { activeOrgId: String(orgId) },
         ...payload,
       })
     );
@@ -185,7 +188,7 @@ const Header: React.FC<HeaderProps> = (props: any) => {
     const conId = event.target.value;
     dispatch(
       CONTRACT_SWITCH_ACTION({
-        $queryParameters: { contractId: String(conId) },
+        query: { contractId: String(conId) },
         ...payloadBase,
       })
     );
@@ -198,10 +201,17 @@ const Header: React.FC<HeaderProps> = (props: any) => {
       ...payload,
     };
     dispatch(LOGOUT_REQUESTED_ACTION(param));
-    setMyAccountPopperOpen(false);
-    setMiniCartPopperOpen(false);
-    history.push(ROUTES.HOME);
   };
+
+  useEffect(() => {
+    if (!userLoggedIn && userPreviousLoggedIn.current) {
+      setMyAccountPopperOpen(false);
+      setMiniCartPopperOpen(false);
+      history.push(ROUTES.HOME);
+    }
+    userPreviousLoggedIn.current = userLoggedIn;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userLoggedIn]);
 
   useEffect(() => {
     if (mySite !== null && contractId !== undefined) {
@@ -209,21 +219,18 @@ const Header: React.FC<HeaderProps> = (props: any) => {
       const parameters: any = {
         storeId: storeID,
         depthAndLimit: TOP_CATEGORIES_DEPTH_LIMIT,
-        $queryParameters: {
+        query: {
           contractId: contractId,
         },
         ...payload,
       };
       categoryService
-        .getV2CategoryResourcesUsingGET(parameters, null, mySite.searchContext)
+        .getV2CategoryResourcesUsingGET(parameters)
         .then((res) => {
           setTopCategories(res.data.contents);
         })
         .catch((e) => {});
     }
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite, contractId, locale]);
 
@@ -234,6 +241,30 @@ const Header: React.FC<HeaderProps> = (props: any) => {
       }
     }
   }, [success]);
+
+  useEffect(() => {
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const crwProps = useMemo(
+    () => ({
+      widget: {
+        id: `header-${paramCase(headerConfig.espot.eSpotName)}`,
+        widgetName: "content-recommendation-widget",
+        name: headerConfig.espot.eSpotName,
+        properties: {
+          emsName: headerConfig.espot.eSpotName,
+        },
+      },
+      page: { name: "" },
+    }),
+    //Content is language sensitive, so listen to translation change to render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [t]
+  );
 
   return (
     <>
@@ -259,10 +290,7 @@ const Header: React.FC<HeaderProps> = (props: any) => {
                 {mySite != null && (
                   <StyledGrid item>
                     <div className="header-branding">
-                      <ContentRecommendationLayout
-                        cid="header"
-                        eSpot={headerConfig.espot}
-                        page={headerConfig.page}></ContentRecommendationLayout>
+                      <ContentRecommendationWidget {...crwProps} />
                     </div>
                   </StyledGrid>
                 )}

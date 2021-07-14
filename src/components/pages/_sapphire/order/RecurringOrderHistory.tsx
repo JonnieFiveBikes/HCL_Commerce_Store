@@ -19,11 +19,8 @@ import orderService from "../../../../_foundation/apis/transaction/order.service
 import FormattedPriceDisplay from "../../../widgets/formatted-price-display";
 //UI
 import { Options } from "material-table";
-import {
-  StyledTable,
-  StyledTableIcons,
-  StyledTypography,
-} from "../../../StyledUI";
+import { StyledTable, StyledTableIcons } from "../../../StyledUI";
+import { StyledTypography } from "@hcl-commerce-store-sdk/react-component";
 
 interface RecurringOrderHistoryProps {
   parentOrderId: string;
@@ -43,7 +40,11 @@ const useRecurringOrder = () => {
     }),
   };
 
-  const dateFormatOptions = { year: "numeric", month: "long", day: "numeric" };
+  const dateFormatOptions: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   const dateFormatter = new Intl.DateTimeFormat(
     i18n.languages[0],
     dateFormatOptions
@@ -53,7 +54,8 @@ const useRecurringOrder = () => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const statusLookup = {
     N: t(`Order.Status_N`),

@@ -1,0 +1,13 @@
+{
+  "extends": "react-app",
+  "ignorePatterns": [
+    "setupProxy.js",
+    "**/apis/mock/",
+    "**/__tests__/",
+    "assets/",
+    "public/",
+    "tools/",
+    "dist/",
+    "build/"
+  ]
+}

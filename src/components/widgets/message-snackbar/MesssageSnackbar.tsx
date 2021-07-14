@@ -14,7 +14,10 @@ import { Link, useLocation } from "react-router-dom";
 import HTMLReactParser from "html-react-parser";
 //UI
 import { SnackbarOrigin } from "@material-ui/core";
-import { StyledSnackbar, StyledAlert } from "../../StyledUI";
+import {
+  StyledSnackbar,
+  StyledAlert,
+} from "@hcl-commerce-store-sdk/react-component";
 
 interface MessageSnackbarProperty {
   anchorOrigin: SnackbarOrigin;

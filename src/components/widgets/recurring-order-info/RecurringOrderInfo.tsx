@@ -14,7 +14,11 @@ import { useTranslation } from "react-i18next";
 //Custom libraries
 import { RECURRING_ORDER_OPTIONS } from "../../../constants/order";
 //UI
-import { StyledGrid, StyledTypography, StyledButton } from "../../StyledUI";
+import {
+  StyledGrid,
+  StyledTypography,
+  StyledButton,
+} from "@hcl-commerce-store-sdk/react-component";
 
 interface RecurringOrderInfoProps {
   recurringOrderNumber?: string;
@@ -45,7 +49,11 @@ const RecurringOrderInfo: React.FC<RecurringOrderInfoProps> = (props: any) => {
   } = props;
 
   const { t, i18n } = useTranslation();
-  const dateFormatOptions = { year: "numeric", month: "long", day: "numeric" };
+  const dateFormatOptions: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   const dateFormatter = new Intl.DateTimeFormat(
     i18n.languages[0],
     dateFormatOptions

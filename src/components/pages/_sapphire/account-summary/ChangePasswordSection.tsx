@@ -10,11 +10,14 @@
  */
 //Standard libraries
 import React, { ChangeEvent } from "react";
+import { useSelector } from "react-redux";
 import { OK } from "http-status-codes";
 import { useTranslation } from "react-i18next";
 //Foundation libraries
 import personService from "../../../../_foundation/apis/transaction/person.service";
 import { useSite } from "../../../../_foundation/hooks/useSite";
+//Redux
+import { forUserIdSelector } from "../../../../redux/selectors/user";
 //UI
 import {
   StyledButton,
@@ -22,7 +25,7 @@ import {
   StyledTypography,
   StyledDialog,
   StyledDialogContent,
-} from "../../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import { EMPTY_STRING } from "../../../../constants/common";
 
 const ChangePasswordSection: React.FC = (props: any) => {
@@ -41,6 +44,7 @@ const ChangePasswordSection: React.FC = (props: any) => {
   const saveLabel = t("ChangePasswordSection.SaveLabel");
   const successLabel = t("ChangePasswordSection.SuccessLabel");
   const okLabel = t("ChangePasswordSection.OkLabel");
+  const forUserId = useSelector(forUserIdSelector);
 
   const clearForm = () => {
     setOldPassword("");
@@ -93,19 +97,18 @@ const ChangePasswordSection: React.FC = (props: any) => {
         xcred_logonPasswordVerify: passwordVerify,
       },
     };
-    personService
-      .updatePerson(parameters, null, site.transactionContext)
-      .then((res) => {
-        if (res.status === OK) {
-          handleSuccess();
-        }
-      });
+    personService.updatePerson(parameters).then((res) => {
+      if (res.status === OK) {
+        handleSuccess();
+      }
+    });
   };
   const canContinue = () => {
     if (
       passwordOld !== EMPTY_STRING &&
       passwordNew !== EMPTY_STRING &&
-      passwordVerify !== EMPTY_STRING
+      passwordVerify !== EMPTY_STRING &&
+      !forUserId
     ) {
       return true;
     }

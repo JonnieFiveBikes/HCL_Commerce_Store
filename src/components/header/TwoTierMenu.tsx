@@ -12,7 +12,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 //UI
-import { StyledPaper, StyledMenuTypography, StyledBox } from "../StyledUI";
+import {
+  StyledPaper,
+  StyledMenuTypography,
+  StyledBox,
+} from "@hcl-commerce-store-sdk/react-component";
 
 interface TwoTierMenuProps {
   page?: any;

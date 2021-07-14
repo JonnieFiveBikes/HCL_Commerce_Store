@@ -1,0 +1,78 @@
+{
+  "layout": {
+    "id": "3074457345618271107",
+    "name": "Home Page Layout",
+    "containerName": "home-page",
+    "startDate": null,
+    "endDate": null,
+    "priority": 0,
+    "slots": [
+      {
+        "id": "1",
+        "name": "1",
+        "widgets": [
+          {
+            "id": "3074457345618261611",
+            "name": "content-recommendation-widget",
+            "widgetName": "content-recommendation-widget",
+            "sequence": 0,
+            "properties": {
+              "emsName": "Home Hero"
+            }
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "2",
+        "widgets": [
+          {
+            "id": "3074457345618261612",
+            "name": "Content Recommendation Widget",
+            "widgetName": "content-recommendation-widget",
+            "sequence": 0,
+            "properties": {
+              "emsName": "Free Delivery"
+            }
+          },
+          {
+            "id": "3074457345618261613",
+            "name": "Catalog Entry Recommendation Widget",
+            "widgetName": "catalog-entry-recommendation-widget",
+            "sequence": 1,
+            "properties": {
+              "emsName": "Home_ProductRec"
+            }
+          },
+          {
+            "id": "3074457345618261614",
+            "name": "Content Recommendation Widget",
+            "widgetName": "content-recommendation-widget",
+            "sequence": 2,
+            "properties": {
+              "emsName": "Home_Promotion"
+            }
+          },
+          {
+            "id": "3074457345618261615",
+            "name": "Featured Product Recommendation Widget",
+            "widgetName": "featured-product-recommendation-widget",
+            "sequence": 3,
+            "properties": {
+              "emsName": "Featured_ProductRec"
+            }
+          },
+          {
+            "id": "3074457345618261616",
+            "name": "Category Recommendation Widget",
+            "widgetName": "category-recommendation-widget",
+            "sequence": 4,
+            "properties": {
+              "emsName": "Home_CategoryRec"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

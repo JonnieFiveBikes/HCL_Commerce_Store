@@ -4,12 +4,14 @@
  *
  * HCL Commerce
  *
- * (C) Copyright HCL Technologies Limited 2020
+ * (C) Copyright HCL Technologies Limited 2020, 2021
  *
  *==================================================
  */
 //Standard libraries
 import { select } from "redux-saga/effects";
+//hcl libraries
+import { marketingConstants } from "@hcl-commerce-store-sdk/utils";
 
 //Foundation libraries
 import eventService from "../../../_foundation/apis/transaction/event.service";
@@ -23,16 +25,32 @@ function* performClickEvent(action: any) {
     //only tract click with guest  of register user
     const { eSpotDesc, eSpotRoot } = action.payload;
     const payload = action.payload;
-    let body = {
+    let body: any = {
       evtype: "CpgnClick",
-      productId: eSpotDesc.productId || "",
-      categoryId: eSpotDesc.filteredResultId || "",
       DM_ReqCmd: "",
       intv_id: eSpotDesc.activityIdentifierID,
       expDataType: eSpotDesc.baseMarketingSpotDataType,
-      mpe_id: eSpotRoot.marketingSpotIdentifier,
+      mpe_id:
+        eSpotDesc.marketingSpotIdentifier || eSpotRoot?.marketingSpotIdentifier,
       expDataUniqueID: eSpotDesc.baseMarketingSpotActivityID,
     };
+    if (
+      eSpotDesc.baseMarketingSpotDataType ===
+        marketingConstants.MARKETING_SPOT_DATA_TYPE.CATALOG_ENTRY_ID ||
+      eSpotDesc.baseMarketingSpotDataType ===
+        marketingConstants.MARKETING_SPOT_DATA_TYPE.CATALOG_ENTRY
+    ) {
+      body.productId = eSpotDesc.baseMarketingSpotActivityID || "";
+    }
+    if (
+      eSpotDesc.baseMarketingSpotDataType ===
+      marketingConstants.MARKETING_SPOT_DATA_TYPE.CATALOG_GROUP_ID
+    ) {
+      body.categoryId =
+        eSpotDesc.filteredResultId ||
+        eSpotDesc.baseMarketingSpotActivityID ||
+        "";
+    }
     if (eSpotDesc.experimentResult) {
       const expResult = eSpotDesc.experimentResult[0];
       const bodyExt = {

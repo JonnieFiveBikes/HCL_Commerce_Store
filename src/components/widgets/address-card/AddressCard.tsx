@@ -41,7 +41,10 @@ import * as ROUTES from "../../../constants/routes";
 import AddressContext from "../../pages/checkout/address/AddressContext";
 import addressUtil from "../../../utils/addressUtil";
 //UI
-import { StyledTypography, StyledCard } from "../../StyledUI";
+import {
+  StyledTypography,
+  StyledCard,
+} from "@hcl-commerce-store-sdk/react-component";
 
 interface AddressCardProps {
   addressId: string;
@@ -107,11 +110,15 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
       };
       dispatch(GET_ADDRESS_DETAIL_ACTION(payload));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mySite]);
+
+  useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mySite]);
+  }, []);
 
   function deleteAddress(nickName: string) {
     const parameters: any = {

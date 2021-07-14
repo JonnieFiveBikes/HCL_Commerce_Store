@@ -9,26 +9,29 @@
  *---------------------------------------------------
  */
 //Standard libraries
-import React, { useEffect, useState, MouseEvent } from "react";
+import { useEffect, useState, MouseEvent } from "react";
 import Axios, { Canceler } from "axios";
 import { useSelector } from "react-redux";
 import getDisplayName from "react-display-name";
 //Foundation libraries
+import { commonUtil } from "@hcl-commerce-store-sdk/utils";
 import { useSite } from "../../../_foundation/hooks/useSite";
 import productsService from "../../../_foundation/apis/search/products.service";
 //Custom libraries
-import { DEFINING, OFFER } from "../../../constants/common";
-import commonUtil from "../../../_foundation/utils/commonUtil";
+import { DEFINING, OFFER, EMPTY_STRING } from "../../../constants/common";
 //Redux
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 import { breadcrumbsSelector } from "../../../redux/selectors/catalog";
 //UI
-import { StyledProductCard, StyledSwatch } from "../../StyledUI";
+import { StyledSwatch } from "@hcl-commerce-store-sdk/react-component";
+import { StyledProductCard } from "@hcl-commerce-store-sdk/react-component";
+import FormattedPriceDisplay from "../formatted-price-display";
 //GA360
 import AsyncCall from "../../../_foundation/gtm/async.service";
 
 interface ProductCardProps {
   product: any;
+  categoryId?: string;
 }
 
 /**
@@ -43,6 +46,7 @@ export default function ProductCard(props: ProductCardProps) {
 
   const product: any = props.product;
   const catentryId: string = product.id;
+  const categoryId: string = props.categoryId ? props.categoryId : EMPTY_STRING;
   const name: string = product.name;
   const thumbnail: string = product.thumbnail;
   const productAttributes: any = product.attributes ? product.attributes : [];
@@ -152,18 +156,20 @@ export default function ProductCard(props: ProductCardProps) {
           Array.isArray(attributeValue.image1path) &&
           attributeValue.image1path.length > 0
         ) {
-          attributeValue.image1path.map((imagePath: any, index3: number) => {
-            swatches.push(
-              <StyledSwatch
-                style={{
-                  backgroundImage: `url("${imagePath}")`,
-                }}
-                key={`${attributeValue.id[index3]}_${index2}_${index3}`}
-                alt={attributeValue.value[index3]}
-                onClick={(e) => onSwatchClick(e, attributeValue.id[index3])}
-              />
-            );
-          });
+          attributeValue.image1path.forEach(
+            (imagePath: any, index3: number) => {
+              swatches.push(
+                <StyledSwatch
+                  style={{
+                    backgroundImage: `url("${imagePath}")`,
+                  }}
+                  key={`${attributeValue.id[index3]}_${index2}_${index3}`}
+                  alt={attributeValue.value[index3]}
+                  onClick={(e) => onSwatchClick(e, attributeValue.id[index3])}
+                />
+              );
+            }
+          );
         } else if (
           attributeValue.image1path !== undefined &&
           attributeValue.image1path.length > 0
@@ -173,7 +179,7 @@ export default function ProductCard(props: ProductCardProps) {
               style={{
                 backgroundImage: `url("${attributeValue.image1path}")`,
               }}
-              key={attributeValue.id}
+              key={`${attributeValue.id}_${index2}`}
               alt={attributeValue.value}
               onClick={(e) => onSwatchClick(e, attributeValue.id)}
             />
@@ -200,7 +206,17 @@ export default function ProductCard(props: ProductCardProps) {
     );
   };
   const clickProductGA = mySite.enableGA && { onClick: gaProductClick };
-
+  const price = getOfferPrice(product.price);
+  const defaultCurrencyID: string = mySite
+    ? mySite.defaultCurrencyID
+    : EMPTY_STRING;
+  const formattedPriceDisplay = (
+    <FormattedPriceDisplay
+      min={price}
+      max={null}
+      currency={defaultCurrencyID}
+    />
+  );
   return (
     <StyledProductCard
       seoUrl={seoUrl}
@@ -211,8 +227,10 @@ export default function ProductCard(props: ProductCardProps) {
       name={name}
       price={getOfferPrice(product.price)}
       className="product-grid"
+      categoryId={categoryId}
       //GA360
       {...clickProductGA}
+      formattedPriceDisplay={formattedPriceDisplay}
     />
   );
 }

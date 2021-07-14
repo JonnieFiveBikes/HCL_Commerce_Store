@@ -34,7 +34,7 @@ import {
   StyledLink,
   StyledBreadcrumbs,
   StyledTypography,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import { Divider } from "@material-ui/core";
 
 //Custom libraries
@@ -197,11 +197,15 @@ const EditAddress = (props) => {
     if (addressDetails !== null) {
       getAndSetEditAddressData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mySite, addressDetails]);
+
+  React.useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mySite, addressDetails]);
+  }, []);
 
   return (
     <StyledContainer cid="edit-address">

@@ -1,0 +1,40 @@
+{
+  "layout": {
+    "id": "3074457345618271107",
+    "name": "Category Page Layout",
+    "containerName": "category-landing-page",
+    "startDate": null,
+    "endDate": null,
+    "priority": 0,
+    "slots": [
+      {
+        "id": "1",
+        "name": "1",
+        "widgets": [
+          {
+            "id": "3074457345618261611",
+            "name": "Hero",
+            "widgetName": "content-recommendation-widget",
+            "sequence": 0,
+            "properties": {
+              "emsName": "Hero",
+              "emsType": "local"
+            }
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "2",
+        "widgets": [
+          {
+            "id": "3074457345618261612",
+            "name": "Child Category Grid Widget",
+            "widgetName": "child-category-grid-widget",
+            "sequence": 0
+          }
+        ]
+      }
+    ]
+  }
+}

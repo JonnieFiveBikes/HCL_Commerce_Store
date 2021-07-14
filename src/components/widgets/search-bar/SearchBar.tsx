@@ -38,7 +38,7 @@ import {
   StyledMenuItem,
   StyledSearchBar,
   StyledMenuTypography,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import { InputAdornment, ClickAwayListener } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import SearchIcon from "@material-ui/icons/Search";
@@ -150,12 +150,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
         })
         .catch((e) => {});
     }
-
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mySite]);
+  }, [mySite, t]);
 
   useEffect(() => {
     const queryString = location.search;
@@ -166,6 +162,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
+
+  useEffect(() => {
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const generateCategoriesList = (categoriesResponse: any[]) => {
     const lists: string[] = [];

@@ -32,7 +32,7 @@ import {
   StyledPaper,
   StyledTypography,
   StyledTooltip,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 function PersonalInformationLayout() {
   const widgetName = getDisplayName(PersonalInformationLayout);
@@ -71,11 +71,15 @@ function PersonalInformationLayout() {
       };
       dispatch(GET_ADDRESS_DETAIL_ACTION(payload));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mySite]);
+
+  useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mySite]);
+  }, []);
 
   return (
     <StyledPaper className="vertical-padding-2 horizontal-padding-2">

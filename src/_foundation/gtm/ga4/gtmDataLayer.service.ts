@@ -191,7 +191,7 @@ const GA4GTMDLService = {
         item_id: product.id,
         ...(product.price && { price: product.price }),
         ...(product.brand && { item_brand: product.brand }),
-        ...(product.category && { item_list_name: product.category }),
+        ...(product.category && { item_list_name: product.category }),        
         ...(product.category && { item_category: product.category }),
         ...(product.variant && { item_variant: product.variant }),
         ...(product.quantity && { quantity: product.quantity }),

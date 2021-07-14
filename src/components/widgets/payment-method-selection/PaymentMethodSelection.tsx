@@ -34,7 +34,7 @@ import {
   StyledBox,
   StyledIconLabel,
   StyledCircularProgress,
-} from "../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 interface PaymentMethodSelectionProps {
   paymentInfo: PaymentInfoType;

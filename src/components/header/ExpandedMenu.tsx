@@ -13,7 +13,10 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router";
 //UI
-import { StyledBox, StyledContainer } from "../StyledUI";
+import {
+  StyledBox,
+  StyledContainer,
+} from "@hcl-commerce-store-sdk/react-component";
 //custom
 import MenubarMenuItem from "./MenubarMenuItem";
 

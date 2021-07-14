@@ -30,10 +30,10 @@ import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import {
   StyledAvatar,
   StyledGrid,
-  StyledNumberInput,
-  StyledTable,
   StyledTypography,
-} from "../../StyledUI";
+  StyledNumberInput,
+} from "@hcl-commerce-store-sdk/react-component";
+import { StyledTable } from "../../StyledUI";
 //GA360
 import AsyncCall from "../../../_foundation/gtm/async.service";
 
@@ -284,11 +284,15 @@ const OrderItemTable: React.FC<OrderItemTableProps> = (props: any) => {
 
   useEffect(() => {
     setQuantityList(initQuantityData());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataProps]);
+
+  useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataProps]);
+  }, []);
 
   /**
    * Initialize table data by making a copy

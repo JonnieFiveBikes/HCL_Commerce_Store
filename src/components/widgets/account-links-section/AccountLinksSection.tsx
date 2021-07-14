@@ -12,7 +12,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 //UI
-import { StyledGrid, StyledTypography } from "../../StyledUI";
+import {
+  StyledGrid,
+  StyledTypography,
+} from "@hcl-commerce-store-sdk/react-component";
 
 function AccountLinksSection({ title, linkList, name }: any) {
   return (

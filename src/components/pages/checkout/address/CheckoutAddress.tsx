@@ -42,7 +42,7 @@ import {
   StyledIconLabel,
   StyledButton,
   StyledTypography,
-} from "../../../StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 
 export enum CheckoutPageType {
   SHIPPING = "shipping",
@@ -228,7 +228,10 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
           dispatch(
             successActions.HANDLE_SUCCESS_MESSAGE_ACTION(successMessage)
           );
-          setSelectedAddressId(addressData.addressId);
+          setSelectedAddressId(
+            addressData.addressId,
+            updatedAddressData.nickName
+          );
           setAddressFormData(addressFormDataInit);
           toggleEditAddress(false);
         }
@@ -247,12 +250,15 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
     setTimeout(() => {
       window.scrollTo(0, 0);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [createNew, editAddress]);
 
+  useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [createNew, editAddress]);
+  }, []);
 
   return (
     <>

@@ -1,8 +1,0 @@
-{
-  "OrderBillingInfo": {
-    "Title": "Información de facturación",
-    "Labels": {
-      "BillAddress": "Dirección de facturación"
-    }
-  }
-}

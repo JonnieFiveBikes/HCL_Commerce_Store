@@ -12,7 +12,7 @@
 
 //Standard libraries
 import React, { Dispatch, Suspense } from "react";
-import { BrowserRouter, useLocation } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
@@ -52,11 +52,11 @@ import {
   LISTEN_USER_FROM_STORAGE_ACTION,
 } from "./redux/actions/user";
 //UI
+import { StyledWrapper } from "./components/StyledUI";
 import {
   StyledGrid,
   StyledProgressPlaceholder,
-  StyledWrapper,
-} from "./components/StyledUI";
+} from "@hcl-commerce-store-sdk/react-component";
 import "./App.scss";
 //GA360
 //UA
@@ -65,8 +65,6 @@ import GTMDLService from "./_foundation/gtm/ua/gtmDataLayer.service";
 import GA4GTMDLService from "./_foundation/gtm/ga4/gtmDataLayer.service";
 
 const ScrollToTop = () => {
-  const { mySite } = useSite();
-
   React.useEffect(() => {
     //scroll to top on path change.
     setTimeout(() => {
@@ -166,9 +164,6 @@ const App: React.FC = (props: any) => {
     } else {
       initSite(site, dispatch);
     }
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
   }, [mySite, dispatch]);
 
   React.useEffect(() => {
@@ -180,6 +175,11 @@ const App: React.FC = (props: any) => {
       window[IFRAME_RESIZER] = undefined;
     }
   }, [forUserId]);
+  React.useEffect(() => {
+    return () => {
+      cancels.forEach((cancel) => cancel());
+    };
+  }, []);
 
   const baseName = process.env.REACT_APP_ROUTER_BASENAME
     ? { basename: process.env.REACT_APP_ROUTER_BASENAME }
@@ -225,7 +225,7 @@ const App: React.FC = (props: any) => {
                 )}
               </Helmet>
             </StyledGrid>
-            <StyledGrid item xs>
+            <StyledGrid item xs className="full-width">
               <Suspense
                 fallback={
                   <StyledProgressPlaceholder className="vertical-padding-20" />

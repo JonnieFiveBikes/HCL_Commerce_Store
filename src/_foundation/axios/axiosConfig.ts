@@ -13,6 +13,7 @@ import Axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import i18n from "i18next";
 import { parse as losslessParse } from "lossless-json";
 import { NOT_FOUND } from "http-status-codes";
+import { pascalCase } from "change-case";
 //Foundation libraries
 import { axiosHeaderIgnoredServices } from "../configs/axiosHeaderIgnoredService";
 import { userRequiredServices } from "../configs/userRequiredService";
@@ -161,7 +162,13 @@ const showAPIFlow = (
     if (store) {
       store.dispatch(
         API_CALL_ACTION(
-          widget + " -> " + server + ": " + method + " " + requestUrl
+          pascalCase(String(widget)) +
+            " -> " +
+            server +
+            ": " +
+            method +
+            " " +
+            requestUrl
         )
       );
     }

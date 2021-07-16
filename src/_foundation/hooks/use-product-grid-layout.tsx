@@ -67,6 +67,7 @@ export const useProductGridLayout = (props: any) => {
     contractId: contract ? contract : "",
     _fields: PRODUCT_LIST_FIELDS,
     limit: pageLimit,
+    offset: 0,
     widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
       cancels.push(c);

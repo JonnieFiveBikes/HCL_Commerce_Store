@@ -13,6 +13,4 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npm run pretty-quick -- --staged
-./tools/scripts/hooks/verifyCopyright.sh
-./tools/scripts/hooks/filterPackageLock.sh
 ./tools/scripts/hooks/lint.sh

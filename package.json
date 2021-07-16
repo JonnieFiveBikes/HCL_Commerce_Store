@@ -28,7 +28,6 @@
     "test-dev": "run-p mockApi test:dev --env=CI",
     "test:dev": "react-scripts test --coverage --collectCoverageFrom=/**/test.{ts,js,jsx,tsx}",
     "eject": "react-scripts eject",
-    "generate-rest": "node tools/scripts/generateRestService.js",
     "pretty-quick": "pretty-quick",
     "generateAsset": "rimraf public && node tools/scripts/copyStoreAsset.js",
     "cleanupBundle": "node tools/scripts/cleanupBundle.js",

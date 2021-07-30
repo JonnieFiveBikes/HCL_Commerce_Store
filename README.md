@@ -208,6 +208,35 @@ Layout and widget resolution flow
 
 ![layout resolution](readmeImages/layout-resolution.svg)
 
+PLWIDGETDEF to React component mapping:
+
+| Layout Template       | IDENIFIER from PLWIDGETDEF | React store file                                          | Import component from React-Component package                                       |
+| --------------------- | -------------------------- | --------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Product Page          | product-page               | src/components/commerce-layouts/product-page.tsx          | import { ProductPageLayout } from "@hcl-commerce-store-sdk/react-component";        |
+| B2B Product Page      | b2b-product-page           | src/components/commerce-layouts/b2b-product-page.tsx      | import { B2BProductPageLayout } from "@hcl-commerce-store-sdk/react-component";     |
+| Product Listing page  | product-listing-page       | src/components/commerce-layouts/product-listing-page.tsx  | import { ProductListingPageLayout } from "@hcl-commerce-store-sdk/react-component"; |
+| Category Landing Page | category-landing-page      | src/components/commerce-layouts/category-landing-page.tsx | import { ProductListingPageLayout } from "@hcl-commerce-store-sdk/react-component"; |
+| Home Page             | home-page                  | src/components/commerce-layouts/home-page.tsx             | import { HomePageLayout } from "@hcl-commerce-store-sdk/react-component";           |
+
+| Widget               | IDENIFIER from PLWIDGETDEF             | React store file                                                           | Import component from React-Component package                                                         |
+| -------------------- | -------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Marketing Content    | content-recommendation-widget          | src/components/commerce-widgets/content-recommendation-widget.tsx          | import { ContentRecommendationWidget } from "@hcl-commerce-store-sdk/react-component";                |
+| Recommend Products   | catalog-entry-recommendation-widget    | src/components/commerce-widgets/catalog-entry-recommendation-widget.tsx    | import { ProductRecommendationWidget } from "@hcl-commerce-store-sdk/react-component";                |
+| Featured Product     | featured-product-recommendation-widget | src/components/commerce-widgets/featured-product-recommendation-widget.tsx | N/A                                                                                                   |
+| Recommend Categories | category-recommendation-widget         | src/components/commerce-widgets/category-recommendation-widget.tsx         | import { CategoryRecommendationWidget } from "@hcl-commerce-store-sdk/react-component";               |
+| E-Marketing Spot     | e-marketing-spot-widget                | src/components/commerce-widgets/e-marketing-spot-widget.tsx                | import { EMarketingSpotWidget } from "@hcl-commerce-store-sdk/react-component";                       |
+| Breadcrumb Trail     | breadcrumb-trail-widget                | src/components/commerce-widgets/breadcrumb-trail-widget.tsx                | import { BreadcrumbWidget } from "@hcl-commerce-store-sdk/react-component";                           |
+| Facet Navigation     | facet-navigation-widget                | src/components/commerce-widgets/facet-navigation-widget.tsx                | import { ProductFilterWidget } from "@hcl-commerce-store-sdk/react-component";                        |
+| Product List         | catalog-entry-list-widget              | src/components/commerce-widgets/catalog-entry-list-widget.tsx              | import { CatalogEntryListWidget as CatalogEntryList } from "@hcl-commerce-store-sdk/react-component"; |
+| Subcategory List     | child-category-grid-widget             | src/components/commerce-widgets/child-category-grid-widget.tsx             | import { ChildCategoryGridWidget } from "@hcl-commerce-store-sdk/react-component";                    |
+| Product Details      | product-details-widget                 | src/components/commerce-widgets/product-details-widget.tsx                 | N/A                                                                                                   |
+| Related Products     | merchandising-association-widget       | src/components/commerce-widgets/merchandising-association-widget.tsx       | import { MerchandisingAssociationContent } from "@hcl-commerce-store-sdk/react-component";            |
+| Attribute Filter     | attribute-filter-widget                | src/components/commerce-widgets/attribute-filter-widget.tsx                | import { ProductAttributeFilterWidget } from "@hcl-commerce-store-sdk/react-component";               |
+| SKU List             | sku-list-widget                        | src/components/commerce-widgets/sku-list-widget.tsx                        | import { SkuListWidget } from "@hcl-commerce-store-sdk/react-component";                              |
+| Product Summary      | product-information-widget             | src/components/commerce-widgets/product-information-widget.tsx             | import { ProductInformationWidget } from "@hcl-commerce-store-sdk/react-component";                   |
+
+
+
 ### Material Table
 
 We use the [Material Table](https://material-table.com/#/docs/get-started/) as a reusable table component.

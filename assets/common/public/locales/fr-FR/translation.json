@@ -173,7 +173,7 @@
   },
   "MultipleShipmentTable": {
     "Labels": {
-      "ItemDetails": "Détail de l'article",
+      "ItemDetails": "Détails de l'article",
       "SKU": "SKU : ",
       "Quantity": "Quantité",
       "ShippingDetails": "Détails de l'expédition",
@@ -567,7 +567,7 @@
     "_ERR_NICKNAME_ALREDY_EXIST_5040": "Le nom d'adresse \"{{0}}\" que vous avez entré existe déjà. Saisissez un autre nom dans la zone Alias puis faites une nouvelle tentative.",
     "_ERR_CMD_MISSING_PARAM_2000": "Entrez votre ID de connexion (adresse électronique) dans le champ Adresse électronique.",
     "_ERR_CMD_INVALID_PARAM_2010": "L'ID de connexion (adresse électronique) que vous avez entré n'est pas valide. Vérifiez votre saisie et réessayez.",
-    "ERR_PROMOTION_CODE_INVALID_-1200": "Le code de promotion que vous avez entré n'est pas valide. Vérifiez le code et faites une nouvelle tentative",
+    "ERR_PROMOTION_CODE_INVALID_-1200": "Le code de promotion que vous avez entré n'est pas valide. Vérifiez le code et faites une nouvelle tentative.",
     "ERR_PROMOTION_NOT_AVAILABLE_AT_THIS_TIME_-2200": "Le code de promotion saisi n'est pas disponible actuellement. Réessayez ultérieurement.",
     "ERR_PROMOTION_PER_SHOPPER_LIMIT_EXCEEDED_-1800": "La promotion que vous avez essayé d'utiliser ne peut pas être appliquée à votre commande : la limite de {{1}} par client a été atteinte.",
     "ERR_PROMOTION_OVERALL_LIMIT_EXCEEDED_-1900": "La promotion que vous avez essayé d'utiliser ne peut pas être appliquée à votre commande : la limite de {{1}} portant sur le nombre total d'utilisations permises de cette promotion a été atteinte.",
@@ -645,7 +645,7 @@
   "OrderItemTable": {
     "Title": "Articles de la commande",
     "Labels": {
-      "ItemDetails": "Détail de l'article",
+      "ItemDetails": "Détails de l'article",
       "SKU": "SKU : ",
       "Status": "Disponibilité",
       "Quantity": "Quantité",
@@ -856,9 +856,9 @@
     "Phone": "Téléphone (facultatif)",
     "Password": "Mot de passe",
     "VerifyPassword": "Confirmer le mot de passe",
-    "TextContent": "Recevez des idées de conception de maison dans votre boîte de réception",
+    "TextContent": "Recevoir des idées de décoration intérieure par email",
     "Register": "S'inscrire",
-    "RegisterComplete": "Enregistrement exécuté",
+    "RegisterComplete": "Terminer l'enregistrement",
     "Msgs": {
       "InvalidFormat": "Format non valide"
     }

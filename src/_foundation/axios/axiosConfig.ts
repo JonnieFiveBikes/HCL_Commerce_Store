@@ -4,7 +4,7 @@
  *
  * HCL Commerce
  *
- * (C) Copyright HCL Technologies Limited 2020
+ * (C) Copyright HCL Technologies Limited 2021
  *
  *---------------------------------------------------
  */
@@ -29,6 +29,7 @@ import {
   SHOW_API_FLOW_SEARCH,
 } from "../constants/common";
 import { site } from "../constants/site";
+import { ASSETS_PATH } from "../constants/assets";
 import { PERSONALIZATION_ID } from "../constants/user";
 import {
   localStorageUtil,
@@ -120,12 +121,29 @@ const processSearchHeader = (header: any) => {
   }
 };
 
-const transformNumberResponse = function (data, headers) {
+const transformResponse = function (data, headers) {
   if (typeof data === "string") {
+    const previewToken = storageSessionHandler.getPreviewToken();
     data = losslessParse(data, (key, value) => {
+      //transform number
       if (value && value.isLosslessNumber) {
         return value.toString();
       } else {
+        if (previewToken && previewToken[WC_PREVIEW_TOKEN]) {
+          //handle preview  asset
+          const token = previewToken[WC_PREVIEW_TOKEN];
+          if (
+            ASSETS_PATH.includes(key.trim()) &&
+            typeof value === "string" &&
+            value.toLocaleLowerCase().indexOf("http") !== 0
+          ) {
+            if (value.indexOf("?") > -1) {
+              return `${value}&${WC_PREVIEW_TOKEN}=${token}`;
+            } else {
+              return `${value}?${WC_PREVIEW_TOKEN}=${token}`;
+            }
+          }
+        }
         return value;
       }
     });
@@ -244,8 +262,12 @@ const initAxios = (dispatch: any) => {
 
       //verify active storeId in localStorage.
       storageStoreIdHandler.verifyActiveStoreId();
-      if (isNumberParserRequiredService(request)) {
-        request.transformResponse = [transformNumberResponse];
+      const previewToken = storageSessionHandler.getPreviewToken();
+      if (
+        (previewToken && previewToken[WC_PREVIEW_TOKEN]) ||
+        isNumberParserRequiredService(request)
+      ) {
+        request.transformResponse = [transformResponse];
       }
 
       if (

@@ -3,17 +3,17 @@
     "CompanyLinks": {
       "Label": "会社",
       "OurStory": "企業沿革",
-      "Careers": "経歴"
+      "Careers": "求人"
     },
     "Copyright": "Copyright HCL Technologies Limited 2020. All rights reserved.",
     "CustomerService": {
       "Label": "お客様サービス",
       "ContactUs": "連絡先",
       "ContactUsDescription": "連絡先",
-      "PrivacyPolicy": "プライバシー・ポリシー"
+      "PrivacyPolicy": "個人情報保護方針"
     },
     "FollowUs": "フォローする",
-    "Description": "このストアフロントのサンプルは React および HCL Commerce をベースにして構築されています。HCL Commerce は大規模なアジャイル・コマースを実現します。",
+    "Description": "このストアフロントのサンプルは React および HCL Commerce をベースにして構築されています。HCL Commerce は大規模かつ迅速なコマースを実現します。",
     "DisabledMessage": "申し訳ありません。このページはまだ開発中です。"
   },
   "Header": {
@@ -372,7 +372,7 @@
     "NoRecord": "オーダーが見つかりません。",
     "InvalidOrderId": "有効なオーダー ID を入力してください。",
     "Search": "検索",
-    "PageSizeLabel": "行",
+    "PageSizeLabel": "件",
     "FirstPage": "最初のページ",
     "LastPage": "最後のページ",
     "PreviousPage": "前のページ",
@@ -479,7 +479,7 @@
     "CancelButton": "キャンセル"
   },
   "FeaturedCard": {
-    "ShopNow": "新しいアイテムが毎日届いています。今、お買い求めください"
+    "ShopNow": "新しいアイテムが毎日届いています。ぜひ、お買い求めください"
   },
   "ForgotPassword": {
     "Title": "パスワードをお忘れですか?",
@@ -489,7 +489,7 @@
     "ContentText": "E メール・アドレスを入力してください。パスワードのリセットに使用する確認コードが届きます。",
     "ContentTextLogonID": "ログイン ID を入力してください。パスワードをリセットするための確認コードがアカウントの E メールで送信されます。",
     "ValidationCodeButton": "確認コードの入力",
-    "SendVerificationCodeButton": "確認コードを送ってください",
+    "SendVerificationCodeButton": "確認コードを送信",
     "CodeRecieved": "既に確認コードを受け取っていますか?",
     "AccountInfoRemember": "アカウント情報を覚えていますか?",
     "SignIn": "今すぐサインイン",
@@ -537,7 +537,7 @@
     "_ERR_AUTHENTICATION_ERROR_2000": "「ログイン ID」フィールドにログイン ID を入力してください。",
     "_ERR_AUTHENTICATION_ERROR_2010": "入力されたログイン ID またはパスワードが正しくありません。情報をもう一度入力してください。",
     "_ERR_AUTHENTICATION_ERROR_2020": "入力されたログイン ID またはパスワードが正しくありません。情報をもう一度入力してください。",
-    "_ERR_AUTHENTICATION_ERROR_2030": "入力したログオン資格情報が無効です。入力内容を確認して再試行してください。",
+    "_ERR_AUTHENTICATION_ERROR_2030": "入力したログイン情報は無効です。入力内容を確認して再試行してください。",
     "_ERR_PASSWORD_FAILED_CMN1019E": "入力されたログイン ID またはパスワードが正しくありません。情報をもう一度入力してください。",
     "_ERR_PERSON_ACCOUNT_DISABLED_2110": "このアカウントはロックされています。アカウントのロックを解除するにはストアにお問い合わせください。",
     "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "パスワードの試行に {{0}} 回失敗したため、サインインできません。パスワードをリセットするか、お客様サービス担当者にお問い合わせください。",
@@ -633,7 +633,7 @@
     },
     "Labels": {
       "PaymentDetails": "支払いの詳細",
-      "OrderSummary": "オーダー要約"
+      "OrderSummary": "オーダー概要"
     }
   },
   "OrderDiscountSummary": {
@@ -653,7 +653,7 @@
       "Actions": "アクション",
       "Gift": "無料ギフト",
       "NonRecurring": "定期オーダーではない商品",
-      "PageSizeLabel": "行",
+      "PageSizeLabel": "件",
       "FirstPage": "最初のページ",
       "LastPage": "最後のページ",
       "PreviousPage": "前のページ",
@@ -856,7 +856,7 @@
     "Phone": "電話番号 (任意)",
     "Password": "パスワード",
     "VerifyPassword": "パスワードの確認",
-    "TextContent": "ホーム・デザインのアイデアを受信トレイで受け取る",
+    "TextContent": "ホーム・デザインのアイデアを受信する",
     "Register": "登録",
     "RegisterComplete": "登録を完了",
     "Msgs": {
@@ -944,8 +944,8 @@
       "priceHighToLow": "価格 (価格の高い順)"
     },
     "inventoryStatus": {
-      "Available": "在庫中",
-      "Allocated": "在庫中",
+      "Available": "在庫あり",
+      "Allocated": "在庫あり",
       "Unallocated": "未割り振り",
       "Backordered": "バックオーダー済み",
       "OOS": "在庫切れ",

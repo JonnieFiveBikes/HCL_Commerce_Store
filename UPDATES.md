@@ -114,6 +114,14 @@ The React Store Application (Emerald and Sapphire) has been updated with the fol
 
 This version of the React Store Application requires corresponding HCL Commerce Version 9.1.7 to enable Page Composer capability.
 
+### 2021/09/29 HCL Commerce Version 9.1.8 - Refreshed Store Application
+
+The React Store Application (Emerald and Sapphire) has been updated with the following enhancements:
+
+1. Added Commerce Management Center Asset tool managed file support.
+
+This version of the React Store Application requires corresponding HCL Commerce Version 9.1.8 to enable managed file capability.
+
 ## Limitations
 
 The list of latest features delivered in the React Store Applications are described for Emerald:

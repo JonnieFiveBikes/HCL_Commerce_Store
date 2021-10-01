@@ -1,6 +1,6 @@
 {
   "name": "hcl-commerce-react-store",
-  "version": "9.1.7",
+  "version": "9.1.8",
   "private": true,
   "resolutions": {
     "browserslist": ">=4.16.5",
@@ -36,10 +36,10 @@
     "lint": "eslint --max-warnings 0 ."
   },
   "dependencies": {
-    "@hcl-commerce-store-sdk/utils": "file:hcl-commerce-store-sdk-utils-9.1.7.tgz",
-    "@hcl-commerce-store-sdk/react-component": "file:hcl-commerce-store-sdk-react-component-9.1.7.tgz",
-    "@hcl-commerce-store-sdk/typescript-axios-es": "file:hcl-commerce-store-sdk-typescript-axios-es-9.1.7.tgz",
-    "@hcl-commerce-store-sdk/typescript-axios-transaction": "file:hcl-commerce-store-sdk-typescript-axios-transaction-9.1.7.tgz",
+    "@hcl-commerce-store-sdk/utils": "file:hcl-commerce-store-sdk-utils-9.1.8.tgz",
+    "@hcl-commerce-store-sdk/react-component": "file:hcl-commerce-store-sdk-react-component-9.1.8.tgz",
+    "@hcl-commerce-store-sdk/typescript-axios-es": "file:hcl-commerce-store-sdk-typescript-axios-es-9.1.8.tgz",
+    "@hcl-commerce-store-sdk/typescript-axios-transaction": "file:hcl-commerce-store-sdk-typescript-axios-transaction-9.1.8.tgz",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.58",

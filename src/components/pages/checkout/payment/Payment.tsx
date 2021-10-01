@@ -24,7 +24,7 @@ import getDisplayName from "react-display-name";
 import { useSite } from "../../../../_foundation/hooks/useSite";
 import { localStorageUtil } from "../../../../_foundation/utils/storageUtil";
 import paymentInstructionService from "../../../../_foundation/apis/transaction/paymentInstruction.service";
-import { ACCOUNT } from "../../../../_foundation/constants/common";
+import { ACCOUNT, LOCALE } from "../../../../_foundation/constants/common";
 //Custom libraries
 import { PAYMENT_CONFIGS } from "../../../../configs/order";
 import { PAYMENT, PO_NUMBER, EXPIRY } from "../../../../constants/order";
@@ -108,6 +108,7 @@ const Payment: React.FC = (props: any) => {
   const { mySite } = useSite();
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
+  const locale = localStorageUtil.get(LOCALE);
 
   const isB2B = mySite ? mySite.isB2B : false;
   const PAYMENT_INFO_INIT: PaymentInfoType = {
@@ -124,7 +125,7 @@ const Payment: React.FC = (props: any) => {
   >([]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const usableBillAddresses = useMemo(() => initUsableBillingAddresses(), [
+  const usableBillAddresses = useMemo(initUsableBillingAddresses, [
     addressDetails,
     orgAddressDetails,
     selectedPaymentInfoList,
@@ -185,7 +186,7 @@ const Payment: React.FC = (props: any) => {
       dispatch(organizationAction.GET_ORGANIZATION_ADDRESS_ACTION(param));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mySite]);
+  }, [mySite, locale]);
 
   useEffect(() => {
     if (cart?.paymentInstruction?.length > 0) {
@@ -263,7 +264,8 @@ const Payment: React.FC = (props: any) => {
       setAddNewPayment(true);
       setCurrentPaymentNumber(selectedPaymentInfoList.length);
 
-      let newPaymentInfoList: PaymentInfoType[] = selectedPaymentInfoList.slice();
+      let newPaymentInfoList: PaymentInfoType[] =
+        selectedPaymentInfoList.slice();
       newPaymentInfoList.push(PAYMENT_INFO_INIT);
       setSelectedPaymentInfoList(newPaymentInfoList);
     }
@@ -272,7 +274,8 @@ const Payment: React.FC = (props: any) => {
   /** Handle cancelling new payments for multiple payments */
   const handleCancelNewPayment = () => {
     if (addNewPayment) {
-      let newPaymentInfoList: PaymentInfoType[] = selectedPaymentInfoList.slice();
+      let newPaymentInfoList: PaymentInfoType[] =
+        selectedPaymentInfoList.slice();
       newPaymentInfoList.pop();
       setSelectedPaymentInfoList(newPaymentInfoList);
       setCurrentPaymentNumber(newPaymentInfoList.length - 1);
@@ -448,7 +451,8 @@ const Payment: React.FC = (props: any) => {
         title: payment?.description,
       };
 
-      let newPaymentInfoList: PaymentInfoType[] = selectedPaymentInfoList.slice();
+      let newPaymentInfoList: PaymentInfoType[] =
+        selectedPaymentInfoList.slice();
       newPaymentInfoList.splice(currentPaymentNumber, 1, newPaymentInfo);
       setSelectedPaymentInfoList(newPaymentInfoList);
     }
@@ -479,7 +483,8 @@ const Payment: React.FC = (props: any) => {
         creditCardFormData: newCreditCardFormData,
       };
 
-      let newPaymentInfoList: PaymentInfoType[] = selectedPaymentInfoList.slice();
+      let newPaymentInfoList: PaymentInfoType[] =
+        selectedPaymentInfoList.slice();
       newPaymentInfoList.splice(paymentNumber, 1, newPaymentInfo);
       setSelectedPaymentInfoList(newPaymentInfoList);
     }

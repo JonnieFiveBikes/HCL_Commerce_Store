@@ -62,6 +62,7 @@ interface CurrentSelectionType {
   sku: any;
   quantity: number;
   selectedAttributes: any;
+  index: number;
 }
 
 /**
@@ -85,28 +86,25 @@ function ProductDetailsWidget({ page, ...props }: any) {
   const dispatch = useDispatch();
 
   const [promotion, setPromotion] = useState<Array<any>>([]);
-  const [inventoryAvailableFlag, setInventoryAvailableFlag] = useState<boolean>(
-    true
-  );
+  const [inventoryAvailableFlag, setInventoryAvailableFlag] =
+    useState<boolean>(true);
   const [buyableFlag, setBuyableFlag] = useState<boolean>(true);
 
   const CURRENT_SELECTION_INIT: CurrentSelectionType = {
     sku: {},
     quantity: 1,
     selectedAttributes: {},
+    index: 0,
   };
 
   const [product, setProduct] = useState<any>(null);
 
-  const [
-    currentSelection,
-    setCurrentSelection,
-  ] = useState<CurrentSelectionType>(CURRENT_SELECTION_INIT);
+  const [currentSelection, setCurrentSelection] =
+    useState<CurrentSelectionType>(CURRENT_SELECTION_INIT);
 
   const [displayName, setDisplayName] = useState<string>("");
-  const [displayPartNumber, setDisplayPartNumber] = useState<string>(
-    productPartNumber
-  );
+  const [displayPartNumber, setDisplayPartNumber] =
+    useState<string>(productPartNumber);
   const [displayShortDesc, setDisplayShortDesc] = useState<string>("");
   const [displayOfferPrice, setDisplayOfferPrice] = useState<number>(0);
   const [displayListPrice, setDisplayListPrice] = useState<number>(0);
@@ -135,9 +133,8 @@ function ProductDetailsWidget({ page, ...props }: any) {
     }),
   };
   const cart = useSelector(cartSelector);
-  const [addItemActionTriggered, setAddItemActionTriggered] = useState<boolean>(
-    false
-  );
+  const [addItemActionTriggered, setAddItemActionTriggered] =
+    useState<boolean>(false);
 
   /**
    * Get product information based on its type
@@ -311,9 +308,9 @@ function ProductDetailsWidget({ page, ...props }: any) {
           }
         }
 
-        if (newSelection.sku.images?.length > 1) {
+        if (newSelection.sku[newSelection.index].images?.length > 1) {
           setIndex(0);
-          setCarouselImages(newSelection.sku.images);
+          setCarouselImages(newSelection.sku[newSelection.index].images);
           setShowCarousel(true);
         }
       } else {
@@ -321,6 +318,37 @@ function ProductDetailsWidget({ page, ...props }: any) {
       }
     }
     setCurrentSelection(newSelection);
+  };
+
+  const setSelectedAttributes = (newSelection: any) => {
+    if (newSelection.sku.length === 1) {
+      const newDefiningAttrList = newSelection.sku[
+        newSelection.index
+      ].attributes.filter((element) => element.usage === DEFINING);
+      for (const att of newDefiningAttrList) {
+        newSelection.selectedAttributes[att.identifier] = att.values
+          ? att.values[0]?.identifier
+          : undefined;
+      }
+    } else {
+      newSelection.selectedAttributes = {};
+      for (const sku of newSelection.sku) {
+        const newDefiningAttrList = sku.attributes;
+        for (const att of newDefiningAttrList) {
+          if (att.usage && att.usage === DEFINING) {
+            if (newSelection.selectedAttributes[att.identifier]) {
+              let values = newSelection.selectedAttributes[att.identifier];
+              if (!values.includes(att.values[0]?.identifier))
+                values.push(att.values[0]?.identifier);
+            } else {
+              const values: string[] = [];
+              if (att.values) values.push(att.values[0]?.identifier);
+              newSelection.selectedAttributes[att.identifier] = values;
+            }
+          }
+        }
+      }
+    }
   };
 
   /**
@@ -340,6 +368,7 @@ function ProductDetailsWidget({ page, ...props }: any) {
             newSelection.selectedAttributes[att.identifier] = att.values
               ? att.values[0]?.identifier
               : undefined;
+            break;
           }
         }
       } else {
@@ -348,20 +377,22 @@ function ProductDetailsWidget({ page, ...props }: any) {
             newSelection.selectedAttributes[att.identifier] = att.values
               ? att.values[0].identifier
               : undefined;
+            break;
           }
         }
       }
 
-      newSelection.sku = resolveSKU(
+      newSelection.sku = findSKUs(
         productInfo.items,
         newSelection.selectedAttributes
       );
-      if (newSelection.sku === "") {
+      if (newSelection.sku.length === 0) {
         setAvailability([]);
         setBuyableFlag(false);
       } else {
-        setDisplayInfo(newSelection.sku, productInfo);
-        if (newSelection.sku.buyable === STRING_TRUE) {
+        setSelectedAttributes(newSelection);
+        setDisplayInfo(newSelection.sku[newSelection.index], productInfo);
+        if (newSelection.sku[newSelection.index].buyable === STRING_TRUE) {
           setBuyableFlag(true);
         } else {
           setBuyableFlag(false);
@@ -375,8 +406,9 @@ function ProductDetailsWidget({ page, ...props }: any) {
    *@param skus
    *@param selectedAttributes
    */
-  const resolveSKU = (skus: any, selectedAttributes: any): any => {
+  const findSKUs = (skus: any, selectedAttributes: any): any => {
     if (skus) {
+      const skuArray: any[] = [];
       for (const s of skus) {
         if (s.attributes) {
           const values = s.attributes.reduce((value: any, a: any) => {
@@ -391,13 +423,41 @@ function ProductDetailsWidget({ page, ...props }: any) {
             match = match && selectedAttributes[key] === values[key];
           }
           if (match) {
-            return s;
+            skuArray.push(s);
           }
         }
       }
+      return skuArray;
     }
     /* istanbul ignore next */
-    return "";
+    return [];
+  };
+
+  const locateSKU = (
+    skus: any,
+    selectedAttributes: any,
+    newSelection: any
+  ): any => {
+    if (skus) {
+      newSelection.index = -1;
+      for (const s of skus) {
+        if (s.attributes) {
+          const values = s.attributes.reduce((value: any, a: any) => {
+            value[a.identifier] = a.values
+              ? a.values[0]?.identifier
+              : undefined;
+            return value;
+          }, {});
+
+          let match = true;
+          for (const key in selectedAttributes) {
+            match = match && selectedAttributes[key] === values[key];
+          }
+          newSelection.index++;
+          if (match) break;
+        }
+      }
+    }
   };
 
   /**
@@ -512,27 +572,40 @@ function ProductDetailsWidget({ page, ...props }: any) {
   const onAttributeChange = (attr: string, e: string) => {
     if (product?.items) {
       let newSelection = { ...currentSelection };
-      if (e && newSelection && newSelection.selectedAttributes) {
-        newSelection.selectedAttributes[attr] = e;
+      if (e) {
+        newSelection.selectedAttributes = { [attr]: e };
       }
 
-      newSelection.sku = resolveSKU(
-        product.items,
-        newSelection.selectedAttributes
-      );
-      if (newSelection.sku === "") {
+      if (
+        findSKUs(newSelection.sku, newSelection.selectedAttributes).length !== 0
+      ) {
+        locateSKU(
+          newSelection.sku,
+          newSelection.selectedAttributes,
+          newSelection
+        );
+      } else {
+        newSelection.sku = findSKUs(
+          product.items,
+          newSelection.selectedAttributes
+        );
+      }
+
+      if (newSelection.sku.length === 0) {
         setBuyableFlag(false);
         setAvailability([]);
       } else {
-        setDisplayInfo(newSelection.sku, product);
-        if (newSelection.sku.buyable === STRING_TRUE) {
+        setSelectedAttributes(newSelection);
+        setDisplayInfo(newSelection.sku[newSelection.index], product);
+        if (newSelection.sku[newSelection.index].buyable === STRING_TRUE) {
           setBuyableFlag(true);
         } else {
           setBuyableFlag(false);
         }
 
         if (newSelection.selectedAttributes["Color"]) {
-          for (const att of newSelection.sku?.attributes || []) {
+          for (const att of newSelection.sku[newSelection.index]?.attributes ||
+            []) {
             if (att.identifier === "Color") {
               for (const v of att.values || []) {
                 if (v.identifier === newSelection.selectedAttributes["Color"]) {
@@ -541,13 +614,15 @@ function ProductDetailsWidget({ page, ...props }: any) {
               }
             }
           }
-        }
 
-        if (newSelection.sku.images?.length > 1) {
-          setIndex(index);
-          setCarouselImages(newSelection.sku.images);
-          setShowCarousel(true);
-          setDisplayFullImage(newSelection.sku.images[index]?.fullImage);
+          if (newSelection.sku[newSelection.index].images?.length > 1) {
+            setIndex(index);
+            setCarouselImages(newSelection.sku[newSelection.index].images);
+            setShowCarousel(true);
+            setDisplayFullImage(
+              newSelection.sku[newSelection.index].images[index]?.fullImage
+            );
+          }
         }
       }
       setCurrentSelection(newSelection);
@@ -596,7 +671,7 @@ function ProductDetailsWidget({ page, ...props }: any) {
    */
   const addToCart = () => {
     const param = {
-      partnumber: [currentSelection.sku.partNumber],
+      partnumber: [currentSelection.sku[currentSelection.index].partNumber],
       quantity: [currentSelection.quantity.toString()],
       contractId: contract,
       ...payloadBase,
@@ -622,21 +697,18 @@ function ProductDetailsWidget({ page, ...props }: any) {
         const productDetails = productData.data.contents;
         if (productDetails && productDetails.length > 0) {
           let categoryIdentifier: string = EMPTY_STRING;
-          const inputCatentryData = productDetails ? productDetails[0] : null;
-          if (inputCatentryData !== undefined && inputCatentryData !== null) {
-            getProduct(inputCatentryData);
-            if (inputCatentryData.attachments?.length > 0) {
-              setAttachmentsList(inputCatentryData.attachments);
-            }
+          const inputCatentryData = productDetails[0];
+          getProduct(inputCatentryData);
+          if (inputCatentryData?.attachments?.length > 0) {
+            setAttachmentsList(inputCatentryData.attachments);
           }
           if (location?.state?.categoryId) {
             categoryIdentifier = location.state.categoryId;
           } else {
             let parentCatalogGroupID = productDetails[0].parentCatalogGroupID;
             if (parentCatalogGroupID) {
-              categoryIdentifier = StoreUtil.getParentCategoryId(
-                parentCatalogGroupID
-              );
+              categoryIdentifier =
+                StoreUtil.getParentCategoryId(parentCatalogGroupID);
             }
           }
           if (categoryIdentifier && categoryIdentifier.length > 0) {
@@ -678,11 +750,11 @@ function ProductDetailsWidget({ page, ...props }: any) {
   }, [contract]);
 
   React.useEffect(() => {
-    if (currentSelection?.sku?.id) {
-      getInventory(currentSelection.sku.id);
+    if (currentSelection?.sku[currentSelection?.index]?.id) {
+      getInventory(currentSelection.sku[currentSelection?.index].id);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentSelection?.sku]);
+  }, [currentSelection?.sku, currentSelection?.index]);
 
   let productDetailTabsChildren: ITabs[] = [];
 

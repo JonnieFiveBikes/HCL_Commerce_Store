@@ -19,7 +19,7 @@ import { useSite } from "../../../../_foundation/hooks/useSite";
 import { localStorageUtil } from "../../../../_foundation/utils/storageUtil";
 import cartService from "../../../../_foundation/apis/transaction/cart.service";
 import subscriptionService from "../../../../_foundation/apis/transaction/subscription.service";
-import { ACCOUNT } from "../../../../_foundation/constants/common";
+import { ACCOUNT, LOCALE } from "../../../../_foundation/constants/common";
 //Custom libraries
 import {
   RECURRING_ORDER_OPTIONS,
@@ -61,6 +61,7 @@ const Review: React.FC = (props: any) => {
   const isRecurringOrderDisabled = useSelector(
     isRecurringOrderDisabledSelector
   );
+  const locale = localStorageUtil.get(LOCALE);
 
   const recurringOrderDetails = useMemo(
     () =>
@@ -104,9 +105,12 @@ const Review: React.FC = (props: any) => {
       dispatch(GET_ADDRESS_DETAIL_ACTION({ ...payloadBase }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mySite]);
+  }, [mySite, locale]);
 
   useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    });
     return () => {
       cancels.forEach((cancel) => cancel());
     };

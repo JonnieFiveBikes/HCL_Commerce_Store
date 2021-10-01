@@ -22,6 +22,8 @@ import { isNull } from "lodash-es";
 import {
   StyledProgressPlaceholder,
   ESpotState,
+  AttachmentLayout,
+  StyledContainer,
 } from "@hcl-commerce-store-sdk/react-component";
 import { commonUtil, marketingConstants } from "@hcl-commerce-store-sdk/utils";
 //foundation libraries
@@ -329,14 +331,41 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
       isDxContent: false,
     };
     const desc = content.marketingContentDescription;
-    const assetSrc =
-      content.attachmentAsset && content.attachmentAsset[0]
-        ? content.attachmentAsset[0]["attachmentAssetPath"]
-        : EMPTY_STRING;
-    const assetName =
-      content.attachmentDescription && content.attachmentDescription[0]
-        ? content.attachmentDescription[0]["attachmentName"]
-        : EMPTY_STRING;
+    let assetSrc: string = EMPTY_STRING;
+    let assetName: string = EMPTY_STRING;
+
+    if (Array.isArray(content.attachmentAsset)) {
+      const descs = content.attachmentDescription || [];
+      const n = content.attachmentAsset.length;
+      let src;
+      let root;
+      let desc;
+      let isUrl;
+      content.attachmentAsset.forEach((a, i) => {
+        desc = descs.length === n ? descs[i].attachmentName : EMPTY_STRING;
+        src = a.attachmentAssetPath;
+        root = a.attachmentAssetRootDirectory;
+        if (src && root && (src.indexOf(root) < 0 || src.indexOf(root) > 1)) {
+          src = `/${root}/${src}`;
+        }
+        isUrl = /^https?:\/\//.test(src);
+        a.name =
+          desc ||
+          (isUrl
+            ? src
+            : src.replace(/.+\/(.+)/, "$1").replace(/\?([^=]+=[^&]+&?)+/, ""));
+        a.mimeType = isUrl
+          ? "content/url"
+          : a.attachmentAssetMimeType || "content/unknown";
+        a.attachmentAssetPath = src;
+      });
+
+      const elem0 = content.attachmentAsset[0];
+      if (elem0) {
+        assetSrc = elem0.attachmentAssetPath;
+        assetName = elem0.name;
+      }
+    }
 
     const replace = (node: DomElement): any => {
       if (node.type && node.type === "tag" && node.name && node.name === "a") {
@@ -380,7 +409,12 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
       currentTemplate.template = HTMLReactParser(marketingText, {
         replace,
       });
-    } else {
+    } else if (
+      content.contentMimeType === "image" ||
+      assetSrc.endsWith(".svg")
+      //this probably a defect in marketing,
+      //checking file extension to workaround this
+    ) {
       currentTemplate.template = (
         <div>
           <Link
@@ -394,6 +428,12 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
             </LazyLoadComponent>
           </Link>
         </div>
+      );
+    } else {
+      currentTemplate.template = (
+        <StyledContainer>
+          <AttachmentLayout attachmentsList={content.attachmentAsset || []} />
+        </StyledContainer>
       );
     }
     currentTemplate.id = content.contentId;

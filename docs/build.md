@@ -4,7 +4,7 @@ HCL Commerce Store React SDK build process supports build multiple APPs.
 
 ### Default build process
 
-Our build process is built on top of existing `react-script` from [Create React App](https://create-react-app.dev/) with very minimum customization. 
+Our build process is built on top of existing `react-script` from [Create React App](https://create-react-app.dev/) with very minimum customization.
 
 The SDK has two default Apps predefined: B2C Store based `Emerald` app and B2B Store based `Sapphire` app. The production build, by running `npm run build -- --appName Emerald,Sapphire`, will output bundle files into `dist/Emerald` and `dist/Sapphire` folder with both apps's React route `basename` default to `Emerald` and `Sapphire` respectively.
 
@@ -54,11 +54,13 @@ To rename app in order for build app bundle into different name, a list of files
 2. in `.env` file, replace `REACT_APP_STORENAME` with your app name, this is fallback environment variable, it is used unless there is no this variable defined in `.env.development` or `.env.production` file. More details, please refer to [Adding Development Environment Variables In .env](https://create-react-app.dev/docs/adding-custom-environment-variables#adding-development-environment-variables-in-env)
 3. in `assets` folder, rename or copy folder `emerald`, `sapphire` to new app name. **NOTE**: To avoid potential issue with different operating system, the folder name is using lowercase app name. Replace the static asset in folder, for example images, with new app specific assets.
 4. CSS theme. In `src/themes` folder,
-   1. rename or create file `appa-theme.js`, `appb-theme.js`.
-   2. locate and open `index.js` file, make following update:
+   1. create file `appa-theme.ts`, `appb-theme.ts`.
+   2. locate and open `index.ts` file, make following update:
       ```diff
-      - import Emerald from "./emerald-theme";
-      - import Sapphire from "./sapphire-theme";
+      - import {
+      -    emeraldTheme as Emerald,
+      -    sapphireTheme as Sapphire,
+      -  } from "@hcl-commerce-store-sdk/react-component";
       - const themes = { Emerald, Sapphire };
       + import AppA from "./appa-theme";
       + import AppB from "./appb-theme";
@@ -76,11 +78,13 @@ To rename app in order for build app bundle into different name, a list of files
    **NOTE**: To avoid potential issue with different operating system, the folder name is using lowercase app name. Replace the static asset in folder, for example images, with new app specific assets.
 
 3. CSS theme. In `src/themes` folder,
-   1. create new theme file `appa-theme.js`, `appb-theme.js`.
-   2. locate and open `index.js` file, make following update:
+   1. create new theme file `appa-theme.ts`, `appb-theme.ts`.
+   2. locate and open `index.ts` file, make following update:
       ```diff
-      import Emerald from "./emerald-theme";
-      import Sapphire from "./sapphire-theme";
+      import {
+          emeraldTheme as Emerald,
+          sapphireTheme as Sapphire,
+        } from "@hcl-commerce-store-sdk/react-component";
       - const themes = { Emerald, Sapphire };
       + import AppA from "./appa-theme";
       + import AppB from "./appb-theme";
@@ -92,7 +96,7 @@ To rename app in order for build app bundle into different name, a list of files
 
 #### Build app bundle without React route basename(blank context root)
 
-`basename` plays a role similar to context root in [React Router](https://reactrouter.com) world. 
+`basename` plays a role similar to context root in [React Router](https://reactrouter.com) world.
 
 In cases that `basename` is not applicable, we can remove the basename for app. To do this, in `assets/template` folder, remove `REACT_APP_ROUTER_BASENAME` entries in all `.env` template files. For example,
 
@@ -121,4 +125,4 @@ REACT_APP_ROUTER_BASENAME={{appName}}
 
 #### Web Server rewrite for Single Page App
 
-Please refer to Create React App [Serving Apps with Client-Side Routing](https://create-react-app.dev/docs/deployment/#serving-apps-with-client-side-routing) for different deployment options and web server config. 
+Please refer to Create React App [Serving Apps with Client-Side Routing](https://create-react-app.dev/docs/deployment/#serving-apps-with-client-side-routing) for different deployment options and web server config.

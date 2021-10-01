@@ -10,7 +10,7 @@
  */
 //Standard libraries
 import { useLocation } from "react-router";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -69,7 +69,11 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
   const CancelToken = Axios.CancelToken;
   const { t, i18n } = useTranslation();
   const contract = useSelector(currentContractIdSelector);
+  const { mySite } = useSite();
   const loginStatus = useSelector(loginStatusSelector);
+  const loginNotRequired = useMemo(() => {
+    return loginStatus || !mySite?.isB2B;
+  }, [mySite?.isB2B, loginStatus]);
   const dispatch = useDispatch();
   const theme = useTheme();
   const widgetName = getDisplayName("ProductB2BDetailsLayout");
@@ -77,33 +81,14 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
   const productPartNumber =
     page && page.externalContext ? page.externalContext.identifier : "";
   let uniqueSkus: any[] = [];
-  let inventoryMap = new Map();
-  let currentSelection: any = {
-    sku: { fullImage: "" },
-    quantity: "1",
-    isAngleImage: false,
-    selectedAttributes: {},
-    availability: null,
-  };
-  let productInfoData: any = {
-    price: [{}],
-    availableAttributes: [{ values: [{}] }],
-    fullImage: "",
-  };
-  let productInfo: any;
-  let descAttributes: any[] = [];
+  let currentSelection: any = {};
+  let productInfoData: any = {};
+  const [descAttributes, setDescAttributes] = React.useState<any[]>([]);
   let definingAttributes: any[] = [];
-  let defnAttrSrc: any[] = [];
-  let availAttrs: Set<string> = new Set<string>();
-  let tableBody: any[] = [];
-  let tableHeader: any[] = [];
-  let tableDetailHeader: any[] = [];
-  let productType: string = "";
-  let invalidSKU: boolean;
-  let addToCartMap = new Map();
-  let availSkus: Set<any> = new Set<any>();
-  let filteredSkus: Set<any> = new Set<any>();
-  let attributeChangeMap = new Map();
+  const [availAttrs, setAvailAttrs] = React.useState<Set<string>>(
+    () => new Set<string>()
+  );
+  const [productType, setProductType] = React.useState<string>("");
   const [x, setDescAttributeList] = React.useState<Array<object>>([]); // eslint-disable-line @typescript-eslint/no-unused-vars
   const [attachmentsList, setAttachmentsList] = useState<any[]>([]);
   const [productData, setProductData] = React.useState<any>(null);
@@ -114,28 +99,33 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
   const [skuInventory, setSkuInventory] = React.useState<Map<any, any>>(
     () => new Map()
   );
-  const translation = {
-    productDetailattributeFilter: t("productDetail.attributeFilter"),
-    productDetailSKU: t("productDetail.SKU"),
-    productDetailshowAttributes: t("productDetail.showAttributes"),
-    productDetailnoproductsToDisplay: t("productDetail.noproductsToDisplay"),
-    productDetailaddToCurrentOrder: t("productDetail.addToCurrentOrder"),
-    productDetailSignIn: t("productDetail.SignIn"),
-    CommerceEnvironmentinventoryStatusAvailable: t(
-      "CommerceEnvironment.inventoryStatus.Available"
-    ),
-    CommerceEnvironmentinventoryStatusOOS: t(
-      "CommerceEnvironment.inventoryStatus.OOS"
-    ),
-    productDetailPrice: t("productDetail.Price"),
-    productDetailQuantity: t("productDetail.Quantity"),
-    productDetailOnline_Availability: t("productDetail.Online_Availability"),
-    productDetailsAny: t("productDetail.any"),
-    productDetailaddToCartErrorMsg: t("productDetail.addToCartErrorMsg"),
-    productDetailDescription: t("productDetail.Description"),
-    productDetailAttachments: t("productDetail.Attachments"),
-    productDetailPriceDisplayPending: t("PriceDisplay.Labels.Pending"),
-  };
+  const translation = useMemo(() => {
+    return {
+      productDetailattributeFilter: t("productDetail.attributeFilter"),
+      productDetailSKU: t("productDetail.SKU"),
+      productDetailshowAttributes: t("productDetail.showAttributes"),
+      productDetailnoproductsToDisplay: t("productDetail.noproductsToDisplay"),
+      productDetailaddToCurrentOrder: mySite.isB2B
+        ? t("productDetail.addToCurrentOrder")
+        : t("productDetail.AddToCart"),
+      productDetailSignIn: t("productDetail.SignIn"),
+      CommerceEnvironmentinventoryStatusAvailable: t(
+        "CommerceEnvironment.inventoryStatus.Available"
+      ),
+      CommerceEnvironmentinventoryStatusOOS: t(
+        "CommerceEnvironment.inventoryStatus.OOS"
+      ),
+      productDetailPrice: t("productDetail.Price"),
+      productDetailQuantity: t("productDetail.Quantity"),
+      productDetailOnline_Availability: t("productDetail.Online_Availability"),
+      productDetailsAny: t("productDetail.any"),
+      productDetailaddToCartErrorMsg: t("productDetail.addToCartErrorMsg"),
+      productDetailDescription: t("productDetail.Description"),
+      productDetailAttachments: t("productDetail.Attachments"),
+      productDetailPriceDisplayPending: t("PriceDisplay.Labels.Pending"),
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mySite?.isB2B]);
   const payloadBase: any = {
     widget: widgetName,
     cancelToken: new CancelToken((c) => {
@@ -145,10 +135,8 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
   const cart = useSelector(cartSelector);
   const [addItemActionTriggered, setAddItemActionTriggered] =
     useState<boolean>(false);
-  const { mySite } = useSite();
   const storeId: string = mySite ? mySite.storeID : "";
   const [pdpData, setPdpData] = React.useState<any>(null);
-  const catalogIdentifier: string = mySite ? mySite.catalogID : "";
   const location: any = useLocation();
   const defaultCurrencyID: string = mySite ? mySite.defaultCurrencyID : "";
   const language = i18n.languages[0];
@@ -179,6 +167,7 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
    *Get product information from part number
    */
   const getProductDetails = () => {
+    const catalogIdentifier: string = mySite ? mySite.catalogID : "";
     let parameters: any = {
       storeId: storeId,
       partNumber: productPartNumber,
@@ -228,16 +217,18 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
    * Get product information based on its type
    */
   const getProduct = () => {
-    productType = "";
+    let productInfo: any;
     productInfo = pdpData[0];
     if (productInfo.type === "product" || productInfo.type === "variant") {
-      productType = productInfo.type;
+      setProductType(productInfo.type);
+
       initializeProduct(productInfo);
     } else if (
       productInfo.type === "item" &&
       productInfo.parentCatalogEntryID
     ) {
-      productType = productInfo.type;
+      setProductType(productInfo.type);
+
       let productsId: string[] = [];
       productsId.push(productInfo.parentCatalogEntryID);
       let parameters: any = {
@@ -297,10 +288,9 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
   const initializeProduct = (productInfo: any, attr?: any) => {
     if (productInfo) {
       productInfoData = JSON.parse(JSON.stringify(productInfo));
-      descAttributes = [];
+      setDescAttributes([]);
       definingAttributes = [];
-      defnAttrSrc = [];
-      availAttrs.clear();
+      setAvailAttrs(() => new Set<string>());
       if (productInfo.attributes) {
         productInfoData.availableAttributes = JSON.parse(
           JSON.stringify(productInfo.attributes)
@@ -342,6 +332,7 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
    * @param attr
    */
   const initializeSelectedAttributes = (attr?: any) => {
+    let invalidSKU: boolean;
     currentSelection.selectedAttributes = {};
     if (attr) {
       for (const att of attr) {
@@ -405,6 +396,7 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
    *Get the descriptive and defining attributes
    */
   const getDescriptiveAndDefiningAttributes = () => {
+    let defnAttrSrc: any[] = [];
     for (const att of productInfoData.availableAttributes) {
       if (
         att.usage === DESCRIPTIVE &&
@@ -436,7 +428,7 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
       for (let d of definingAttributes) {
         u.push(c[d.identifier]);
       }
-      availAttrs.add(u.join("|"));
+      setAvailAttrs(new Set<string>(availAttrs.add(u.join("|"))));
     }
   };
 
@@ -452,6 +444,9 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
     inventory: Map<any, any>,
     defAttributeList: any[]
   ) => {
+    let tableBody: any[] = [];
+    let tableHeader: any[] = [];
+    let tableDetailHeader: any[] = [];
     let tablebodyDataMap = new Map();
     let tableHeaderDataMap = new Map();
     let tableDetailHeaderDataMap = new Map();
@@ -494,7 +489,7 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
             }
             min={0}
             strict={true}
-            disabled={!loginStatus}
+            disabled={!loginNotRequired}
             onChange={(quantity: number) =>
               updateProductQuantity(quantity, s.partNumber)
             }
@@ -631,6 +626,7 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
    * @param e
    */
   const onAttributeChange = (attr: string, e: string) => {
+    let attributeChangeMap = new Map();
     if (e !== translation.productDetailsAny) {
       attributeChangeMap.set(attr, e);
       setAttributeState(new Map(attributeState.set(attr, e)));
@@ -673,7 +669,7 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
    * filter skulist based on the attribut selected
    */
   const filterUniqueSkus = () => {
-    filteredSkus = new Set<any>();
+    let filteredSkus: Set<any> = new Set<any>();
     for (const s of uniqueSkuList) {
       const values = s.attributes.reduce((value: any, a: any) => {
         value[a.identifier] = a.values ? a.values[0]?.identifier : undefined;
@@ -716,6 +712,7 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
     if (Number.isInteger(quantity) && quantity > 0) {
       setSkuAndQuantities(new Map(skuAndQuantities.set(id, quantity)));
     } else {
+      let addToCartMap = new Map();
       addToCartMap = skuAndQuantities;
       addToCartMap.delete(id);
       setSkuAndQuantities(new Map(addToCartMap));
@@ -751,6 +748,7 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
    */
   const getUniqueSkusAndInventory = (skus: any[]): void => {
     let productId: string[] = [];
+    let availSkus: Set<any> = new Set<any>();
     if (skus) {
       for (const s of skus) {
         availSkus.add(sku2Object(skus, s.partNumber));
@@ -788,6 +786,7 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
       productIds: productId,
       ...payloadBase,
     };
+    let inventoryMap = new Map();
     inventoryavailabilityService
       .getInventoryAvailabilityByProductId(parameters)
       .then((res) => {
@@ -806,6 +805,15 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
         setFilterSkuState(uniqueSkus);
       })
       .catch((e) => {
+        if (e.status === 404) {
+          productId = productId.split(",");
+          for (const productIdElement of productId) {
+            inventoryMap.set(productIdElement, false);
+          }
+        }
+        setSkuInventory(inventoryMap);
+        setTableData(uniqueSkus, inventoryMap, definingAttributes);
+        setFilterSkuState(uniqueSkus);
         console.log("Could not retrieve Inventory Details", e);
       });
   };
@@ -827,6 +835,12 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
   }
 
   if (attachmentsList.length > 0) {
+    attachmentsList.forEach((a) => {
+      a.mimeType = /^https?:\/\//.test(a.attachmentAssetPath)
+        ? "content/url"
+        : a.mimeType || "content/unknown";
+    });
+
     const productAttachmentElement = (
       <AttachmentB2BLayout attachmentsList={attachmentsList} />
     );
@@ -905,7 +919,7 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
     tableHeaderData,
     tableBodyData,
     tableDetailHeaderData,
-    loginStatus,
+    loginNotRequired,
     addToCart,
     disabledButtonFlag,
     productPartNumber,

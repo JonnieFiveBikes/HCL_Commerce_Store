@@ -122,10 +122,10 @@
       "RecurringOrder": "Als wiederkehrende Bestellung planen",
       "Frequency": "Häufigkeit",
       "StartDate": "Startdatum",
-      "OrderSummary": "Bestellzusammenfassung"
+      "OrderSummary": "Bestellübersicht"
     },
     "Actions": {
-      "Checkout": "Checkout",
+      "Checkout": "Zur Kasse gehen",
       "Apply": "Anwenden"
     }
   },
@@ -139,7 +139,7 @@
     }
   },
   "Checkout": {
-    "Title": "Checkout",
+    "Title": "Zur Kasse gehen",
     "Labels": {
       "shipping": "Versand",
       "payment": "Zahlung",
@@ -371,7 +371,7 @@
     "RowCount": "Anzeige von {from} bis {to} von {count}",
     "NoRecord": "Es wurden keine Bestellungen gefunden.",
     "InvalidOrderId": "Bitte geben Sie eine gültige Bestell-ID ein.",
-    "Search": "Suche",
+    "Search": "Suchen",
     "PageSizeLabel": "Zeilen",
     "FirstPage": "Erste Seite",
     "LastPage": "Letzte Seite",
@@ -486,11 +486,11 @@
     "EmailLabel": "E-Mail-Adresse",
     "SubmitButton": "Senden",
     "LogonIDLabel": "Anmelde-ID",
-    "ContentText": "Bitte geben Sie Ihre E-Mail-Adresse ein. Sie erhalten eine E-Mail mit einem Bestätigungscode zum Zurücksetzen Ihres Kennworts",
+    "ContentText": "Bitte geben Sie Ihre E-Mail-Adresse ein. Sie erhalten eine E-Mail mit einem Bestätigungscode zum Zurücksetzen Ihres Kennworts.",
     "ContentTextLogonID": "Bitte geben Sie Ihre Anmelde-ID ein. Sie erhalten dann einen Bestätigungscode zum Zurücksetzen Ihres Kennworts über die E-Mail Ihres Kontos.",
     "ValidationCodeButton": "Bestätigungscode eingeben",
     "SendVerificationCodeButton": "Senden Sie mir den Bestätigungscode",
-    "CodeRecieved": "Ich habe bereits einen Bestätigungscode erhalten",
+    "CodeRecieved": "Sie haben bereits einen Bestätigungscode erhalten?",
     "AccountInfoRemember": "Erinnern Sie sich an Ihre Kontoinformationen? ",
     "SignIn": "Jetzt anmelden",
     "Msgs": {
@@ -567,16 +567,16 @@
     "_ERR_NICKNAME_ALREDY_EXIST_5040": "Der von Ihnen eingegebene Adressname \"{{0}}\" ist bereits vorhanden. Geben Sie einen anderen Namen in das Feld Adressname ein und versuchen Sie es erneut.",
     "_ERR_CMD_MISSING_PARAM_2000": "Geben Sie Ihre Anmelde-ID (E-Mail-Adresse) in das Feld E-Mail-Adresse ein.",
     "_ERR_CMD_INVALID_PARAM_2010": "Die eingegebene Anmelde-ID (E-Mail-Adresse) ist nicht gültig. Prüfen Sie Ihre Eingabe und versuchen Sie es erneut.",
-    "ERR_PROMOTION_CODE_INVALID_-1200": "Der von Ihnen eingegebene Promotionscode ist nicht gültig. Bestätigen Sie den Code und versuchen Sie es erneut.",
-    "ERR_PROMOTION_NOT_AVAILABLE_AT_THIS_TIME_-2200": "Der von Ihnen eingegebene Promotionscode ist zum jetztigen Zeitpunkt nicht verfügbar. Versuchen Sie es später erneut.",
-    "ERR_PROMOTION_PER_SHOPPER_LIMIT_EXCEEDED_-1800": "Der Promotionscode, den Sie einlösen möchten, kann nicht auf Ihre Bestellung angewendet werden: Das Limit von {{1}} pro Kunde wurde erreicht.",
-    "ERR_PROMOTION_OVERALL_LIMIT_EXCEEDED_-1900": "Der Promotionscode, den Sie einlösen möchten, kann nicht auf Ihre Bestellung angewendet werden: Das Limit von {{1}} für die Gesamtzahl der für diese Promotion zulässigen Einlösungen wurde erreicht.",
-    "ERR_PROMOTION_SYSTEM_ERR_-2700": "Der eingegebene Promotionscode konnte nicht verarbeitet werden. Klicken Sie auf den Link Kontaktieren Sie uns unten auf der Seite, um den Kundendienst zu erreichen.",
-    "ERR_PROMOTION_CODE_DUPLICATED_-1150": "Sie haben einen doppelten Promotionscode \"{{0}}\" eingegeben.",
-    "ERR_PROMOTION_UNKNOWN_ERR_-2600": "Der eingegebene Promotionscode konnte nicht verarbeitet werden. Klicken Sie auf den Link Kontaktieren Sie uns unten auf der Seite, um den Kundendienst zu erreichen.",
-    "_ERR_FORMAT_PROMOCODES_NOT_CORRECT_-2820": "Das Format des von Ihnen eingegebene Promotionscode weist kein vom System anerkanntes Format auf. Prüfen sie den Code und versuchen Sie es erneut.",
-    "_ERR_PARAMETER_MISSING_-2810": "Der Name des Promotionscodes oder der Couponpromotion fehlt. Geben Sie einen Namen für den Promotionscode oder eine Couponpromotion ein.",
-    "_ERR_FORMAT_ORDERIDS_NOT_CORRECT_-2830": "Der eingegebene Promotionscode konnte nicht verarbeitet werden. Klicken Sie auf den Link Kontaktieren Sie uns unten auf der Seite, um den Kundendienst zu erreichen.",
+    "ERR_PROMOTION_CODE_INVALID_-1200": "Der von Ihnen eingegebene Aktionscode ist nicht gültig. Bestätigen Sie den Code und versuchen Sie es erneut.",
+    "ERR_PROMOTION_NOT_AVAILABLE_AT_THIS_TIME_-2200": "Der von Ihnen eingegebene Aktionscode ist zum jetztigen Zeitpunkt nicht verfügbar. Versuchen Sie es später erneut.",
+    "ERR_PROMOTION_PER_SHOPPER_LIMIT_EXCEEDED_-1800": "Der Aktionscode, den Sie einlösen möchten, kann nicht auf Ihre Bestellung angewendet werden: Das Limit von {{1}} pro Kunde wurde erreicht.",
+    "ERR_PROMOTION_OVERALL_LIMIT_EXCEEDED_-1900": "Der Aktionscode, den Sie einlösen möchten, kann nicht auf Ihre Bestellung angewendet werden: Das Limit von {{1}} für die Gesamtzahl der für diese Werbeaktion zulässigen Einlösungen wurde erreicht.",
+    "ERR_PROMOTION_SYSTEM_ERR_-2700": "Der von Ihnen eingegebene Aktionscode konnte nicht verarbeitet werden. Klicken Sie auf den Link Kontaktieren Sie uns unten auf der Seite, um den Kundendienst zu erreichen.",
+    "ERR_PROMOTION_CODE_DUPLICATED_-1150": "Sie haben einen doppelten Aktionscode \"{{0}}\" eingegeben.",
+    "ERR_PROMOTION_UNKNOWN_ERR_-2600": "Der von Ihnen eingegebene Aktionscode konnte nicht verarbeitet werden. Klicken Sie auf den Link Kontaktieren Sie uns unten auf der Seite, um den Kundendienst zu erreichen.",
+    "_ERR_FORMAT_PROMOCODES_NOT_CORRECT_-2820": "Das Format des von Ihnen eingegebene Aktionscode weist kein vom System anerkanntes Format auf. Prüfen sie den Code und versuchen Sie es erneut.",
+    "_ERR_PARAMETER_MISSING_-2810": "Der Name des Aktionscodes oder der Coupon-Werbeaktion fehlt. Geben Sie einen Namen für den Aktionscode oder die Coupon-Werbeaktion ein.",
+    "_ERR_FORMAT_ORDERIDS_NOT_CORRECT_-2830": "Der von Ihnen eingegebene Aktionscode konnte nicht verarbeitet werden. Klicken Sie auf den Link Kontaktieren Sie uns unten auf der Seite, um den Kundendienst zu erreichen.",
     "_ERR_PAY_CARD_NUMBER_MISSING_190": "Geben Sie die Kreditkartennummer in das Feld Kreditkarte ein.",
     "_ERR_PAY_CARD_BRAND_MISSING_190": "Wählen Sie den Kreditkartentyp aus und versuchen Sie es erneut.",
     "_ERR_CREATE_PAYMENT_METHOD": "Bei der Verarbeitung Ihrer Bestellung ist ein Systemproblem aufgetreten.",
@@ -633,13 +633,13 @@
     },
     "Labels": {
       "PaymentDetails": "Zahlungsdetails",
-      "OrderSummary": "Bestellübesicht"
+      "OrderSummary": "Bestellübersicht"
     }
   },
   "OrderDiscountSummary": {
     "Title": "Angewandte Rabatte",
     "Labels": {
-      "Total": "Gesamt"
+      "Total": "Gesamtbetrag"
     }
   },
   "OrderItemTable": {
@@ -701,7 +701,7 @@
       "Shipping": "Versand",
       "ShippingTax": "Versandsteuer",
       "Discount": "Gesamtrabatt",
-      "Total": "Gesamt"
+      "Total": "Gesamtbetrag"
     }
   },
   "PaymentInfoCard": {
@@ -856,7 +856,8 @@
     "Phone": "Telefon (optional)",
     "Password": "Kennwort",
     "VerifyPassword": "Kennwort bestätigen",
-    "TextContent": "Erhalten Sie Ideen für das Wohndesign, die an Ihren Posteingang gesendet werden.",
+    "TextContent": "Erhalten Sie Ideen für Wohndesign, die an Ihren Posteingang gesendet werden.",
+    "Register": "Registrieren",
     "Register": "Registrieren",
     "RegisterComplete": "Registrierung abschließen ",
     "Msgs": {
@@ -892,7 +893,7 @@
     }
   },
   "SearchBar": {
-    "SearchField": "Suche",
+    "SearchField": "Suchen",
     "KeywordTitle": "STICHWORTE",
     "CategoryTitle": "KATEGORIE",
     "BrandTitle": "MARKE",

@@ -15,6 +15,7 @@ export const REG_EX = {
   PHONE: /^[-+() ]*[0-9][-+() 0-9]*$/,
   PRICE: /^[0-9]+([.][0-9]{0,2})?$|^[.][0-9]{1,2}$/,
   NICKNAME_ALPHA_NUMERIC_SPECIAL_CHAR: /^[a-zA-Z0-9 ]*$/,
+  CARD_NUMBER_MASK: /[0-9](?=([0-9]{4}))/g,
 };
 
 export const DEFINING = "Defining";
@@ -93,6 +94,9 @@ export const CommerceEnvironment = {
     "-10": "ja_JP",
     "-20": "ru_RU",
     "-21": "ro_RO",
+    "-9": "ko_KR",
+    "-22": "pl_PL",
+    "-23": "ar_EG",
   },
   reverseLanguageMap: {
     en_US: "-1",
@@ -106,6 +110,9 @@ export const CommerceEnvironment = {
     ja_JP: "-10",
     ru_RU: "-20",
     ro_RO: "-21",
+    ko_KR: "-9",
+    pl_PL: "-22",
+    ar_EG: "-23",
   },
   reverseLanguageMapForDateFns: {
     en_US: "en-US",
@@ -119,6 +126,9 @@ export const CommerceEnvironment = {
     ja_JP: "ja",
     ru_RU: "ru",
     ro_RO: "ro",
+    ko_KR: "ko",
+    pl_PL: "pl",
+    ar_EG: "ar",
   },
   dxLanguageMap: {
     "-1": "en",
@@ -132,6 +142,9 @@ export const CommerceEnvironment = {
     "-10": "ja",
     "-20": "ru",
     "-21": "ro",
+    "-9": "ko",
+    "-22": "pl",
+    "-23": "ar",
   },
 };
 
@@ -154,3 +167,30 @@ export const SLASH = "/";
 
 // Discover
 export const DISCOVER_FEATURE = "Discover";
+
+export const CARD_NUMBER_MASK_CHAR = "*";
+export const PRIVATE_ORDER = "private";
+export const SHARED_ORDER = "shared";
+
+export const PAGINATION = {
+  sizes: [
+    { size: 5, label: "commonTable.pageSz.five" },
+    { size: 10, label: "commonTable.pageSz.ten" },
+    { size: 20, label: "commonTable.pageSz.twenty" },
+  ],
+};
+
+export const RF_JSON = "json";
+
+export const CPROF = {
+  EXPMTH_PATH: "billingData.expire_month.value",
+  EXPYR_PATH: "billingData.expire_year.value",
+};
+
+export const OK = "OK";
+export const CVV = "CVV";
+export const CREATED = "Created";
+export const Y = "Y";
+
+export const XS_MOBILE_W = 25.6;
+export const S_MOBILE_W = 40.0;

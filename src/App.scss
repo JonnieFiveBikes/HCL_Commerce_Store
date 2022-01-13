@@ -47,6 +47,19 @@ $images-dir: "^images/";
   }
 }
 
+.bundle-qty {
+  vertical-align: middle;
+  @media not screen and (max-width: 40em) {
+    max-width: 4rem;
+  }
+}
+
+@media screen and (max-width: 58.875em) {
+  .hideOnMobile {
+    display: none;
+  }
+}
+
 .promo-large {
   position: relative;
   overflow: hidden;
@@ -629,4 +642,89 @@ img {
     top: 50% !important;
     left: 50% !important;
   }
+}
+
+.table-filter {
+  .MuiTypography-body2 {
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+}
+
+.bundle-error {
+  .MuiTypography-body2.error {
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+}
+
+li.MuiBreadcrumbs-li:last-child {
+  overflow: hidden;
+}
+
+.table-tablet {
+  @media screen and (min-width: 40em) and (max-width: 64em) {
+    > thead {
+      > tr {
+        > th {
+          padding: 0.2rem;
+        }
+      }
+    }
+    > tbody {
+      > tr {
+        > td {
+          padding: 0.2rem;
+        }
+      }
+    }
+  }
+}
+
+.cprof-cr8-acrdn {
+  > .MuiAccordionSummary-content {
+    > .MuiBox-root {
+      flex-wrap: nowrap;
+    }
+  }
+}
+
+.shipment-group-summary {
+  // panel-text
+  > .MuiAccordionSummary-content {
+    > .shipment-group-summary-text {
+      margin-top: 0.25rem;
+      p {
+        word-break: break-word;
+        white-space: normal;
+      }
+    }
+  }
+  // panel-expander (icon+text)
+  > .MuiAccordionSummary-expandIcon.MuiButtonBase-root.MuiIconButton-root {
+    margin-top: 0.25rem;
+
+    > .MuiIconButton-label {
+      > .accordion-show-summary,
+      .accordion-show-expanded {
+        @media screen and (max-width: 40em) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+p.MuiTypography-root.StyledNumberInput {
+  @media screen and (min-width: 40em) {
+    max-width: 10rem;
+  }
+}
+
+.break-word {
+  word-break: break-word;
+}
+
+.text-right {
+  text-align: right;
 }

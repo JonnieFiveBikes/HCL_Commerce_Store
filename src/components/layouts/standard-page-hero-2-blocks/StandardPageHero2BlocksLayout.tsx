@@ -78,7 +78,7 @@ function StandardPageHero2BlocksLayout({
     <>
       <StyledContainer id={cid}>
         <Banner />
-        <StyledGrid container spacing={5} justify="center">
+        <StyledGrid container spacing={5} justifyContent="center">
           <SectionOne />
           <SectionTwo />
         </StyledGrid>

@@ -36,6 +36,7 @@ export interface CatalogReducerState {
   selectedPageOffset: number; //Stores the selected pagination offset value for the current category/search
   selectedSortOption: string; //Stores the selected sort option value for the current category/search
   breadcrumbs: any[];
+  selectFacetRemove: boolean;
 }
 
 export interface OrderReducerState {
@@ -49,6 +50,10 @@ export interface OrderReducerState {
   payMethods: any[];
   isRecurringOrderDisabled: boolean;
   isFetching?: boolean;
+  listOfOrders?: any[];
+  allowableShipModes: any[];
+  activeInprogressOrder: any;
+  allowablePaymethods?: any[];
 }
 
 export interface UserReducerState {
@@ -152,6 +157,9 @@ export interface ConfirmationReducerState {
    */
   okAction?: Function;
   cancelAction?: Function;
+  labels?: any;
+  template?: any;
+  comms?: any;
 }
 export interface RecurringOrderReducerState {
   resultList: any[];
@@ -187,4 +195,8 @@ export interface SiteReducerState {
 
 export interface ApiReducerState {
   apiFlowList: string[]; //Tracks list of API calls for development use only. State will exist in Production but will not be used.
+}
+
+export interface CheckoutProfileReducerState {
+  curUserProfiles: any[];
 }

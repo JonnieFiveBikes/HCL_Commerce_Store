@@ -204,7 +204,7 @@ const BuyerUserRegistration = (props: any) => {
   } else {
     return (
       <StyledContainer>
-        <StyledGrid container justify="center" spacing={2}>
+        <StyledGrid container justifyContent="center" spacing={2}>
           <StyledGrid item xs={12} md={6}>
             <StyledPaper className="top-margin-5 horizontal-padding-2 vertical-padding-3">
               <StyledTypography variant="h4" className="bottom-margin-4">
@@ -478,7 +478,7 @@ const BuyerUserRegistration = (props: any) => {
 
                   <StyledGrid
                     container
-                    justify="center"
+                    justifyContent="center"
                     className="top-margin-2">
                     <StyledGrid item>
                       <StyledButton

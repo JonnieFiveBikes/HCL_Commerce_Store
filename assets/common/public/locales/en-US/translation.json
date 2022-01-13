@@ -54,8 +54,14 @@
     "Subtotal_plural": "Subtotal for {{count}} items",
     "Empty": "There are no items in  your cart.",
     "Actions": {
-      "Cart": "View Full Cart"
-    }
+      "Cart": "View Full Cart",
+      "CheckOut": "Checkout",
+      "ViewOrderDetails": "View Order Details"
+    },
+    "MyOrder": "My Order",
+    "PrivateOrder": "Private Order",
+    "SharedOrderConributor": "Shared Order (Contributor)",
+    "SharedOrderAdmin": "Shared Order (Admin)"
   },
   "Language": {
     "-1": "English (US)",
@@ -68,13 +74,19 @@
     "-8": "Traditional Chinese",
     "-10": "Japanese",
     "-20": "Russian",
-    "-21": "Romanian"
+    "-21": "Romanian",
+    "-9": "Korean",
+    "-22": "Polish",
+    "-23": "Arabic"
   },
   "productDetail": {
     "Quantity": "Quantity",
     "QtyError": "Quantity must be greater or equal to 1.",
     "Availability": "Availability",
     "AddToCart": "Add to cart",
+    "AddBundleToCart": "Add Bundle to Order",
+    "AddBundleToSharedOrder": "Add to Shared Order",
+    "SelectAttributes": "Select Attributes",
     "Description": "Description",
     "ProductDetails": "Product Details",
     "Attachments": "Attachments",
@@ -88,13 +100,23 @@
     "any": "Any",
     "showAttributes": "Show Attributes",
     "attributeFilter": "Attribute Filter",
-    "addToCurrentOrder": "Add to Current Order",
+    "addToCurrentOrder": "Add to Order",
+    "addToSharedOrder": "Add to Shared Order",
     "SignIn": "Please Sign In to Shop",
     "noproductsToDisplay": "No products to display. Please change the Attribute Filter and try again.",
     "SKU": "SKU",
+    "PRODUCTSKU": "PRODUCT / SKU",
+    "SelectAnOption": "Select an option",
+    "Unconfigured": "Unconfigured",
+    "Unavailable": "Unavailable",
+    "InStock": "In stock",
     "Price": "Price",
     "Online_Availability": "Online Availability",
-    "recommendedProdTitle": "Recommended Products "
+    "recommendedProdTitle": "Recommended Products ",
+    "someWithNoSkus": "One or more products in the list have unselected attributes. Please complete attribute selections.",
+    "someWithNoAvlSelZero": "One or more selected items do not have available inventory. Please change quantity to 0 to ignore these items.",
+    "someWithNotEnough": "One or more selected items do not have enough available inventory. Please change quantity to less than or equal the current available inventory.",
+    "selectSomething": "No items were selected. Please choose at least one item."
   },
   "AddressBook": {
     "AddrMsg": "Add a new address",
@@ -127,7 +149,8 @@
     },
     "Actions": {
       "Checkout": "Checkout",
-      "Apply": "Apply"
+      "Apply": "Apply",
+      "Checkout-With-Profile": "Checkout With Profile"
     }
   },
   "CheckoutAddress": {
@@ -141,6 +164,7 @@
   },
   "Checkout": {
     "Title": "Checkout",
+    "CheckoutProfileTitle": "Checkout Profile",
     "Labels": {
       "shipping": "Shipping",
       "payment": "Payment",
@@ -179,7 +203,9 @@
       "Quantity": "Quantity",
       "ShippingDetails": "Shipping Details",
       "SelectShippingAddressAndMethod": "Select Shipping Address and Method",
-      "ChangeSelection": "Change Selection"
+      "ChangeSelection": "Change Selection",
+      "nItemsSel": "{{ n }} items selected",
+      "noItems": "No items found"
     }
   },
   "Shipping": {
@@ -336,7 +362,7 @@
     "OrderHistory": "Order History",
     "RecurringOrders": "Recurring Orders",
     "RequisitionLists": "Requisition Lists",
-    "SavedOrders": "Saved Orders",
+    "InprogressOrders": "In Progress Orders",
     "ApproveOrders": "Order Approval"
   },
   "Order": {
@@ -427,7 +453,8 @@
     "PersonalInformation": "Personal Information",
     "AddressBook": "Address Book",
     "OrderHistory": "Order History",
-    "Wishlists": "Wish Lists"
+    "Wishlists": "Wish Lists",
+    "CheckoutProfiles": "Checkout Profiles"
   },
   "AddressCard": {
     "EditButton": "Edit",
@@ -468,6 +495,55 @@
     "CancelLabel": "Cancel",
     "SuccessLabel": "Password Change Successful",
     "OkLabel": "OK"
+  },
+  "CheckoutProfile": {
+    "ShippingInformation": "Shipping Information",
+    "CreateCheckoutTitle": "Create Checkout Profile",
+    "CreateCheckoutButton": "Create a new checkout profile",
+    "BillingInformation": "Billing Information",
+    "PaymentInformation": "Payment Information",
+    "ShippingMethod": "Shipping Method",
+    "ShipSameAsBill": "Billing Address is the same as Shipping Address",
+    "Cancel": "Cancel",
+    "Next": "Next",
+    "Back": "Back",
+    "CreateProfile": "Create Profile",
+    "UpdateProfile": "Update Profile",
+    "Title": "Checkout Profile Selection",
+    "Label": "Select an existing checkout profile",
+    "MyAcctDesc": "Manage and edit quick checkout profiles for faster checkouts",
+    "Name": "Checkout Profile Name",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "NoneFound": "<0>That's a miss.</0><1>Sorry, we could not find that checkout profile.</1><2>Please try a different checkout profile or <0>create a new</0> checkout profile.</2>",
+    "NoProfiles": "No checkout profiles were found. <0>Create a new</0> checkout profile.",
+    "TitleCreate": "Checkout Profiles",
+    "CreateMessage": "Create a new Checkout Profile",
+    "CreateNewButton": "Create New",
+    "ShippingAddr": "SHIPPING ADDRESS",
+    "ShippingMethodDisp": "SHIPPING METHOD",
+    "BillingAddr": "BILLING ADDRESS",
+    "BillingMethod": "BILLING METHOD",
+    "EditProfile": "Edit Checkout Profile",
+    "ShipAsComplete": "SHIP AS COMPLETE",
+    "confirmDelete": "Confirm Delete",
+    "selectExisting": "Select an existing address. Otherwise <0>create a new one</0>.",
+    "sm_Express": "Express",
+    "sm_Mail": "Mail",
+    "sm_InternationalPriority": "International Priority",
+    "sm_InternationalRegular": "International Regular",
+    "sm_PickupInStore": "Pickup in store",
+    "saveAddress": "Save Address",
+    "invalidProfile": "This profile is invalid. Edit and choose a new address.",
+    "invalidProfileName": "The Profile Name can contain only alphanumeric characters (A-Z, a-z, 0-9) and white spaces.",
+    "selectExpMonth": "Select expiry month",
+    "selectExpYear": "Select expiry year",
+    "payMethods": {
+      "VISA": "VISA Credit Card",
+      "MasterCard": "MasterCard Credit Card",
+      "AMEX": "American Express Credit Card",
+      "COD": "Cash on delivery"
+    }
   },
   "ChildPimCategories": {
     "title": "All {{name}}"
@@ -601,9 +677,11 @@
     "B2B": {
       "_ERR_FINDER_EXCEPTION_CMN0411E": "The logon ID that you entered is not valid. Check your entry and try again.",
       "_ERR_LOGONID_ALREDY_EXIST_2030": "The logon ID you entered already exists. Type a different logon ID and try again.",
-      "_ERR_BAD_PARMS_2010": "The logon ID that you entered is not valid. Check your entry and try again."
+      "_ERR_BAD_PARMS_2010": "The logon ID that you entered is not valid. Check your entry and try again.",
+      "_ERR_INVALID_NAME_CMN1652E": "An object with the name \"{{0}}\" already exists. Please choose a different name and try again."
     },
-    "_ERR_PASSWORD_EXPIRED_2170": "Your current password has expired. Please enter a new password."
+    "_ERR_PASSWORD_EXPIRED_2170": "Your current password has expired. Please enter a new password.",
+    "_ERR_INVALID_NAME_CMN1652E": "An object with the name \"{{0}}\" already exists. Please choose a different name and try again."
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "Item was added to cart. ",
@@ -614,7 +692,16 @@
     "EDIT_ADDRESS_SUCCESS": "Your address \"{{0}}\" has been updated successfully",
     "DELETE_ADDRESS_SUCCESS": "Your address \"{{0}}\" has been deleted successfully",
     "RESEND_VERIFICATION_CODE": "The verification code has been sent to your email address successfully",
-    "PASSWORD_RESET_SUCCESS": "The password has been reset successfully"
+    "PASSWORD_RESET_SUCCESS": "The password has been reset successfully",
+    "CREATE_CHECKOUT_PROFILE_SUCCESS": "Successfully created checkout profile \"{{0}}\"",
+    "COPY_ORDER_SUCCESS": "Successfully copied order.",
+    "CREATE_ORDER_SUCCESS": "Successfully created order \"{{0}}\".",
+    "DELETE_ORDER_SUCCESS": "Successfully deleted order \"{{0}}\".",
+    "DeletedCheckoutProfile": "Successfully deleted checkout profile \"{{ 0 }}\"",
+    "UpdatedCheckoutProfile": "Successfully updated checkout profile \"{{ 0 }}\"",
+    "deletedSuccessfully": "Successfully deleted {{ n }} item(s) from order",
+    "addedItemSuccessfully": "Successfully added {{ v }} to current order",
+    "addedNSuccessfully": "Successfully added {{ v }} items to current order"
   },
   "notFound": {
     "notFound": "<p>Sorry, we couldn&#39;t find what you are looking for.</p>\n"
@@ -630,7 +717,8 @@
     "Actions": {
       "Back": "Back to Payment Details",
       "Next": "Place Order",
-      "NextRecurringOrder": "Place Recurring Order"
+      "NextRecurringOrder": "Place Recurring Order",
+      "BackCart": "Back to Checkout Cart"
     },
     "Labels": {
       "PaymentDetails": "Payment Details",
@@ -669,8 +757,8 @@
     "Title": "Order Management",
     "OrderHistoryText": "Order History",
     "OrderHistoryDescription": "View placed orders and orders pending approval, and individual order details.",
-    "SavedOrdersText": "Saved Orders",
-    "SavedOrdersDescription": "View and manage saved orders",
+    "InprogressOrdersText": "In Progress Orders",
+    "InprogressOrdersDescription": "View and manage in progress orders",
     "RecurringOrdersText": "Recurring Orders",
     "RecurringOrdersDescription": "View and manage list of recurring orders",
     "ApproveOrdersText": "Order Approval",
@@ -705,12 +793,19 @@
       "Total": "Total"
     }
   },
+  "PaymentMethodContainer": {
+    "Actions": {
+      "Cancel": "Cancel",
+      "Done": "Done",
+      "SaveAndAdd": "Save and add another payment method"
+    }
+  },
   "PaymentInfoCard": {
     "Title": "Payment Method {{number}}",
     "Labels": {
       "CreditCard": "Credit Card: ",
       "AmountToPay": "Amount to pay",
-      "ExpiryDate": "Expiry Date:",
+      "ExpiryDate": "Expiry Date: {{month}}/{{year}}",
       "BillingAddress": "Billing Address"
     },
     "Actions": {
@@ -719,10 +814,15 @@
     }
   },
   "PaymentInfoList": {
-    "Title": "Payment Methods - Order Total: ",
+    "Title": {
+      "PayMethod": "Payment Methods",
+      "WithOrderTotal": "Payment Methods - Order Total: "
+    },
     "Msgs": {
       "PayMethodRequired": "At least one payment method is required.",
-      "InsufficientPayment": "You must cover the order total of {{grandTotal}} across payment methods."
+      "InsufficientPayment": "Please cover the order total of {{grandTotal}} across payment methods.",
+      "CardDetailsUpdate": "Please check and update the card details once again.",
+      "PayMethodNote": "Note: Payment methods will be saved only upon clicking the Review Order button."
     },
     "Actions": {
       "AddPayMethod": "Add a payment method"
@@ -732,8 +832,8 @@
     "Title": "Payment Method",
     "Msgs": {
       "CreditCard": "Safe payment online. Accepted credit cards: {{cards}}",
-      "CVV": "Last three digits on signature strip",
-      "InvalidCardNumber": "Invalid card number or type",
+      "CVV": "Please enter valid CVV code",
+      "InvalidCardNumber": "Please enter valid credit card number",
       "InvalidFormat": "Invalid format"
     },
     "Labels": {
@@ -744,7 +844,9 @@
       "CVV": "CVV Code",
       "OrderTotal": "Order Total",
       "RemainingAmount": "Remaining amount to pay",
-      "AmountToPay": "Amount to pay"
+      "AmountToPay": "Amount to pay",
+      "ExpiryMonth": "Expiry Month",
+      "ExpiryYear": "Expiry Year"
     },
     "Actions": {
       "PayRemaining": "Pay remaining amount"
@@ -950,7 +1052,7 @@
       "Unallocated": "Unallocated",
       "Backordered": "Backordered",
       "OOS": "Out of Stock",
-      "NA": "Not Availble"
+      "NA": "Not Available"
     },
     "recurringOrderFrequency": {
       "Everyday": "Everyday",
@@ -958,6 +1060,12 @@
       "EveryTwoWeeks": "Every 2 weeks",
       "EveryThreeWeeks": "Every 3 weeks",
       "EveryFourWeeks": "Every 4 weeks"
+    },
+    "languagePopUp": {
+      "Title": "Change Language?",
+      "Message": "Do you want to change the language to {{ language }}?",
+      "Yes": "Yes",
+      "No": "No"
     },
     "currency": {
       "ROL": "Romanian Leu",
@@ -1010,6 +1118,67 @@
       "-9": "Korean",
       "-22": "Polish",
       "-23": "Arabic"
+    }
+  },
+  "InprogressOrders": {
+    "Title": "In Progress Orders",
+    "CreateNewOrder": "Create new order",
+    "NewOrderName": "New Order Name",
+    "CreateOrder": "Create Order",
+    "PrivateOrder": "Private Order",
+    "SharedOrder": "Shared Order",
+    "Columns": {
+      "Active": "ACTIVE",
+      "OrderId": "ORDER ID",
+      "Name": "NAME",
+      "LastUpdated": "LAST UPDATED",
+      "TotalPrice": "TOTAL PRICE",
+      "Type": "TYPE",
+      "Actions": "ACTION"
+    },
+    "Status": {
+      "ORD": "Private",
+      "SHR": "Shared"
+    },
+    "DeleteDialogTitle": "Delete Order",
+    "DeleteDialogHeading": "Do you want to delete this order?",
+    "CopyTitle": "Copy Order",
+    "CopyMessage": "Do you want to copy this order?",
+    "CurrentCart": "{{ orderId }} (Current Cart)",
+    "InvalidOrderName": "The order name can contain only alphanumeric characters (A-Z, a-z, 0-9) and white spaces.",
+    "searchPh": "Search for ID or description",
+    "NotActiveOrderMessage": "Order needs to be active to add products"
+  },
+  "InprogressItems": {
+    "orderItem": "ORDER ITEM",
+    "creationDate": "CREATION DATE",
+    "quantity": "QUANTITY",
+    "contributor": "CONTRIBUTOR",
+    "each": "EACH",
+    "actions": "ACTIONS",
+    "inprogressOrders": "In Progress Orders",
+    "createdBy": "CREATED BY",
+    "lastUpdated": "LAST UPDATED",
+    "totalPrice": "TOTAL PRICE",
+    "visibility": "SHARED LIST",
+    "orderType_SHR": "Shared",
+    "orderType_ORD": "Private",
+    "proceed": "Proceed to Checkout",
+    "addProds": "Add Products",
+    "privateList": "Private List",
+    "sharedList": "Shared List",
+    "nProductsSel": "{{ n }} products selected",
+    "addSelToCart": "Add Selected to Cart",
+    "deleteSelected": "Delete Selected",
+    "noItems": "No order items were found.",
+    "nameForCopiedOrder": "Enter a name for the new order"
+  },
+  "commonTable": {
+    "ofTotalCount": "Showing {{ from }} to {{ to }} of {{ total }}",
+    "pageSz": {
+      "five": "5 rows",
+      "ten": "10 rows",
+      "twenty": "20 rows"
     }
   }
 }

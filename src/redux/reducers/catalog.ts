@@ -64,7 +64,7 @@ const catalogReducer = createReducer(initStates.catalog, (builder) => {
     ACTIONS.PRODUCT_LIST_GET_SUCCESS,
     (state, action: AnyAction) => {
       const response = action.response;
-
+      const payload = action.payload;
       if (response["facets"] && response["facets"].length > 0) {
         let newFacetPrice = null;
         response["facets"].forEach((facet: any) => {
@@ -86,6 +86,7 @@ const catalogReducer = createReducer(initStates.catalog, (builder) => {
       state.breadcrumbs = response["breadCrumbTrailEntryView"]
         ? response.breadCrumbTrailEntryView
         : [];
+      state.selectFacetRemove = payload.states ? true : false;
     }
   );
 

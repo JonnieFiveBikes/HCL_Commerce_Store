@@ -11,7 +11,6 @@
 //Standard libraries
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-
 //Custom libraries
 import LanguageTogglePopperContent from "./LanguageTogglePopperContent";
 import { DEFAULT_LANG_ID, HYPHEN, UNDERSCORE } from "../../constants/common";
@@ -31,8 +30,11 @@ import { Hidden } from "@material-ui/core";
 
 //Foundation libraries
 import { useSite } from "../../_foundation/hooks/useSite";
-import { LOCALE } from "../../_foundation/constants/common";
+import { LOCALE, URL_LANG_REJECTED } from "../../_foundation/constants/common";
 import { localStorageUtil } from "../../_foundation/utils/storageUtil";
+import { useSelector, useDispatch } from "react-redux";
+import { langSelector } from "../../redux/selectors/language";
+import * as lsActions from "../../redux/actions/local-storage";
 
 interface LanguageToggleProps {
   id: string;
@@ -68,40 +70,47 @@ const LanguageToggle = React.forwardRef<
         localLocaleCode.split(HYPHEN).join(UNDERSCORE)
       ]
     : defaultLanguageID; // if locale code, set languageName to local locale language name, else default locale language name
-  const defaultLanguageShortName: string = CommerceEnvironment.dxLanguageMap[
-    languageId
-  ].toLocaleUpperCase();
+  const defaultLanguageShortName: string =
+    CommerceEnvironment.dxLanguageMap[languageId].toLocaleUpperCase();
   const [language, setLanguage] = useState<string>(languageId); // Initially set as default locale/language
   const [languageShortName, setLanguageShortName] = useState<string>(
     defaultLanguageShortName
   );
 
+  const languageSelector = useSelector(langSelector);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    if (languageSelector) {
+      const langId = CommerceEnvironment.reverseLanguageMap[languageSelector];
+      setLanguageShortName(
+        CommerceEnvironment.dxLanguageMap[langId].toLocaleUpperCase()
+      );
+    }
+  }, [languageSelector]);
+
   // Get the selected Language as a callback from LanguageTogglePopperContent
   // when user clicks a supported language option
-  const onLanguageClick = (language: string) => {
-    setLanguage(language);
-    setLanguageShortName(
-      CommerceEnvironment.dxLanguageMap[language].toLocaleUpperCase()
-    );
-    settingLocale(language);
-    handleClose();
-  };
-
-  // This function sets the locale (language) of the store
-  const settingLocale = (selectedLanguageId: string) => {
-    const newLocale = CommerceEnvironment.languageMap[selectedLanguageId] //AA: get the newLocale by using langId and doing key/value pair
+  const onLanguageClick = (newLangId: string) => {
+    const newLocale = CommerceEnvironment.languageMap[newLangId]
       .split(UNDERSCORE)
       .join(HYPHEN);
     if (newLocale !== i18n.languages[0]) {
+      const rejected = localStorageUtil.get(URL_LANG_REJECTED) ?? {};
+      const langName = CommerceEnvironment.languageMap[newLangId];
+
+      // remove the language from set of previously rejected languages -- so that we can prompt again in future
+      delete rejected[langName];
+      localStorageUtil.set(URL_LANG_REJECTED, rejected);
+
+      setLanguage(newLangId);
+
       i18n.changeLanguage(newLocale);
-      // set locale to local storage - so if we reload page, it will stay as this language and not change
-      localStorageUtil.set(
-        LOCALE,
-        CommerceEnvironment.languageMap[selectedLanguageId],
-        30 // means set for 30 days
-      );
+      dispatch(lsActions.LS_LANG_CHANGE_ACTION({ newLangId }));
     }
+    handleClose();
   };
+
   return (
     <>
       <StyledButton
@@ -120,7 +129,11 @@ const LanguageToggle = React.forwardRef<
           </Hidden>
           <Hidden xsDown>
             <StyledTypography variant="body1" component="p">
-              {t(`Language.${language}`)}
+              {languageSelector
+                ? t(
+                    `Language.${CommerceEnvironment.reverseLanguageMap[languageSelector]}`
+                  )
+                : t(`Language.${language}`)}
               <ExpandMoreIcon />
             </StyledTypography>
           </Hidden>
@@ -142,7 +155,7 @@ const LanguageToggle = React.forwardRef<
             boundariesElement: "scrollParent",
           },
           hide: {
-            enabled: true,
+            enabled: false,
           },
           arrow: {
             enabled: true,

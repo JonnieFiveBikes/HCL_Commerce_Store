@@ -50,12 +50,18 @@
     "Items": "{{count}} 個の商品",
     "Items_plural": "{{count}} 個の商品",
     "Title": "現在のオーダー",
-    "Subtotal": "{{count}} 個の商品の小計",
-    "Subtotal_plural": "{{count}} 個の商品の小計",
+    "Subtotal": "商品 {{count}} 個の小計",
+    "Subtotal_plural": "商品 {{count}} 個の小計",
     "Empty": "カートに商品がありません。",
     "Actions": {
-      "Cart": "カートの中身をすべて表示"
-    }
+      "Cart": "カートの中身をすべて表示",
+      "CheckOut": "チェックアウト",
+      "ViewOrderDetails": "オーダーの詳細情報を表示"
+    },
+    "MyOrder": "マイ・オーダー",
+    "PrivateOrder": "プライベート・オーダー",
+    "SharedOrderConributor": "共有オーダー (投稿者)",
+    "SharedOrderAdmin": "共有オーダー (管理者)"
   },
   "Language": {
     "-1": "英語 (米国)",
@@ -68,13 +74,19 @@
     "-8": "中国語 (繁体字)",
     "-10": "日本語",
     "-20": "ロシア語",
-    "-21": "ルーマニア語"
+    "-21": "ルーマニア語",
+    "-9": "韓国語",
+    "-22": "ポーランド語",
+    "-23": "アラビア語"
   },
   "productDetail": {
     "Quantity": "数量",
     "QtyError": "数量は 1 以上である必要があります。",
     "Availability": "在庫状況",
     "AddToCart": "カートに追加",
+    "AddBundleToCart": "バンドルをオーダーに追加",
+    "AddBundleToSharedOrder": "共有オーダーに追加",
+    "SelectAttributes": "属性の選択",
     "Description": "説明",
     "ProductDetails": "商品詳細情報",
     "Attachments": "アタッチメント",
@@ -88,12 +100,23 @@
     "any": "任意",
     "showAttributes": "属性の表示",
     "attributeFilter": "属性フィルター",
-    "addToCurrentOrder": "現在のオーダーに追加",
+    "addToCurrentOrder": "オーダーに追加",
+    "addToSharedOrder": "共有オーダーに追加",
     "SignIn": "ショップにサインインしてください",
     "noproductsToDisplay": "表示する製品がありません。属性フィルターを変更して、再試行してください。",
     "SKU": "SKU",
+    "PRODUCTSKU": "商品 / SKU",
+    "SelectAnOption": "オプションを選択してください",
+    "Unconfigured": "未構成",
+    "Unavailable": "利用不可",
+    "InStock": "在庫あり",
     "Price": "価格",
-    "Online_Availability": "オンラインで入手可能"
+    "Online_Availability": "オンラインで入手可能",
+    "recommendedProdTitle": "お勧め商品 ",
+    "someWithNoSkus": "リストの 1 つまたは複数の商品で属性が選択されていません。属性の選択を完了してください。",
+    "someWithNoAvlSelZero": "選択された 1 つまたは複数のアイテムで、利用可能な在庫がありません。それらのアイテムを無視するには、数量を 0 に変更してください。",
+    "someWithNotEnough": "選択された 1 つまたは複数のアイテムで、利用可能な在庫が不足しています。現在の利用可能在庫数量以下の数量に変更してください。",
+    "selectSomething": "アイテムが選択されていません。少なくとも 1 つのアイテムを選択してください。"
   },
   "AddressBook": {
     "AddrMsg": "新しい住所を追加",
@@ -114,19 +137,20 @@
   "Cart": {
     "Title": "ショッピング・カート",
     "Msgs": {
-      "Empty": "ショッピング・カートが空です。新しいアイテムが毎日届いています。今、お買い求めください!",
-      "PromoCode": "販売促進コードを入力してください"
+      "Empty": "ショッピング・カートが空です。今すぐ、お買い求めください!",
+      "PromoCode": "プロモーション・コードを入力してください"
     },
     "Labels": {
-      "PromoCode": "販売促進コード",
+      "PromoCode": "プロモーション・コード",
       "RecurringOrder": "定期オーダーとしてスケジュール",
       "Frequency": "頻度",
       "StartDate": "開始日",
-      "OrderSummary": "オーダー要約"
+      "OrderSummary": "オーダー詳細"
     },
     "Actions": {
       "Checkout": "チェックアウト",
-      "Apply": "適用"
+      "Apply": "適用",
+      "Checkout-With-Profile": "プロファイルでチェックアウト"
     }
   },
   "CheckoutAddress": {
@@ -140,6 +164,7 @@
   },
   "Checkout": {
     "Title": "チェックアウト",
+    "CheckoutProfileTitle": "チェックアウト・プロファイル",
     "Labels": {
       "shipping": "配送先",
       "payment": "支払い",
@@ -174,11 +199,13 @@
   "MultipleShipmentTable": {
     "Labels": {
       "ItemDetails": "商品の詳細",
-      "SKU": "SKU: ",
+      "SKU": "SKU:",
       "Quantity": "数量",
       "ShippingDetails": "配送の詳細",
       "SelectShippingAddressAndMethod": "配送先住所と配送方法の選択",
-      "ChangeSelection": "選択の変更"
+      "ChangeSelection": "選択の変更",
+      "nItemsSel": "{{ n }} 個のアイテムが選択されました",
+      "noItems": "アイテムが見つかりません"
     }
   },
   "Shipping": {
@@ -335,7 +362,7 @@
     "OrderHistory": "オーダー履歴",
     "RecurringOrders": "定期オーダー",
     "RequisitionLists": "要求リスト",
-    "SavedOrders": "保存済みオーダー",
+    "InprogressOrders": "進行中のオーダー",
     "ApproveOrders": "オーダーの承認"
   },
   "Order": {
@@ -426,7 +453,8 @@
     "PersonalInformation": "個人情報",
     "AddressBook": "アドレス帳",
     "OrderHistory": "オーダー履歴",
-    "Wishlists": "買い物候補リスト"
+    "Wishlists": "買い物候補リスト",
+    "CheckoutProfiles": "チェックアウト・プロファイル"
   },
   "AddressCard": {
     "EditButton": "編集",
@@ -467,6 +495,55 @@
     "CancelLabel": "キャンセル",
     "SuccessLabel": "パスワードが正常に変更されました",
     "OkLabel": "OK"
+  },
+  "CheckoutProfile": {
+    "ShippingInformation": "配送情報",
+    "CreateCheckoutTitle": "チェックアウト・プロファイルの作成",
+    "CreateCheckoutButton": "新規チェックアウト・プロファイルを作成する",
+    "BillingInformation": "請求情報",
+    "PaymentInformation": "支払情報",
+    "ShippingMethod": "配送方法",
+    "ShipSameAsBill": "請求先住所が配送先住所と同じです",
+    "Cancel": "キャンセル",
+    "Next": "次へ",
+    "Back": "戻る",
+    "CreateProfile": "プロファイルの作成",
+    "UpdateProfile": "プロファイルの更新",
+    "Title": "チェックアウト・プロファイルの選択",
+    "Label": "既存のチェックアウト・プロファイルを選択する",
+    "MyAcctDesc": "迅速にチェックアウトできるようにクイック・チェックアウト・プロファイルを管理および編集します",
+    "Name": "チェックアウト・プロファイル名",
+    "Edit": "編集",
+    "Delete": "削除",
+    "NoneFound": "<0>失敗です。</0><1>このチェックアウト・プロファイルは見つかりませんでした。</1><2>別のチェックアウト・プロファイルで再試行するか、チェックアウト・プロファイルを<0>新規作成</0>してください。</2>",
+    "NoProfiles": "チェックアウト・プロファイルは見つかりませんでした。チェックアウト・プロファイルを<0>新規作成</0>してください。",
+    "TitleCreate": "チェックアウト・プロファイル",
+    "CreateMessage": "新規チェックアウト・プロファイルを作成します",
+    "CreateNewButton": "新規作成",
+    "ShippingAddr": "配送先住所",
+    "ShippingMethodDisp": "配送方法",
+    "BillingAddr": "請求先住所",
+    "BillingMethod": "請求方法",
+    "EditProfile": "チェックアウト・プロファイルの編集",
+    "ShipAsComplete": "完了した時点で発送",
+    "confirmDelete": "削除の確認",
+    "selectExisting": "既存の住所を選択します。ない場合は、<0>新規住所を作成</0>してください。",
+    "sm_Express": "急送",
+    "sm_Mail": "メール",
+    "sm_InternationalPriority": "国際優先",
+    "sm_InternationalRegular": "国際標準",
+    "sm_PickupInStore": "ストアで受け取り",
+    "saveAddress": "住所の保存",
+    "invalidProfile": "このプロファイルは無効です。新しい住所を編集して選択してください。",
+    "invalidProfileName": "プロファイル名には英数字 (A～Z、a～z、0～9) と空白文字のみを使用できます。",
+    "selectExpMonth": "有効期限 (月) の選択",
+    "selectExpYear": "有効期限 (年) の選択",
+    "payMethods": {
+      "VISA": "VISA クレジット・カード",
+      "MasterCard": "Mastercard クレジット・カード",
+      "AMEX": "American Express クレジット・カード",
+      "COD": "着払い"
+    }
   },
   "ChildPimCategories": {
     "title": "すべての {{name}}"
@@ -509,7 +586,7 @@
     "_ERR_CMD_INVALID_PARAM_5060": "「姓」フィールドに名前を入力してください。",
     "_ERR_CMD_INVALID_PARAM_5066": "「名」フィールドに名前を入力してください。",
     "_ERR_CMD_INVALID_PARAM_5210": "「E メール」フィールドに E メール・アドレスを入力してください。",
-    "_ERR_CMD_INVALID_PARAM_2190": "確認コードの値が正しくありません。",
+    "_ERR_CMD_INVALID_PARAM_2190": "入力された確認コードは正しくありません。受信したコードを確認して再試行してください。",
     "_ERR_CMD_INVALID_PARAM_2080": "入力された確認用パスワードが新しいパスワードと一致しません。",
     "_ERR_CMD_INVALID_PARAM": "登録中にエラーが発生しました。後で再試行するか、詳しくはストアにお問い合わせください。",
     "_ERR_LOGONID_ALREDY_EXIST_2030": "入力された E メールは既に存在します。別の E メールを入力して再試行してください。",
@@ -572,7 +649,7 @@
     "ERR_PROMOTION_PER_SHOPPER_LIMIT_EXCEEDED_-1800": "再実行されたプロモーションはオーダーに適用できません: お客様ごとの {{1}} の制限数に達しています。",
     "ERR_PROMOTION_OVERALL_LIMIT_EXCEEDED_-1900": "再実行されたプロモーションはオーダーに適用できません: このプロモーションで許可される償還の合計数における {{1}} の制限数に達しています。",
     "ERR_PROMOTION_SYSTEM_ERR_-2700": "入力されたプロモーション・コードは処理できませんでした。ページ下部にある「連絡先」リンクをクリックしてお客様サービスにアクセスしてください。",
-    "ERR_PROMOTION_CODE_DUPLICATED_-1150": "入力された販売促進コード \"{{0}}\" が重複しています。",
+    "ERR_PROMOTION_CODE_DUPLICATED_-1150": "入力されたプロモーション・コード \"{{0}}\" が重複しています。",
     "ERR_PROMOTION_UNKNOWN_ERR_-2600": "入力されたプロモーション・コードは処理できませんでした。ページ下部にある「連絡先」リンクをクリックしてお客様サービスにアクセスしてください。",
     "_ERR_FORMAT_PROMOCODES_NOT_CORRECT_-2820": "入力されたプロモーション・コードはシステムで認識される形式になっていません。コードを確認して再試行してください。",
     "_ERR_PARAMETER_MISSING_-2810": "プロモーション・コードまたはクーポンのプロモーション名が見つかりません。プロモーション・コードまたはクーポンのプロモーション名を入力してください。",
@@ -596,13 +673,15 @@
     "_ERR_REMOTE_EXCEPTION_CMN0412E": "要求の処理中にシステムの問題が発生しました。サポートが必要な場合は、ストアにお問い合わせください。",
     "_ERR_REG_DUPE_ID_CMN0114S": "入力されたログイン ID は既に存在します。別のログイン ID を入力して再試行してください。",
     "_ERR_FINDER_EXCEPTION_CMN0411E": "入力された E メールは有効ではありません。入力内容を確認して再試行してください。",
-    "_ERR_CMD_INVALID_PARAM_2195": "入力された確認コードは有効ではありません。入力内容を確認して再試行してください。",
+    "_ERR_CMD_INVALID_PARAM_2195": "入力された確認コードは有効期限が切れています。パスワードを変更するには、新しい確認コードを要求する必要があります。",
     "B2B": {
       "_ERR_FINDER_EXCEPTION_CMN0411E": "入力されたログイン ID は有効ではありません。入力内容を確認して再試行してください。",
       "_ERR_LOGONID_ALREDY_EXIST_2030": "入力されたログイン ID は既に存在します。別のログイン ID を入力して再試行してください。",
-      "_ERR_BAD_PARMS_2010": "入力されたログイン ID は有効ではありません。入力内容を確認して再試行してください。"
+      "_ERR_BAD_PARMS_2010": "入力されたログイン ID は有効ではありません。入力内容を確認して再試行してください。",
+      "_ERR_INVALID_NAME_CMN1652E": "名前が \"{{0}}\" のオブジェクトは既に存在します。別の名前を選択して再試行してください。"
     },
-    "_ERR_PASSWORD_EXPIRED_2170": "現在のパスワードの有効期限が切れています。新規パスワードを入力してください。"
+    "_ERR_PASSWORD_EXPIRED_2170": "現在のパスワードの有効期限が切れています。新規パスワードを入力してください。",
+    "_ERR_INVALID_NAME_CMN1652E": "名前が \"{{0}}\" のオブジェクトは既に存在します。別の名前を選択して再試行してください。"
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "商品がカートに追加されました。",
@@ -613,7 +692,16 @@
     "EDIT_ADDRESS_SUCCESS": "新しい住所 \"{{0}}\" が正常に更新されました",
     "DELETE_ADDRESS_SUCCESS": "新しい住所 \"{{0}}\" が正常に削除されました",
     "RESEND_VERIFICATION_CODE": "確認コードは E メール・アドレス宛に正常に送信されました",
-    "PASSWORD_RESET_SUCCESS": "パスワードは正常にリセットされました"
+    "PASSWORD_RESET_SUCCESS": "パスワードは正常にリセットされました",
+    "CREATE_CHECKOUT_PROFILE_SUCCESS": "チェックアウト・プロファイル \"{{0}}\" が正常に作成されました",
+    "COPY_ORDER_SUCCESS": "オーダーが正常にコピーされました。",
+    "CREATE_ORDER_SUCCESS": "オーダー \"{{0}}\" が正常に作成されました。",
+    "DELETE_ORDER_SUCCESS": "オーダー \"{{0}}\" が正常に削除されました。",
+    "DeletedCheckoutProfile": "チェックアウト・プロファイル \"{{ 0 }}\" が正常に削除されました",
+    "UpdatedCheckoutProfile": "チェックアウト・プロファイル \"{{ 0 }}\" が正常に更新されました",
+    "deletedSuccessfully": "{{ n }} 個のアイテムがオーダーから正常に削除されました",
+    "addedItemSuccessfully": "現在のオーダーに {{ v }} が正常に追加されました",
+    "addedNSuccessfully": "現在のオーダーに {{ v }} のアイテムが正常に追加されました"
   },
   "notFound": {
     "notFound": "<p>お探しの商品は見つかりませんでした。</p>"
@@ -629,11 +717,12 @@
     "Actions": {
       "Back": "支払いの詳細情報に戻る",
       "Next": "オーダーの発行",
-      "NextRecurringOrder": "定期オーダーの発行"
+      "NextRecurringOrder": "定期オーダーの発行",
+      "BackCart": "チェックアウト・カートに戻る"
     },
     "Labels": {
       "PaymentDetails": "支払いの詳細",
-      "OrderSummary": "オーダー概要"
+      "OrderSummary": "オーダー詳細"
     }
   },
   "OrderDiscountSummary": {
@@ -668,8 +757,8 @@
     "Title": "オーダー管理",
     "OrderHistoryText": "オーダー履歴",
     "OrderHistoryDescription": "発注したオーダーと承認待ちオーダー、および個々のオーダーの詳細を表示します。",
-    "SavedOrdersText": "保存済みオーダー",
-    "SavedOrdersDescription": "保存済みのオーダーを表示および管理します",
+    "InprogressOrdersText": "進行中のオーダー",
+    "InprogressOrdersDescription": "進行中のオーダーを表示および管理します",
     "RecurringOrdersText": "定期オーダー",
     "RecurringOrdersDescription": "定期オーダーのリストを表示および管理します",
     "ApproveOrdersText": "オーダーの承認",
@@ -704,12 +793,19 @@
       "Total": "合計"
     }
   },
+  "PaymentMethodContainer": {
+    "Actions": {
+      "Cancel": "キャンセル",
+      "Done": "完了",
+      "SaveAndAdd": "保存して別の支払方法を追加"
+    }
+  },
   "PaymentInfoCard": {
     "Title": "支払方法 {{number}}",
     "Labels": {
       "CreditCard": "クレジット・カード:",
       "AmountToPay": "支払い金額",
-      "ExpiryDate": "有効期限:",
+      "ExpiryDate": "有効期限: {{month}}/{{year}}",
       "BillingAddress": "請求先住所"
     },
     "Actions": {
@@ -718,10 +814,15 @@
     }
   },
   "PaymentInfoList": {
-    "Title": "支払方法 - オーダー合計: ",
+    "Title": {
+      "PayMethod": "支払方法",
+      "WithOrderTotal": "支払方法 - オーダー合計: "
+    },
     "Msgs": {
       "PayMethodRequired": "少なくとも 1 つの支払方法が必要です。",
-      "InsufficientPayment": "支払方法全体でオーダー合計 {{grandTotal}} を保証する必要があります。"
+      "InsufficientPayment": "支払方法全体でオーダー合計 {{grandTotal}} を保証する必要があります。",
+      "CardDetailsUpdate": "再度カードの詳細を確認し、更新してください。",
+      "PayMethodNote": "注: 支払方法は、「オーダーのレビュー」ボタンをクリックした場合にのみ保存されます。"
     },
     "Actions": {
       "AddPayMethod": "支払方法の追加"
@@ -731,8 +832,8 @@
     "Title": "支払方法",
     "Msgs": {
       "CreditCard": "安全なオンライン決済をご利用ください。使用できるクレジット・カード: {{cards}}",
-      "CVV": "署名欄の下 3 桁の数字",
-      "InvalidCardNumber": "無効なカード番号またはタイプ",
+      "CVV": "有効な CVV コードを入力してください",
+      "InvalidCardNumber": "有効なクレジット・カード番号を入力してください",
       "InvalidFormat": "無効な形式です"
     },
     "Labels": {
@@ -743,7 +844,9 @@
       "CVV": "CVV 番号",
       "OrderTotal": "オーダー合計",
       "RemainingAmount": "支払い残額",
-      "AmountToPay": "支払い金額"
+      "AmountToPay": "支払い金額",
+      "ExpiryMonth": "有効期限 (月)",
+      "ExpiryYear": "有効期限 (年)"
     },
     "Actions": {
       "PayRemaining": "支払い残額"
@@ -958,6 +1061,12 @@
       "EveryThreeWeeks": "3 週間ごと",
       "EveryFourWeeks": "4 週間ごと"
     },
+    "languagePopUp": {
+      "Title": "言語を変更しますか?",
+      "Message": "言語を {{ language }} に変更しますか?",
+      "Yes": "はい",
+      "No": "いいえ"
+    },
     "currency": {
       "ROL": "ルーマニア・レウ",
       "RON": "ルーマニア・レウ",
@@ -1009,6 +1118,67 @@
       "-9": "韓国語",
       "-22": "ポーランド語",
       "-23": "アラビア語"
+    }
+  },
+  "InprogressOrders": {
+    "Title": "進行中のオーダー",
+    "CreateNewOrder": "新規オーダーの作成",
+    "NewOrderName": "新規オーダーの名前",
+    "CreateOrder": "オーダーの作成",
+    "PrivateOrder": "プライベート・オーダー",
+    "SharedOrder": "共有オーダー",
+    "Columns": {
+      "Active": "アクティブ",
+      "OrderId": "オーダー ID",
+      "Name": "名前",
+      "LastUpdated": "最終更新",
+      "TotalPrice": "総額",
+      "Type": "タイプ",
+      "Actions": "アクション"
+    },
+    "Status": {
+      "ORD": "プライベート",
+      "SHR": "共有"
+    },
+    "DeleteDialogTitle": "オーダーの削除",
+    "DeleteDialogHeading": "このオーダーを削除しますか?",
+    "CopyTitle": "オーダーのコピー",
+    "CopyMessage": "このオーダーをコピーしますか?",
+    "CurrentCart": "{{ orderId }} (現在のカート)",
+    "InvalidOrderName": "オーダー名には英数字 (A～Z、a～z、0～9) と空白文字のみを使用できます。",
+    "searchPh": "ID または説明を検索",
+    "NotActiveOrderMessage": "商品を追加するには、オーダーがアクティブになっている必要があります"
+  },
+  "InprogressItems": {
+    "orderItem": "オーダー商品",
+    "creationDate": "作成日",
+    "quantity": "数量",
+    "contributor": "投稿者",
+    "each": "各",
+    "actions": "アクション",
+    "inprogressOrders": "進行中のオーダー",
+    "createdBy": "作成者",
+    "lastUpdated": "最終更新",
+    "totalPrice": "総額",
+    "visibility": "共有リスト",
+    "orderType_SHR": "共有",
+    "orderType_ORD": "プライベート",
+    "proceed": "チェックアウトに進む",
+    "addProds": "商品の追加",
+    "privateList": "プライベート・リスト",
+    "sharedList": "共有リスト",
+    "nProductsSel": "{{ n }} 個の商品が選択されました",
+    "addSelToCart": "選択したものをカートに追加",
+    "deleteSelected": "選択の削除",
+    "noItems": "オーダー商品が見つかりません。",
+    "nameForCopiedOrder": "新規オーダーの名前を入力してください"
+  },
+  "commonTable": {
+    "ofTotalCount": "{{ from }} ～ {{ to }}/{{ total }} を表示しています",
+    "pageSz": {
+      "five": "5 件",
+      "ten": "10 件",
+      "twenty": "20 件"
     }
   }
 }

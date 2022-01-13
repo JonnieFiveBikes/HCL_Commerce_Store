@@ -9,7 +9,7 @@
  *==================================================
  */
 //Standard libraries
-import { takeLatest } from "redux-saga/effects";
+import { debounce } from "redux-saga/effects";
 //Redux
 import * as ACTIONS from "../../action-types/catalog";
 import * as WORKERS from "../workers/catalog";
@@ -19,11 +19,13 @@ import * as WORKERS from "../workers/catalog";
  * watchers to intercept catalog actions
  */
 export function* watchSaga() {
-  yield takeLatest(
+  yield debounce(
+    50,
     ACTIONS.PRODUCT_LIST_GET_REQUESTED,
     WORKERS.fetchProductList
   );
-  yield takeLatest(
+  yield debounce(
+    50,
     ACTIONS.PRODUCT_LIST_FOR_PDP_GET_REQUESTED,
     WORKERS.fetchProductListForPDP
   );

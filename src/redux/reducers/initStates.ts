@@ -36,6 +36,7 @@ const catalogDefaultState: CatalogReducerState = {
   selectedPageOffset: 1,
   selectedSortOption: "0",
   breadcrumbs: [],
+  selectFacetRemove: false,
 };
 const orderDefaultState: OrderReducerState = {
   cart: null,
@@ -47,6 +48,9 @@ const orderDefaultState: OrderReducerState = {
   shipModes: [],
   payMethods: [],
   isRecurringOrderDisabled: false,
+  allowableShipModes: [],
+  activeInprogressOrder: null,
+  allowablePaymethods: [],
 };
 const errorDefaultState: ErrorReducerState = {
   errorKey: null,
@@ -84,6 +88,7 @@ export const defaultStates = {
   confirmation: {},
   recurringOrder: { resultList: [] },
   orderDetails,
+  checkoutProfile: { curUserProfiles: [] },
   site: { currentSite: null },
 };
 

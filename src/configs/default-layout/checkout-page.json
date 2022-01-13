@@ -1,0 +1,27 @@
+{
+  "layout": {
+    "id": "3074457345618271108",
+    "name": "CheckoutPageLayout",
+    "containerName": "check-out-page",
+    "startDate": null,
+    "endDate": null,
+    "priority": 0,
+    "slots": [
+      {
+        "id": "2",
+        "name": "2",
+        "widgets": [
+          {
+            "id": "3074457345618261621",
+            "name": "CheckoutPageContentRecommendation",
+            "widgetName": "e-marketing-spot-widget",
+            "sequence": 0,
+            "properties": {
+              "emsName": "Home_Promotion"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

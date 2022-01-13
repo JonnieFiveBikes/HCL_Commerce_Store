@@ -10,13 +10,9 @@
  */
 
 import StyledMiniCartContent from "./StyledMiniCartContent/StyledMiniCartContent";
-import StyledSwatchRadioGroup from "./StyledSwatchRadioGroup/StyledSwatchRadioGroup";
-import StyledTable, { StyledTableIcons } from "./StyledTable/StyledTable";
-import StyledMTableFilterRow from "./StyledTable/StyledMTableFilterRow.js";
 import StyledWrapper from "./StyledWrapper/StyledWrapper";
-export { default as StyledProductCard } from "./StyledProductCard/StyledProductCard";
+import { ConfirmationOverlay } from "./styled-confirm-overlay/styled-confirm-overlay";
 
 export { StyledMiniCartContent };
-export { StyledSwatchRadioGroup };
-export { StyledTable, StyledTableIcons, StyledMTableFilterRow };
 export { StyledWrapper };
+export { ConfirmationOverlay };

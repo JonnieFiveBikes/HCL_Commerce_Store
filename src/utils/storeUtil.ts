@@ -16,6 +16,12 @@ const storeUtil = {
     const NUMERIC = REG_EX.NUMERIC;
     return NUMERIC.test(input);
   },
+
+  maskCardNumber: (input: string) => {
+    const CARD_NUMBER_MASK = REG_EX.CARD_NUMBER_MASK;
+    return input.replace(CARD_NUMBER_MASK, "*");
+  },
+
   getParentCategoryId: (parentCatalogGroupID: any): string => {
     let categoryIdentifier: string = EMPTY_STRING;
     if (parentCatalogGroupID) {
@@ -33,6 +39,22 @@ const storeUtil = {
       }
     }
     return categoryIdentifier;
+  },
+
+  toMap: (a, k?) => {
+    return a.reduce((m, v) => {
+      m[k ? v[k] : v] = v;
+      return m;
+    }, {});
+  },
+
+  getCCInitDates: () => {
+    const dt = new Date();
+    const m = dt.getMonth();
+    const y = dt.getFullYear();
+    const expire_month = `${m < 9 ? "0" : ""}${m + 1}`;
+    const expire_year = `${y}`;
+    return { expire_month, expire_year };
   },
 };
 

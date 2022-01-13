@@ -9,7 +9,6 @@
  *==================================================
  */
 //Standard libraries
-import React from "react";
 import { useTranslation } from "react-i18next";
 //Custom libraries
 import * as ROUTES from "../../../constants/routes";
@@ -17,11 +16,19 @@ import AccountLinksSection from "../account-links-section";
 //UI
 import PersonIcon from "@material-ui/icons/Person";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { StyledLinkBox } from "@hcl-commerce-store-sdk/react-component";
 
 function AccountLinksLayout() {
   const { t } = useTranslation();
   const disabledTitle = t("AccountLinks.DisabledMessage");
+
+  const checkoutProfs = {
+    title: t("MyAccount.CheckoutProfiles"),
+    description: t("CheckoutProfile.MyAcctDesc"),
+    url: ROUTES.CHECKOUT_PROFILES,
+    icon: <ShoppingCartIcon />,
+  };
 
   let linkList: JSX.Element[] = [
     <StyledLinkBox
@@ -37,6 +44,13 @@ function AccountLinksLayout() {
       description={t("AccountLinks.AddressBookDescription")}
       url={ROUTES.ADDRESS_BOOK}
       icon={<LibraryBooksIcon />}
+    />,
+    <StyledLinkBox
+      disabledTitle={disabledTitle}
+      title={checkoutProfs.title}
+      description={checkoutProfs.description}
+      url={checkoutProfs.url}
+      icon={checkoutProfs.icon}
     />,
   ];
 

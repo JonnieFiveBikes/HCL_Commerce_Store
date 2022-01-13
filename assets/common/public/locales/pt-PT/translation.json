@@ -54,8 +54,14 @@
     "Subtotal_plural": "Subtotal de {{count}} itens",
     "Empty": "Não existem itens no seu carrinho.",
     "Actions": {
-      "Cart": "Ver carrinho completo"
-    }
+      "Cart": "Ver carrinho completo",
+      "CheckOut": "Finalizar pedido",
+      "ViewOrderDetails": "Ver detalhes do pedido"
+    },
+    "MyOrder": "O meu pedido",
+    "PrivateOrder": "Pedido privado",
+    "SharedOrderConributor": "Pedido partilhado (Contribuidor)",
+    "SharedOrderAdmin": "Pedido partilhado (Administrador)"
   },
   "Language": {
     "-1": "Inglês (EUA)",
@@ -75,6 +81,9 @@
     "QtyError": "Montante tem de ser superior ou igual a 1.",
     "Availability": "Disponibilidade",
     "AddToCart": "Adicionar ao carrinho",
+    "AddBundleToCart": "Adicionar pacote ao pedido",
+    "AddBundleToSharedOrder": "Adicionar ao pedido partilhado",
+    "SelectAttributes": "Selecionar atributos",
     "Description": "Descrição",
     "ProductDetails": "Detalhes do produto",
     "Attachments": "Anexos",
@@ -88,12 +97,23 @@
     "any": "Quaisquer",
     "showAttributes": "Mostrar atributos",
     "attributeFilter": "Filtro de atributo",
-    "addToCurrentOrder": "Adicionar ao pedido atual",
+    "addToCurrentOrder": "Adicionar ao pedido",
+    "addToSharedOrder": "Adicionar ao pedido partilhado",
     "SignIn": "Inicie sessão na loja",
     "noproductsToDisplay": "Sem produtos a mostrar. Mude o Filtro de atributo e tente novamente.",
     "SKU": "SKU",
+    "PRODUCTSKU": "PRODUTO/SKU",
+    "SelectAnOption": "Selecione uma opção",
+    "Unconfigured": "Não configurado",
+    "Unavailable": "Não disponível",
+    "InStock": "Em stock",
     "Price": "Preço",
-    "Online_Availability": "Disponibilidade online"
+    "Online_Availability": "Disponibilidade online",
+    "recommendedProdTitle": "Produtos recomendados ",
+    "someWithNoSkus": "Um ou mais produtos na lista têm atributos não selecionados. Conclua as seleções de atributos.",
+    "someWithNoAvlSelZero": "Um ou mais itens selecionados não têm inventário disponível. Altere a quantidade para 0 para ignorar estes itens.",
+    "someWithNotEnough": "Um ou mais itens selecionados não têm inventário disponível suficiente. Altere a quantidade para um número inferior ou igual ao inventário disponível atual.",
+    "selectSomething": "Não foram selecionados itens. Escolha pelo menos um item."
   },
   "AddressBook": {
     "AddrMsg": "Adicionar um novo endereço",
@@ -126,7 +146,8 @@
     },
     "Actions": {
       "Checkout": "Pagamento",
-      "Apply": "Aplicar"
+      "Apply": "Aplicar",
+      "Checkout-With-Profile": "Finalizar pedido com o perfil"
     }
   },
   "CheckoutAddress": {
@@ -140,6 +161,7 @@
   },
   "Checkout": {
     "Title": "Pagamento",
+    "CheckoutProfileTitle": "Perfil de pagamento",
     "Labels": {
       "shipping": "Envio",
       "payment": "Pagamento",
@@ -175,10 +197,12 @@
     "Labels": {
       "ItemDetails": "Detalhes de item",
       "SKU": "SKU: ",
-      "Quantity": "Quantidade",
+      "Quantity": "Montante",
       "ShippingDetails": "Dados de envio",
       "SelectShippingAddressAndMethod": "Selecionar Endereço e Método de Envio",
-      "ChangeSelection": "Alterar Seleção"
+      "ChangeSelection": "Alterar Seleção",
+      "nItemsSel": "{{ n }} itens selecionados",
+      "noItems": "Nenhum item encontrado"
     }
   },
   "Shipping": {
@@ -335,7 +359,7 @@
     "OrderHistory": "Histórico de pedidos",
     "RecurringOrders": "Pedidos recorrentes",
     "RequisitionLists": "Listas de requisição",
-    "SavedOrders": "Pedidos guardados",
+    "InprogressOrders": "Pedidos em curso",
     "ApproveOrders": "Aprovação do pedido"
   },
   "Order": {
@@ -426,7 +450,8 @@
     "PersonalInformation": "Informações pessoais",
     "AddressBook": "Livro de endereços",
     "OrderHistory": "Histórico de pedidos",
-    "Wishlists": "Listas de desejos"
+    "Wishlists": "Listas de desejos",
+    "CheckoutProfiles": "Perfis de pagamento"
   },
   "AddressCard": {
     "EditButton": "Editar",
@@ -467,6 +492,55 @@
     "CancelLabel": "Cancelar",
     "SuccessLabel": "Palavra-passe alterada com êxito",
     "OkLabel": "OK"
+  },
+  "CheckoutProfile": {
+    "ShippingInformation": "Informações de envio",
+    "CreateCheckoutTitle": "Criar perfil de pagamento",
+    "CreateCheckoutButton": "Criar um perfil de pagamento",
+    "BillingInformation": "Informações de faturação",
+    "PaymentInformation": "Informações de pagamento",
+    "ShippingMethod": "Método de envio",
+    "ShipSameAsBill": "O Endereço de faturação é o mesmo de Endereço de envio",
+    "Cancel": "Cancelar",
+    "Next": "Seguinte",
+    "Back": "Retroceder",
+    "CreateProfile": "Criar perfil",
+    "UpdateProfile": "Atualizar perfil",
+    "Title": "Seleção do perfil de pagamento",
+    "Label": "Selecione um perfil de pagamento existente",
+    "MyAcctDesc": "Faça a gestão e edite rapidamente perfis de pagamento para maior celeridade",
+    "Name": "Nome do perfil de pagamento",
+    "Edit": "Editar",
+    "Delete": "Eliminar",
+    "NoneFound": "<0>Trata-se de uma falha.</0><1>Lamentamos, mas não conseguimos localizar esse perfil de pagamento.</1><2>Experimente um perfil de pagamento diferente ou <0>crie um novo</0> perfil de pagamento.</2>",
+    "NoProfiles": "Não foram encontrados perfis de pagamento. <0>Crie um novo</0> perfil de pagamento.",
+    "TitleCreate": "Perfis de pagamento",
+    "CreateMessage": "Criar um novo perfil de pagamento",
+    "CreateNewButton": "Criar novo",
+    "ShippingAddr": "ENDEREÇO DE ENVIO",
+    "ShippingMethodDisp": "MÉTODO DE ENVIO",
+    "BillingAddr": "ENEDEREÇO DE FATURAÇÃO",
+    "BillingMethod": "MÉTODO DE FATURAÇÃO",
+    "EditProfile": "Editar perfil de pagamento",
+    "ShipAsComplete": "ENVIAR COMO CONCLUÍDO",
+    "confirmDelete": "Confirmar Eliminação",
+    "selectExisting": "Selecione um endereço existente. Caso contrário, <0>crie um novo</0>.",
+    "sm_Express": "Expresso",
+    "sm_Mail": "Correio",
+    "sm_InternationalPriority": "Internacional prioritário",
+    "sm_InternationalRegular": "Internacional normal",
+    "sm_PickupInStore": "Levantar na loja",
+    "saveAddress": "Guardar endereço",
+    "invalidProfile": "Este perfil é inválido. Edite e escolha um novo endereço.",
+    "invalidProfileName": "O Nome do perfil apenas pode conter carateres alfanuméricos (A-Z, a-z, 0-9) e espaços vazios.",
+    "selectExpMonth": "Selecionar mês de validade",
+    "selectExpYear": "Selecionar ano de validade",
+    "payMethods": {
+      "VISA": "Cartão de crédito VISA",
+      "MasterCard": "Cartão de crédito MasterCard",
+      "AMEX": "Cartão de crédito American Express ",
+      "COD": "Pagamento no ato da entrega"
+    }
   },
   "ChildPimCategories": {
     "title": "Tudo: {{name}}"
@@ -509,7 +583,7 @@
     "_ERR_CMD_INVALID_PARAM_5060": "Escreva um nome no campo Apelido.",
     "_ERR_CMD_INVALID_PARAM_5066": "Escreva um nome no campo Primeiro nome.",
     "_ERR_CMD_INVALID_PARAM_5210": "Escreva um endereço de e-mail no campo E-mail.",
-    "_ERR_CMD_INVALID_PARAM_2190": "O valor do código de validação não está correto.",
+    "_ERR_CMD_INVALID_PARAM_2190": "O código de validação introduzido não está correto. Verifique o código recebido e tente novamente.",
     "_ERR_CMD_INVALID_PARAM_2080": "A palavra-passe de confirmação que introduziu não corresponde à nova palavra-passe.",
     "_ERR_CMD_INVALID_PARAM": "Ocorreu um erro de registo. Tente novamente mais tarde ou contacte a loja para obter assistência.",
     "_ERR_LOGONID_ALREDY_EXIST_2030": "O e-mail introduzido já existe. Experimente outro e tente novamente.",
@@ -596,13 +670,15 @@
     "_ERR_REMOTE_EXCEPTION_CMN0412E": "Ocorreu um problema de sistema ao processar o seu pedido. Contacte a loja para obter assistência.",
     "_ERR_REG_DUPE_ID_CMN0114S": "O ID de início de sessão que introduziu já existe. Experimente outro e tente novamente.",
     "_ERR_FINDER_EXCEPTION_CMN0411E": "O e-mail que introduziu não é válido. Verifique a sua entrada e tente novamente.",
-    "_ERR_CMD_INVALID_PARAM_2195": "O código de verificação que introduziu não é válido. Verifique a sua entrada e tente novamente.",
+    "_ERR_CMD_INVALID_PARAM_2195": "O código de validação introduzido expirou. É necessário solicitar um novo código de validação para alterar a sua palavra-passe.",
     "B2B": {
       "_ERR_FINDER_EXCEPTION_CMN0411E": "O ID de início de sessão que introduziu não é válido. Verifique a sua entrada e tente novamente.",
       "_ERR_LOGONID_ALREDY_EXIST_2030": "O ID de início de sessão introduzido já existe. Experimente outro e tente novamente.",
-      "_ERR_BAD_PARMS_2010": "O ID de início de sessão que introduziu não é válido. Verifique a sua entrada e tente novamente."
+      "_ERR_BAD_PARMS_2010": "O ID de início de sessão que introduziu não é válido. Verifique a sua entrada e tente novamente.",
+      "_ERR_INVALID_NAME_CMN1652E": "Já existe um objeto com o nome \"{{0}}\". Escolha um nome diferente e tente novamente."
     },
-    "_ERR_PASSWORD_EXPIRED_2170": "A sua palavra-passe atual expirou. Introduza uma nova palavra-passe."
+    "_ERR_PASSWORD_EXPIRED_2170": "A sua palavra-passe atual expirou. Introduza uma nova palavra-passe.",
+    "_ERR_INVALID_NAME_CMN1652E": "Já existe um objeto com o nome \"{{0}}\". Escolha um nome diferente e tente novamente."
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "O item foi adicionado ao carrinho. ",
@@ -613,7 +689,16 @@
     "EDIT_ADDRESS_SUCCESS": "O seu endereço \"{{0}}\" foi atualizado com êxito",
     "DELETE_ADDRESS_SUCCESS": "O seu endereço \"{{0}}\" foi eliminado com êxito",
     "RESEND_VERIFICATION_CODE": "O código de verificação foi enviado para o seu endereço de e-mail com êxito",
-    "PASSWORD_RESET_SUCCESS": "A palavra-passe foi reposta com êxito"
+    "PASSWORD_RESET_SUCCESS": "A palavra-passe foi reposta com êxito",
+    "CREATE_CHECKOUT_PROFILE_SUCCESS": "Perfil de pagamento criado com êxito \"{{0}}\"",
+    "COPY_ORDER_SUCCESS": "Pedido copiado com êxito.",
+    "CREATE_ORDER_SUCCESS": "Pedido criado com êxito \"{{0}}\".",
+    "DELETE_ORDER_SUCCESS": "Pedido eliminado com êxito \"{{0}}\".",
+    "DeletedCheckoutProfile": "Perfil de pagamento eliminado com êxito \"{{ 0 }}\"",
+    "UpdatedCheckoutProfile": "Perfil de pagamento atualizado com êxito  \"{{ 0 }}\"",
+    "deletedSuccessfully": "Eliminado(s) com êxito {{ n }} item(s) do pedido ",
+    "addedItemSuccessfully": "Adicionado com êxito {{ v }} ao pedido atual",
+    "addedNSuccessfully": "Adicionados com êxito {{ v }} itens ao pedido atual"
   },
   "notFound": {
     "notFound": "<p>Lamentamos, mas não foi possível encontrar o que procura.</p>\n"
@@ -629,7 +714,8 @@
     "Actions": {
       "Back": "Voltar a Dados de pagamento",
       "Next": "Fazer pedido",
-      "NextRecurringOrder": "Fazer pedido recorrente"
+      "NextRecurringOrder": "Fazer pedido recorrente",
+      "BackCart": "Voltar ao carrinho de pagamento"
     },
     "Labels": {
       "PaymentDetails": "Dados de pagamento",
@@ -668,8 +754,8 @@
     "Title": "Gestão de pedidos",
     "OrderHistoryText": "Histórico de pedidos",
     "OrderHistoryDescription": "Veja pedidos efetuados e pedidos com aprovação pendente, bem como dados de pedidos individuais.",
-    "SavedOrdersText": "Pedidos guardados",
-    "SavedOrdersDescription": "Ver e gerir pedidos guardados",
+    "InprogressOrdersText": "Pedidos em curso",
+    "InprogressOrdersDescription": "Ver e gerir pedidos em curso",
     "RecurringOrdersText": "Pedidos recorrentes",
     "RecurringOrdersDescription": "Ver e gerir lista de pedidos recorrentes",
     "ApproveOrdersText": "Aprovação do pedido",
@@ -704,12 +790,19 @@
       "Total": "Total"
     }
   },
+  "PaymentMethodContainer": {
+    "Actions": {
+      "Cancel": "Cancelar",
+      "Done": "Concluído",
+      "SaveAndAdd": "Guardar e adicionar outro método de pagamento"
+    }
+  },
   "PaymentInfoCard": {
     "Title": "Método de pagamento {{number}}",
     "Labels": {
       "CreditCard": "Cartão de crédito ",
       "AmountToPay": "Valor a pagar",
-      "ExpiryDate": "Data de validade",
+      "ExpiryDate": "Data de validade: {{month}}/{{year}}",
       "BillingAddress": "Endereço de faturação"
     },
     "Actions": {
@@ -718,10 +811,15 @@
     }
   },
   "PaymentInfoList": {
-    "Title": "Métodos de pagamento - Total do pedido: ",
+    "Title": {
+      "PayMethod": "Métodos de pagamento",
+      "WithOrderTotal": "Métodos de pagamento - Total do pedido: "
+    },
     "Msgs": {
       "PayMethodRequired": "É necessário pelo menos um método de pagamento.",
-      "InsufficientPayment": "Deve pagar o total do pedido de {{grandTotal}} com vários métodos de pagamento."
+      "InsufficientPayment": "Deve pagar o total do pedido de {{grandTotal}} com vários métodos de pagamento.",
+      "CardDetailsUpdate": "Verifique e atualize os detalhes do cartão novamente.",
+      "PayMethodNote": "Nota: os métodos de pagamento serão guardados apenas depois de clicar no botão Rever pedido."
     },
     "Actions": {
       "AddPayMethod": "Adicionar método de pagamento"
@@ -731,8 +829,8 @@
     "Title": "Método de pagamento",
     "Msgs": {
       "CreditCard": "Pagamento online seguro. Cartões de crédito aceites: {{cards}}",
-      "CVV": "Últimos três dígitos na faixa de assinatura",
-      "InvalidCardNumber": "Número ou tipo de cartão inválido",
+      "CVV": "Introduza um código CVV válido",
+      "InvalidCardNumber": "Introduza um número de cartão de crédito válido",
       "InvalidFormat": "Formato inválido"
     },
     "Labels": {
@@ -743,7 +841,9 @@
       "CVV": "Código CVV",
       "OrderTotal": "Total do pedido",
       "RemainingAmount": "Valor restante a pagar",
-      "AmountToPay": "Valor a pagar"
+      "AmountToPay": "Valor a pagar",
+      "ExpiryMonth": "Mês de expiração",
+      "ExpiryYear": "Ano de expiração"
     },
     "Actions": {
       "PayRemaining": "Pagar valor restante"
@@ -958,6 +1058,12 @@
       "EveryThreeWeeks": "A cada 3 semanas",
       "EveryFourWeeks": "A cada 4 semanas"
     },
+    "languagePopUp": {
+      "Title": "Alterar idioma?",
+      "Message": "Pretende alterar o idioma para {{ language }}?",
+      "Yes": "Sim",
+      "No": "Não"
+    },
     "currency": {
       "ROL": "Leu romeno",
       "RON": "Leu romeno",
@@ -1009,6 +1115,67 @@
       "-9": "Coreano",
       "-22": "Polaco",
       "-23": "Árabe"
+    }
+  },
+  "InprogressOrders": {
+    "Title": "Pedidos em curso",
+    "CreateNewOrder": "Criar novo pedido",
+    "NewOrderName": "Nome do novo pedido",
+    "CreateOrder": "Criar pedido",
+    "PrivateOrder": "Pedido privado",
+    "SharedOrder": "Pedido partilhado",
+    "Columns": {
+      "Active": "ATIVO",
+      "OrderId": "ID DO PEDIDO",
+      "Name": "NOME",
+      "LastUpdated": "ÚLTIMA ATUALIZAÇÃO",
+      "TotalPrice": "PREÇO TOTAL",
+      "Type": "TIPO",
+      "Actions": "LEILÃO"
+    },
+    "Status": {
+      "ORD": "Privado",
+      "SHR": "Partilhado"
+    },
+    "DeleteDialogTitle": "Eliminar pedido",
+    "DeleteDialogHeading": "Pretende eliminar este pedido?",
+    "CopyTitle": "Copiar pedido",
+    "CopyMessage": "Pretende copiar este pedido?",
+    "CurrentCart": "{{ orderId }} (Carrinho atual)",
+    "InvalidOrderName": "O nome do pedido apenas pode conter carateres alfanuméricos (A-Z, a-z, 0-9) e espaços vazios.",
+    "searchPh": "Procurar por ID ou descrição",
+    "NotActiveOrderMessage": "O pedido precisa de estar ativo para adicionar produtos"
+  },
+  "InprogressItems": {
+    "orderItem": "ITEM DO PEDIDO",
+    "creationDate": "DATA DE CRIAÇÃO",
+    "quantity": "QUANTIDADE",
+    "contributor": "CONTRIBUDOR",
+    "each": "CADA",
+    "actions": "AÇÕES",
+    "inprogressOrders": "Pedidos em curso",
+    "createdBy": "CRIADO POR",
+    "lastUpdated": "ÚLTIMA ATUALIZAÇÃO",
+    "totalPrice": "PREÇO TOTAL",
+    "visibility": "LISTA PARTILHADA",
+    "orderType_SHR": "Partilhado",
+    "orderType_ORD": "Privado",
+    "proceed": "Prosseguir para pagamento",
+    "addProds": "Adicionar produtos",
+    "privateList": "Lista privada",
+    "sharedList": "Lista partilhada",
+    "nProductsSel": "{{ n }} produtos selecionados",
+    "addSelToCart": "Adicionar selecionados ao carrinho",
+    "deleteSelected": "Eliminar selecionados",
+    "noItems": "Não foram encontrados itens de pedidos.",
+    "nameForCopiedOrder": "Introduza um nome para o novo pedido"
+  },
+  "commonTable": {
+    "ofTotalCount": "A mostrar {{ from }} a {{ to }} de {{ total }}",
+    "pageSz": {
+      "five": "5 linhas",
+      "ten": "10 linhas",
+      "twenty": "20 linhas"
     }
   }
 }

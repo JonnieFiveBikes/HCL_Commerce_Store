@@ -2,12 +2,19 @@
   "extends": "react-app",
   "ignorePatterns": [
     "setupProxy.js",
+    "**/*.scss",
+    "**/*.json",
+    "**/*.sh",
+    "**/.gitignore",
+    ".eslintrc",
     "**/apis/mock/",
     "**/__tests__/",
     "assets/",
+    "build/",
+    "dist/",
+    "mocks",
     "public/",
     "tools/",
-    "dist/",
-    "build/"
+    "README.md"
   ]
 }

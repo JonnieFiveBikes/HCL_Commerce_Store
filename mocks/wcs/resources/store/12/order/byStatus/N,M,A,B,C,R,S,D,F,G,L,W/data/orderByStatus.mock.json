@@ -1,0 +1,117 @@
+{
+  "recordSetStartNumber": "0",
+  "recordSetComplete": "true",
+  "recordSetCount": "2",
+  "resourceId": "https://localhost:443/wcs/resources/store/10001/order/byStatus/N,M,A,B,C,R,S,D,F,G,L?pageSize=3&pageNumber=1&responseFormat=json",
+  "resourceName": "order",
+  "Order": [
+    {
+      "orderDescription": "wcsadmin test2",
+      "grandTotal": "90.00000",
+      "resourceId": "https://localhost:443/wcs/resources/store/10001/order/24208",
+      "totalProductPriceCurrency": "USD",
+      "totalAdjustment": -10,
+      "orderStatus": "M",
+      "totalShippingChargeCurrency": "USD",
+      "adjustment": [
+        {
+          "displayLevel": "Order",
+          "currency": "USD",
+          "amount": -10,
+          "code": "10% off order-10000202",
+          "usage": "Discount"
+        }
+      ],
+      "totalShippingTax": "0.00000",
+      "prepareIndicator": "true",
+      "x_isPurchaseOrderNumberRequired": "false",
+      "totalShippingTaxCurrency": "USD",
+      "grandTotalCurrency": "USD",
+      "totalSalesTaxCurrency": "USD",
+      "storeUniqueID": "10001",
+      "totalAdjustmentCurrency": "USD",
+      "promotionCode": [
+        {
+          "associatedPromotion": [
+            {
+              "description": {
+                "language": "en",
+                "value": ""
+              },
+              "promotionIdentifier": {
+                "uniqueID": "10000202"
+              }
+            }
+          ],
+          "code": "10%OFF"
+        }
+      ],
+      "x_trackingIds": "",
+      "orderId": "24208",
+      "shipAsComplete": "true",
+      "orderTypeCode": "SHR",
+      "totalProductPrice": "100.00000",
+      "placedDate": "2014-11-24T19:59:40.620Z",
+      "totalShippingCharge": "0.00000",
+      "buyerId": "11051",
+      "locked": "false",
+      "storeNameIdentifier": "Aurora",
+      "lastUpdateDate": "2014-11-24T19:59:40.620Z",
+      "buyerDistinguishedName": "uid=john,o=default organization,o=root organization",
+      "totalSalesTax": "0.00000",
+      "x_isPersonalAddressesAllowedForShipping": "true"
+    },
+    {
+      "orderDescription": "test 3",
+      "grandTotal": "2080.45000",
+      "totalSalesTaxCurrency": "USD",
+      "totalProductPriceCurrency": "USD",
+      "totalAdjustment": -490,
+      "orderStatus": "M",
+      "totalShippingChargeCurrency": "USD",
+      "adjustment": [
+        {
+          "code": "Furniture Category Discount",
+          "description": "Save 20% on Furniture!",
+          "displayLevel": "OrderItem",
+          "currency": "USD",
+          "amount": -465,
+          "usage": "Discount",
+          "descriptionLanguage": -1
+        },
+        {
+          "code": "Save $25 on all orders over $200 USD",
+          "description": "Save $25 on all orders over $200 USD",
+          "displayLevel": "Order",
+          "currency": "USD",
+          "amount": -25,
+          "usage": "Discount",
+          "descriptionLanguage": -1
+        }
+      ],
+      "totalShippingTax": "0.00000",
+      "prepareIndicator": "true",
+      "x_isPurchaseOrderNumberRequired": "false",
+      "totalShippingTaxCurrency": "USD",
+      "grandTotalCurrency": "USD",
+      "resourceId": "https://localhost:443/wcs/resources/store/10001/order/24207",
+      "storeUniqueID": "10001",
+      "totalAdjustmentCurrency": "USD",
+      "x_trackingIds": "",
+      "orderId": "24207",
+      "shipAsComplete": "true",
+      "orderTypeCode": "ORD",
+      "totalProductPrice": "2525.00000",
+      "placedDate": "2014-11-20T14:31:21.258Z",
+      "totalShippingCharge": "45.45000",
+      "buyerId": "11051",
+      "locked": "false",
+      "storeNameIdentifier": "Aurora",
+      "lastUpdateDate": "2014-11-20T14:31:21.258Z",
+      "buyerDistinguishedName": "uid=john,o=default organization,o=root organization",
+      "totalSalesTax": "0.00000",
+      "x_isPersonalAddressesAllowedForShipping": "true"
+    }
+  ],
+  "recordSetTotal": "2"
+}

@@ -40,13 +40,11 @@ import * as successActions from "../../../redux/actions/success";
 function ResetPassword(props) {
   const history = useHistory();
   const widgetName = getDisplayName(ResetPassword);
-  const [validationCode, setValidationCode] = React.useState<string>(
-    EMPTY_STRING
-  );
+  const [validationCode, setValidationCode] =
+    React.useState<string>(EMPTY_STRING);
   const [passwordNew, setNewPassword] = React.useState<string>(EMPTY_STRING);
-  const [passwordVerify, setVerifyPassword] = React.useState<string>(
-    EMPTY_STRING
-  );
+  const [passwordVerify, setVerifyPassword] =
+    React.useState<string>(EMPTY_STRING);
   const [logonInputProps, setLogonInputProps] = useState<any>({});
   const { mySite: site } = useSite();
 
@@ -183,7 +181,11 @@ function ResetPassword(props) {
 
   return (
     <form noValidate>
-      <StyledGrid container justify="center" alignItems="center" spacing={1}>
+      <StyledGrid
+        container
+        justifyContent="center"
+        alignItems="center"
+        spacing={1}>
         <StyledGrid item xs={12}>
           <StyledTypography variant="body1">{contentText}</StyledTypography>
         </StyledGrid>
@@ -259,7 +261,7 @@ function ResetPassword(props) {
           <StyledGrid
             container
             spacing={1}
-            justify="center"
+            justifyContent="center"
             alignItems="center"
             direction="row">
             <StyledGrid item xs={12}>

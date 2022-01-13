@@ -12,12 +12,14 @@
 import { createReducer, AnyAction } from "@reduxjs/toolkit";
 //Redux
 import initStates from "./initStates";
-import { OrganizationReducerState } from "./reducerStateInterface";
+import { ConfirmationReducerState } from "./reducerStateInterface";
 import {
   OPEN_CONFIRMATION_ACTION,
   CONFIRMATION_HANDLED_ACTION,
   CONFIRMATION_CANCELLED_ACTION,
+  CONFIRMATION_COMMS_ACTION,
 } from "../actions/confirmation";
+import { cloneDeepWith, get, merge } from "lodash-es";
 /**
  * confirmation reducer
  */
@@ -26,13 +28,13 @@ const confirmationReducer = createReducer(
   (builder) => {
     builder.addCase(
       OPEN_CONFIRMATION_ACTION,
-      (state: OrganizationReducerState | any, action: AnyAction) => {
+      (state: ConfirmationReducerState | any, action: AnyAction) => {
         Object.assign(state, action.payload);
       }
     );
     builder.addCase(
       CONFIRMATION_HANDLED_ACTION,
-      (state: OrganizationReducerState | any, action: AnyAction) => {
+      (state: ConfirmationReducerState | any, action: AnyAction) => {
         for (var variableKey in state) {
           if (state.hasOwnProperty(variableKey)) {
             delete state[variableKey];
@@ -42,12 +44,22 @@ const confirmationReducer = createReducer(
     );
     builder.addCase(
       CONFIRMATION_CANCELLED_ACTION,
-      (state: OrganizationReducerState | any, action: AnyAction) => {
+      (state: ConfirmationReducerState | any, action: AnyAction) => {
         for (var variableKey in state) {
           if (state.hasOwnProperty(variableKey)) {
             delete state[variableKey];
           }
         }
+      }
+    );
+    builder.addCase(
+      CONFIRMATION_COMMS_ACTION,
+      (state: ConfirmationReducerState | any, action: AnyAction) => {
+        const comms = merge(
+          cloneDeepWith(get(state, "comms", {})),
+          action.payload
+        );
+        Object.assign(state, { comms });
       }
     );
   }

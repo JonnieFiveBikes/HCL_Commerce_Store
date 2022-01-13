@@ -9,7 +9,13 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -71,6 +77,7 @@ import {
   StyledBox,
   StyledSearchBarButton,
 } from "@hcl-commerce-store-sdk/react-component";
+import { useWinDimsInEM } from "../../_foundation/hooks/use-win-dims-in-em";
 
 interface HeaderProps {
   loggedIn: boolean;
@@ -83,7 +90,7 @@ interface HeaderProps {
  */
 const Header: React.FC<HeaderProps> = (props: any) => {
   const widgetName = getDisplayName(Header);
-
+  const { w } = useWinDimsInEM();
   const history = useHistory();
   const [open, setOpen] = useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = useState<boolean>(false);
@@ -156,7 +163,10 @@ const Header: React.FC<HeaderProps> = (props: any) => {
     }, 100);
   };
 
-  const handleMiniCartPopperClose = () => setMiniCartPopperOpen(false);
+  const handleMiniCartPopperClose = useCallback(
+    () => setMiniCartPopperOpen(false),
+    []
+  );
 
   const handleLanguageToggleClick = () => {
     setLanguageTogglePopperOpen(true);
@@ -270,7 +280,10 @@ const Header: React.FC<HeaderProps> = (props: any) => {
     <>
       <StyledHeader>
         <StyledContainer>
-          <StyledGrid container justify="space-between" alignItems="center">
+          <StyledGrid
+            container
+            justifyContent="space-between"
+            alignItems="center">
             <StyledGrid item>
               <StyledGrid
                 className="header-topbarSection"
@@ -391,7 +404,7 @@ const Header: React.FC<HeaderProps> = (props: any) => {
                       open={myAccountPopperOpen}
                       anchorEl={myAccountElRef.current}
                       onClose={handleMyAccountPopperClose}
-                      placement="bottom-end"
+                      placement={w <= 40 ? "bottom" : "bottom-end"}
                       modifiers={{
                         flip: {
                           enabled: false,
@@ -401,7 +414,7 @@ const Header: React.FC<HeaderProps> = (props: any) => {
                           boundariesElement: "scrollParent",
                         },
                         hide: {
-                          enabled: true,
+                          enabled: false,
                         },
                       }}
                       className="account-popper">

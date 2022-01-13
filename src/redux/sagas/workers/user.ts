@@ -99,7 +99,7 @@ export function* sessionErrorReLogin(action: any) {
     const payload = action.payload;
     storageSessionHandler.removeCurrentUser();
     yield* loginAndFetchDetail(payload);
-  } catch (error) {
+  } catch (error: any) {
     if (
       error &&
       error.response &&

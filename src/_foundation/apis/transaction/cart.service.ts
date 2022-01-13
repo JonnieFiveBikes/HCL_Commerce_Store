@@ -474,6 +474,92 @@ const cartService = {
       options
     );
   },
+
+  /**
+   * Create the order.
+   * `@method`
+   * `@name Cart#createOrder`
+   *
+   * `@param {any} parameters` have following properties:
+   ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
+   ** `@property {string} description (required)` The child property of `Parameters`.The description for the order.
+   ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
+   ** `@property {any} body ` The request body object for create order.
+   */
+  createOrder(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      description,
+      responseFormat,
+      body,
+      ...options
+    } = parameters;
+
+    return cartApiInstance.cartCreateOrder(
+      storeId,
+      description,
+      responseFormat,
+      body,
+      options
+    );
+  },
+
+  /**
+   * Sets the order as the pending order.
+   * `@method`
+   * `@name Cart#setPendingOrder`
+   *
+   * `@param {any} parameters` have following properties:
+   ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
+   ** `@property {string} orderId (required)` The child property of `Parameters`.The order ID.
+   ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
+   ** `@property {any} body ` The request body object for set pending order.
+   */
+  setPendingOrder(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      orderId,
+      responseFormat,
+      body,
+      ...options
+    } = parameters;
+
+    return cartApiInstance.cartSetPendingOrder(
+      storeId,
+      orderId,
+      responseFormat,
+      body,
+      options
+    );
+  },
+
+  /**
+   * Add order item.
+   * `@method`
+   * `@name Cart#addPreConfigurationOrderItem`
+   *
+   * `@param {any} parameters` have following properties:
+   ** `@property {string} storeId (required)` The child property of `Parameters`.The store identifier.
+   ** `@property {string} responseFormat ` The response format. If the request has an input body, that body must also use the format specified in "responseFormat". Valid values include "json" and "xml" without the quotes. If the responseFormat isn't specified, the "accept" HTTP header shall be used to determine the format of the response. If the "accept" HTTP header isn't specified as well, the default response format shall be in json.
+   */
+  addPreConfigurationOrderItem(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const {
+      storeId = siteInfo?.storeID,
+      responseFormat,
+      body,
+      ...options
+    } = parameters;
+
+    return cartApiInstance.cartAddPreConfigurationOrderItem(
+      storeId,
+      responseFormat,
+      body,
+      options
+    );
+  },
 };
 
 export default cartService;

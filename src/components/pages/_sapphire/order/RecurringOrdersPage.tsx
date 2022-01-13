@@ -9,17 +9,19 @@
  *---------------------------------------------------
  */
 //Standard libraries
-import React from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from "@reduxjs/toolkit";
 import cloneDeep from "lodash/cloneDeep";
 import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
+import { isNil } from "lodash-es";
 //Custom libraries
 import FormattedPriceDisplay from "../../../widgets/formatted-price-display";
 import { RECURRING_ORDERS, ORDER_DETAILS } from "../../../../constants/routes";
 import AccountSidebar from "../../../widgets/account-sidebar/AccountSidebar";
+import { PAGINATION } from "../../../../constants/common";
 //Redux
 import { COPY_CART_ACTION } from "../../../../redux/actions/order";
 import { recurringOrderSelector } from "../../../../redux/selectors/recurringOrder";
@@ -36,25 +38,28 @@ import {
   StyledTypography,
   StyledContainer,
   StyledGrid,
-  StyledProgressPlaceholder,
+  TableColumnDef,
+  CustomTable,
+  StyledTooltip,
+  withCustomTableContext,
 } from "@hcl-commerce-store-sdk/react-component";
-import { StyledTable, StyledTableIcons } from "../../../StyledUI";
+
 const useRecurringOrderTable = () => {
+  const sizes: any = PAGINATION.sizes;
   const widgetName = getDisplayName(RecurringOrders);
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
 
   //12 hours
   const cancelRecurringOrderNoticePeriod: number = 12;
-  const nextAvailableStates = ["Active", "InActive", "PendingCancel"];
-  const dateFormatOptions: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const dateFormatter = new Intl.DateTimeFormat(
-    i18n.languages[0],
-    dateFormatOptions
+  const dateFormatter = useMemo(
+    () =>
+      new Intl.DateTimeFormat(i18n.languages[0], {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+    [i18n]
   );
 
   const CancelToken = Axios.CancelToken;
@@ -66,60 +71,75 @@ const useRecurringOrderTable = () => {
     }),
   };
 
-  const formatRecurringOrders = (od: any) => {
-    if (od.length > 0) {
-      return od.map((_o) => {
-        const o = cloneDeep(_o);
-        o.id =
-          o.purchaseDetails.parentOrderIdentifier.externalOrderID ||
-          o.purchaseDetails.parentOrderIdentifier.parentOrderId;
-        o.totalPrice = o.subscriptionInfo.paymentInfo.totalCost.value.toFixed(
-          2
-        );
-        const frequencyInfo =
-          o.subscriptionInfo.fulfillmentSchedule.frequencyInfo;
-        if (frequencyInfo) {
-          o.frequencyDisplay = t(
-            `Order.EveryX${frequencyInfo.frequency.uom.trim()}`,
-            {
-              frequency: parseInt(frequencyInfo.frequency.value),
-            }
-          );
-          if (o.subscriptionInfo.fulfillmentSchedule.endInfo?.duration?.value) {
-            const du = parseInt(
-              o.subscriptionInfo.fulfillmentSchedule.endInfo.duration.value
+  const formatRecurringOrders = useCallback(
+    (od: any) => {
+      const nextAvailableStates = ["Active", "InActive", "PendingCancel"];
+
+      if (od.length > 0) {
+        return od.map((_o) => {
+          const o = cloneDeep(_o);
+          o.id =
+            o.purchaseDetails.parentOrderIdentifier.externalOrderID ||
+            o.purchaseDetails.parentOrderIdentifier.parentOrderId;
+          o.totalPrice =
+            o.subscriptionInfo.paymentInfo.totalCost.value.toFixed(2);
+          const frequencyInfo =
+            o.subscriptionInfo.fulfillmentSchedule.frequencyInfo;
+          if (frequencyInfo) {
+            o.frequencyDisplay = t(
+              `Order.EveryX${frequencyInfo.frequency.uom.trim()}`,
+              {
+                frequency: parseInt(frequencyInfo.frequency.value),
+              }
             );
-            if (du === 1) {
-              o.frequencyDisplay = t("Order.Once");
+            if (
+              o.subscriptionInfo.fulfillmentSchedule.endInfo?.duration?.value
+            ) {
+              const du = parseInt(
+                o.subscriptionInfo.fulfillmentSchedule.endInfo.duration.value
+              );
+              if (du === 1) {
+                o.frequencyDisplay = t("Order.Once");
+              }
             }
-          }
-          o.nextOrder = dateFormatter.format(
-            new Date(frequencyInfo.nextOccurence)
-          );
-          if (!nextAvailableStates.includes(o.state)) {
+            o.nextOrder = dateFormatter.format(
+              new Date(frequencyInfo.nextOccurence)
+            );
+            if (!nextAvailableStates.includes(o.state)) {
+              o.nextOrder = t("Order.NotAvailable");
+            }
+          } else {
+            o.frequencyDisplay = t("Order.NotAvailable");
             o.nextOrder = t("Order.NotAvailable");
           }
-        } else {
-          o.frequencyDisplay = t("Order.NotAvailable");
-          o.nextOrder = t("Order.NotAvailable");
-        }
 
-        if (!o.state) {
-          o.state = "NotAvailable";
-        }
-        return o;
-      });
-    } else {
-      return od;
-    }
-  };
-
-  const formatedRecurringOrderSelector = createSelector(
-    recurringOrderSelector,
-    formatRecurringOrders
+          if (!o.state) {
+            o.state = "NotAvailable";
+          }
+          return o;
+        });
+      } else {
+        return od;
+      }
+    },
+    [dateFormatter, t]
   );
-  const orders = useSelector(formatedRecurringOrderSelector);
-  // const [orders, setOrders] = useState<any[]>([]);
+
+  const formattedRecurringOrderSelector = useMemo(
+    () => createSelector(recurringOrderSelector, formatRecurringOrders),
+    [formatRecurringOrders]
+  );
+
+  const orders = useSelector(formattedRecurringOrderSelector);
+
+  const [state, setState] = useState({
+    offset: 0,
+    pgSz: sizes[0].size,
+    data: orders,
+    count: orders.length,
+    filters: {},
+    search: "",
+  });
 
   const cancelRecurring = ({ subscriptionId, orderId, frequency }) => {
     //dispatch
@@ -158,98 +178,189 @@ const useRecurringOrderTable = () => {
     PendingCancel: t(`Order.StatePendingCancel`),
     NotAvailable: t(`Order.NotAvailable`),
   };
-  const columns = [
+
+  const handleCopyCart = (rowData: any) => {
+    dispatch(COPY_CART_ACTION({ fromOrderId: rowData.id }));
+  };
+
+  const handleCancelCart = (rowData: any) => {
+    cancelRecurring({
+      subscriptionId: rowData.subscriptionIdentifier.subscriptionId,
+      orderId: rowData.id,
+      frequency: rowData.subscriptionInfo.fulfillmentSchedule.frequencyInfo,
+    });
+  };
+
+  const getPage = ({ page, pageSize, filters, search }) => {
+    if (isNil(pageSize)) {
+      pageSize = state.pgSz;
+    } else if (pageSize !== state.pgSz) {
+      sizes.forEach((s) => (s.selected = s.size === pageSize));
+    }
+
+    if (isNil(search)) {
+      search = state.search;
+    }
+
+    const { data, totalCount } = getRecurringOrders({
+      filters,
+      pageSize,
+      page,
+      search,
+    });
+
+    // update state only once in scope (otherwise values get overwritten before next render)
+    setState({
+      ...state,
+      offset: page === 0 ? 0 : state.offset + pageSize,
+      data: data,
+      count: totalCount,
+      search,
+      filters,
+    });
+  };
+
+  const getRecurringOrders = (query) => {
+    const pageNumber = query.page + 1;
+
+    const search = query.search || "";
+
+    let result: any = { page: pageNumber - 1 };
+
+    if (search && search.trim() !== "") {
+      let newOrders = orders.filter((order) =>
+        order.id.includes(search.trim())
+      );
+
+      result["data"] = newOrders;
+      result["totalCount"] = newOrders.length;
+      return result;
+    }
+
+    result["data"] = orders;
+    result["totalCount"] = orders.length;
+    return result;
+  };
+
+  const columns: TableColumnDef[] = [
     {
       title: t("Order.OrderId"),
-      field: "id",
-      render: (rowData: any) => {
-        const location = {
-          pathname: `${ORDER_DETAILS}/${rowData.id}`,
-          state: { from: RECURRING_ORDERS, recurringOrder: rowData },
-        };
-        return <StyledLink to={location}>{rowData.id}</StyledLink>;
+      idProp: "id",
+      keyLookup: {
+        key: "id",
+      },
+      sortable: { numeric: true },
+      display: {
+        template: ({ rowData, ...props }) => {
+          const location = {
+            pathname: `${ORDER_DETAILS}/${rowData.id}`,
+            state: { from: RECURRING_ORDERS, recurringOrder: rowData },
+          };
+          return <StyledLink to={location}>{rowData.id}</StyledLink>;
+        },
       },
     },
     {
       title: t("Order.Schedule"),
-      field: "frequencyDisplay",
+      keyLookup: {
+        key: "frequencyDisplay",
+      },
+      sortable: {},
+      display: {},
     },
     {
       title: t("Order.NextOrder"),
-      field: "nextOrder",
+      keyLookup: {
+        key: "nextOrder",
+      },
+      sortable: {},
+      display: {},
     },
     {
       title: t("Order.Status"),
-      field: "state",
-      lookup: stateLookup,
+      keyLookup: {
+        key: "state",
+      },
+      sortable: { fn: ({ rowData: r }) => t(`Order.State${r.state}`) },
+      display: {
+        template: ({ rowData, ...props }) => {
+          const stateStatus = stateLookup[rowData.state];
+          return <StyledTypography>{stateStatus}</StyledTypography>;
+        },
+      },
     },
     {
       title: t("Order.TotalPrice"),
-      field: "totalPrice",
-      render: (rowData: any) => {
-        return rowData.totalPrice ? (
-          <StyledTypography>
-            <FormattedPriceDisplay
-              min={parseFloat(rowData.totalPrice)}
-              currency={rowData.subscriptionInfo.paymentInfo.totalCost.currency}
-            />
-          </StyledTypography>
-        ) : (
-          <StyledTypography>{t(`Order.NotAvailable`)}</StyledTypography>
-        );
+      keyLookup: {
+        key: "totalPrice",
+      },
+      sortable: {
+        numeric: true,
+        fn: ({ rowData: r }) => parseFloat(r.totalPrice),
+      },
+      display: {
+        template: ({ rowData, ...props }) =>
+          rowData.totalPrice ? (
+            <StyledTypography>
+              <FormattedPriceDisplay
+                min={parseFloat(rowData.totalPrice)}
+                currency={
+                  rowData.subscriptionInfo.paymentInfo.totalCost.currency
+                }
+              />
+            </StyledTypography>
+          ) : (
+            <StyledTypography>{t(`Order.NotAvailable`)}</StyledTypography>
+          ),
+      },
+    },
+    {
+      title: t("InprogressItems.actions"),
+      keyLookup: {
+        key: "Actions",
+      },
+      display: {
+        template: ({ rowData, ...props }) => (
+          <>
+            <StyledTooltip title={t("Order.TooltipReOrder")}>
+              <AddShoppingCart
+                color="primary"
+                onClick={() => {
+                  handleCopyCart(rowData);
+                }}
+              />
+            </StyledTooltip>
+            <StyledTooltip title={t("Order.TooltipCancel")}>
+              {rowData.state !== "Active" ? (
+                <Cancel
+                  color="disabled"
+                  onClick={() => {
+                    handleCancelCart(rowData);
+                  }}
+                />
+              ) : (
+                <Cancel
+                  color="primary"
+                  onClick={() => {
+                    handleCancelCart(rowData);
+                  }}
+                />
+              )}
+            </StyledTooltip>
+          </>
+        ),
       },
     },
   ];
 
-  const actions: any = [
-    {
-      icon: () => <AddShoppingCart color="primary" />,
-      tooltip: t("Order.TooltipReOrder"),
-      onClick: (event, rowData) =>
-        dispatch(COPY_CART_ACTION({ fromOrderId: rowData.id })),
-    },
-    (rowData) => ({
-      icon: (props) =>
-        props.disabled ? (
-          <Cancel color="disabled" />
-        ) : (
-          <Cancel color="primary" />
-        ),
-      tooltip: t("Order.TooltipCancel"),
-      onClick: (event, rowData) =>
-        cancelRecurring({
-          subscriptionId: rowData.subscriptionIdentifier.subscriptionId,
-          orderId: rowData.id,
-          frequency: rowData.subscriptionInfo.fulfillmentSchedule.frequencyInfo,
-        }),
-      disabled: rowData.state !== "Active",
-    }),
-  ];
-
-  const options = {
-    actionsColumnIndex: -1,
-    showTitle: false,
-  };
-
-  const localization = {
-    body: {
-      emptyDataSourceMessage: t("Order.NoRecord"),
-    },
-    toolbar: {
-      searchTooltip: t("Order.Search"),
-    },
-    pagination: {
-      labelRowsSelect: t("Order.PageSizeLabel"),
-      labelDisplayedRows: t("Order.RowCount"),
-      firstTooltip: t("Order.FirstPage"),
-      previousTooltip: t("Order.PreviousPage"),
-      nextTooltip: t("Order.NextPage"),
-      lastTooltip: t("Order.LastPage"),
-    },
-    header: {
-      actions: t("Order.Actions"),
-    },
-  };
+  React.useEffect(() => {
+    setState({
+      ...state,
+      data: orders,
+      count: orders.length,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orders]);
 
   React.useEffect(() => {
     dispatch(FETCH_RECURRING_ORDER_ACTION({ ...payloadBase }));
@@ -261,23 +372,35 @@ const useRecurringOrderTable = () => {
 
   return {
     columns,
-    options,
-    localization,
-    actions,
-    orders,
     title,
+    data: state.data,
+    t,
+    labels: {
+      emptyMsg: "Order.NoRecord",
+    },
+    paginationData: {
+      clientSide: true,
+      t,
+      sizes,
+      labels: {
+        ofTotalCount: "commonTable.ofTotalCount",
+      },
+    },
+    actionData: {
+      getPage,
+      headers: columns,
+      hasSearch: true,
+      labels: {
+        searchPlaceholder: "Order.HistorySearchPlaceHolder",
+      },
+    },
   };
 };
 
 function RecurringOrders(props: any) {
-  const {
-    columns,
-    options,
-    localization,
-    actions,
-    orders,
-    title,
-  } = useRecurringOrderTable();
+  const { columns, title, labels, t, paginationData, actionData, data } =
+    useRecurringOrderTable();
+  const T = useMemo(() => withCustomTableContext(CustomTable), []);
 
   return (
     <StyledContainer className="page">
@@ -292,18 +415,16 @@ function RecurringOrders(props: any) {
           <AccountSidebar />
         </StyledGrid>
         <StyledGrid item xs={12} md={9}>
-          {orders !== null ? (
-            <StyledTable
-              icons={StyledTableIcons}
-              columns={columns}
-              data={orders}
-              localization={localization}
-              actions={actions}
-              options={options}
-            />
-          ) : (
-            <StyledProgressPlaceholder className="vertical-padding-20" />
-          )}
+          <T
+            {...{
+              actionData,
+              t,
+              columns,
+              data,
+              paginationData,
+              labels,
+            }}
+          />
         </StyledGrid>
       </StyledGrid>
     </StyledContainer>

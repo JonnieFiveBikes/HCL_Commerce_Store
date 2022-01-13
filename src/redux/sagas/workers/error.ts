@@ -46,7 +46,9 @@ export function* handleAxiosErrors(action: any) {
         e.errorCode === ERRORS.PARTIAL_AUTHENTICATION_ERROR_CODE ||
         e.errorKey === ERRORS.PARTIAL_AUTHENTICATION_ERROR_KEY ||
         e.errorCode === ERRORS.ACTIVITY_TOKEN_ERROR_CODE ||
-        e.errorKey === ERRORS.ACTIVITY_TOKEN_ERROR_KEY
+        e.errorKey === ERRORS.ACTIVITY_TOKEN_ERROR_KEY ||
+        e.erroCode === ERRORS.COOKIE_EXPIRED_ERROR_CODE ||
+        e.errorKey === ERRORS.COOKIE_EXPIRED_ERROR_KEY
       ) {
         const payload = {
           ...e,

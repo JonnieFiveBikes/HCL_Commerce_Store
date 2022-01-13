@@ -18,6 +18,7 @@ import AccountLinksSection from "../account-links-section";
 //UI
 import HistoryIcon from "@material-ui/icons/History";
 import ListIcon from "@material-ui/icons/List";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import { StyledLinkBox } from "@hcl-commerce-store-sdk/react-component";
 
@@ -41,6 +42,13 @@ function AccountLinksGridViewLayout() {
   const linkWishListDescription = t("AccountLinksGridView.WishListDescription");
   const linkWishListURL = ROUTES.WISH_LIST;
 
+  const checkoutProfs = {
+    title: t("MyAccount.CheckoutProfiles"),
+    description: t("CheckoutProfile.MyAcctDesc"),
+    url: ROUTES.CHECKOUT_PROFILES,
+    icon: <ShoppingCartIcon />,
+  };
+
   let linkList: JSX.Element[] = [
     <StyledLinkBox
       disabledTitle={disabledTitle}
@@ -55,6 +63,13 @@ function AccountLinksGridViewLayout() {
       description={linkOrderHistoryDescription}
       url={linkOrderHistoryURL}
       icon={<HistoryIcon />}
+    />,
+    <StyledLinkBox
+      disabledTitle={disabledTitle}
+      title={checkoutProfs.title}
+      description={checkoutProfs.description}
+      url={checkoutProfs.url}
+      icon={checkoutProfs.icon}
     />,
     <StyledLinkBox
       disabledTitle={disabledTitle}

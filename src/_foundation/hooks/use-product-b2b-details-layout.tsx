@@ -9,8 +9,9 @@
  *==================================================
  */
 //Standard libraries
+import { clone, get } from "lodash-es";
 import { useLocation } from "react-router";
-import React, { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,6 +29,7 @@ import {
   DEFINING,
   DESCRIPTIVE,
   STRING_TRUE,
+  EMPTY_STRING,
 } from "../../constants/common";
 import { ATTR_IDENTIFIER } from "../../constants/catalog";
 import FormattedPriceDisplay from "../../components/widgets/formatted-price-display";
@@ -35,10 +37,11 @@ import FormattedPriceDisplay from "../../components/widgets/formatted-price-disp
 import { currentContractIdSelector } from "../../redux/selectors/contract";
 import { loginStatusSelector } from "../../redux/selectors/user";
 import { breadcrumbsSelector } from "../../redux/selectors/catalog";
+import { cartSelector } from "../../redux/selectors/order";
 import * as orderActions from "../../redux/actions/order";
 import * as errorActions from "../../redux/actions/error";
-import { cartSelector } from "../../redux/selectors/order";
 import * as catalogActions from "../../redux/actions/catalog";
+
 //UI
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
@@ -48,6 +51,10 @@ import {
   StyledProductImage,
   ITabs,
   StyledNumberInput,
+  useCustomTable,
+  useTableUtils,
+  withCustomTableContext,
+  CustomTable,
 } from "@hcl-commerce-store-sdk/react-component";
 //GA360
 import AsyncCall from "../gtm/async.service";
@@ -55,6 +62,113 @@ import storeUtil from "../../utils/storeUtil";
 import { useProductValue } from "../context/product-context";
 import { Page, Widget, WidgetProps } from "../constants/seo-config";
 import { SIGNIN } from "../../constants/routes";
+import { PRIVATE_ORDER_TYPE } from "../../constants/order";
+
+const PriceCell = ({ rowData, headers }) => {
+  const o = rowData.price.find(
+    ({ usage: u, value: v }) => u === OFFER && v !== EMPTY_STRING
+  );
+  const offerPrice = o ? parseFloat(o.value) : 0;
+  const disp = offerPrice > 0 ? offerPrice : null;
+  return <FormattedPriceDisplay min={disp} />;
+};
+
+const AvailabilityCell = ({ rowData, headers }) => {
+  const { getCurrentContext } = useTableUtils();
+  const { tableState } = useCustomTable();
+  const { t } = useTranslation();
+  const itemProp = "image";
+  const avl = {
+    src: "/SapphireSAS/images/Available.gif",
+    text: "CommerceEnvironment.inventoryStatus.Available",
+  };
+  const unAvl = {
+    src: "/SapphireSAS/images/Unavailable.gif",
+    text: "CommerceEnvironment.inventoryStatus.OOS",
+  };
+  const iv = get(getCurrentContext(tableState), `inventory.${rowData.id}`);
+  const status = iv && rowData.buyable === STRING_TRUE ? avl : unAvl;
+  return (
+    <div>
+      <span>
+        <StyledProductImage {...{ itemProp, src: status.src }} />
+      </span>
+      <span>{t(status.text)}</span>
+    </div>
+  );
+};
+
+const QuantityCell = ({ rowData: r, headers: h }) => {
+  const { skuAndQuantities, setSkuAndQuantities } = useProductValue();
+  const { getRowKey, getCurrentContext } = useTableUtils();
+  const { tableState: s } = useCustomTable();
+  const price = parseFloat(
+    get(
+      r.price.find(
+        ({ usage: u, value: v }) => u === OFFER && v !== EMPTY_STRING
+      ),
+      "value",
+      "0"
+    )
+  );
+  const key = getRowKey(r, h);
+  const disabled =
+    !getCurrentContext(s).loginNotRequired ||
+    price <= 0 ||
+    !get(getCurrentContext(s), `inventory.${r.id}`) ||
+    r.buyable !== STRING_TRUE;
+  const fn = (q: number, key: string) => {
+    if (Number.isInteger(q) && q > 0) {
+      setSkuAndQuantities(new Map(skuAndQuantities.set(key, q)));
+    } else {
+      skuAndQuantities.delete(key);
+      setSkuAndQuantities(new Map(skuAndQuantities));
+    }
+  };
+
+  return (
+    <StyledNumberInput
+      value={skuAndQuantities.get(key)}
+      min={0}
+      debounceTiming={100}
+      strict={true}
+      disabled={disabled}
+      onChange={(q) => fn(q, key)}
+    />
+  );
+};
+
+const DetailPanel = ({ rowData }) => {
+  const { attributes: rawData } = rowData;
+  const { t } = useTranslation();
+  const ofInterest = rawData
+    .filter((a) => a.usage === DEFINING)
+    .filter((a, i) => i > 2);
+
+  // generate headers array
+  const columns = ofInterest.map((a, i) => ({
+    title: a.name,
+    idProp: "name",
+    keyLookup: { key: `defattr_${i}_value` },
+    display: { cellStyle: { verticalAlign: "middle" } },
+  }));
+
+  // generate single row out of all attribute values
+  const data = [
+    ofInterest.reduce((n, v, i) => {
+      n[`defattr_${i}_value`] = v.values && v.values[0].value;
+      return n;
+    }, {}),
+  ];
+
+  const style = { width: "auto", border: "0" };
+  const D = useMemo(() => withCustomTableContext(CustomTable), []);
+  return (
+    <D
+      {...{ data, columns, style, t, labels: { emptyMsg: "Order.NoRecord" } }}
+    />
+  );
+};
 
 /**
  * B2B Product display component
@@ -64,41 +178,37 @@ import { SIGNIN } from "../../constants/routes";
  * @param page
  */
 
-export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
+export const useProductB2BDetailsLayout = (
+  widget: Widget,
+  page: Page,
+  props
+) => {
   let cancels: Canceler[] = [];
   const CancelToken = Axios.CancelToken;
+  const { hasCTCtx } = props;
   const { t, i18n } = useTranslation();
   const contract = useSelector(currentContractIdSelector);
   const { mySite } = useSite();
   const loginStatus = useSelector(loginStatusSelector);
-  const loginNotRequired = useMemo(() => {
-    return loginStatus || !mySite?.isB2B;
-  }, [mySite?.isB2B, loginStatus]);
   const dispatch = useDispatch();
   const theme = useTheme();
   const widgetName = getDisplayName("ProductB2BDetailsLayout");
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const productPartNumber =
-    page && page.externalContext ? page.externalContext.identifier : "";
-  let uniqueSkus: any[] = [];
+  const productPartNumber = get(page, "externalContext.identifier", "");
   let currentSelection: any = {};
   let productInfoData: any = {};
-  const [descAttributes, setDescAttributes] = React.useState<any[]>([]);
+  const [descAttributes, setDescAttributes] = useState<any[]>([]);
   let definingAttributes: any[] = [];
-  const [availAttrs, setAvailAttrs] = React.useState<Set<string>>(
-    () => new Set<string>()
-  );
-  const [productType, setProductType] = React.useState<string>("");
-  const [x, setDescAttributeList] = React.useState<Array<object>>([]); // eslint-disable-line @typescript-eslint/no-unused-vars
+  const [productType, setProductType] = useState<string>("");
+  const [descriptiveAttributeList, setDescriptiveAttributeList] = useState<
+    Array<object>
+  >([]);
   const [attachmentsList, setAttachmentsList] = useState<any[]>([]);
-  const [productData, setProductData] = React.useState<any>(null);
-  const [promotion, setPromotion] = React.useState<Array<any>>([]);
-  const [disabledButtonFlag, setDisabledButtonFlag] =
-    React.useState<boolean>(false);
-  const [uniqueSkuList, setUniqueSkuList] = React.useState<Array<any>>([]);
-  const [skuInventory, setSkuInventory] = React.useState<Map<any, any>>(
-    () => new Map()
-  );
+  const [productData, setProductData] = useState<any>(null);
+  const [promotion, setPromotion] = useState<Array<any>>([]);
+  const [disabledButtonFlag, setDisabledButtonFlag] = useState<boolean>(false);
+  const [uniqueSkuList, setUniqueSkuList] = useState<Array<any>>([]);
+  const [, setSkuInventory] = useState<Map<any, any>>(() => new Map());
   const translation = useMemo(() => {
     return {
       productDetailattributeFilter: t("productDetail.attributeFilter"),
@@ -108,6 +218,7 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
       productDetailaddToCurrentOrder: mySite.isB2B
         ? t("productDetail.addToCurrentOrder")
         : t("productDetail.AddToCart"),
+      productDetailaddToSharedOrder: t("productDetail.addToSharedOrder"),
       productDetailSignIn: t("productDetail.SignIn"),
       CommerceEnvironmentinventoryStatusAvailable: t(
         "CommerceEnvironment.inventoryStatus.Available"
@@ -121,6 +232,7 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
       productDetailsAny: t("productDetail.any"),
       productDetailaddToCartErrorMsg: t("productDetail.addToCartErrorMsg"),
       productDetailDescription: t("productDetail.Description"),
+      productDetailProductDetails: t("productDetail.ProductDetails"),
       productDetailAttachments: t("productDetail.Attachments"),
       productDetailPriceDisplayPending: t("PriceDisplay.Labels.Pending"),
     };
@@ -133,20 +245,19 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
     }),
   };
   const cart = useSelector(cartSelector);
+  const isSharedOrder = !cart
+    ? false
+    : cart.orderTypeCode === PRIVATE_ORDER_TYPE
+    ? false
+    : true;
   const [addItemActionTriggered, setAddItemActionTriggered] =
     useState<boolean>(false);
   const storeId: string = mySite ? mySite.storeID : "";
-  const [pdpData, setPdpData] = React.useState<any>(null);
+  const [pdpData, setPdpData] = useState<any>(null);
   const location: any = useLocation();
   const defaultCurrencyID: string = mySite ? mySite.defaultCurrencyID : "";
   const language = i18n.languages[0];
   const {
-    tableBodyData,
-    setTableBodyData,
-    tableHeaderData,
-    setTableHeaderData,
-    tableDetailHeaderData,
-    setTableDetailHeaderData,
     productOfferPrice,
     setProductOfferPrice,
     prodDisplayPrice,
@@ -154,64 +265,102 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
     currentProdSelect,
     setCurrentProdSelect,
     skuAndQuantities,
-    setSkuAndQuantities,
     filterSkuState,
     setFilterSkuState,
     definingAttributeList,
     setDefiningAttributeList,
     attributeState,
     setAttributeState,
+    getMerchandisingAssociationDetails,
+    fetchProductDetails,
+    products,
   } = useProductValue();
+  const { tableState, setTableState } = useCustomTable();
+  const { setCurrentContextValue, getCurrentContext } = useTableUtils();
+  const [headers, setHeaders] = useState<any[]>([]);
+  const [needsPanel, setNeedsPanel] = useState<any>(false);
+  const [rows, setRows] = useState<any[]>([]);
+
+  // only specified for sku-list to update the custom-table context
+  const updateCTCtx = useMemo(
+    () => (k, v) => {
+      if (hasCTCtx) setCurrentContextValue(k, v, tableState, setTableState);
+    },
+    [hasCTCtx, setCurrentContextValue, tableState, setTableState]
+  );
+
+  const loginNotRequired = useMemo(() => {
+    const rc = loginStatus || !mySite?.isB2B;
+    updateCTCtx("loginNotRequired", rc);
+    return rc;
+  }, [mySite?.isB2B, loginStatus]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // memoized function for client side sort value for price column
+  const priceCalculator = useCallback(({ rowData }) => {
+    const { price: p } = rowData;
+    const o = p.find(({ usage: u, value: v }) => u === OFFER && v);
+    const offerPrice = o ? parseFloat(o.value) : 0;
+    return offerPrice > 0 ? offerPrice : EMPTY_STRING;
+  }, []);
+
+  // memoized function for client side sort value for online-availability column
+  const oaCalculator = useCallback(({ rowData, tableState: s }) => {
+    const avl = t("CommerceEnvironment.inventoryStatus.Available");
+    const unAvl = t("CommerceEnvironment.inventoryStatus.OOS");
+    const iv = get(getCurrentContext(s), `inventory.${rowData.id}`);
+    return iv && rowData.buyable === STRING_TRUE ? avl : unAvl;
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   /**
-   *Get product information from part number
+   * Get product information from part number
    */
-  const getProductDetails = () => {
-    const catalogIdentifier: string = mySite ? mySite.catalogID : "";
-    let parameters: any = {
-      storeId: storeId,
-      partNumber: productPartNumber,
-      contractId: contract,
-      catalogId: catalogIdentifier,
-      ...payloadBase,
-    };
-    productsService
-      .findProductsUsingGET(parameters)
-      .then((productData: any) => {
-        const productDetails = productData.data.contents;
-        if (productDetails && productDetails.length > 0) {
-          let categoryIdentifier: string = "";
-          setPdpData(productDetails);
-          if (location?.state?.categoryId) {
-            categoryIdentifier = location.state.categoryId;
-          } else {
-            let parentCatalogGroupID = productDetails[0].parentCatalogGroupID;
-            if (parentCatalogGroupID) {
-              categoryIdentifier =
-                storeUtil.getParentCategoryId(parentCatalogGroupID);
-            }
-          }
-          if (categoryIdentifier && categoryIdentifier.length > 0) {
-            let parameters: any = {
-              categoryId: categoryIdentifier,
-              contractId: contract,
-              currency: defaultCurrencyID,
-              storeId: storeId,
-              productName: productDetails[0].name ? productDetails[0].name : "",
-              ...payloadBase,
-            };
-            dispatch(
-              catalogActions.getProductListForPDPAction({
-                parameters: parameters,
-              })
-            );
-          }
+  const getProductDetails = useCallback(() => {
+    // usage of this widget only makes sense in a page with product-context -- as-such
+    //   the fetchProductDetails function won't be available when there's no product-context,
+    //   e.g., being used in the cart-page as an example -- in such cases, we'll just ignore
+    //   its incantation
+    if (fetchProductDetails) {
+      const catalogIdentifier: string = mySite ? mySite.catalogID : "";
+      let parameters: any = {
+        storeId: storeId,
+        partNumber: productPartNumber,
+        contractId: contract,
+        catalogId: catalogIdentifier,
+        ...payloadBase,
+      };
+      fetchProductDetails(parameters);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productPartNumber, contract, storeId]);
+
+  const parseProducts = useCallback(() => {
+    if (products && products.length > 0) {
+      getMerchandisingAssociationDetails(products);
+      let categoryIdentifier: string = "";
+      setPdpData(clone(products));
+      if (location?.state?.categoryId) {
+        categoryIdentifier = location.state.categoryId;
+      } else {
+        let parentCatalogGroupID = products[0].parentCatalogGroupID;
+        if (parentCatalogGroupID) {
+          categoryIdentifier =
+            storeUtil.getParentCategoryId(parentCatalogGroupID);
         }
-      })
-      .catch((e) => {
-        console.log("Could not retrieve product details page informarion", e);
-      });
-  };
+      }
+      if (categoryIdentifier) {
+        let parameters = {
+          categoryId: categoryIdentifier,
+          contractId: contract,
+          currency: defaultCurrencyID,
+          storeId: storeId,
+          productName: get(products[0], "name", ""),
+          ...payloadBase,
+        };
+        dispatch(catalogActions.getProductListForPDPAction({ parameters }));
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [products]);
 
   /**
    * Get product information based on its type
@@ -287,10 +436,16 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
    */
   const initializeProduct = (productInfo: any, attr?: any) => {
     if (productInfo) {
+      // no need to generate headers if not required
+      if (hasCTCtx) {
+        const { headers: h, needsPanel: d } = headerFn(productInfo);
+        setHeaders(h);
+        setNeedsPanel(d);
+      }
+
       productInfoData = JSON.parse(JSON.stringify(productInfo));
       setDescAttributes([]);
       definingAttributes = [];
-      setAvailAttrs(() => new Set<string>());
       if (productInfo.attributes) {
         productInfoData.availableAttributes = JSON.parse(
           JSON.stringify(productInfo.attributes)
@@ -306,7 +461,7 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
         currentSelection.selectedAttributes = {};
         if (currentSelection.partNumber.attributes) {
           for (const att of currentSelection.partNumber.attributes) {
-            if (att.values.length) {
+            if (att.values?.length) {
               currentSelection.selectedAttributes[att.identifier] = att.values
                 ? att.values[0]?.identifier
                 : undefined;
@@ -317,14 +472,10 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
     }
     setProductPrice(currentSelection.partNumber.price);
     setDefiningAttributeList(definingAttributes);
-    setDescAttributeList(descAttributes);
+    setDescriptiveAttributeList(descAttributes);
     setProductData(productInfoData);
-    if (productInfoData.attachments?.length > 0) {
-      setAttachmentsList(productInfoData.attachments);
-    } else {
-      setAttachmentsList([]);
-    }
-    getUniqueSkusAndInventory(productInfoData.items);
+    setAttachmentsList(get(productInfoData, "attachments", []));
+    getUniqueSkusAndInventory(get(productInfoData, "items", []));
   };
 
   /**
@@ -333,34 +484,27 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
    */
   const initializeSelectedAttributes = (attr?: any) => {
     let invalidSKU: boolean;
-    currentSelection.selectedAttributes = {};
-    if (attr) {
-      for (const att of attr) {
-        if (att.usage && att.usage === DEFINING) {
-          currentSelection.selectedAttributes[att.identifier] = att.values
-            ? att.values[0].identifier
-            : undefined;
-        }
-      }
-    } else {
-      for (const att of currentSelection.partNumber.attributes) {
-        if (att.usage && att.usage === DEFINING) {
-          currentSelection.selectedAttributes[att.identifier] = att.values
-            ? att.values[0].identifier
-            : undefined;
-        }
-      }
-    }
+    const o = {};
+
+    (attr ?? currentSelection.partNumber.attributes)
+      .filter((a) => DEFINING === a.usage)
+      .forEach((a) => {
+        o[a.identifier] = get(a, "values[0].identifier");
+      });
+    currentSelection.selectedAttributes = o;
+
     const sku = resolveSKU(
       productInfoData.items,
       currentSelection.selectedAttributes
     );
+
     if (sku === "") {
       invalidSKU = true;
     } else {
       invalidSKU = false;
       currentSelection.partNumber = sku;
     }
+
     setCurrentProdSelect(currentSelection);
     setDisabledButtonFlag(invalidSKU);
   };
@@ -410,215 +554,82 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
         defnAttrSrc.push(att);
       }
     }
-    if (productInfoData.items) {
-      availableAttributes(productInfoData.items);
-    }
   };
 
-  /**
-   * Helper method to get unique available attributes and store it in set
-   * @param skus
-   */
-  const availableAttributes = (skus: any[]): void => {
-    let c: any;
-    let u: string[];
-    for (const s of skus) {
-      c = attrs2Object(s.attributes);
-      u = [];
-      for (let d of definingAttributes) {
-        u.push(c[d.identifier]);
+  const headerFn = useMemo(
+    () => (root) => {
+      const cellStyle = { verticalAlign: "middle" };
+      const defnAttrs =
+        root.attributes
+          ?.map((a, i) => ({ ...a, __origIdx: i }))
+          .filter((a) => a.usage === DEFINING) ?? [];
+      const attrSz = defnAttrs.length > 3 ? 3 : defnAttrs.length;
+      let needsPanel = false;
+
+      const headers = [
+        {
+          title: t("productDetail.SKU"),
+          idProp: "partNumber",
+          keyLookup: { key: "partNumber" },
+          display: { cellStyle },
+          sortable: {},
+        },
+        ...Array.from({ length: attrSz }, (x, i) => ({
+          title: defnAttrs[i].name,
+          keyLookup: {
+            key: `attributes[${defnAttrs[i].__origIdx}].values[0].value`,
+          },
+          display: { cellStyle },
+          sortable: {},
+        })),
+        {
+          title: t("productDetail.Price"),
+          keyLookup: { key: "phantomPrice" },
+          display: {
+            cellStyle,
+            template: PriceCell,
+          },
+          sortable: { fn: priceCalculator, numeric: true },
+        },
+        {
+          title: t("productDetail.Quantity"),
+          keyLookup: { key: "phantomQuantity" },
+          display: {
+            cellStyle,
+            template: QuantityCell,
+          },
+        },
+        {
+          title: t("productDetail.Online_Availability"),
+          keyLookup: { key: "phantomAvailability" },
+          display: {
+            cellStyle,
+            template: AvailabilityCell,
+          },
+          sortable: { fn: oaCalculator },
+        },
+      ];
+
+      if (attrSz < defnAttrs.length) {
+        needsPanel = true;
       }
-      setAvailAttrs(new Set<string>(availAttrs.add(u.join("|"))));
-    }
-  };
+
+      return { needsPanel, headers };
+    },
+    [t, oaCalculator, priceCalculator]
+  );
 
   /**
-   * Helper method to prepare and set the product data to display in Drawer expansion table
-   *
-   * @param skus
-   * @param inventory
-   * @param defAttributeList
-   */
-  const setTableData = (
-    skus: any[],
-    inventory: Map<any, any>,
-    defAttributeList: any[]
-  ) => {
-    let tableBody: any[] = [];
-    let tableHeader: any[] = [];
-    let tableDetailHeader: any[] = [];
-    let tablebodyDataMap = new Map();
-    let tableHeaderDataMap = new Map();
-    let tableDetailHeaderDataMap = new Map();
-    let attributeSize = defAttributeList.length;
-    if (attributeSize > 3) {
-      attributeSize = 3;
-    }
-    for (const s of skus) {
-      tablebodyDataMap.set("sku", s.partNumber);
-      for (const a of s.attributes) {
-        tablebodyDataMap.set(a.name, a.values ? a.values[0]?.value : undefined);
-      }
-      let offerPrice: number = 0;
-      let displayPrice: number = 0;
-      let priceDisplaytag: any;
-      for (const p of s.price) {
-        if (p.usage === DISPLAY && p.value !== "") {
-          displayPrice = parseFloat(p.value);
-        } else if (p.usage === OFFER && p.value !== "") {
-          offerPrice = parseFloat(p.value);
-        }
-      }
-
-      if (offerPrice > 0) {
-        priceDisplaytag = <FormattedPriceDisplay min={offerPrice} />;
-      } else if (offerPrice === 0 && displayPrice > 0) {
-        priceDisplaytag = <FormattedPriceDisplay min={displayPrice} />;
-      } else if (offerPrice === 0 && displayPrice === 0) {
-        priceDisplaytag = <FormattedPriceDisplay min={null} />;
-      }
-      tablebodyDataMap.set("price", priceDisplaytag);
-
-      if (inventory.get(s.id) && s.buyable === STRING_TRUE) {
-        let availableQuantityTag = (
-          <StyledNumberInput
-            value={
-              skuAndQuantities.get(s.partNumber)
-                ? skuAndQuantities.get(s.partNumber)
-                : null
-            }
-            min={0}
-            strict={true}
-            disabled={!loginNotRequired}
-            onChange={(quantity: number) =>
-              updateProductQuantity(quantity, s.partNumber)
-            }
-          />
-        );
-        let availableImage = (
-          <div>
-            <span>
-              <StyledProductImage
-                itemProp="image"
-                src="\SapphireSAS\images\Available.gif"
-              />
-            </span>
-            <span>
-              {" "}
-              {translation.CommerceEnvironmentinventoryStatusAvailable}
-            </span>
-          </div>
-        );
-        tablebodyDataMap.set("online_availability", availableImage);
-        tablebodyDataMap.set("quantity", availableQuantityTag);
-      } else {
-        let unAvailableQuantityTag = (
-          <StyledNumberInput
-            disabled={true}
-            value={
-              skuAndQuantities.get(s.partNumber)
-                ? skuAndQuantities.get(s.partNumber)
-                : ""
-            }
-          />
-        );
-        let unAvailableImage = (
-          <div>
-            <span>
-              <StyledProductImage
-                itemProp="image"
-                src="\SapphireSAS\images\Unavailable.gif"
-              />
-            </span>
-            <span> {translation.CommerceEnvironmentinventoryStatusOOS}</span>
-          </div>
-        );
-        tablebodyDataMap.set("online_availability", unAvailableImage);
-        tablebodyDataMap.set("quantity", unAvailableQuantityTag);
-      }
-
-      tableBody.push(mapToObj(tablebodyDataMap));
-      tablebodyDataMap = new Map();
-    }
-    tableHeaderDataMap.set("title", translation.productDetailSKU);
-    tableHeaderDataMap.set("field", "sku");
-    tableHeader.push(mapToObj(tableHeaderDataMap));
-    tableHeaderDataMap = new Map();
-    for (let i = 0; i < attributeSize; i++) {
-      tableHeaderDataMap.set("title", defAttributeList[i].name);
-      tableHeaderDataMap.set("field", defAttributeList[i].name);
-      tableHeader.push(mapToObj(tableHeaderDataMap));
-      tableHeaderDataMap = new Map();
-    }
-    for (let j = attributeSize; j < defAttributeList.length; j++) {
-      tableDetailHeaderDataMap.set("title", defAttributeList[j].name);
-      tableDetailHeaderDataMap.set("field", defAttributeList[j].name);
-      tableDetailHeader.push(mapToObj(tableDetailHeaderDataMap));
-      tableDetailHeaderDataMap = new Map();
-    }
-    tableHeaderDataMap.set("title", translation.productDetailPrice);
-    tableHeaderDataMap.set("field", "price");
-    tableHeader.push(mapToObj(tableHeaderDataMap));
-    tableHeaderDataMap = new Map();
-    tableHeaderDataMap.set("title", translation.productDetailQuantity);
-    tableHeaderDataMap.set("field", "quantity");
-    tableHeader.push(mapToObj(tableHeaderDataMap));
-    tableHeaderDataMap = new Map();
-    tableHeaderDataMap.set(
-      "title",
-      translation.productDetailOnline_Availability
-    );
-    tableHeaderDataMap.set("field", "online_availability");
-    tableHeader.push(mapToObj(tableHeaderDataMap));
-    setTableBodyData(tableBody);
-    setTableHeaderData(tableHeader);
-    setTableDetailHeaderData(tableDetailHeader);
-  };
-
-  /**
-   *Helper method to convert a map to an object
+   * Helper method to convert a map to an object
    * @param inputMap
    * @returns object
    */
 
   function mapToObj(inputMap: any[] | Map<any, any>) {
-    let obj = {};
-    inputMap.forEach(function (value: any, key: React.ReactText) {
-      obj[key] = value;
-    });
+    const obj = {};
+    inputMap.forEach((value, key) => (obj[key] = value));
     return obj;
   }
-
-  /**
-   *Helper method to convert attributes to object
-   * @param attrs
-   * @return object
-   */
-  const attrs2Object = (attrs: any[]): any => {
-    if (attrs === undefined) {
-      return {};
-    }
-    return attrs.reduce((obj: any, attr: any) => {
-      obj[attr.identifier] = attr.values
-        ? attr.values[0]?.identifier
-        : undefined;
-      return obj;
-    }, {});
-  };
-
-  /**
-   *Helper method to convert attributes to object
-   * @param attrs
-   * @returns object
-   */
-  const sku2Object = (skus: any[], sku: string): any => {
-    if (skus === undefined) {
-      return {};
-    }
-    for (let d of skus) {
-      if (d.partNumber === sku) return d;
-    }
-  };
 
   /**
    * Defining attribute change event handler
@@ -705,21 +716,6 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
   };
 
   /**
-   * Product quantity input field value change event handler
-   * @param e
-   */
-  const updateProductQuantity = (quantity: number, id: string) => {
-    if (Number.isInteger(quantity) && quantity > 0) {
-      setSkuAndQuantities(new Map(skuAndQuantities.set(id, quantity)));
-    } else {
-      let addToCartMap = new Map();
-      addToCartMap = skuAndQuantities;
-      addToCartMap.delete(id);
-      setSkuAndQuantities(new Map(addToCartMap));
-    }
-  };
-
-  /**
    *Add the selected product and its quantities to the shopping cart
    */
   const addToCart = () => {
@@ -747,20 +743,14 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
    * @param skus
    */
   const getUniqueSkusAndInventory = (skus: any[]): void => {
-    let productId: string[] = [];
-    let availSkus: Set<any> = new Set<any>();
-    if (skus) {
-      for (const s of skus) {
-        availSkus.add(sku2Object(skus, s.partNumber));
-      }
-      let uniqueSkuList = Array.from(availSkus);
-      uniqueSkuList = uniqueSkuList.sort(compare);
-      uniqueSkus = uniqueSkuList;
-      setUniqueSkuList(uniqueSkus);
-      for (const s of uniqueSkuList) {
-        productId.push(s.id);
-      }
-      getSkuInventory(productId.join());
+    const availSkus: Set<any> = new Set<any>();
+    skus.forEach((s) => availSkus.add(s));
+    const uniqueSkuList = Array.from(availSkus).sort(compare);
+    setUniqueSkuList(uniqueSkuList);
+    setFilterSkuState(uniqueSkuList);
+    if (hasCTCtx) {
+      setRows(uniqueSkuList);
+      getSkuInventory(uniqueSkuList.map(({ id }) => id).join());
     }
   };
   /**
@@ -801,8 +791,8 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
           }
         }
         setSkuInventory(inventoryMap);
-        setTableData(uniqueSkus, inventoryMap, definingAttributes);
-        setFilterSkuState(uniqueSkus);
+
+        updateCTCtx("inventory", mapToObj(inventoryMap));
       })
       .catch((e) => {
         if (e.status === 404) {
@@ -812,8 +802,9 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
           }
         }
         setSkuInventory(inventoryMap);
-        setTableData(uniqueSkus, inventoryMap, definingAttributes);
-        setFilterSkuState(uniqueSkus);
+
+        updateCTCtx("inventory", mapToObj(inventoryMap));
+
         console.log("Could not retrieve Inventory Details", e);
       });
   };
@@ -833,7 +824,38 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
       tabContent: descriptionElement,
     });
   }
-
+  //Product Details Tab (Descriptive Attributes of priduct)
+  if (descriptiveAttributeList.length > 0) {
+    const tabContent = (
+      <div
+        id={`product-details-container_${productPartNumber}`}
+        className="product-details-container">
+        {descriptiveAttributeList.map((e: any) => (
+          <StyledTypography
+            variant="body1"
+            key={`li_${e.identifier}`}
+            id={`product_attribute_${productPartNumber}`}>
+            <b
+              key={`span_name_${e.identifier}`}
+              id={`product_desc_attribute_name_${e.identifier}_${productPartNumber}`}>
+              {e.name}:
+            </b>
+            {e.values?.map((value: any) => (
+              <span
+                id={`product_attribute_value_${value.identifier}_${productPartNumber}`}
+                key={value.identifier}>
+                {" " + value.value}
+              </span>
+            ))}
+          </StyledTypography>
+        ))}
+      </div>
+    );
+    productDetailTabsChildren.push({
+      title: translation.productDetailProductDetails,
+      tabContent,
+    });
+  }
   if (attachmentsList.length > 0) {
     attachmentsList.forEach((a) => {
       a.mimeType = /^https?:\/\//.test(a.attachmentAssetPath)
@@ -841,18 +863,16 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
         : a.mimeType || "content/unknown";
     });
 
-    const productAttachmentElement = (
-      <AttachmentB2BLayout attachmentsList={attachmentsList} />
-    );
+    const tabContent = <AttachmentB2BLayout {...{ attachmentsList }} />;
     productDetailTabsChildren.push({
       title: translation.productDetailAttachments,
-      tabContent: productAttachmentElement,
+      tabContent,
     });
   }
 
   //GA360
   const breadcrumbs = useSelector(breadcrumbsSelector);
-  React.useEffect(() => {
+  useEffect(() => {
     if (mySite.enableGA) {
       if (productPartNumber && breadcrumbs.length !== 0) {
         AsyncCall.sendPDPPageViewEvent(breadcrumbs, {
@@ -867,11 +887,15 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
     }
   }, [breadcrumbs, productData]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  React.useEffect(() => {
+  useEffect(() => {
     getProductDetails();
   }, [contract]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  React.useEffect(() => {
+  useEffect(() => {
+    parseProducts();
+  }, [products]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
     if (addItemActionTriggered) {
       //GA360
       if (mySite.enableGA) {
@@ -888,16 +912,15 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
     }
   }, [addItemActionTriggered, cart]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (pdpData && pdpData.length > 0 && uniqueSkuList.length === 0) {
       getProduct();
       getAssociatedPromotions();
     }
-    if (uniqueSkuList.length > 0)
-      setTableData(filterSkuState, skuInventory, definingAttributeList);
+    if (uniqueSkuList.length > 0 && hasCTCtx) setRows(filterSkuState);
   }, [skuAndQuantities, filterSkuState, pdpData]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       cancels.forEach((cancel) => cancel());
     };
@@ -905,6 +928,15 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
   }, []);
 
   return {
+    tableData: {
+      className: "table-tablet",
+      columns: headers,
+      detailPanel: needsPanel ? DetailPanel : undefined,
+      data: rows,
+      t,
+      showPanelOnMobile: true,
+      labels: { emptyMsg: "productDetail.noproductsToDisplay" },
+    },
     productData,
     translation,
     promotion,
@@ -916,9 +948,6 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
     onAttributeChange,
     isMobile,
     attributeState,
-    tableHeaderData,
-    tableBodyData,
-    tableDetailHeaderData,
     loginNotRequired,
     addToCart,
     disabledButtonFlag,
@@ -927,23 +956,20 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page) => {
     language,
     defaultCurrencyID,
     SIGNIN,
+    isSharedOrder,
   };
 };
 
 /**
- * A high order component that wraps a component with b2b product information.
- * @param Component the wrapping component.
- * @returns A component that has ability to process b2b product data.
+ * Garnish `Component` with B2B product data
+ * @param Component component to garnish
+ * @returns garnished `Component`
  */
 export const withUseProduct =
   (Component: React.ComponentType<any>): React.FC<WidgetProps> =>
   ({ widget, page, ...props }) => {
-    const productDetails = useProductB2BDetailsLayout(widget, page);
-    return (
-      <>
-        {productDetails.productPartNumber && productDetails.productData && (
-          <Component productDetails={productDetails} {...props}></Component>
-        )}
-      </>
-    );
+    const productDetails = useProductB2BDetailsLayout(widget, page, props);
+    return productDetails.productPartNumber && productDetails.productData ? (
+      <Component productDetails={productDetails} {...props}></Component>
+    ) : null;
   };

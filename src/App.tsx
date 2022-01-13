@@ -37,6 +37,8 @@ import {
   CommerceEnvironment,
   DISCOVER_FEATURE,
   EMPTY_STRING,
+  HYPHEN,
+  UNDERSCORE,
 } from "./constants/common";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
@@ -102,12 +104,25 @@ const App: React.FC = (props: any) => {
      */
     // TODO: language toggle, update user language, read language from userContext if it is registered user.
     if (mySite) {
-      const locale =
-        localStorageUtil.get(LOCALE)?.split("_").join("-") ||
-        CommerceEnvironment.languageMap[mySite.defaultLanguageID]
+      //check if locale exists in local storage
+      if (localStorageUtil.get(LOCALE) === null) {
+        //locale does not exist in local storage
+        //get language from site default. convert from id to string
+        const locale = CommerceEnvironment.languageMap[mySite.defaultLanguageID]
           .split("_")
           .join("-");
-      if (locale !== i18n.languages[0]) {
+        //check if language from site default matches the current store language
+        if (locale !== i18n.languages[0]) {
+          //if not then change language
+          i18n.changeLanguage(locale);
+        }
+        //set locale into local storage
+        localStorageUtil.set(LOCALE, locale.split("-").join("_"));
+      } else {
+        const locale = localStorageUtil
+          .get(LOCALE)
+          .split(UNDERSCORE)
+          .join(HYPHEN);
         i18n.changeLanguage(locale);
       }
     }
@@ -199,7 +214,7 @@ const App: React.FC = (props: any) => {
           <StyledGrid
             container
             direction="column"
-            justify="space-evenly"
+            justifyContent="space-evenly"
             alignItems="stretch"
             className="full-viewport-height">
             <StyledGrid item xs={false}>

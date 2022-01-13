@@ -11,6 +11,7 @@
 import { RootReducerState } from "../redux/reducers";
 
 export const initStates: RootReducerState = {
+  checkoutProfile: { curUserProfiles: [] },
   account: {
     orders: null,
     address: null,
@@ -33,6 +34,7 @@ export const initStates: RootReducerState = {
     selectedPageOffset: 1,
     selectedSortOption: "0",
     breadcrumbs: [],
+    selectFacetRemove: false,
   },
   user: {
     WCToken: "",
@@ -49,6 +51,8 @@ export const initStates: RootReducerState = {
     shipModes: [],
     payMethods: [],
     isRecurringOrderDisabled: false,
+    allowableShipModes: [],
+    activeInprogressOrder: null,
   },
   error: {
     errorKey: null,

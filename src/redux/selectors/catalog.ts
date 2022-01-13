@@ -32,6 +32,8 @@ export const selectedPageOffsetSelector = (state: RootReducerState) =>
   state.catalog.selectedPageOffset;
 export const selectedSortOptionSelector = (state: RootReducerState) =>
   state.catalog.selectedSortOption;
+export const selectFacetRemoveSelector = (state: RootReducerState) =>
+  state.catalog.selectFacetRemove;
 
 export const breadcrumbsSelector = (state: RootReducerState) =>
   state.catalog.breadcrumbs;

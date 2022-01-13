@@ -126,7 +126,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   };
 
   useEffect(() => {
-    if (mySite) {
+    if (mySite && contractId) {
       const catalogId = mySite?.catalogID;
       const parameters: any = {
         responseFormat: "application/json",
@@ -151,7 +151,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         .catch((e) => {});
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mySite, t]);
+  }, [mySite, t, contractId]);
 
   useEffect(() => {
     const queryString = location.search;
@@ -208,7 +208,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
     if (searchTerm.length > 1) {
       setTimeout(function () {
         const storeID = mySite.storeID;
-        const contractId = mySite.contractId;
         const catalogId = mySite.catalogID;
 
         const parameters: any = {

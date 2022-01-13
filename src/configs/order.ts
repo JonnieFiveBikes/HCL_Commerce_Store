@@ -9,6 +9,7 @@
  *==================================================
  */
 import { SUCCESS_MSG_PREFIX } from "../constants/common";
+import { N_ITEMS_ADDED } from "../constants/order";
 //Redux
 import * as ORDER_ACTIONS from "../redux/action-types/order";
 
@@ -33,6 +34,7 @@ export const MINICART_CONFIGS = {
   itemAddSuccessMsgKeys: [
     SUCCESS_MSG_PREFIX + ORDER_ACTIONS.ITEM_ADD_SUCCESS,
     SUCCESS_MSG_PREFIX + ORDER_ACTIONS.COPY_CART_SUCCESS,
+    SUCCESS_MSG_PREFIX + N_ITEMS_ADDED,
   ],
 };
 

@@ -54,7 +54,9 @@ interface AddressCardProps {
   type?: boolean;
   setSelectedAddressId?: Function; //selected address setter
   selectedAddressId?: string;
+  selectedNickName?: string;
   readOnly?: boolean;
+  hideEdit?: boolean;
 }
 
 /**
@@ -63,19 +65,22 @@ interface AddressCardProps {
  * @param props
  */
 const AddressCard: React.FC<AddressCardProps> = (props: any) => {
+  const { selectedNickName } = props;
   const widgetName = getDisplayName(AddressCard);
   const addressId = props.addressId ? props.addressId : "";
   const nickName = props.nickName ? props.nickName : "";
   const actions = props.actions;
   const type = props.type ? props.type : false;
   const readOnly = props.readOnly ? props.readOnly : false;
+  const hideEdit = props.hideEdit ? props.hideEdit : false;
   const selectedAddressId = props.selectedAddressId
     ? props.selectedAddressId
     : "";
   const setSelectedAddressId = props.setSelectedAddressId
     ? props.setSelectedAddressId
     : null;
-  const isSelected = selectedAddressId === addressId;
+  const isSelected =
+    selectedAddressId === addressId || nickName === selectedNickName;
   const addressDetails = useSelector(addressDetailsSelector);
   const addressContext = useContext(AddressContext);
   const orgAddressDetails = addressContext[ORG_ADDRESS_DETAILS];
@@ -263,9 +268,8 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
     ) {
       editAddressDetails[ADDRESSLINE1] = filteredAddressDetails.addressLine[0];
       editAddressDetails[ADDRESSLINE2] = filteredAddressDetails.addressLine[1];
-      editAddressDetails = addressUtil.removeIgnorableAddressFormFields(
-        editAddressDetails
-      );
+      editAddressDetails =
+        addressUtil.removeIgnorableAddressFormFields(editAddressDetails);
     }
   };
   const headerComponent = (
@@ -328,14 +332,17 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
   );
 
   // Memoized function to get the address card action based on dependencies/conditons
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const cardActions = useMemo(() => getCardActions(), [
-    actions,
-    setSelectedAddressId,
-    isSelected,
-    addressData.orgAddress,
-    addressId,
-  ]);
+  const cardActions = useMemo(
+    () => getCardActions(),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [
+      actions,
+      setSelectedAddressId,
+      isSelected,
+      addressData.orgAddress,
+      addressId,
+    ]
+  );
 
   /**
    * Get the card actions for Address Card
@@ -355,7 +362,7 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
    */
   function getCardActionsForCheckout() {
     const action: any[] = [];
-    if (!isOrgAddress()) {
+    if (!isOrgAddress() && !hideEdit) {
       action.push({
         text: t("AddressCard.EditButton"),
         handleClick: () => handleEditButton(),
@@ -364,7 +371,8 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
     if (!isSelected) {
       action.push({
         text: t("AddressCard.UseAddress"),
-        handleClick: () => setSelectedAddressId(addressData.addressId),
+        handleClick: () =>
+          setSelectedAddressId(addressData.addressId, addressData.nickName),
       });
     }
     return action;

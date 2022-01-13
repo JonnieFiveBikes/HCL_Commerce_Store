@@ -60,11 +60,6 @@ const OrderDiscountSummary: React.FC<OrderDiscountSummaryProps> = (
 
   return (
     <StyledGrid container>
-      <StyledGrid item xs={12}>
-        <StyledTypography variant="subtitle1" gutterBottom>
-          {t("OrderDiscountSummary.Title")}
-        </StyledTypography>
-      </StyledGrid>
       {totalDiscounts !== null && totalDiscounts !== 0 && (
         <>
           {discountList.map((discount: any, index: number) => (

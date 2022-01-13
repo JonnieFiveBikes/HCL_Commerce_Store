@@ -55,6 +55,7 @@ const MegaMenuLink = (props: any) => {
           closeMegaMenu={closeMegaMenu}
           level={level + 1}
           parentId={parentId}
+          breadcrumbs={link.state?.breadCrumbTrailEntryView ?? []}
         />
       ) : (
         <Link
@@ -84,6 +85,7 @@ interface MegaMenuColumnProps {
   closeMegaMenu: any;
   level: number;
   parentId: number | undefined;
+  breadcrumbs?: any[];
 }
 
 /**
@@ -100,6 +102,7 @@ const MegaMenuColumn: React.FC<MegaMenuColumnProps> = (props: any) => {
     setActiveParentMenuId,
     closeMegaMenu,
     level,
+    breadcrumbs = [],
   } = props;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.up("sm"));
@@ -109,14 +112,27 @@ const MegaMenuColumn: React.FC<MegaMenuColumnProps> = (props: any) => {
   let childrenList: JSX.Element[] = [];
 
   if (page.children && page.children.length > 0) {
-    page.children.map(function (page: any, index: number) {
+    page.children.map(function (childPage: any, index: number) {
       const element = (
         <MegaMenuLink
-          key={page.id}
-          link={page.seo?.href}
+          key={childPage.id}
+          link={{
+            pathname: childPage.seo?.href,
+            state: {
+              breadCrumbTrailEntryView: [
+                ...breadcrumbs,
+                { label: page.name, value: page.id, seo: page.seo },
+                {
+                  label: childPage.name,
+                  value: childPage.id,
+                  seo: childPage.seo,
+                },
+              ],
+            },
+          }}
           id={id}
-          name={page.name}
-          page={page}
+          name={childPage.name}
+          page={childPage}
           activeMenuId={activeMenuId}
           setActiveMenuId={setActiveMenuId}
           activeParentMenuId={activeParentMenuId}

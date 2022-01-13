@@ -21,6 +21,8 @@ import {
   CMC_SESSION_ERROR_KEY,
   ACTIVITY_TOKEN_ERROR_KEY,
   ACTIVITY_TOKEN_ERROR_CODE,
+  COOKIE_EXPIRED_ERROR_CODE,
+  COOKIE_EXPIRED_ERROR_KEY,
 } from "../../constants/errors";
 import { defaultStates } from "../reducers/initStates";
 import { ErrorReducerState } from "../reducers/reducerStateInterface";
@@ -35,6 +37,8 @@ const sessionErrors = [
   PARTIAL_AUTHENTICATION_ERROR_CODE,
   PARTIAL_AUTHENTICATION_ERROR_KEY,
   CMC_SESSION_ERROR_KEY,
+  COOKIE_EXPIRED_ERROR_CODE,
+  COOKIE_EXPIRED_ERROR_KEY,
 ];
 const passwordExpiredErrors = [PASSWORD_EXPIRED_ERR_CODE, PASSWORD_EXPIRED];
 

@@ -47,11 +47,10 @@ function OrderLinksLayout({ isBuyerApprover }: OrderLinksLayoutProps) {
     />,
     <StyledLinkBox
       disabledTitle={disabledTitle}
-      title={t("OrderLinks.SavedOrdersText")}
-      description={t("OrderLinks.SavedOrdersDescription")}
-      url={ROUTES.SAVED_ORDERS}
+      title={t("OrderLinks.InprogressOrdersText")}
+      description={t("OrderLinks.InprogressOrdersDescription")}
+      url={ROUTES.INPROGRESS_ORDERS}
       icon={<BookmarkBorderIcon />}
-      disabled
     />,
     <StyledLinkBox
       disabledTitle={disabledTitle}

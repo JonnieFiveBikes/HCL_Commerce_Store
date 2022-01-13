@@ -35,6 +35,7 @@ export const initStatesNoAddresses: ShippingTestState = {
     },
   },
   order: {
+    allowableShipModes: [],
     catentries: [],
     cart: {
       totalShippingCharge: "0.00000",
@@ -260,6 +261,7 @@ export const initStatesNoAddresses: ShippingTestState = {
     payMethods: [],
     isRecurringOrderDisabled: false,
     isFetching: false,
+    activeInprogressOrder: null,
   },
   contract: {
     "-11005": "-11005",
@@ -344,6 +346,7 @@ export const inistatesWithAddress: ShippingTestState = {
     },
   },
   order: {
+    allowableShipModes: [],
     cart: {
       totalShippingCharge: "0.00000",
       resourceId:
@@ -640,6 +643,7 @@ export const inistatesWithAddress: ShippingTestState = {
     payMethods: [],
     isRecurringOrderDisabled: false,
     isFetching: false,
+    activeInprogressOrder: null,
   },
   contract: {
     "-11005": "-11005",

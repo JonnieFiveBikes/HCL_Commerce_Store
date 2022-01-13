@@ -1,0 +1,23 @@
+{
+  "layout": {
+    "id": "12507",
+    "name": "OrderConfirmationPageLayout",
+    "containerName": "order-confirmation-page",
+    "slots": [
+      {
+        "id": "2",
+        "widgets": [
+          {
+            "id": "3024",
+            "name": "OrderConfirmationPageProductRecommendation",
+            "widgetName": "e-marketing-spot-widget",
+            "sequence": 0.0,
+            "properties": {
+              "emsName": "Home_ProductRec"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

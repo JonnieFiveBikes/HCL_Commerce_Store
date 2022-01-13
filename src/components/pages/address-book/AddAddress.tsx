@@ -10,8 +10,8 @@
  */
 
 //Standard libraries
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router";
+import { useState, useEffect } from "react";
+import { useHistory, useLocation } from "react-router";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
@@ -30,7 +30,11 @@ import {
   ADDRESSLINE2,
   EMPTY_STRING,
 } from "../../../constants/common";
-import { ADDRESS_BOOK as ADDRESS_BOOK_ROUTE } from "../../../constants/routes";
+import {
+  ADDRESS_BOOK as ADDRESS_BOOK_ROUTE,
+  CHECKOUT_PROFILE_CREATE,
+  CHECKOUT_PROFILE_EDIT,
+} from "../../../constants/routes";
 //Foundation libraries
 import personContactService from "../../../_foundation/apis/transaction/personContact.service";
 //UI
@@ -67,18 +71,17 @@ function AddAddress() {
     email1: EMPTY_STRING,
     addressType: ADDRESS_SHIPPING,
   };
-  const [newAddressFormData, setNewAddressFormData] = useState<any>(
-    addressFormDataInit
-  );
+  const [newAddressFormData, setNewAddressFormData] =
+    useState<any>(addressFormDataInit);
   const CancelToken = Axios.CancelToken;
   let cancels: Canceler[] = [];
   const payloadBase: any = {
     widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+    cancelToken: new CancelToken((c) => cancels.push(c)),
   };
   const history = useHistory();
+  const location = useLocation();
+  const [locState, setLocState] = useState<any>({});
 
   /**
    * Form validation function
@@ -95,9 +98,8 @@ function AddAddress() {
    */
   const createAddress = () => {
     // remove leading and trailing white space from all form input fields.
-    let newAddressData = addressUtil.removeLeadingTrailingWhiteSpace(
-      newAddressFormData
-    );
+    let newAddressData =
+      addressUtil.removeLeadingTrailingWhiteSpace(newAddressFormData);
     newAddressData[ADDRESS_LINE] = [newAddressData[ADDRESSLINE1]];
     if (
       newAddressData[ADDRESSLINE2] &&
@@ -116,9 +118,16 @@ function AddAddress() {
       .then((res) => res.data)
       .then((addressData) => {
         if (addressData.addressId) {
+          const { cancelToken, ...rest } = payloadBase;
+          const { nickName } = newAddressData;
+
+          // re-fetch and don't cancel if returning to profile edit/creation
           dispatch(
-            accountActions.GET_ADDRESS_DETAIL_ACTION({ ...payloadBase })
+            accountActions.GET_ADDRESS_DETAIL_ACTION({
+              ...(locState.profile ? rest : payloadBase),
+            })
           );
+
           const successMessage = {
             key: "success-message.ADD_ADDRESS_SUCCESS",
             messageParameters: {
@@ -128,15 +137,41 @@ function AddAddress() {
           dispatch(
             successActions.HANDLE_SUCCESS_MESSAGE_ACTION(successMessage)
           );
+
+          if (locState.profile) {
+            if (locState.profile.xchkout_ProfileId) {
+              history.push(CHECKOUT_PROFILE_EDIT, { ...locState, nickName });
+            } else {
+              history.push(CHECKOUT_PROFILE_CREATE, { ...locState, nickName });
+            }
+          }
         }
       })
       .catch((e) => {
         console.log("Could not create new address", e);
       });
-    history.push(ADDRESS_BOOK_ROUTE);
+
+    if (!locState.profile) {
+      history.push(ADDRESS_BOOK_ROUTE);
+    }
+  };
+
+  const cancel = () => {
+    if (locState.profile) {
+      if (locState.profile.xchkout_ProfileId) {
+        history.push(CHECKOUT_PROFILE_EDIT, { ...locState });
+      } else {
+        history.push(CHECKOUT_PROFILE_CREATE, { ...locState });
+      }
+    } else {
+      history.push(ADDRESS_BOOK_ROUTE);
+    }
   };
 
   useEffect(() => {
+    if (location.state) {
+      setLocState(location.state);
+    }
     return () => {
       cancels.forEach((cancel) => cancel());
     };
@@ -169,17 +204,15 @@ function AddAddress() {
           </StyledGrid>
           <Divider className="top-margin-2 bottom-margin-2" />
           <StyledGrid item xs={12}>
-            <StyledLink to={ADDRESS_BOOK_ROUTE}>
-              <StyledButton size="small" color="secondary">
-                {t("AddressBook.Cancel")}
-              </StyledButton>
-            </StyledLink>
+            <StyledButton size="small" color="secondary" onClick={cancel}>
+              {t("AddressBook.Cancel")}
+            </StyledButton>
             <StyledButton
               color="primary"
               size="small"
               style={{ float: "right" }}
               disabled={!canCreate()}
-              onClick={() => createAddress()}>
+              onClick={createAddress}>
               {t("AddressBook.CreateAddress")}
             </StyledButton>
           </StyledGrid>

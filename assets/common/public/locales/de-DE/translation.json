@@ -54,8 +54,14 @@
     "Subtotal_plural": "Zwischensumme für {{count}} Artikel",
     "Empty": "Ihr Warenkorb ist leer.",
     "Actions": {
-      "Cart": "Vollständigen Warenkorb anzeigen"
-    }
+      "Cart": "Vollständigen Warenkorb anzeigen",
+      "CheckOut": "Zur Kasse gehen",
+      "ViewOrderDetails": "Bestelldetails anzeigen"
+    },
+    "MyOrder": "Meine Bestellung",
+    "PrivateOrder": "Private Bestellung",
+    "SharedOrderConributor": "Gemeinsame Bestellung (Mitbesteller)",
+    "SharedOrderAdmin": "Gemeinsame Bestellung (Admin)"
   },
   "Language": {
     "-1": "Englisch (US)",
@@ -68,13 +74,19 @@
     "-8": "Traditionelles Chinesisch",
     "-10": "Japanisch",
     "-20": "Russisch",
-    "-21": "Rumänisch"
+    "-21": "Rumänisch",
+    "-9": "Koreanisch",
+    "-22": "Polnisch",
+    "-23": "Arabisch"
   },
   "productDetail": {
     "Quantity": "Menge",
     "QtyError": "Die Menge muss größer oder gleich 1 sein.",
     "Availability": "Verfügbarkeit",
     "AddToCart": "Zum Warenkorb hinzufügen",
+    "AddBundleToCart": "Paket zur Bestellung hinzufügen",
+    "AddBundleToSharedOrder": "Zu gemeinsamer Bestellung hinzufügen",
+    "SelectAttributes": "Attribute auswählen",
     "Description": "Beschreibung",
     "ProductDetails": "Produktdetails",
     "Attachments": "Anhänge",
@@ -88,12 +100,23 @@
     "any": "Alle",
     "showAttributes": "Attribute anzeigen",
     "attributeFilter": "Attributfilter",
-    "addToCurrentOrder": "Zur aktuellen Bestellung hinzufügen",
+    "addToCurrentOrder": "Zur Bestellung hinzufügen",
+    "addToSharedOrder": "Zu gemeinsamer Bestellung hinzufügen",
     "SignIn": "Bitte melden Sie sich beim Shop an",
     "noproductsToDisplay": "Keine Produkte zum Anzeigen. Bitte ändern Sie den Attributfilter und versuchen Sie es erneut.",
     "SKU": "Artikelposition",
+    "PRODUCTSKU": "PRODUKT / ARTIKELPOSITION",
+    "SelectAnOption": "Eine Option auswählen",
+    "Unconfigured": "Unkonfiguriert",
+    "Unavailable": "Nicht verfügbar",
+    "InStock": "Vorrätig",
     "Price": "Preis",
-    "Online_Availability": "Online-Verfügbarkeit"
+    "Online_Availability": "Online-Verfügbarkeit",
+    "recommendedProdTitle": "Empfohlene Produkte ",
+    "someWithNoSkus": "Für ein oder mehrere Produkte in der Liste wurden keine Attribute ausgewählt. Bitte vervollständigen Sie die Auswahl der Attribute.",
+    "someWithNoAvlSelZero": "Für einen oder mehrere ausgewählte Artikel ist kein Bestand verfügbar. Bitte ändern Sie die Menge auf 0, um diese Artikel zu ignorieren.",
+    "someWithNotEnough": "Für einen oder mehrere ausgewählte Artikel ist nicht genügend Bestand vorhanden. Bitte ändern Sie die Menge so, dass sie kleiner oder gleich dem aktuell verfügbaren Bestand ist.",
+    "selectSomething": "Es wurden keine Artikel ausgewählt. Bitte wählen Sie mindestens einen Artikel."
   },
   "AddressBook": {
     "AddrMsg": "Neue Adresse hinzufügen",
@@ -114,7 +137,7 @@
   "Cart": {
     "Title": "Warenkorb",
     "Msgs": {
-      "Empty": "Ihr Warenkorb ist leer. Jetzt einkaufen!",
+      "Empty": "Ihr Warenkorb ist leer. Kaufen Sie jetzt ein!",
       "PromoCode": "Geben Sie Ihren Promocode ein"
     },
     "Labels": {
@@ -126,7 +149,8 @@
     },
     "Actions": {
       "Checkout": "Zur Kasse gehen",
-      "Apply": "Anwenden"
+      "Apply": "Anwenden",
+      "Checkout-With-Profile": "Zur Kasse mithilfe der Informationen in Ihrem Profil"
     }
   },
   "CheckoutAddress": {
@@ -140,6 +164,7 @@
   },
   "Checkout": {
     "Title": "Zur Kasse gehen",
+    "CheckoutProfileTitle": "Kassenprofil",
     "Labels": {
       "shipping": "Versand",
       "payment": "Zahlung",
@@ -178,7 +203,9 @@
       "Quantity": "Menge",
       "ShippingDetails": "Versanddetails",
       "SelectShippingAddressAndMethod": "Versandadresse und -methode auswählen",
-      "ChangeSelection": "Auswahl ändern"
+      "ChangeSelection": "Auswahl ändern",
+      "nItemsSel": "{{ n }} Artikel ausgewählt",
+      "noItems": "Keine Artikel gefunden"
     }
   },
   "Shipping": {
@@ -335,7 +362,7 @@
     "OrderHistory": "Bestellverlauf",
     "RecurringOrders": "Wiederkehrende Bestellungen",
     "RequisitionLists": "Anforderungslisten",
-    "SavedOrders": "Gespeicherte Bestellungen",
+    "InprogressOrders": "In Bearbeitung befindliche Bestellungen",
     "ApproveOrders": "Bestellgenehmigung"
   },
   "Order": {
@@ -426,7 +453,8 @@
     "PersonalInformation": "Persönliche Informationen",
     "AddressBook": "Adressbuch",
     "OrderHistory": "Bestellverlauf",
-    "Wishlists": "Wunschliste"
+    "Wishlists": "Wunschliste",
+    "CheckoutProfiles": "Kassenprofile"
   },
   "AddressCard": {
     "EditButton": "Bearbeiten",
@@ -467,6 +495,55 @@
     "CancelLabel": "Abbrechen",
     "SuccessLabel": "Kennwortänderung erfolgreich",
     "OkLabel": "OK"
+  },
+  "CheckoutProfile": {
+    "ShippingInformation": "Versandinformationen",
+    "CreateCheckoutTitle": "Kassenprofil erstellen",
+    "CreateCheckoutButton": "Neues Kassenprofil erstellen",
+    "BillingInformation": "Abrechnungsinformationen",
+    "PaymentInformation": "Zahlungsinformationen",
+    "ShippingMethod": "Versandmethode",
+    "ShipSameAsBill": "Die Rechnungsadresse ist identisch mit der Versandadresse",
+    "Cancel": "Abbrechen",
+    "Next": "Weiter",
+    "Back": "Zurück",
+    "CreateProfile": "Profil erstellen",
+    "UpdateProfile": "Profil aktualisieren",
+    "Title": "Kassenprofil auswählen",
+    "Label": "Vorhandenes Kassenprofil auswählen",
+    "MyAcctDesc": "Verwalten und Bearbeiten von Schnellkassenprofilen für eine schnellere Kaufabwicklung",
+    "Name": "Name des Kassenprofils",
+    "Edit": "Bearbeiten",
+    "Delete": "Löschen",
+    "NoneFound": "<0>Das ist ein Fehler. </0><1>Wir konnten dieses Kassenprofil leider nicht finden.</1><2> Bitte versuchen Sie es mit einem anderen Kassenprofil oder erstellen Sie ein neues <0>Kassenprofil</0>.</2>",
+    "NoProfiles": "Es wurden keine Kassenprofile gefunden. <0>Erstellen Sie ein neues</0> Kassenprofil.",
+    "TitleCreate": "Kassenprofile",
+    "CreateMessage": "Neues Kassenprofil erstellen",
+    "CreateNewButton": "Neu erstellen",
+    "ShippingAddr": "VERSANDADRESSE",
+    "ShippingMethodDisp": "VERSANDMETHODE",
+    "BillingAddr": "RECHNUNGSADRESSE",
+    "BillingMethod": "ABRECHNUNGSMETHODE",
+    "EditProfile": "Kassenprofil bearbeiten",
+    "ShipAsComplete": "VOLLSTÄNDIG VERSENDEN",
+    "confirmDelete": "Löschen bestätigen",
+    "selectExisting": "Wählen Sie eine vorhandene Adresse aus. Andernfalls <0>erstellen Sie eine neue</0>.",
+    "sm_Express": "Express",
+    "sm_Mail": "E-Mail-Adresse",
+    "sm_InternationalPriority": "Internationaler Expressversand",
+    "sm_InternationalRegular": "Regulärer internationaler Versand",
+    "sm_PickupInStore": "Abholung im Geschäft",
+    "saveAddress": "Adresse speichern",
+    "invalidProfile": "Dieses Profil ist ungültig. Bearbeiten Sie es und wählen Sie eine neue Adresse.",
+    "invalidProfileName": "Der Profilname darf nur alphanumerische Zeichen (A-Z, a-z, 0-9) und Leerzeichen enthalten.",
+    "selectExpMonth": "Verfallsmonat auswählen",
+    "selectExpYear": "Verfallsjahr auswählen",
+    "payMethods": {
+      "VISA": "VISA-Kreditkarte",
+      "MasterCard": "MasterCard-Kreditkarte",
+      "AMEX": "American Express-Kreditkarte",
+      "COD": "Per Nachnahme"
+    }
   },
   "ChildPimCategories": {
     "title": "Alle {{name}}"
@@ -509,7 +586,7 @@
     "_ERR_CMD_INVALID_PARAM_5060": "Geben Sie einen Namen in das Feld Nachname ein.",
     "_ERR_CMD_INVALID_PARAM_5066": "Geben Sie einen Namen in das Feld Vorname ein.",
     "_ERR_CMD_INVALID_PARAM_5210": "Geben Sie eine E-Mail-Adresse in das Feld E-Mail-Adresse ein.",
-    "_ERR_CMD_INVALID_PARAM_2190": "Der angegebene Validierungscode ist nicht richtig.",
+    "_ERR_CMD_INVALID_PARAM_2190": "Der von Ihnen eingegebene Bestätigungscode ist falsch. Prüfen Sie den Code, den Sie erhalten haben, und versuchen Sie es erneut.",
     "_ERR_CMD_INVALID_PARAM_2080": "Das von Ihnen eingegebene Bestätigungskennwort stimmt nicht mit Ihrem neuen Kennwort überein.",
     "_ERR_CMD_INVALID_PARAM": "Während der Registrierung ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal oder wenden Sie sich für Unterstützung an das Geschäft.",
     "_ERR_LOGONID_ALREDY_EXIST_2030": "Die von Ihnen eingegebene E-Mail-Adresse ist bereits vorhanden. Geben Sie eine andere E-Mail-Adresse ein und versuchen Sie es erneut.",
@@ -596,13 +673,15 @@
     "_ERR_REMOTE_EXCEPTION_CMN0412E": "Bei der Bearbeitung Ihrer Anfrage ist ein Systemproblem aufgetreten. Bitte wenden Sie sich an das Geschäft, um Unterstützung zu erhalten.",
     "_ERR_REG_DUPE_ID_CMN0114S": "Die eingegebene Anmelde-ID ist bereits vorhanden. Geben Sie eine andere Anmelde-ID ein und versuchen Sie es erneut.",
     "_ERR_FINDER_EXCEPTION_CMN0411E": "Die von Ihnen eingegebene E-Mail-Adresse ist nicht gültig. Überprüfen Sie Ihre Eingabe und versuchen Sie es erneut.",
-    "_ERR_CMD_INVALID_PARAM_2195": "Der eingegebene Bestätigungscode ist nicht gültig. Prüfen Sie Ihre Eingabe und versuchen Sie es erneut.",
+    "_ERR_CMD_INVALID_PARAM_2195": "Der von Ihnen eingegebene Bestätigungscode ist abgelaufen. Sie müssen einen neuen Bestätigungscode anfordern, um Ihr Kennwort ändern zu können.",
     "B2B": {
       "_ERR_FINDER_EXCEPTION_CMN0411E": "Die eingegebene Anmelde-ID ist nicht gültig. Prüfen Sie Ihre Eingabe und versuchen Sie es erneut.",
       "_ERR_LOGONID_ALREDY_EXIST_2030": "Die eingegebene Anmelde-ID ist bereits vorhanden. Geben Sie eine andere Anmelde-ID ein und versuchen Sie es erneut.",
-      "_ERR_BAD_PARMS_2010": "Die eingegebene Anmelde-ID ist nicht gültig. Prüfen Sie Ihre Eingabe und versuchen Sie es erneut."
+      "_ERR_BAD_PARMS_2010": "Die eingegebene Anmelde-ID ist nicht gültig. Prüfen Sie Ihre Eingabe und versuchen Sie es erneut.",
+      "_ERR_INVALID_NAME_CMN1652E": "Ein Objekt mit dem Namen \"{{0}}\" ist bereits vorhanden. Bitte wählen Sie einen anderen Namen und versuchen Sie es erneut."
     },
-    "_ERR_PASSWORD_EXPIRED_2170": "Ihr aktuelles Kennwort ist abgelaufen. Bitte geben Sie ein neues Kennwort ein."
+    "_ERR_PASSWORD_EXPIRED_2170": "Ihr aktuelles Kennwort ist abgelaufen. Bitte geben Sie ein neues Kennwort ein.",
+    "_ERR_INVALID_NAME_CMN1652E": "Ein Objekt mit dem Namen \"{{0}}\" ist bereits vorhanden. Bitte wählen Sie einen anderen Namen und versuchen Sie es erneut."
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "Artikel wurde zum Warenkorb hinzugefügt. ",
@@ -613,7 +692,16 @@
     "EDIT_ADDRESS_SUCCESS": "Ihre Adresse \"{{0}}\" wurde erfolgreich aktualisiert",
     "DELETE_ADDRESS_SUCCESS": "Ihre Adresse \"{{0}}\" wurde erfolgreich gelöscht",
     "RESEND_VERIFICATION_CODE": "Der Bestätigungscode wurde erfolgreich an Ihre E-Mail-Adresse gesendet",
-    "PASSWORD_RESET_SUCCESS": "Das Kennwort wurde erfolgreich zurückgesetzt"
+    "PASSWORD_RESET_SUCCESS": "Das Kennwort wurde erfolgreich zurückgesetzt",
+    "CREATE_CHECKOUT_PROFILE_SUCCESS": "Kassenprofil \"{{0}}\" wurde erfolgreich erstellt.",
+    "COPY_ORDER_SUCCESS": "Bestellung erfolgreich kopiert.",
+    "CREATE_ORDER_SUCCESS": "Bestellung \"{{0}}\" erfolgreich erstellt.",
+    "DELETE_ORDER_SUCCESS": "Bestellung \"{{0}}\" erfolgreich gelöscht.",
+    "DeletedCheckoutProfile": "Kassenprofil \"{{ 0 }}\" erfolgreich gelöscht",
+    "UpdatedCheckoutProfile": "Kassenprofil \"{{ 0 }}\" erfolgreich aktualisiert",
+    "deletedSuccessfully": "{{ n }} Artikel erfolgreich aus der Bestellung gelöscht",
+    "addedItemSuccessfully": "{{ v }} erfolgreich zur aktuellen Bestellung hinzugefügt",
+    "addedNSuccessfully": "{{ v }} Artikel erfolgreich zur aktuellen Bestellung hinzugefügt"
   },
   "notFound": {
     "notFound": "<p>Leider konnten wir nicht finden, wonach Sie suchen.</p>\n"
@@ -629,7 +717,8 @@
     "Actions": {
       "Back": "Zurück zu Zahlungsdetails",
       "Next": "Bestellung aufgeben",
-      "NextRecurringOrder": "Wiederkehrende Bestellung aufgeben"
+      "NextRecurringOrder": "Wiederkehrende Bestellung aufgeben",
+      "BackCart": "Zurück zum Warenkorb"
     },
     "Labels": {
       "PaymentDetails": "Zahlungsdetails",
@@ -668,8 +757,8 @@
     "Title": "Benutzerverwaltung",
     "OrderHistoryText": "Bestellverlauf",
     "OrderHistoryDescription": "Aufgegebene Bestellungen und Bestellungen, die auf Genehmigung warten, und einzelne Bestelldetails anzeigen.",
-    "SavedOrdersText": "Gespeicherte Bestellungen",
-    "SavedOrdersDescription": "Gespeicherte Bestellungen anzeigen und verwalten",
+    "InprogressOrdersText": "In Bearbeitung befindliche Bestellungen",
+    "InprogressOrdersDescription": "In Bearbeitung befindliche Bestellungen anzeigen und verwalten",
     "RecurringOrdersText": "Wiederkehrende Bestellungen",
     "RecurringOrdersDescription": "Liste der wiederkehrenden Bestellungen anzeigen und verwalten",
     "ApproveOrdersText": "Bestellgenehmigung",
@@ -704,12 +793,19 @@
       "Total": "Gesamtbetrag"
     }
   },
+  "PaymentMethodContainer": {
+    "Actions": {
+      "Cancel": "Abbrechen",
+      "Done": "Fertig",
+      "SaveAndAdd": "Speichern Sie und fügen Sie eine weitere Zahlungsmethode hinzu"
+    }
+  },
   "PaymentInfoCard": {
     "Title": "Zahlungsmethode {{number}}",
     "Labels": {
       "CreditCard": "Kreditkarte: ",
       "AmountToPay": "Zu zahlender Betrag",
-      "ExpiryDate": "Ablaufdatum:",
+      "ExpiryDate": "Ablaufdatum: {{month}}/{{year}}",
       "BillingAddress": "Rechnungsadresse"
     },
     "Actions": {
@@ -718,10 +814,15 @@
     }
   },
   "PaymentInfoList": {
-    "Title": "Zahlungsmethoden – Bestellsumme: ",
+    "Title": {
+      "PayMethod": "Zahlungsmethoden",
+      "WithOrderTotal": "Zahlungsmethoden – Bestellsumme: "
+    },
     "Msgs": {
       "PayMethodRequired": "Es muss mindestens eine Zahlungsmethode angegeben werden.",
-      "InsufficientPayment": "Sie müssen die Bestellsumme von {{grandTotal}} bei allen Zahlungsmethoden abdecken."
+      "InsufficientPayment": "Sie müssen die Bestellsumme von {{grandTotal}} bei allen Zahlungsmethoden abdecken.",
+      "CardDetailsUpdate": "Bitte prüfen und aktualisieren Sie die Kartendaten noch einmal.",
+      "PayMethodNote": "Hinweis: Erst wenn Sie auf die Schaltfläche Bestellung prüfen klicken, werden die Zahlungsmethoden gespeichert."
     },
     "Actions": {
       "AddPayMethod": "Zahlungsmethode hinzufügen"
@@ -731,8 +832,8 @@
     "Title": "Zahlungsmethode",
     "Msgs": {
       "CreditCard": "Sichere Online-Zahlung. Akzeptierte Kreditkarten: {{cards}}",
-      "CVV": "Die letzten drei Ziffern auf dem Unterschriftsstreifen",
-      "InvalidCardNumber": "Ungültige Kartennummer bzw. ungültiger Kartentyp",
+      "CVV": "Bitte gültigen CVV-Code eingeben",
+      "InvalidCardNumber": "Bitte gültige Kreditkartennummer eingeben",
       "InvalidFormat": "Ungültiges Format"
     },
     "Labels": {
@@ -743,7 +844,9 @@
       "CVV": "CVV-Code",
       "OrderTotal": "Bestellsumme",
       "RemainingAmount": "Zu zahlender Restbetrag",
-      "AmountToPay": "Zu zahlender Betrag"
+      "AmountToPay": "Zu zahlender Betrag",
+      "ExpiryMonth": "Ablaufmonat",
+      "ExpiryYear": "Ablaufjahr"
     },
     "Actions": {
       "PayRemaining": "Restbetrag bezahlen"
@@ -856,8 +959,7 @@
     "Phone": "Telefon (optional)",
     "Password": "Kennwort",
     "VerifyPassword": "Kennwort bestätigen",
-    "TextContent": "Erhalten Sie Ideen für Wohndesign, die an Ihren Posteingang gesendet werden.",
-    "Register": "Registrieren",
+    "TextContent": "Erhalten Sie Ideen für Wohndesign in Ihren Posteingang",
     "Register": "Registrieren",
     "RegisterComplete": "Registrierung abschließen ",
     "Msgs": {
@@ -959,6 +1061,12 @@
       "EveryThreeWeeks": "Alle 3 Wochen",
       "EveryFourWeeks": "Alle 4 Wochen"
     },
+    "languagePopUp": {
+      "Title": "Sprache ändern?",
+      "Message": "Möchten Sie die Sprache in {{ language }} ändern?",
+      "Yes": "Ja",
+      "No": "Nein"
+    },
     "currency": {
       "ROL": "Rumänischer Leu",
       "RON": "Rumänischer Leu",
@@ -1010,6 +1118,67 @@
       "-9": "Koreanisch",
       "-22": "Polnisch",
       "-23": "Arabisch"
+    }
+  },
+  "InprogressOrders": {
+    "Title": "In Bearbeitung befindliche Bestellungen",
+    "CreateNewOrder": "Neue Bestellung erstellen",
+    "NewOrderName": "Name der neuen Bestellung",
+    "CreateOrder": "Bestellung erstellen",
+    "PrivateOrder": "Private Bestellung",
+    "SharedOrder": "Gemeinsame Bestellung",
+    "Columns": {
+      "Active": "AKTIV",
+      "OrderId": "BESTELL-ID",
+      "Name": "NAME",
+      "LastUpdated": "ZULETZT AKTUALISIERT",
+      "TotalPrice": "GESAMTPREIS",
+      "Type": "TYP",
+      "Actions": "AKTION"
+    },
+    "Status": {
+      "ORD": "Privat",
+      "SHR": "Gemeinsam"
+    },
+    "DeleteDialogTitle": "Bestellung löschen",
+    "DeleteDialogHeading": "Möchten Sie diese Bestellung löschen?",
+    "CopyTitle": "Bestellung kopieren",
+    "CopyMessage": "Möchten Sie diese Bestellung kopieren?",
+    "CurrentCart": "{{ orderId }} (Aktueller Warenkorb)",
+    "InvalidOrderName": "Der Name der Bestellung darf nur alphanumerische Zeichen (A-Z, a-z, 0-9) und Leerzeichen enthalten.",
+    "searchPh": "Nach ID oder Beschreibung suchen",
+    "NotActiveOrderMessage": "Bestellung muss aktiv sein, um Produkte hinzuzufügen"
+  },
+  "InprogressItems": {
+    "orderItem": "BESTELLARTIKEL",
+    "creationDate": "ERSTELLUNGSDATUM",
+    "quantity": "MENGE",
+    "contributor": "MITBESTELLER",
+    "each": "PRO STÜCK",
+    "actions": "AKTIONEN",
+    "inprogressOrders": "In Bearbeitung befindliche Bestellungen",
+    "createdBy": "ERSTELLT VON",
+    "lastUpdated": "ZULETZT AKTUALISIERT",
+    "totalPrice": "GESAMTPREIS",
+    "visibility": "GEMEINSAME LISTE",
+    "orderType_SHR": "Gemeinsam",
+    "orderType_ORD": "Privat",
+    "proceed": "Zur Kasse gehen",
+    "addProds": "Produkte hinzufügen",
+    "privateList": "Private Liste",
+    "sharedList": "Gemeinsame Liste",
+    "nProductsSel": "{{ n }} Produkte ausgewählt",
+    "addSelToCart": "Ausgewählte Produkte zum Warenkorb hinzufügen",
+    "deleteSelected": "Ausgewählte Produkte löschen",
+    "noItems": "Es wurden keine Bestellartikel gefunden.",
+    "nameForCopiedOrder": "Namen für die neue Bestellung eingeben"
+  },
+  "commonTable": {
+    "ofTotalCount": "Es werden {{ from }} bis {{ to }} von {{ total }} angezeigt",
+    "pageSz": {
+      "five": "5 Zeilen",
+      "ten": "10 Zeilen",
+      "twenty": "20 Zeilen"
     }
   }
 }

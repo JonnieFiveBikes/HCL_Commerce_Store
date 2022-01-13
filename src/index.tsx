@@ -15,6 +15,8 @@ import { Provider } from "react-redux";
 //Custom libraries
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
+
 import "./i18n";
 //Redux
 import store from "./redux/store/index";
@@ -22,7 +24,10 @@ import store from "./redux/store/index";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { StylesProvider } from "@material-ui/styles";
-import { ThemeProvider as StyledThemeProvider } from "styled-components";
+import {
+  StyleSheetManager,
+  ThemeProvider as StyledThemeProvider,
+} from "styled-components";
 import { StyledCircularProgress } from "@hcl-commerce-store-sdk/react-component";
 import { CurrentTheme } from "./themes";
 import "./index.scss";
@@ -33,14 +38,17 @@ render(
   <Provider store={store}>
     <Suspense
       fallback={<StyledCircularProgress className="horizontal-padding-5" />}>
-      <StylesProvider injectFirst>
-        <StyledThemeProvider theme={CurrentTheme}>
-          <MuiThemeProvider theme={CurrentTheme}>
-            <CssBaseline />
-            <App />
-          </MuiThemeProvider>
-        </StyledThemeProvider>
-      </StylesProvider>
+      <StyleSheetManager
+        disableCSSOMInjection={(window as any).__isPrerender__ === true}>
+        <StylesProvider injectFirst>
+          <StyledThemeProvider theme={CurrentTheme}>
+            <MuiThemeProvider theme={CurrentTheme}>
+              <CssBaseline />
+              <App />
+            </MuiThemeProvider>
+          </StyledThemeProvider>
+        </StylesProvider>
+      </StyleSheetManager>
     </Suspense>
   </Provider>,
   rootElement

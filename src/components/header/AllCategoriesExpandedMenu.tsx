@@ -46,7 +46,16 @@ const AllCategoriesExpandedMenu: React.FC<AllCategoriesExpandedMenuProps> = (
           {pages &&
             pages.map((page: any, index: number) => (
               <StyledBox key={page.id} mr={5}>
-                <Link key={"Link_" + index} to={page.seo?.href}>
+                <Link
+                  key={"Link_" + index}
+                  to={{
+                    pathname: page.seo?.href,
+                    state: {
+                      breadCrumbTrailEntryView: [
+                        { label: page.name, value: page.id, seo: page.seo },
+                      ],
+                    },
+                  }}>
                   <StyledMenuTypography
                     variant="body1"
                     className="expanded-menu-bold">
@@ -56,7 +65,25 @@ const AllCategoriesExpandedMenu: React.FC<AllCategoriesExpandedMenuProps> = (
                 <ul>
                   {page.children &&
                     page.children.map((page2: any, i: number) => (
-                      <Link key={page2.id} to={page2.seo?.href}>
+                      <Link
+                        key={page2.id}
+                        to={{
+                          pathname: page2.seo?.href,
+                          state: {
+                            breadCrumbTrailEntryView: [
+                              {
+                                label: page.name,
+                                value: page.id,
+                                seo: page.seo,
+                              },
+                              {
+                                label: page2.name,
+                                value: page2.id,
+                                seo: page2.seo,
+                              },
+                            ],
+                          },
+                        }}>
                         <StyledMenuTypography
                           variant="body2"
                           className="expanded-menu-sub-links">

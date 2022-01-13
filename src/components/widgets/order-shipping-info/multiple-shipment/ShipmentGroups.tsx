@@ -38,6 +38,7 @@ const ShippingGroupSummary = ({ index, group }: ShipmentGroupSummaryProps) => {
   const item = group[0];
   return (
     <StyledBox
+      className="shipment-group-summary-text"
       display="flex"
       flexDirection="row"
       alignItems="flex-start"
@@ -140,6 +141,7 @@ const ShipmentGroups: React.FC<ShipmentGroupsProps> = (
                     {...{ group, index }}></ShippingGroupSummary>
                 </StyledAccordionSummary>
                 <StyledAccordionDetails
+                  style={{ flexDirection: "column" }}
                   id={`group-${index}-details`}
                   className="shipment-group-details">
                   <OrderItemTable

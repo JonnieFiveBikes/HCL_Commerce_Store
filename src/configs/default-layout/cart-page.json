@@ -1,0 +1,23 @@
+{
+  "layout": {
+    "id": "13005",
+    "name": "CartPageLayout",
+    "containerName": "cart-page",
+    "slots": [
+      {
+        "id": "2",
+        "widgets": [
+          {
+            "id": "3518",
+            "name": "CartPageProductRecommendation",
+            "widgetName": "e-marketing-spot-widget",
+            "sequence": 0.0,
+            "properties": {
+              "emsName": "ShoppingCartRight_CatEntries"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

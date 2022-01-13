@@ -65,7 +65,7 @@ const RegistrationB2BLayout: React.FC<RegistrationB2BContext> = (
                   <StyledGrid
                     container
                     direction="column"
-                    justify="center"
+                    justifyContent="center"
                     alignItems="center"
                     spacing={1}>
                     <StyledGrid item>
@@ -105,7 +105,7 @@ const RegistrationB2BLayout: React.FC<RegistrationB2BContext> = (
                   <StyledGrid
                     container
                     direction="column"
-                    justify="center"
+                    justifyContent="center"
                     alignItems="center"
                     spacing={1}>
                     <StyledGrid item>

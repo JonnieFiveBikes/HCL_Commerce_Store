@@ -24,6 +24,8 @@ import {
   FETCH_ORDER_ITEM_DETAILS_SUCCESS_ACTION,
   FETCH_ORDER_DETAILS_FAIL_ACTION,
 } from "../actions/orderDetails";
+import storeUtil from "../../utils/storeUtil";
+import { get } from "lodash-es";
 
 /**
  * Order details reducer. Order details state store all order details per user session.
@@ -61,8 +63,9 @@ const orderDetailsReducer = createReducer(
     builder.addCase(
       FETCH_ORDER_DETAILS_SUCCESS_ACTION,
       (state: OrderDetailsMapReducerState | any, action: AnyAction) => {
-        const { orderId } = action.payload;
-        state[orderId] = action.payload;
+        const { orderId, orderItem } = action.payload;
+        const { detailedOrderItems } = orderItem ? get(state, orderId, {}) : [];
+        state[orderId] = { ...action.payload, detailedOrderItems };
       }
     );
 
@@ -70,26 +73,27 @@ const orderDetailsReducer = createReducer(
       FETCH_ORDER_ITEM_DETAILS_SUCCESS_ACTION,
       (state: OrderDetailsMapReducerState | any, action: AnyAction) => {
         const { orderId, items } = action.payload;
-        const orderItems: any[] = state[orderId].orderItem;
+        const newAsMap = storeUtil.toMap(items ?? [], "id");
+        let detailedOrderItems: any[] = [];
+
         if (items.length && items.length > 0) {
-          const detailedOrderItems = orderItems.map((item) => {
-            let obj = {
+          const orderItems: any[] = state[orderId].orderItem;
+          detailedOrderItems = orderItems.map((item) => {
+            const obj = {
               ...item,
               name: "",
               thumbnail: "",
               attributes: [],
               seo: { href: "" },
             };
-            const filteredItem =
-              (items as any[]).filter(
-                (i) => String(i.id) === String(item.productId)
-              )[0] || {};
-            const { id, name, thumbnail, attributes, seo } = filteredItem;
-            Object.assign(obj, { id, name, thumbnail, attributes, seo });
-            return obj;
+            const newItem = newAsMap[item.productId];
+            const { id, name, thumbnail, attributes, seo } = newItem;
+            return { ...obj, id, name, thumbnail, attributes, seo };
           });
-          Object.assign(state[orderId], { detailedOrderItems });
         }
+
+        // now update the detailed-items
+        Object.assign(state[orderId], { detailedOrderItems });
       }
     );
     builder.addCase(

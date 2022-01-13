@@ -22,6 +22,12 @@ import * as ACTIONS from "../action-types/order";
 import initStates from "./initStates";
 import { OrderReducerState } from "./reducerStateInterface";
 import { LOGOUT_SUCCESS_ACTION } from "../actions/user";
+import {
+  FETCH_ORDERS_ERROR_ACTION,
+  FETCH_ORDERS_SUCCESS_ACTION,
+  FETCH_ALLOWABLE_SHIPMODES_SUCCESS_ACTION,
+  FETCH_ALLOWABLE_PAYMETHODS_S_ACTION,
+} from "../actions/order";
 
 /**
  * Order reducer
@@ -200,6 +206,141 @@ const orderReducer = createReducer(initStates.order, (builder) => {
   );
   builder.addCase(LOGOUT_SUCCESS_ACTION, resetCart);
   builder.addCase(ACTIONS.CART_RESET_REQUESTED, resetCart);
+  builder.addCase(
+    FETCH_ORDERS_SUCCESS_ACTION,
+    (state: OrderReducerState, action: AnyAction) => {
+      state.listOfOrders = action.response || [];
+    }
+  );
+  builder.addCase(
+    FETCH_ORDERS_ERROR_ACTION,
+    (state: OrderReducerState, action: AnyAction) => {
+      state.listOfOrders = [];
+    }
+  );
+  builder.addCase(
+    FETCH_ALLOWABLE_SHIPMODES_SUCCESS_ACTION,
+    (state: OrderReducerState, action: AnyAction) => {
+      state.allowableShipModes = action.payload.modes ?? [];
+    }
+  );
+  builder.addCase(
+    ACTIONS.SET_ACTIVE_INPROGRESS_ORDER,
+    (state: OrderReducerState, action: AnyAction) => {
+      state.activeInprogressOrder = action.payload.order;
+    }
+  );
+  builder.addCase(
+    ACTIONS.RESET_ACTIVE_INPROGRESS_ORDER,
+    (state: OrderReducerState, action: AnyAction) => {
+      state.activeInprogressOrder = null;
+    }
+  );
+  builder.addCase(
+    ACTIONS.FETCH_ACTIVE_INPROGRESS_ORDER_ITEM_SUCCESS,
+    (state: OrderReducerState, action: AnyAction) => {
+      state.cart = action.payload.orderDetails;
+      const checkInventory = action.payload.checkInventory;
+      const newCatentries = action.payload.catentries;
+      const orderItems = action.payload.orderDetails.orderItem;
+      let count = 0;
+      if (orderItems) {
+        count = orderItems.reduce(
+          (c: number, item: any) => +item.quantity + c,
+          0
+        );
+      }
+      state.numItems = count;
+
+      let newOrderItems: any[] = [];
+      let disableRecurringOrder = false;
+      let disableCheckout = false;
+      if (orderItems && orderItems.length > 0) {
+        let catentries = state.catentries;
+
+        if (newCatentries !== undefined) {
+          catentries = newCatentries;
+          state.catentries = newCatentries;
+        }
+
+        newOrderItems = [];
+        orderItems.forEach((item: any, index: number) => {
+          if (checkInventory) {
+            if (
+              item.orderItemInventoryStatus !== INVENTORY_STATUS.available &&
+              item.orderItemInventoryStatus !== INVENTORY_STATUS.allocated
+            ) {
+              disableCheckout = true;
+            }
+          }
+          let obj = {
+            ...item,
+          };
+          const catentryId = item.productId;
+          if (catentries != null) {
+            const catentry = catentries[catentryId];
+            if (catentry !== undefined) {
+              if (catentry.name !== undefined) {
+                obj["name"] = catentry.name;
+              }
+              if (catentry.thumbnail !== undefined) {
+                obj["thumbnail"] = catentry.thumbnail;
+              }
+              if (catentry.attributes !== undefined) {
+                obj["attributes"] = catentry.attributes;
+              }
+              if (catentry.seo !== undefined) {
+                obj["seo"] = catentry.seo;
+              }
+              if (catentry.disallowRecurringOrder !== undefined) {
+                obj["disallowRecurringOrder"] = catentry.disallowRecurringOrder;
+                if (catentry.disallowRecurringOrder === "1") {
+                  disableRecurringOrder = true;
+                }
+              }
+              if (catentry.parentCatalogGroupID !== undefined) {
+                obj["parentCatalogGroupID"] = catentry.parentCatalogGroupID;
+              }
+            }
+          }
+          newOrderItems.push(obj);
+        });
+
+        state.isCheckoutDisabled = disableCheckout;
+        state.isRecurringOrderDisabled = disableRecurringOrder;
+      }
+      state.orderItems = newOrderItems;
+      state.isFetching = false;
+    }
+  );
+  builder.addCase(
+    ACTIONS.FETCH_ACTIVE_INPROGRESS_ORDER_ITEM_ERROR,
+    (state: OrderReducerState, action: AnyAction) => {
+      state.activeInprogressOrder = null;
+      if (
+        action.error &&
+        action.error.response &&
+        action.error.response.status &&
+        action.error.response.status === NOT_FOUND
+      ) {
+        state.cart = null;
+        state.numItems = 0;
+        state.orderItems = [];
+      }
+      state.isCheckoutDisabled = true;
+      state.isFetching = false;
+    }
+  );
+
+  builder.addCase(
+    FETCH_ALLOWABLE_PAYMETHODS_S_ACTION,
+    (state: OrderReducerState, action: AnyAction) => {
+      const m = action.payload.methods ?? [];
+      state.allowablePaymethods = m.filter(
+        ({ policyName: p }) => PAYMENT.policies[p]
+      );
+    }
+  );
 });
 
 function resetCart(state: OrderReducerState, action: AnyAction) {
@@ -217,6 +358,10 @@ function resetCartInfo(state: OrderReducerState, action: AnyAction) {
   state.payMethods = [];
   state.isRecurringOrderDisabled = false;
   state.isFetching = false;
+  state.activeInprogressOrder = null;
+  state.listOfOrders = [];
+  state.allowableShipModes = [];
+  state.allowablePaymethods = [];
 }
 
 export default orderReducer;

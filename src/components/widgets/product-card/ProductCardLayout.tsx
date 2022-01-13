@@ -17,11 +17,11 @@ import getDisplayName from "react-display-name";
 import { commonUtil } from "@hcl-commerce-store-sdk/utils";
 import { useSite } from "../../../_foundation/hooks/useSite";
 import productsService from "../../../_foundation/apis/search/products.service";
+import { useBreadcrumbTrail } from "../../../_foundation/hooks/use-breadcrumb-trail";
 //Custom libraries
 import { DEFINING, OFFER, EMPTY_STRING } from "../../../constants/common";
 //Redux
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
-import { breadcrumbsSelector } from "../../../redux/selectors/catalog";
 //UI
 import { StyledSwatch } from "@hcl-commerce-store-sdk/react-component";
 import { StyledProductCard } from "@hcl-commerce-store-sdk/react-component";
@@ -51,6 +51,7 @@ export default function ProductCard(props: ProductCardProps) {
   const thumbnail: string = product.thumbnail;
   const productAttributes: any = product.attributes ? product.attributes : [];
   const seoUrl: string = product.seo ? product.seo.href : "";
+  const link: any = product.link;
 
   const [productData, setProductData] = useState<any>(null);
   const [skuThumbnail, setSkuThumbnail] = useState<string>(thumbnail);
@@ -150,7 +151,7 @@ export default function ProductCard(props: ProductCardProps) {
 
   productAttributes.map((attribute: any, index: number) => {
     if (attribute.usage === DEFINING && attribute.values) {
-      attribute.values.map((attributeValue: any, index2: number) => {
+      attribute.values?.map((attributeValue: any, index2: number) => {
         if (
           attributeValue.image1path !== undefined &&
           Array.isArray(attributeValue.image1path) &&
@@ -192,7 +193,7 @@ export default function ProductCard(props: ProductCardProps) {
   });
 
   //GA360
-  const breadcrumbs = useSelector(breadcrumbsSelector);
+  const { breadcrumbs } = useBreadcrumbTrail();
   const gaProductClick = () => {
     let listerCategoryFlag = breadcrumbs.length > 0 ? true : false;
     AsyncCall.sendProductClickEvent(
@@ -220,6 +221,7 @@ export default function ProductCard(props: ProductCardProps) {
   return (
     <StyledProductCard
       seoUrl={seoUrl}
+      link={link}
       catentryId={catentryId}
       swatches={swatches}
       thumbnail={skuThumbnail}

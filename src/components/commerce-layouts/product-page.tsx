@@ -12,6 +12,5 @@
 import { ProductPageLayout } from "@hcl-commerce-store-sdk/react-component";
 //foundation libraries
 import { withLayout } from "../../_foundation/hooks/use-layout";
-import { withProductContext } from "../../_foundation/context/product-context";
 
-export default withProductContext(withLayout(ProductPageLayout));
+export default withLayout(ProductPageLayout);

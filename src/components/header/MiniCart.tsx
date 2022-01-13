@@ -24,6 +24,8 @@ import {
   StyledHeaderActions,
 } from "@hcl-commerce-store-sdk/react-component";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { useWinDimsInEM } from "../../_foundation/hooks/use-win-dims-in-em";
+import { S_MOBILE_W, XS_MOBILE_W } from "../../constants/common";
 
 interface MiniCartProps {
   id: string;
@@ -43,6 +45,10 @@ const MiniCart = React.forwardRef<HTMLButtonElement | null, MiniCartProps>(
     const { t } = useTranslation();
     const numItems = useSelector(numItemsSelector);
     const [arrowRef, setArrowRef] = useState<any>(null);
+    const { w } = useWinDimsInEM();
+    const xSmall = XS_MOBILE_W;
+    const small = S_MOBILE_W;
+    const offset = w <= xSmall ? { offset: "-48" } : undefined;
 
     return (
       <>
@@ -66,8 +72,11 @@ const MiniCart = React.forwardRef<HTMLButtonElement | null, MiniCartProps>(
           open={open}
           anchorEl={ref?.current}
           onClose={handleClose}
-          placement="bottom-end"
+          placement={
+            w <= xSmall ? "bottom-start" : w <= small ? "bottom" : "bottom-end"
+          }
           modifiers={{
+            offset,
             flip: {
               enabled: false,
             },
@@ -76,7 +85,7 @@ const MiniCart = React.forwardRef<HTMLButtonElement | null, MiniCartProps>(
               boundariesElement: "scrollParent",
             },
             hide: {
-              enabled: true,
+              enabled: false,
             },
             arrow: {
               enabled: true,

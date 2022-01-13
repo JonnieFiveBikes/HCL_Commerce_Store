@@ -1,0 +1,172 @@
+{
+  "resourceId": "https://localhost:443/wcs/resources/store/11/person/@self/checkoutProfile",
+  "CheckoutProfile": [
+    {
+      "shipping_email1": "a@a.com",
+      "shipping_addressLine": ["test 1", "a", ""],
+      "shipping_addressId": "3074457358731529534",
+      "shipping_state": "AL",
+      "shipping_modeId": "14001",
+      "billing_lastName": "test 1",
+      "shipping_city": "test 1",
+      "shipping_addressType": "Shipping",
+      "shipping_lastName": "test 1",
+      "shipping_zipCode": "12345",
+      "billing_addressType": "Billing",
+      "billing_addressLine": ["test 1", "a"],
+      "billing_state": "AL",
+      "shipping_nickName": "HCL Admin Profile A ",
+      "billing_primary": "false",
+      "billing_addressId": "3074457358730643390",
+      "shipping_firstName": "test 1",
+      "billing_country": "US",
+      "billing_firstName": "test 1",
+      "shipping_primary": "false",
+      "billing_email1": "a@a.com",
+      "billing_city": "test 1",
+      "protocolData": [
+        {
+          "name": "expire_month",
+          "value": "09"
+        },
+        {
+          "name": "expire_year",
+          "value": "2021"
+        },
+        {
+          "name": "cc_brand",
+          "value": "MasterCard"
+        },
+        {
+          "name": "account",
+          "value": "************1111"
+        },
+        {
+          "name": "payMethodId",
+          "value": "AMEX"
+        },
+        {
+          "name": "payment_method",
+          "value": "AMEX"
+        }
+      ],
+      "billing_zipCode": "12345",
+      "xchkout_ProfileName": "HCL Admin Profile A ",
+      "xchkout_ProfileId": "5250324331",
+      "billing_nickName": "Default_Billing_1",
+      "shipping_country": "US"
+    },
+    {
+      "shipping_email1": "b@b.com",
+      "shipping_addressLine": ["320 broadridge street", "a", ""],
+      "shipping_addressId": "3074457358731529534",
+      "shipping_state": "AL",
+      "shipping_modeId": "14504",
+      "billing_lastName": "Doe",
+      "shipping_city": "NewYork",
+      "shipping_addressType": "Shipping",
+      "shipping_lastName": "Doe",
+      "shipping_zipCode": "12345",
+      "billing_addressType": "Billing",
+      "billing_addressLine": ["test 1", "a"],
+      "billing_state": "AL",
+      "shipping_nickName": "Default_Shipping_1",
+      "billing_primary": "false",
+      "billing_addressId": "3074457358730643390",
+      "shipping_firstName": "John",
+      "billing_country": "US",
+      "billing_firstName": "test 1",
+      "shipping_primary": "false",
+      "billing_email1": "a@a.com",
+      "billing_city": "test 1",
+      "protocolData": [
+        {
+          "name": "expire_month",
+          "value": "09"
+        },
+        {
+          "name": "expire_year",
+          "value": "2021"
+        },
+        {
+          "name": "cc_brand",
+          "value": "MasterCard"
+        },
+        {
+          "name": "account",
+          "value": "************2222"
+        },
+        {
+          "name": "payMethodId",
+          "value": "MasterCard"
+        },
+        {
+          "name": "payment_method",
+          "value": "MasterCard"
+        }
+      ],
+      "billing_zipCode": "12345",
+      "xchkout_ProfileName": "HCL Admin Profile B",
+      "xchkout_ProfileId": "5250324331",
+      "billing_nickName": "Default_Billing_1",
+      "shipping_country": "US"
+    },
+    {
+      "shipping_email1": "b@b.com",
+      "shipping_addressLine": ["320 broadridge street", "a", ""],
+      "shipping_addressId": "3074457358731529534",
+      "shipping_state": "AL",
+      "shipping_modeId": "14505",
+      "billing_lastName": "Doe",
+      "shipping_city": "NewYork",
+      "shipping_addressType": "Shipping",
+      "shipping_lastName": "Doe",
+      "shipping_zipCode": "12345",
+      "billing_addressType": "Billing",
+      "billing_addressLine": ["test 1", "a"],
+      "billing_state": "AL",
+      "shipping_nickName": "Default_Shipping_1",
+      "billing_primary": "false",
+      "billing_addressId": "3074457358730643390",
+      "shipping_firstName": "John",
+      "billing_country": "US",
+      "billing_firstName": "test 1",
+      "shipping_primary": "false",
+      "billing_email1": "a@a.com",
+      "billing_city": "test 1",
+      "protocolData": [
+        {
+          "name": "expire_month",
+          "value": "09"
+        },
+        {
+          "name": "expire_year",
+          "value": "2021"
+        },
+        {
+          "name": "cc_brand",
+          "value": "MasterCard"
+        },
+        {
+          "name": "account",
+          "value": "************3333"
+        },
+        {
+          "name": "payMethodId",
+          "value": "VISA"
+        },
+        {
+          "name": "payment_method",
+          "value": "VISA"
+        }
+      ],
+      "billing_zipCode": "12345",
+      "xchkout_ProfileName": "HCL Admin Profile C",
+      "xchkout_ProfileId": "5250324331",
+      "billing_nickName": "Default_Billing_1",
+      "shipping_country": "US"
+    }
+  ],
+  "resourceName": "person",
+  "userId": "3005"
+}

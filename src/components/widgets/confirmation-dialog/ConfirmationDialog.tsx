@@ -17,7 +17,10 @@ import {
   CONFIRMATION_HANDLED_ACTION,
 } from "../../../redux/actions/confirmation";
 import { useDispatch, useSelector } from "react-redux";
-import { confirmationSelector } from "../../../redux/selectors/confirmation";
+import {
+  confirmationCommsSelector,
+  confirmationSelector,
+} from "../../../redux/selectors/confirmation";
 //UI
 import {
   StyledDialog,
@@ -31,11 +34,18 @@ import {
 function ConfirmationDialog() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { key, messageParameters, title, okAction, cancelAction } = useSelector(
-    confirmationSelector
-  );
+  const {
+    key,
+    messageParameters,
+    title,
+    okAction,
+    cancelAction,
+    labels,
+    template,
+  } = useSelector(confirmationSelector);
+  const comms = useSelector(confirmationCommsSelector);
   const open = title ? true : false;
-  const message = t(key, messageParameters);
+  const message = template ? null : t(key, messageParameters);
   const confirmButton = React.createRef<HTMLInputElement>();
   const handleEntering = () => {
     if (confirmButton.current != null) {
@@ -44,33 +54,46 @@ function ConfirmationDialog() {
   };
   const handleCancel = () => {
     if (cancelAction) {
-      cancelAction();
+      cancelAction({ ...comms });
     }
     dispatch(CONFIRMATION_CANCELLED_ACTION({}));
   };
   const handleConfirm = () => {
     if (okAction) {
-      okAction();
+      okAction({ ...comms });
     }
     dispatch(CONFIRMATION_HANDLED_ACTION({}));
   };
+  const T = template;
   return (
     <>
       <StyledDialog
-        disableBackdropClick
+        TransitionProps={{ onEntering: handleEntering }}
         disableEscapeKeyDown
-        onEntering={handleEntering}
         maxWidth="sm"
+        onClose={(e, r) => r !== "backdropClick" && handleCancel()}
         open={open}>
         <StyledDialogTitle title={t(title)} onClick={handleCancel} />
         <StyledDialogContent>
-          <StyledTypography variant="body1">{t(message)}</StyledTypography>
+          {template ? (
+            T
+          ) : (
+            <StyledTypography variant="body1">{message}</StyledTypography>
+          )}
           <StyledDialogActions>
-            <StyledButton color="secondary" onClick={handleCancel}>
-              {t("Confirmation.CancelButton")}
+            <StyledButton
+              color="secondary"
+              disabled={comms?.cancelDisabled}
+              onClick={handleCancel}>
+              {t(labels ? labels.cancel : "Confirmation.CancelButton")}
             </StyledButton>
-            <StyledButton color="primary" onClick={handleConfirm}>
-              <span ref={confirmButton}>{t("Confirmation.SubmitButton")}</span>
+            <StyledButton
+              color="primary"
+              disabled={comms?.okDisabled}
+              onClick={handleConfirm}>
+              <span ref={confirmButton}>
+                {t(labels ? labels.submit : "Confirmation.SubmitButton")}
+              </span>
             </StyledButton>
           </StyledDialogActions>
         </StyledDialogContent>

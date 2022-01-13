@@ -103,7 +103,9 @@ const RecurringOrderInfo: React.FC<RecurringOrderInfoProps> = (props: any) => {
           <StyledTypography variant="overline" gutterBottom>
             {t("RecurringOrderInfo.Labels.OrderSchedule")}
           </StyledTypography>
-          <StyledTypography>{orderScheduleDisplayString}</StyledTypography>
+          <StyledTypography className="break-word">
+            {orderScheduleDisplayString}
+          </StyledTypography>
         </StyledGrid>
       )}
       {recurringOrderNumber && (
@@ -111,7 +113,9 @@ const RecurringOrderInfo: React.FC<RecurringOrderInfoProps> = (props: any) => {
           <StyledTypography variant="overline" gutterBottom>
             {t("RecurringOrderInfo.Labels.RecurringOrderNumber")}
           </StyledTypography>
-          <StyledTypography>{recurringOrderNumber}</StyledTypography>
+          <StyledTypography className="break-word">
+            {recurringOrderNumber}
+          </StyledTypography>
         </StyledGrid>
       )}
       {startDateDisplay && (
@@ -119,7 +123,9 @@ const RecurringOrderInfo: React.FC<RecurringOrderInfoProps> = (props: any) => {
           <StyledTypography variant="overline" gutterBottom>
             {t("RecurringOrderInfo.Labels.StartDate")}
           </StyledTypography>
-          <StyledTypography>{startDateDisplay}</StyledTypography>
+          <StyledTypography className="break-word">
+            {startDateDisplay}
+          </StyledTypography>
         </StyledGrid>
       )}
       {nextDelivery && (
@@ -127,7 +133,9 @@ const RecurringOrderInfo: React.FC<RecurringOrderInfoProps> = (props: any) => {
           <StyledTypography variant="overline" gutterBottom>
             {t("RecurringOrderInfo.Labels.NextDelivery")}
           </StyledTypography>
-          <StyledTypography>{nextDelivery}</StyledTypography>
+          <StyledTypography className="breakWord">
+            {nextDelivery}
+          </StyledTypography>
         </StyledGrid>
       )}
     </>

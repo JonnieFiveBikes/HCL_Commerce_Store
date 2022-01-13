@@ -9,11 +9,12 @@
  *---------------------------------------------------
  */
 //Standard libraries
-import { useEffect, ChangeEvent, MouseEvent, useRef, useState } from "react";
+import { useEffect, ChangeEvent, MouseEvent, useRef, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 //Foundation libraries
 import { useSite } from "./useSite";
+import { useBreadcrumbTrail } from "./use-breadcrumb-trail";
 //Custom libraries
 import getDisplayName from "react-display-name";
 import { PRODUCT_LIST_FIELDS, PAGINATION_CONFIGS } from "../../configs/catalog";
@@ -29,7 +30,7 @@ import {
   selectedFacetLimitsSelector,
   selectedFacetPricesSelector,
   selectedSortOptionSelector,
-  breadcrumbsSelector,
+  selectFacetRemoveSelector,
 } from "../../redux/selectors/catalog";
 import * as catalogActions from "../../redux/actions/catalog";
 import { currentContractIdSelector } from "../../redux/selectors/contract";
@@ -42,14 +43,14 @@ export const useProductGridLayout = (props: any) => {
   const dispatch = useDispatch();
   let cancels: Canceler[] = [];
   const { mySite } = useSite();
-  const productList = useSelector(productListSelector);
+  const _productList = useSelector(productListSelector);
   const productListTotal = useSelector(productListTotalSelector);
-  const [selectFacetRemove, setSelectFacetRemove] = useState(false);
   const priceMode = useSelector(priceModeSelector);
   const selectedFacetLimits = useSelector(selectedFacetLimitsSelector);
-  const breadcrumbs = useSelector(breadcrumbsSelector);
+  const { breadcrumbs } = useBreadcrumbTrail();
   const selectedFacets = useSelector(selectedFacetsSelector);
   const selectedFacetPrices = useSelector(selectedFacetPricesSelector);
+  const selectFacetRemove: boolean = useSelector(selectFacetRemoveSelector);
   const selectedMinPrice = selectedFacetPrices.min;
   const selectedMaxPrice = selectedFacetPrices.max;
   const selectedSortOption = useSelector(selectedSortOptionSelector);
@@ -88,6 +89,29 @@ export const useProductGridLayout = (props: any) => {
   if (searchTerm !== "") {
     paramsBase["searchTerm"] = searchTerm;
   }
+
+  const productList = useMemo(() => {
+    if (breadcrumbs) {
+      return _productList.map((p: any) => {
+        const _p = {
+          ...p,
+          link: {
+            pathname: p.seo?.href,
+            state: {
+              categoryId,
+              breadCrumbTrailEntryView: [
+                ...breadcrumbs,
+                { label: p.name, value: p.id },
+              ],
+            },
+          },
+        };
+        return _p;
+      });
+    } else {
+      return _productList;
+    }
+  }, [breadcrumbs, _productList, categoryId]);
   useEffect(() => {
     if (
       mySite &&
@@ -122,7 +146,7 @@ export const useProductGridLayout = (props: any) => {
           if (productListTotal > 0) {
             AsyncCall.sendProductImpressionEvent(
               {
-                productList,
+                productList: _productList,
                 listerFlag: false,
                 breadcrumbs,
               },
@@ -136,7 +160,7 @@ export const useProductGridLayout = (props: any) => {
           );
           if (productListTotal > 0) {
             AsyncCall.sendProductImpressionEvent(
-              { productList, listerFlag: true, breadcrumbs },
+              { productList: _productList, listerFlag: true, breadcrumbs },
               { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
             );
           }
@@ -144,7 +168,7 @@ export const useProductGridLayout = (props: any) => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productList]);
+  }, [_productList]);
 
   /**
    * Removes selected facet and dispatches request to get product list
@@ -291,7 +315,6 @@ export const useProductGridLayout = (props: any) => {
     selectedSortOption: string,
     states: any
   ) => {
-    setSelectFacetRemove(true);
     let parameters = { ...paramsBase };
     const selectedFacetsArray = Object.keys(selectedFacets);
     if (selectedFacetsArray.length > 0) {

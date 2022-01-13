@@ -54,8 +54,14 @@
     "Subtotal_plural": "{{count}} 件商品的小计",
     "Empty": "购物车中没有商品。",
     "Actions": {
-      "Cart": "查看完整的购物车"
-    }
+      "Cart": "查看完整的购物车",
+      "CheckOut": "结账",
+      "ViewOrderDetails": "查看订单详细信息"
+    },
+    "MyOrder": "我的订单",
+    "PrivateOrder": "私密订单",
+    "SharedOrderConributor": "共享订单（参与者）",
+    "SharedOrderAdmin": "共享订单（管理员）"
   },
   "Language": {
     "-1": "英语（美国）",
@@ -68,13 +74,19 @@
     "-8": "繁体中文",
     "-10": "日语",
     "-20": "俄语",
-    "-21": "罗马尼亚语"
+    "-21": "罗马尼亚语",
+    "-9": "韩语",
+    "-22": "波兰语",
+    "-23": "阿拉伯语"
   },
   "productDetail": {
     "Quantity": "数量",
     "QtyError": "数量必须大于或等于 1。",
     "Availability": "可用性",
     "AddToCart": "添加到购物车",
+    "AddBundleToCart": "将捆绑添加到订单",
+    "AddBundleToSharedOrder": "添加到共享订单",
+    "SelectAttributes": "选择属性",
     "Description": "描述",
     "ProductDetails": "产品详细信息",
     "Attachments": "附件",
@@ -88,12 +100,23 @@
     "any": "任何",
     "showAttributes": "显示属性",
     "attributeFilter": "属性过滤器",
-    "addToCurrentOrder": "添加到当前订单",
+    "addToCurrentOrder": "添加到订单",
+    "addToSharedOrder": "添加到共享订单",
     "SignIn": "请登录购物",
     "noproductsToDisplay": "没有产品可显示。请更改属性过滤器，然后重试。",
     "SKU": "SKU",
+    "PRODUCTSKU": "产品/SKU",
+    "SelectAnOption": "选择一个选项",
+    "Unconfigured": "未配置",
+    "Unavailable": "缺货",
+    "InStock": "有库存",
     "Price": "价格",
-    "Online_Availability": "在线可用性"
+    "Online_Availability": "在线可用性",
+    "recommendedProdTitle": "推荐的商品 ",
+    "someWithNoSkus": "列表中的一个或多个产品具有未选择的属性。请完成属性选择。",
+    "someWithNoAvlSelZero": "一个或多个所选商品没有可售库存。请将数量更改为 0 以忽略这些商品。",
+    "someWithNotEnough": "一个或多个所选商品没有足够的可售库存。请将数量更改为小于或等于当前可售库存的值。",
+    "selectSomething": "未选择任何商品。请选择至少一个商品。"
   },
   "AddressBook": {
     "AddrMsg": "添加新地址",
@@ -126,7 +149,8 @@
     },
     "Actions": {
       "Checkout": "结账",
-      "Apply": "应用"
+      "Apply": "应用",
+      "Checkout-With-Profile": "使用简档结帐"
     }
   },
   "CheckoutAddress": {
@@ -140,6 +164,7 @@
   },
   "Checkout": {
     "Title": "结账",
+    "CheckoutProfileTitle": "结帐简档",
     "Labels": {
       "shipping": "正在配送",
       "payment": "付款",
@@ -178,7 +203,9 @@
       "Quantity": "数量",
       "ShippingDetails": "配送详细信息",
       "SelectShippingAddressAndMethod": "选择配送地址和配送方式",
-      "ChangeSelection": "更改选择"
+      "ChangeSelection": "更改选择",
+      "nItemsSel": "选择了 {{ n }} 个商品",
+      "noItems": "找不到商品"
     }
   },
   "Shipping": {
@@ -335,7 +362,7 @@
     "OrderHistory": "订单历史记录",
     "RecurringOrders": "循环订单",
     "RequisitionLists": "请求列表",
-    "SavedOrders": "保存的订单",
+    "InprogressOrders": "正在处理的订单",
     "ApproveOrders": "订单审批"
   },
   "Order": {
@@ -426,7 +453,8 @@
     "PersonalInformation": "个人信息",
     "AddressBook": "地址簿",
     "OrderHistory": "订单历史记录",
-    "Wishlists": "愿望清单"
+    "Wishlists": "愿望清单",
+    "CheckoutProfiles": "结帐简档"
   },
   "AddressCard": {
     "EditButton": "编辑",
@@ -467,6 +495,55 @@
     "CancelLabel": "取消",
     "SuccessLabel": "密码更改成功",
     "OkLabel": "确定"
+  },
+  "CheckoutProfile": {
+    "ShippingInformation": "配送信息",
+    "CreateCheckoutTitle": "创建结帐简档",
+    "CreateCheckoutButton": "创建新的结帐简档",
+    "BillingInformation": "账单信息",
+    "PaymentInformation": "付款信息",
+    "ShippingMethod": "配送方式",
+    "ShipSameAsBill": "账单地址与配送地址相同",
+    "Cancel": "取消",
+    "Next": "下一步",
+    "Back": "返回",
+    "CreateProfile": "创建简档",
+    "UpdateProfile": "更新简档",
+    "Title": "结账简档选择",
+    "Label": "选择一个现有结账简档",
+    "MyAcctDesc": "管理和编辑快速结账简档以加快结账速度",
+    "Name": "结账简档名称",
+    "Edit": "编辑",
+    "Delete": "删除",
+    "NoneFound": "<0>没找到。</0><1>对不起，我们找不到该结帐简档。</1><2>请尝试其他结帐简档或<0>创建新的</0>结帐简档。</2>",
+    "NoProfiles": "找不到结帐简档。请<0>创建新的</0>结帐简档。",
+    "TitleCreate": "结帐简档",
+    "CreateMessage": "创建新的结帐简档",
+    "CreateNewButton": "新建",
+    "ShippingAddr": "配送地址",
+    "ShippingMethodDisp": "配送方式",
+    "BillingAddr": "账单地址",
+    "BillingMethod": "结算方式",
+    "EditProfile": "编辑结帐简档",
+    "ShipAsComplete": "完成后配送",
+    "confirmDelete": "确认删除",
+    "selectExisting": "请选择一个现有地址。否则，请<0>创建一个新地址</0>。",
+    "sm_Express": "快递",
+    "sm_Mail": "平邮",
+    "sm_InternationalPriority": "国际优先快递",
+    "sm_InternationalRegular": "国际普通快递",
+    "sm_PickupInStore": "到店自提",
+    "saveAddress": "保存地址",
+    "invalidProfile": "此简档无效。请编辑并选择一个新地址。",
+    "invalidProfileName": "简档名称只能包含字母数字字符（A-Z、a-z、0-9）和空格。",
+    "selectExpMonth": "选择到期月份",
+    "selectExpYear": "选择到期年份",
+    "payMethods": {
+      "VISA": "VISA 信用卡",
+      "MasterCard": "MasterCard 信用卡",
+      "AMEX": "American Express 信用卡",
+      "COD": "货到付款"
+    }
   },
   "ChildPimCategories": {
     "title": "所有 {{name}}"
@@ -509,7 +586,7 @@
     "_ERR_CMD_INVALID_PARAM_5060": "在“姓氏”字段中输入姓氏。",
     "_ERR_CMD_INVALID_PARAM_5066": "在“名字”字段中输入名字。",
     "_ERR_CMD_INVALID_PARAM_5210": "在“电子邮件”字段中输入电子邮件地址。",
-    "_ERR_CMD_INVALID_PARAM_2190": "验证码的值不正确。",
+    "_ERR_CMD_INVALID_PARAM_2190": "您输入的验证码不正确。请检查您收到的验证码，然后重试。",
     "_ERR_CMD_INVALID_PARAM_2080": "您输入的验证密码与新密码不匹配。",
     "_ERR_CMD_INVALID_PARAM": "注册期间发生错误。请稍后重试或联系商店以寻求帮助。",
     "_ERR_LOGONID_ALREDY_EXIST_2030": "您输入的电子邮件已存在。请输入其他电子邮件，然后重试。",
@@ -596,13 +673,15 @@
     "_ERR_REMOTE_EXCEPTION_CMN0412E": "处理您的请求时发生系统问题。请联系商店获取帮助。",
     "_ERR_REG_DUPE_ID_CMN0114S": "您输入的登录标识已存在。请输入其他登录标识，然后重试。",
     "_ERR_FINDER_EXCEPTION_CMN0411E": "您输入的电子邮件无效。请检查您的输入，然后重试。",
-    "_ERR_CMD_INVALID_PARAM_2195": "您输入的验证码无效。请检查您的输入，然后重试。",
+    "_ERR_CMD_INVALID_PARAM_2195": "您输入的验证码已过期。如果要更改密码，您需要请求新的验证码。",
     "B2B": {
       "_ERR_FINDER_EXCEPTION_CMN0411E": "您输入的登录标识无效。请检查您的输入，然后重试。",
       "_ERR_LOGONID_ALREDY_EXIST_2030": "您输入的登录标识已存在。请输入其他登录标识，然后重试。",
-      "_ERR_BAD_PARMS_2010": "您输入的登录标识无效。请检查您的输入，然后重试。"
+      "_ERR_BAD_PARMS_2010": "您输入的登录标识无效。请检查您的输入，然后重试。",
+      "_ERR_INVALID_NAME_CMN1652E": "名称为“{{0}}”的对象已存在。请选择其他名称，然后重试。"
     },
-    "_ERR_PASSWORD_EXPIRED_2170": "您当前的密码已过期。 请输入新密码。"
+    "_ERR_PASSWORD_EXPIRED_2170": "您当前的密码已过期。 请输入新密码。",
+    "_ERR_INVALID_NAME_CMN1652E": "名称为“{{0}}”的对象已存在。请选择其他名称，然后重试。"
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "商品已添加到购物车。",
@@ -613,7 +692,16 @@
     "EDIT_ADDRESS_SUCCESS": "已成功更新地址“{{0}}”",
     "DELETE_ADDRESS_SUCCESS": "已成功删除地址“{{0}}”",
     "RESEND_VERIFICATION_CODE": "验证码已成功发送到您的电子邮件地址",
-    "PASSWORD_RESET_SUCCESS": "密码已成功重置"
+    "PASSWORD_RESET_SUCCESS": "密码已成功重置",
+    "CREATE_CHECKOUT_PROFILE_SUCCESS": "已成功创建结账简档“{{0}}”",
+    "COPY_ORDER_SUCCESS": "已成功复制订单。",
+    "CREATE_ORDER_SUCCESS": "已成功创建订单“{{0}}”。",
+    "DELETE_ORDER_SUCCESS": "已成功删除订单“{{0}}”。",
+    "DeletedCheckoutProfile": "已成功删除结账简档“{{ 0 }}”",
+    "UpdatedCheckoutProfile": "已成功更新结账简档“{{ 0 }}”",
+    "deletedSuccessfully": "已从订单中成功删除 {{ n }} 个商品",
+    "addedItemSuccessfully": "已将 {{ v }} 成功添加到当前订单中",
+    "addedNSuccessfully": "已将 {{ v }} 个商品成功添加到当前订单中"
   },
   "notFound": {
     "notFound": "<p>抱歉，我们找不到您想要的商品.</p>\n"
@@ -629,7 +717,8 @@
     "Actions": {
       "Back": "返回“付款详细信息”",
       "Next": "下订单",
-      "NextRecurringOrder": "下循环订单"
+      "NextRecurringOrder": "下循环订单",
+      "BackCart": "返回到结账购物车"
     },
     "Labels": {
       "PaymentDetails": "付款详细信息",
@@ -668,8 +757,8 @@
     "Title": "订单管理",
     "OrderHistoryText": "订单历史记录",
     "OrderHistoryDescription": "查看已下达的订单和待批准的订单，以及各个订单的详细信息。",
-    "SavedOrdersText": "保存的订单",
-    "SavedOrdersDescription": "查看和管理保存的订单。",
+    "InprogressOrdersText": "正在处理的订单",
+    "InprogressOrdersDescription": "查看和管理正在处理的订单",
     "RecurringOrdersText": "循环订单",
     "RecurringOrdersDescription": "查看和管理循环订单清单",
     "ApproveOrdersText": "订单审批",
@@ -704,12 +793,19 @@
       "Total": "总计"
     }
   },
+  "PaymentMethodContainer": {
+    "Actions": {
+      "Cancel": "取消",
+      "Done": "完成",
+      "SaveAndAdd": "保存并添加其他付款方式"
+    }
+  },
   "PaymentInfoCard": {
     "Title": "付款方式 {{number}}",
     "Labels": {
       "CreditCard": "信用卡：",
       "AmountToPay": "应付金额",
-      "ExpiryDate": "到期日：",
+      "ExpiryDate": "到期日：{{month}}/{{year}}",
       "BillingAddress": "账单地址"
     },
     "Actions": {
@@ -718,10 +814,15 @@
     }
   },
   "PaymentInfoList": {
-    "Title": "付款方式 - 订单总额：",
+    "Title": {
+      "PayMethod": "付款方式",
+      "WithOrderTotal": "付款方式 - 订单总额： "
+    },
     "Msgs": {
       "PayMethodRequired": "至少需要一种付款方式。",
-      "InsufficientPayment": "所有付款方式的总额必须涵盖订单总额 {{grandTotal}}。"
+      "InsufficientPayment": "所有付款方式的总额必须涵盖订单总额 {{grandTotal}}。",
+      "CardDetailsUpdate": "请再次检查并更新卡的详细信息。",
+      "PayMethodNote": "注意：只有在单击“查看订单”按钮时才会保存付款方式。"
     },
     "Actions": {
       "AddPayMethod": "添加付款方式"
@@ -731,8 +832,8 @@
     "Title": "付款方式",
     "Msgs": {
       "CreditCard": "安全在线支付。接受的信用卡：{{cards}}",
-      "CVV": "签名条上的后三位数",
-      "InvalidCardNumber": "卡号或卡类型无效",
+      "CVV": "请输入有效的 CVV 代码",
+      "InvalidCardNumber": "请输入有效的信用卡号",
       "InvalidFormat": "无效格式"
     },
     "Labels": {
@@ -743,7 +844,9 @@
       "CVV": "CVV 代码",
       "OrderTotal": "订单总计",
       "RemainingAmount": "剩余应付金额",
-      "AmountToPay": "应付金额"
+      "AmountToPay": "应付金额",
+      "ExpiryMonth": "到期月份",
+      "ExpiryYear": "到期年份"
     },
     "Actions": {
       "PayRemaining": "支付剩余金额"
@@ -958,6 +1061,12 @@
       "EveryThreeWeeks": "每 3 周",
       "EveryFourWeeks": "每 4 周"
     },
+    "languagePopUp": {
+      "Title": "是否更改语言？",
+      "Message": "是否要将语言更改为 {{ language }}？",
+      "Yes": "是",
+      "No": "否"
+    },
     "currency": {
       "ROL": "罗马尼亚列伊",
       "RON": "罗马尼亚列伊",
@@ -1009,6 +1118,67 @@
       "-9": "韩语",
       "-22": "波兰语",
       "-23": "阿拉伯语"
+    }
+  },
+  "InprogressOrders": {
+    "Title": "正在处理的订单",
+    "CreateNewOrder": "创建新订单",
+    "NewOrderName": "新订单名称",
+    "CreateOrder": "创建订单",
+    "PrivateOrder": "私密订单",
+    "SharedOrder": "共享订单",
+    "Columns": {
+      "Active": "有效",
+      "OrderId": "订单标识",
+      "Name": "名称",
+      "LastUpdated": "上次更新日期",
+      "TotalPrice": "总价",
+      "Type": "类型",
+      "Actions": "操作"
+    },
+    "Status": {
+      "ORD": "私密",
+      "SHR": "共享"
+    },
+    "DeleteDialogTitle": "删除订单",
+    "DeleteDialogHeading": "是否要删除此订单？",
+    "CopyTitle": "复制订单",
+    "CopyMessage": "是否要复制此订单？",
+    "CurrentCart": "{{ orderId }}（当前购物车）",
+    "InvalidOrderName": "订单名称只能包含字母数字字符（A-Z、a-z、0-9）和空格。",
+    "searchPh": "搜索标识或描述",
+    "NotActiveOrderMessage": "订单需要有效才能添加产品"
+  },
+  "InprogressItems": {
+    "orderItem": "订单商品",
+    "creationDate": "创建日期",
+    "quantity": "数量",
+    "contributor": "参与者",
+    "each": "每个",
+    "actions": "操作",
+    "inprogressOrders": "正在处理的订单",
+    "createdBy": "创建者",
+    "lastUpdated": "上次更新日期",
+    "totalPrice": "总价",
+    "visibility": "共享列表",
+    "orderType_SHR": "共享",
+    "orderType_ORD": "私密",
+    "proceed": "去结账",
+    "addProds": "添加产品",
+    "privateList": "私密列表",
+    "sharedList": "共享列表",
+    "nProductsSel": "选择了 {{ n }} 个产品",
+    "addSelToCart": "将所选商品添加到购物车",
+    "deleteSelected": "删除所选项",
+    "noItems": "找不到订单商品。",
+    "nameForCopiedOrder": "请为新订单输入名称"
+  },
+  "commonTable": {
+    "ofTotalCount": "显示 {{ from }} 至 {{ to }}，共 {{ total }}",
+    "pageSz": {
+      "five": "5 行",
+      "ten": "10 行",
+      "twenty": "20 行"
     }
   }
 }

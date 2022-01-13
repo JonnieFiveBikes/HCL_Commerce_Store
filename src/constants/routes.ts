@@ -21,7 +21,7 @@ export const ORDER_CONFIRMATION = "/order-confirmation";
 export const ORDER_HISTORY = "/order-history";
 export const WISH_LIST = "/wish-list";
 export const RECURRING_ORDERS = "/recurring-orders";
-export const SAVED_ORDERS = "/saved-orders";
+export const INPROGRESS_ORDERS = "/inprogress-orders";
 export const REQUISITION_LISTS = "/requisition-lists";
 export const ORDER_DETAILS = "/order-details";
 export const ORDER_ID_PARAM = "/:orderId";
@@ -54,3 +54,12 @@ export const BUYER_MANAGEMENT = "/buyer-management";
 export const APPROVALS_MANAGEMENT = "/approvals-management";
 export const ORGANIZATION_MANAGEMENT = "/organization-management";
 export const ORDER_APPROVAL = "/order-approval";
+
+//Checkout Profile
+export const CHECKOUT_PROFILES = "/list-checkout-profiles";
+export const CHECKOUT_PROFILE_CREATE = "/checkout-profile-create";
+export const CHECKOUT_PROFILE_EDIT = "/edit-checkout-profile";
+
+// in-progress orders + items
+export const IP_ORDER_DETAILS = "/inprogress-order-details";
+export const IP_ORDER_DETAILS_ROUTE = `${IP_ORDER_DETAILS}${ORDER_ID_PARAM}`;

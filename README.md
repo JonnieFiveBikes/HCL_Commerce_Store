@@ -217,6 +217,10 @@ PLWIDGETDEF to React component mapping:
 | Product Listing page  | product-listing-page       | src/components/commerce-layouts/product-listing-page.tsx  | import { ProductListingPageLayout } from "@hcl-commerce-store-sdk/react-component"; |
 | Category Landing Page | category-landing-page      | src/components/commerce-layouts/category-landing-page.tsx | import { ProductListingPageLayout } from "@hcl-commerce-store-sdk/react-component"; |
 | Home Page             | home-page                  | src/components/commerce-layouts/home-page.tsx             | import { HomePageLayout } from "@hcl-commerce-store-sdk/react-component";           |
+| Cart Page             | cart-page                  | src/components/commerce-layouts/cart-page.tsx             | import {​​​​​​​BuiltInPageLayout}​​​​​​​​​​​​​​ from "@hcl-commerce-store-sdk/react-component";           |
+| Checkout Page         | check-out-page             | src/components/commerce-layouts/check-out-page.tsx        | import {​​​​​​​BuiltInPageLayout}​​​​​​​​​​​​​​ from "@hcl-commerce-store-sdk/react-component";           |
+| Order Confirmation Page | order-confirmation-page  | src/components/commerce-layouts/order-confirmation-page.tsx | import {​​​​​​​BuiltInPageLayout}​​​​​​​​​​​​​​ from "@hcl-commerce-store-sdk/react-component";           |
+| Bundle Page           | bundle-page                | src/components/commerce-layouts/bundle-page.tsx           | 	import { ProductPageLayout } from "@hcl-commerce-store-sdk/react-component";           |
 
 | Widget               | IDENIFIER from PLWIDGETDEF             | React store file                                                           | Import component from React-Component package                                                         |
 | -------------------- | -------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
@@ -234,12 +238,18 @@ PLWIDGETDEF to React component mapping:
 | Attribute Filter     | attribute-filter-widget                | src/components/commerce-widgets/attribute-filter-widget.tsx                | import { ProductAttributeFilterWidget } from "@hcl-commerce-store-sdk/react-component";               |
 | SKU List             | sku-list-widget                        | src/components/commerce-widgets/sku-list-widget.tsx                        | import { SkuListWidget } from "@hcl-commerce-store-sdk/react-component";                              |
 | Product Summary      | product-information-widget             | src/components/commerce-widgets/product-information-widget.tsx             | import { ProductInformationWidget } from "@hcl-commerce-store-sdk/react-component";                   |
+| Content Carousel Widget   | content-carousel-widget           | src/components/commerce-widgets/content-carousel-widget.tsx                | import { ContentCarouselWidget} from "@hcl-commerce-store-sdk/react-component";                       |
+| Bundle Widget        | 	bundle-widget                         | src/components/commerce-widgets/bundle-widget.tsx                          | import { BundleWidget, withCustomTableContext, } from "@hcl-commerce-store-sdk/react-component";      |
 
 
 
 ### Material Table
 
 We use the [Material Table](https://material-table.com/#/docs/get-started/) as a reusable table component.
+
+### React Super Responsive Table - 9.1.9+
+
+We use the [react-super-responsive-table](https://www.npmjs.com/package/react-super-responsive-table) as a reusable table component.
 
 ### Styled Components
 

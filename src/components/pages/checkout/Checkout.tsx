@@ -18,8 +18,11 @@ import { Redirect } from "react-router-dom";
 import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
+import cartService from "../../../_foundation/apis/transaction/cart.service";
 //Custom libraries
 import * as ROUTES from "../../../constants/routes";
+import { ROUTE_CONFIG } from "../../../configs/routes";
+import { RESOURCE_NAME_CART } from "../../../constants/order";
 //Redux
 import * as orderActions from "../../../redux/actions/order";
 import {
@@ -30,6 +33,7 @@ import {
 } from "../../../redux/selectors/order";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 import { guestStatusSelector } from "../../../redux/selectors/user";
+import { RESET_ACTIVE_INPROGRESS_ORDER_ACTION } from "../../../redux/actions/order";
 //UI
 import {
   StyledContainer,
@@ -40,6 +44,7 @@ import {
   StyledStepper,
   StyledProgressPlaceholder,
   StyledLink,
+  StyledBreadcrumbs,
 } from "@hcl-commerce-store-sdk/react-component";
 //GA360
 import UADataService from "../../../_foundation/gtm/ua/uaData.service";
@@ -54,7 +59,7 @@ import AsyncCall from "../../../_foundation/gtm/async.service";
 const Checkout: React.FC = (props: any) => {
   const widgetName = getDisplayName(Checkout);
 
-  const { route, location, match } = props;
+  const { location, match } = props;
   const isGuest = useSelector(guestStatusSelector);
   const contractId = useSelector(currentContractIdSelector);
   const isFetching = useSelector(isFetchingSelector);
@@ -78,10 +83,10 @@ const Checkout: React.FC = (props: any) => {
     review: ROUTES.CHECKOUT_REVIEW,
   };
   const calculateStep = () => {
-    if (match.path === location.pathname) {
+    if (location.pathname === ROUTES.CHECKOUT) {
       return 0;
     } else {
-      const path = location.pathname.substr(match.path.length + 1);
+      const path = location.pathname.substr(ROUTES.CHECKOUT.length + 1);
       return steps.indexOf(path);
     }
   };
@@ -123,11 +128,35 @@ const Checkout: React.FC = (props: any) => {
 
   useEffect(() => {
     if (mySite && contractId && defaultCurrencyID) {
-      let payload = {
-        ...payloadBase,
-        fetchCatentries: true,
-      };
-      dispatch(orderActions.GET_CART_ACTION({ ...payload }));
+      if (cart && cart.resourceName !== RESOURCE_NAME_CART) {
+        const cartPayload: any = {
+          orderId: cart?.orderId,
+          body: {
+            orderId: cart?.orderId,
+          },
+          ...payloadBase,
+        };
+        // no matter whehter setPendingorder success or not we are working on current cart.
+        dispatch(RESET_ACTIVE_INPROGRESS_ORDER_ACTION());
+        cartService
+          .setPendingOrder(cartPayload)
+          .catch((e) => {
+            console.log("Could not set pending order ", e);
+          })
+          .finally(() => {
+            let payload = {
+              ...payloadBase,
+              fetchCatentries: true,
+            };
+            dispatch(orderActions.FETCHING_CART_ACTION({ ...payload }));
+          });
+      } else {
+        let payload = {
+          ...payloadBase,
+          fetchCatentries: true,
+        };
+        dispatch(orderActions.GET_CART_ACTION({ ...payload }));
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite, contractId, defaultCurrencyID]);
@@ -184,9 +213,18 @@ const Checkout: React.FC = (props: any) => {
     )
   ) : (
     <StyledContainer className="page">
-      <StyledTypography variant="h3" className="vertical-margin-4">
-        {t("Checkout.Title")}
-      </StyledTypography>
+      <StyledBreadcrumbs className="top-padding-6 vertical-padding-3">
+        <StyledLink to={ROUTES.CART}>
+          <StyledTypography variant="h4">{t("Cart.Title")}</StyledTypography>
+        </StyledLink>
+        <span>
+          <StyledTypography variant="h4">
+            {location.state?.selectedProfile
+              ? t("Checkout.CheckoutProfileTitle")
+              : t("Checkout.Title")}
+          </StyledTypography>
+        </span>
+      </StyledBreadcrumbs>
       <StyledPaper className="bottom-margin-2">
         <StyledStepper activeStep={activeStep}>
           {steps.map((key, i) => (
@@ -204,10 +242,11 @@ const Checkout: React.FC = (props: any) => {
           ))}
         </StyledStepper>
       </StyledPaper>
-      {(match.path === location.pathname && (
+
+      {(location.pathname === ROUTES.CHECKOUT && (
         <Redirect to={ROUTES.CHECKOUT_SHIPPING} />
       )) ||
-        renderRoutes(route.routes, extraProps)}
+        renderRoutes(ROUTE_CONFIG.Checkout, extraProps)}
     </StyledContainer>
   );
 };

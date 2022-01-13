@@ -54,8 +54,14 @@
     "Subtotal_plural": "{{count}}개 항목의 소계",
     "Empty": "장바구니에 품목이 없습니다.",
     "Actions": {
-      "Cart": "전체 장바구니 보기"
-    }
+      "Cart": "전체 장바구니 보기",
+      "CheckOut": "결제",
+      "ViewOrderDetails": "주문 정보 보기"
+    },
+    "MyOrder": "나의 주문",
+    "PrivateOrder": "비공개 주문",
+    "SharedOrderConributor": "공유 주문(기여자)",
+    "SharedOrderAdmin": "공유 주문(관리자)"
   },
   "Language": {
     "-1": "영어(US)",
@@ -68,13 +74,19 @@
     "-8": "중국어 번체",
     "-10": "일본어",
     "-20": "러시아어",
-    "-21": "루마니아어"
+    "-21": "루마니아어",
+    "-9": "한국어",
+    "-22": "폴란드어",
+    "-23": "아라비아어"
   },
   "productDetail": {
     "Quantity": "수량",
     "QtyError": "수량은 1보다 크거나 같아야 합니다.",
     "Availability": "재고 여부",
     "AddToCart": "장바구니에 추가",
+    "AddBundleToCart": "주문에 번들 추가",
+    "AddBundleToSharedOrder": "공유 주문에 추가",
+    "SelectAttributes": "속성 선택",
     "Description": "설명",
     "ProductDetails": "상품 정보",
     "Attachments": "첨부 파일",
@@ -88,12 +100,23 @@
     "any": "모두",
     "showAttributes": "속성 표시",
     "attributeFilter": "속성 필터",
-    "addToCurrentOrder": "현재 주문에 추가",
+    "addToCurrentOrder": "주문에 추가",
+    "addToSharedOrder": "공유 주문에 추가",
     "SignIn": "쇼핑을 시작하려면 로그인하십시오",
     "noproductsToDisplay": "표시할 상품이 없습니다. 속성 필터를 변경하고 다시 시도하십시오.",
     "SKU": "SKU",
+    "PRODUCTSKU": "상품/SKU",
+    "SelectAnOption": "옵션 선택",
+    "Unconfigured": "구성되지 않음",
+    "Unavailable": "사용 불가능",
+    "InStock": "재고 있음",
     "Price": "가격",
-    "Online_Availability": "온라인 재고 여부"
+    "Online_Availability": "온라인 재고 여부",
+    "recommendedProdTitle": "권장 상품 ",
+    "someWithNoSkus": "목록에 있는 하나 이상의 상품에 선택하지 않은 속성이 있습니다. 속성 선택을 완료하십시오.",
+    "someWithNoAvlSelZero": "선택한 품목 중 하나 이상에 재고가 없습니다. 해당 품목을 무시하려면 수량을 0으로 변경하십시오.",
+    "someWithNotEnough": "선택한 품목 중 하나 이상에 충분한 재고가 없습니다. 수량을 현재 사용 가능한 재고보다 작거나 같은 값으로 변경하십시오.",
+    "selectSomething": "선택한 품목이 없습니다. 하나 이상의 품목을 선택하십시오."
   },
   "AddressBook": {
     "AddrMsg": "새 주소 추가",
@@ -126,7 +149,8 @@
     },
     "Actions": {
       "Checkout": "결제",
-      "Apply": "적용"
+      "Apply": "적용",
+      "Checkout-With-Profile": "프로파일을 사용하여 결제"
     }
   },
   "CheckoutAddress": {
@@ -140,6 +164,7 @@
   },
   "Checkout": {
     "Title": "결제",
+    "CheckoutProfileTitle": "결제 프로파일",
     "Labels": {
       "shipping": "운송",
       "payment": "지불",
@@ -178,7 +203,9 @@
       "Quantity": "수량",
       "ShippingDetails": "운송 정보",
       "SelectShippingAddressAndMethod": "운송 주소 및 방법을 선택하십시오",
-      "ChangeSelection": "선택사항 변경"
+      "ChangeSelection": "선택사항 변경",
+      "nItemsSel": "{{ n }}개의 항목 선택됨",
+      "noItems": "항목을 찾을 수 없음"
     }
   },
   "Shipping": {
@@ -335,7 +362,7 @@
     "OrderHistory": "주문 기록",
     "RecurringOrders": "반복 주문",
     "RequisitionLists": "요청 목록",
-    "SavedOrders": "저장된 주문",
+    "InprogressOrders": "진행 중인 주문",
     "ApproveOrders": "주문 승인"
   },
   "Order": {
@@ -426,7 +453,8 @@
     "PersonalInformation": "개인 정보",
     "AddressBook": "주소록",
     "OrderHistory": "주문 기록",
-    "Wishlists": "찜 목록"
+    "Wishlists": "찜 목록",
+    "CheckoutProfiles": "결제 프로파일"
   },
   "AddressCard": {
     "EditButton": "편집",
@@ -467,6 +495,55 @@
     "CancelLabel": "취소",
     "SuccessLabel": "암호 변경 성공",
     "OkLabel": "확인"
+  },
+  "CheckoutProfile": {
+    "ShippingInformation": "운송 정보",
+    "CreateCheckoutTitle": "결제 프로파일 작성",
+    "CreateCheckoutButton": "새 결제 프로파일 작성",
+    "BillingInformation": "지불 청구 정보",
+    "PaymentInformation": "지불 정보",
+    "ShippingMethod": "운송 방법",
+    "ShipSameAsBill": "지불 청구 주소가 운송 주소와 동일합니다",
+    "Cancel": "취소",
+    "Next": "다음",
+    "Back": "뒤로",
+    "CreateProfile": "프로파일 작성",
+    "UpdateProfile": "프로파일 업데이트",
+    "Title": "결제 프로파일 선택사항",
+    "Label": "기존 결제 프로파일 선택",
+    "MyAcctDesc": "빠른 결제를 위해 빠른 결제 프로파일 관리 및 편집",
+    "Name": "결제 프로파일 이름",
+    "Edit": "편집",
+    "Delete": "삭제",
+    "NoneFound": "<0>발견된 프로파일이 없습니다.</0><1>죄송합니다. 결제 프로파일을 찾을 수 없습니다.</1><2>다른 결제 프로파일을 시도하거나 <0>새</0> 결제 프로파일을 작성하십시오.</2>",
+    "NoProfiles": "결제 프로파일을 찾을 수 없습니다. <0>새</0> 결제 프로파일을 작성하십시오.",
+    "TitleCreate": "결제 프로파일",
+    "CreateMessage": "새 결제 프로파일 작성",
+    "CreateNewButton": "새로 작성",
+    "ShippingAddr": "운송 주소",
+    "ShippingMethodDisp": "운송 방법",
+    "BillingAddr": "지불 청구 주소",
+    "BillingMethod": "지불 청구 방법",
+    "EditProfile": "결제 프로파일 편집",
+    "ShipAsComplete": "일괄 배송",
+    "confirmDelete": "삭제 확인",
+    "selectExisting": "기존 주소를 선택하거나 <0>새 주소를 작성</0>하십시오.",
+    "sm_Express": "빠른 배송",
+    "sm_Mail": "우편",
+    "sm_InternationalPriority": "해외 우선 배송",
+    "sm_InternationalRegular": "해외 정규 배송",
+    "sm_PickupInStore": "스토어에서 직접 수령",
+    "saveAddress": "주소 저장",
+    "invalidProfile": "이 프로파일은 올바르지 않습니다. 새 주소를 편집하고 선택하십시오.",
+    "invalidProfileName": "프로파일 이름은 영문자(A-Z, a-z, 0-9)와 공백만 포함할 수 있습니다.",
+    "selectExpMonth": "만료 월 선택",
+    "selectExpYear": "만료 연도 선택",
+    "payMethods": {
+      "VISA": "VISA 신용 카드",
+      "MasterCard": "MasterCard 신용 카드",
+      "AMEX": "American Express 신용 카드",
+      "COD": "대금 상환 인도"
+    }
   },
   "ChildPimCategories": {
     "title": "모든 {{name}}"
@@ -509,7 +586,7 @@
     "_ERR_CMD_INVALID_PARAM_5060": "성 필드에 성을 입력하십시오.",
     "_ERR_CMD_INVALID_PARAM_5066": "이름 필드에 이름을 입력하십시오.",
     "_ERR_CMD_INVALID_PARAM_5210": "이메일 필드에 이메일 주소를 입력하십시오.",
-    "_ERR_CMD_INVALID_PARAM_2190": "확인 코드의 값이 올바르지 않습니다.",
+    "_ERR_CMD_INVALID_PARAM_2190": "입력하신 확인 코드가 올바르지 않습니다. 수신된 코드를 확인하고 다시 시도하십시오.",
     "_ERR_CMD_INVALID_PARAM_2080": "입력하신 확인 암호가 새 암호와 일치하지 않습니다.",
     "_ERR_CMD_INVALID_PARAM": "등록 중에 오류가 발생했습니다. 나중에 다시 시도하거나 스토어에 지원을 요청하십시오.",
     "_ERR_LOGONID_ALREDY_EXIST_2030": "입력하신 이메일이 이미 존재합니다. 다른 이메일을 입력하고 다시 시도하십시오.",
@@ -596,13 +673,15 @@
     "_ERR_REMOTE_EXCEPTION_CMN0412E": "요청을 처리하는 중에 시스템 문제가 발생했습니다. 지원을 받으려면 스토어에 문의하십시오.",
     "_ERR_REG_DUPE_ID_CMN0114S": "입력하신 로그온 ID가 이미 존재합니다. 다른 로그온 ID를 입력하고 다시 시도하십시오.",
     "_ERR_FINDER_EXCEPTION_CMN0411E": "입력하신 이메일이 올바르지 않습니다. 입력한 내용을 확인하고 다시 시도하십시오.",
-    "_ERR_CMD_INVALID_PARAM_2195": "입력하신 확인 코드가 올바르지 않습니다. 입력한 내용을 확인하고 다시 시도하십시오.",
+    "_ERR_CMD_INVALID_PARAM_2195": "입력하신 확인 코드가 만료되었습니다. 암호를 변경하려면 새 확인 코드를 요청해야 합니다.",
     "B2B": {
       "_ERR_FINDER_EXCEPTION_CMN0411E": "입력하신 로그온 ID가 올바르지 않습니다. 입력한 내용을 확인하고 다시 시도하십시오.",
       "_ERR_LOGONID_ALREDY_EXIST_2030": "입력하신 로그온 ID가 이미 존재합니다. 다른 로그온 ID를 입력하고 다시 시도하십시오.",
-      "_ERR_BAD_PARMS_2010": "입력하신 로그온 ID가 올바르지 않습니다. 입력한 내용을 확인하고 다시 시도하십시오."
+      "_ERR_BAD_PARMS_2010": "입력하신 로그온 ID가 올바르지 않습니다. 입력한 내용을 확인하고 다시 시도하십시오.",
+      "_ERR_INVALID_NAME_CMN1652E": "이름이 \"{{0}}\"인 오브젝트가 이미 존재합니다. 다른 이름을 선택하고 다시 시도하십시오."
     },
-    "_ERR_PASSWORD_EXPIRED_2170": "현재 암호가 만료되었습니다. 새 암호를 입력하십시오."
+    "_ERR_PASSWORD_EXPIRED_2170": "현재 암호가 만료되었습니다. 새 암호를 입력하십시오.",
+    "_ERR_INVALID_NAME_CMN1652E": "이름이 \"{{0}}\"인 오브젝트가 이미 존재합니다. 다른 이름을 선택하고 다시 시도하십시오."
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "품목이 장바구니에 추가되었습니다. ",
@@ -613,7 +692,16 @@
     "EDIT_ADDRESS_SUCCESS": "주소 \"{{0}}\"이(가) 성공적으로 업데이트되었습니다",
     "DELETE_ADDRESS_SUCCESS": "주소 \"{{0}}\"이(가) 성공적으로 삭제되었습니다",
     "RESEND_VERIFICATION_CODE": "이메일 주소로 확인 코드가 전송되었습니다.",
-    "PASSWORD_RESET_SUCCESS": "암호가 재설정되었습니다."
+    "PASSWORD_RESET_SUCCESS": "암호가 재설정되었습니다.",
+    "CREATE_CHECKOUT_PROFILE_SUCCESS": "결제 프로파일 \"{{0}}\"이(가) 작성되었습니다",
+    "COPY_ORDER_SUCCESS": "주문이 복사되었습니다.",
+    "CREATE_ORDER_SUCCESS": "주문 \"{{0}}\"이(가) 작성되었습니다.",
+    "DELETE_ORDER_SUCCESS": "주문 \"{{0}}\"이(가) 삭제되었습니다.",
+    "DeletedCheckoutProfile": "결제 프로파일 \"{{ 0 }}\"이(가) 삭제되었습니다",
+    "UpdatedCheckoutProfile": "결제 프로파일 \"{{ 0 }}\"이(가) 업데이트되었습니다",
+    "deletedSuccessfully": "주문에서 {{ n }}개의 품목이 삭제되었습니다",
+    "addedItemSuccessfully": "현재 주문에 {{ v }}이(가) 추가되었습니다",
+    "addedNSuccessfully": "현재 주문에 {{ v }}개의 품목이 추가되었습니다"
   },
   "notFound": {
     "notFound": "<p>죄송합니다. 찾으시는 내용을 찾을 수 없습니다.</p>\n"
@@ -629,7 +717,8 @@
     "Actions": {
       "Back": "지불 정보로 돌아가기",
       "Next": "주문 제출",
-      "NextRecurringOrder": "반복 주문 제출"
+      "NextRecurringOrder": "반복 주문 제출",
+      "BackCart": "장바구니 결제로 돌아가기"
     },
     "Labels": {
       "PaymentDetails": "지불 정보",
@@ -668,8 +757,8 @@
     "Title": "주문 관리",
     "OrderHistoryText": "주문 기록",
     "OrderHistoryDescription": "제출된 주문, 승인 대기 중인 주문, 개별 주문 정보를 확인하십시오",
-    "SavedOrdersText": "저장된 주문",
-    "SavedOrdersDescription": "저장된 주문 보기 및 관리",
+    "InprogressOrdersText": "진행 중인 주문",
+    "InprogressOrdersDescription": "진행 중인 주문 조회 및 관리",
     "RecurringOrdersText": "반복 주문",
     "RecurringOrdersDescription": "반복 주문 목록 보기 및 관리",
     "ApproveOrdersText": "주문 승인",
@@ -704,12 +793,19 @@
       "Total": "총계"
     }
   },
+  "PaymentMethodContainer": {
+    "Actions": {
+      "Cancel": "취소",
+      "Done": "완료",
+      "SaveAndAdd": "저장 및 다른 지불 방법 추가"
+    }
+  },
   "PaymentInfoCard": {
     "Title": "지불 방법 {{number}}",
     "Labels": {
       "CreditCard": "신용 카드: ",
       "AmountToPay": "지불할 금액",
-      "ExpiryDate": "만료일: ",
+      "ExpiryDate": "만료일: {{month}}/{{year}}",
       "BillingAddress": "지불 청구 주소"
     },
     "Actions": {
@@ -718,10 +814,15 @@
     }
   },
   "PaymentInfoList": {
-    "Title": "지불 방법 - 주문 총계: ",
+    "Title": {
+      "PayMethod": "지불 방법",
+      "WithOrderTotal": "지불 방법 - 주문 총계: "
+    },
     "Msgs": {
       "PayMethodRequired": "하나 이상의 지불 방법이 필요합니다.",
-      "InsufficientPayment": "여러 지불 방법으로 주문 총계 {{grandTotal}}을(를) 지불해야 합니다."
+      "InsufficientPayment": "여러 지불 방법으로 주문 총계 {{grandTotal}}을(를) 지불해야 합니다.",
+      "CardDetailsUpdate": "카드 정보를 다시 한 번 확인하고 업데이트하십시오.",
+      "PayMethodNote": "참고: 지불 방법은 '주문 검토' 단추를 클릭할 때만 저장됩니다."
     },
     "Actions": {
       "AddPayMethod": "지불 방법 추가"
@@ -731,8 +832,8 @@
     "Title": "지불 방법",
     "Msgs": {
       "CreditCard": "온라인으로 안전하게 지불하십시오. 사용 가능한 신용 카드: {{cards}}",
-      "CVV": "서명란의 마지막 세 자리 숫자",
-      "InvalidCardNumber": "올바르지 않은 카드 번호 또는 유형",
+      "CVV": "올바른 CVV 코드를 입력하십시오",
+      "InvalidCardNumber": "유효한 신용 카드 번호를 입력하십시오",
       "InvalidFormat": "올바르지 않은 형식"
     },
     "Labels": {
@@ -743,7 +844,9 @@
       "CVV": "CVV 코드",
       "OrderTotal": "주문 총계",
       "RemainingAmount": "지불할 잔액",
-      "AmountToPay": "지불할 금액"
+      "AmountToPay": "지불할 금액",
+      "ExpiryMonth": "만료 월",
+      "ExpiryYear": "만료 연도"
     },
     "Actions": {
       "PayRemaining": "잔액 지불"
@@ -958,6 +1061,12 @@
       "EveryThreeWeeks": "3주에 한 번",
       "EveryFourWeeks": "4주에 한 번"
     },
+    "languagePopUp": {
+      "Title": "언어를 변경하시겠습니까?",
+      "Message": "언어를 {{ language }}(으)로 변경하시겠습니까?",
+      "Yes": "예",
+      "No": "아니오"
+    },
     "currency": {
       "ROL": "루마니아 레우",
       "RON": "루마니아 레우",
@@ -1009,6 +1118,67 @@
       "-9": "한국어",
       "-22": "폴란드어",
       "-23": "아랍어"
+    }
+  },
+  "InprogressOrders": {
+    "Title": "진행 중인 주문",
+    "CreateNewOrder": "새 주문 작성",
+    "NewOrderName": "새 주문 이름",
+    "CreateOrder": "주문 작성",
+    "PrivateOrder": "비공개 주문",
+    "SharedOrder": "공유 주문",
+    "Columns": {
+      "Active": "활성",
+      "OrderId": "주문 ID",
+      "Name": "이름",
+      "LastUpdated": "마지막 업데이트",
+      "TotalPrice": "가격 총계",
+      "Type": "유형",
+      "Actions": "경매"
+    },
+    "Status": {
+      "ORD": "비공개",
+      "SHR": "공유됨"
+    },
+    "DeleteDialogTitle": "주문 삭제",
+    "DeleteDialogHeading": "이 주문을 삭제하시겠습니까?",
+    "CopyTitle": "주문 복사",
+    "CopyMessage": "이 주문을 복사하시겠습니까?",
+    "CurrentCart": "{{ orderId }}(현재 장바구니)",
+    "InvalidOrderName": "주문 이름은 영문자(A-Z, a-z, 0-9)와 공백만 포함할 수 있습니다.",
+    "searchPh": "ID 또는 설명 검색",
+    "NotActiveOrderMessage": "상품을 추가하려면 주문이 활성 상태여야 합니다"
+  },
+  "InprogressItems": {
+    "orderItem": "주문 항목",
+    "creationDate": "작성 날짜",
+    "quantity": "수량",
+    "contributor": "기여자",
+    "each": "각각",
+    "actions": "조치",
+    "inprogressOrders": "진행 중인 주문",
+    "createdBy": "작성자",
+    "lastUpdated": "마지막 업데이트",
+    "totalPrice": "가격 총계",
+    "visibility": "공유 목록",
+    "orderType_SHR": "공유됨",
+    "orderType_ORD": "비공개",
+    "proceed": "결제로 진행",
+    "addProds": "상품 추가",
+    "privateList": "비공개 목록",
+    "sharedList": "공유 목록",
+    "nProductsSel": "{{ n }}개의 상품 선택됨",
+    "addSelToCart": "선택 항목을 장바구니에 추가",
+    "deleteSelected": "선택 항목 삭제",
+    "noItems": "주문 항목이 없습니다.",
+    "nameForCopiedOrder": "새 주문의 이름을 입력하십시오."
+  },
+  "commonTable": {
+    "ofTotalCount": "{{ total }}개 중 {{ from }}번~{{ to }}번 표시 중",
+    "pageSz": {
+      "five": "5개 행",
+      "ten": "10개 행",
+      "twenty": "20개 행"
     }
   }
 }

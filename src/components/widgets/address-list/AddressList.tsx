@@ -20,9 +20,10 @@ interface AddressListProps {
   addressList: any[];
   setSelectedAddressId?: Function; //selected address setter
   selectedAddressId?: string;
+  selectedNickName?: string;
   actions?: any[];
   type?: boolean;
-  page?: string;
+  hideEdit?: boolean;
 }
 
 /**
@@ -31,7 +32,7 @@ interface AddressListProps {
  * @param props
  */
 const AddressList: React.FC<AddressListProps> = (props: any) => {
-  const addressList = props.addressList;
+  const { addressList, hideEdit, selectedNickName } = props;
   const setSelectedAddressId = props.setSelectedAddressId;
   const selectedAddressId = props.selectedAddressId;
   const actions = props.actions ? props.actions : false;
@@ -49,6 +50,8 @@ const AddressList: React.FC<AddressListProps> = (props: any) => {
               type={type}
               setSelectedAddressId={setSelectedAddressId}
               selectedAddressId={selectedAddressId}
+              hideEdit={hideEdit}
+              {...{ selectedNickName }}
             />
           </StyledGrid>
         ))}

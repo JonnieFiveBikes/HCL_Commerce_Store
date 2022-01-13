@@ -27,6 +27,9 @@ import confirmation from "./confirmation";
 import recurringOrder from "./recurringOrder";
 import orderDetails from "./orderDetails";
 import site from "./site";
+import localStorage from "./local-storage";
+import checkoutProfile from "./checkout-profile";
+
 import {
   ErrorReducerState,
   AccountReducerState,
@@ -44,6 +47,7 @@ import {
   OrderDetailsMapReducerState,
   SiteReducerState,
   ApiReducerState,
+  CheckoutProfileReducerState,
 } from "./reducerStateInterface";
 
 export * from "./reducerStateInterface";
@@ -64,6 +68,7 @@ export interface RootReducerState {
   recurringOrder: RecurringOrderReducerState;
   orderDetails: OrderDetailsMapReducerState;
   site: SiteReducerState;
+  checkoutProfile: CheckoutProfileReducerState;
 }
 
 const reducers = {
@@ -83,6 +88,8 @@ const reducers = {
   recurringOrder,
   orderDetails,
   site,
+  localStorage,
+  checkoutProfile,
 };
 
 const rootReducer = combineReducers(reducers);

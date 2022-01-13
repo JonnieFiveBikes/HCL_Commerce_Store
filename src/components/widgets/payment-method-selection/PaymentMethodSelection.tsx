@@ -9,15 +9,19 @@
  *==================================================
  */
 //Standard libraries
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 //Custom libraries
 import { PAYMENT, EXPIRY } from "../../../constants/order";
-import { PaymentInfoType } from "../../pages/checkout/payment/Payment";
+import { EMPTY_STRING } from "../../../constants/common";
+import { PaymentInfoType } from "../../../_foundation/hooks/use-checkout-payment";
 import FormattedPriceDisplay from "../formatted-price-display";
 //Redux
-import { cartSelector } from "../../../redux/selectors/order";
+import {
+  cartSelector,
+  payMethodsSelector,
+} from "../../../redux/selectors/order";
 //UI
 import { Divider } from "@material-ui/core";
 import PaymentIcon from "@material-ui/icons/Payment";
@@ -30,6 +34,7 @@ import {
   StyledFormControl,
   StyledFormControlLabel,
   StyledInputLabel,
+  StyledNumberInput,
   StyledSelect,
   StyledBox,
   StyledIconLabel,
@@ -44,7 +49,8 @@ interface PaymentMethodSelectionProps {
   isValidCardNumber: Function;
   isValidCode: Function;
   useMultiplePayment: boolean;
-  paymentsList: any[];
+  handlePiAmountChange: Function;
+  getMaximumPiAmount: Function;
 }
 
 /**
@@ -63,28 +69,38 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = (
     isValidCardNumber,
     isValidCode,
     useMultiplePayment,
-    paymentsList,
+    handlePiAmountChange,
+    getMaximumPiAmount,
   } = props;
   const { t } = useTranslation();
   const cart = useSelector(cartSelector);
-  const [policyIdValue, setPolicyIdValue] = React.useState<string>("");
-  const [loading, setLoading] = React.useState(true);
+  const payMethods = useSelector(payMethodsSelector);
+  const [loading, setLoading] = useState(true);
 
+  const maxPiAmount = useMemo(
+    () => getMaximumPiAmount(currentPaymentNumber),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [paymentInfo]
+  );
+  const policyIdValue = useMemo(
+    () =>
+      paymentInfo && paymentInfo.policyId ? paymentInfo.policyId : EMPTY_STRING,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [paymentInfo]
+  );
   useEffect(() => {
-    if (paymentInfo && paymentInfo.policyId) {
-      setPolicyIdValue(paymentInfo.policyId);
-    }
-    if (paymentsList && paymentsList.length > 0) {
+    if (payMethods && payMethods.length > 0) {
       setLoading(false);
     }
-  }, [paymentInfo, paymentsList]);
+  }, [paymentInfo, payMethods]);
+
   return (
     <StyledGrid container spacing={4} className="bottom-margin-2">
       <StyledGrid
         item
         container
         direction="row"
-        justify="space-between"
+        justifyContent="space-between"
         alignItems="center">
         <StyledIconLabel
           icon={<PaymentIcon />}
@@ -103,10 +119,12 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = (
               <StyledRadioGroup
                 name="payOption"
                 value={policyIdValue}
-                onChange={(event) => togglePayOption(event.target.value)}>
-                {paymentsList &&
-                  paymentsList.length > 0 &&
-                  paymentsList.map((payment: any) => (
+                onChange={(event) =>
+                  togglePayOption(event.target.value, currentPaymentNumber)
+                }>
+                {payMethods &&
+                  payMethods.length > 0 &&
+                  payMethods.map((payment: any) => (
                     <Fragment key={payment.xumet_policyId}>
                       <StyledFormControlLabel
                         value={payment.xumet_policyId}
@@ -123,7 +141,7 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = (
                         paymentInfo.payMethodId !==
                           PAYMENT.paymentMethodName.cod &&
                         paymentInfo.policyId === payment.xumet_policyId &&
-                        paymentInfo.paymentTermConditionId === "" && (
+                        paymentInfo.paymentTermConditionId === EMPTY_STRING && (
                           <>
                             <Divider className="horizontal-margin-2" />
                             <StyledGrid
@@ -148,14 +166,18 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = (
                                     )
                                   }
                                   error={
-                                    !isValidCardNumber(currentPaymentNumber)
+                                    !isValidCardNumber(
+                                      paymentInfo.creditCardFormData?.account
+                                    )
                                   }
                                   helperText={
-                                    !isValidCardNumber(currentPaymentNumber)
+                                    !isValidCardNumber(
+                                      paymentInfo.creditCardFormData?.account
+                                    )
                                       ? t(
-                                          "PaymentMethodSelection.Msgs.InvalidFormat"
+                                          "PaymentMethodSelection.Msgs.InvalidCardNumber"
                                         )
-                                      : ""
+                                      : EMPTY_STRING
                                   }
                                   inputProps={{ maxLength: 19 }}
                                   fullWidth
@@ -246,13 +268,17 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = (
                                       currentPaymentNumber
                                     )
                                   }
-                                  error={!isValidCode(currentPaymentNumber)}
+                                  error={
+                                    !isValidCode(
+                                      paymentInfo.creditCardFormData?.cc_cvc
+                                    )
+                                  }
                                   helperText={
-                                    !isValidCode(currentPaymentNumber)
-                                      ? t(
-                                          "PaymentMethodSelection.Msgs.InvalidFormat"
-                                        )
-                                      : ""
+                                    !isValidCode(
+                                      paymentInfo.creditCardFormData?.cc_cvc
+                                    )
+                                      ? t("PaymentMethodSelection.Msgs.CVV")
+                                      : EMPTY_STRING
                                   }
                                   inputProps={{ maxLength: 4 }}
                                   fullWidth
@@ -271,7 +297,9 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = (
 
       {useMultiplePayment && (
         <StyledGrid item xs={12} md={6}>
-          <StyledTypography variant="body2" className="full-width">
+          <StyledTypography
+            variant="body2"
+            className="full-width shipment-group-heading">
             {t("PaymentMethodSelection.Labels.OrderTotal")}
           </StyledTypography>
           <StyledTypography variant="body1" className="bottom-margin-2">
@@ -281,22 +309,33 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = (
             />
           </StyledTypography>
 
-          <StyledTypography variant="body2" className="full-width">
+          <StyledTypography
+            variant="body2"
+            className="full-width shipment-group-heading">
             {t("PaymentMethodSelection.Labels.RemainingAmount")}
           </StyledTypography>
           <StyledTypography variant="body1" className="bottom-margin-2">
             <FormattedPriceDisplay
-              min={parseFloat(cart.grandTotal)}
+              min={maxPiAmount}
               currency={cart.grandTotalCurrency}
             />
           </StyledTypography>
 
-          <StyledTypography variant="body2" className="full-width">
-            {t("PaymentMethodSelection.Labels.AmountToPay")}
-          </StyledTypography>
           <StyledTypography
             variant="body2"
-            className="full-width"></StyledTypography>
+            className="full-width shipment-group-heading">
+            {t("PaymentMethodSelection.Labels.AmountToPay")}
+          </StyledTypography>
+          <StyledNumberInput
+            value={parseFloat(paymentInfo.piAmount)}
+            min={0.01}
+            max={maxPiAmount}
+            precision={2}
+            onChange={(valueAsNumber) =>
+              handlePiAmountChange(valueAsNumber, currentPaymentNumber)
+            }
+            strict={true}
+          />
         </StyledGrid>
       )}
     </StyledGrid>

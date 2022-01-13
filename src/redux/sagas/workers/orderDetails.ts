@@ -23,15 +23,25 @@ import {
 } from "../../actions/orderDetails";
 
 export function* getOrderDetails(action: any) {
-  const { orderId, currency, contractId } = action.payload;
+  const { orderId, currency } = action.payload;
   try {
     const response = yield call(orderService.findByOrderId, action.payload);
     const orderDetails = response.data;
     yield put(FETCH_ORDER_DETAILS_SUCCESS_ACTION(orderDetails));
     try {
       const orderItems: any[] = orderDetails.orderItem;
-      const id = [...new Set(orderItems.map((i) => i.productId))];
-      const itemDetailsParams = { id, currency, contractId };
+      const contracts = orderItems.reduce((p, c) => {
+        if (p[c.contractId]) {
+          if (p[c.contractId].indexOf(c.productId) === -1) {
+            p[c.contractId].push(c.productId);
+          }
+        } else {
+          p[c.contractId] = [c.productId];
+        }
+        return p;
+      }, {});
+
+      const itemDetailsParams = { currency, contracts };
       const itemDetails = yield call(
         fetchOrderItemDetailsByIds,
         itemDetailsParams
@@ -52,13 +62,20 @@ export function* getOrderDetails(action: any) {
 
 export const fetchOrderItemDetailsByIds = (param: any) => {
   const promiseArray: Promise<any>[] = [];
-  const { currency, id, widget } = param;
+  const { currency, widget, contracts } = param;
   const paramBase = { currency, widget };
-  const ids = chunk(id, 50);
-  ids.forEach((id) => {
-    const param = Object.assign({}, paramBase, { id });
-    promiseArray.push(productsService.findProductsUsingGET(param));
+
+  Object.keys(contracts).forEach((key) => {
+    const ids = chunk(contracts[key], 50);
+    ids.forEach((id) => {
+      const param = Object.assign({}, paramBase, {
+        id,
+        contractId: key,
+      });
+      promiseArray.push(productsService.findProductsUsingGET(param));
+    });
   });
+
   return Promise.all(promiseArray).then((rs) => {
     let contents = [];
     rs.forEach((r) => {

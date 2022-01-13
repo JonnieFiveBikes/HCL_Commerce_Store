@@ -15,7 +15,10 @@ import { parse as losslessParse } from "lossless-json";
 import { NOT_FOUND } from "http-status-codes";
 import { pascalCase } from "change-case";
 //Foundation libraries
-import { axiosHeaderIgnoredServices } from "../configs/axiosHeaderIgnoredService";
+import {
+  axiosESIgnoredService,
+  axiosHeaderIgnoredServices,
+} from "../configs/axiosHeaderIgnoredService";
 import { userRequiredServices } from "../configs/userRequiredService";
 import { numberParserRequiredServices } from "../configs/numberParserRequiredService";
 import {
@@ -37,6 +40,7 @@ import {
   storageStoreIdHandler,
 } from "../utils/storageUtil";
 import guestIdentityService from "../apis/transaction/guestIdentity.service";
+import { PrerenderTimer } from "./../utils/prerenderTimer";
 //Custom libraries
 import { CommerceEnvironment } from "../../constants/common";
 //Redux
@@ -45,6 +49,17 @@ import { GUEST_LOGIN_SUCCESS_ACTION } from "../../redux/actions/user";
 import { API_CALL_ACTION } from "../../redux/actions/api";
 
 const GUEST_IDENTITY: string = "guestidentity";
+
+const isESSvcInList = (req: AxiosRequestConfig, list: string[]) => {
+  const { url = "" } = req;
+  if (url) {
+    const path = `${site.searchContext}/`;
+    const search = url.split("?")[0].split(path).pop();
+    // can do some extra work here to replace store-ids in the list, but right
+    //   now we have no such services to be filtered (that use store-id)
+    return search && list.indexOf(search) >= 0;
+  }
+};
 
 const isServiceInList = (
   request: AxiosRequestConfig,
@@ -216,6 +231,7 @@ const processLangIdParameter = (request: AxiosRequestConfig) => {
   if (
     request.url &&
     !isServiceInList(request, axiosHeaderIgnoredServices) &&
+    !isESSvcInList(request, axiosESIgnoredService) &&
     request.url.indexOf(LANGID) === -1
   ) {
     const searchParam = request.url.split("?")[1];
@@ -235,6 +251,7 @@ const initAxios = (dispatch: any) => {
   dispatchObject.dispatch = dispatch;
   Axios.interceptors.request.use(
     async (request: AxiosRequestConfig) => {
+      PrerenderTimer.myTimer.setPrerenderTimer();
       if (request.url?.startsWith(site.transactionContext)) {
         showAPIFlow(
           request.method,
@@ -304,6 +321,7 @@ const initAxios = (dispatch: any) => {
   );
   Axios.interceptors.response.use(
     (response: AxiosResponse) => {
+      PrerenderTimer.myTimer.setPrerenderTimer();
       return response;
     },
     function (error) {

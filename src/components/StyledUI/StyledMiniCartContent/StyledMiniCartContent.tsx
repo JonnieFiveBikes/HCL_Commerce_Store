@@ -25,28 +25,38 @@ import {
 
 interface MiniCartContentProps {
   title: string;
+  orderType: string;
   orderItems: any[];
   subtotalLabel: string;
   subtotal: number | null;
   subtotalCurrency: string;
   emptyCartMsg: string;
   cartLinkLabel: string;
+  checkoutLinkLabel: string;
   handleCartOnClick: Function;
+  handleCheckoutOnClick: Function;
   handleClose: Function;
+  isOrderOwner: boolean;
+  isB2B: boolean;
 }
 
 const StyledMiniCartContent = React.forwardRef<any, MiniCartContentProps>(
   (props: any, ref: any) => {
     const {
       title,
+      orderType,
       orderItems,
       subtotalLabel,
       subtotal,
       subtotalCurrency,
       emptyCartMsg,
       cartLinkLabel,
+      checkoutLinkLabel,
       handleCartOnClick,
+      handleCheckoutOnClick,
       handleClose,
+      isOrderOwner,
+      isB2B,
     } = props;
 
     return (
@@ -54,15 +64,31 @@ const StyledMiniCartContent = React.forwardRef<any, MiniCartContentProps>(
         ref={ref}
         className="mini-cart-container"
         data-testid="mini-cart-popper">
-        <StyledTypography
-          variant="h6"
-          className="horizontal-padding-2 vertical-padding-2">
-          {title}
-        </StyledTypography>
+        {!isB2B ? (
+          <StyledTypography
+            variant="h6"
+            className="horizontal-padding-2 top-padding-2">
+            {title}
+          </StyledTypography>
+        ) : (
+          <>
+            <StyledTypography
+              variant="h6"
+              style={{ overflowWrap: "break-word" }}
+              className="horizontal-padding-2 top-padding-2">
+              {title}
+            </StyledTypography>
+            <StyledTypography
+              variant="body1"
+              className="horizontal-padding-2 bottom-padding-2">
+              {orderType}
+            </StyledTypography>
+          </>
+        )}
         <Divider className="heading" />
         {orderItems.length > 0 ? (
           <>
-            <StyledBox className="horizontal-padding-2">
+            <StyledBox>
               <OrderItemTable
                 data={orderItems}
                 miniCartView={true}
@@ -99,9 +125,33 @@ const StyledMiniCartContent = React.forwardRef<any, MiniCartContentProps>(
         <StyledBox
           className="horizontal-padding-2 vertical-padding-1"
           align="center">
-          <StyledButton color="secondary" onClick={handleCartOnClick}>
-            {cartLinkLabel}
-          </StyledButton>
+          {!isB2B ? (
+            <StyledButton
+              color="secondary"
+              className="right-margin-1"
+              onClick={handleCartOnClick}>
+              {cartLinkLabel}
+            </StyledButton>
+          ) : isOrderOwner ? (
+            <>
+              <StyledButton
+                color="secondary"
+                className="right-margin-1"
+                onClick={handleCartOnClick}>
+                {cartLinkLabel}
+              </StyledButton>
+              <StyledButton
+                color="primary"
+                disabled={!orderItems || orderItems.length <= 0}
+                onClick={handleCheckoutOnClick}>
+                {checkoutLinkLabel}
+              </StyledButton>
+            </>
+          ) : (
+            <StyledButton color="secondary" onClick={handleCartOnClick}>
+              {cartLinkLabel}
+            </StyledButton>
+          )}
         </StyledBox>
       </StyledPaper>
     );

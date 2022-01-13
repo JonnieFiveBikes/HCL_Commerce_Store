@@ -22,6 +22,7 @@ export const ORG_TOOL_ID = "organizationManagement";
 export const ACCOUNT = "ACCOUNT";
 export const LANGID = "langId";
 export const LOCALE = "locale";
+export const URL_LANG_REJECTED = "URL_LANG_REJECTED";
 export const SHOW_API_FLOW = "showAPIFlow";
 export const PRODUCTION = "production";
 export const FOR_USER_ID = "forUserId";
@@ -31,6 +32,33 @@ export const SKIP_WC_TOKEN_HEADER = "skipWCTokenHeader";
 export const EXPIRED_PASSWORD_PAGE_ERROR = "expiredPasswordPageError";
 export const SHOW_API_FLOW_TRANSACTION = "Transaction";
 export const SHOW_API_FLOW_SEARCH = "Search";
+export const SELECTED_PROFILE = "selectedProfile";
+
+//SEO & page layout
 export const HOME = "home";
-export const CATEGORYPAGE = "CategoryPage";
-export const HOMEPAGE = "HomePage";
+export const CART_PAGE = "cart-page";
+export const ORDER_CONFIRMATION_PAGE = "order-confirmation-page";
+export const CHECKOUT_PAGE = "check-out-page";
+
+export const PAGE_TYPE = {
+  CART_PAGE: "CartPage",
+  ORDER_CONFIRMATION_PAGE: "OrderConfirmationPage",
+  CHECK_OUT_PAGE: "CheckOutPage",
+  VARIANT_PAGE: "VariantPage",
+  ITEM_PAGE: "ItemPage",
+  PRODUCT_PAGE: "ProductPage",
+  HOME_PAGE: "HomePage",
+  CATEGORY_PAGE: "CategoryPage",
+};
+
+export const MANAGED_STATIC_PAGES = [
+  PAGE_TYPE.HOME_PAGE,
+  PAGE_TYPE.CHECK_OUT_PAGE,
+  PAGE_TYPE.CART_PAGE,
+  PAGE_TYPE.ORDER_CONFIRMATION_PAGE,
+];
+
+export const PRODUCT_TOKEN = "ProductToken";
+export const STATIC_PAGES_TOKEN = "StaticPagesToken";
+
+export const CHILD_ROUTE_SEPARATOR = "/";

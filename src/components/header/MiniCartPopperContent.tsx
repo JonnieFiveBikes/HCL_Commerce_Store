@@ -14,17 +14,20 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router";
 //Custom libraries
-import { CART } from "../../constants/routes";
+import { CART, CHECKOUT, IP_ORDER_DETAILS } from "../../constants/routes";
 import { MINICART_CONFIGS } from "../../configs/order";
+import { PRIVATE_ORDER_TYPE } from "../../constants/order";
 //Redux
 import {
   numItemsSelector,
   cartSelector,
   orderItemsSelector,
 } from "../../redux/selectors/order";
+import { forUserIdSelector, userIdSelector } from "../../redux/selectors/user";
 //UI
 import { ClickAwayListener } from "@material-ui/core";
 import { StyledMiniCartContent } from "../StyledUI";
+import { useSite } from "../../_foundation/hooks/useSite";
 
 interface MiniCartPopperContentProps {
   handleClose: Function;
@@ -44,10 +47,30 @@ const MiniCartPopperContent: React.FC<MiniCartPopperContentProps> = (
   const orderItems = useSelector(orderItemsSelector);
   const { t } = useTranslation();
   const history = useHistory();
+  const { mySite } = useSite();
+  const isB2B = mySite?.isB2B;
+  const forUserId = useSelector(forUserIdSelector);
+  const uId = useSelector(userIdSelector);
+  const userId = forUserId ?? uId;
 
   const handleCartOnClick = () => {
+    if (!isB2B) {
+      handleClose();
+      history.push(CART);
+    } else {
+      if (!cart || userId === cart.buyerId) {
+        handleClose();
+        history.push(CART);
+      } else {
+        handleClose();
+        history.push({ pathname: `${IP_ORDER_DETAILS}/${cart.orderId}` });
+      }
+    }
+  };
+
+  const handleCheckoutOnClick = () => {
     handleClose();
-    history.push(CART);
+    history.push(CHECKOUT);
   };
 
   const initOrderTotalSummary = () => {
@@ -74,19 +97,47 @@ const MiniCartPopperContent: React.FC<MiniCartPopperContentProps> = (
     () => orderItems.slice(MINICART_CONFIGS.maxItemsToShow * -1).reverse(),
     [orderItems]
   );
-
   return (
     <ClickAwayListener onClickAway={handleClose}>
       <StyledMiniCartContent
-        title={t("MiniCart.Title")}
+        title={
+          !isB2B
+            ? t("MiniCart.Title")
+            : !cart
+            ? t("MiniCart.MyOrder")
+            : cart.orderDescription
+            ? cart.orderDescription
+            : cart.orderId
+        }
+        orderType={
+          !cart
+            ? t("MiniCart.PrivateOrder")
+            : cart.orderTypeCode === PRIVATE_ORDER_TYPE
+            ? t("MiniCart.PrivateOrder")
+            : userId === cart.buyerId
+            ? t("MiniCart.SharedOrderAdmin")
+            : t("MiniCart.SharedOrderConributor")
+        }
         orderItems={miniCartItems}
         subtotalLabel={t("MiniCart.Subtotal", { count: numItems })}
         subtotal={subtotal}
         subtotalCurrency={subtotalCurrency}
         emptyCartMsg={t("MiniCart.Empty")}
-        cartLinkLabel={t("MiniCart.Actions.Cart")}
+        cartLinkLabel={
+          !isB2B
+            ? t("MiniCart.Actions.Cart")
+            : !cart
+            ? t("MiniCart.Actions.Cart")
+            : userId === cart.buyerId
+            ? t("MiniCart.Actions.Cart")
+            : t("MiniCart.Actions.ViewOrderDetails")
+        }
+        checkoutLinkLabel={t("MiniCart.Actions.CheckOut")}
         handleCartOnClick={handleCartOnClick}
+        handleCheckoutOnClick={handleCheckoutOnClick}
         handleClose={handleClose}
+        isOrderOwner={!cart ? true : userId === cart.buyerId}
+        isB2B={isB2B}
       />
     </ClickAwayListener>
   );

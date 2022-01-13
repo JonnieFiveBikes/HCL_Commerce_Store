@@ -24,9 +24,8 @@ import ExpandedMenuItem from "./ExpandedMenuItem";
 
 const MenubarMenuItem = (props) => {
   const { page, selectMenuItem, selectedMenuItem } = props;
-  const popperRef: React.RefObject<HTMLButtonElement> = useRef<HTMLButtonElement>(
-    null
-  );
+  const popperRef: React.RefObject<HTMLButtonElement> =
+    useRef<HTMLButtonElement>(null);
   const handleClickAway = (event) => {
     const target = event.target;
     if (
@@ -87,7 +86,7 @@ const MenubarMenuItem = (props) => {
             boundariesElement: "scrollParent",
           },
           hide: {
-            enabled: true,
+            enabled: false,
           },
           updateWidth: {
             enabled: true,

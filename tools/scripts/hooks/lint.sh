@@ -8,7 +8,7 @@
 #==================================================
 echo "Checking lint..."
 
-stg=`git diff --name-only --diff-filter=ACMR --staged`
+stg=`git diff --name-only --diff-filter=ACMR --staged | grep -Ev "^((assets|build|dist|public|tools|master|bvt|docs)\/)|mocks\/|\.scss$|\.json$|\.sh$|\.gitignore$|\.eslintrc\b|\bsetupProxy.js\b|\bREADME.md\b|\/__tests__\/|\/apis\/mock\/"`
 lint=`git rev-parse --show-toplevel`/node_modules/.bin/eslint
 
 if [[ "$stg" == "" ]]; then
@@ -20,7 +20,7 @@ if [[ ! -x "$lint" ]]; then
   exit 1
 fi
 
-"$lint" --max-warnings 0 .
+"$lint" --max-warnings 0 $stg
 
 if [[ "$?" != 0 ]]; then
   echo "Please run \"npm run lint\" before delivery and ensure cleanliness"

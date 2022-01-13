@@ -57,54 +57,38 @@ const BuyerOrganizationRegistration = (props: any) => {
   const supportedLanguages = mySite?.supportedLanguages;
   const supportedCurrencies = mySite?.supportedCurrencies;
   const { t } = useTranslation();
-  const [organizationName, setOrganizationName] = React.useState<string>(
-    EMPTY_STRING
-  );
-  const [
-    organizationAddress1,
-    setOrganizationAddress1,
-  ] = React.useState<string>(EMPTY_STRING);
-  const [
-    organizationAddress2,
-    setOrganizationAddress2,
-  ] = React.useState<string>(EMPTY_STRING);
-  const [organizationCity, setOrganizationCity] = React.useState<string>(
-    EMPTY_STRING
-  );
-  const [organizationCountry, setOrganizationCountry] = React.useState<string>(
-    EMPTY_STRING
-  );
-  const [organizationState, setOrganizationState] = React.useState<string>(
-    EMPTY_STRING
-  );
-  const [organizationZipCode, setOrganizationZipCode] = React.useState<string>(
-    EMPTY_STRING
-  );
-  const [organizationEmail, setOrganizationEmail] = React.useState<string>(
-    EMPTY_STRING
-  );
-  const [organizationPhone, setOrganizationPhone] = React.useState<string>(
-    EMPTY_STRING
-  );
-  const [
-    useOrganizationAddress,
-    setUseOrganizationAddress,
-  ] = React.useState<boolean>(false);
+  const [organizationName, setOrganizationName] =
+    React.useState<string>(EMPTY_STRING);
+  const [organizationAddress1, setOrganizationAddress1] =
+    React.useState<string>(EMPTY_STRING);
+  const [organizationAddress2, setOrganizationAddress2] =
+    React.useState<string>(EMPTY_STRING);
+  const [organizationCity, setOrganizationCity] =
+    React.useState<string>(EMPTY_STRING);
+  const [organizationCountry, setOrganizationCountry] =
+    React.useState<string>(EMPTY_STRING);
+  const [organizationState, setOrganizationState] =
+    React.useState<string>(EMPTY_STRING);
+  const [organizationZipCode, setOrganizationZipCode] =
+    React.useState<string>(EMPTY_STRING);
+  const [organizationEmail, setOrganizationEmail] =
+    React.useState<string>(EMPTY_STRING);
+  const [organizationPhone, setOrganizationPhone] =
+    React.useState<string>(EMPTY_STRING);
+  const [useOrganizationAddress, setUseOrganizationAddress] =
+    React.useState<boolean>(false);
   const [logonId, setLogonId] = React.useState<string>(EMPTY_STRING);
   const [password, setPassword] = React.useState<string>(EMPTY_STRING);
-  const [passwordVerify, setPasswordVerify] = React.useState<string>(
-    EMPTY_STRING
-  );
+  const [passwordVerify, setPasswordVerify] =
+    React.useState<string>(EMPTY_STRING);
   const [firstName, setFirstName] = React.useState<string>(EMPTY_STRING);
   const [lastName, setLastName] = React.useState<string>(EMPTY_STRING);
   const [email, setEmail] = React.useState<string>(EMPTY_STRING);
   const [phone, setPhone] = React.useState<string>(EMPTY_STRING);
-  const [adminAddress1, setAdminAddress1] = React.useState<string>(
-    EMPTY_STRING
-  );
-  const [adminAddress2, setAdminAddress2] = React.useState<string>(
-    EMPTY_STRING
-  );
+  const [adminAddress1, setAdminAddress1] =
+    React.useState<string>(EMPTY_STRING);
+  const [adminAddress2, setAdminAddress2] =
+    React.useState<string>(EMPTY_STRING);
   const [city, setCity] = React.useState<string>(EMPTY_STRING);
   const [country, setCountry] = React.useState<string>(EMPTY_STRING);
   const [state, setState] = React.useState<string>(EMPTY_STRING);
@@ -113,17 +97,13 @@ const BuyerOrganizationRegistration = (props: any) => {
   const [currency, setCurrency] = React.useState<string>(defaultCurrencyID);
   const [openSuccess, setOpenSuccess] = React.useState<boolean>(false);
   const [redirect, setRedirect] = React.useState<boolean>(false);
-  const [buyerAdminAddress2, setBuyerAdminAddress2] = React.useState<boolean>(
-    false
-  );
+  const [buyerAdminAddress2, setBuyerAdminAddress2] =
+    React.useState<boolean>(false);
   const [stepperActive, setStepperActive] = React.useState<number>(0);
-  const [
-    showBuyerAdminRegForm,
-    setShowBuyerAdminRegForm,
-  ] = React.useState<boolean>(false);
-  const [showAddress2Field, setShowAddress2Field] = React.useState<boolean>(
-    false
-  );
+  const [showBuyerAdminRegForm, setShowBuyerAdminRegForm] =
+    React.useState<boolean>(false);
+  const [showAddress2Field, setShowAddress2Field] =
+    React.useState<boolean>(false);
   const steps = ["OrganizationRegistration", "BuyerAdminRegistration"];
 
   const CancelToken = Axios.CancelToken;
@@ -329,7 +309,7 @@ const BuyerOrganizationRegistration = (props: any) => {
           <StyledGrid
             container
             spacing={2}
-            justify="center"
+            justifyContent="center"
             alignItems="center">
             <StyledGrid item xs={12} md={6}>
               <StyledPaper className="top-margin-5">
@@ -351,7 +331,7 @@ const BuyerOrganizationRegistration = (props: any) => {
             onSubmit={handleSubmit}>
             <>
               {!showBuyerAdminRegForm && (
-                <StyledGrid container justify="center">
+                <StyledGrid container justifyContent="center">
                   <StyledGrid item xs={12} md={6}>
                     <StyledPaper className="top-margin-2 horizontal-padding-4 vertical-padding-4">
                       <StyledGrid container spacing={2}>
@@ -551,7 +531,7 @@ const BuyerOrganizationRegistration = (props: any) => {
                         <StyledGrid item xs={12}>
                           <StyledGrid
                             container
-                            justify="space-between"
+                            justifyContent="space-between"
                             spacing={2}>
                             <StyledGrid item>
                               <StyledButton
@@ -583,7 +563,7 @@ const BuyerOrganizationRegistration = (props: any) => {
                 </StyledGrid>
               )}
               {showBuyerAdminRegForm && (
-                <StyledGrid container justify="center">
+                <StyledGrid container justifyContent="center">
                   <StyledGrid item xs={12} md={6}>
                     <StyledPaper className="top-margin-2 horizontal-padding-4 vertical-padding-4">
                       <StyledGrid container spacing={2}>
@@ -710,7 +690,7 @@ const BuyerOrganizationRegistration = (props: any) => {
                         <StyledGrid item xs={12}>
                           <StyledGrid
                             container
-                            justify="space-between"
+                            justifyContent="space-between"
                             spacing={2}>
                             <StyledGrid item>
                               <StyledTypography variant="h6">
@@ -902,7 +882,7 @@ const BuyerOrganizationRegistration = (props: any) => {
                         <StyledGrid item xs={12}>
                           <StyledGrid
                             container
-                            justify="space-between"
+                            justifyContent="space-between"
                             spacing={2}>
                             <StyledGrid item>
                               <StyledButton
@@ -931,7 +911,7 @@ const BuyerOrganizationRegistration = (props: any) => {
                           <Divider className="top-margin-2" />
                         </StyledGrid>
                         <StyledGrid item xs={12}>
-                          <StyledGrid container justify="center">
+                          <StyledGrid container justifyContent="center">
                             <StyledGrid item>
                               <StyledTypography variant="body1">
                                 {t(

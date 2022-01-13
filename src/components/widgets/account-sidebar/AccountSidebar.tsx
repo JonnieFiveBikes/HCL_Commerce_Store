@@ -29,8 +29,9 @@ import {
   APPROVALS_MANAGEMENT,
   ORGANIZATION_MANAGEMENT,
   ORDER_APPROVAL,
+  INPROGRESS_ORDERS,
+  CHECKOUT_PROFILES,
   // REQUISITION_LISTS,
-  // SAVED_ORDERS,
   // APPROVE_ORDERS
 } from "../../../constants/routes";
 import {
@@ -179,6 +180,10 @@ const useSectionArray = (isB2B: boolean) => {
           link: ORDER_HISTORY,
         },
         {
+          title: t("MyAccount.CheckoutProfiles"),
+          link: CHECKOUT_PROFILES,
+        },
+        {
           title: t("MyAccount.Wishlists"),
           link: "",
         },
@@ -202,8 +207,8 @@ const useSectionArray = (isB2B: boolean) => {
         link: "",
       },
       {
-        title: t("Dashboard.SavedOrders"),
-        link: "",
+        title: t("Dashboard.InprogressOrders"),
+        link: INPROGRESS_ORDERS,
       },
     ],
   };
@@ -218,6 +223,10 @@ const useSectionArray = (isB2B: boolean) => {
       {
         title: t("Dashboard.AddressBook"),
         link: ADDRESS_BOOK,
+      },
+      {
+        title: t("MyAccount.CheckoutProfiles"),
+        link: CHECKOUT_PROFILES,
       },
     ],
   };

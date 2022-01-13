@@ -16,18 +16,18 @@ export const INVENTORY_STATUS = {
 };
 
 export const PAYMENT = {
+  policies: {
+    COD: true,
+    MasterCard: true,
+    VISA: true,
+    AMEX: true,
+  },
   paymentMethodName: {
     cod: "COD",
     mc: "MasterCard",
     visa: "VISA",
     amex: "AMEX",
   },
-  paymentDisplayName: {
-    mc: "Mastercard",
-    visa: "Visa",
-    amex: "American Express",
-  },
-  payOptions: { cod: "COD", cc: "CC" },
 };
 
 export const RECURRING_ORDER_OPTIONS = [
@@ -92,7 +92,6 @@ export const EXPIRY = {
     "12",
   ],
   YEARS: [
-    "2020",
     "2021",
     "2022",
     "2023",
@@ -103,6 +102,7 @@ export const EXPIRY = {
     "2028",
     "2029",
     "2030",
+    "2031",
   ],
 };
 
@@ -120,3 +120,14 @@ export const ORDER_STATUS = {
   PendingApproval: "W",
   Canceled: "X",
 };
+
+export const ACCOUNT_CC = "account";
+export const CC_CVC = "cc_cvc";
+export const EXPIRE_MONTH = "expire_month";
+export const EXPIRE_YEAR = "expire_year";
+export const ACCOUNT_FOR_VIEW_CC = "accountForView";
+export const PRIVATE_ORDER_TYPE = "ORD";
+export const SHARRED_ORDER_TTYPE = "SHR";
+
+export const RESOURCE_NAME_CART = "cart";
+export const N_ITEMS_ADDED = "addedNSuccessfully";

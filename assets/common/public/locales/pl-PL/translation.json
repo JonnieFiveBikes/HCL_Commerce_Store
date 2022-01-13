@@ -54,8 +54,14 @@
     "Subtotal_plural": "Suma częściowa dla {{count}} pozycji",
     "Empty": "W Twoim koszyku nie ma żadnych pozycji.",
     "Actions": {
-      "Cart": "Wyświetl cały koszyk"
-    }
+      "Cart": "Wyświetl cały koszyk",
+      "CheckOut": "Przejdź do kasy",
+      "ViewOrderDetails": "Wyświetl szczegóły zamówienia"
+    },
+    "MyOrder": "Moje zamówienie",
+    "PrivateOrder": "Zamówienie prywatne",
+    "SharedOrderConributor": "Zamówienie współużytkowane (kontrybutor)",
+    "SharedOrderAdmin": "Zamówienie współużytkowane (administrator)"
   },
   "Language": {
     "-1": "Angielski (USA)",
@@ -68,13 +74,19 @@
     "-8": "Chiński tradycyjny",
     "-10": "Japoński",
     "-20": "Rosyjski",
-    "-21": "Rumuński"
+    "-21": "Rumuński",
+    "-9": "koreański",
+    "-22": "polski",
+    "-23": "arabski"
   },
   "productDetail": {
     "Quantity": "Ilość",
     "QtyError": "Ilość musi być większa lub równa 1.",
     "Availability": "Dostępność",
     "AddToCart": "Dodaj do koszyka",
+    "AddBundleToCart": "Dodaj pakiet do zamówienia",
+    "AddBundleToSharedOrder": "Dodaj do zamówienia współużytkowanego",
+    "SelectAttributes": "Wybierz atrybuty",
     "Description": "Opis",
     "ProductDetails": "Szczegóły produktu",
     "Attachments": "Załączniki",
@@ -88,12 +100,23 @@
     "any": "Dowolne",
     "showAttributes": "Pokaż atrybuty",
     "attributeFilter": "Filtr atrybutu",
-    "addToCurrentOrder": "Dodaj do bieżącego zamówienia",
+    "addToCurrentOrder": "Dodaj do zamówienia",
+    "addToSharedOrder": "Dodaj do zamówienia współużytkowanego",
     "SignIn": "Zaloguj się do sklepu",
     "noproductsToDisplay": "Brak produktów do wyświetlenia. Zmień filtr atrybutu i spróbuj ponownie.",
     "SKU": "Kod SKU",
+    "PRODUCTSKU": "PRODUKT / KOD SKU",
+    "SelectAnOption": "Wybierz opcję",
+    "Unconfigured": "Nieskonfigurowane",
+    "Unavailable": "Niedostępne",
+    "InStock": "W magazynie",
     "Price": "Cena",
-    "Online_Availability": "Dostępność online"
+    "Online_Availability": "Dostępność online",
+    "recommendedProdTitle": "Rekomendowane produkty",
+    "someWithNoSkus": "Co najmniej jeden produkt na liście ma niewybrane atrybuty. Uzupełnij wybór atrybutów.",
+    "someWithNoAvlSelZero": "Co najmniej jedna z wybranych pozycji nie jest dostępna w magazynie. Zmień ilość na 0, aby zignorować te pozycje.",
+    "someWithNotEnough": "Dla co najmniej jednej z wybranych pozycji nie ma wystarczającej ilości zapasów w magazynie. Zmień ilość na mniejszą lub równą aktualnemu dostępnemu zapasowi.",
+    "selectSomething": "Nie wybrano pozycji. Wybierz co najmniej jedną pozycję."
   },
   "AddressBook": {
     "AddrMsg": "Dodaj nowy adres",
@@ -126,7 +149,8 @@
     },
     "Actions": {
       "Checkout": "Przejdź do kasy",
-      "Apply": "Zastosuj"
+      "Apply": "Zastosuj",
+      "Checkout-With-Profile": "Przejdź do kasy z zastosowaniem z profilu"
     }
   },
   "CheckoutAddress": {
@@ -140,6 +164,7 @@
   },
   "Checkout": {
     "Title": "Przejdź do kasy",
+    "CheckoutProfileTitle": "Profil przechodzenia do kasy",
     "Labels": {
       "shipping": "Do dostawy",
       "payment": "Płatność",
@@ -178,7 +203,9 @@
       "Quantity": "Ilość",
       "ShippingDetails": "Szczegóły dostawy",
       "SelectShippingAddressAndMethod": "Wybierz adres i metodę dostawy",
-      "ChangeSelection": "Zmień wybór"
+      "ChangeSelection": "Zmień wybór",
+      "nItemsSel": "Liczba wybranych pozycji: {{ n }}",
+      "noItems": "Nie znaleziono żadnych pozycji"
     }
   },
   "Shipping": {
@@ -335,7 +362,7 @@
     "OrderHistory": "Historia zamówień",
     "RecurringOrders": "Zamówienia cykliczne",
     "RequisitionLists": "Wykazy zapotrzebowania",
-    "SavedOrders": "Zapisane zamówienia",
+    "InprogressOrders": "Zamówienia w toku",
     "ApproveOrders": "Zatwierdzenie zamówienia"
   },
   "Order": {
@@ -426,7 +453,8 @@
     "PersonalInformation": "Dane osobowe",
     "AddressBook": "Książka adresowa",
     "OrderHistory": "Historia zamówień",
-    "Wishlists": "Lista życzeń"
+    "Wishlists": "Lista życzeń",
+    "CheckoutProfiles": "Profile przechodzenia do kasy"
   },
   "AddressCard": {
     "EditButton": "Edytuj",
@@ -467,6 +495,55 @@
     "CancelLabel": "Anuluj",
     "SuccessLabel": "Hasło zostało pomyślnie zmienione",
     "OkLabel": "OK"
+  },
+  "CheckoutProfile": {
+    "ShippingInformation": "Informacje o wysyłce",
+    "CreateCheckoutTitle": "Utwórz profil przechodzenia do kasy",
+    "CreateCheckoutButton": "Utwórz nowy profil przechodzenia do kasy",
+    "BillingInformation": "Informacje rozliczeniowe",
+    "PaymentInformation": "Informacje o płatności",
+    "ShippingMethod": "Sposób wysyłki",
+    "ShipSameAsBill": "Adres do faktury jest taki sam jak adres wysyłki",
+    "Cancel": "Anuluj",
+    "Next": "Dalej",
+    "Back": "Wstecz",
+    "CreateProfile": "Utwórz profil",
+    "UpdateProfile": "Aktualizuj profil",
+    "Title": "Wybór profilu przechodzenia do kasy",
+    "Label": "Wybierz istniejący profil przechodzenia do kasy",
+    "MyAcctDesc": "Zarządzaj profilami szybkiego przechodzenia do kasy oraz edytuj je w celu szybszej obsługi kasowej",
+    "Name": "Nazwa profilu przechodzenia do kasy",
+    "Edit": "Edytuj",
+    "Delete": "Usuń",
+    "NoneFound": "<0>Nie znaleziono!</0><1>Niestety nie mogliśmy znaleźć tego profilu przechodzenia do kasy.</1><2>Spróbuj użyć innego profilu przechodzenia do kasy lub <0>utwórz nowy</0>.</2>",
+    "NoProfiles": "Nie znaleziono profili przechodzenia do kasy. <0>Utwórz nowy</0> profil przechodzenia do kasy.",
+    "TitleCreate": "Profile przechodzenia do kasy",
+    "CreateMessage": "Utwórz nowy profil przechodzenia do kasy",
+    "CreateNewButton": "Utwórz nowy",
+    "ShippingAddr": "ADRES WYSYŁKI",
+    "ShippingMethodDisp": "SPOSÓB WYSYŁKI",
+    "BillingAddr": "ADRES DO FAKTURY",
+    "BillingMethod": "SPOSÓB FAKTUROWANIA",
+    "EditProfile": "Edytuj profil przechodzenia do kasy",
+    "ShipAsComplete": "WYSYŁKA W STANIE KOMPLETNYM",
+    "confirmDelete": "Potwierdź usunięcie",
+    "selectExisting": "Wybierz istniejący adres. W przeciwnym razie <0>utwórz nowy</0>.",
+    "sm_Express": "Przyspieszona",
+    "sm_Mail": "Adres pocztowy",
+    "sm_InternationalPriority": "Międzynarodowa priorytet",
+    "sm_InternationalRegular": "Międzynarodowa zwykła",
+    "sm_PickupInStore": "Odbiór w sklepie",
+    "saveAddress": "Zapisz adres",
+    "invalidProfile": "Ten profil jest nieprawidłowy. Zmodyfikuj i wybierz nowy adres.",
+    "invalidProfileName": "Nazwa profilu może zawierać wyłącznie znaki alfanumeryczne (A-Z, a-z, 0-9) oraz spacje.",
+    "selectExpMonth": "Wybierz miesiąc ważności",
+    "selectExpYear": "Wybierz rok ważności",
+    "payMethods": {
+      "VISA": "Karta kredytowa VISA",
+      "MasterCard": "Karta kredytowa MasterCard",
+      "AMEX": "Karta kredytowa American Express",
+      "COD": "Płatność za pobraniem"
+    }
   },
   "ChildPimCategories": {
     "title": "Wszystkie {{name}}"
@@ -509,7 +586,7 @@
     "_ERR_CMD_INVALID_PARAM_5060": "W polu Nazwisko wpisz nazwisko.",
     "_ERR_CMD_INVALID_PARAM_5066": "W polu Imię wpisz imię.",
     "_ERR_CMD_INVALID_PARAM_5210": "W polu Adres e-mail wpisz adres e-mail.",
-    "_ERR_CMD_INVALID_PARAM_2190": "Wartość kodu weryfikacyjnego jest nieprawidłowa.",
+    "_ERR_CMD_INVALID_PARAM_2190": "Wprowadzony kod sprawdzania poprawności jest nieprawidłowy. Sprawdź otrzymany kod i spróbuj ponownie.",
     "_ERR_CMD_INVALID_PARAM_2080": "Hasło wprowadzone w polu potwierdzenia hasła jest niezgodne z nowym hasłem.",
     "_ERR_CMD_INVALID_PARAM": "W trakcie rejestracji wystąpił błąd. Spróbuj ponownie później lub skontaktuj się ze sklepem w celu uzyskania pomocy.",
     "_ERR_LOGONID_ALREDY_EXIST_2030": "Wprowadzony adres e-mail już istnieje. Wpisz inny adres e-mail i spróbuj ponownie.",
@@ -596,13 +673,15 @@
     "_ERR_REMOTE_EXCEPTION_CMN0412E": "Wystąpił problem systemowy podczas przetwarzania Twojego żądania. Skontaktuj się ze sklepem w celu uzyskania pomocy.",
     "_ERR_REG_DUPE_ID_CMN0114S": "Wprowadzony identyfikator logowania już istnieje. Wpisz inny identyfikator logowania i spróbuj ponownie.",
     "_ERR_FINDER_EXCEPTION_CMN0411E": "Wprowadzony adres e-mail jest nieprawidłowy. Sprawdź wprowadzony adres i spróbuj ponownie.",
-    "_ERR_CMD_INVALID_PARAM_2195": "Wprowadzony kod weryfikacyjny jest nieprawidłowy. Sprawdź wprowadzony kod i spróbuj ponownie.",
+    "_ERR_CMD_INVALID_PARAM_2195": "Wprowadzony kod sprawdzania poprawności wygasł. Aby zmienić swoje hasło, należy uzyskać nowy kod sprawdzania poprawności.",
     "B2B": {
       "_ERR_FINDER_EXCEPTION_CMN0411E": "Wprowadzony identyfikator logowania jest nieprawidłowy. Sprawdź wprowadzony identyfikator i spróbuj ponownie.",
       "_ERR_LOGONID_ALREDY_EXIST_2030": "Wprowadzony identyfikator logowania już istnieje. Wpisz inny identyfikator logowania i spróbuj ponownie.",
-      "_ERR_BAD_PARMS_2010": "Wprowadzony identyfikator logowania jest nieprawidłowy. Sprawdź wprowadzony identyfikator i spróbuj ponownie."
+      "_ERR_BAD_PARMS_2010": "Wprowadzony identyfikator logowania jest nieprawidłowy. Sprawdź wprowadzony identyfikator i spróbuj ponownie.",
+      "_ERR_INVALID_NAME_CMN1652E": "Obiekt o nazwie „{{0}}” już istnieje. Wybierz inną nazwę i spróbuj ponownie."
     },
-    "_ERR_PASSWORD_EXPIRED_2170": "Twoje bieżące hasło utraciło ważność. Wprowadź nowe hasło."
+    "_ERR_PASSWORD_EXPIRED_2170": "Twoje bieżące hasło utraciło ważność. Wprowadź nowe hasło.",
+    "_ERR_INVALID_NAME_CMN1652E": "Obiekt o nazwie „{{0}}” już istnieje. Wybierz inną nazwę i spróbuj ponownie."
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "Pozycja została dodana do koszyka. ",
@@ -613,7 +692,16 @@
     "EDIT_ADDRESS_SUCCESS": "Adres „{{0}}” został zaktualizowany",
     "DELETE_ADDRESS_SUCCESS": "Adres „{{0}}” został usunięty",
     "RESEND_VERIFICATION_CODE": "Pomyślnie wysłano kod weryfikacyjny na Twój adres e-mail",
-    "PASSWORD_RESET_SUCCESS": "Pomyślnie zresetowano hasło"
+    "PASSWORD_RESET_SUCCESS": "Pomyślnie zresetowano hasło",
+    "CREATE_CHECKOUT_PROFILE_SUCCESS": "Pomyślnie utworzono profil przechodzenia do kasy „{{0}}”",
+    "COPY_ORDER_SUCCESS": "Pomyślnie skopiowano zamówienie.",
+    "CREATE_ORDER_SUCCESS": "Pomyślnie utworzono zamówienie „{{0}}”.",
+    "DELETE_ORDER_SUCCESS": "Pomyślnie usunięto zamówienie „{{0}}”.",
+    "DeletedCheckoutProfile": "Pomyślnie usunięto profil przechodzenia do kasy „{{ 0 }}”",
+    "UpdatedCheckoutProfile": "Pomyślnie zaktualizowano profil przechodzenia do kasy „{{ 0 }}”",
+    "deletedSuccessfully": "Pomyślnie usunięto następującą liczbę pozycji z zamówienia: {{ n }}",
+    "addedItemSuccessfully": "Pomyślnie dodano {{ v }} do bieżącego zamówienia",
+    "addedNSuccessfully": "Pomyślnie dodano następującą liczbę pozycji do bieżącego zamówienia: {{ v }}"
   },
   "notFound": {
     "notFound": "<p>Niestety nie możemy znaleźć tego, czego szukasz.</p>\n"
@@ -629,7 +717,8 @@
     "Actions": {
       "Back": "Wróć do kroku Szczegóły płatności",
       "Next": "Złóż zamówienie",
-      "NextRecurringOrder": "Złóż zamówienie cykliczne"
+      "NextRecurringOrder": "Złóż zamówienie cykliczne",
+      "BackCart": "Powrót do koszyka"
     },
     "Labels": {
       "PaymentDetails": "Szczegóły płatności",
@@ -668,8 +757,8 @@
     "Title": "Zarządzanie zamówieniami",
     "OrderHistoryText": "Historia zamówień",
     "OrderHistoryDescription": "Pozwala wyświetlić złożone zamówienia oraz zamówienia oczekujące na zatwierdzenie, a także dane dotyczące poszczególnych zamówień",
-    "SavedOrdersText": "Zapisane zamówienia",
-    "SavedOrdersDescription": "Wyświetlanie zapisanych zamówień i zarządzanie nimi",
+    "InprogressOrdersText": "Zamówienia w toku",
+    "InprogressOrdersDescription": "Wyświetlaj zamówienia w toku i zarządzaj nimi",
     "RecurringOrdersText": "Zamówienia cykliczne",
     "RecurringOrdersDescription": "Wyświetlanie listy zamówień cyklicznych i zarządzanie nią",
     "ApproveOrdersText": "Zatwierdzenie zamówienia",
@@ -704,12 +793,19 @@
       "Total": "Łącznie"
     }
   },
+  "PaymentMethodContainer": {
+    "Actions": {
+      "Cancel": "Anuluj",
+      "Done": "Gotowe",
+      "SaveAndAdd": "Zapisz i dodaj inną formę płatności"
+    }
+  },
   "PaymentInfoCard": {
     "Title": "Forma płatności {{number}}",
     "Labels": {
       "CreditCard": "Karta kredytowa: ",
       "AmountToPay": "Kwota do zapłaty",
-      "ExpiryDate": "Data ważności:",
+      "ExpiryDate": "Data ważności: {{month}}/{{year}}",
       "BillingAddress": "Adres do faktury"
     },
     "Actions": {
@@ -718,10 +814,15 @@
     }
   },
   "PaymentInfoList": {
-    "Title": "Formy płatności — suma zamówienia: ",
+    "Title": {
+      "PayMethod": "Formy płatności",
+      "WithOrderTotal": "Formy płatności – suma zamówienia: "
+    },
     "Msgs": {
       "PayMethodRequired": "Wymagana jest co najmniej jedna forma płatności.",
-      "InsufficientPayment": "Za pomocą różnych form płatności musisz pokryć sumę zamówienia w wysokości {{grandTotal}}."
+      "InsufficientPayment": "Za pomocą różnych form płatności musisz pokryć sumę zamówienia w wysokości {{grandTotal}}.",
+      "CardDetailsUpdate": "Jeszcze raz sprawdź i zaktualizuj dane karty.",
+      "PayMethodNote": "Uwaga: formy płatności zostaną zapisane dopiero po kliknięciu przycisku Przegląd zamówienia."
     },
     "Actions": {
       "AddPayMethod": "Dodaj formę płatności"
@@ -731,8 +832,8 @@
     "Title": "Forma płatności",
     "Msgs": {
       "CreditCard": "Bezpieczna płatność online. Akceptowane karty kredytowe: {{cards}}",
-      "CVV": "Ostatnie trzy cyfry na pasku podpisu",
-      "InvalidCardNumber": "Nieprawidłowy numer lub typ karty",
+      "CVV": "Wprowadź poprawny kod CVV",
+      "InvalidCardNumber": "Wprowadź poprawny numer karty kredytowej",
       "InvalidFormat": "Nieprawidłowy format"
     },
     "Labels": {
@@ -743,7 +844,9 @@
       "CVV": "Kod CVV",
       "OrderTotal": "Suma zamówienia",
       "RemainingAmount": "Pozostała kwota do zapłaty",
-      "AmountToPay": "Kwota do zapłaty"
+      "AmountToPay": "Kwota do zapłaty",
+      "ExpiryMonth": "Data ważności – miesiąc",
+      "ExpiryYear": "Data ważności – rok"
     },
     "Actions": {
       "PayRemaining": "Zapłać pozostałą kwotę"
@@ -958,6 +1061,12 @@
       "EveryThreeWeeks": "Co 3 tygodnie",
       "EveryFourWeeks": "Co 4 tygodnie"
     },
+    "languagePopUp": {
+      "Title": "Zmienić język?",
+      "Message": "Czy chcesz zmienić język na {{ language }}?",
+      "Yes": "Tak",
+      "No": "Nie"
+    },
     "currency": {
       "ROL": "RON",
       "RON": "RON",
@@ -1009,6 +1118,67 @@
       "-9": "Koreański",
       "-22": "Polski",
       "-23": "Arabski"
+    }
+  },
+  "InprogressOrders": {
+    "Title": "Zamówienia w toku",
+    "CreateNewOrder": "Utwórz nowe zamówienie",
+    "NewOrderName": "Nazwa nowego zamówienia",
+    "CreateOrder": "Utwórz zamówienie",
+    "PrivateOrder": "Zamówienie prywatne",
+    "SharedOrder": "Zamówienie współużytkowane",
+    "Columns": {
+      "Active": "AKTYWNE",
+      "OrderId": "IDENTYFIKATOR ZAMÓWIENIA",
+      "Name": "NAZWA",
+      "LastUpdated": "OSTATNIA AKTUALIZACJA",
+      "TotalPrice": "CENA ŁĄCZNIE",
+      "Type": "TYP",
+      "Actions": "AKCJA"
+    },
+    "Status": {
+      "ORD": "Prywatne",
+      "SHR": "Współużytkowane"
+    },
+    "DeleteDialogTitle": "Usuwanie zamówienia",
+    "DeleteDialogHeading": "Czy chcesz usunąć to zamówienie?",
+    "CopyTitle": "Kopiowanie zamówienia",
+    "CopyMessage": "Czy chcesz skopiować to zamówienie?",
+    "CurrentCart": "{{ orderId }} (koszyk bieżący)",
+    "InvalidOrderName": "Nazwa zamówienia może zawierać wyłącznie znaki alfanumeryczne (A-Z, a-z, 0-9) oraz spacje.",
+    "searchPh": "Wyszukaj identyfikator lub opis",
+    "NotActiveOrderMessage": "Aby dodać produkty, zamówienie musi być aktywne"
+  },
+  "InprogressItems": {
+    "orderItem": "POZYCJA ZAMÓWIENIA",
+    "creationDate": "DATA UTWORZENIA",
+    "quantity": "ILOŚĆ",
+    "contributor": "KONTRYBUTOR",
+    "each": "KAŻDY",
+    "actions": "AKCJE",
+    "inprogressOrders": "Zamówienia w toku",
+    "createdBy": "UTWORZONE PRZEZ",
+    "lastUpdated": "OSTATNIA AKTUALIZACJA",
+    "totalPrice": "CENA ŁĄCZNIE",
+    "visibility": "LISTA WSPÓŁUŻYTKOWANYCH",
+    "orderType_SHR": "Współużytkowane",
+    "orderType_ORD": "Prywatne",
+    "proceed": "Przejdź do kasy",
+    "addProds": "Dodaj produkty",
+    "privateList": "Lista prywatnych",
+    "sharedList": "Lista współużytkowanych",
+    "nProductsSel": "Liczba wybranych produktów: {{ n }}",
+    "addSelToCart": "Dodaj wybrane do koszyka",
+    "deleteSelected": "Usuń wybrane",
+    "noItems": "Nie znaleziono żadnych pozycji zamówienia.",
+    "nameForCopiedOrder": "Wprowadź nazwę dla nowego zamówienia"
+  },
+  "commonTable": {
+    "ofTotalCount": "Wyświetlanie od {{ from }} do {{ to }} z {{ total }}",
+    "pageSz": {
+      "five": "5 wierszy",
+      "ten": "10 wierszy",
+      "twenty": "20 wierszy"
     }
   }
 }

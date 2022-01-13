@@ -25,7 +25,7 @@ interface OrderShippingInfoProps {
  */
 const OrderShippingInfo: React.FC<OrderShippingInfoProps> = (props: any) => {
   const { shippingInfo } = props;
-  const { orderItems, parentComponent } = shippingInfo;
+  const { orderItems, parentComponent, paymentInstruction } = shippingInfo;
 
   const formatShippingGroup = () => {
     const groups: any[] = [];
@@ -38,6 +38,7 @@ const OrderShippingInfo: React.FC<OrderShippingInfoProps> = (props: any) => {
      *  '''
      * ]
      */
+
     if (orderItems) {
       orderItems.forEach((o) => {
         const filteredGroup = groups.filter((g) => {
@@ -63,6 +64,9 @@ const OrderShippingInfo: React.FC<OrderShippingInfoProps> = (props: any) => {
       {shippingGroups.length === 1 && (
         <SingleShipment
           orderItems={shippingGroups[0]}
+          selectedProfileOrderItem={
+            paymentInstruction.length > 0 ? paymentInstruction : []
+          }
           showHeading={parentComponent === "Review"}
         />
       )}

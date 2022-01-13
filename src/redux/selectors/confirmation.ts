@@ -14,3 +14,7 @@ import { RootReducerState } from "../reducers";
 export const confirmationSelector = (state: RootReducerState) => {
   return state.confirmation;
 };
+
+export const confirmationCommsSelector = (state: RootReducerState) => {
+  return state.confirmation.comms;
+};

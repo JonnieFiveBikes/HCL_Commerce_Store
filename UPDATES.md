@@ -122,6 +122,26 @@ The React Store Application (Emerald and Sapphire) has been updated with the fol
 
 This version of the React Store Application requires corresponding HCL Commerce Version 9.1.8 to enable managed file capability.
 
+### 2022/01/28 HCL Commerce Version 9.1.9 - Refreshed Store Application
+
+The React Store Application (Emerald and Sapphire) has been updated with the following enhancements:
+
+1. Multiple quick checkout profiles.
+2. Added multiple payment support.
+3. Inprogress Orders and Multi-user order collaboration.
+4. react-super-responsive-table components to replace material-table components
+5. OOTB Page Composer Layouts:
+   - Cart Page(`cart-page.tsx`)
+   - Checkout Page(`check-out-page.tsx`)
+   - Order Confirmation Page(`order-confirmation-page.tsx`)
+   - Bundle Page(`bundle-page.tsx`)
+6. OOTB Page Composer Widgets:
+   - Content Carousel Widget(`content-carousel-widget.tsx`)
+   - Bundle Widget(`bundle-widget.tsx`)
+7. Display of descriptive attributes in B2B store PDP page
+
+This version of the React Store Application requires corresponding HCL Commerce Version 9.1.9.
+
 ## Limitations
 
 The list of latest features delivered in the React Store Applications are described for Emerald:

@@ -30,3 +30,11 @@ export const isRecurringOrderDisabledSelector = (state: RootReducerState) =>
   state.order.isRecurringOrderDisabled;
 export const isFetchingSelector = (state: RootReducerState) =>
   state.order.isFetching;
+export const ordersListSelector = (state: RootReducerState) =>
+  state.order.listOfOrders;
+export const allowableShipModesSelector = (state: RootReducerState) =>
+  state.order.allowableShipModes;
+export const activeInprogressOrderSelector = (state: RootReducerState) =>
+  state.order.activeInprogressOrder;
+export const allowablePaymethodsSelector = (state: RootReducerState) =>
+  state.order.allowablePaymethods;

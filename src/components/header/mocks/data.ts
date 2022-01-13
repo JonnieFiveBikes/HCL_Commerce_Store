@@ -23,6 +23,8 @@ const initStatesBase: OrderReducerState = {
   shipModes: [],
   payMethods: [],
   isRecurringOrderDisabled: false,
+  allowableShipModes: [],
+  activeInprogressOrder: null,
 };
 
 export const ONE_ITEM = 1;

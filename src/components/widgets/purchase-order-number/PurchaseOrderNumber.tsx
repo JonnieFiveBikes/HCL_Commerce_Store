@@ -65,7 +65,7 @@ const PurchaseOrderNumber: React.FC<PurchaseOrderNumberProps> = (
         item
         container
         direction="row"
-        justify="space-between"
+        justifyContent="space-between"
         alignItems="center">
         <StyledIconLabel
           icon={<DescriptionIcon />}

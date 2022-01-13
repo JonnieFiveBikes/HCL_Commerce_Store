@@ -4,21 +4,27 @@
  *
  * HCL Commerce
  *
- * (C) Copyright HCL Technologies Limited 2020
+ * (C) Copyright HCL Technologies Limited 2020, 2021
  *
  *==================================================
  */
 //Standard libraries
-import React, { lazy } from "react";
+import React, { lazy, useMemo } from "react";
 import { Redirect } from "react-router";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import Axios, { Canceler } from "axios";
+import { useTranslation } from "react-i18next";
 import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../_foundation/hooks/useSite";
-import { HOME } from "../constants/common";
+import {
+  CHILD_ROUTE_SEPARATOR,
+  HOME,
+  LOCALE,
+  URL_LANG_REJECTED,
+} from "../constants/common";
 //Redux
 import { GET_SEO_CONFIG_ACTION } from "../../redux/actions/seo";
 import { seoSelector } from "../../redux/selectors/seo";
@@ -29,6 +35,12 @@ import { StyledProgressPlaceholder } from "@hcl-commerce-store-sdk/react-compone
 import UADataService from "../gtm/ua/uaData.service";
 //GA4
 import GA4DataService from "../gtm/ga4/ga4Data.service";
+import { localStorageUtil } from "../utils/storageUtil";
+import { PRODUCT_TOKEN } from "../constants/common";
+import { CommerceEnvironment } from "../../constants/common";
+import * as lsActions from "../../redux/actions/local-storage";
+import { OPEN_CONFIRMATION_ACTION } from "../../redux/actions/confirmation";
+import { withProductContext } from "../context/product-context";
 
 function SEO(props: any): JSX.Element {
   const widgetName = getDisplayName(SEO);
@@ -37,6 +49,12 @@ function SEO(props: any): JSX.Element {
   const dispatch = useDispatch();
   const seoConfig = useSelector(seoSelector);
   const url = props.match.url;
+  const { t, i18n } = useTranslation();
+  const identifier = useMemo(() => {
+    let _i = url.substr(1) || HOME;
+    return _i.split(CHILD_ROUTE_SEPARATOR)[0];
+  }, [url]);
+  const [first, setFirst] = React.useState(true);
 
   let cancels: Canceler[] = [];
   const CancelToken = Axios.CancelToken;
@@ -46,9 +64,50 @@ function SEO(props: any): JSX.Element {
       cancels.push(c);
     }),
   };
-  const identifier = url.substr(1) || HOME;
+
+  const handleClose = useMemo(
+    () => (langName) => {
+      const rejected = localStorageUtil.get(URL_LANG_REJECTED) ?? {};
+
+      // user rejected language suggestion -- save the rejection in local-storage
+      rejected[langName] = true;
+      localStorageUtil.set(URL_LANG_REJECTED, rejected);
+    },
+    []
+  );
+
+  const handleChangeLanguage = useMemo(
+    () => (langName) => {
+      const newLangId = CommerceEnvironment.reverseLanguageMap[langName];
+      // update local-storage and state
+      i18n.changeLanguage(langName.split("_").join("-"));
+      dispatch(lsActions.LS_LANG_CHANGE_ACTION({ newLangId }));
+    },
+    [dispatch, i18n]
+  );
+
+  const handleOpen = useMemo(
+    () => (langName) => {
+      const langId = CommerceEnvironment.reverseLanguageMap[langName];
+      const language = t(`CommerceEnvironment.language.${langId}`);
+      const message = {
+        title: "CommerceEnvironment.languagePopUp.Title",
+        key: "CommerceEnvironment.languagePopUp.Message",
+        messageParameters: { language },
+        labels: {
+          submit: "CommerceEnvironment.languagePopUp.Yes",
+          cancel: "CommerceEnvironment.languagePopUp.No",
+        },
+        cancelAction: handleClose.bind(null, langName),
+        okAction: handleChangeLanguage.bind(null, langName),
+      };
+      dispatch(OPEN_CONFIRMATION_ACTION(message));
+    },
+    [t, handleClose, handleChangeLanguage, dispatch]
+  );
+
   React.useEffect(() => {
-    if (site !== null && url) {
+    if (site !== null && identifier) {
       dispatch(
         GET_SEO_CONFIG_ACTION({
           identifier: identifier,
@@ -57,37 +116,68 @@ function SEO(props: any): JSX.Element {
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [site, url, dispatch]);
-  React.useEffect(() => {
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
+  }, [site, identifier, dispatch]);
+
+  React.useEffect(
+    () => () => cancels.forEach((cancel) => cancel()),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    []
+  );
 
-  const ActiveComponent = () => {
-    if (seoConfig && seoConfig[identifier]) {
-      const c = seoConfig[identifier];
-      const ActiveC = lazy(
-        () =>
-          import(`../../components/commerce-layouts/${c.layout.containerName}`)
-      );
-      const slots = c.layout.slots;
+  React.useEffect(() => {
+    if (first && identifier && seoConfig && seoConfig[identifier]) {
+      const seoLang = seoConfig[identifier].language;
+      const rejected = localStorageUtil.get(URL_LANG_REJECTED) ?? {};
+      const old = localStorageUtil.get(LOCALE);
 
-      //GA360
-      if (site.enableGA && seoConfig[identifier].page) {
-        if (site.enableUA) {
-          UADataService.setPageTitle(seoConfig[identifier].page.title);
-        }
-        if (site.enableGA4) {
-          GA4DataService.setPageTitle(seoConfig[identifier].page.title);
-        }
+      if (first && seoLang && seoLang !== old && !rejected[seoLang]) {
+        handleOpen(seoLang);
       }
+      setFirst(false);
+    }
+  }, [first, handleOpen, identifier, seoConfig]);
 
-      return c.redirect && c.redirect.trim() !== "" ? (
-        <Redirect to={c.redirect} />
-      ) : (
-        <>
+  const ActiveComponent = useMemo(
+    () => () => {
+      if (seoConfig && seoConfig[identifier]) {
+        const c = seoConfig[identifier];
+        const slots = c.layout.slots;
+        const token = c.tokenName;
+
+        let ActiveC;
+
+        if (token === PRODUCT_TOKEN) {
+          //wrap any layout used for product with ProductContext
+          ActiveC = withProductContext(
+            lazy(
+              () =>
+                import(
+                  `../../components/commerce-layouts/${c.layout.containerName}`
+                )
+            )
+          );
+        } else {
+          ActiveC = lazy(
+            () =>
+              import(
+                `../../components/commerce-layouts/${c.layout.containerName}`
+              )
+          );
+        }
+
+        //GA360
+        if (site.enableGA && seoConfig[identifier].page) {
+          if (site.enableUA) {
+            UADataService.setPageTitle(seoConfig[identifier].page.title);
+          }
+          if (site.enableGA4) {
+            GA4DataService.setPageTitle(seoConfig[identifier].page.title);
+          }
+        }
+
+        return c.redirect && c.redirect.trim() !== "" ? (
+          <Redirect to={c.redirect} />
+        ) : (
           <div className="page">
             <Helmet>
               <meta charSet="utf-8" />
@@ -97,13 +187,23 @@ function SEO(props: any): JSX.Element {
             </Helmet>
             <ActiveC page={c.page} slots={slots} {...props} />
           </div>
-        </>
-      );
-    } else {
-      return <StyledProgressPlaceholder className="vertical-padding-20" />;
-    }
-  };
-  return <ActiveComponent />;
+        );
+      } else {
+        return <StyledProgressPlaceholder className="vertical-padding-20" />;
+      }
+    },
+    [seoConfig, identifier, props, site]
+  );
+
+  return (
+    <>
+      {!first ? (
+        <ActiveComponent />
+      ) : (
+        <StyledProgressPlaceholder className="vertical-padding-20" />
+      )}
+    </>
+  );
 }
 
 SEO.propTypes = {

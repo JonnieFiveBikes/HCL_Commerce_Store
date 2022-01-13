@@ -85,7 +85,7 @@ function PersonalInformationLayout() {
     <StyledPaper className="vertical-padding-2 horizontal-padding-2">
       <StyledGrid
         container
-        justify="space-between"
+        justifyContent="space-between"
         alignItems="center"
         className="bottom-padding-2">
         <StyledGrid item>

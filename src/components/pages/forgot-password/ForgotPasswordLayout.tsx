@@ -40,9 +40,8 @@ import * as successActions from "../../../redux/actions/success";
 const ForgotPasswordLayout: React.FC = (props: any) => {
   const widgetName = getDisplayName(ForgotPasswordLayout);
   const [email, setEmail] = React.useState<string>(EMPTY_STRING);
-  const [forgotPasswordState, setForgotPasswordState] = React.useState<boolean>(
-    true
-  );
+  const [forgotPasswordState, setForgotPasswordState] =
+    React.useState<boolean>(true);
   const dispatch = useDispatch();
   const { mySite: site } = useSite();
   const { t } = useTranslation();
@@ -135,7 +134,7 @@ const ForgotPasswordLayout: React.FC = (props: any) => {
   }, []);
 
   return (
-    <StyledGrid container justify="center">
+    <StyledGrid container justifyContent="center">
       <StyledGrid item xs={12}>
         <StyledPaper className="top-margin-5 horizontal-padding-2 vertical-padding-3">
           {getForgotPasswordState() ? (
@@ -207,14 +206,14 @@ const ForgotPasswordLayout: React.FC = (props: any) => {
                   container
                   alignItems="center"
                   direction="row"
-                  justify="center"
+                  justifyContent="center"
                   spacing={6}>
                   <StyledGrid item xs={12}>
                     <StyledGrid
                       container
                       alignItems="center"
                       direction="column"
-                      justify="center"
+                      justifyContent="center"
                       spacing={1}>
                       <StyledGrid item xs={12}>
                         <StyledTypography variant="body1">
@@ -238,7 +237,7 @@ const ForgotPasswordLayout: React.FC = (props: any) => {
                       container
                       alignItems="center"
                       direction="row"
-                      justify="center">
+                      justifyContent="center">
                       <StyledGrid item>
                         <StyledTypography variant="body1" component="span">
                           {t("ForgotPassword.AccountInfoRemember")}

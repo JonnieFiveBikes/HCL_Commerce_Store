@@ -16,9 +16,9 @@ import LocalShippingIcon from "@material-ui/icons/LocalShipping";
 import { EMPTY_STRING } from "../../../../constants/common";
 //Custom libraries
 import CheckoutAddress, { CheckoutPageType } from "../address/CheckoutAddress";
-import MultipleShipmentTable from "./MultipleShipmentTable";
-//Redux
-import useShipping from "./useShipping";
+import { MultipleShipmentTable } from "./MultipleShipmentTable";
+//Foundation
+import { useShipping } from "../../../../_foundation/hooks/use-shipping";
 //UI
 import {
   StyledGrid,
@@ -48,7 +48,6 @@ const Shipping: React.FC = (props: any) => {
     selectedShipModeIds,
     setSelectedshipModeId,
     useMultipleShipment,
-    setUseMultipleShipment,
     handleMultipleShipmentChange,
     t,
     canContinue,
@@ -73,44 +72,16 @@ const Shipping: React.FC = (props: any) => {
     clickCheckbox,
     cancelSelectShipment,
     confirmShipInfo,
-    skipMultipleShipment,
+    isDisabled,
+    handleMultiSelect,
   } = useShipping();
-
-  const isDisabled = (): boolean => {
-    return (
-      !selectedShipAddressIds[0] ||
-      selectedShipAddressIds[0].trim() === EMPTY_STRING
-    );
-  };
-
-  const setMultipleShipment = () => {
-    const addressIds = orderItems.map((o) => o.addressId);
-    const shipModeIds = orderItems.map((o) => o.shipModeId);
-
-    let uniqueAddressIds = addressIds.filter((v, i, a) => a.indexOf(v) === i);
-    let uniqueShipModeIds = shipModeIds.filter((v, i, a) => a.indexOf(v) === i);
-    if (
-      useMultipleShipment === false &&
-      (uniqueAddressIds.length > 1 || uniqueShipModeIds.length > 1)
-    ) {
-      setUseMultipleShipment(true);
-    }
-  };
-
-  React.useEffect(() => {
-    if (!skipMultipleShipment) {
-      setMultipleShipment();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [orderItems]);
-
   return (
     <StyledPaper className="vertical-padding-2 horizontal-padding-2">
       <StyledGrid
         container
         direction="row"
         alignments="center"
-        justify="flex-start"
+        justifyContent="flex-start"
         spacing={2}>
         {!createNewAddress && !editAddress ? (
           <>
@@ -231,7 +202,7 @@ const Shipping: React.FC = (props: any) => {
                   container
                   spacing={2}
                   alignItems="center"
-                  justify="flex-end">
+                  justifyContent="flex-end">
                   <StyledGrid item>
                     <StyledButton
                       data-testid="shipping-address-select-cancel"
@@ -263,8 +234,12 @@ const Shipping: React.FC = (props: any) => {
             clickCheckbox={clickCheckbox}
             itemsMap={itemsMap}
             usableAddresses={usableShipAddresses[0] || []}
+            handleMultiSelect={handleMultiSelect}
           />
-          <StyledGrid container justify="flex-end" className="checkout-actions">
+          <StyledGrid
+            container
+            justifyContent="flex-end"
+            className="checkout-actions">
             <StyledGrid item>
               <StyledButton
                 data-testid="shipping-can-continue"
@@ -301,7 +276,7 @@ const Shipping: React.FC = (props: any) => {
                   item
                   container
                   direction="row"
-                  justify="space-between"
+                  justifyContent="space-between"
                   alignItems="center">
                   <StyledIconLabel
                     icon={<LocalShippingIcon color="primary" />}
@@ -344,7 +319,7 @@ const Shipping: React.FC = (props: any) => {
               {!selectShipment ? (
                 <StyledGrid
                   container
-                  justify="flex-end"
+                  justifyContent="flex-end"
                   className="checkout-actions">
                   <StyledGrid item>
                     <StyledButton
@@ -360,7 +335,7 @@ const Shipping: React.FC = (props: any) => {
               ) : (
                 <StyledGrid
                   container
-                  justify="flex-end"
+                  justifyContent="flex-end"
                   spacing={2}
                   className="checkout-actions">
                   <StyledGrid item>

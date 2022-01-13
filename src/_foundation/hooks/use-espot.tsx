@@ -25,7 +25,11 @@ import {
   AttachmentLayout,
   StyledContainer,
 } from "@hcl-commerce-store-sdk/react-component";
-import { commonUtil, marketingConstants } from "@hcl-commerce-store-sdk/utils";
+import {
+  constants,
+  commonUtil,
+  marketingConstants,
+} from "@hcl-commerce-store-sdk/utils";
 //foundation libraries
 import { ESPOT_ACTIONS, useESpotValue } from "../context/espot-context";
 import categoryService from "../apis/search/categories.service";
@@ -44,6 +48,7 @@ import { CLICK_EVENT_TRIGGERED_ACTION } from "../../redux/actions/marketingEvent
 import { ADD_ITEM_ACTION } from "../../redux/actions/order";
 import { currentContractIdSelector } from "../../redux/selectors/contract";
 import { CommerceEnvironment, EMPTY_STRING } from "../../constants/common";
+import storeUtil from "../../utils/storeUtil";
 
 /**
  * The hook for processing eSpot data.
@@ -171,14 +176,19 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
         productSkeleton.eSpotInternal = catEntries;
         productSkeleton.eSpotDescInternal = product;
         productSkeleton.seoUrl = prod.seo?.href;
+
+        const n = storeUtil.toMap(product.properties ?? [], "baseMarketingKey");
+        productSkeleton.__seq = parseInt(n.displaySequence?.baseMarketingValue);
         catalogSkeletonLists.push(productSkeleton);
       }
     }
+    catalogSkeletonLists.sort((a, b) => (a.__seq < b.__seq ? -1 : 1));
 
     if (catalogSkeletonLists && catalogSkeletonLists.length > 0) {
       let requestParameters = {
         storeId: storeID,
         id: catalogSkeletonLists.map((p) => p.id),
+        contractId: contract,
         cancelToken: new CancelToken((c) => {
           cancels.push(c);
         }),
@@ -188,9 +198,11 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
         .findProductsUsingGET(requestParameters)
         .then((res) => {
           const products = res?.data.contents;
+          const _m = storeUtil.toMap(catalogSkeletonLists, "id");
           if (products) {
             for (let product of products) {
-              const p = catalogSkeletonLists.find((p) => p.id === product.id);
+              const p = _m[product.id];
+
               //remove wcsstore and hclstore prefix to match the thumbnail url created by eSpot data
               //so that we will not see flickering on page.
               product.thumbnail = product.thumbnail
@@ -231,7 +243,7 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
         storeId: storeID,
         id: categoriesId,
         catalogId: catalogID,
-        $queryParameters: {
+        query: {
           contractId: contract,
         },
         widget: widgetName,
@@ -243,16 +255,18 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
         .getV2CategoryResourcesUsingGET(requestParameters)
         .then((res) => {
           const _categories = res?.data.contents;
+          const _m = storeUtil.toMap(categories, "baseMarketingSpotActivityID");
           if (_categories) {
             _categories.forEach((_category) => {
-              const _c =
-                categories.find(
-                  (c) => c.baseMarketingSpotActivityID === _category.id
-                ) || {};
-              Object.assign(_category, { ..._c });
+              const _c = _m[_category.id] ?? {};
+              const _p = _c?.properties ?? [];
+              const _n = storeUtil.toMap(_p, "baseMarketingKey");
+              const __seq = parseInt(_n.displaySequence?.baseMarketingValue);
+              Object.assign(_category, { ..._c, __seq });
               _category.performClick = (event) =>
                 performClick(event, { eSpotDesc: _category });
             });
+            _categories.sort((a, b) => (a.__seq < b.__seq ? -1 : 1));
             return _categories;
           } else {
             return [];
@@ -345,7 +359,12 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
         desc = descs.length === n ? descs[i].attachmentName : EMPTY_STRING;
         src = a.attachmentAssetPath;
         root = a.attachmentAssetRootDirectory;
-        if (src && root && (src.indexOf(root) < 0 || src.indexOf(root) > 1)) {
+        if (
+          src &&
+          root &&
+          src.indexOf(constants.DX_IMAGE_PATH_STARTS_WITH) < 0 &&
+          (src.indexOf(root) < 0 || src.indexOf(root) > 1)
+        ) {
           src = `/${root}/${src}`;
         }
         isUrl = /^https?:\/\//.test(src);
@@ -421,6 +440,7 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
             to={content.contentUrl}
             onClick={(event) => performClick(event, { eSpotDesc: content })}>
             <LazyLoadComponent
+              visibleByDefault={(window as any).__isPrerender__ || false}
               placeholder={
                 <StyledProgressPlaceholder className="vertical-padding-20" />
               }>

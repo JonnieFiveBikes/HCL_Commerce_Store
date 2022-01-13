@@ -76,9 +76,8 @@ const useCheckoutAddress = (editAddress: boolean) => {
     email1: EMPTY_STRING,
     addressType: ADDRESS_SHIPPING_BILLING,
   };
-  const [addressFormData, setAddressFormData] = useState<any>(
-    addressFormDataInit
-  );
+  const [addressFormData, setAddressFormData] =
+    useState<any>(addressFormDataInit);
   const canContinue = () => {
     if (editAddress) {
       return addressUtil.validateAddressForm(addressFormData, true);
@@ -125,6 +124,7 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
     t,
     addressFormDataInit,
   } = useCheckoutAddress(editAddress);
+  const hideEdit = page === CheckoutPageType.PAYMENT; //For HC-5398
   const payloadBase: any = {
     widget: widgetName,
     cancelToken: new CancelToken(function executor(c) {
@@ -145,9 +145,8 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
 
   const createAddress = () => {
     // remove leading and trailing white space from all form input fields.
-    let newAddressData = addressUtil.removeLeadingTrailingWhiteSpace(
-      addressFormData
-    );
+    let newAddressData =
+      addressUtil.removeLeadingTrailingWhiteSpace(addressFormData);
     newAddressData[ADDRESS_LINE] = [newAddressData[ADDRESSLINE1]];
     if (
       newAddressData[ADDRESSLINE2] &&
@@ -193,9 +192,8 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
 
   const saveChanges = () => {
     // remove leading and trailing white space from all form input fields.
-    let updatedAddressData = addressUtil.removeLeadingTrailingWhiteSpace(
-      addressFormData
-    );
+    let updatedAddressData =
+      addressUtil.removeLeadingTrailingWhiteSpace(addressFormData);
     updatedAddressData[ADDRESS_LINE] = [
       updatedAddressData[ADDRESSLINE1],
       updatedAddressData[ADDRESSLINE2],
@@ -267,7 +265,7 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
           item
           container
           direction="row"
-          justify="space-between"
+          justifyContent="space-between"
           alignItems="center">
           <StyledIconLabel
             icon={
@@ -334,6 +332,7 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
                     addressList={usableAddresses}
                     setSelectedAddressId={setSelectedAddressId}
                     selectedAddressId={selectedAddressId || EMPTY_STRING}
+                    hideEdit={hideEdit}
                   />
                 </AddressContext.Provider>
               </StyledGrid>
@@ -345,7 +344,7 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
       {(createNew || editAddress) && (
         <StyledGrid
           container
-          justify="flex-end"
+          justifyContent="flex-end"
           spacing={2}
           className="checkout-actions">
           <StyledGrid item>

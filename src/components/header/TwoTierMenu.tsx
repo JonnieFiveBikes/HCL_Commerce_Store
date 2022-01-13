@@ -34,7 +34,15 @@ const TwoTierMenu: React.FC<TwoTierMenuProps> = (props: any) => {
     <>
       <StyledPaper className="expanded-menu-two-tier-submenu">
         <StyledBox m={3}>
-          <Link to={page.seo?.href}>
+          <Link
+            to={{
+              pathname: page.seo?.href,
+              state: {
+                breadCrumbTrailEntryView: [
+                  { label: page.name, value: page.id, seo: page.seo },
+                ],
+              },
+            }}>
             <StyledMenuTypography
               variant="body1"
               className="expanded-menu-bold">
@@ -44,7 +52,16 @@ const TwoTierMenu: React.FC<TwoTierMenuProps> = (props: any) => {
           {page.children &&
             page.children.map((page2: any, i: number) => (
               <ul key={page2.id}>
-                <Link to={page2.seo?.href}>
+                <Link
+                  to={{
+                    pathname: page2.seo?.href,
+                    state: {
+                      breadCrumbTrailEntryView: [
+                        { label: page.name, value: page.id, seo: page.seo },
+                        { label: page2.name, value: page2.id, seo: page2.seo },
+                      ],
+                    },
+                  }}>
                   <StyledMenuTypography
                     variant="body2"
                     className="expanded-menu-sub-links">

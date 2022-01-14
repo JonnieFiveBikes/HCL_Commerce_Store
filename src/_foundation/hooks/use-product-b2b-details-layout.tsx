@@ -156,7 +156,7 @@ const DetailPanel = ({ rowData }) => {
   // generate single row out of all attribute values
   const data = [
     ofInterest.reduce((n, v, i) => {
-      n[`defattr_${i}_value`] = v.values && v.values[0].value;
+      n[`defattr_${i}_value`] = get(v, "values[0].value", EMPTY_STRING);
       return n;
     }, {}),
   ];
@@ -462,9 +462,10 @@ export const useProductB2BDetailsLayout = (
         if (currentSelection.partNumber.attributes) {
           for (const att of currentSelection.partNumber.attributes) {
             if (att.values?.length) {
-              currentSelection.selectedAttributes[att.identifier] = att.values
-                ? att.values[0]?.identifier
-                : undefined;
+              currentSelection.selectedAttributes[att.identifier] = get(
+                att,
+                "values[0].identifier"
+              );
             }
           }
         }
@@ -519,7 +520,7 @@ export const useProductB2BDetailsLayout = (
       for (const s of skus) {
         if (s.attributes) {
           const values = s.attributes.reduce((value: any, a: any) => {
-            value[a.identifier] = a.values ? a.values[0].identifier : undefined;
+            value[a.identifier] = get(a, "values[0].identifier");
             return value;
           }, {});
           let match = true;
@@ -683,7 +684,7 @@ export const useProductB2BDetailsLayout = (
     let filteredSkus: Set<any> = new Set<any>();
     for (const s of uniqueSkuList) {
       const values = s.attributes.reduce((value: any, a: any) => {
-        value[a.identifier] = a.values ? a.values[0]?.identifier : undefined;
+        value[a.identifier] = get(a, "values[0].identifier");
         return value;
       }, {});
       let match = true;

@@ -91,7 +91,7 @@ export const useProductGridLayout = (props: any) => {
   }
 
   const productList = useMemo(() => {
-    if (breadcrumbs) {
+    if (breadcrumbs?.length) {
       return _productList.map((p: any) => {
         const _p = {
           ...p,

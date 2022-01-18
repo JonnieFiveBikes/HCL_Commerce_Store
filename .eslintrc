@@ -15,6 +15,7 @@
     "mocks",
     "public/",
     "tools/",
-    "README.md"
+    "README.md",
+    ".husky/"
   ]
 }

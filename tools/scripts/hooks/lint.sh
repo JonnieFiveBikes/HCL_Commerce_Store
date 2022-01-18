@@ -8,7 +8,7 @@
 #==================================================
 echo "Checking lint..."
 
-stg=`git diff --name-only --diff-filter=ACMR --staged | grep -Ev "^((assets|build|dist|public|tools|master|bvt|docs)\/)|mocks\/|\.scss$|\.json$|\.sh$|\.gitignore$|\.eslintrc\b|\bsetupProxy.js\b|\bREADME.md\b|\/__tests__\/|\/apis\/mock\/"`
+stg=`git diff --name-only --diff-filter=ACMR --staged | grep -Ev "^(assets|build|dist|public|tools|master|bvt|docs)\/)|\.husky\/|mocks\/|\.scss$|\.json$|\.sh$|\.gitignore$|\.eslintrc\b|\bsetupProxy.js\b|\bREADME.md\b|\/__tests__\/|\/apis\/mock\/"`
 lint=`git rev-parse --show-toplevel`/node_modules/.bin/eslint
 
 if [[ "$stg" == "" ]]; then

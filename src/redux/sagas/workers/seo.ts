@@ -67,10 +67,11 @@ export function* getSEO(action: any) {
       if (identifier === HOME) {
         seoconfig = {
           page: {
-            type: HOME,
+            type: PAGE_TYPE.HOME_PAGE,
             name: HOME,
             title: HOME,
           },
+          tokenExternalValue: PAGE_TYPE.HOME_PAGE,
         };
       } else if (`/${identifier}` === CHECKOUT) {
         seoconfig = {

@@ -56,7 +56,7 @@ const ThreeTierMenu: React.FC<ThreeTierMenuProps> = (props: any) => {
               flexWrap="wrap"
               justifyContent="flex-start"
               alignContent="flex-start">
-              {page.children.map((page2: any, index: number) => (
+              {page.children.map((page2: any) => (
                 <StyledBox mt={2} mr={5} key={page2.id}>
                   <Link
                     key={"Link_" + page2.id}
@@ -80,40 +80,38 @@ const ThreeTierMenu: React.FC<ThreeTierMenuProps> = (props: any) => {
                     </StyledMenuTypography>
                   </Link>
                   <ul>
-                    {page2.children &&
-                      page2.children.length > 0 &&
-                      page2.children.map((page3: any, i: number) => (
-                        <Link
-                          key={page3.id}
-                          to={{
-                            pathname: page2.seo?.href,
-                            state: {
-                              breadCrumbTrailEntryView: [
-                                {
-                                  label: page.name,
-                                  value: page.id,
-                                  seo: page.seo,
-                                },
-                                {
-                                  label: page2.name,
-                                  value: page2.id,
-                                  seo: page2.seo,
-                                },
-                                {
-                                  label: page3.name,
-                                  value: page3.i,
-                                  seo: page3.seo,
-                                },
-                              ],
-                            },
-                          }}>
-                          <StyledMenuTypography
-                            variant="body2"
-                            className="expanded-menu-sub-links">
-                            {page3.name}
-                          </StyledMenuTypography>
-                        </Link>
-                      ))}
+                    {page2.children?.map((page3: any) => (
+                      <Link
+                        key={page3.id}
+                        to={{
+                          pathname: page3.seo?.href,
+                          state: {
+                            breadCrumbTrailEntryView: [
+                              {
+                                label: page.name,
+                                value: page.id,
+                                seo: page.seo,
+                              },
+                              {
+                                label: page2.name,
+                                value: page2.id,
+                                seo: page2.seo,
+                              },
+                              {
+                                label: page3.name,
+                                value: page3.id,
+                                seo: page3.seo,
+                              },
+                            ],
+                          },
+                        }}>
+                        <StyledMenuTypography
+                          variant="body2"
+                          className="expanded-menu-sub-links">
+                          {page3.name}
+                        </StyledMenuTypography>
+                      </Link>
+                    ))}
                   </ul>
                 </StyledBox>
               ))}

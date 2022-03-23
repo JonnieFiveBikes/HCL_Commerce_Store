@@ -1,0 +1,1376 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "HCL Commerce Services - Subscription",
+    "description": "These services provide APIs related to subscriptions. Use these classes to: <ul><li> Submit a recurring or subscription order <li> Cancel a recurring or subscription order <li> Get subscriptions by user and subscription type <li> Get subscription information by subscription ID",
+    "version": "9.1.6"
+  },
+  "servers": [
+    {
+      "url": "https://localhost/wcs/resources"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Subscription",
+      "description": "This class returns information about subscriptions."
+    }
+  ],
+  "paths": {
+    "/store/{storeId}/subscription/{orderId}/submit_recurring_or_subscription": {
+      "post": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Submit recurring or subscription",
+        "description": "Submits a recurring or subscription order.",
+        "operationId": "Subscription-submitRecurringOrSubscription",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "The order ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/com.ibm.commerce.rest.subscription.handler.SubscriptionHandler-SubmitRecurringOrSubscription"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.rest.subscription.handler.SubscriptionHandler-SubmitRecurringOrSubscriptionResponse"
+                },
+                "example": {
+                  "orderId": [
+                    "25018"
+                  ]
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.rest.subscription.handler.SubscriptionHandler-SubmitRecurringOrSubscriptionResponse"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.rest.subscription.handler.SubscriptionHandler-SubmitRecurringOrSubscriptionResponse"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.rest.subscription.handler.SubscriptionHandler-SubmitRecurringOrSubscriptionResponse"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "The requested resource has been created.",
+            "content": {}
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/store/{storeId}/subscription": {
+      "get": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Get by user and subscription type",
+        "description": "Gets subscriptions by user and subscription type.",
+        "operationId": "Subscription-byBuyerIdAndSubscriptionType",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "byBuyerIdAndSubscriptionType"
+              ]
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data returned by a query.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IBM_Store_Summary"
+              ]
+            }
+          },
+          {
+            "name": "subscriptionTypeCode",
+            "in": "query",
+            "description": "The subscription type code for example, All, RecurringOrder.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "buyerId",
+            "in": "query",
+            "description": "The buyer ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/subscription-IBM_Store_Summary"
+                },
+                "example": {
+                  "recordSetStartNumber": 0,
+                  "recordSetComplete": true,
+                  "recordSetCount": 1,
+                  "resourceId": "https://localhost:443/wcs/resources/store/10001/subscription?q=byBuyerIdAndSubscriptionType&buyerId=2003&subscriptionTypeCode=RecurringOrder",
+                  "resultList": [
+                    {
+                      "subscriptionIdentifier": {
+                        "subscriptionId": "4507"
+                      },
+                      "state": "Active",
+                      "subscriptionInfo": {
+                        "paymentInfo": {
+                          "totalCost": {
+                            "currency": "USD",
+                            "value": 25.62
+                          },
+                          "userData": {
+                            "userDataField": []
+                          },
+                          "amountToCharge": {
+                            "currency": "USD",
+                            "value": 0.01
+                          }
+                        },
+                        "fulfillmentSchedule": {
+                          "endInfo": {
+                            "duration": {
+                              "uom": "DAY             ",
+                              "value": 36524
+                            },
+                            "endDate": "2214-09-10T18:00:00.798Z"
+                          },
+                          "startInfo": {
+                            "startDate": "2114-09-10T18:00:00.798Z"
+                          },
+                          "frequencyInfo": {
+                            "nextOccurence": "2114-09-10T18:00:00.798Z",
+                            "frequency": {
+                              "uom": "WEE             ",
+                              "value": 1
+                            },
+                            "remainingOccurrences": 5218
+                          }
+                        },
+                        "paymentSchedule": {
+                          "frequencyInfo": {
+                            "nextOccurence": "2114-09-10T18:00:00.798Z",
+                            "frequency": {
+                              "uom": "WEE             ",
+                              "value": 1
+                            }
+                          },
+                          "userData": {
+                            "userDataField": []
+                          }
+                        }
+                      },
+                      "purchaseDetails": {
+                        "userData": {
+                          "userDataField": []
+                        },
+                        "parentOrderIdentifier": {
+                          "parentOrderId": "25018"
+                        }
+                      }
+                    }
+                  ],
+                  "resourceName": "subscription",
+                  "recordSetTotal": 1
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/subscription-IBM_Store_Summary"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/subscription-IBM_Store_Summary"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/subscription-IBM_Store_Summary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/subscription/{subscriptionId}": {
+      "get": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Get by subscription ID",
+        "description": "Gets subscription information by subscription ID.",
+        "operationId": "Subscription-bySubscriptionId",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "The subcription ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data returned by a query.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IBM_Admin_Summary"
+              ]
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/subscription-IBM_Store_Details"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/subscription-IBM_Store_Details"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/subscription-IBM_Store_Details"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/subscription-IBM_Store_Details"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/subscription/{orderId}/cancel_recurring_or_subscription": {
+      "delete": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Cancel recurring or subscription",
+        "description": "Cancels the specified recurring or subscription order.",
+        "operationId": "Subscription-cancelRecurringOrSubscription",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "The order ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          },
+          {
+            "name": "subscriptionId",
+            "in": "query",
+            "description": "The subscription ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.rest.subscription.handler.SubscriptionHandler-CancelRecurringOrSubscription"
+                },
+                "example": {
+                  "state": [
+                    "Cancelled"
+                  ],
+                  "subscriptionType": [
+                    "RecurringOrder"
+                  ],
+                  "subscriptionId": [
+                    "4507"
+                  ]
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.rest.subscription.handler.SubscriptionHandler-CancelRecurringOrSubscription"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.rest.subscription.handler.SubscriptionHandler-CancelRecurringOrSubscription"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.rest.subscription.handler.SubscriptionHandler-CancelRecurringOrSubscription"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "com.ibm.commerce.foundation.common.datatypes.PartNumberIdentifierType.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.PartNumberIdentifierType.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "com.ibm.commerce.rest.subscription.handler.SubscriptionHandler-SubmitRecurringOrSubscriptionResponse": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "description": "The organization entity identifier."
+          }
+        },
+        "description": "Information about an subscription or recurring order."
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.frequencyInfo.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.endInfo.duration": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "uom": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.endInfo": {
+        "type": "object",
+        "properties": {
+          "duration": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.endInfo.duration"
+          },
+          "totalOccurrences": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.endInfo.userData"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.UserDataType.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.startInfo.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "subscription-IBM_Store_Details_item": {
+        "type": "object",
+        "properties": {
+          "subscriptionIdentifier": {
+            "$ref": "#/components/schemas/subscription-SubscriptionIdentifier"
+          },
+          "state": {
+            "type": "string"
+          },
+          "subscriptionInfo": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType"
+          },
+          "purchaseDetails": {
+            "$ref": "#/components/schemas/subscription-PurchaseDetails"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.frequencyInfo.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule": {
+        "type": "object",
+        "properties": {
+          "endInfo": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.endInfo"
+          },
+          "startInfo": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.startInfo"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.userData"
+          },
+          "frequencyInfo": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.frequencyInfo"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.startInfo.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.startInfo.userData.userDataField"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.startInfo.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentInfo.totalCost": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.endInfo.duration": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "uom": {
+            "type": "string"
+          }
+        }
+      },
+      "subscription-IBM_Store_Summary_item": {
+        "type": "object",
+        "properties": {
+          "subscriptionIdentifier": {
+            "$ref": "#/components/schemas/subscription-SubscriptionIdentifier"
+          },
+          "state": {
+            "type": "string"
+          },
+          "subscriptionInfo": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType"
+          },
+          "purchaseDetails": {
+            "$ref": "#/components/schemas/subscription-PurchaseDetails"
+          }
+        }
+      },
+      "subscription-SubscriptionIdentifier": {
+        "type": "object",
+        "properties": {
+          "subscriptionId": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.frequencyInfo.frequency": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "uom": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.userData.userDataField"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentInfo.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentInfo.userData.userDataField"
+            }
+          }
+        }
+      },
+      "subscription-IBM_Store_Details": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/subscription-IBM_Store_Details_item"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "subscription-ParentOrderIdentifier": {
+        "type": "object",
+        "properties": {
+          "customerOrderNumber": {
+            "type": "string"
+          },
+          "parentOrderId": {
+            "type": "string"
+          },
+          "externalOrderId": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.startInfo.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.startInfo.userData.userDataField"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.endInfo": {
+        "type": "object",
+        "properties": {
+          "duration": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.endInfo.duration"
+          },
+          "totalOccurrences": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.endInfo.userData"
+          }
+        }
+      },
+      "subscription-ParentOrderItemIdentifier": {
+        "type": "object",
+        "properties": {
+          "parentOrderItemId": {
+            "type": "string"
+          }
+        }
+      },
+      "subscription-IBM_Store_Summary": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/subscription-IBM_Store_Summary_item"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.userData.userDataField"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.endInfo.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.rest.subscription.handler.SubscriptionHandler-SubmitRecurringOrSubscription": {
+        "required": [
+          "billing_address_id",
+          "numberOfFulfillment",
+          "payMethodId",
+          "paymentInterval",
+          "paymentIntervalUOM",
+          "paymentTCId",
+          "piAmount",
+          "purchaseorder_id",
+          "timePeriod",
+          "timePeriodUOM"
+        ],
+        "type": "object",
+        "properties": {
+          "timePeriodUOM": {
+            "type": "string",
+            "description": "The unit of time for example, Day."
+          },
+          "startDate": {
+            "type": "string",
+            "description": "The start date for the subscription."
+          },
+          "endDate": {
+            "type": "string",
+            "description": "The end date for the subscription."
+          },
+          "paymentInterval": {
+            "type": "string",
+            "description": "The day of the week set to collect payment."
+          },
+          "fulfillmentInterval": {
+            "type": "string",
+            "description": "The day of the week set for subscription fulfillment."
+          },
+          "payMethodId": {
+            "type": "string",
+            "description": "The payMethod Identifier."
+          },
+          "fulfillmentIntervalUOM": {
+            "type": "string",
+            "description": "The day of month set for subscription fulfillment."
+          },
+          "storeId": {
+            "type": "string",
+            "description": "The store identifier."
+          },
+          "paymentIntervalUOM": {
+            "type": "string",
+            "description": "The day of month set for collect subscription payment."
+          },
+          "numberOfFulfillment": {
+            "type": "string",
+            "description": "The number of fulfillment centers."
+          },
+          "purchaseorder_id": {
+            "type": "string",
+            "description": "The purchase order identifier."
+          },
+          "timePeriod": {
+            "type": "string",
+            "description": "The specified time period."
+          },
+          "piAmount": {
+            "type": "string",
+            "description": "The payment instruction amount."
+          },
+          "billing_address_id": {
+            "type": "string",
+            "description": "The billing address identifier."
+          },
+          "paymentTCId": {
+            "type": "string",
+            "description": "The Term and Condition identifier."
+          }
+        },
+        "description": "Request body from submitting for a recurring order or subscription."
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.PartNumberIdentifierType.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.frequencyInfo.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.frequencyInfo.userData.userDataField"
+            }
+          }
+        }
+      },
+      "subscription-PurchaseDetails": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.UserDataType"
+          },
+          "subscribedItem": {
+            "$ref": "#/components/schemas/subscription-SubscribedItem"
+          },
+          "parentOrderIdentifier": {
+            "$ref": "#/components/schemas/subscription-ParentOrderIdentifier"
+          },
+          "parentOrderItemIdentifier": {
+            "$ref": "#/components/schemas/subscription-ParentOrderItemIdentifier"
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.QuantityType"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.UserDataType": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.UserDataType.userDataField"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentInfo.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentInfo.amountPaid": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.frequencyInfo": {
+        "type": "object",
+        "properties": {
+          "nextOccurence": {
+            "type": "string"
+          },
+          "completedOccurrences": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "frequency": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.frequencyInfo.frequency"
+          },
+          "remainingOccurrences": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.frequencyInfo.userData"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentInfo": {
+        "type": "object",
+        "properties": {
+          "totalCost": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentInfo.totalCost"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentInfo.userData"
+          },
+          "amountPaid": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentInfo.amountPaid"
+          },
+          "amountToCharge": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentInfo.amountToCharge"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.frequencyInfo.frequency": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "uom": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.rest.subscription.handler.SubscriptionHandler-CancelRecurringOrSubscription": {
+        "type": "object",
+        "properties": {
+          "state": {
+            "type": "string",
+            "description": "The state of the order for example, Cancelled."
+          },
+          "subscriptionType": {
+            "type": "string",
+            "description": "The subscription type for example, RecurringOrder."
+          },
+          "subscriptionId": {
+            "type": "string",
+            "description": "The subscription identifier."
+          }
+        },
+        "description": "Cancel recurring or subscription order."
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentInfo.amountToCharge": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.startInfo": {
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.startInfo.userData"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.frequencyInfo": {
+        "type": "object",
+        "properties": {
+          "nextOccurence": {
+            "type": "string"
+          },
+          "completedOccurrences": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "frequency": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.frequencyInfo.frequency"
+          },
+          "remainingOccurrences": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.frequencyInfo.userData"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.PartNumberIdentifierType": {
+        "required": [
+          "partNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "partNumber": {
+            "type": "string"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.PartNumberIdentifierType.storeIdentifier"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.startInfo": {
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.startInfo.userData"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.endInfo.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.endInfo.userData.userDataField"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.userData.userDataField"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule": {
+        "type": "object",
+        "properties": {
+          "endInfo": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.endInfo"
+          },
+          "startInfo": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.startInfo"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.userData"
+          },
+          "frequencyInfo": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.frequencyInfo"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType": {
+        "type": "object",
+        "properties": {
+          "paymentInfo": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentInfo"
+          },
+          "paymentSchedule": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule"
+          },
+          "fulfillmentSchedule": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.userData"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.endInfo.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.QuantityType": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "uom": {
+            "type": "string"
+          }
+        }
+      },
+      "subscription-SubscribedItem": {
+        "type": "object",
+        "properties": {
+          "subscribedItemId": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.PartNumberIdentifierType"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.endInfo.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.fulfillmentSchedule.endInfo.userData.userDataField"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.frequencyInfo.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.SubscriptionInfoType.paymentSchedule.frequencyInfo.userData.userDataField"
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-aes-documentation": {
+    "gettingstarted": [
+      {
+        "content": "Some REST services require authentication. HCL Commerce REST services are authenticated on secure and unsecured channels. This authentication can include the use of the WCToken and WCTrustedToken. To use REST services that require authentication, you must first get authentication data by using a supported identity services.\n\nAfter you obtain the authentication data, you must pass either the WCToken or WCTustedToken parameters, or both, within the HTTP header for every request that requires authentication. If a request is sent over HTTP, pass the WCToken parameter in the HTTP header. Do not pass the WCTrustedToken in HTTP requests, as the parameter value might display. Send both the WCToken and the WCTrustedToken parameters when the request is being sent over HTTPS.\n\nThe HCL Commerce REST APIs can also use session cookies that are created by the HCL Commerce store runtime for authentication. These cookies allow you to mix requests to the HCL Commerce REST APIs and the HCL Commerce store runtime within the same user session.\n\n See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Authentication"
+      },
+      {
+        "content": "HCL Commerce REST services support JSON and XML formats for input and output data by default. The default format is JSON. When an XML String is sent to a REST service, you must set Content-Type HTTP header to be \"application/xml\". The REST service converts the XML input data to the JSON format that is accepted by REST services. Therefore, your input XML format must follow a certain structure so that it can be transformed to the JSON object that is accepted by REST services. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Response formats"
+      },
+      {
+        "content": "Preview tokens are encrypted strings that encapsulates a set of preview options and restrictions on when and where the token can be used. Any user who is authorized to access your server and has a preview token, can complete preview actions in the same store for which that token is generated. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a>",
+        "codeSnippets": [],
+        "name": "Preview tokens"
+      },
+      {
+        "content": "Some HCL Commerce REST services require a request to be sent over HTTPS. Learn more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Secure Sockets Layer"
+      }
+    ]
+  }
+}

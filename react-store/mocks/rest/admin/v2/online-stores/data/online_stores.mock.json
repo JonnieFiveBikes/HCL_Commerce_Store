@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "id": 11,
+      "ownerId": "-11000",
+      "type": "MHS",
+      "state": "open",
+      "identifier": "Emerald",
+      "catalogOverrideEnabled": "1",
+      "externalContentEnablementMode": "false",
+      "externalContentPickerUrl": "/wps/mycontenthandler/dxpicker/content",
+      "externalContentDAMFilePickerUrl": "/wps/mycontenthandler/dxpicker/dam-files",
+      "externalContentDAMImagePickerUrl": "/wps/mycontenthandler/dxpicker/dam-images",
+      "externalContentAPIContextRoot": "/dx/api/core/v1",
+      "externalContentAPIContentPath": "/dxrest/webcontent/contents",
+      "hclImagePath": "/hclstore",
+      "imagePathFilter": null,
+      "externalContentHost": "https://dx.comdx.hclcx.com",
+      "headlessStore": "TRUE",
+      "headlessStoreContextRoot": "/Emerald",
+      "unregisterMarketingEvent": "0"
+    },
+    {
+      "id": 12,
+      "ownerId": "-11001",
+      "type": "BMH",
+      "state": "open",
+      "identifier": "Sapphire",
+      "catalogOverrideEnabled": "1",
+      "externalContentEnablementMode": "false",
+      "externalContentPickerUrl": "/wps/mycontenthandler/dxpicker/content",
+      "externalContentDAMFilePickerUrl": "/wps/mycontenthandler/dxpicker/dam-files",
+      "externalContentDAMImagePickerUrl": "/wps/mycontenthandler/dxpicker/dam-images",
+      "externalContentAPIContextRoot": "/dx/api/core/v1",
+      "externalContentAPIContentPath": "/dxrest/webcontent/contents",
+      "hclImagePath": "/ExtendedSitesCatalogAssetStore/",
+      "imagePathFilter": null,
+      "externalContentHost": "https://dx.comdx.hclcx.com",
+      "headlessStore": "TRUE",
+      "headlessStoreContextRoot": "/Sapphire",
+      "unregisterMarketingEvent": "0"
+    }
+  ],
+
+  "count": 2
+}

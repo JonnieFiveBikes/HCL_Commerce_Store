@@ -1,0 +1,829 @@
+{
+  "breadCrumbTrailEntryView": [
+    {
+      "label": "Living Room",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "10501",
+      "seo": {
+        "href": "/living-room"
+      }
+    },
+    {
+      "label": "Furniture",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "10502",
+      "seo": {
+        "href": "/furniture"
+      }
+    }
+  ],
+  "contents": [
+    {
+      "hasSingleSKU": false,
+      "buyable": "true",
+      "shortDescription": "A modern single sofa with leather seat and steel legs. Perfect for sitting on to play some boring music.",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_350.jpg",
+      "seo": {
+        "href": "/stonehenge-modern-steelet-single-sofa-lr-fntr-0006-harp"
+      },
+      "partNumber": "LR-FNTR-0006-harp",
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10502",
+      "name": "Perfect Sofa for Musical Chairs",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "500.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "499.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["2.0", "10.0", "10.0", "10.0"],
+              "identifier": ["brown", "darkgrey", "purple", "airforce"],
+              "unitOfMeasure": ["one", "one", "one", "one"],
+              "unitID": ["C62", "C62", "C62", "C62"],
+              "id": ["7000000000000003002", "7000000000000003010", "7000000000000003016", "7000000000000003021"],
+              "image1": [
+                "/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+                "/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+                "/EmeraldCAS/images/catalog/swatches/sw_purple.png",
+                "/EmeraldCAS/images/catalog/swatches/sw_airforce.png"
+              ],
+              "value": ["Brown", "Dark Grey", "Purple", "Airforce"],
+              "image1path": [
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_purple.png",
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_airforce.png"
+              ]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14044"
+    }
+  ],
+  "facets": [
+    {
+      "entry": [
+        {
+          "count": 17,
+          "label": "({* TO 599])",
+          "value": "price_usd%3A%28%7B*+TO+599%5D%29",
+          "extendedData": {
+            "uniqueId": "1121141059910195117115100584012342328479325357579341"
+          }
+        },
+        {
+          "count": 15,
+          "label": "({599 TO 1198])",
+          "value": "price_usd%3A%28%7B599+TO+1198%5D%29",
+          "extendedData": {
+            "uniqueId": "1121141059910195117115100584012353575732847932494957569341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({1198 TO 1797])",
+          "value": "price_usd%3A%28%7B1198+TO+1797%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401234949575632847932495557559341"
+          }
+        },
+        {
+          "count": 2,
+          "label": "({1797 TO 2396])",
+          "value": "price_usd%3A%28%7B1797+TO+2396%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401234955575532847932505157549341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({2396 TO 2995])",
+          "value": "price_usd%3A%28%7B2396+TO+2995%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401235051575432847932505757539341"
+          }
+        }
+      ],
+      "value": "price_usd",
+      "name": "OfferPrice_usd"
+    },
+    {
+      "value": "seller.raw",
+      "name": "Seller",
+      "entry": [
+        {
+          "label": "Acme",
+          "value": "seller.raw%3A%22acme%22",
+          "count": "4",
+          "extendedData": {
+            "uniqueId": "800000000000000000000000000000"
+          }
+        },
+        {
+          "label": "Not No Name",
+          "value": "seller.raw%3A%22notNoName%22",
+          "count": "3",
+          "extendedData": {
+            "uniqueId": "800000000000000000000000000001"
+          }
+        },
+        {
+          "label": "Creations by Adrian",
+          "value": "seller.raw%3A%22creationsByAdrian%22",
+          "count": "2",
+          "extendedData": {
+            "uniqueId": "800000000000000000000000000002"
+          }
+        },
+        {
+          "label": "Princess Home Decor",
+          "value": "seller.raw%3A%22princessHomeDecor%22",
+          "count": "14",
+          "extendedData": {
+            "uniqueId": "800000000000000000000000000003"
+          }
+        },
+        {
+          "label": "Harp Fashions",
+          "value": "seller.raw%3A%22harpFashions%22",
+          "count": "1",
+          "extendedData": {
+            "uniqueId": "800000000000000000000000000004"
+          }
+        },
+        {
+          "label": "Leopard Designs",
+          "value": "seller.raw%3A%22leopardDesigns%22",
+          "count": "10",
+          "extendedData": {
+            "uniqueId": "800000000000000000000000000005"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Seller",
+        "propertyvalue": "seller.raw",
+        "maximumValuesToDisplay": "6",
+        "displayable": "true",
+        "allValuesReturned": "false",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "0.0",
+        "name": "Seller",
+        "sortorder": "1",
+        "max_display": "6",
+        "fdesc": "The seller",
+        "propertyId": "seller.raw"
+      }
+    },
+    {
+      "value": "manufacturer.raw",
+      "name": "Brand",
+      "entry": [
+        {
+          "label": "Home Design",
+          "value": "manufacturer.raw%3A%22Home+Design%22",
+          "count": "4",
+          "extendedData": {
+            "uniqueId": "721111091013268101115105103110"
+          }
+        },
+        {
+          "label": "Moderno",
+          "value": "manufacturer.raw%3A%22Moderno%22",
+          "count": "3",
+          "extendedData": {
+            "uniqueId": "77111100101114110111"
+          }
+        },
+        {
+          "label": "Nordic",
+          "value": "manufacturer.raw%3A%22Nordic%22",
+          "count": "2",
+          "extendedData": {
+            "uniqueId": "7811111410010599"
+          }
+        },
+        {
+          "label": "Stockholm",
+          "value": "manufacturer.raw%3A%22Stockholm%22",
+          "count": "14",
+          "extendedData": {
+            "uniqueId": "8311611199107104111108109"
+          }
+        },
+        {
+          "label": "Stonehenge",
+          "value": "manufacturer.raw%3A%22Stonehenge%22",
+          "count": "1",
+          "extendedData": {
+            "uniqueId": "83116111110101104101110103101"
+          }
+        },
+        {
+          "label": "Style Home",
+          "value": "manufacturer.raw%3A%22Style+Home%22",
+          "count": "10",
+          "extendedData": {
+            "uniqueId": "831161211081013272111109101"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Brand",
+        "propertyvalue": "manufacturer.raw",
+        "maximumValuesToDisplay": "6",
+        "displayable": "true",
+        "allValuesReturned": "false",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "0.0",
+        "name": "Brand",
+        "sortorder": "1",
+        "max_display": "6",
+        "fdesc": "The manufacturer",
+        "propertyId": "manufacturer.raw"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000510.value.raw",
+      "name": "Product Dimensions",
+      "entry": [
+        {
+          "label": "30\"x40\"x35\"",
+          "value": "attributes.7000000000000000510.value.raw%3A%2230%5C%22x40%5C%22x35%5C%22%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "514834120524834120515334"
+          }
+        },
+        {
+          "label": "40\"x36\"x36\"",
+          "value": "attributes.7000000000000000510.value.raw%3A%2240%5C%22x36%5C%22x36%5C%22%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "524834120515434120515434"
+          }
+        },
+        {
+          "label": "56\"x24\"x24\"",
+          "value": "attributes.7000000000000000510.value.raw%3A%2256%5C%22x24%5C%22x24%5C%22%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "535434120505234120505234"
+          }
+        },
+        {
+          "label": "24\"x40\"x30\"",
+          "value": "attributes.7000000000000000510.value.raw%3A%2224%5C%22x40%5C%22x30%5C%22%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "505234120524834120514834"
+          }
+        },
+        {
+          "label": "30\"x24\"x24\"",
+          "value": "attributes.7000000000000000510.value.raw%3A%2230%5C%22x24%5C%22x24%5C%22%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "514834120505234120505234"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Product Dimensions",
+        "propertyvalue": "ProductDimensions",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "1.0",
+        "name": "Product Dimensions",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Product Dimensions",
+        "propertyId": "7000000000000000510"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000501.value.raw",
+      "name": "Color",
+      "entry": [
+        {
+          "label": "Grey",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Grey%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_grey.png",
+          "count": "12",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "3.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_grey.png",
+            "uniqueId": "71114101121"
+          }
+        },
+        {
+          "label": "Dark Grey",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Dark+Grey%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+          "count": "10",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+            "uniqueId": "68971141073271114101121"
+          }
+        },
+        {
+          "label": "Blue",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Blue%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blue.png",
+          "count": "9",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "9.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blue.png",
+            "uniqueId": "66108117101"
+          }
+        },
+        {
+          "label": "Brown",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Brown%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+          "count": "8",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "2.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+            "uniqueId": "66114111119110"
+          }
+        },
+        {
+          "label": "Light Grey",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Light+Grey%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_lightgrey.png",
+          "count": "7",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "6.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_lightgrey.png",
+            "uniqueId": "761051031041163271114101121"
+          }
+        },
+        {
+          "label": "Crimson",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Crimson%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_crimson.png",
+          "count": "6",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_crimson.png",
+            "uniqueId": "67114105109115111110"
+          }
+        },
+        {
+          "label": "Purple",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Purple%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_purple.png",
+          "count": "5",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_purple.png",
+            "uniqueId": "80117114112108101"
+          }
+        },
+        {
+          "label": "Coffee",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Coffee%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_coffee.png",
+          "count": "4",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "9.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_coffee.png",
+            "uniqueId": "67111102102101101"
+          }
+        },
+        {
+          "label": "Tan",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Tan%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_tan.png",
+          "count": "3",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_tan.png",
+            "uniqueId": "8497110"
+          }
+        },
+        {
+          "label": "Seaweed",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Seaweed%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_seaweed.png",
+          "count": "3",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_seaweed.png",
+            "uniqueId": "8310197119101101100"
+          }
+        },
+        {
+          "label": "Toffee",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Toffee%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_toffee.png",
+          "count": "3",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "8.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_toffee.png",
+            "uniqueId": "84111102102101101"
+          }
+        },
+        {
+          "label": "Airforce",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Airforce%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_airforce.png",
+          "count": "3",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_airforce.png",
+            "uniqueId": "6510511410211111499101"
+          }
+        },
+        {
+          "label": "Cedar",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Cedar%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_cedar.png",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_cedar.png",
+            "uniqueId": "6710110097114"
+          }
+        },
+        {
+          "label": "Blonde",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Blonde%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "5.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+            "uniqueId": "66108111110100101"
+          }
+        },
+        {
+          "label": "Mahogany",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Mahogany%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_mahogany.png",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_mahogany.png",
+            "uniqueId": "779710411110397110121"
+          }
+        },
+        {
+          "label": "Oak",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Oak%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_oak.png",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_oak.png",
+            "uniqueId": "7997107"
+          }
+        },
+        {
+          "label": "Standin",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Standin%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_standin.png",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_standin.png",
+            "uniqueId": "8311697110100105110"
+          }
+        },
+        {
+          "label": "Sky",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Sky%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_sky.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_sky.png",
+            "uniqueId": "83107121"
+          }
+        },
+        {
+          "label": "Cream",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Cream%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_cream.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_cream.png",
+            "uniqueId": "6711410197109"
+          }
+        },
+        {
+          "label": "Chrome",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Chrome%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_whitegrey.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "1.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_whitegrey.png",
+            "uniqueId": "67104114111109101"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Color",
+        "propertyvalue": "Color",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "false",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "1.0",
+        "name": "Color",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Color",
+        "propertyId": "7000000000000000501"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000502.value.raw",
+      "name": "Size",
+      "entry": [
+        {
+          "label": "52\"x6\"x52\"",
+          "value": "attributes.7000000000000000502.value.raw%3A%2252%5C%22x6%5C%22x52%5C%22%22",
+          "count": "16",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "2.0",
+            "uniqueId": "5350341205434120535034"
+          }
+        },
+        {
+          "label": "48\"x6\"x48\"",
+          "value": "attributes.7000000000000000502.value.raw%3A%2248%5C%22x6%5C%22x48%5C%22%22",
+          "count": "16",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "1.0",
+            "uniqueId": "5256341205434120525634"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Size",
+        "propertyvalue": "Size",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "2.0",
+        "name": "Size",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Size",
+        "propertyId": "7000000000000000502"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000511.value.raw",
+      "name": "Item Weight",
+      "entry": [
+        {
+          "label": "30 lbs",
+          "value": "attributes.7000000000000000511.value.raw%3A%2230+lbs%22",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "51483210898115"
+          }
+        },
+        {
+          "label": "45 lbs",
+          "value": "attributes.7000000000000000511.value.raw%3A%2245+lbs%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "52533210898115"
+          }
+        },
+        {
+          "label": "150 lbs",
+          "value": "attributes.7000000000000000511.value.raw%3A%22150+lbs%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "4953483210898115"
+          }
+        },
+        {
+          "label": "23 lbs",
+          "value": "attributes.7000000000000000511.value.raw%3A%2223+lbs%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "50513210898115"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Item Weight",
+        "propertyvalue": "ItemWeight",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "2.0",
+        "name": "Item Weight",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Item Weight",
+        "propertyId": "7000000000000000511"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000503.value.raw",
+      "name": "Material",
+      "entry": [
+        {
+          "label": "Polyester, Cotton, Steel",
+          "value": "attributes.7000000000000000503.value.raw%3A%22Polyester%2C+Cotton%2C+Steel%22",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "80111108121101115116101114443267111116116111110443283116101101108"
+          }
+        },
+        {
+          "label": "Polyester, Cotton, Wood",
+          "value": "attributes.7000000000000000503.value.raw%3A%22Polyester%2C+Cotton%2C+Wood%22",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "80111108121101115116101114443267111116116111110443287111111100"
+          }
+        },
+        {
+          "label": "Microfibre, Cotton, Wood",
+          "value": "attributes.7000000000000000503.value.raw%3A%22Microfibre%2C+Cotton%2C+Wood%22",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "771059911411110210598114101443267111116116111110443287111111100"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Material",
+        "propertyvalue": "Materials",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "3.0",
+        "name": "Material",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Material",
+        "propertyId": "7000000000000000503"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000512.value.raw",
+      "name": "Pattern",
+      "entry": [
+        {
+          "label": "Solid",
+          "value": "attributes.7000000000000000512.value.raw%3A%22Solid%22",
+          "count": "3",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "83111108105100"
+          }
+        },
+        {
+          "label": "Textured",
+          "value": "attributes.7000000000000000512.value.raw%3A%22Textured%22",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "uniqueId": "84101120116117114101100"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Pattern",
+        "propertyvalue": "Pattern",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "4.0",
+        "name": "Pattern",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Pattern",
+        "propertyId": "7000000000000000512"
+      }
+    }
+  ],
+  "next": "/search/resources/api/v2/products?storeId=11&categoryId=10502&limit=12&offset=12",
+  "previous": "/search/resources/api/v2/products?storeId=11&categoryId=10502&limit=12&offset=0",
+  "total": 1
+}

@@ -142,6 +142,28 @@ The React Store Application (Emerald and Sapphire) has been updated with the fol
 
 This version of the React Store Application requires corresponding HCL Commerce Version 9.1.9.
 
+### 2022/03/31 HCL Commerce Version 9.1.10 - Refreshed Store Application
+
+The React Store Application (Emerald and Sapphire) has been updated with the following enhancements:
+
+1. Preview-ready marketplace MVP use cases.
+2. Requisition Lists.
+3. My Account / Dashboard landing page enhancements.
+4. Ribbon Ads.
+5. OOTB Page Composer Layouts:
+   - Kit Page(`kit-page.tsx`)
+6. OOTB Page Composer Widgets:
+   - Kit Widget(`kit-widget.tsx`)
+7. Product Comparison.
+8. Remember Me - Add support for persistent session cookie.
+9. Category level SKU support.
+10. Price range display in PLP page.
+11. Mini cart - Support for editing cart items.
+12. Shopping cart - Continue shopping button.
+13. Product display page - SKU/Item page display enhancement.
+
+This version of the React Store Application requires corresponding HCL Commerce Version 9.1.10.
+
 ## Limitations
 
 The list of latest features delivered in the React Store Applications are described for Emerald:

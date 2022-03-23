@@ -1,0 +1,1367 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "HCL Commerce Services - Coupons and Promotions",
+    "description": "These services provide APIs related to promotional activities in either a B2B or B2C store. Use these classes to: <ul><li> Get, add, update, or delete assigned coupons <li> Get, add, update, or delete assigned promotion codes <li> Get associated promotions",
+    "version": "9.1.6"
+  },
+  "servers": [
+    {
+      "url": "https://localhost/wcs/resources"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Coupon",
+      "description": "This class provides RESTful services to get and process coupon information. For example, deleting a coupon from the list."
+    },
+    {
+      "name": "Promotion",
+      "description": "This class provides RESTful services to get promotion data using the Promotion noun."
+    },
+    {
+      "name": "Associated Promotion",
+      "description": "This class provides RESTful services to access retrieve associated promotions."
+    }
+  ],
+  "paths": {
+    "/store/{storeId}/coupon/{couponId}": {
+      "delete": {
+        "tags": [
+          "Coupon"
+        ],
+        "summary": "Delete coupons by ID",
+        "description": "Deletes coupons from coupon wallet by coupon ID.",
+        "operationId": "Coupon-deleteCouponById",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "couponId",
+            "in": "path",
+            "description": "Coupon identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/coupon/@self": {
+      "get": {
+        "tags": [
+          "Coupon"
+        ],
+        "summary": "Get coupons for shopper",
+        "description": "Gets available coupons for the current shopper.",
+        "operationId": "Coupon-getCoupon",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number. Valid values are positive integers starting at 1. Use pageNumber with pageSize.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size. Used to limit the amount of data returned by a query. Valid values are integers starting with 1. Use pageSize with pageNumber.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "The currency code to use for example, currency=USD. If no currency code is specified, the store default currency is used.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "JPY",
+                "CNY",
+                "BRL",
+                "EUR",
+                "RON",
+                "RUB",
+                "PLN",
+                "USD",
+                "KRW",
+                "TWD",
+                "CAD",
+                "GBP"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/coupon-coupon"
+                },
+                "example": {
+                  "recordSetStartNumber": 0,
+                  "recordSetComplete": true,
+                  "Coupon": [
+                    {
+                      "status": "0",
+                      "userData": {
+                        "userDataField": [
+                          {
+                            "key": "promotionAdministrativeDescription",
+                            "value": "15% off order"
+                          },
+                          {
+                            "key": "promotionStatus",
+                            "value": "1"
+                          }
+                        ]
+                      },
+                      "couponId": "100000000001",
+                      "resourceId": "https://localhost:443/wcs/resources/store/10001/coupon/100000000001",
+                      "expirationDateTime": "2014-12-01T20:22:36.124Z",
+                      "couponDescription": [
+                        {
+                          "shortDescription": "15% off your order",
+                          "language": -1,
+                          "longDescription": "15% off your order"
+                        }
+                      ],
+                      "effectiveDateTime": "2014-11-24T20:22:36.124Z",
+                      "promotion": {
+                        "externalIdentifier": {
+                          "version": 1,
+                          "name": "15% off order-10000203",
+                          "revision": 0
+                        },
+                        "uniqueID": "10000203"
+                      }
+                    }
+                  ],
+                  "resourceId": "https://localhost:443/wcs/resources/store/10001/coupon/@self/?responseFormat=json",
+                  "recordSetCount": 1,
+                  "resourceName": "coupon",
+                  "recordSetTotal": 1
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/coupon-coupon"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/coupon-coupon"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/coupon-coupon"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Coupon"
+        ],
+        "summary": "Get coupons",
+        "description": "Allows the shopper to get their own coupons.",
+        "operationId": "Coupon-issueCoupon",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Issue coupon.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.marketing.commands.IssueCouponControllerCmd"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.marketing.commands.IssueCouponControllerCmd"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.marketing.commands.IssueCouponControllerCmd"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.marketing.commands.IssueCouponControllerCmd"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/store/{storeId}/promotion/{promotionId}": {
+      "get": {
+        "tags": [
+          "Promotion"
+        ],
+        "summary": "Get promotion list by ID",
+        "description": "Gets promotions by ID.",
+        "operationId": "Promotion-getPromotionByID",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "promotionId",
+            "in": "path",
+            "description": "The promotion identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "langId",
+            "in": "query",
+            "description": "Language identifier. If not specified, the \"locale\" parameter is used. If \"locale\" is not specified, then the store default language is used.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                -1,
+                -2,
+                -3,
+                -4,
+                -5,
+                -6,
+                -7,
+                -8,
+                -9,
+                -10,
+                -20,
+                -21,
+                -22,
+                -23
+              ]
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "The currency code to use for example, currency=USD. If no currency code is specified, the store default currency is used.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "JPY",
+                "CNY",
+                "BRL",
+                "EUR",
+                "RON",
+                "RUB",
+                "PLN",
+                "USD",
+                "KRW",
+                "TWD",
+                "CAD",
+                "GBP"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/promotion-promotion"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/promotion-promotion"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/promotion-promotion"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/promotion-promotion"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/associated_promotion": {
+      "get": {
+        "tags": [
+          "Associated Promotion"
+        ],
+        "summary": "Get promotion list",
+        "description": "Gets promotions list by product ID.",
+        "operationId": "AssociatedPromotion-findPromotionsByProductWAssociatedPromotionSummaryProfileName",
+        "parameters": [
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          },
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "The currency code to use for example, currency=USD. If no currency code is specified, the store default currency is used.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "JPY",
+                "CNY",
+                "BRL",
+                "EUR",
+                "RON",
+                "RUB",
+                "PLN",
+                "USD",
+                "KRW",
+                "TWD",
+                "CAD",
+                "GBP"
+              ]
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data returned by a query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qProductId",
+            "in": "query",
+            "description": "The product ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qCalculationUsageId",
+            "in": "query",
+            "description": "The calculation usage ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qCode",
+            "in": "query",
+            "description": "The calculation code name.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qEnableStorePath",
+            "in": "query",
+            "description": "Whether the data bean searches for calculation code based on store path. The default value is <b>true</b>.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qIncludeCategoryPromotions",
+            "in": "query",
+            "description": "Whether to exclude category promotions. The default value is <b>false</b>.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qIncludeChildItems",
+            "in": "query",
+            "description": "Whether to include the child items. The default value is <b>false</b>.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qIncludeNonManagementCenterPromotions",
+            "in": "query",
+            "description": "Whether all the promotions in the store have been created in Management Center. The default value is <b>false</b>.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qIncludeParentCategories",
+            "in": "query",
+            "description": "Whether to retrieve the calculation codes attached to the parent category of the specified catalog group. The default value is <b>false</b>.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qIncludeParentProduct",
+            "in": "query",
+            "description": "Whether to retrieve the calculation codes attached to the parent product of the specified catalog entry. The default value is <b>false</b>.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qIncludePromotionCode",
+            "in": "query",
+            "description": "Whether to exclude the calculation codes that require a promotion code. The default value is <b>true</b>.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qIncludeUnentitledPromotionsByMemberGroup",
+            "in": "query",
+            "description": "Whether to include promotions that are targeted to a member group if the user does not belong to the member group. The default value is <b>false</b>.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qShipModeId",
+            "in": "query",
+            "description": "The ship mode ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "qUserId",
+            "in": "query",
+            "description": "The user ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "byProduct"
+              ]
+            }
+          },
+          {
+            "name": "qCategoryId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "qDisplayLevel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "qStoreId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.fulfillment.beans.CalculationCodeListDataBean_IBM_associatedPromotionsList_Summary"
+                },
+                "example": {
+                  "resultList": [
+                    {
+                      "startDate": "2004-01-01T00:00:00.000Z",
+                      "code": "Furniture Category Discount",
+                      "endDate": "2999-12-31T23:59:59.000Z",
+                      "calculationUsageId": -1,
+                      "calculationCodeId": "10011",
+                      "descriptionString": "Save 20% on Furniture!",
+                      "isPromotionRelated": true,
+                      "longDescriptionString": "Save 20% on all Furniture items! No restrictions!",
+                      "attachedCatalogEntries": []
+                    }
+                  ]
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.fulfillment.beans.CalculationCodeListDataBean_IBM_associatedPromotionsList_Summary"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.fulfillment.beans.CalculationCodeListDataBean_IBM_associatedPromotionsList_Summary"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.fulfillment.beans.CalculationCodeListDataBean_IBM_associatedPromotionsList_Summary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/promotion": {
+      "get": {
+        "tags": [
+          "Promotion"
+        ],
+        "summary": "Get promotion list by query",
+        "description": "Gets the promotion list by query type and parameters.",
+        "operationId": "Promotion-getPromotionsByQuery",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "langId",
+            "in": "query",
+            "description": "Language identifier. If not specified, the \"locale\" parameter is used. If \"locale\" is not specified, then the store default language is used.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                -1,
+                -2,
+                -3,
+                -4,
+                -5,
+                -6,
+                -7,
+                -8,
+                -9,
+                -10,
+                -20,
+                -21,
+                -22,
+                -23
+              ]
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "byName"
+              ]
+            }
+          },
+          {
+            "name": "qName",
+            "in": "query",
+            "description": "The name of the promotion to find when finding promotions by name.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number. Valid values are positive integers starting at 1. Use pageNumber with pageSize.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size. Used to limit the amount of data returned by a query. Valid values are integers starting with 1. Use pageSize with pageNumber.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "The currency code to use for example, currency=USD. If no currency code is specified, the store default currency is used.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "JPY",
+                "CNY",
+                "BRL",
+                "EUR",
+                "RON",
+                "RUB",
+                "PLN",
+                "USD",
+                "KRW",
+                "TWD",
+                "CAD",
+                "GBP"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/promotion-promotion"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/promotion-promotion"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/promotion-promotion"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/promotion-promotion"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "com.ibm.commerce.foundation.common.datatypes.UserDataType.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.fulfillment.beans.CalculationCodeListDataBean_IBM_associatedPromotionsList_Summary": {
+        "type": "object",
+        "properties": {
+          "associatedPromotions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.fulfillment.beans.CalculationCodeListDataBean_IBM_associatedPromotionsList_Summary.associatedPromotions"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.wallet.facade.datatypes.CouponDescriptionType.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.wallet.facade.datatypes.CouponDescriptionType.userData.userDataField"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType.calculationCodeIdentifier.calculationCodeExternalIdentifier": {
+        "type": "object",
+        "properties": {
+          "calculationUsageID": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType.calculationCodeIdentifier.calculationCodeExternalIdentifier.storeIdentifier"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.UserDataType": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.UserDataType.userDataField"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.promotion.facade.datatypes.PromotionScheduleType": {
+        "type": "object",
+        "properties": {
+          "dailyStartTime": {
+            "type": "string"
+          },
+          "dailyEndTime": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "weekDays": {
+            "type": "string",
+            "enum": [
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ]
+          },
+          "startDate": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType.calculationCodeIdentifier.calculationCodeExternalIdentifier.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType.externalIdentifier": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType.externalIdentifier.storeIdentifier"
+          },
+          "version": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "coupon-coupon_item": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.UserDataType"
+          },
+          "couponId": {
+            "type": "string"
+          },
+          "couponCode": {
+            "type": "string"
+          },
+          "expirationDateTime": {
+            "type": "string"
+          },
+          "couponDescription": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.wallet.facade.datatypes.CouponDescriptionType"
+            }
+          },
+          "effectiveDateTime": {
+            "type": "string"
+          },
+          "promotion": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType"
+          },
+          "order": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.OrderIdentifierType"
+          }
+        }
+      },
+      "Empty": {
+        "type": "object",
+        "description": "Empty model. Used as default value when no model is specified."
+      },
+      "promotion-promotion_item": {
+        "required": [
+          "promotionName"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "storeId": {
+            "type": "string"
+          },
+          "Description": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/promotion-promotion_item.Description"
+            }
+          },
+          "schedule": {
+            "$ref": "#/components/schemas/com.ibm.commerce.promotion.facade.datatypes.PromotionScheduleType"
+          },
+          "promotionName": {
+            "type": "string"
+          },
+          "administrativeName": {
+            "type": "string"
+          },
+          "promotionType": {
+            "type": "string"
+          },
+          "promotionId": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType": {
+        "type": "object",
+        "properties": {
+          "calculationCodeIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType.calculationCodeIdentifier"
+          },
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType.externalIdentifier"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType.calculationCodeIdentifier": {
+        "type": "object",
+        "properties": {
+          "calculationCodeExternalIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType.calculationCodeIdentifier.calculationCodeExternalIdentifier"
+          },
+          "uniqueID": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.wallet.facade.datatypes.CouponDescriptionType": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/com.ibm.commerce.wallet.facade.datatypes.CouponDescriptionType.userData"
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "longDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.fulfillment.beans.CalculationCodeListDataBean_IBM_associatedPromotionsList_Summary.associatedPromotions.description": {
+        "type": "object",
+        "properties": {
+          "shortDescription": {
+            "type": "string"
+          },
+          "langId": {
+            "type": "string"
+          },
+          "longDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "promotion-promotion_item.Description": {
+        "type": "object",
+        "properties": {
+          "shortDescription": {
+            "type": "string"
+          },
+          "longDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType.externalIdentifier.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType.externalIdentifier.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "promotion-promotion": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "Promotion": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/promotion-promotion_item"
+            }
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.OrderIdentifierType": {
+        "type": "object",
+        "properties": {
+          "customerOrderNumber": {
+            "type": "string"
+          },
+          "externalOrderID": {
+            "type": "string"
+          },
+          "uniqueID": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.wallet.facade.datatypes.CouponDescriptionType.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "coupon-coupon": {
+        "type": "object",
+        "properties": {
+          "Coupon": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/coupon-coupon_item"
+            }
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType.calculationCodeIdentifier.calculationCodeExternalIdentifier.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType.calculationCodeIdentifier.calculationCodeExternalIdentifier.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "com.ibm.commerce.fulfillment.beans.CalculationCodeListDataBean_IBM_associatedPromotionsList_Summary.associatedPromotions": {
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "description": {
+            "$ref": "#/components/schemas/com.ibm.commerce.fulfillment.beans.CalculationCodeListDataBean_IBM_associatedPromotionsList_Summary.associatedPromotions.description"
+          },
+          "associatePromotionId": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.marketing.commands.IssueCouponControllerCmd": {
+        "type": "object"
+      },
+      "com.ibm.commerce.foundation.common.datatypes.PromotionIdentifierType.externalIdentifier.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "x-aes-documentation": {
+    "gettingstarted": [
+      {
+        "content": "Some REST services require authentication.HCl Commerce REST services are authenticated on secure and unsecured channels. This authentication can include the use of the WCToken and WCTrustedToken. To use REST services that require authentication, you must first get authentication data by using a supported identity services.\n\nAfter you obtain the authentication data, you must pass either the WCToken or WCTustedToken parameters, or both, within the HTTP header for every request that requires authentication. If a request is sent over HTTP, pass the WCToken parameter in the HTTP header. Do not pass the WCTrustedToken in HTTP requests, as the parameter value might display. Send both the WCToken and the WCTrustedToken parameters when the request is being sent over HTTPS.\n\nTheHCl Commerce REST APIs can also use session cookies that are created by theHCl Commerce store runtime for authentication. These cookies allow you to mix requests to theHCl Commerce REST APIs and theHCl Commerce store runtime within the same user session.\n\n See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Authentication"
+      },
+      {
+        "content": "Digital Commerce REST services support JSON and XML formats for input and output data by default. The default format is JSON. When an XML String is sent to a REST service, you must set Content-Type HTTP header to be \"application/xml\". The REST service converts the XML input data to the JSON format that is accepted by REST services. Therefore, your input XML format must follow a certain structure so that it can be transformed to the JSON object that is accepted by REST services. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html</a> ",
+        "codeSnippets": [],
+        "name": "Response formats"
+      },
+      {
+        "content": "Preview tokens are encrypted strings that encapsulates a set of preview options and restrictions on when and where the token can be used. Any user who is authorized to access your server and has a preview token, can complete preview actions in the same store for which that token is generated. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a>",
+        "codeSnippets": [],
+        "name": "Preview tokens"
+      },
+      {
+        "content": "SomeHCl Commerce REST services require a request to be sent over HTTPS. Learn more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html</a> ",
+        "codeSnippets": [],
+        "name": "Secure Sockets Layer"
+      }
+    ]
+  }
+}

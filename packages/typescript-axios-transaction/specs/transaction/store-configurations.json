@@ -1,0 +1,2989 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "HCL Commerce Services - Store Configurations",
+    "description": "These services provide APIs related to the store configuration in a B2B or B2C store. Use these classes to: <ul><li> Get configuration details <li> Get flow information by flow ID <li> Get configuration details for system integrations <li> Get available resource URLs for a store <li> Get SEO-related information",
+    "version": "9.1.6"
+  },
+  "servers": [
+    {
+      "url": "https://localhost/wcs/resources"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Configuration",
+      "description": "This class provides RESTful services to get configuration details."
+    },
+    {
+      "name": "Flow",
+      "description": "This class provides RESTful services to get flow information by flow id."
+    },
+    {
+      "name": "Integration Configuration",
+      "description": "This class provides RESTful services to retrieve configuration details for system integrations."
+    },
+    {
+      "name": "Store",
+      "description": "This class provides RESTful services to get available resource URLs for a store."
+    },
+    {
+      "name": "Substitution Parameters",
+      "description": "This class provides RESTful services to get the SEO related information."
+    },
+    {
+      "name": "Token Usage",
+      "description": "This class provides RESTful services to get the SEO related information."
+    },
+    {
+      "name": "Token",
+      "description": "This class provides RESTful services to get the SEO related information."
+    },
+    {
+      "name": "URL Keyword",
+      "description": "This class provides RESTful services to get the SEO related information."
+    },
+    {
+      "name": "Redirect Rule",
+      "description": "This class provides RESTful services to get the SEO related information."
+    }
+  ],
+  "paths": {
+    "/store/{storeId}/configuration/{configurationId}": {
+      "get": {
+        "tags": [
+          "Configuration"
+        ],
+        "summary": "Get details by ID",
+        "description": "Gets configuration details by the specified identifier.",
+        "operationId": "Configuration-findByConfigurationId",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configurationId",
+            "in": "path",
+            "description": "The configuration identifier. This is mandatory parameter and cannot be null or empty.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/configuration-configuration"
+                },
+                "example": {
+                  "resourceId": "https://localhost:443/wcs/resources/store/10001/configuration/com.ibm.commerce.foundation.inventorySystem?langId=-1&responseFormat=json",
+                  "resultList": [
+                    {
+                      "configurationId": "com.ibm.commerce.foundation.inventorySystem",
+                      "configurationAttribute": [
+                        {
+                          "primaryValue": {
+                            "name": "inventorySystem",
+                            "value": "ATP"
+                          }
+                        }
+                      ],
+                      "description": {
+                        "language": -1,
+                        "value": "Aurora store configuration: inventory system"
+                      }
+                    }
+                  ],
+                  "resourceName": "configuration"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/configuration-configuration"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/configuration-configuration"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/configuration-configuration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/flow/{flowId}": {
+      "get": {
+        "tags": [
+          "Flow"
+        ],
+        "summary": "Get flow information by ID",
+        "description": "Gets the flow info by flow ID.",
+        "operationId": "Flow-findByFlowId",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "flowId",
+            "in": "path",
+            "description": "The flow ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response was specified.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/integration_configuration": {
+      "get": {
+        "tags": [
+          "Integration Configuration"
+        ],
+        "summary": "Get configuration",
+        "description": "Gets integration configurations. Can only be called after logging in as an integration user. As such, requests must be sent with an integration user cookie or token. An integration user is a user in the RemoteConfigurationReader member group.",
+        "operationId": "IntegrationConfiguration-getConfiguration",
+        "parameters": [
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data returned by a query.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/integration_configuration/session_key": {
+      "get": {
+        "tags": [
+          "Integration Configuration"
+        ],
+        "summary": "Get integration session key configuration",
+        "description": "Gets integration session key configuration. Can only be called after logging in as an integration user. As such, requests must be sent with an integration user cookie or token. An integration user is a user in the RemoteConfigurationReader member group.",
+        "operationId": "IntegrationConfiguration-getEncryptedSessionKey",
+        "parameters": [
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data returned by a query.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/taxInformation": {
+      "get": {
+        "tags": [
+          "Store"
+        ],
+        "summary": "Get tax information by query",
+        "description": "Gets tax information by the specified query.",
+        "operationId": "Store-findByQueryTaxInformation",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "getSalesTaxCalculationRule"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/seo/substitutionparameters": {
+      "get": {
+        "tags": [
+          "Substitution Parameters"
+        ],
+        "summary": "Get feature version data",
+        "description": "Gets the feature version data.",
+        "operationId": "SubstitutionParameters-findByAll",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/online_store": {
+      "get": {
+        "tags": [
+          "Store"
+        ],
+        "summary": "Get store information by query",
+        "description": "Gets online store information by the specified query.",
+        "operationId": "Store-findByQueryOnlineStore",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "findOnlineStoresByRange",
+                "findOnlineStore"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                },
+                "example": {
+                  "resourceId": "https://localhost:443/wcs/resources/store/10001/online_store?responseFormat=json",
+                  "resultList": [
+                    {
+                      "userData": {
+                        "CK_imagePath": "/wcsstore/Aurora/",
+                        "wc.search.entitlement": "0",
+                        "wc.seo.defaultURLLangId": -1,
+                        "wc.search.priceMode": "1"
+                      },
+                      "identifier": "Aurora",
+                      "description": [
+                        {
+                          "displayName": "Aurora",
+                          "description": "Encja sklepu w danym modelu handlowym",
+                          "languageId": -22
+                        },
+                        {
+                          "displayName": "Aurora",
+                          "description": "Entitate Commerce Model Store",
+                          "languageId": -21
+                        },
+                        {
+                          "displayName": "Aurora",
+                          "description": "Commerce Model Store entity",
+                          "languageId": -20
+                        },
+                        {
+                          "displayName": "Aurora",
+                          "description": "Commerce モデル・ストア・エンティティー",
+                          "languageId": -10
+                        },
+                        {
+                          "displayName": "Aurora",
+                          "description": "�\ufffd업 모�\ufffd� �\ufffd�\ufffd 엔티티",
+                          "languageId": -9
+                        },
+                        {
+                          "displayName": "Aurora",
+                          "description": "商�\u00ad模�\ufffd商店實體",
+                          "languageId": -8
+                        },
+                        {
+                          "displayName": "Aurora",
+                          "description": "商业模型商店实体",
+                          "languageId": -7
+                        },
+                        {
+                          "displayName": "Aurora",
+                          "description": "Entidade de Loja de Modelo Comercial",
+                          "languageId": -6
+                        },
+                        {
+                          "displayName": "Aurora",
+                          "description": "Entidad de tienda de modelos de comercio",
+                          "languageId": -5
+                        },
+                        {
+                          "displayName": "Aurora",
+                          "description": "Entità negozio modello in commercio",
+                          "languageId": -4
+                        },
+                        {
+                          "displayName": "Aurora",
+                          "description": "Commerce-Modell - Geschäftsentität",
+                          "languageId": -3
+                        },
+                        {
+                          "displayName": "Aurora",
+                          "description": "Entité Magasin modèle Commerce",
+                          "languageId": -2
+                        },
+                        {
+                          "displayName": "Aurora",
+                          "description": "Commerce Model Store entity",
+                          "languageId": -1
+                        }
+                      ],
+                      "storeId": "10001",
+                      "locationInfo": [
+                        {
+                          "languageId": -22,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Ubraniowo",
+                            "zipOrPostalCode": "0x-1xx",
+                            "addressLine": [
+                              "ul. Słowicza 1x",
+                              "nr lok. 9x",
+                              null
+                            ],
+                            "stateOrProvinceName": "Wielkopolskie",
+                            "country": "Polska"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10026",
+                            "contactPersonNickName": "Aurora location_pl_PL"
+                          }
+                        },
+                        {
+                          "languageId": -21,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "12xx Bulevardul Martindale",
+                              "Apartamentul 9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10024",
+                            "contactPersonNickName": "Aurora location_ro_RO"
+                          }
+                        },
+                        {
+                          "languageId": -20,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "12xx Martindale Avenue",
+                              "Suite 9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10022",
+                            "contactPersonNickName": "Aurora location_ru_RU"
+                          }
+                        },
+                        {
+                          "languageId": -10,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "12xx Martindale Avenue",
+                              "Suite 9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10004",
+                            "contactPersonNickName": "Aurora location_ja_JP"
+                          }
+                        },
+                        {
+                          "languageId": -9,
+                          "telephone1": "02-1xx-2xxx",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "02-1xx-2xxx",
+                          "address": {
+                            "city": "�\ufffd�류 �\ufffd가",
+                            "zipOrPostalCode": "1xx-5xx",
+                            "addressLine": [
+                              "여�\ufffd��\ufffd��\ufffd�",
+                              "xx번지",
+                              null
+                            ],
+                            "stateOrProvinceName": "서울시",
+                            "country": "한�\u00ad"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10010",
+                            "contactPersonNickName": "Aurora location_ko_KR"
+                          }
+                        },
+                        {
+                          "languageId": -8,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "12xx Martindale Avenue",
+                              "Suite 9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10006",
+                            "contactPersonNickName": "Aurora location_zh_TW"
+                          }
+                        },
+                        {
+                          "languageId": -7,
+                          "telephone1": "86-21-63268765",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "86-21-63265678",
+                          "address": {
+                            "city": "�\ufffd�湾区",
+                            "zipOrPostalCode": "200021",
+                            "addressLine": [
+                              "淮海�\u00ad路 3333 �\ufffd�",
+                              "10 楼",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10008",
+                            "contactPersonNickName": "Aurora location_zh_CN"
+                          }
+                        },
+                        {
+                          "languageId": -6,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx1xx",
+                            "addressLine": [
+                              "12xx Martindale Avenue",
+                              "Suite                   9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10020",
+                            "contactPersonNickName": "Aurora location_pt_BR"
+                          }
+                        },
+                        {
+                          "languageId": -5,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "12xx Martindale Avenue",
+                              "Suite 9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "Barcelona",
+                            "country": "España"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10014",
+                            "contactPersonNickName": "Aurora location_es_ES"
+                          }
+                        },
+                        {
+                          "languageId": -4,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "12xx                    Martindale Avenue",
+                              "Suite 9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10018",
+                            "contactPersonNickName": "Aurora location_it_IT"
+                          }
+                        },
+                        {
+                          "languageId": -3,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Modenhausen",
+                            "zipOrPostalCode": "67 1xx",
+                            "addressLine": [
+                              "Modehausstraße 11",
+                              "Whg. 4",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "BW"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10012",
+                            "contactPersonNickName": "Aurora location_de_DE"
+                          }
+                        },
+                        {
+                          "languageId": -2,
+                          "telephone1": "01.43.43.43.46",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "01.43.43.43.47",
+                          "address": {
+                            "city": "Habitsville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "125 Avenue Henri Martin",
+                              "Allée C",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10016",
+                            "contactPersonNickName": "Aurora location_fr_FR"
+                          }
+                        },
+                        {
+                          "languageId": -1,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "12xx Martindale Avenue",
+                              "Suite 9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10002",
+                            "contactPersonNickName": "Aurora location_en_US"
+                          }
+                        }
+                      ],
+                      "defaultCatalog": [
+                        {}
+                      ],
+                      "state": "open",
+                      "supportedCurrencies": {
+                        "supportedCurrencies": [
+                          "BRL",
+                          "CAD",
+                          "CNY",
+                          "EGP",
+                          "EUR",
+                          "GBP",
+                          "JPY",
+                          "KRW",
+                          "PLN",
+                          "RON",
+                          "RUB",
+                          "TWD",
+                          "USD"
+                        ],
+                        "defaultCurrency": "USD"
+                      },
+                      "ownerId": "7000000000000000002",
+                      "storeType": "B2C",
+                      "contactInfo": [
+                        {
+                          "languageId": -22,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Ubraniowo",
+                            "zipOrPostalCode": "0x-1xx",
+                            "addressLine": [
+                              "ul. Słowicza 1x",
+                              "nr lok. 9x",
+                              null
+                            ],
+                            "stateOrProvinceName": "Wielkopolskie",
+                            "country": "Polska"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10025",
+                            "contactPersonId": "7000000000000000002",
+                            "contactPersonNickName": "Aurora contact_pl_PL"
+                          }
+                        },
+                        {
+                          "languageId": -21,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "12xx Bulevardul Martindale",
+                              "Suite 9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10023",
+                            "contactPersonId": "7000000000000000002",
+                            "contactPersonNickName": "Aurora contact_ro_RO"
+                          }
+                        },
+                        {
+                          "languageId": -20,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "12xx Martindale Avenue",
+                              "Suite 9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10021",
+                            "contactPersonId": "7000000000000000002",
+                            "contactPersonNickName": "Aurora contact_ru_RU"
+                          }
+                        },
+                        {
+                          "languageId": -10,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "12xx Martindale Avenue",
+                              "Suite 9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10003",
+                            "contactPersonId": "7000000000000000002",
+                            "contactPersonNickName": "Aurora contact_ja_JP"
+                          }
+                        },
+                        {
+                          "languageId": -9,
+                          "telephone1": "02-1xx-2xxx",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "02-1xx-2xxx",
+                          "address": {
+                            "city": "�\ufffd�류 �\ufffd가",
+                            "zipOrPostalCode": "1xx-5xx",
+                            "addressLine": [
+                              "여�\ufffd��\ufffd��\ufffd�",
+                              "xx번지",
+                              null
+                            ],
+                            "stateOrProvinceName": "서울시",
+                            "country": "한�\u00ad"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10009",
+                            "contactPersonId": "7000000000000000002",
+                            "contactPersonNickName": "Aurora contact_ko_KR"
+                          }
+                        },
+                        {
+                          "languageId": -8,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "12xx Martindale Avenue",
+                              "Suite 9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10005",
+                            "contactPersonId": "7000000000000000002",
+                            "contactPersonNickName": "Aurora contact_zh_TW"
+                          }
+                        },
+                        {
+                          "languageId": -7,
+                          "telephone1": "86-21-63268765",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "86-21-63265678",
+                          "address": {
+                            "city": "�\ufffd�湾区",
+                            "zipOrPostalCode": "200021",
+                            "addressLine": [
+                              "淮海�\u00ad路 3333 �\ufffd�",
+                              "10 楼",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10007",
+                            "contactPersonId": "7000000000000000002",
+                            "contactPersonNickName": "Aurora contact_zh_CN"
+                          }
+                        },
+                        {
+                          "languageId": -6,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx1xx",
+                            "addressLine": [
+                              "12xx Martindale Avenue",
+                              "Suite                   9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10019",
+                            "contactPersonId": "7000000000000000002",
+                            "contactPersonNickName": "Aurora contact_pt_BR"
+                          }
+                        },
+                        {
+                          "languageId": -5,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "12xx Martindale Avenue",
+                              "Suite 9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "Barcelona",
+                            "country": "España"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10013",
+                            "contactPersonId": "7000000000000000002",
+                            "contactPersonNickName": "Aurora contact_es_ES"
+                          }
+                        },
+                        {
+                          "languageId": -4,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "12xx                    Martindale Avenue",
+                              "Suite 9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10017",
+                            "contactPersonId": "7000000000000000002",
+                            "contactPersonNickName": "Aurora contact_it_IT"
+                          }
+                        },
+                        {
+                          "languageId": -3,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Modenhausen",
+                            "zipOrPostalCode": "67 1xx",
+                            "addressLine": [
+                              "Modehausstraße 11",
+                              "Whg. 4",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "BW"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10011",
+                            "contactPersonId": "7000000000000000002",
+                            "contactPersonNickName": "Aurora contact_de_DE"
+                          }
+                        },
+                        {
+                          "languageId": -2,
+                          "telephone1": "01.43.43.43.46",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "01.43.43.43.47",
+                          "address": {
+                            "city": "Habitsville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "125 Avenue Henri Martin",
+                              "Allée C",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10015",
+                            "contactPersonId": "7000000000000000002",
+                            "contactPersonNickName": "Aurora contact_fr_FR"
+                          }
+                        },
+                        {
+                          "languageId": -1,
+                          "telephone1": "1-800-555-1234",
+                          "contactPersonBusinessTitle": "Aurora",
+                          "emailAddress1": "info@Aurora.xxx",
+                          "fax1": "1-800-555-4321",
+                          "address": {
+                            "city": "Clothesville",
+                            "zipOrPostalCode": "Lxx 1xx",
+                            "addressLine": [
+                              "12xx Martindale Avenue",
+                              "Suite 9xx",
+                              null
+                            ],
+                            "stateOrProvinceName": "ON",
+                            "country": "CA"
+                          },
+                          "contactInfoIdentifier": {
+                            "contactInfoId": "10001",
+                            "contactPersonId": "7000000000000000002",
+                            "contactPersonNickName": "Aurora contact_en_US"
+                          }
+                        }
+                      ],
+                      "supportedLanguages": {
+                        "defaultLanguageId": -1,
+                        "supportedLanguages": [
+                          -1
+                        ]
+                      }
+                    }
+                  ],
+                  "resourceName": "store"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/seo/tokenusage": {
+      "get": {
+        "tags": [
+          "Token Usage"
+        ],
+        "summary": "Get feature version data",
+        "description": "Gets the feature version data.",
+        "operationId": "TokenUsage-findByAll",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "findByAll"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/adminLookup": {
+      "get": {
+        "tags": [
+          "Store"
+        ],
+        "summary": "Get store details by name and usage",
+        "description": "Gets store details by the specified store name and usage.",
+        "operationId": "Store-findByStoreNameAndUsage",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "findByStoreNameAndUsage",
+                "findByStoreIdentifier"
+              ]
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml"
+              ]
+            }
+          },
+          {
+            "name": "storeName",
+            "in": "query",
+            "description": "The store name.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "usage",
+            "in": "query",
+            "description": "The usage.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "storeIdentifier",
+            "in": "query",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/seo/token": {
+      "get": {
+        "tags": [
+          "Token"
+        ],
+        "summary": "Get feature version data",
+        "description": "Gets the feature version data.",
+        "operationId": "Token-findByUrlKeywordNames",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "byUrlKeywordNames"
+              ]
+            }
+          },
+          {
+            "name": "urlKeywordName",
+            "in": "query",
+            "description": "The input urlKeyword names.",
+            "required": true,
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}": {
+      "get": {
+        "tags": [
+          "Store"
+        ],
+        "summary": "Get top-level resource URLs",
+        "description": "Gets top-level resource URLs.",
+        "operationId": "Store-fetchStore",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.rest.store.handler.StoreHandler.StoreInformation"
+                },
+                "example": {
+                  "geonodeUrl": "http://localhost/wcs/resources/store/10001/geonode/...",
+                  "personUrl": "https://localhost/wcs/resources/store/10001/person/@self/...",
+                  "storeName": "Aurora",
+                  "storeLocatorUrl": "http://localhost/wcs/resources/store/10001/storelocator/...",
+                  "orderUrl": "https://localhost/wcs/resources/store/10001/order/...",
+                  "topcategoriesUrl": "http://localhost/wcs/resources/store/10001/categoryview/...",
+                  "directory": "Aurora",
+                  "productUrl": "http://localhost/wcs/resources/store/10001/productview/...",
+                  "wishlistUrl": "https://localhost/wcs/resources/store/10001/wishlist/...",
+                  "inventoryavailabilityUrl": "http://localhost/wcs/resources/store/10001/inventoryavailability/{productids}",
+                  "storeId": "10001",
+                  "espotUrl": "http://localhost/wcs/resources/store/10001/espot/{marketingspotname}/...",
+                  "guestidentityUrl": "https://localhost/wcs/resources/store/10001/guestidentity",
+                  "loginidentityUrl": "https://localhost/wcs/resources/store/10001/ltpadentity",
+                  "shoppingcartUrl": "http://localhost/wcs/resources/store/10001/cart/@self/..."
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.rest.store.handler.StoreHandler.StoreInformation"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.rest.store.handler.StoreHandler.StoreInformation"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.rest.store.handler.StoreHandler.StoreInformation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/seo/urlkeyword": {
+      "get": {
+        "tags": [
+          "URL Keyword"
+        ],
+        "summary": "Get feature version data",
+        "description": "Gets the feature version data.",
+        "operationId": "URLKeyword-findByTokenName",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "byTokenName"
+              ]
+            }
+          },
+          {
+            "name": "tokenName",
+            "in": "query",
+            "description": "The input token name.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/databean": {
+      "get": {
+        "tags": [
+          "Store"
+        ],
+        "summary": "Get store information by store ID",
+        "description": "Gets information about a specific store ID. Can only be called after logging in as an integration user. As such, requests must be sent with an integration user cookie or token. An integration user is a user in the RemoteConfigurationReader member group.",
+        "operationId": "Store-findDataBean",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data returned by a query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "jspStoreDir",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "storeRelationshipTypeName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                },
+                "example": {
+                  "jspPath": "/Aurora/",
+                  "jspStoreDir": "",
+                  "filePath": "/wcsstore/Aurora/",
+                  "storeLevel": "MC,MOBILE",
+                  "storeEntityDescription": {
+                    "contactAddressId": "10001",
+                    "displayName": "Aurora"
+                  },
+                  "jspStoreDirFilePath": "/wcsstore/",
+                  "masterCatalog": {
+                    "catalogId": "10001"
+                  },
+                  "directory": "Aurora",
+                  "storeType": "B2C",
+                  "persistentSession": 3,
+                  "supportedLanguages": [
+                    {
+                      "descriptionString": "United States English",
+                      "localeName": "en_US",
+                      "languageId": -1,
+                      "nativeDescriptionString": "United States English"
+                    }
+                  ]
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-store"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/features": {
+      "get": {
+        "tags": [
+          "Store"
+        ],
+        "summary": "Gets a list of enabled store features.",
+        "description": "Gets a list of enabled store features.",
+        "operationId": "Store-getFeatureList",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-featuresList"
+                },
+                "example": {
+                  "resultList": [
+                    "ApplePay",
+                    "CDNCaching",
+                    "CookieWarning",
+                    "CategorySortOrder_Sequence",
+                    "SideBySideIntegration"
+                  ]
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-featuresList"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-featuresList"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/store-featuresList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/configuration": {
+      "get": {
+        "tags": [
+          "Configuration"
+        ],
+        "summary": "Get details by specified identifiers",
+        "description": "Gets configuration details by one or more specified identifiers.",
+        "operationId": "Configuration-findByQuery",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "byConfigurationIds",
+                "all"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/configuration-configuration"
+                },
+                "example": {
+                  "resourceId": "https://localhost:443/wcs/resources/store/10001/configuration?configurationId=com.ibm.commerce.foundation.supportedCurrencies&configurationId=com.ibm.commerce.foundation.supportedLanguages&q=byConfigurationIds&langId=-1&responseFormat=json",
+                  "resultList": [
+                    {
+                      "configurationId": "com.ibm.commerce.foundation.supportedCurrencies",
+                      "configurationAttribute": [
+                        {
+                          "additionalValue": [
+                            {
+                              "name": "currencyCode",
+                              "value": "USD"
+                            }
+                          ],
+                          "primaryValue": {
+                            "name": "currencyDescription",
+                            "value": "US Dollar"
+                          }
+                        },
+                        {
+                          "additionalValue": [
+                            {
+                              "name": "currencyCode",
+                              "value": "BRL"
+                            }
+                          ],
+                          "primaryValue": {
+                            "name": "currencyDescription",
+                            "value": "Brazilian Real"
+                          }
+                        },
+                        {
+                          "additionalValue": [
+                            {
+                              "name": "currencyCode",
+                              "value": "CAD"
+                            }
+                          ],
+                          "primaryValue": {
+                            "name": "currencyDescription",
+                            "value": "Canadian Dollar"
+                          }
+                        },
+                        {
+                          "additionalValue": [
+                            {
+                              "name": "currencyCode",
+                              "value": "CNY"
+                            }
+                          ],
+                          "primaryValue": {
+                            "name": "currencyDescription",
+                            "value": "Chinese Yuan"
+                          }
+                        },
+                        {
+                          "additionalValue": [
+                            {
+                              "name": "currencyCode",
+                              "value": "EGP"
+                            }
+                          ],
+                          "primaryValue": {
+                            "name": "currencyDescription",
+                            "value": "Egyptian Pound"
+                          }
+                        },
+                        {
+                          "additionalValue": [
+                            {
+                              "name": "currencyCode",
+                              "value": "EUR"
+                            }
+                          ],
+                          "primaryValue": {
+                            "name": "currencyDescription",
+                            "value": "Euro"
+                          }
+                        },
+                        {
+                          "additionalValue": [
+                            {
+                              "name": "currencyCode",
+                              "value": "GBP"
+                            }
+                          ],
+                          "primaryValue": {
+                            "name": "currencyDescription",
+                            "value": "British Pound"
+                          }
+                        },
+                        {
+                          "additionalValue": [
+                            {
+                              "name": "currencyCode",
+                              "value": "JPY"
+                            }
+                          ],
+                          "primaryValue": {
+                            "name": "currencyDescription",
+                            "value": "Japanese Yen"
+                          }
+                        },
+                        {
+                          "additionalValue": [
+                            {
+                              "name": "currencyCode",
+                              "value": "KRW"
+                            }
+                          ],
+                          "primaryValue": {
+                            "name": "currencyDescription",
+                            "value": "South Korean Won"
+                          }
+                        },
+                        {
+                          "additionalValue": [
+                            {
+                              "name": "currencyCode",
+                              "value": "PLN"
+                            }
+                          ],
+                          "primaryValue": {
+                            "name": "currencyDescription",
+                            "value": "Polish Zloty"
+                          }
+                        },
+                        {
+                          "additionalValue": [
+                            {
+                              "name": "currencyCode",
+                              "value": "RON"
+                            }
+                          ],
+                          "primaryValue": {
+                            "name": "currencyDescription",
+                            "value": "Romanian Leu"
+                          }
+                        },
+                        {
+                          "additionalValue": [
+                            {
+                              "name": "currencyCode",
+                              "value": "RUB"
+                            }
+                          ],
+                          "primaryValue": {
+                            "name": "currencyDescription",
+                            "value": "Russian Ruble"
+                          }
+                        },
+                        {
+                          "additionalValue": [
+                            {
+                              "name": "currencyCode",
+                              "value": "TWD"
+                            }
+                          ],
+                          "primaryValue": {
+                            "name": "currencyDescription",
+                            "value": "Taiwan Dollar"
+                          }
+                        }
+                      ],
+                      "description": {
+                        "language": -1,
+                        "value": "Aurora store configuration: supported currencies"
+                      }
+                    },
+                    {
+                      "configurationId": "com.ibm.commerce.foundation.supportedLanguages",
+                      "configurationAttribute": [
+                        {
+                          "additionalValue": [
+                            {
+                              "name": "languageId",
+                              "value": -1
+                            },
+                            {
+                              "name": "localeName",
+                              "value": "en_US"
+                            },
+                            {
+                              "name": "language",
+                              "value": "en"
+                            },
+                            {
+                              "name": "country",
+                              "value": "US"
+                            },
+                            {
+                              "name": "variant"
+                            },
+                            {
+                              "name": "encoding",
+                              "value": "UTF-8"
+                            },
+                            {
+                              "name": "mimeCharSet",
+                              "value": "iso-8859-1"
+                            }
+                          ],
+                          "primaryValue": {
+                            "name": "languageDescription",
+                            "value": "United States English"
+                          }
+                        }
+                      ],
+                      "description": {
+                        "language": -1,
+                        "value": "Aurora store configuration: supported languages"
+                      }
+                    }
+                  ],
+                  "resourceName": "configuration"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/configuration-configuration"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/configuration-configuration"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/configuration-configuration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/seo/redirectrule": {
+      "get": {
+        "tags": [
+          "Redirect Rule"
+        ],
+        "summary": "Get feature version data",
+        "description": "Gets the feature version data.",
+        "operationId": "RedirectRule-findByOriginalUrlKeywordIds",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "byOriginalUrlKeywordIds"
+              ]
+            }
+          },
+          {
+            "name": "origUrlKeywordId",
+            "in": "query",
+            "description": "The keyword ID.",
+            "required": true,
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "configuration-configuration": {
+        "type": "object",
+        "properties": {
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/configuration-configuration_item"
+            }
+          }
+        }
+      },
+      "store-OnlineStoreSupportedLanguagesType": {
+        "type": "object",
+        "properties": {
+          "defaultLanguageId": {
+            "type": "string"
+          },
+          "supportedLanguages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "configuration-ConfigurationAttributeType": {
+        "required": [
+          "primaryValue"
+        ],
+        "type": "object",
+        "properties": {
+          "additionalValue": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/configuration-ConfigurationValueType"
+            }
+          },
+          "primaryValue": {
+            "$ref": "#/components/schemas/configuration-ConfigurationValueType"
+          }
+        }
+      },
+      "com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.catalogIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.catalogIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "store-store": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/store-store_item"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "com.ibm.commerce.rest.store.handler.StoreHandler.StoreInformation": {
+        "required": [
+          "directory",
+          "espotUrl",
+          "geonodeUrl",
+          "guestidentityUrl",
+          "inventoryavailabilityUrl",
+          "loginidentityUrl",
+          "orderUrl",
+          "personUrl",
+          "productUrl",
+          "shoppingcartUrl",
+          "storeId",
+          "storeLocatorUrl",
+          "storeName",
+          "topcategoriesUrl",
+          "wishlistUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "geonodeUrl": {
+            "type": "string",
+            "description": "Store geonode api url."
+          },
+          "personUrl": {
+            "type": "string",
+            "description": "Store person api url."
+          },
+          "storeName": {
+            "type": "string",
+            "description": "Store name."
+          },
+          "storeLocatorUrl": {
+            "type": "string",
+            "description": "Store locator api url."
+          },
+          "orderUrl": {
+            "type": "string",
+            "description": "Store order api url."
+          },
+          "espotUrl": {
+            "type": "string",
+            "description": "Store e-spots api url."
+          },
+          "topcategoriesUrl": {
+            "type": "string",
+            "description": "Store top categories api url."
+          },
+          "inventoryavailabilityUrl": {
+            "type": "string",
+            "description": "Store inventory api url."
+          },
+          "productUrl": {
+            "type": "string",
+            "description": "Store product api url."
+          },
+          "wishlistUrl": {
+            "type": "string",
+            "description": "Store wish list api url."
+          },
+          "storeId": {
+            "type": "string",
+            "description": "Store identifier."
+          },
+          "directory": {
+            "type": "string",
+            "description": "Store directory name."
+          },
+          "guestidentityUrl": {
+            "type": "string",
+            "description": "Store guest identity api url."
+          },
+          "loginidentityUrl": {
+            "type": "string",
+            "description": "Store login api url."
+          },
+          "shoppingcartUrl": {
+            "type": "string",
+            "description": "Store shopping cart api url."
+          }
+        },
+        "description": "Store information."
+      },
+      "store-OnlineStoreUserDataType": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/store-OnlineStoreUserDataType.userDataField"
+            }
+          }
+        }
+      },
+      "store-OnlineStoreRelatedStoresType": {
+        "type": "object",
+        "properties": {
+          "relationshipSequence": {
+            "type": "string"
+          },
+          "relationshipType": {
+            "type": "string"
+          },
+          "relatedStoreId": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          }
+        }
+      },
+      "Empty": {
+        "type": "object",
+        "description": "Empty model. Used as default value when no model is specified."
+      },
+      "store-OnlineStoreSupportedCurrenciesType": {
+        "type": "object",
+        "properties": {
+          "supportedCurrencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "defaultCurrency": {
+            "type": "string"
+          }
+        }
+      },
+      "store-OnlineStoreDescriptionType": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "languageId": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.userData.userDataField"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType": {
+        "type": "object",
+        "properties": {
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.storeIdentifier"
+          },
+          "catalogIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.catalogIdentifier"
+          },
+          "uniqueID": {
+            "type": "string"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.userData"
+          }
+        }
+      },
+      "store-OnlineStoreContactInfoType": {
+        "required": [
+          "emailAddress1",
+          "emailAddress2",
+          "fax1",
+          "fax2",
+          "telephone1",
+          "telephone2"
+        ],
+        "type": "object",
+        "properties": {
+          "telephone2": {
+            "type": "string"
+          },
+          "languageId": {
+            "type": "string"
+          },
+          "telephone1": {
+            "type": "string"
+          },
+          "contactPersonBusinessTitle": {
+            "type": "string"
+          },
+          "emailAddress1": {
+            "type": "string"
+          },
+          "fax2": {
+            "type": "string"
+          },
+          "fax1": {
+            "type": "string"
+          },
+          "emailAddress2": {
+            "type": "string"
+          },
+          "contactInfoIdentifier": {
+            "$ref": "#/components/schemas/store-ContactInfoIdentifierType"
+          },
+          "address": {
+            "$ref": "#/components/schemas/store-AddressType"
+          }
+        }
+      },
+      "com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.catalogIdentifier.externalIdentifier": {
+        "required": [
+          "identifier"
+        ],
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.catalogIdentifier.externalIdentifier.storeIdentifier"
+          }
+        }
+      },
+      "store-OnlineStoreUserDataType.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "store-AddressType": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string"
+          },
+          "zipOrPostalCode": {
+            "type": "string"
+          },
+          "addressLine": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "stateOrProvinceName": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          }
+        }
+      },
+      "store-ContactInfoIdentifierType": {
+        "required": [
+          "contactPersonNickName"
+        ],
+        "type": "object",
+        "properties": {
+          "contactInfoId": {
+            "type": "string"
+          },
+          "contactPersonId": {
+            "type": "string"
+          },
+          "contactPersonNickName": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean": {
+        "type": "object"
+      },
+      "store-store_item": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/store-OnlineStoreUserDataType"
+          },
+          "contactInfo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/store-OnlineStoreContactInfoType"
+            }
+          },
+          "description": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/store-OnlineStoreDescriptionType"
+            }
+          },
+          "relatedStores": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/store-OnlineStoreRelatedStoresType"
+            }
+          },
+          "storeId": {
+            "type": "string"
+          },
+          "locationInfo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/store-OnlineStoreContactInfoType"
+            }
+          },
+          "defaultCatalog": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType"
+            }
+          },
+          "state": {
+            "type": "string"
+          },
+          "supportedCurrencies": {
+            "$ref": "#/components/schemas/store-OnlineStoreSupportedCurrenciesType"
+          },
+          "ownerId": {
+            "type": "string"
+          },
+          "storeType": {
+            "type": "string"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "supportedLanguages": {
+            "$ref": "#/components/schemas/store-OnlineStoreSupportedLanguagesType"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.DescriptionType": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          }
+        }
+      },
+      "configuration-ConfigurationValueType": {
+        "required": [
+          "name",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "configuration-configuration_item.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.catalogIdentifier.externalIdentifier.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.catalogIdentifier.externalIdentifier.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "configuration-configuration_item": {
+        "required": [
+          "configurationId"
+        ],
+        "type": "object",
+        "properties": {
+          "configurationId": {
+            "type": "string"
+          },
+          "configurationAttribute": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/configuration-ConfigurationAttributeType"
+            }
+          },
+          "description": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.DescriptionType"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/configuration-configuration_item.userDataField"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.catalogIdentifier.externalIdentifier.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "store-storeList": {
+        "type": "object",
+        "properties": {
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/store-storeList-listItem"
+            }
+          }
+        }
+      },
+      "store-storeList-listItem": {
+        "type": "object",
+        "properties": {
+          "storeDescription": {
+            "$ref": "#/components/schemas/store-storeList-listItem.storeDescription"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "storeType": {
+            "type": "string"
+          },
+          "storeId": {
+            "type": "string"
+          }
+        }
+      },
+      "store-storeList-listItem.storeDescription": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "store-featuresList": {
+        "type": "object",
+        "properties": {
+          "resultList": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "feature": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-aes-documentation": {
+    "gettingstarted": [
+      {
+        "content": "Some REST services require authentication. HCL Commerce REST services are authenticated on secure and unsecured channels. This authentication can include the use of the WCToken and WCTrustedToken. To use REST services that require authentication, you must first get authentication data by using a supported identity services.\n\nAfter you obtain the authentication data, you must pass either the WCToken or WCTustedToken parameters, or both, within the HTTP header for every request that requires authentication. If a request is sent over HTTP, pass the WCToken parameter in the HTTP header. Do not pass the WCTrustedToken in HTTP requests, as the parameter value might display. Send both the WCToken and the WCTrustedToken parameters when the request is being sent over HTTPS.\n\nThe HCL Commerce REST APIs can also use session cookies that are created by the HCL Commerce store runtime for authentication. These cookies allow you to mix requests to the HCL Commerce REST APIs and the HCL Commerce store runtime within the same user session.\n\n See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Authentication"
+      },
+      {
+        "content": "HCL Commerce REST services support JSON and XML formats for input and output data by default. The default format is JSON. When an XML String is sent to a REST service, you must set Content-Type HTTP header to be \"application/xml\". The REST service converts the XML input data to the JSON format that is accepted by REST services. Therefore, your input XML format must follow a certain structure so that it can be transformed to the JSON object that is accepted by REST services. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Response formats"
+      },
+      {
+        "content": "Preview tokens are encrypted strings that encapsulates a set of preview options and restrictions on when and where the token can be used. Any user who is authorized to access your server and has a preview token, can complete preview actions in the same store for which that token is generated. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a>",
+        "codeSnippets": [],
+        "name": "Preview tokens"
+      },
+      {
+        "content": "Some HCL Commerce REST services require a request to be sent over HTTPS. Learn more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Secure Sockets Layer"
+      }
+    ]
+  }
+}

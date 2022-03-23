@@ -1,0 +1,154 @@
+{
+  "recordSetCount": 4,
+  "resourceId": "http://localhost:443/wcs/resources/store/12/file_upload_job",
+  "recordSetStartNumber": 0,
+  "resourceName": "file_upload_job",
+  "resultList": [
+    {
+      "processFile": [
+        {
+          "startTime": "2022-01-03T10:25:08.107Z",
+          "endTime": "2022-01-03T10:25:08.142Z",
+          "status": "Failed"
+        }
+      ],
+      "fileUploadJobId": "10004",
+      "uploadFile": {
+        "fileInfo": {
+          "fileName": "SampleReqList4.csv",
+          "fileSize": 62,
+          "fileEncoding": "UTF-8",
+          "filePath": "/temp/dataload/10004/SampleReqList4.csv"
+        },
+        "userName": "wcsadmin",
+        "uploadTime": "2022-01-03T10:25:05.986Z",
+        "properties": [
+          {
+            "name": "langId",
+            "value": "-1"
+          },
+          {
+            "name": "componentId",
+            "value": "com.ibm.commerce.order"
+          },
+          {
+            "name": "activeOrgId",
+            "value": "-2001"
+          }
+        ]
+      },
+      "uploadType": "RequisitionListUpload",
+      "storeId": "2"
+    },
+    {
+      "processFile": [
+        {
+          "startTime": "2022-01-03T10:21:10.182Z",
+          "endTime": "2022-01-03T10:21:10.207Z",
+          "status": "Partially Complete"
+        }
+      ],
+      "fileUploadJobId": "10003",
+      "uploadFile": {
+        "fileInfo": {
+          "fileName": "SampleReqList2.csv",
+          "fileSize": 88,
+          "fileEncoding": "UTF-8",
+          "filePath": "/temp/dataload/10003/SampleReqList2.csv"
+        },
+        "userName": "wcsadmin",
+        "uploadTime": "2022-01-03T10:21:08.062Z",
+        "properties": [
+          {
+            "name": "langId",
+            "value": "-1"
+          },
+          {
+            "name": "componentId",
+            "value": "com.ibm.commerce.order"
+          },
+          {
+            "name": "activeOrgId",
+            "value": "-2001"
+          }
+        ]
+      },
+      "uploadType": "RequisitionListUpload",
+      "storeId": "2"
+    },
+    {
+      "processFile": [
+        {
+          "startTime": "2022-01-03T10:19:47.667Z",
+          "endTime": "2022-01-03T10:19:47.772Z",
+          "status": "Partially Complete"
+        }
+      ],
+      "fileUploadJobId": "10002",
+      "uploadFile": {
+        "fileInfo": {
+          "fileName": "SampleReqList3.csv",
+          "fileSize": 91,
+          "fileEncoding": "UTF-8",
+          "filePath": "/temp/dataload/10002/SampleReqList3.csv"
+        },
+        "userName": "wcsadmin",
+        "uploadTime": "2022-01-03T10:19:45.114Z",
+        "properties": [
+          {
+            "name": "langId",
+            "value": "-1"
+          },
+          {
+            "name": "componentId",
+            "value": "com.ibm.commerce.order"
+          },
+          {
+            "name": "activeOrgId",
+            "value": "-2001"
+          }
+        ]
+      },
+      "uploadType": "RequisitionListUpload",
+      "storeId": "2"
+    },
+    {
+      "processFile": [
+        {
+          "startTime": "2021-12-27T17:50:59.320Z",
+          "endTime": "2021-12-27T17:50:59.570Z",
+          "status": "Complete"
+        }
+      ],
+      "fileUploadJobId": "10001",
+      "uploadFile": {
+        "fileInfo": {
+          "fileName": "SampleReqList1.csv",
+          "fileSize": 84,
+          "fileEncoding": "UTF-8",
+          "filePath": "/temp/dataload/10001/SampleReqList1.csv"
+        },
+        "userName": "wcsadmin",
+        "uploadTime": "2021-12-27T17:50:56.466Z",
+        "properties": [
+          {
+            "name": "langId",
+            "value": "-1"
+          },
+          {
+            "name": "componentId",
+            "value": "com.ibm.commerce.order"
+          },
+          {
+            "name": "activeOrgId",
+            "value": "-2001"
+          }
+        ]
+      },
+      "uploadType": "RequisitionListUpload",
+      "storeId": "2"
+    }
+  ],
+  "recordSetTotal": 4,
+  "recordSetComplete": true
+}

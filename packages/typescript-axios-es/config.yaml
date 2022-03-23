@@ -1,0 +1,9 @@
+generatorName: typescript-axios
+templateDir: templates
+additionalProperties:
+  npmVersion: 9.1.7
+  apiPackage: com.hcl.commerce.typescript.axios
+  modelPackage: com.hcl.commerce.typescript.axios
+  withSeparateModelsAndApi: true
+  npmName: "@hcl-commerce-store-sdk/typescript-axios-es"
+  snapshot: false

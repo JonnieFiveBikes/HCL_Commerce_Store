@@ -1,0 +1,2537 @@
+{
+  "breadCrumbTrailEntryView": [
+    {
+      "label": "Fasteners",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "12",
+      "seo": {
+        "href": "/fasteners"
+      }
+    },
+    {
+      "label": "Nuts",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "15",
+      "seo": {
+        "href": "/nuts"
+      }
+    }
+  ],
+  "contents": [
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/heavy-hex-nut"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4001.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4001.jpg",
+      "shortDescription": "High-strength, general purpose fastening nut",
+      "parentCatalogGroupID": "/12/15",
+      "partNumber": "FNU040_4001",
+      "name": "Heavy Hex Nut",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "9.99"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "8.7"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "1.0",
+              "identifier": "Hex_FNU040_4001",
+              "unitID": "Hex",
+              "id": "7000000000000002702",
+              "image1": "images/catalog/hardware/facets/nutstyles/nuts_style_hex.png",
+              "value": "Hex",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/nutstyles/nuts_style_hex.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Style",
+          "facetable": "false",
+          "id": "7000000000000000010",
+          "comparable": "true",
+          "key": "7000000000000000010",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0"],
+              "identifier": ["1/4\"-20", "1/4\"-28"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002692", "7000000000000002693"],
+              "value": ["1/4\"-20", "1/4\"-28"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000153",
+          "comparable": "true",
+          "key": "7000000000000000153",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "25_FNU040_4001",
+              "sequence": "1.0",
+              "id": "7000000000000002722",
+              "value": "25"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsWidth",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1/2\"", "3/4\""],
+              "sequence": ["1.0", "2.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002669", "7000000000000002670"],
+              "value": ["1/2\"", "3/4\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Width",
+          "facetable": "false",
+          "id": "7000000000000000150",
+          "comparable": "true",
+          "key": "7000000000000000150",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "5_FNU040_4001",
+              "sequence": "1.0",
+              "id": "7000000000000002732",
+              "value": "5"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsHeight",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0"],
+              "identifier": ["23/64\"", "15/16\""],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002679", "7000000000000002680"],
+              "value": ["23/64\"", "15/16\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Height",
+          "facetable": "false",
+          "id": "7000000000000000152",
+          "comparable": "true",
+          "key": "7000000000000000152",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "C45_FNU040_4001",
+              "sequence": "1.0",
+              "unitID": "C45",
+              "id": "7000000000000002712",
+              "value": "C45"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "sequence": ["1.0", "2.0", "3.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002666", "7000000000000002667", "7000000000000002668"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000149",
+          "comparable": "true",
+          "key": "7000000000000000149",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsFinish",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0"],
+              "identifier": ["Zinc", "Hot dipped galvanized"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002677", "7000000000000002678"],
+              "value": ["Zinc", "Hot dipped galvanized"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Finish",
+          "facetable": "false",
+          "id": "7000000000000000151",
+          "comparable": "true",
+          "key": "7000000000000000151",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13357"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "shortDescription": "Expanding locknut with a slotted top",
+      "parentCatalogGroupID": "/12/15",
+      "seo": {
+        "href": "/flex-top-hex-nut"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4002.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4002.jpg",
+      "partNumber": "FNU040_4002",
+      "name": "Flex-top Hex Nut",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "12.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "10.2"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "2.0",
+              "identifier": "Hex_FNU040_4002",
+              "unitID": "Hex",
+              "id": "7000000000000002703",
+              "image1": "images/catalog/hardware/facets/nutstyles/nuts_style_hex.png",
+              "value": "Hex",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/nutstyles/nuts_style_hex.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Style",
+          "facetable": "false",
+          "id": "7000000000000000010",
+          "comparable": "true",
+          "key": "7000000000000000010",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "3.0"],
+              "identifier": ["1/4\"-20", "5/16\"-18"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002692", "7000000000000002694"],
+              "value": ["1/4\"-20", "5/16\"-18"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000153",
+          "comparable": "true",
+          "key": "7000000000000000153",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "25_FNU040_4002",
+              "sequence": "2.0",
+              "id": "7000000000000002723",
+              "value": "25"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsWidth",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "1/2\"",
+              "sequence": "1.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000002669",
+              "value": "1/2\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Width",
+          "facetable": "false",
+          "id": "7000000000000000150",
+          "comparable": "true",
+          "key": "7000000000000000150",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2_FNU040_4002",
+              "sequence": "2.0",
+              "id": "7000000000000002733",
+              "value": "2"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsHeight",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["3.0", "4.0"],
+              "identifier": ["3/8\"", "41/64\""],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002681", "7000000000000002682"],
+              "value": ["3/8\"", "41/64\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Height",
+          "facetable": "false",
+          "id": "7000000000000000152",
+          "comparable": "true",
+          "key": "7000000000000000152",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "C33_FNU040_4002",
+              "sequence": "2.0",
+              "unitID": "C33",
+              "id": "7000000000000002713",
+              "value": "C33"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0", "3.0"],
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002666", "7000000000000002667", "7000000000000002668"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000149",
+          "comparable": "true",
+          "key": "7000000000000000149",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13406"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "shortDescription": "High-domed cap nut that provides a finished appearance",
+      "parentCatalogGroupID": "/12/15",
+      "seo": {
+        "href": "/acorn-nut"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4003.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4003.jpg",
+      "partNumber": "FNU040_4003",
+      "name": "Acorn Nut",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "13.5"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "11.7"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "3.0",
+              "identifier": "Acorn_FNU040_4003",
+              "unitID": "Acorn",
+              "id": "7000000000000002704",
+              "image1": "images/catalog/hardware/facets/nutstyles/nuts_style_acorn.png",
+              "value": "Acorn",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/nutstyles/nuts_style_acorn.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Style",
+          "facetable": "false",
+          "id": "7000000000000000010",
+          "comparable": "true",
+          "key": "7000000000000000010",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["4.0", "5.0"],
+              "identifier": ["5/16\"-24", "3/8\"-16"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002695", "7000000000000002696"],
+              "value": ["5/16\"-24", "3/8\"-16"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000153",
+          "comparable": "true",
+          "key": "7000000000000000153",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "50_FNU040_4003",
+              "sequence": "3.0",
+              "id": "7000000000000002724",
+              "value": "50"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsWidth",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1/2\"", "9/16\""],
+              "sequence": ["1.0", "3.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002669", "7000000000000002671"],
+              "value": ["1/2\"", "9/16\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Width",
+          "facetable": "false",
+          "id": "7000000000000000150",
+          "comparable": "true",
+          "key": "7000000000000000150",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "8_FNU040_4003",
+              "sequence": "3.0",
+              "id": "7000000000000002734",
+              "value": "8"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsHeight",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["5.0", "6.0"],
+              "identifier": ["15/32\"", "5/8\""],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002683", "7000000000000002684"],
+              "value": ["15/32\"", "5/8\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Height",
+          "facetable": "false",
+          "id": "7000000000000000152",
+          "comparable": "true",
+          "key": "7000000000000000152",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "B55_FNU040_4003",
+              "sequence": "3.0",
+              "unitID": "B55",
+              "id": "7000000000000002714",
+              "value": "B55"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0", "3.0"],
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002666", "7000000000000002667", "7000000000000002668"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000149",
+          "comparable": "true",
+          "key": "7000000000000000149",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13431"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "shortDescription": "Four-sided, internally threaded nut with flat top and bottom",
+      "parentCatalogGroupID": "/12/15",
+      "seo": {
+        "href": "/square-nut"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4004.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4004.jpg",
+      "partNumber": "FNU040_4004",
+      "name": "Square Nut",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "5.15"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "3.7"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "4.0",
+              "identifier": "Square_FNU040_4004",
+              "unitID": "Square",
+              "id": "7000000000000002705",
+              "image1": "images/catalog/hardware/facets/nutstyles/nuts_style_square.png",
+              "value": "Square",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/nutstyles/nuts_style_square.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Style",
+          "facetable": "false",
+          "id": "7000000000000000010",
+          "comparable": "true",
+          "key": "7000000000000000010",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": "5.0",
+              "identifier": "3/8\"-16",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000002696",
+              "value": "3/8\"-16"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000153",
+          "comparable": "true",
+          "key": "7000000000000000153",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "100_FNU040_4004",
+              "sequence": "4.0",
+              "id": "7000000000000002725",
+              "value": "100"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsWidth",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["3/8\"", "15/16\""],
+              "sequence": ["4.0", "5.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002672", "7000000000000002673"],
+              "value": ["3/8\"", "15/16\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Width",
+          "facetable": "false",
+          "id": "7000000000000000150",
+          "comparable": "true",
+          "key": "7000000000000000150",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2_FNU040_4004",
+              "sequence": "4.0",
+              "id": "7000000000000002735",
+              "value": "2"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsHeight",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["7.0", "8.0"],
+              "identifier": ["1/8\"", "3/16\""],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002685", "7000000000000002686"],
+              "value": ["1/8\"", "3/16\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Height",
+          "facetable": "false",
+          "id": "7000000000000000152",
+          "comparable": "true",
+          "key": "7000000000000000152",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "C45_FNU040_4004",
+              "sequence": "4.0",
+              "unitID": "C45",
+              "id": "7000000000000002715",
+              "value": "C45"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0", "3.0"],
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002666", "7000000000000002667", "7000000000000002668"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000149",
+          "comparable": "true",
+          "key": "7000000000000000149",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13456"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/serrated-flange-nut"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4005.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4005.jpg",
+      "shortDescription": "Fixed-flange nut with built-in locking action",
+      "parentCatalogGroupID": "/12/15",
+      "partNumber": "FNU040_4005",
+      "name": "Serrated Flange Nut",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "13.5"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "11.24"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "5.0",
+              "identifier": "Flange_FNU040_4005",
+              "unitID": "Flange",
+              "id": "7000000000000002706",
+              "image1": "images/catalog/hardware/facets/nutstyles/nuts_style_flange.png",
+              "value": "Flange",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/nutstyles/nuts_style_flange.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Style",
+          "facetable": "false",
+          "id": "7000000000000000010",
+          "comparable": "true",
+          "key": "7000000000000000010",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["2.0", "5.0"],
+              "identifier": ["1/4\"-28", "3/8\"-16"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002693", "7000000000000002696"],
+              "value": ["1/4\"-28", "3/8\"-16"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000153",
+          "comparable": "true",
+          "key": "7000000000000000153",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "100_FNU040_4005",
+              "sequence": "5.0",
+              "id": "7000000000000002726",
+              "value": "100"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsWidth",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["9/16\"", "3/8\""],
+              "sequence": ["3.0", "4.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002671", "7000000000000002672"],
+              "value": ["9/16\"", "3/8\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Width",
+          "facetable": "false",
+          "id": "7000000000000000150",
+          "comparable": "true",
+          "key": "7000000000000000150",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsHeight",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "4.0"],
+              "identifier": ["23/64\"", "41/64\""],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002679", "7000000000000002682"],
+              "value": ["23/64\"", "41/64\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Height",
+          "facetable": "false",
+          "id": "7000000000000000152",
+          "comparable": "true",
+          "key": "7000000000000000152",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Flange Height",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "1.0",
+              "identifier": "0.1\"_FNU040_4005",
+              "unitID": "inch",
+              "id": "7000000000000002701",
+              "value": "0.1\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Flange Height",
+          "facetable": "false",
+          "id": "7000000000000000155",
+          "comparable": "true",
+          "key": "7000000000000000155",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "5_FNU040_4005",
+              "sequence": "5.0",
+              "id": "7000000000000002736",
+              "value": "5"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "sequence": ["1.0", "2.0", "3.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002666", "7000000000000002667", "7000000000000002668"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000149",
+          "comparable": "true",
+          "key": "7000000000000000149",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsFinish",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0"],
+              "identifier": ["Zinc", "Hot dipped galvanized"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002677", "7000000000000002678"],
+              "value": ["Zinc", "Hot dipped galvanized"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Finish",
+          "facetable": "false",
+          "id": "7000000000000000151",
+          "comparable": "true",
+          "key": "7000000000000000151",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Flange diameter",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "3/4\"_FNU040_4005",
+              "sequence": "1.0",
+              "unitID": "inch",
+              "id": "7000000000000002699",
+              "value": "3/4\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Flange diameter",
+          "facetable": "false",
+          "id": "7000000000000000154",
+          "comparable": "true",
+          "key": "7000000000000000154",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "C45_FNU040_4005",
+              "sequence": "5.0",
+              "unitID": "C45",
+              "id": "7000000000000002716",
+              "value": "C45"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13481"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "shortDescription": "Threaded nut with dual wings for manual adjustment",
+      "parentCatalogGroupID": "/12/15",
+      "seo": {
+        "href": "/wing-nut"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4006.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4006.jpg",
+      "partNumber": "FNU040_4006",
+      "name": "Wing Nut",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "14.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "11.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "6.0",
+              "identifier": "Wing_FNU040_4006",
+              "unitID": "Wing",
+              "id": "7000000000000002707",
+              "image1": "images/catalog/hardware/facets/nutstyles/nuts_style_wing.png",
+              "value": "Wing",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/nutstyles/nuts_style_wing.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Style",
+          "facetable": "false",
+          "id": "7000000000000000010",
+          "comparable": "true",
+          "key": "7000000000000000010",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["5.0", "6.0"],
+              "identifier": ["3/8\"-16", "7/16\"-14"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002696", "7000000000000002697"],
+              "value": ["3/8\"-16", "7/16\"-14"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000153",
+          "comparable": "true",
+          "key": "7000000000000000153",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "100_FNU040_4006",
+              "sequence": "6.0",
+              "id": "7000000000000002727",
+              "value": "100"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsWidth",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1 1/4\"", "1 1/2\""],
+              "sequence": ["6.0", "7.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002674", "7000000000000002675"],
+              "value": ["1 1/4\"", "1 1/2\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Width",
+          "facetable": "false",
+          "id": "7000000000000000150",
+          "comparable": "true",
+          "key": "7000000000000000150",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2_FNU040_4006",
+              "sequence": "6.0",
+              "id": "7000000000000002737",
+              "value": "2"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsHeight",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["9.0", "10.0"],
+              "identifier": ["1 1/4\"", "1 1/2\""],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002687", "7000000000000002688"],
+              "value": ["1 1/4\"", "1 1/2\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Height",
+          "facetable": "false",
+          "id": "7000000000000000152",
+          "comparable": "true",
+          "key": "7000000000000000152",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "C33_FNU040_4006",
+              "sequence": "6.0",
+              "unitID": "C33",
+              "id": "7000000000000002717",
+              "value": "C33"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0", "3.0"],
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002666", "7000000000000002667", "7000000000000002668"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000149",
+          "comparable": "true",
+          "key": "7000000000000000149",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13530"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "shortDescription": "Specialized lead screw nut with a trapezoidal thread profile",
+      "parentCatalogGroupID": "/12/15",
+      "seo": {
+        "href": "/acme-nut"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4007.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4007.jpg",
+      "partNumber": "FNU040_4007",
+      "name": "Acme Nut",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "21.99"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "19.52"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "7.0",
+              "identifier": "Acme_FNU040_4007",
+              "unitID": "Acme",
+              "id": "7000000000000002708",
+              "image1": "images/catalog/hardware/facets/nutstyles/nuts_style_acme.png",
+              "value": "Acme",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/nutstyles/nuts_style_acme.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Style",
+          "facetable": "false",
+          "id": "7000000000000000010",
+          "comparable": "true",
+          "key": "7000000000000000010",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": "7.0",
+              "identifier": "1/2\"-10",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000002698",
+              "value": "1/2\"-10"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000153",
+          "comparable": "true",
+          "key": "7000000000000000153",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "1_FNU040_4007",
+              "sequence": "7.0",
+              "id": "7000000000000002728",
+              "value": "1"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsWidth",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1 1/4\"", "1 1/2\""],
+              "sequence": ["6.0", "7.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002674", "7000000000000002675"],
+              "value": ["1 1/4\"", "1 1/2\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Width",
+          "facetable": "false",
+          "id": "7000000000000000150",
+          "comparable": "true",
+          "key": "7000000000000000150",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2_FNU040_4007",
+              "sequence": "7.0",
+              "id": "7000000000000002738",
+              "value": "2"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsHeight",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["11.0", "12.0"],
+              "identifier": ["1\"", "2\""],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002689", "7000000000000002690"],
+              "value": ["1\"", "2\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Height",
+          "facetable": "false",
+          "id": "7000000000000000152",
+          "comparable": "true",
+          "key": "7000000000000000152",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "B55_FNU040_4007",
+              "sequence": "7.0",
+              "unitID": "B55",
+              "id": "7000000000000002718",
+              "value": "B55"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0", "3.0"],
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002666", "7000000000000002667", "7000000000000002668"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000149",
+          "comparable": "true",
+          "key": "7000000000000000149",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13555"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "shortDescription": "Internally threaded fastener designed to connect two pieces of threaded material",
+      "parentCatalogGroupID": "/12/15",
+      "seo": {
+        "href": "/coupling-nut"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4008.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4008.jpg",
+      "partNumber": "FNU040_4008",
+      "name": "Coupling Nut",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "15.99"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "12.22"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "8.0",
+              "identifier": "Coupling_FNU040_4008",
+              "unitID": "Coupling",
+              "id": "7000000000000002709",
+              "image1": "images/catalog/hardware/facets/nutstyles/nuts_style_coupling.png",
+              "value": "Coupling",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/nutstyles/nuts_style_coupling.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Style",
+          "facetable": "false",
+          "id": "7000000000000000010",
+          "comparable": "true",
+          "key": "7000000000000000010",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "5.0"],
+              "identifier": ["1/4\"-20", "3/8\"-16"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002692", "7000000000000002696"],
+              "value": ["1/4\"-20", "3/8\"-16"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000153",
+          "comparable": "true",
+          "key": "7000000000000000153",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "10_FNU040_4008",
+              "sequence": "8.0",
+              "id": "7000000000000002729",
+              "value": "10"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsWidth",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1/2\"", "3/4\""],
+              "sequence": ["1.0", "2.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002669", "7000000000000002670"],
+              "value": ["1/2\"", "3/4\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Width",
+          "facetable": "false",
+          "id": "7000000000000000150",
+          "comparable": "true",
+          "key": "7000000000000000150",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "8_FNU040_4008",
+              "sequence": "8.0",
+              "id": "7000000000000002739",
+              "value": "8"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsHeight",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["3.0", "13.0"],
+              "identifier": ["3/8\"", "9/16\""],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002681", "7000000000000002691"],
+              "value": ["3/8\"", "9/16\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Height",
+          "facetable": "false",
+          "id": "7000000000000000152",
+          "comparable": "true",
+          "key": "7000000000000000152",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "C45_FNU040_4008",
+              "sequence": "8.0",
+              "unitID": "C45",
+              "id": "7000000000000002719",
+              "value": "C45"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0", "3.0"],
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002666", "7000000000000002667", "7000000000000002668"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000149",
+          "comparable": "true",
+          "key": "7000000000000000149",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13568"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "shortDescription": "Internal wrenching nut with a smooth surface",
+      "parentCatalogGroupID": "/12/15",
+      "seo": {
+        "href": "/allen-nut"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4009.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4009.jpg",
+      "partNumber": "FNU040_4009",
+      "name": "Allen Nut",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "11.5"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "9.52"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "9.0",
+              "identifier": "Allen_FNU040_4009",
+              "unitID": "Allen",
+              "id": "7000000000000002710",
+              "image1": "images/catalog/hardware/facets/nutstyles/nuts_style_allen.png",
+              "value": "Allen",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/nutstyles/nuts_style_allen.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Style",
+          "facetable": "false",
+          "id": "7000000000000000010",
+          "comparable": "true",
+          "key": "7000000000000000010",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["3.0", "6.0"],
+              "identifier": ["5/16\"-18", "7/16\"-14"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002694", "7000000000000002697"],
+              "value": ["5/16\"-18", "7/16\"-14"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000153",
+          "comparable": "true",
+          "key": "7000000000000000153",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "5_FNU040_4009",
+              "sequence": "9.0",
+              "id": "7000000000000002730",
+              "value": "5"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsWidth",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1/2\"", "3/4\""],
+              "sequence": ["1.0", "2.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002669", "7000000000000002670"],
+              "value": ["1/2\"", "3/4\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Width",
+          "facetable": "false",
+          "id": "7000000000000000150",
+          "comparable": "true",
+          "key": "7000000000000000150",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2_FNU040_4009",
+              "sequence": "9.0",
+              "id": "7000000000000002740",
+              "value": "2"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsHeight",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["3.0", "13.0"],
+              "identifier": ["3/8\"", "9/16\""],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002681", "7000000000000002691"],
+              "value": ["3/8\"", "9/16\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Height",
+          "facetable": "false",
+          "id": "7000000000000000152",
+          "comparable": "true",
+          "key": "7000000000000000152",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "C45_FNU040_4009",
+              "sequence": "9.0",
+              "unitID": "C45",
+              "id": "7000000000000002720",
+              "value": "C45"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0", "3.0"],
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002666", "7000000000000002667", "7000000000000002668"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000149",
+          "comparable": "true",
+          "key": "7000000000000000149",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13593"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/tee-nut"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4010.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fnu40_nuts/200x310/fnu040_4010.jpg",
+      "shortDescription": "Four-pronged wood insert with 2B thread class",
+      "parentCatalogGroupID": "/12/15",
+      "partNumber": "FNU040_4010",
+      "name": "Tee Nut",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "13.5"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "13.55"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "10.0",
+              "identifier": "Tee_FNU040_4010",
+              "unitID": "Tee",
+              "id": "7000000000000002711",
+              "image1": "images/catalog/hardware/facets/nutstyles/nuts_style_tee.png",
+              "value": "Tee",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/nutstyles/nuts_style_tee.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Style",
+          "facetable": "false",
+          "id": "7000000000000000010",
+          "comparable": "true",
+          "key": "7000000000000000010",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "5.0"],
+              "identifier": ["1/4\"-20", "3/8\"-16"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002692", "7000000000000002696"],
+              "value": ["1/4\"-20", "3/8\"-16"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000153",
+          "comparable": "true",
+          "key": "7000000000000000153",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "100_FNU040_4010",
+              "sequence": "10.0",
+              "id": "7000000000000002731",
+              "value": "100"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsWidth",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1/2\"", "5/16\""],
+              "sequence": ["1.0", "8.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002669", "7000000000000002676"],
+              "value": ["1/2\"", "5/16\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Width",
+          "facetable": "false",
+          "id": "7000000000000000150",
+          "comparable": "true",
+          "key": "7000000000000000150",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2_FNU040_4010",
+              "sequence": "10.0",
+              "id": "7000000000000002741",
+              "value": "2"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsHeight",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": "2.0",
+              "identifier": "15/16\"",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000002680",
+              "value": "15/16\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Height",
+          "facetable": "false",
+          "id": "7000000000000000152",
+          "comparable": "true",
+          "key": "7000000000000000152",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_nutsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "sequence": ["1.0", "2.0", "3.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002666", "7000000000000002667", "7000000000000002668"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000149",
+          "comparable": "true",
+          "key": "7000000000000000149",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Flange diameter",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "23/32\"_FNU040_4010",
+              "sequence": "2.0",
+              "unitID": "inch",
+              "id": "7000000000000002700",
+              "value": "23/32\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Flange diameter",
+          "facetable": "false",
+          "id": "7000000000000000154",
+          "comparable": "true",
+          "key": "7000000000000000154",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "B55_FNU040_4010",
+              "sequence": "10.0",
+              "unitID": "B55",
+              "id": "7000000000000002721",
+              "value": "B55"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13618"
+    }
+  ],
+  "facets": [
+    {
+      "entry": [
+        {
+          "count": 0,
+          "label": "({* TO 3])",
+          "value": "price_usd%3A%28%7B*+TO+3%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401234232847932519341"
+          }
+        },
+        {
+          "count": 1,
+          "label": "({3 TO 6])",
+          "value": "price_usd%3A%28%7B3+TO+6%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401235132847932549341"
+          }
+        },
+        {
+          "count": 1,
+          "label": "({6 TO 9])",
+          "value": "price_usd%3A%28%7B6+TO+9%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401235432847932579341"
+          }
+        },
+        {
+          "count": 5,
+          "label": "({9 TO 12])",
+          "value": "price_usd%3A%28%7B9+TO+12%5D%29",
+          "extendedData": {
+            "uniqueId": "11211410599101951171151005840123573284793249509341"
+          }
+        },
+        {
+          "count": 2,
+          "label": "({12 TO 15])",
+          "value": "price_usd%3A%28%7B12+TO+15%5D%29",
+          "extendedData": {
+            "uniqueId": "1121141059910195117115100584012349503284793249539341"
+          }
+        }
+      ],
+      "value": "price_usd",
+      "name": "OfferPrice_usd"
+    },
+    {
+      "value": "manufacturer.raw",
+      "name": "Brand",
+      "entry": [
+        {
+          "label": "Arcarocco",
+          "value": "manufacturer.raw%3A%22Arcarocco%22",
+          "count": "3",
+          "extendedData": {
+            "uniqueId": "6511499971141119999111"
+          }
+        },
+        {
+          "label": "Black Key Fasteners",
+          "value": "manufacturer.raw%3A%22Black+Key+Fasteners%22",
+          "count": "2",
+          "extendedData": {
+            "uniqueId": "6610897991073275101121327097115116101110101114115"
+          }
+        },
+        {
+          "label": "Newtonbrook Steel",
+          "value": "manufacturer.raw%3A%22Newtonbrook+Steel%22",
+          "count": "3",
+          "extendedData": {
+            "uniqueId": "78101119116111110981141111111073283116101101108"
+          }
+        },
+        {
+          "label": "Veerman Tools",
+          "value": "manufacturer.raw%3A%22Veerman+Tools%22",
+          "count": "2",
+          "extendedData": {
+            "uniqueId": "86101101114109971103284111111108115"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Brand",
+        "propertyvalue": "manufacturer.raw",
+        "maximumValuesToDisplay": "6",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "0.0",
+        "name": "Brand",
+        "sortorder": "1",
+        "max_display": "6",
+        "fdesc": "The manufacturer",
+        "propertyId": "manufacturer.raw"
+      }
+    }
+  ],
+  "previous": "/search/resources/api/v2/products?storeId=12&categoryId=15&limit=12&offset=0",
+  "total": 10
+}

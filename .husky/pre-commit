@@ -12,5 +12,4 @@
 
 . "$(dirname "$0")/_/husky.sh"
 
-npm run pretty-quick -- --staged
-./tools/scripts/hooks/lint.sh
+npx pretty-quick --staged

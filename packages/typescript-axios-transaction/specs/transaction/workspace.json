@@ -1,0 +1,1760 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "HCL Commerce Services - workspace",
+    "description": "WebSphere Commerce V9 - Workspace Support API.",
+    "version": "9.1.6"
+  },
+  "servers": [
+    {
+      "url": "https://localhost/wcs/resources"
+    }
+  ],
+  "paths": {
+    "/store/{storeId}/workspace": {
+      "get": {
+        "summary": "Finds workspaces by a query. See each query for details on input and output.",
+        "tags": [
+          "workspace"
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "the query name.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/store/{storeId}/workspace/workspaceId/{workspaceId}": {
+      "get": {
+        "summary": "Finds a workspace by its ID.",
+        "tags": [
+          "workspace"
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/workspace-IBM_Admin_All"
+                },
+                "example": [
+                  {
+                    "recordSetCount": 0,
+                    "recordSetComplete": true,
+                    "recordSetStartNumber": 0,
+                    "resultList": [
+                      {
+                        "status": "string",
+                        "workspaceName": "string",
+                        "persistent": true,
+                        "workspaceExternalIdentifier": "string",
+                        "workspaceID": "string",
+                        "emergencyUse": true,
+                        "userDataField": [
+                          {
+                            "value": "string",
+                            "key": "string"
+                          }
+                        ],
+                        "workspaceDescription": "string"
+                      }
+                    ],
+                    "recordSetTotal": 0
+                  }
+                ]
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/workspace-IBM_Admin_All"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "0",
+                "10001",
+                "10501",
+                "11001",
+                "1",
+                "11501",
+                "2",
+                "12001",
+                "12501",
+                "11",
+                "13001",
+                "12",
+                "13501",
+                "21",
+                "14001",
+                "22"
+              ]
+            }
+          },
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "required": true,
+            "description": "The workspace identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "required": false,
+            "description": "Profile name. Profiles determine the subset of data to be returned by a query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "description": "Page number, starting at 1. Valid values include positive integers of 1 and above. The \ufffdpageSize\ufffd must be specified for paging to work.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "description": "Page size. Used to limit the amount of data returned by a query. Valid values include positive integers of 1 and above. The \ufffdpageNumber\ufffd must be specified for paging to work.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/store/{storeId}/workspace/createWorkspace": {
+      "post": {
+        "summary": "Create a worskpace.",
+        "tags": [
+          "workspace"
+        ],
+        "responses": {
+          "200": {
+            "description": "No response was specified."
+          },
+          "201": {
+            "description": "The requested completed successfully."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "description": "the name of the workspace.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": false,
+            "description": "the description of the workspace.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "persistent",
+            "in": "query",
+            "required": false,
+            "description": "Whether the workspace is persistent.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "emergencyFix",
+            "in": "query",
+            "required": false,
+            "description": "Whether the workspace is an emergency fix..",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "required": false,
+            "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \ufffdjson\ufffd and \ufffdxml\ufffd without the quotes. If the responseFormat isn\ufffdt specified, the \ufffdaccept\ufffd HTTP header shall be used to determine the format of the response. If the \ufffdaccept\ufffd HTTP header isn\ufffdt specified as well, the default response format shall be in json.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/store/{storeId}/workspace/updateWorkspace": {
+      "put": {
+        "summary": "Update a workspace.",
+        "tags": [
+          "workspace"
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "403": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "description": "the name of the workspace.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": false,
+            "description": "the description of the workspace.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "persistent",
+            "in": "query",
+            "required": false,
+            "description": "Whether the workspace is persistent.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "emergencyFix",
+            "in": "query",
+            "required": false,
+            "description": "Whether the workspace is an emergency fix..",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "required": false,
+            "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \ufffdjson\ufffd and \ufffdxml\ufffd without the quotes. If the responseFormat isn\ufffdt specified, the \ufffdaccept\ufffd HTTP header shall be used to determine the format of the response. If the \ufffdaccept\ufffd HTTP header isn\ufffdt specified as well, the default response format shall be in json.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/store/{storeId}/workspace/changeStatus": {
+      "put": {
+        "summary": "Change workspace status by performing an action on it.",
+        "tags": [
+          "workspace"
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session isn\ufffdt valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "workspaceId",
+            "in": "query",
+            "required": true,
+            "description": "the workspace identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "actionType",
+            "in": "query",
+            "required": true,
+            "description": "The change status action to perform on workspace.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "required": false,
+            "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \ufffdjson\ufffd and \ufffdxml\ufffd without the quotes. If the responseFormat isn\ufffdt specified, the \ufffdaccept\ufffd HTTP header shall be used to determine the format of the response. If the \ufffdaccept\ufffd HTTP header isn\ufffdt specified as well, the default response format shall be in json.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/store/{storeId}/task_group/createTaskGroup": {
+      "post": {
+        "summary": "Create a task group.",
+        "tags": [
+          "task_group"
+        ],
+        "responses": {
+          "200": {
+            "description": "No response was specified."
+          },
+          "201": {
+            "description": "The requested completed successfully."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taskgroupId",
+            "in": "query",
+            "required": true,
+            "description": "The taskgroupId identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "description": "The name of the task group.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": false,
+            "description": "The description of the task group.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quickPublish",
+            "in": "query",
+            "required": false,
+            "description": "Whether to quick publish task group.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "persistent",
+            "in": "query",
+            "required": false,
+            "description": "Whether task group is persistent.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dueDate",
+            "in": "query",
+            "required": false,
+            "description": "Date and time the task group is due.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "promotionDate",
+            "in": "query",
+            "required": false,
+            "description": "Date and time to commit task group.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "approvers",
+            "in": "query",
+            "required": false,
+            "description": "The list of approvers for the task group. Separate multiple approvers with a comma.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "required": false,
+            "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \ufffdjson\ufffd and \ufffdxml\ufffd without the quotes. If the responseFormat isn\ufffdt specified, the \ufffdaccept\ufffd HTTP header shall be used to determine the format of the response. If the \ufffdaccept\ufffd HTTP header isn\ufffdt specified as well, the default response format shall be in json.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/store/{storeId}/task_group/createTaskGroupComment": {
+      "post": {
+        "summary": "Create a task group comment.",
+        "tags": [
+          "task_group"
+        ],
+        "responses": {
+          "200": {
+            "description": "No response was specified."
+          },
+          "201": {
+            "description": "The requested completed successfully."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taskgroupId",
+            "in": "query",
+            "required": true,
+            "description": "The taskgroupId identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "comment",
+            "in": "query",
+            "required": true,
+            "description": "The taskgroup comment.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "required": false,
+            "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \ufffdjson\ufffd and \ufffdxml\ufffd without the quotes. If the responseFormat isn\ufffdt specified, the \ufffdaccept\ufffd HTTP header shall be used to determine the format of the response. If the \ufffdaccept\ufffd HTTP header isn\ufffdt specified as well, the default response format shall be in json.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/store/{storeId}/task_group/changeStatus": {
+      "put": {
+        "summary": "Change task group status by performing an action on it.",
+        "tags": [
+          "task_group"
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taskgroupId",
+            "in": "query",
+            "required": true,
+            "description": "The taskgroupId identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "actionType",
+            "in": "query",
+            "required": true,
+            "description": "The change status action to perform on task group.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "required": false,
+            "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \ufffdjson\ufffd and \ufffdxml\ufffd without the quotes. If the responseFormat isn\ufffdt specified, the \ufffdaccept\ufffd HTTP header shall be used to determine the format of the response. If the \ufffdaccept\ufffd HTTP header isn\ufffdt specified as well, the default response format shall be in json.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/store/{storeId}/task_group/updateTaskGroup": {
+      "put": {
+        "summary": "Update a task group.",
+        "tags": [
+          "task_group"
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taskgroupId",
+            "in": "query",
+            "required": true,
+            "description": "The taskgroupId identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "description": "The name of the task group.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": false,
+            "description": "The description of the task group.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quickPublish",
+            "in": "query",
+            "required": false,
+            "description": "Whether to quick publish task group.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "persistent",
+            "in": "query",
+            "required": false,
+            "description": "Whether task group is persistent.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dueDate",
+            "in": "query",
+            "required": false,
+            "description": "Date and time the task group is due.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "promotionDate",
+            "in": "query",
+            "required": false,
+            "description": "Date and time to commit task group.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "approvers",
+            "in": "query",
+            "required": false,
+            "description": "The list of approvers for the task group. Separate multiple approvers with a comma.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "required": false,
+            "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \ufffdjson\ufffd and \ufffdxml\ufffd without the quotes. If the responseFormat isn\ufffdt specified, the \ufffdaccept\ufffd HTTP header shall be used to determine the format of the response. If the \ufffdaccept\ufffd HTTP header isn\ufffdt specified as well, the default response format shall be in json.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/store/{storeId}/task_group/taskGroupId/{taskGroupId}": {
+      "get": {
+        "summary": "Finds a task group by its ID..",
+        "tags": [
+          "task_group"
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/task_group-IBM_Admin_All"
+                },
+                "example": [
+                  {
+                    "recordSetCount": 0,
+                    "recordSetComplete": true,
+                    "recordSetStartNumber": 0,
+                    "resultList": [
+                      {
+                        "status": "string",
+                        "approvalDate": "string",
+                        "parentWorkspaceManagerID": "string",
+                        "taskGroupID": "string",
+                        "taskGroupName": "string",
+                        "quickPublish": true,
+                        "parentWorkspaceID": "string",
+                        "parentWorkspaceExternalIdentifier": "string",
+                        "promotionDate": "string",
+                        "commitDate": "string",
+                        "taskGroupDescription": "string",
+                        "recurring": true,
+                        "parentWorkspaceName": "string",
+                        "userDataField": [
+                          {
+                            "value": "string",
+                            "key": "string"
+                          }
+                        ],
+                        "TaskGroupComments": [
+                          {
+                            "comment": "string",
+                            "postDate": "string",
+                            "userDataField": [
+                              {
+                                "value": "string",
+                                "key": "string"
+                              }
+                            ],
+                            "posterLogonID": "string"
+                          }
+                        ],
+                        "TaskGroupApprovers": [
+                          {
+                            "approverLogonID": "string",
+                            "userDataField": [
+                              {
+                                "value": "string",
+                                "key": "string"
+                              }
+                            ],
+                            "approverID": "string"
+                          }
+                        ],
+                        "dueDate": "string",
+                        "taskGroupExternalIdentifier": "string"
+                      }
+                    ],
+                    "recordSetTotal": 0
+                  }
+                ]
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/task_group-IBM_Admin_All"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "404": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taskGroupId",
+            "in": "path",
+            "required": true,
+            "description": "The task group identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "required": true,
+            "description": "Profile name. Profiles determine the subset of data to be returned by a query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": true,
+            "description": "Page number, starting at 1. Valid values include positive integers of 1 and above. The \ufffdpageSize\ufffd must be specified for paging to work..",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "description": "age size. Used to limit the amount of data returned by a query. Valid values include positive integers of 1 and above. The \ufffdpageNumber\ufffd must be specified for paging to work.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/store/{storeId}/task_group": {
+      "get": {
+        "summary": "Finds task groups by a query. See each query for details on input and output.",
+        "tags": [
+          "task_group"
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "404": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "The task group identifier.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/store/{storeId}/task/createTask": {
+      "post": {
+        "summary": "Create a task.",
+        "tags": [
+          "task"
+        ],
+        "responses": {
+          "200": {
+            "description": "No response was specified."
+          },
+          "201": {
+            "description": "The requested completed successfully."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taskgroupId",
+            "in": "query",
+            "required": true,
+            "description": "The taskgroupId identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "description": "The name of the task group.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": false,
+            "description": "The description of the task group.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dueDate",
+            "in": "query",
+            "required": false,
+            "description": "Date and time the task group is due.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contributors",
+            "in": "query",
+            "required": false,
+            "description": "The list of contributors for the task. Separate multiple with a comma.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "required": false,
+            "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \ufffdjson\ufffd and \ufffdxml\ufffd without the quotes. If the responseFormat isn\ufffdt specified, the \ufffdaccept\ufffd HTTP header shall be used to determine the format of the response. If the \ufffdaccept\ufffd HTTP header isn\ufffdt specified as well, the default response format shall be in json.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/store/{storeId}/task/taskId/{taskId}": {
+      "get": {
+        "summary": "Finds a task by its ID.",
+        "tags": [
+          "task"
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/task-IBM_Admin_All"
+                },
+                "example": [
+                  {
+                    "recordSetCount": 0,
+                    "recordSetComplete": true,
+                    "recordSetStartNumber": 0,
+                    "resultList": [
+                      {
+                        "completionDate": "string",
+                        "approvalDate": "string",
+                        "taskName": "string",
+                        "parentTaskGroupExternalIdentifier": "string",
+                        "parentWorkspaceID": "string",
+                        "parentWorkspaceExternalIdentifier": "string",
+                        "taskDescription": "string",
+                        "promotionDate": "string",
+                        "commitDate": "string",
+                        "status": "string",
+                        "taskExternalIdentifier": "string",
+                        "taskId": "string",
+                        "userDataField": [
+                          {
+                            "value": "string",
+                            "key": "string"
+                          }
+                        ],
+                        "usage": "string",
+                        "parentWorkspaceName": "string",
+                        "parentTaskGroupID": "string",
+                        "TaskMembers": [
+                          {
+                            "memberName": "string",
+                            "userDataField": [
+                              {
+                                "value": "string",
+                                "key": "string"
+                              }
+                            ],
+                            "memberID": "string"
+                          }
+                        ],
+                        "dueDate": "string",
+                        "parentTaskGroupName": "string"
+                      }
+                    ],
+                    "recordSetTotal": 0
+                  }
+                ]
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/task-IBM_Admin_All"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "description": "The task identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "required": false,
+            "description": "Profile name. Profiles determine the subset of data to be returned by a query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "description": "Page number, starting at 1. Valid values include positive integers of 1 and above. The \ufffdpageSize\ufffd must be specified for paging to work.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "description": "Page size. Used to limit the amount of data returned by a query. Valid values include positive integers of 1 and above. The \ufffdpageNumber\ufffd must be specified for paging to work..",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/store/{storeId}/task": {
+      "get": {
+        "summary": "Finds tasks by a query. See each query for details on input and output.",
+        "tags": [
+          "task"
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "the query name .",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/store/{storeId}/task/changeStatus": {
+      "put": {
+        "summary": "Change task status by performing an action on it.",
+        "tags": [
+          "task"
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taskeId",
+            "in": "query",
+            "required": true,
+            "description": "The task identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taskGroupId",
+            "in": "query",
+            "required": true,
+            "description": "The task group identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "actionType",
+            "in": "query",
+            "required": true,
+            "description": "The change status action to perform on task.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "required": false,
+            "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \ufffdjson\ufffd and \ufffdxml\ufffd without the quotes. If the responseFormat isn\ufffdt specified, the \ufffdaccept\ufffd HTTP header shall be used to determine the format of the response. If the \ufffdaccept\ufffd HTTP header isn\ufffdt specified as well, the default response format shall be in json.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/store/{storeId}/task/updateTask": {
+      "put": {
+        "summary": "Update a task..",
+        "tags": [
+          "task"
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "required": true,
+            "description": "the store identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taskeId",
+            "in": "query",
+            "required": true,
+            "description": "The task identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "description": "The name of the task group.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": false,
+            "description": "The description of the task group.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dueDate",
+            "in": "query",
+            "required": false,
+            "description": "Date and time the task group is due.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contributors",
+            "in": "query",
+            "required": false,
+            "description": "The list of contributors for the task. Separate multiple with a comma.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "required": false,
+            "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include \ufffdjson\ufffd and \ufffdxml\ufffd without the quotes. If the responseFormat isn\ufffdt specified, the \ufffdaccept\ufffd HTTP header shall be used to determine the format of the response. If the \ufffdaccept\ufffd HTTP header isn\ufffdt specified as well, the default response format shall be in json.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "workspace-IBM_Admin_All": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/workspace-IBM_Admin_All_item"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer"
+          }
+        }
+      },
+      "workspace-IBM_Admin_All_item": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "workspaceName": {
+            "type": "string"
+          },
+          "persistent": {
+            "type": "boolean"
+          },
+          "workspaceExternalIdentifier": {
+            "type": "string"
+          },
+          "workspaceID": {
+            "type": "string"
+          },
+          "emergencyUse": {
+            "type": "boolean"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/workspace-IBM_Admin_All_item.userDataField"
+            }
+          },
+          "workspaceDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "workspace-IBM_Admin_All_item.userDataField": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "task_group-IBM_Admin_All": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/task_group-IBM_Admin_All_item"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer"
+          }
+        }
+      },
+      "task_group-IBM_Admin_All_item": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "approvalDate": {
+            "type": "string"
+          },
+          "parentWorkspaceManagerID": {
+            "type": "boolean"
+          },
+          "taskGroupID": {
+            "type": "string"
+          },
+          "taskGroupName": {
+            "type": "string"
+          },
+          "quickPublish": {
+            "type": "boolean"
+          },
+          "parentWorkspaceID": {
+            "type": "string"
+          },
+          "parentWorkspaceExternalIdentifier": {
+            "type": "string"
+          },
+          "promotionDate": {
+            "type": "boolean"
+          },
+          "commitDate": {
+            "type": "string"
+          },
+          "taskGroupDescription": {
+            "type": "string"
+          },
+          "recurring": {
+            "type": "boolean"
+          },
+          "parentWorkspaceName": {
+            "type": "string"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/task_group-IBM_Admin_All_item.userDataField"
+            }
+          },
+          "TaskGroupComments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/task_group-IBM_Admin_All_item.TaskGroupComments"
+            }
+          },
+          "TaskGroupApprovers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/task_group-IBM_Admin_All_item.TaskGroupApprovers"
+            }
+          },
+          "dueDate": {
+            "type": "string"
+          },
+          "taskGroupExternalIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "task_group-IBM_Admin_All_item.userDataField": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "task_group-IBM_Admin_All_item.TaskGroupComments": {
+        "type": "object",
+        "properties": {
+          "comment": {
+            "type": "string"
+          },
+          "postDate": {
+            "type": "string"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/task_group-IBM_Admin_All_item.TaskGroupComments.userDataField"
+            }
+          },
+          "posterLogonID": {
+            "type": "string"
+          }
+        }
+      },
+      "task_group-IBM_Admin_All_item.TaskGroupComments.userDataField": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "task_group-IBM_Admin_All_item.TaskGroupApprovers": {
+        "type": "object",
+        "properties": {
+          "approverLogonID": {
+            "type": "string"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/task_group-IBM_Admin_All_item.TaskGroupApprovers.userDataField"
+            }
+          },
+          "approverID": {
+            "type": "string"
+          }
+        }
+      },
+      "task_group-IBM_Admin_All_item.TaskGroupApprovers.userDataField": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "task-IBM_Admin_All": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/task-IBM_Admin_All_item"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer"
+          }
+        }
+      },
+      "task-IBM_Admin_All_item": {
+        "type": "object",
+        "properties": {
+          "completionDate": {
+            "type": "string"
+          },
+          "approvalDate": {
+            "type": "string"
+          },
+          "taskName": {
+            "type": "string"
+          },
+          "parentTaskGroupExternalIdentifier": {
+            "type": "string"
+          },
+          "parentWorkspaceID": {
+            "type": "string"
+          },
+          "parentWorkspaceExternalIdentifier": {
+            "type": "string"
+          },
+          "taskDescription": {
+            "type": "string"
+          },
+          "promotionDate": {
+            "type": "string"
+          },
+          "commitDate": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          },
+          "taskExternalIdentifier": {
+            "type": "string"
+          },
+          "taskId": {
+            "type": "boolean"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/task-IBM_Admin_All_item.userDataField"
+            }
+          },
+          "usage": {
+            "type": "string"
+          },
+          "parentWorkspaceName": {
+            "type": "string"
+          },
+          "parentTaskGroupID": {
+            "type": "string"
+          },
+          "TaskMembers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/task-IBM_Admin_All_item.TaskMembers"
+            }
+          },
+          "dueDate": {
+            "type": "string"
+          },
+          "parentTaskGroupName": {
+            "type": "string"
+          }
+        }
+      },
+      "task-IBM_Admin_All_item.userDataField": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "task-IBM_Admin_All_item.TaskMembers": {
+        "type": "object",
+        "properties": {
+          "memberName": {
+            "type": "string"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/task-IBM_Admin_All_item.TaskMembers.userDataField"
+            }
+          },
+          "memberID": {
+            "type": "string"
+          }
+        }
+      },
+      "task-IBM_Admin_All_item.TaskMembers.userDataField": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

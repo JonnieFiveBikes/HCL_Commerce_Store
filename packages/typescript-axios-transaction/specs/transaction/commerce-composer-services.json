@@ -1,0 +1,3120 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "HCL Commerce Services - Commerce Composer Services",
+    "description": "These services put the power to create new store pages and design page layouts in the hands of business users. By using a library of prebuilt layout templates and widgets, business users can quickly create and assemble pages directly in Management Center. Use these classes to find information about pages, widgets, and the page design.",
+    "version": "9.1.6"
+  },
+  "servers": [
+    {
+      "url": "https://localhost/wcs/resources"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Layout",
+      "description": "This class provides RESTful services to create, update, delete and get layouts in the store. It also supports granular operations on a layout for adding widgets, updating widgets, deleting widgets, adding extended data for a widget, updating extended data for a widget, deleting extended from a widget, updating layout properties, adding static location, updating static location and deleting static location. The class delegates to the PageLayout BOD services for all operations. These services are for authoring purposes and access to them is restricted to specific business user groups."
+    },
+    {
+      "name": "Page Design",
+      "description": "Layout of a store page. Contains information used by the store to render the page."
+    },
+    {
+      "name": "Widget Definition",
+      "description": "Definition of a widget. Contains information on the widget but not its inclusion in a layout."
+    },
+    {
+      "name": "Page",
+      "description": "A store page. Contains information on the page such as SEO meta data."
+    }
+  ],
+  "paths": {
+    "/store/{storeId}/layout/{layoutId}/layoutProperties": {
+      "post": {
+        "tags": [
+          "Layout"
+        ],
+        "summary": "Update layout properties",
+        "description": "Performs an action on layout properties. See each action for details on input and output.",
+        "operationId": "Layout-performLayoutPropertiesAction",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "layoutId",
+            "in": "path",
+            "description": "The layout unique ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "description": "The action of the rest service.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "addLayoutProperties",
+                "deleteLayoutProperties",
+                "updateLayoutProperties"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/layout-layout"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/layout-layout"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully."
+          },
+          "201": {
+            "description": "The requested resource has been created.",
+            "content": {}
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/store/{storeId}/page_design": {
+      "get": {
+        "tags": [
+          "Page Design"
+        ],
+        "summary": "Get layout by product ID",
+        "description": "Finds a product display layout page by product ID.",
+        "operationId": "PageDesign-byProductId",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "byObjectIdentifier"
+              ]
+            }
+          },
+          {
+            "name": "productId",
+            "in": "query",
+            "description": "The product ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "objectIdentifier",
+            "in": "query",
+            "description": "The object identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/page_design-IBM_Store_Details"
+                },
+                "example": {
+                  "resourceId": "https://localhost:8006/wcs/previewresources/store/10001/page_design?q=byLayoutActivityId&layoutActivityId=10180&catalogId=10052&langId=-1&responseFormat=json",
+                  "resultList": [
+                    {
+                      "layoutId": "10101",
+                      "layoutName": "HomePageHardwareLayout"
+                    }
+                  ],
+                  "resourceName": "page_design"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/page_design-IBM_Store_Details"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/page_design-IBM_Store_Details"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/page_design-IBM_Store_Details"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/layout": {
+      "get": {
+        "tags": [
+          "Layout"
+        ],
+        "summary": "Get layouts by state and search criteria",
+        "description": "Searches for layouts based on the layout state and the search criteria. The default sorting order is based on the created date of layouts.",
+        "operationId": "Layout-searchLayoutsByState",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "searchLayoutsByState"
+              ]
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "The state of the layout. If this parameter is not specified, the default state is Active.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ownerID",
+            "in": "query",
+            "description": "The ownerID of the layout. When the managingTool is IBM_COMMERCE_INSIGHTS_TOOL, not specifying the ownerID parameter in a pagination request may result in variances based on the caller's Access Control privileges.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "locationName",
+            "in": "query",
+            "description": "The location name search criteria.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "The layout name search criteria.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The sort order for the layouts. The default sort criteria depends on the query.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "CreateDate",
+                "TemplateID",
+                "LocationName"
+              ]
+            }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "The sorting order. The default sort order is ascending.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "DESC"
+              ]
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data returned by a query.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IBM_Admin_Summary",
+                "IBM_Admin_Details"
+              ]
+            }
+          },
+          {
+            "name": "managingTool",
+            "in": "query",
+            "description": "The managing tool used. The Default value is IBM_COMMERCE_INSIGHTS_TOOL.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IBM_MANAGEMENT_CENTER_TOOL",
+                "IBM_COMMERCE_INSIGHTS_TOOL"
+              ]
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number. Valid values are positive integers starting at 1. Use pageNumber with pageSize.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size. Used to limit the amount of data returned by a query. Valid values are integers starting with 1. Use pageSize with pageNumber.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Layout"
+        ],
+        "summary": "Create layout",
+        "description": "Creates the layout.",
+        "operationId": "Layout-createLayout",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          },
+          {
+            "name": "autoGenerateName",
+            "in": "query",
+            "description": "The server automatically generates a name for the layout.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/layout-layout"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "No response was specified.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "The requested resource has been created.",
+            "content": {}
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "post": {
+        "tags": [
+          "Layout"
+        ],
+        "summary": "Create, update, or delete location",
+        "description": "Creates, updates, or deletes the location.",
+        "operationId": "Layout-manageLayoutStaticLocation",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/layout-layout"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/layout-layout"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/store/{storeId}/layout/{layoutId}/widget": {
+      "put": {
+        "tags": [
+          "Layout"
+        ],
+        "summary": "Add widget to layout",
+        "description": "Adds a widget to a layout.",
+        "operationId": "Layout-addWidget",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "layoutId",
+            "in": "path",
+            "description": "The layout unique ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/layout-layout"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "post": {
+        "tags": [
+          "Layout"
+        ],
+        "summary": "Update widget and widget properties",
+        "description": "Updates widget and widget properties in a layout.",
+        "operationId": "Layout-updateWidget",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "layoutId",
+            "in": "path",
+            "description": "The layout unique ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/layout-layout"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/store/{storeId}/widget_definition": {
+      "get": {
+        "tags": [
+          "Widget Definition"
+        ],
+        "summary": "Get by widget type",
+        "description": "Finds widget definitions by widget types. Invalid widget types are ignored.",
+        "operationId": "WidgetDefinition-byWidgetTypes",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "byWidgetTypes"
+              ]
+            }
+          },
+          {
+            "name": "widgetType",
+            "in": "query",
+            "description": "The widget type.",
+            "required": true,
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "includeInactiveWidgets",
+            "in": "query",
+            "description": "Boolean flag to indicate if inactive widget definitions must be included in the response. By default inactive widgets are filtered.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data returned by a query.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IBM_Admin_Summary",
+                "IBM_Admin_All"
+              ]
+            }
+          },
+          {
+            "name": "dataLanguageIds",
+            "in": "query",
+            "description": "Data languages restrict the language specific data in the result to the languages specified.",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number. Valid values are positive integers starting at 1. Use pageNumber with pageSize.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size. Used to limit the amount of data returned by a query. Valid values are integers starting with 1. Use pageSize with pageNumber.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/widget_definition-IBM_Admin_Summary"
+                },
+                "example": {
+                  "recordSetStartNumber": 0,
+                  "recordSetComplete": true,
+                  "recordSetCount": 1,
+                  "resourceId": "http://localhost:80/wcs/resources/store/10001/widget_definition?q=byIdentifiers&identifier=HomePageContainer&identifier=NON_EXISTING",
+                  "resultList": [
+                    {
+                      "widgetDefinitionId": "1001",
+                      "widgetType": "Container",
+                      "storeId": "10001",
+                      "state": "active",
+                      "definitionXml": "<Definition> </Definition>",
+                      "path": "Container/HomePageContainer.jsp",
+                      "identifier": "HomePageContainer"
+                    }
+                  ],
+                  "resourceName": "widget_definition",
+                  "recordSetTotal": 1
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/widget_definition-IBM_Admin_Summary"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/widget_definition-IBM_Admin_Summary"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/widget_definition-IBM_Admin_Summary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/page": {
+      "get": {
+        "tags": [
+          "Page"
+        ],
+        "summary": "Get by category ID",
+        "description": "Finds pages by category IDs. Invalid category IDs are ignored.",
+        "operationId": "Page-byCategoryIds",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "byCategoryIds"
+              ]
+            }
+          },
+          {
+            "name": "categoryId",
+            "in": "query",
+            "description": "The category ID.",
+            "required": true,
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/page-IBM_Store_Details_SEO"
+                },
+                "example": {
+                  "recordSetStartNumber": 0,
+                  "recordSetComplete": true,
+                  "recordSetCount": 1,
+                  "resourceId": "http://localhost:80/wcs/resources/store/10001/page?q=byCategoryIds&categoryId=10043&langId=-1&responseFormat=json",
+                  "resultList": [
+                    {
+                      "metaKeyword": "Furniture",
+                      "fullImageAltDescription": "Image for Furniture from Aurora",
+                      "categoryIdentifier": "Furniture",
+                      "title": "Furniture | Aurora",
+                      "metaDescription": "Furniture",
+                      "categoryId": "10043"
+                    }
+                  ],
+                  "resourceName": "page",
+                  "recordSetTotal": 1
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/page-IBM_Store_Details_SEO"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/page-IBM_Store_Details_SEO"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/page-IBM_Store_Details_SEO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/widget_definition/identifier/{identifier}": {
+      "get": {
+        "tags": [
+          "Widget Definition"
+        ],
+        "summary": "Get by identifier",
+        "description": "Finds a widget definition by its identifier.",
+        "operationId": "WidgetDefinition-findByIdentifier",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "in": "path",
+            "description": "The widget definition identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/widget_definition-IBM_Store_Summary"
+                },
+                "example": {
+                  "recordSetStartNumber": 0,
+                  "recordSetComplete": true,
+                  "recordSetCount": 1,
+                  "resourceId": "http://localhost:80/wcs/resources/store/10001/widget_definition/identifier/%24%26%5B%7B%7D%28%3D*%29%2B%5D%21%23~%25%60%3A%3C%3E%3B%2C.",
+                  "resultList": [
+                    {
+                      "widgetDefinitionId": "1001",
+                      "widgetType": "Container",
+                      "storeId": "10001",
+                      "state": "active",
+                      "definitionXml": "<Definition> </Definition>",
+                      "path": "Container/HomePageContainer.jsp",
+                      "identifier": "$&[{}(=*)+]!#~%`:<>;,."
+                    }
+                  ],
+                  "resourceName": "widget_definition",
+                  "recordSetTotal": 1
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/widget_definition-IBM_Store_Summary"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/widget_definition-IBM_Store_Summary"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/widget_definition-IBM_Store_Summary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/layout/{layoutId}/widget/{widgetId}": {
+      "delete": {
+        "tags": [
+          "Layout"
+        ],
+        "summary": "Delete widget from layout",
+        "description": "Deletes a widget from a layout.",
+        "operationId": "Layout-deleteWidget",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "layoutId",
+            "in": "path",
+            "description": "The layout unique ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "widgetId",
+            "in": "path",
+            "description": "The widget unique ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/page/{pageId}": {
+      "get": {
+        "tags": [
+          "Page"
+        ],
+        "summary": "Get by page ID",
+        "description": "Finds a page by its ID.",
+        "operationId": "Page-findByPageId",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageId",
+            "in": "path",
+            "description": "The page ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data returned by a query.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IBM_Store_Summary",
+                "IBM_Store_Details"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/page-IBM_Store_Details"
+                },
+                "example": {
+                  "recordSetStartNumber": 0,
+                  "recordSetComplete": true,
+                  "recordSetCount": 1,
+                  "resourceId": "https://localhost:8006/wcs/previewresources/store/10001/page/1001",
+                  "resultList": [
+                    {
+                      "pageId": "1001",
+                      "name": "HelpPage",
+                      "pageGroup": "Content",
+                      "deletable": false,
+                      "urlConfigurable": true,
+                      "nameEditable": false
+                    }
+                  ],
+                  "resourceName": "page",
+                  "recordSetTotal": 1
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/page-IBM_Store_Details"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/page-IBM_Store_Details"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/page-IBM_Store_Details"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/widget_definition/{widgetDefinitionId}": {
+      "get": {
+        "tags": [
+          "Widget Definition"
+        ],
+        "summary": "Get by ID",
+        "description": "Finds a widget definition by its ID.",
+        "operationId": "WidgetDefinition-findByWidgetDefinitionId",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "widgetDefinitionId",
+            "in": "path",
+            "description": "The widget definition ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/widget_definition-IBM_Store_Summary"
+                },
+                "example": {
+                  "recordSetStartNumber": 0,
+                  "recordSetComplete": true,
+                  "recordSetCount": 1,
+                  "resourceId": "https://localhost:8006/wcs/previewresources/store/10001/widget_definition/1001",
+                  "resultList": [
+                    {
+                      "widgetDefinitionId": "1001",
+                      "widgetType": "Container",
+                      "storeId": "10001",
+                      "state": "active",
+                      "definitionXml": "<Definition> </Definition>",
+                      "path": "Container/HomePageContainer.jsp",
+                      "identifier": "HomePageContainer"
+                    }
+                  ],
+                  "resourceName": "widget_definition",
+                  "recordSetTotal": 1
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/widget_definition-IBM_Store_Summary"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/widget_definition-IBM_Store_Summary"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/widget_definition-IBM_Store_Summary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/layout/{layoutId}": {
+      "get": {
+        "tags": [
+          "Layout"
+        ],
+        "summary": "Get layout details by unique ID",
+        "description": "Gets layout details by layout unique ID.",
+        "operationId": "Layout-findLayoutByUniqueId",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "layoutId",
+            "in": "path",
+            "description": "The layout unique ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data returned by a query.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IBM_Admin_Summary",
+                "IBM_Admin_Details"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Layout"
+        ],
+        "summary": "Update layout",
+        "description": "Updates a layout in the store.",
+        "operationId": "Layout-updateLayout",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "layoutId",
+            "in": "path",
+            "description": "The layout unique ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update layout details body.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/layout-layout"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/layout-layout"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Layout"
+        ],
+        "summary": "Delete layout for store",
+        "description": "Deletes a layout for a specified store.",
+        "operationId": "Layout-deleteLayout",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "layoutId",
+            "in": "path",
+            "description": "The layout unique ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/layout-layout"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/layout/{layoutId}/widget/{widgetId}/extendedData": {
+      "post": {
+        "tags": [
+          "Layout"
+        ],
+        "summary": "Update widget extended data",
+        "description": "Performs an action on widgets extended data. See each action for details on input and output.",
+        "operationId": "Layout-performWidgetExtendedDataAction",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "layoutId",
+            "in": "path",
+            "description": "The layout unique ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "widgetId",
+            "in": "path",
+            "description": "The widget unique ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "description": "The action of the rest service.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "addExtendedData",
+                "deleteExtendedData",
+                "updateExtendedData"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/layout-layout"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/layout-layout"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully."
+          },
+          "201": {
+            "description": "The requested resource has been created.",
+            "content": {}
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/store/{storeId}/page/name/{name}": {
+      "get": {
+        "tags": [
+          "Page"
+        ],
+        "summary": "Get by name",
+        "description": "Finds a page by its name.",
+        "operationId": "Page-findByName",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "The page name.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data returned by a query.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IBM_Store_Summary",
+                "IBM_Store_Details"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/page-IBM_Store_Details"
+                },
+                "example": {
+                  "recordSetStartNumber": 0,
+                  "recordSetComplete": true,
+                  "recordSetCount": 1,
+                  "resourceId": "http://localhost:80/wcs/resources/store/10001/page/name/HomePage?profileName=IBM_Store_Details&langId=-1&responseFormat=json",
+                  "resultList": [
+                    {
+                      "pageId": "1008",
+                      "nameEditable": false,
+                      "title": "Welcome to Aurora",
+                      "fullImageAltDescription": "Image for Aurora home page",
+                      "metaKeyword": "Aurora Commerce Model Store entity",
+                      "pageGroup": "Content",
+                      "deletable": false,
+                      "urlConfigurable": false,
+                      "metaDescription": "Shop Aurora online. Commerce Model Store entity",
+                      "name": "HomePage"
+                    }
+                  ],
+                  "resourceName": "page",
+                  "recordSetTotal": 1
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/page-IBM_Store_Details"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/page-IBM_Store_Details"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/page-IBM_Store_Details"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/layout/{layoutId}/layoutStaticLocation": {
+      "post": {
+        "tags": [
+          "Layout"
+        ],
+        "summary": "Update layout static location",
+        "description": "Performs an action on layout static location. See each action for details on input and output.",
+        "operationId": "Layout-performLayoutStaticLocationAction",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "layoutId",
+            "in": "path",
+            "description": "The layout unique ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "description": "The action of the rest service.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "addLayoutStaticLocation",
+                "deleteLayoutStaticLocation",
+                "updateLayoutStaticLocation"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/layout-layout"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/layout-layout"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully."
+          },
+          "201": {
+            "description": "The requested resource has been created.",
+            "content": {}
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "widget_definition-Description": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/widget_definition-Description.userDataField"
+            }
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "langId": {
+            "type": "string"
+          }
+        }
+      },
+      "layout-layout_item.layoutProperty": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "layoutPropertyId": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "sequenceOrder": {
+            "type": "number",
+            "format": "double"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/layout-layout_item.layoutProperty.userDataField"
+            }
+          },
+          "properties": {
+            "type": "string"
+          }
+        }
+      },
+      "layout-layout_item.widget.slotIdentifier": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "uniqueID": {
+            "type": "string"
+          }
+        }
+      },
+      "widget_definition-IBM_Store_Summary": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/widget_definition-IBM_Store_Summary_item"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "layout-layout_item.widget": {
+        "type": "object",
+        "properties": {
+          "widgetDefId": {
+            "type": "string"
+          },
+          "widgetProperty": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/layout-layout_item.widget.widgetProperty"
+            }
+          },
+          "slotType": {
+            "type": "string"
+          },
+          "slotName": {
+            "type": "string"
+          },
+          "widgetName": {
+            "type": "string"
+          },
+          "widgetDefExternalId": {
+            "type": "string"
+          },
+          "slotId": {
+            "type": "string"
+          },
+          "childSlot": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/layout-layout_item.widget.childSlot"
+            }
+          },
+          "widgetId": {
+            "type": "string"
+          },
+          "extendedData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/layout-layout_item.widget.extendedData"
+            }
+          },
+          "widgetSequence": {
+            "type": "number",
+            "format": "double"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/layout-layout_item.widget.userDataField"
+            }
+          },
+          "widgetDefStoreId": {
+            "type": "string"
+          },
+          "slotIdentifier": {
+            "$ref": "#/components/schemas/layout-layout_item.widget.slotIdentifier"
+          },
+          "parentWidgetName": {
+            "type": "string"
+          },
+          "internalSlotId": {
+            "type": "string"
+          },
+          "parentWidgetId": {
+            "type": "string"
+          }
+        }
+      },
+      "widget_definition-IBM_Admin_Summary_item.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "layout-layout_item.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "page_design-Slot": {
+        "type": "object",
+        "properties": {
+          "internalSlotId": {
+            "type": "string"
+          }
+        }
+      },
+      "widget_definition-IBM_Admin_Summary_item": {
+        "type": "object",
+        "properties": {
+          "widgetObjectName": {
+            "type": "string"
+          },
+          "widgetProperty": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/widget_definition-WidgetProperty"
+            }
+          },
+          "widgetDefinitionId": {
+            "type": "string"
+          },
+          "vendor": {
+            "type": "string"
+          },
+          "description": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/widget_definition-Description"
+            }
+          },
+          "widgetType": {
+            "type": "string"
+          },
+          "storeId": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "definitionXml": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/widget_definition-IBM_Admin_Summary_item.userDataField"
+            }
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "configurableSlot": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/widget_definition-ConfigurableSlot"
+            }
+          }
+        }
+      },
+      "page-CatalogGroupView": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "fullImageAltDescription": {
+            "type": "string"
+          },
+          "categoryIdentifier": {
+            "type": "string"
+          },
+          "metaKeyword": {
+            "type": "string"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/page-CatalogGroupView.userDataField"
+            }
+          },
+          "metaDescription": {
+            "type": "string"
+          },
+          "categoryId": {
+            "type": "string"
+          }
+        }
+      },
+      "Empty": {
+        "type": "object",
+        "description": "Empty model. Used as default value when no model is specified."
+      },
+      "layout-layout_item.pageLocation": {
+        "type": "object",
+        "properties": {
+          "propagateToSubLevels": {
+            "type": "boolean"
+          },
+          "pageId": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "storeId": {
+            "type": "string"
+          },
+          "groupNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageGroup": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "activityId": {
+            "type": "string"
+          },
+          "applyToSubPage": {
+            "type": "string"
+          },
+          "searchTerm": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/layout-layout_item.pageLocation.userDataField"
+            }
+          }
+        }
+      },
+      "page-CatalogGroupView.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "layout-layout_item.layoutProperty.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "layout-layout_item.widget.extendedData.attributes": {
+        "type": "object",
+        "properties": {
+          "attribute": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/layout-layout_item.widget.extendedData.attributes.attribute"
+            }
+          },
+          "language": {
+            "type": "string"
+          }
+        }
+      },
+      "page_design-IBM_Store_Details_item.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "page-IBM_Store_Details": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/page-IBM_Store_Details_item"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "page-IBM_Store_Details_item": {
+        "type": "object",
+        "properties": {
+          "pageId": {
+            "type": "string"
+          },
+          "nameEditable": {
+            "type": "boolean"
+          },
+          "metaKeyword": {
+            "type": "string"
+          },
+          "fullImageAltDescription": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "pageGroup": {
+            "type": "string"
+          },
+          "deletable": {
+            "type": "boolean"
+          },
+          "urlConfigurable": {
+            "type": "boolean"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/page-IBM_Store_Details_item.userDataField"
+            }
+          },
+          "metaDescription": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "widget_definition-IBM_Admin_Summary": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/widget_definition-IBM_Admin_Summary_item"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "layout-layout_item.widget.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "widget_definition-Description.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "layout-layout": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/layout-layout_item"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "layout-layout_item.pageLocation.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "page_design-Widget.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "layout-layout_item.widget.extendedData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "widget_definition-ConfigurableSlot": {
+        "type": "object",
+        "properties": {
+          "slotType": {
+            "type": "string"
+          },
+          "positionProperty": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/widget_definition-ConfigurableSlot.positionProperty"
+            }
+          },
+          "internalSlotId": {
+            "type": "string"
+          }
+        }
+      },
+      "layout-layout_item.widget.childSlot": {
+        "type": "object",
+        "properties": {
+          "slotIdentifier": {
+            "$ref": "#/components/schemas/layout-layout_item.widget.childSlot.slotIdentifier"
+          },
+          "slotType": {
+            "type": "string"
+          },
+          "slotId": {
+            "type": "string"
+          },
+          "internalSlotId": {
+            "type": "string"
+          },
+          "slotName": {
+            "type": "string"
+          }
+        }
+      },
+      "layout-layout_item": {
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string"
+          },
+          "managingTool": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "templateStoreId": {
+            "type": "string"
+          },
+          "deviceClass": {
+            "type": "string"
+          },
+          "layoutGroup": {
+            "type": "string"
+          },
+          "adminDescription": {
+            "type": "string"
+          },
+          "layoutStaticLocationId": {
+            "type": "string"
+          },
+          "templateName": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "state": {
+            "type": "string"
+          },
+          "template": {
+            "type": "boolean"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/layout-layout_item.userDataField"
+            }
+          },
+          "widget": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/layout-layout_item.widget"
+            }
+          },
+          "isDefaultLocation": {
+            "type": "boolean"
+          },
+          "storeId": {
+            "type": "string"
+          },
+          "pageLayoutId": {
+            "type": "string"
+          },
+          "locationOwnerID": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "default": {
+            "type": "boolean"
+          },
+          "layoutProperty": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/layout-layout_item.layoutProperty"
+            }
+          },
+          "locationName": {
+            "type": "string"
+          },
+          "templateId": {
+            "type": "string"
+          },
+          "pageLocation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/layout-layout_item.pageLocation"
+            }
+          },
+          "locationSequence": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "page_design-IBM_Store_Details_item": {
+        "type": "object",
+        "properties": {
+          "layoutId": {
+            "type": "string"
+          },
+          "widget": {
+            "$ref": "#/components/schemas/page_design-Widget"
+          },
+          "pageGroup": {
+            "type": "string"
+          },
+          "objectIdentifier": {
+            "type": "string"
+          },
+          "deviceClass": {
+            "type": "string"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/page_design-IBM_Store_Details_item.userDataField"
+            }
+          },
+          "layoutName": {
+            "type": "string"
+          },
+          "previewReport": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "widget_definition-IBM_Store_Summary_item": {
+        "type": "object",
+        "properties": {
+          "widgetObjectName": {
+            "type": "string"
+          },
+          "widgetProperty": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/widget_definition-WidgetProperty"
+            }
+          },
+          "widgetDefinitionId": {
+            "type": "string"
+          },
+          "vendor": {
+            "type": "string"
+          },
+          "widgetType": {
+            "type": "string"
+          },
+          "storeId": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "definitionXml": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/widget_definition-IBM_Store_Summary_item.userDataField"
+            }
+          },
+          "identifier": {
+            "type": "string"
+          }
+        }
+      },
+      "widget_definition-ConfigurableSlot.positionProperty": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "layout-layout_item.widget.extendedData.attributes.attribute": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "widget_definition-WidgetProperty.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "layout-layout_item.widget.childSlot.slotIdentifier": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "uniqueID": {
+            "type": "string"
+          }
+        }
+      },
+      "page-IBM_Store_Details_item.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "widget_definition-IBM_Store_Summary_item.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "layout-layout_item.widget.widgetProperty": {
+        "type": "object",
+        "properties": {
+          "storeId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "sequence": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "layout-layout_item.widget.extendedData": {
+        "type": "object",
+        "properties": {
+          "sequence": {
+            "type": "number",
+            "format": "double"
+          },
+          "dataType": {
+            "type": "string"
+          },
+          "storeId": {
+            "type": "string"
+          },
+          "uniqueId": {
+            "type": "string"
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/layout-layout_item.widget.extendedData.attributes"
+            }
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/layout-layout_item.widget.extendedData.userDataField"
+            }
+          }
+        }
+      },
+      "page_design-WidgetProperty.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "widget_definition-WidgetProperty": {
+        "type": "object",
+        "properties": {
+          "sequenceOrder": {
+            "type": "number",
+            "format": "double"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/widget_definition-WidgetProperty.userDataField"
+            }
+          },
+          "storeId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "page-IBM_Store_Details_SEO": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/page-CatalogGroupView"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "page_design-WidgetProperty": {
+        "type": "object",
+        "properties": {
+          "sequenceOrder": {
+            "type": "number",
+            "format": "double"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/page_design-WidgetProperty.userDataField"
+            }
+          },
+          "storeId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "page_design-Widget": {
+        "type": "object",
+        "properties": {
+          "slot": {
+            "$ref": "#/components/schemas/page_design-Slot"
+          },
+          "widgetDefinitionIdentifier": {
+            "type": "string"
+          },
+          "widgetDefinitionId": {
+            "type": "string"
+          },
+          "widgetId": {
+            "type": "string"
+          },
+          "childWidget": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/page_design-Widget"
+            }
+          },
+          "widgetProperty": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/page_design-WidgetProperty"
+            }
+          },
+          "widgetDefinitionStoreId": {
+            "type": "string"
+          },
+          "widgetSequence": {
+            "type": "number",
+            "format": "double"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/page_design-Widget.userDataField"
+            }
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "page_design-IBM_Store_Details": {
+        "type": "object",
+        "properties": {
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/page_design-IBM_Store_Details_item"
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-aes-documentation": {
+    "gettingstarted": [
+      {
+        "content": "Some REST services require authentication. HCL Commerce REST services are authenticated on secure and unsecured channels. This authentication can include the use of the WCToken and WCTrustedToken. To use REST services that require authentication, you must first get authentication data by using a supported identity services.\n\nAfter you obtain the authentication data, you must pass either the WCToken or WCTustedToken parameters, or both, within the HTTP header for every request that requires authentication. If a request is sent over HTTP, pass the WCToken parameter in the HTTP header. Do not pass the WCTrustedToken in HTTP requests, as the parameter value might display. Send both the WCToken and the WCTrustedToken parameters when the request is being sent over HTTPS.\n\nThe HCL Commerce REST APIs can also use session cookies that are created by the HCL Commerce store runtime for authentication. These cookies allow you to mix requests to the HCL Commerce REST APIs and the HCL Commerce store runtime within the same user session.\n\n See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Authentication"
+      },
+      {
+        "content": "HCL Commerce REST services support JSON and XML formats for input and output data by default. The default format is JSON. When an XML String is sent to a REST service, you must set Content-Type HTTP header to be \"application/xml\". The REST service converts the XML input data to the JSON format that is accepted by REST services. Therefore, your input XML format must follow a certain structure so that it can be transformed to the JSON object that is accepted by REST services. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Response formats"
+      },
+      {
+        "content": "Preview tokens are encrypted strings that encapsulates a set of preview options and restrictions on when and where the token can be used. Any user who is authorized to access your server and has a preview token, can complete preview actions in the same store for which that token is generated. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a>",
+        "codeSnippets": [],
+        "name": "Preview tokens"
+      },
+      {
+        "content": "Some HCL Commerce REST services require a request to be sent over HTTPS. Learn more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Secure Sockets Layer"
+      }
+    ]
+  }
+}

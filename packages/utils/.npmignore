@@ -1,0 +1,7 @@
+.prettier*
+dist/
+build.gradle
+*.tgz
+node_modules
+.gradle/
+build/

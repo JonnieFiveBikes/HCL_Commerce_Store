@@ -1,0 +1,118 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Search display handler",
+    "version": "HCL Commerce Version 9.1.7"
+  },
+  "servers": [
+    {
+      "url": "https://localhost/wcs/resources"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Search Display",
+      "description": "Get search layout view by search term."
+    }
+  ],
+  "paths": {
+    "/store/{storeId}/searchdisplay/bySearchTerm": {
+      "get": {
+        "tags": ["Search Display"],
+        "parameters": [
+          {
+            "description": "The store identifier.",
+            "in": "path",
+            "name": "storeId",
+            "required": true,
+            "schema": {
+              "enum": [
+                "0",
+                "10001",
+                "10501",
+                "11001",
+                "1",
+                "11501",
+                "2",
+                "12001",
+                "12051",
+                "12101"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The search term.",
+            "in": "query",
+            "name": "searchTerm",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "responseFormat",
+            "required": false,
+            "schema": {
+              "enum": ["xml", "json"],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.catalog.commands.SearchDisplayCmd"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.catalog.commands.SearchDisplayCmd"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.catalog.commands.SearchDisplayCmd"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.catalog.commands.SearchDisplayCmd"
+                }
+              }
+            },
+            "description": "The requested completed successfully."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session isn't valid."
+          },
+          "403": {
+            "description": "The user isn't authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource couldn't be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "operationId": "getSearchDisplayView",
+        "summary": "Get search layout view by search term"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Empty": {
+        "description": "Empty model. Used as default value when no model is specified."
+      },
+      "com.ibm.commerce.catalog.commands.SearchDisplayCmd": {}
+    }
+  }
+}

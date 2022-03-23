@@ -1,0 +1,185 @@
+{
+  "metaData": {
+    "price": "1"
+  },
+  "contents": [
+    {
+      "hasSingleSKU": false,
+      "buyable": "true",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=11&partNumber=LR-FNTR-0006&catalogId=11501&contractId=-11005&langId=-1",
+      "parentCatalogGroupID": "/10501/10502",
+      "name": "Perfect Sofa for Musical Chairs",
+      "shortDescription": "A modern single sofa with leather seat and steel legs. Perfect for sitting on to play some boring music.",
+      "manufacturer": "Stonehenge",
+      "longDescription": "Cozy single sofa made of leather and a boxy design meant for both home and office environments. Can also be used as a reading chair as its memory keeps you from back ache from long periods of seating.",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_350.jpg",
+      "seo": {
+        "href": "/stonehenge-modern-steelet-single-sofa-lr-fntr-0006"
+      },
+      "partNumber": "LR-FNTR-0006",
+      "storeID": "11",
+      "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_600.jpg",
+      "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_600.jpg",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "500.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "499.99"
+        }
+      ],
+      "numberOfSKUs": 1,
+      "attributes": [
+        {
+          "identifier": "Color",
+          "attribute.natural": "[\"Brown\",\"Dark Grey\",\"Purple\",\"Airforce\"]",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "darkgrey",
+              "sequence": "10.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003010",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+              "value": "Dark Grey",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Seller",
+          "usage": "Descriptive",
+          "name": "Seller",
+          "values": [
+            {
+              "sequence": "1.0",
+              "identifier": "harpFashions",
+              "unitID": "harpFashions",
+              "id": "8000000000000003019",
+              "value": "Harp Fashions"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "storeDisplay": "false",
+          "facetable": "true",
+          "comparable": "true",
+          "swatchable": "false",
+          "id": "8000000000000000501",
+          "key": "8000000000000000501",
+          "sequence": "0.0"
+        }
+      ],
+      "images": [
+        {
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_350.jpg",
+          "sequence": "-1000.0",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_350.jpg",
+          "name": "Stonehenge Modern Steelet Single Sofa Main Image",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_600.jpg"
+        }
+      ],
+      "type": "product",
+      "id": "14044",
+      "items": [
+        {
+          "hasSingleSKU": false,
+          "buyable": "true",
+          "parentCatalogGroupID": "/10501/10502",
+          "name": "Perfect Sofa for Musical Chairs",
+          "shortDescription": "A modern single sofa with leather seat and steel legs. Perfect for sitting on to play some boring music.",
+          "manufacturer": "Stonehenge",
+          "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_350.jpg",
+          "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_350.jpg",
+          "seo": {
+            "href": "/stonehenge-modern-steelet-single-sofa-lr-fntr-0006-0001"
+          },
+          "parentCatalogEntryID": "14044",
+          "partNumber": "LR-FNTR-0006-0001",
+          "storeID": "11",
+          "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_600.jpg",
+          "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_600.jpg",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": "500.0"
+            },
+            {
+              "usage": "Offer",
+              "contractId": "-11005",
+              "description": "I",
+              "currency": "USD",
+              "value": "499.99"
+            }
+          ],
+          "attributes": [
+            {
+              "identifier": "Color",
+              "attribute.natural": "[\"Dark Grey\"]",
+              "usage": "Defining",
+              "values": [
+                {
+                  "identifier": "darkgrey",
+                  "sequence": "10.0",
+                  "unitOfMeasure": "one",
+                  "unitID": "C62",
+                  "id": "7000000000000003010",
+                  "image1": "/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+                  "value": "Dark Grey",
+                  "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png"
+                }
+              ],
+              "displayable": "true",
+              "merchandisable": "true",
+              "searchable": "true",
+              "sequence": "1.0",
+              "storeDisplay": "false",
+              "name": "Color",
+              "facetable": "true",
+              "id": "7000000000000000501",
+              "comparable": "true",
+              "swatchable": "false"
+            }
+          ],
+          "images": [
+            {
+              "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_350.jpg",
+              "sequence": "-1000.0",
+              "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_350.jpg",
+              "name": "Stonehenge Modern Steelet Single Sofa Main Image",
+              "fullImageRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_600.jpg",
+              "fullImage": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_600.jpg"
+            }
+          ],
+          "parent": "/search/resources/api/v2/categories?storeId=11&id=10502",
+          "id": "14045",
+          "type": "item"
+        }
+      ]
+    }
+  ],
+  "total": 1
+}

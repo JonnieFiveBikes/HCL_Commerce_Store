@@ -1,0 +1,58 @@
+{
+  "recordSetCount": 1,
+  "resourceId": "https://app:5443/wcs/resources/store/12/file_upload_job/10009",
+  "recordSetStartNumber": 0,
+  "resourceName": "file_upload_job",
+  "resultList": [
+    {
+      "processFile": [
+        {
+          "processInfo": "{\"FileName\":\"\\/temp\\/dataload\\/10009\\/badlist.csv\",\"ProcessedItemsNumber\":2,\"FailedPartNumbers\":[\"3,garbage\",\"4,shwarbage\"],\"RequisitionListId\":13070961}",
+          "startTime": "2022-01-07T03:01:49.418Z",
+          "endTime": "2022-01-07T03:01:49.499Z",
+          "userName": "wcsadmin",
+          "properties": [
+            {
+              "name": "fileType",
+              "value": "requisitionList"
+            },
+            {
+              "name": "CSVFilePath",
+              "value": "/temp/dataload/10009/badlist.csv"
+            }
+          ],
+          "status": "Partially Complete"
+        }
+      ],
+      "fileUploadJobId": "10009",
+      "uploadFile": {
+        "fileInfo": {
+          "fileName": "badlist.csv",
+          "fileSize": 62,
+          "fileEncoding": "UTF-8",
+          "filePath": "/temp/dataload/10009/badlist.csv"
+        },
+        "userName": "wcsadmin",
+        "uploadTime": "2022-01-07T03:01:47.232Z",
+        "properties": [
+          {
+            "name": "langId",
+            "value": "-1"
+          },
+          {
+            "name": "componentId",
+            "value": "com.ibm.commerce.order"
+          },
+          {
+            "name": "activeOrgId",
+            "value": "-2001"
+          }
+        ]
+      },
+      "uploadType": "RequisitionListUpload",
+      "storeId": "12"
+    }
+  ],
+  "recordSetTotal": 1,
+  "recordSetComplete": true
+}

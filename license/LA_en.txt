@@ -1,44 +1,46 @@
-LICENSE INFORMATION
+﻿LICENSE INFORMATION
 
-The Programs listed below are licensed under the following License Information terms and conditions in addition to the Program license terms previously agreed to by Customer and HCL.
+The Program listed below is licensed under the following License Information terms and conditions in addition to the Program license terms previously agreed to by Customer and HCL.
 
-Program Name: HCL Commerce Enterprise Developer Version 9.1.7
+Program Name: HCL Commerce Enterprise Developer Version 9.1.10
 
 The following standard terms apply to Licensee's use of the Program.
 
 Limited use right
 
-As described in the HCL Master License Agreement (the "MLA") and this License Information, HCL grants Licensee a limited right to use the Program.  This right is limited to the level of Authorized Use, such as a Processor Value Unit ("PVU"), a Resource Value Unit ("RVU"), a Value Unit ("VU"), or other specified level of use, paid for by Licensee as evidenced in the Proof of Entitlement. Licensee's use may also be limited to a specified machine, or only as a Supporting Program, or subject to other restrictions. As Licensee has not paid for all of the economic value of the Program, no other use is permitted without the payment of additional fees. In addition, Licensee is not authorized to use the Program to provide commercial IT services to any third party, to provide commercial hosting or timesharing, or to sublicense, rent, or lease the Program unless expressly provided for in the applicable agreements under which Licensee obtains authorizations to use the Program. Additional rights may be available to Licensee subject to the payment of additional fees or under different or supplementary terms. HCL reserves the right to determine whether to make such additional rights available to Licensee.
+As described in the HCL Master License Agreement (the “MLA”) available at: https://www.hcltechsw.com/wps/portal/resources/master-agreements and this License Information, HCL grants Licensee a limited right to use the Program.  Program may also be referenced as the "Principal Program" herein. This right is limited to the level of Authorized Use, such as a Processor Value Unit ("PVU"), a Resource Value Unit ("RVU"), a Value Unit ("VU"), or other specified level of use, paid for by Licensee as evidenced in the Proof of Entitlement. Licensee's use may also be limited to a specified machine, or only as a Supporting Program, or subject to other restrictions. As Licensee has not paid for all of the economic value of the Program, no other use is permitted without the payment of additional fees. In addition, Licensee is not authorized to use the Program to provide commercial IT services to any third party, to provide commercial hosting or timesharing, or to sublicense, rent, or lease the Program unless expressly provided for in the applicable agreements under which Licensee obtains authorizations to use the Program. Additional rights may be available to Licensee subject to the payment of additional fees or under different or supplementary terms. HCL reserves the right to determine whether to make such additional rights available to Licensee.
 
 Specifications
 
-Program's specifications can be found in the collective Description and Technical Information sections of the Program's Announcement Letters.
+Program's specifications can be found in the collective Description and Technical Information sections of the Program's Announcement Letters, and Product License Information Documents.
 
 Prohibited Uses
 
-Licensee may not use or authorize others to use the Program, alone or in combination with other services or products, in support of any of the following high risk activities: design, construction, control, or maintenance of nuclear facilities, mass transit systems, air traffic control systems, automotive control systems, weapons systems, or aircraft navigation or communications, or any other activity where program failure could give rise to a material threat of death or serious personal injury.
+Licensee may not use or authorize others to use the Program, alone or in combination with other services or products, in support of any of the following high risk activities: design, construction, control, or maintenance of nuclear facilities, mass transit systems, air traffic control systems, automotive control systems, weapons systems, or aircraft navigation or communications, or any other activity where program failure  could lead to death, bodily injury, or property or environmental damage..
 
 Supporting Programs
 
-Licensee is authorized to install and use the Supporting Programs identified below. Licensee is authorized to install and use such Supporting Programs only to support Licensee's use of the Principal Program under this Agreement. The phrase "to support Licensee's use" would only include those uses that are necessary or otherwise directly related to a licensed use of the Principal Program or another Supporting Program. The Supporting Programs may not be used for any other purpose. A Supporting Program may be accompanied by license terms, and those terms, if any, apply to Licensee's use of that Supporting Program. In the event of conflict, the terms in this License Information document supersede the Supporting Program's terms. Licensee must obtain sufficient entitlements to the Program, as a whole, to cover Licensee's installation and use of all of the Supporting Programs, unless separate entitlements are provided within this License Information document. For example, if this Program were licensed on a PVU (Processor Value Unit) basis and Licensee were to install the Principal Program or a Supporting Program on a 100 PVU machine (physical or virtual) and another Supporting Program on a second 100 PVU machine, Licensee would be required to obtain 200 PVU entitlements to the Program.
+Licensee is authorized to install and use the Supporting Programs identified below. Licensee is authorized to install and use such Supporting Programs only to support Licensee's use of the Principal Program under this  License Information document and MLA. The phrase "to support Licensee's use" would only include those uses that are necessary or otherwise directly related to a licensed use of the Principal Program or another Supporting Program. The Supporting Programs may not be used for any other purpose. A Supporting Program may be accompanied by license terms, and those terms, if any, apply to Licensee's use of that Supporting Program. In the event of conflict, the terms in this License Information document supersede the Supporting Program's terms. Licensee must obtain sufficient entitlements to the Program, as a whole, to cover Licensee's installation and use of all of the Supporting Programs, unless separate entitlements are provided within this License Information document. For example, if this Program were licensed on a PVU (Processor Value Unit) basis and Licensee were to install the Principal Program or a Supporting Program on a 100 PVU machine (physical or virtual) and another Supporting Program on a second 100 PVU machine, Licensee would be required to obtain 200 PVU entitlements to the Program.
 
-Supporting Programs:
+The following are Supporting Programs licensed with the Program that are documented in the HCL Commerce support page here - https://help.hcltechsw.com/commerce/9.1.0/install/refs/rigrecfix.html
+
 IBM Rational Application Developer for WebSphere Software 9.6
-IBM WebSphere Application Server V9.0 FP 9.0.5.8
-IBM WebSphere Application Server Liberty 21.0.0.6
-IBM Db2 Advanced Workgroup Server Edition 11.5
-HCL OneDB Embedded Edition2.0
+IBM WebSphere Application Server 9.0
+IBM WebSphere Application Server Liberty 22.0
+IBM DB2 Enterprise Server Edition 11.5
+IBM DB2 Advanced Edition 11.5
+HCL OneDB Embedded Edition 2.0
 
 Prohibited Components
 
-Notwithstanding any provision in the Agreement, Licensee is not authorized to use any of the following components or functions of the Program:
+Notwithstanding any provision in the MLA, Licensee is not authorized to use any of the following components or functions of the Program:
 pureScale clustering technology (of IBM Db2 Advanced Workgroup Server Edition)
 Db2 Connect (of IBM Db2 Advanced Workgroup Server Edition)
-Federation with Db2 for IBM i and Db2 for z/OS� data sources (of IBM Db2 Advanced Workgroup Server Edition)
+Federation with Db2 for IBM i and Db2 for z/OS® data sources (of IBM Db2 Advanced Workgroup Server Edition)
 Federation with all other data sources, including Oracle (of IBM Db2 Advanced Workgroup Server Edition)
 IBM(r) Db2 Merge Backup (of IBM Db2 Advanced Workgroup Server Edition)
 IBM(r) Db2 Recovery Expert (of IBM Db2 Advanced Workgroup Server Edition)
-IBM InfoSphere� Change Data Capture for Db2 (of IBM Db2 Advanced Workgroup Server Edition)
+IBM InfoSphere® Change Data Capture for Db2 (of IBM Db2 Advanced Workgroup Server Edition)
 IBM InfoSphere CDC Access Server (of IBM Db2 Advanced Workgroup Server Edition)
 IBM InfoSphere CDC Management Console (of IBM Db2 Advanced Workgroup Server Edition)
 IBM InfoSphere Data Architect (of IBM Db2 Advanced Workgroup Server Edition)
@@ -46,9 +48,13 @@ IBM Cognos Analytics 11.0 (of IBM Db2 Advanced Workgroup Server Edition)
 IBM WebSphere MQ 9.0 (of IBM Db2 Advanced Workgroup Server Edition)
 IBM Data Server Manager Enterprise Edition 2.1 (of IBM Db2 Advanced Workgroup Server Edition)
 
+Privacy 
+  
+Licensee acknowledges and agrees that HCL may use cookie and tracking technologies to collect personal information in gathering product usage statistics and information designed to help improve user experience and/or to tailor interactions with users in accordance with the HCL Privacy Statement, available at: https://www.hcltech.com/privacy-statement. 
+
 Redistributables
 
-If the Program includes components that are Redistributable, they will be identified in the REDIST file that accompanies the Program. In addition to the license rights granted in the Agreement, Licensee may distribute the Redistributables subject to the following terms:
+If the Program includes components that are Redistributable, they will be identified in the REDIST file that accompanies the Program. In addition to the license rights granted in the MLA, Licensee may distribute the Redistributables subject to the following terms:
 1) Redistribution must be in object code form only and must conform to all directions, instruction and specifications in the Program's accompanying REDIST or documentation;
 2) If the Program's accompanying documentation expressly allows Licensee to modify the Redistributables, such modification must conform to all directions, instruction and specifications in that documentation and these modifications, if any, must be treated as Redistributables;
 3) Redistributables may be distributed only as part of Licensee's application that was developed using the Program ("Licensee's Application") and only to support Licensee's customers in connection with their use of Licensee's Application. Licensee's Application must constitute significant value add such that the Redistributables are not a substantial motivation for the acquisition by end users of Licensee's software product;
@@ -59,11 +65,11 @@ If the Program includes components that are Redistributable, they will be identi
 8) Licensee may not use HCL's, its suppliers or distributors names or trademarks in connection with the marketing of Licensee's Application without HCL's or that supplier's or distributor's prior written consent;
 9) HCL, its suppliers and distributors provide the Redistributables and related documentation without obligation of support and "AS IS", WITH NO WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING THE WARRANTY OF TITLE, NON-INFRINGEMENT OR NON-INTERFERENCE AND THE IMPLIED WARRANTIES AND CONDITIONS OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE;
 10) Licensee is responsible for all technical assistance for Licensee's Application and any modifications to the Redistributables; and
-11) Licensee's license agreement with the end user of Licensee's Application must notify the end user that the Redistributables or their modifications may not be i) used for any purpose other than to enable Licensee's Application, ii) copied (except for backup purposes), iii) further distributed or transferred without Licensee's Application or iv) reverse assembled, reverse compiled, or otherwise translated except as specifically permitted by law and without the possibility of a contractual waiver. Furthermore, Licensee's license agreement must be at least as protective of HCL as the terms of this Agreement.
+11) Licensee's license agreement with the end user of Licensee's Application must notify the end user that the Redistributables or their modifications may not be i) used for any purpose other than to enable Licensee's Application, ii) copied (except for backup purposes), iii) further distributed or transferred without Licensee's Application or iv) reverse assembled, reverse compiled, or otherwise translated except as specifically permitted by law and without the possibility of a contractual waiver. Furthermore, Licensee's license agreement must be at least as protective of HCL as the terms of the MLA.
 
 Source Components and Sample Materials
 
-The Program may include some components in source code form ("Source Components") and other materials identified as Sample Materials. Licensee may copy and modify Source Components and Sample Materials for internal use only provided such use is within the limits of the license rights under this Agreement, provided however that Licensee may not alter or delete any copyright information or notices contained in the Source Components or Sample Materials. HCL provides the Source Components and Sample Materials without obligation of support and "AS IS", WITH NO WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING THE WARRANTY OF TITLE, NON-INFRINGEMENT OR NON-INTERFERENCE AND THE IMPLIED WARRANTIES AND CONDITIONS OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+The Program may include some components in source code form ("Source Components") and other materials identified as “Sample Materials.” Licensee may copy and modify Source Components and Sample Materials for internal use only provided such use is within the limits of the license rights under  this License Information document and MLA, provided however that Licensee may not alter or delete any copyright information or notices contained in the Source Components or Sample Materials. HCL provides the Source Components and Sample Materials without obligation of support and "AS IS", WITH NO WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING THE WARRANTY OF TITLE, NON-INFRINGEMENT OR NON-INTERFERENCE AND THE IMPLIED WARRANTIES AND CONDITIONS OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 For Source Components and Sample Materials listed in a Program's REDIST file, Licensee may redistribute modified versions of those Source Components or Sample Materials consistent with the terms of this license and any instructions in the REDIST file.
 
@@ -119,8 +125,11 @@ The Program is accompanied by Rational Application Developer (RAD) for WebSphere
 
 The Program is accompanied by multiple copies of WebSphere Application Server, including copies of WebSphere Application Server included in the Program's "unit test environment". Licensee is authorized to install each component of these copies of the WebSphere Application Server on the same machine as the remainder of the Program for use by a single developer for purposes of "unit testing", which is limited to testing of code written or generated by such developer to confirm that such code functions as designed. Licensee is not authorized to use copies of the WebSphere Application Server components installed and used under Unit Test Proofs of Entitlement for the following purposes: testing applications on servers separate from the developer's machine; or simulating production workloads or testing scalability of any code, application or system. The WebSphere Application Server components cannot be used for production purposes.
 
-3.2 IBM DB2 and HCL OneDB
+3.2 IBM DB2
 - Entitlement: No Metric
+- Use Limitations: Use by Principal Program
+
+3.3 HCL OneDB Embedded Edition 2.0
 - Use Limitations: Use by Principal Program
 
 "No Metric" means this Supporting Program may be installed on as many machines and used by as many persons as is reasonably necessary within the use limitations that apply to this Supporting Program.

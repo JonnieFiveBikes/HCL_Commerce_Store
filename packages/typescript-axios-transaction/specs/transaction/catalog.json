@@ -1,0 +1,4042 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "HCL Commerce Services - Catalog",
+    "description": "These services provide APIs related to browsing either a B2B or B2C store. Use these classes to: <ul><li> Get category data for administrative purposes <li> Get catalogs by search term or by store ID <li> Get catalog entries by parent part number, or by search term",
+    "version": "9.1.6"
+  },
+  "servers": [
+    {
+      "url": "https://localhost/wcs/resources"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Category",
+      "description": "This class provides RESTful services to get category data for administrative purposes. It performs the services by delegating to the CatalogGroup BOD service."
+    },
+    {
+      "name": "Catalog_Entry",
+      "description": "This class provides RESTful services to get catalog entries. It uses the CatalogEntry noun."
+    }
+  ],
+  "paths": {
+    "/store/{storeId}/category/bySearchTerm/{searchTerm}": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Get catalogs by search term",
+        "description": "Gets catalogs by search term.",
+        "operationId": "Category-findBySearchTerm",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "searchTerm",
+            "in": "path",
+            "description": "The term user is searching for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "langId",
+            "in": "query",
+            "description": "Language identifier. If not specified, the \"locale\" parameter is used. If \"locale\" is not specified, then the store default language is used.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                -1,
+                -2,
+                -3,
+                -4,
+                -5,
+                -6,
+                -7,
+                -8,
+                -9,
+                -10,
+                -20,
+                -21,
+                -22,
+                -23
+              ]
+            }
+          },
+          {
+            "name": "catalogId",
+            "in": "query",
+            "description": "The unique ID of the catalog to search the categories under.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "10001",
+                "10051",
+                "10052"
+              ]
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data returned by a query.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IBM_Admin_Summary",
+                "IBM_Admin_Details",
+                "IBM_Admin_Summary_Breadcrumb",
+                "IBM_Admin_Details_Breadcrumb"
+              ]
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number. Valid values are positive integers starting at 1. Use pageNumber with pageSize.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size. Used to limit the amount of data returned by a query. Valid values are integers starting with 1. Use pageSize with pageNumber.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/catalog_entry": {
+      "get": {
+        "tags": [
+          "Catalog_Entry"
+        ],
+        "summary": "Get catalog entries by parent part",
+        "description": "Finds catalog entries by their parent part number. Invalid part number is ignored.",
+        "operationId": "CatalogEntry-byParentPartNumbers",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "byParentPartNumbers"
+              ]
+            }
+          },
+          {
+            "name": "partNumber",
+            "in": "query",
+            "description": "The part number of the parent catalog entry.",
+            "required": true,
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "langId",
+            "in": "query",
+            "description": "Language identifier. If not specified, the \"locale\" parameter is used. If \"locale\" is not specified, then the store default language is used.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                -1,
+                -2,
+                -3,
+                -4,
+                -5,
+                -6,
+                -7,
+                -8,
+                -9,
+                -10,
+                -20,
+                -21,
+                -22,
+                -23
+              ]
+            }
+          },
+          {
+            "name": "catalogId",
+            "in": "query",
+            "description": "The unique id of the catalog to search the catalog entries under. If no catalog specified, store default catalog is used.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "10001",
+                "10051",
+                "10052"
+              ]
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data returned by a query.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IBM_Admin_Summary",
+                "IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute"
+              ]
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number. Valid values are positive integers starting at 1. Use pageNumber with pageSize.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size. Used to limit the amount of data returned by a query. Valid values are integers starting with 1. Use pageSize with pageNumber.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/catalog_entry-IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/catalog_entry-IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/catalog_entry-IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/catalog_entry-IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/catalog_entry/bySearchTerm/{searchTerm}": {
+      "get": {
+        "tags": [
+          "Catalog_Entry"
+        ],
+        "summary": "Get catalog entries by search term",
+        "description": "Gets catalog entries by search term.",
+        "operationId": "CatalogEntry-findBySearchTerm",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "searchTerm",
+            "in": "path",
+            "description": "The term user is searching for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "The catalog entry types to return.",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Product",
+                  "Item",
+                  "CategoryItem",
+                  "Bundle",
+                  "Package",
+                  "DynamicKit",
+                  "PredDynaKit"
+                ]
+              }
+            }
+          },
+          {
+            "name": "excludeType",
+            "in": "query",
+            "description": "The catalog entry types that are not returned.",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Product",
+                  "Item",
+                  "Bundle",
+                  "Package",
+                  "DynamicKit",
+                  "PredDynaKit"
+                ]
+              }
+            }
+          },
+          {
+            "name": "langId",
+            "in": "query",
+            "description": "Language identifier. If not specified, the \"locale\" parameter is used. If \"locale\" is not specified, then the store default language is used.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                -1,
+                -2,
+                -3,
+                -4,
+                -5,
+                -6,
+                -7,
+                -8,
+                -9,
+                -10,
+                -20,
+                -21,
+                -22,
+                -23
+              ]
+            }
+          },
+          {
+            "name": "catalogId",
+            "in": "query",
+            "description": "The unique id of the catalog to search the catalog entries under. If no catalog specified, store default catalog is used.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "10001",
+                "10051",
+                "10052"
+              ]
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data returned by a query.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IBM_Admin_Summary",
+                "IBM_Admin_StandardOfferPrice"
+              ]
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number. Valid values are positive integers starting at 1. Use pageNumber with pageSize.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size. Used to limit the amount of data returned by a query. Valid values are integers starting with 1. Use pageSize with pageNumber.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/catalog_entry-IBM_Admin_StandardOfferPrice"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/catalog_entry-IBM_Admin_StandardOfferPrice"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/catalog_entry-IBM_Admin_StandardOfferPrice"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/catalog_entry-IBM_Admin_StandardOfferPrice"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/categoryview/byId/{categoryId}": {
+      "get": {
+        "tags": [
+          "Categoryview"
+        ],
+        "summary": "Gets category details based on its unique ID.",
+        "description": "Gets catalogs by search term.",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "Category ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "required": false,
+            "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include “json” and “xml” without the quotes. If the responseFormat isn’t specified, the “accept” HTTP header shall be used to determine the format of the response. If the “accept” HTTP header isn’t specified as well, the default response format shall be in json.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "catalogId",
+            "in": "query",
+            "description": "The catalog identifier. If none is specified, the store default catalog shall be used.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "The currency code to use. Example usage  currency=USD. If no currency code is specified, the store default currency shall be used.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/categoryview-categoryDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/categoryview/@top": {
+      "get": {
+        "tags": [
+          "Categoryview"
+        ],
+        "summary": "Gets all top level categories.",
+        "description": "Gets catalogs by search term.",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "required": false,
+            "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include “json” and “xml” without the quotes. If the responseFormat isn’t specified, the “accept” HTTP header shall be used to determine the format of the response. If the “accept” HTTP header isn’t specified as well, the default response format shall be in json.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "catalogId",
+            "in": "query",
+            "description": "The catalog identifier. If none is specified, the store default catalog shall be used.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "The currency code to use. Example usage  currency=USD. If no currency code is specified, the store default currency shall be used.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/categoryview-categoryDetails"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/categoryview-categoryDetails"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/categoryview-categoryDetails"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/categoryview-categoryDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/categoryview/byParentCategory/{parentCategoryId}": {
+      "get": {
+        "tags": [
+          "Categoryview"
+        ],
+        "summary": "Gets category details based on its unique ID.",
+        "description": "Gets catalogs by search term.",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "parentCategoryId",
+            "in": "path",
+            "description": "The parent category unique ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number, starting at 1. Valid values include positive integers of 1 and above. The “pageSize” must be specified for paging to work.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size. Used to limit the amount of data returned by a query. Valid values include positive integers of 1 and above. The “pageNumber” must be specified for paging to work.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "required": false,
+            "description": "The response format. If the request has an input body, that body must also use the format specified in \"responseFormat\". Valid values include “json” and “xml” without the quotes. If the responseFormat isn’t specified, the “accept” HTTP header shall be used to determine the format of the response. If the “accept” HTTP header isn’t specified as well, the default response format shall be in json.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "catalogId",
+            "in": "query",
+            "description": "The catalog identifier. If none is specified, the store default catalog shall be used.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "The currency code to use. Example usage  currency=USD. If no currency code is specified, the store default currency shall be used.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/categoryview-categorySummary"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/categoryview-categoryDetails"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/categoryview-categoryDetails"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/categoryview-categoryDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentAsset.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentAsset.userData.userDataField"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOURL.siteMapInfo.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOURL.siteMapInfo.userData.userDataField"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.MonetaryAmountType": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.catalogEntryReference.catalogEntryIdentifier.externalIdentifier": {
+        "required": [
+          "partNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "partNumber": {
+            "type": "string"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.catalogEntryReference.catalogEntryIdentifier.externalIdentifier.storeIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute.externalIdentifier.attributeDictionaryIdentifier.externalIdentifier": {
+        "required": [
+          "identifier"
+        ],
+        "type": "object",
+        "properties": {
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute.externalIdentifier.attributeDictionaryIdentifier.externalIdentifier.storeIdentifier"
+          },
+          "identifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.catalogEntryReference.catalogEntryIdentifier.externalIdentifier.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentAsset.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentAsset.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentAsset.userData.userDataField"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attributes": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.facet.attribute": {
+        "required": [
+          "attributeDescription"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeDescription": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.facet.attribute.attributeDescription"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogGroupIdentifier.externalIdentifier.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.parentCatalogGroupIdentifier.externalIdentifier": {
+        "required": [
+          "groupIdentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.parentCatalogGroupIdentifier.externalIdentifier.storeIdentifier"
+          },
+          "groupIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentReferenceIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogEntryReference.catalogEntryIdentifier.externalIdentifier.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference": {
+        "required": [
+          "displayName"
+        ],
+        "type": "object",
+        "properties": {
+          "catalogGroupIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogGroupIdentifier"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "catalogIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogIdentifier"
+          },
+          "navigationPath": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.description": {
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "fullImage": {
+            "type": "string"
+          },
+          "longDescription": {
+            "type": "string"
+          },
+          "breadcrumb": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "override": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.description.override"
+            }
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.description.attributes"
+            }
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "thumbnail": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentReferenceDescription": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentReferenceDescription.userData"
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "longDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.userData.userDataField"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute.externalIdentifier.attributeDictionaryIdentifier.externalIdentifier.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute.externalIdentifier.attributeDictionaryIdentifier.externalIdentifier.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogGroupIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogGroupIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogGroupIdentifier.externalIdentifier.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogGroupIdentifier.externalIdentifier.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "catalog_entry-IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute_item.description": {
+        "type": "object",
+        "properties": {
+          "shortDescription": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "thumbnail": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentIdentifier.externalIdentifier.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.facet.attribute.attributeDescription.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute.externalIdentifier.attributeDictionaryIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute.externalIdentifier.attributeDictionaryIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentAsset": {
+        "required": [
+          "attachmentAssetPath"
+        ],
+        "type": "object",
+        "properties": {
+          "mimeType": {
+            "type": "string"
+          },
+          "attachmentAssetIdentifier": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentAsset.attachmentAssetIdentifier"
+          },
+          "rootDirectory": {
+            "type": "string"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "directoryPath": {
+            "type": "string"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentAsset.storeIdentifier"
+          },
+          "localAsset": {
+            "type": "boolean"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentAsset.userData"
+          },
+          "attachmentAssetPath": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog_entry-IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute_item": {
+        "required": [
+          "parentCatalogEntryPartNumber",
+          "partNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "parentCatalogEntryID": {
+            "type": "string"
+          },
+          "description": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog_entry-IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute_item.description"
+            }
+          },
+          "owningStoreDirectory": {
+            "type": "string"
+          },
+          "uniqueID": {
+            "type": "string"
+          },
+          "parentCatalogEntryPartNumber": {
+            "type": "string"
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog_entry-IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute_item.attributes"
+            }
+          },
+          "partNumber": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog_entry-IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute_item.userDataField"
+            }
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.description.override": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "keyword": {
+            "type": "string"
+          },
+          "fullImage": {
+            "type": "string"
+          },
+          "longDescription": {
+            "type": "string"
+          },
+          "descriptionOverrideIdentifier": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.description.override.descriptionOverrideIdentifier"
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.description.override.attributes"
+            }
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "thumbnail": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog_entry-IBM_Admin_StandardOfferPrice": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog_entry-IBM_Admin_StandardOfferPrice_item"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "categoryview-categoryDetails": {
+        "type": "object",
+        "properties": {
+          "recordSetStartNumber": {
+            "type": "string"
+          },
+          "SuggestionView": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categoryDetails.SuggestionView"
+            }
+          },
+          "recordSetComplete": {
+            "type": "string"
+          },
+          "FacetView": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categoryDetails.FacetView"
+            }
+          },
+          "recordSetCount": {
+            "type": "string"
+          },
+          "indexStatus": {
+            "type": "string"
+          },
+          "report": {
+            "type": "string"
+          },
+          "WebContentView": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categoryDetails.WebContentView"
+            }
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categoryDetails.userDataField"
+            }
+          },
+          "recordSetTotal": {
+            "type": "string"
+          },
+          "BreadCrumbTrailEntryView": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categoryDetails.BreadCrumbTrailEntryView"
+            }
+          },
+          "CatalogGroupView": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categoryDetails.CatalogGroupView"
+            }
+          },
+          "finalQuery": {
+            "type": "string"
+          },
+          "MetaData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categoryDetails.MetaData"
+            }
+          }
+        }
+      },
+      "categoryview-categorySummary": {
+        "type": "object",
+        "properties": {
+          "recordSetStartNumber": {
+            "type": "string"
+          },
+          "SuggestionView": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categorySummary.SuggestionView"
+            }
+          },
+          "recordSetComplete": {
+            "type": "string"
+          },
+          "FacetView": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categorySummary.FacetView"
+            }
+          },
+          "recordSetCount": {
+            "type": "string"
+          },
+          "indexStatus": {
+            "type": "string"
+          },
+          "report": {
+            "type": "string"
+          },
+          "WebContentView": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categorySummary.WebContentView"
+            }
+          },
+          "recordSetTotal": {
+            "type": "string"
+          },
+          "BreadCrumbTrailEntryView": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categorySummary.BreadCrumbTrailEntryView"
+            }
+          },
+          "CatalogGroupView": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categorySummary.CatalogGroupView"
+            }
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categorySummary.userDataField"
+            }
+          },
+          "finalQuery": {
+            "type": "string"
+          },
+          "MetaData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categorySummary.MetaData"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOProperties.parentStoreIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOProperties.parentStoreIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOURL.uRLKeyword.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOURL.uRLKeyword.userData.userDataField"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOProperties.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.description.attributes": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute.externalIdentifier.attributeDictionaryIdentifier.externalIdentifier.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentIdentifier.externalIdentifier.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentIdentifier.externalIdentifier.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogIdentifier.externalIdentifier": {
+        "required": [
+          "identifier"
+        ],
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogIdentifier.externalIdentifier.storeIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogGroupIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogGroupIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentReferenceIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item": {
+        "required": [
+          "categoryIdentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "catalogGroupIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.catalogGroupIdentifier"
+          },
+          "taxonomyAttribute": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute"
+          },
+          "parentCatalogGroupIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.parentCatalogGroupIdentifier"
+          },
+          "description": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.description"
+            }
+          },
+          "owningStoreDirectory": {
+            "type": "string"
+          },
+          "topCatalogGroup": {
+            "type": "boolean"
+          },
+          "displaySequence": {
+            "type": "number",
+            "format": "double"
+          },
+          "categoryIdentifier": {
+            "type": "string"
+          },
+          "breadcrumbLocation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.breadcrumbLocation"
+            }
+          },
+          "rule": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.rule"
+          },
+          "facet": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.facet"
+            }
+          },
+          "sEOProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOProperties"
+            }
+          },
+          "attachmentReference": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference"
+            }
+          },
+          "dynamicCatalogGroup": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "navigationRelationship": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship"
+            }
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attributes"
+            }
+          },
+          "sEOURL": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOURL"
+            }
+          },
+          "categoryId": {
+            "type": "string"
+          },
+          "association": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association"
+            }
+          },
+          "navigationPath": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.parentCatalogGroupIdentifier.externalIdentifier.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.parentCatalogGroupIdentifier.externalIdentifier.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOProperties": {
+        "type": "object",
+        "properties": {
+          "resolved": {
+            "type": "boolean"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOProperties.userData"
+          },
+          "language": {
+            "type": "string"
+          },
+          "metaKeyword": {
+            "type": "string"
+          },
+          "fullImageAltDescription": {
+            "type": "string"
+          },
+          "parentStoreIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOProperties.parentStoreIdentifier"
+          },
+          "pageGroup": {
+            "type": "string"
+          },
+          "objectIdentifier": {
+            "type": "string"
+          },
+          "sEOPageDefID": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "metaDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentReferenceDescription.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentReferenceDescription.userData.userDataField"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.facet": {
+        "required": [
+          "attribute",
+          "facetIdentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "attribute": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.facet.attribute"
+          },
+          "facetIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.facet.facetIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOProperties.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOProperties.userData.userDataField"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.rule.nVP": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentDescription": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentDescription.userData"
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "longDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute.externalIdentifier.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute.externalIdentifier.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.description.attributes": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentUsage": {
+        "required": [
+          "usageName"
+        ],
+        "type": "object",
+        "properties": {
+          "displaySequence": {
+            "type": "string"
+          },
+          "attachmentUsageDescription": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentUsage.attachmentUsageDescription"
+          },
+          "image": {
+            "type": "string"
+          },
+          "usageName": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.catalogGroupIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.catalogGroupIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.rule.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.rule.element.userData": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentAsset.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.catalogGroupIdentifier.externalIdentifier.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.catalogGroupIdentifier.externalIdentifier.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentUsage.attachmentUsageDescription.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentUsage.attachmentUsageDescription.userData.userDataField"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.description.override": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "keyword": {
+            "type": "string"
+          },
+          "fullImage": {
+            "type": "string"
+          },
+          "longDescription": {
+            "type": "string"
+          },
+          "descriptionOverrideIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.description.override.descriptionOverrideIdentifier"
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.description.override.attributes"
+            }
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "thumbnail": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.facet.attribute.attributeDescription.extendedData": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.description": {
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "fullImage": {
+            "type": "string"
+          },
+          "longDescription": {
+            "type": "string"
+          },
+          "breadcrumb": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "override": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.description.override"
+            }
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.description.attributes"
+            }
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "thumbnail": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.rule": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.rule.userData"
+            }
+          },
+          "nVP": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.rule.nVP"
+            }
+          },
+          "uniqueID": {
+            "type": "string"
+          },
+          "element": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.rule.element"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.catalog.facade.datatypes.ValueType": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "storeID": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.facet.attribute.attributeDescription.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.facet.attribute.attributeDescription.userData.userDataField"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.description.override.attributes": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.catalogEntryReference.catalogEntryIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.catalogEntryReference.catalogEntryIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.associatedObject": {
+        "type": "object"
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.description.override.descriptionOverrideIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog_entry-IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute_item.attributes": {
+        "type": "object",
+        "properties": {
+          "comparable": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string"
+          },
+          "searchable": {
+            "type": "boolean"
+          },
+          "dataType": {
+            "type": "string"
+          },
+          "displayable": {
+            "type": "boolean"
+          },
+          "value": {
+            "$ref": "#/components/schemas/com.ibm.commerce.catalog.facade.datatypes.ValueType"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog_entry-IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute_item.attributes.values"
+            }
+          },
+          "uniqueID": {
+            "type": "string"
+          },
+          "extendedValue": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/java.util.Map-Entry"
+            }
+          },
+          "usage": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentIdentifier.externalIdentifier.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentIdentifier.externalIdentifier.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogGroupIdentifier.externalIdentifier": {
+        "required": [
+          "groupIdentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogGroupIdentifier.externalIdentifier.storeIdentifier"
+          },
+          "groupIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogEntryReference.catalogEntryIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogEntryReference.catalogEntryIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogEntryReference.catalogEntryIdentifier.externalIdentifier": {
+        "required": [
+          "partNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "partNumber": {
+            "type": "string"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogEntryReference.catalogEntryIdentifier.externalIdentifier.storeIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.parentCatalogGroupIdentifier.externalIdentifier.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute.externalIdentifier.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentAsset": {
+        "required": [
+          "attachmentAssetPath"
+        ],
+        "type": "object",
+        "properties": {
+          "mimeType": {
+            "type": "string"
+          },
+          "attachmentAssetIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentAsset.attachmentAssetIdentifier"
+          },
+          "rootDirectory": {
+            "type": "string"
+          },
+          "language": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "directoryPath": {
+            "type": "string"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentAsset.storeIdentifier"
+          },
+          "localAsset": {
+            "type": "boolean"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentAsset.userData"
+          },
+          "attachmentAssetPath": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.rule.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.rule.userData.userDataField"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentIdentifier.externalIdentifier": {
+        "required": [
+          "identifier"
+        ],
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentIdentifier.externalIdentifier.storeIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentDescription": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentDescription.userData"
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "longDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.catalogEntryReference.catalogEntryIdentifier.externalIdentifier.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.catalogEntryReference.catalogEntryIdentifier.externalIdentifier.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute": {
+        "type": "object",
+        "properties": {
+          "attribute": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOURL.uRLKeyword": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOURL.uRLKeyword.userData"
+          },
+          "keyword": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "generatedMobileKeyword": {
+            "type": "string"
+          },
+          "uRLPrefix": {
+            "type": "string"
+          },
+          "mobileURLPrefix": {
+            "type": "string"
+          },
+          "previewURL": {
+            "type": "string"
+          },
+          "mobileKeyword": {
+            "type": "string"
+          },
+          "generatedKeyword": {
+            "type": "string"
+          },
+          "previewMobileURL": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.attributes": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.catalogGroupIdentifier.externalIdentifier": {
+        "required": [
+          "groupIdentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.catalogGroupIdentifier.externalIdentifier.storeIdentifier"
+          },
+          "groupIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentUsage.attachmentUsageDescription.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOURL.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog_entry-IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute_item.attributes.values": {
+        "required": [
+          "values"
+        ],
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string"
+          },
+          "values": {
+            "type": "string"
+          },
+          "extendedValue": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/java.util.Map-Entry"
+            }
+          }
+        }
+      },
+      "Empty": {
+        "type": "object",
+        "description": "Empty model. Used as default value when no model is specified."
+      },
+      "categoryview-categoryDetails.SuggestionView.Entry": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categoryDetails.CatalogGroupView.userDataField": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categoryDetails.CatalogGroupView.MetaData": {
+        "type": "object",
+        "properties": {
+          "metaKey": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categoryDetails.WebContentView.userDataField": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categoryDetails.FacetView.Entry": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "entryValue": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categoryDetails.WebContentView.MetaData": {
+        "type": "object",
+        "properties": {
+          "metaData": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categorySummary.SuggestionView.Entry": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "userDataField": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categorySummary.FacetView.Entry": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string"
+          },
+          "count": {
+            "type": "string"
+          },
+          "entryValue": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categorySummary.WebContentView.userDataField": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categorySummary.WebContentView.MetaData": {
+        "type": "object",
+        "properties": {
+          "metaData": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog_entry-IBM_Admin_StandardOfferPrice_item.description": {
+        "type": "object",
+        "properties": {
+          "shortDescription": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "thumbnail": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentReferenceDescription.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.description.override.descriptionOverrideIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOURL.siteMapInfo.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOURL.parentStoreIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute.externalIdentifier": {
+        "required": [
+          "attributeDictionaryIdentifier",
+          "identifier"
+        ],
+        "type": "object",
+        "properties": {
+          "attributeDictionaryIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute.externalIdentifier.attributeDictionaryIdentifier"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.taxonomyAttribute.attribute.externalIdentifier.storeIdentifier"
+          },
+          "identifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOURL.uRLKeyword.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attributes": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentAsset.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentAsset.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentIdentifier.externalIdentifier": {
+        "required": [
+          "identifier"
+        ],
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentIdentifier.externalIdentifier.storeIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogIdentifier.externalIdentifier.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentReferenceDescription.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentReferenceDescription.userData.userDataField"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogGroupIdentifier.externalIdentifier": {
+        "required": [
+          "groupIdentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogGroupIdentifier.externalIdentifier.storeIdentifier"
+          },
+          "groupIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentAsset.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentIdentifier.externalIdentifier.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.attributes"
+            }
+          },
+          "displaySequence": {
+            "type": "number",
+            "format": "double"
+          },
+          "catalogGroupReference": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference"
+          },
+          "type": {
+            "type": "string"
+          },
+          "catalogEntryReference": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogEntryReference"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.parentCatalogGroupIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.parentCatalogGroupIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOURL.parentStoreIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOURL.parentStoreIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.userData.userDataField"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.rule.element": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.rule.element.userData"
+            }
+          },
+          "type": {
+            "type": "string"
+          },
+          "uniqueID": {
+            "type": "string"
+          },
+          "nVP": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.rule.element.nVP"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogGroupIdentifier.externalIdentifier.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogGroupIdentifier.externalIdentifier.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOURL": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOURL.userData"
+          },
+          "parentStoreIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOURL.parentStoreIdentifier"
+          },
+          "tokenValue": {
+            "type": "string"
+          },
+          "uRLKeywordID": {
+            "type": "string"
+          },
+          "uRLKeyword": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOURL.uRLKeyword"
+            }
+          },
+          "usage": {
+            "type": "string"
+          },
+          "siteMapInfo": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOURL.siteMapInfo"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentAsset.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentAsset.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentUsage.attachmentUsageDescription": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentUsage.attachmentUsageDescription.userData"
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "longDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentDescription.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentDescription.userData.userDataField"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.catalogGroupIdentifier.externalIdentifier.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentAsset.attachmentAssetIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog_entry-IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute_item.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentDescription.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.userData"
+          },
+          "attachmentIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentIdentifier"
+          },
+          "attachmentReferenceIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentReferenceIdentifier"
+          },
+          "displaySequence": {
+            "type": "string"
+          },
+          "attachmentReferenceDescription": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentReferenceDescription"
+            }
+          },
+          "attachmentAsset": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentAsset"
+            }
+          },
+          "attachmentDescription": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentDescription"
+            }
+          },
+          "attachmentUsage": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentUsage"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item": {
+        "required": [
+          "catalogIdentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.description"
+            }
+          },
+          "default": {
+            "type": "boolean"
+          },
+          "primary": {
+            "type": "boolean"
+          },
+          "catalogId": {
+            "type": "string"
+          },
+          "attachmentReference": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference"
+            }
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attributes"
+            }
+          },
+          "catalogIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentUsage.attachmentUsageDescription.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOProperties.parentStoreIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association": {
+        "type": "object",
+        "properties": {
+          "catalogGroupReference": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference"
+          },
+          "name": {
+            "type": "string"
+          },
+          "catalogEntryReference": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.catalogEntryReference"
+          },
+          "associationCodeType": {
+            "type": "string"
+          },
+          "displaySequence": {
+            "type": "number",
+            "format": "double"
+          },
+          "associatedObject": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.associatedObject"
+          },
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalSource": {
+            "type": "boolean"
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.attributes"
+            }
+          },
+          "associatedObjectGroup": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Empty"
+            }
+          },
+          "semantic": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentReferenceDescription": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentReferenceDescription.userData"
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "longDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "java.util.Map-Entry": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogIdentifier.externalIdentifier.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogIdentifier.externalIdentifier.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "catalog_entry-IBM_Admin_StandardOfferPrice_item.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog_entry-IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog_entry-IBM_Admin_CatalogEntryDefiningAttributeDictionaryAttribute_item"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogEntryReference": {
+        "type": "object",
+        "properties": {
+          "catalogEntryIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogEntryReference.catalogEntryIdentifier"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "catalogEntryTypeCode": {
+            "type": "string"
+          },
+          "navigationPath": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.facet.facetIdentifier": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string"
+          },
+          "uniqueID": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.catalogEntryReference": {
+        "type": "object",
+        "properties": {
+          "catalogEntryIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.catalogEntryReference.catalogEntryIdentifier"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "catalogEntryTypeCode": {
+            "type": "string"
+          },
+          "navigationPath": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.userData"
+          },
+          "attachmentIdentifier": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentIdentifier"
+          },
+          "attachmentReferenceIdentifier": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentReferenceIdentifier"
+          },
+          "displaySequence": {
+            "type": "string"
+          },
+          "attachmentReferenceDescription": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentReferenceDescription"
+            }
+          },
+          "attachmentAsset": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentAsset"
+            }
+          },
+          "attachmentDescription": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentDescription"
+            }
+          },
+          "attachmentUsage": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentUsage"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.facet.attribute.attributeDescription": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.facet.attribute.attributeDescription.userData"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "extendedData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.facet.attribute.attributeDescription.extendedData"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogIdentifier.externalIdentifier.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOURL.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOURL.userData.userDataField"
+            }
+          }
+        }
+      },
+      "categoryview-categoryDetails.SuggestionView": {
+        "type": "object",
+        "properties": {
+          "Entry": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categoryDetails.SuggestionView.Entry"
+            }
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categoryDetails.FacetView": {
+        "type": "object",
+        "properties": {
+          "entry": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categoryDetails.FacetView.Entry"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categoryDetails.WebContentView": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categoryDetails.WebContentView.userDataField"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "uniqueID": {
+            "type": "string"
+          },
+          "MetaData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categoryDetails.WebContentView.MetaData"
+            }
+          }
+        }
+      },
+      "categoryview-categoryDetails.userDataField": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categoryDetails.BreadCrumbTrailEntryView": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categoryDetails.CatalogGroupView": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "fullImage": {
+            "type": "string"
+          },
+          "fullImageAltDescription": {
+            "type": "string"
+          },
+          "metaKeyword": {
+            "type": "string"
+          },
+          "parentCatalogGroupID": {
+            "type": "string"
+          },
+          "longDescription": {
+            "type": "string"
+          },
+          "uniqueID": {
+            "type": "string"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categoryDetails.CatalogGroupView.userDataField"
+            }
+          },
+          "title": {
+            "type": "string"
+          },
+          "fullPath": {
+            "type": "string"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "metaDescription": {
+            "type": "string"
+          },
+          "thumbnail": {
+            "type": "string"
+          },
+          "MetaData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categoryDetails.CatalogGroupView.MetaData"
+            }
+          }
+        }
+      },
+      "categoryview-categoryDetails.MetaData": {
+        "type": "object",
+        "properties": {
+          "metakey": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categorySummary.SuggestionView": {
+        "type": "object",
+        "properties": {
+          "Entry": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categorySummary.SuggestionView.Entry"
+            }
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categorySummary.FacetView": {
+        "type": "object",
+        "properties": {
+          "entry": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categorySummary.FacetView.Entry"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categorySummary.WebContentView": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categorySummary.WebContentView.userDataField"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "uniqueID": {
+            "type": "string"
+          },
+          "MetaData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/categoryview-categorySummary.WebContentView.MetaData"
+            }
+          }
+        }
+      },
+      "categoryview-categorySummary.userDataField": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categorySummary.BreadCrumbTrailEntryView": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categorySummary.CatalogGroupView": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "parentCatalogGroupID": {
+            "type": "string"
+          },
+          "uniqueID": {
+            "type": "string"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "thumbnail": {
+            "type": "string"
+          }
+        }
+      },
+      "categoryview-categorySummary.MetaData": {
+        "type": "object",
+        "properties": {
+          "metakey": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog_entry-IBM_Admin_StandardOfferPrice_item": {
+        "required": [
+          "partNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog_entry-IBM_Admin_StandardOfferPrice_item.description"
+            }
+          },
+          "owningStoreDirectory": {
+            "type": "string"
+          },
+          "price": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.MonetaryAmountType"
+          },
+          "uniqueID": {
+            "type": "string"
+          },
+          "partNumber": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog_entry-IBM_Admin_StandardOfferPrice_item.userDataField"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentUsage": {
+        "required": [
+          "usageName"
+        ],
+        "type": "object",
+        "properties": {
+          "displaySequence": {
+            "type": "string"
+          },
+          "attachmentUsageDescription": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentUsage.attachmentUsageDescription"
+          },
+          "image": {
+            "type": "string"
+          },
+          "usageName": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.attributes": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.breadcrumbLocation": {
+        "required": [
+          "catalogGroupUniqueID"
+        ],
+        "type": "object",
+        "properties": {
+          "catalogGroupUniqueID": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.sEOURL.siteMapInfo": {
+        "type": "object",
+        "properties": {
+          "priority": {
+            "type": "number",
+            "format": "double"
+          },
+          "userData": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.sEOURL.siteMapInfo.userData"
+          },
+          "mobilePriority": {
+            "type": "number",
+            "format": "double"
+          },
+          "changeFrequency": {
+            "type": "string"
+          },
+          "mobileChangeFrequency": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogIdentifier.externalIdentifier.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogIdentifier.externalIdentifier.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentDescription.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogEntryReference.catalogEntryIdentifier.externalIdentifier.storeIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          },
+          "externalIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogEntryReference.catalogEntryIdentifier.externalIdentifier.storeIdentifier.externalIdentifier"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentUsage.attachmentUsageDescription": {
+        "type": "object",
+        "properties": {
+          "userData": {
+            "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentUsage.attachmentUsageDescription.userData"
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "longDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.rule.element.nVP": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentDescription.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.attachmentReference.attachmentDescription.userData.userDataField"
+            }
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.description.override.attributes": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogGroupIdentifier.externalIdentifier.storeIdentifier.externalIdentifier": {
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "nameIdentifier": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference": {
+        "required": [
+          "displayName"
+        ],
+        "type": "object",
+        "properties": {
+          "catalogGroupIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogGroupIdentifier"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "catalogIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.association.catalogGroupReference.catalogIdentifier"
+          },
+          "navigationPath": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentAsset.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogIdentifier.externalIdentifier": {
+        "required": [
+          "identifier"
+        ],
+        "type": "object",
+        "properties": {
+          "ownerID": {
+            "type": "string"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "storeIdentifier": {
+            "$ref": "#/components/schemas/category-IBM_Admin_Details_Breadcrumb_item.navigationRelationship.catalogGroupReference.catalogIdentifier.externalIdentifier.storeIdentifier"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentUsage.attachmentUsageDescription.userData": {
+        "type": "object",
+        "properties": {
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/catalog-IBM_Admin_Details_item.attachmentReference.attachmentUsage.attachmentUsageDescription.userData.userDataField"
+            }
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentAsset.attachmentAssetIdentifier": {
+        "type": "object",
+        "properties": {
+          "uniqueID": {
+            "type": "string"
+          }
+        }
+      },
+      "catalog-IBM_Admin_Details_item.attachmentReference.attachmentReferenceDescription.userData.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.rest.catalog.handler.CatalogExportHandler-CatalogExportResponse": {
+        "required": [
+          "exportId"
+        ],
+        "type": "object",
+        "properties": {
+          "exportId": {
+            "type": "string",
+            "description": "Export ID returned from the catalog export. It can be used in the catalog download REST API."
+          }
+        }
+      },
+      "com.ibm.commerce.rest.catalog.handler.CatalogExportHandler-CatalogExportRequest": {
+        "type": "object",
+        "properties": {
+          "CSVColumnList": {
+            "type": "string",
+            "description": "A list of CSV columns to be exported. The default is to export all columns configured if it is not specified."
+          },
+          "catalogId": {
+            "type": "string",
+            "description": "The ID of the catalog to be exported. The default is the store master catalog if it is not specified."
+          },
+          "exportMode": {
+            "type": "string",
+            "description": "Export mode can be full or delta. The default is full if it is not specified."
+          },
+          "langId": {
+            "type": "string",
+            "description": "The ID of the language for the description to be exported. The default is the store default language if it is not specified."
+          }
+        }
+      }
+    }
+  },
+  "x-aes-documentation": {
+    "gettingstarted": [
+      {
+        "content": "Some REST services require authentication. HCL Commerce REST services are authenticated on secure and unsecured channels. This authentication can include the use of the WCToken and WCTrustedToken. To use REST services that require authentication, you must first get authentication data by using a supported identity services.\n\nAfter you obtain the authentication data, you must pass either the WCToken or WCTustedToken parameters, or both, within the HTTP header for every request that requires authentication. If a request is sent over HTTP, pass the WCToken parameter in the HTTP header. Do not pass the WCTrustedToken in HTTP requests, as the parameter value might display. Send both the WCToken and the WCTrustedToken parameters when the request is being sent over HTTPS.\n\nThe HCL Commerce REST APIs can also use session cookies that are created by the HCL Commerce store runtime for authentication. These cookies allow you to mix requests to the HCL Commerce REST APIs and the HCL Commerce store runtime within the same user session.\n\n See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Authentication"
+      },
+      {
+        "content": "HCL Commerce REST services support JSON and XML formats for input and output data by default. The default format is JSON. When an XML String is sent to a REST service, you must set Content-Type HTTP header to be \"application/xml\". The REST service converts the XML input data to the JSON format that is accepted by REST services. Therefore, your input XML format must follow a certain structure so that it can be transformed to the JSON object that is accepted by REST services. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html</a> ",
+        "codeSnippets": [],
+        "name": "Response formats"
+      },
+      {
+        "content": "Preview tokens are encrypted strings that encapsulates a set of preview options and restrictions on when and where the token can be used. Any user who is authorized to access your server and has a preview token, can complete preview actions in the same store for which that token is generated. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a>",
+        "codeSnippets": [],
+        "name": "Preview tokens"
+      },
+      {
+        "content": "Some HCL Commerce REST services require a request to be sent over HTTPS. Learn more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Secure Sockets Layer"
+      }
+    ]
+  }
+}

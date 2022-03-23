@@ -1,0 +1,34 @@
+{
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "eslint:recommended",
+    "prettier",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "ignorePatterns": [
+    "**/*.js",
+    "**/setupProxy.js",
+    "**/*.scss",
+    "**/*.json",
+    "**/*.sh",
+    "**/.gitignore",
+    ".eslintrc",
+    "**/apis/mock/",
+    "**/__tests__/",
+    "assets/",
+    "build/",
+    "dist/",
+    "mocks",
+    "public/",
+    "tools/",
+    "README.md"
+  ],
+  "parserOptions": { "project": "./tsconfig.json" },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "@typescript-eslint/no-inferrable-types": "off"
+  }
+}

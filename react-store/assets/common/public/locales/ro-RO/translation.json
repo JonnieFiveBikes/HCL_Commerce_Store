@@ -1,0 +1,1184 @@
+{
+  "Footer": {
+    "CompanyLinks": {
+      "Label": "Companie",
+      "OurStory": "Povestea noastră",
+      "Careers": "Cariere"
+    },
+    "Copyright": "Drepturi de autor HCL Technologies Limited 2020. Toate drepturile sunt rezervate.",
+    "CustomerService": {
+      "Label": "Servicii pentru clienți",
+      "ContactUs": "Contactați-ne",
+      "ContactUsDescription": "Contactați-ne",
+      "PrivacyPolicy": "Politica de confidențialitate"
+    },
+    "FollowUs": "Urmăriți-ne",
+    "Description": "Această mostră de fațadă magazin este construită pe React și HCL Commerce. HCL Commerce face comerțul agil @ scală o realitate.",
+    "DisabledMessage": "Ne pare rău, această pagină este încă în dezvoltare."
+  },
+  "Header": {
+    "Actions": {
+      "SignIn": "Autentificare",
+      "SignInRegister": "Autentificare / Înregistrare",
+      "WelcomeFirstname": "Bine ați venit, {{firstName}}",
+      "WelcomeNoFirstname": "Bine ați venit, {{lastName}}",
+      "WishList": "Listă de dorințe",
+      "YourAccount": "Contul dvs.",
+      "Account": "Cantitate"
+    },
+    "AccountPopper": {
+      "Welcome": "Bine ați venit, {{firstName}} {{lastName}}",
+      "Organization": "Organizație",
+      "Contract": "Contract",
+      "Edit": "Editare",
+      "AccountSetting": "Setări cont",
+      "SignOut": "Deconectare",
+      "Cart": "Coș ({{count}} articol)",
+      "Cart_plural": "Coș ({{count}} articole)"
+    }
+  },
+  "MegaMenu": {
+    "Title": "Produse",
+    "Actions": {
+      "ViewAll": "Vizualizare toate"
+    }
+  },
+  "AllCategoriesExpandedMenu": {
+    "AllCategoriesLabel": "Toate categoriile"
+  },
+  "MiniCart": {
+    "Items": "{{count}} articol",
+    "Items_plural": "{{count}} articole",
+    "Title": "Comanda dvs. curentă",
+    "Subtotal": "Subtotalul pentru {{count}} articol",
+    "Subtotal_plural": "Subtotalul pentru {{count}} articole",
+    "Empty": "Nu există articole în coșul dvs.",
+    "Actions": {
+      "Cart": "Vizualizați tot coșul",
+      "CheckOut": "Finalizare comandă",
+      "ViewOrderDetails": "Vizualizare detalii comandă"
+    },
+    "MyOrder": "Comanda mea",
+    "PrivateOrder": "Comandă privată",
+    "SharedOrderConributor": "Comandă partajată (contribuitor)",
+    "SharedOrderAdmin": "Comandă partajată (administrator)"
+  },
+  "Language": {
+    "-1": "Engleză (SUA)",
+    "-2": "Franceză",
+    "-3": "Germană",
+    "-4": "Italiană",
+    "-5": "Spaniolă",
+    "-6": "Portugheză braziliană",
+    "-7": "Chineză simplificată",
+    "-8": "Chineză tradițională",
+    "-10": "Japoneză",
+    "-20": "Rusă",
+    "-21": "Română",
+    "-9": "Coreeană",
+    "-22": "Poloneză",
+    "-23": "Arabă"
+  },
+  "productDetail": {
+    "Quantity": "Cantitate",
+    "QtyError": "Cantitatea trebuie să fie mai mare sau egală cu 1.",
+    "Availability": "Disponibilitate",
+    "AddToCart": "Adăugare la coş",
+    "AddBundleToCart": "Adăugare pachet la comandă",
+    "AddBundleToSharedOrder": "Adăugare la comanda partajată",
+    "SelectAttributes": "Selectare atribute",
+    "Description": "Descriere",
+    "ProductDetails": "Detalii produs",
+    "Attachments": "Fișiere atașate",
+    "AllAttachments": "Toate fișierele atașate",
+    "ViewAll": "Vizualizare toate",
+    "Images": "Imagini",
+    "Videos": "Înregistrări video",
+    "Documents": "Documente",
+    "PricePending": "Preţ în aşteptare",
+    "addToCartErrorMsg": "Valorile din câmpurile Cantitate sunt nevalide sau goale. Asigurați-vă că valorile sunt numere întregi pozitive și încercați din nou.",
+    "any": "Oricare",
+    "showAttributes": "Afișare atribute",
+    "attributeFilter": "Filtrare atribut",
+    "addToCurrentOrder": "Adăugare la comandă",
+    "addToSharedOrder": "Adăugare la comanda partajată",
+    "SignIn": "Autentificați-vă pentru a cumpăra",
+    "noproductsToDisplay": "Niciun produs de afișat. Schimbați Filtrul atribut și încercați din nou.",
+    "SKU": "SKU",
+    "PRODUCTSKU": "PRODUS/SKU",
+    "SelectAnOption": "Selectați o opțiune",
+    "Unconfigured": "Neconfigurat",
+    "Unavailable": "Indisponibil",
+    "InStock": "În stoc",
+    "Price": "Preț",
+    "Online_Availability": "Disponibilitate online",
+    "recommendedProdTitle": "Recomandare produse ",
+    "someWithNoSkus": "Unul sau mai multe produse din listă au atribute neselectate. Completați selecțiile de atribute.",
+    "someWithNoAvlSelZero": "Unul sau mai multe articole selectate nu au inventar disponibil. Modificați cantitatea la 0 pentru a ignora aceste articole.",
+    "someWithNotEnough": "Unul sau mai multe articole selectate nu au inventar disponibil. Modificați cantitatea la o valoare mai mică sau egală cu inventarul disponibil curent.",
+    "selectSomething": "Nu a fost selectat niciun articol. Alegeți cel puțin un element."
+  },
+  "AddressBook": {
+    "AddrMsg": "Adăugare adresă nouă",
+    "AddButton": "Aăugare adresă",
+    "Title": "Agendă",
+    "FilterLabel": "Filtrare în funcție de tipul adresei",
+    "NoAddrMsg": "Nu aveți nicio adresă salvată.",
+    "NoAddrForFilterMsg": "Nu există nicio adresă cu acest tip de filtru.",
+    "ShowAllLabel": "Afișare toate",
+    "ShippingLabel": "Livrare",
+    "BillingLabel": "Facturare",
+    "ShippingBillingLabel": "Livrare și facturare",
+    "CreateAddress": "Creare adresă",
+    "SaveChanges": "Salvare modificări",
+    "Cancel": "Anulare",
+    "EditAddress": "Editare adresă"
+  },
+  "Cart": {
+    "Title": "Coș de cumpărături",
+    "Msgs": {
+      "Empty": "Coșul de cumpărături este gol. Cumpărați acum!",
+      "PromoCode": "Introduceți codul promoțional"
+    },
+    "Labels": {
+      "PromoCode": "Cod promo",
+      "RecurringOrder": "Programați-o ca o comandă recurentă",
+      "Frequency": "Frecvență",
+      "StartDate": "Dată pornire",
+      "OrderSummary": "Sumar comandă"
+    },
+    "Actions": {
+      "Checkout": "Finalizare comandă",
+      "Apply": "Aplicare",
+      "Checkout-With-Profile": "Finalizare a comenzii cu profil"
+    }
+  },
+  "CheckoutAddress": {
+    "Actions": {
+      "Submit": "Salvează și selectează această adresă",
+      "Cancel": "Anulare"
+    },
+    "Payment": {
+      "ChooseFirst": "Alegeți mai întâi o metodă de plată."
+    }
+  },
+  "Checkout": {
+    "Title": "Finalizare comandă",
+    "CheckoutProfileTitle": "Profil de finalizare a comenzilor",
+    "Labels": {
+      "shipping": "Livrare",
+      "payment": "Plată",
+      "review": "Revizuire comandă"
+    },
+    "Actions": {
+      "ReturnCart": "Revenire la coș",
+      "BackTo": "Înapoi la {{step}}",
+      "ContinueTo": "Continuare cu {{step}}",
+      "PlaceOrder": "Plasare comandă"
+    }
+  },
+  "Payment": {
+    "Title": "Detalii de plată",
+    "Msgs": {
+      "InvalidFormat": "Format nevalid"
+    },
+    "Labels": {
+      "UseMultiple": "Folosiți mai multe metode de plată",
+      "PaymentMethod": "Metoda de plată {{number}}",
+      "AddNewAddress": "Adăugare adresă nouă",
+      "BillingAddress": "Adresă de facturare"
+    },
+    "Actions": {
+      "Back": "Înapoi la Detaliile livrării",
+      "Next": "Revizuire comandă",
+      "Finish": "Finalizare",
+      "SaveAndAdd": "Salvați și adăugați o altă metodă de plată",
+      "AddAnotherPayMethod": "Adăugați o altă metodă de plată"
+    }
+  },
+  "MultipleShipmentTable": {
+    "Labels": {
+      "ItemDetails": "Detalii articol",
+      "SKU": "SKU: ",
+      "Quantity": "Cantitate",
+      "ShippingDetails": "Detalii livrare",
+      "SelectShippingAddressAndMethod": "Selectați adresa și metoda de expediere",
+      "ChangeSelection": "Schimbare selecție",
+      "nItemsSel": "{{ n }} articole selectate",
+      "noItems": "Niciun articol găsit"
+    }
+  },
+  "Shipping": {
+    "Title": "Detalii livrare",
+    "Labels": {
+      "UseMultiple": "Livrare la mai multe adrese",
+      "ShippingAddress": "Adresă de livrare",
+      "ShippingMethod": "Metodă de livrare",
+      "SelectShippingMethod": "Alegeți metoda de livrare",
+      "AddNewAddress": "Adăugare adresă nouă",
+      "EditAddress": "Editare adresă",
+      "SelectedCount": "{{selected}} din {{all}} articole selectate",
+      "ItemsSelected": "{{itemsSelected}} articole selectate"
+    },
+    "Actions": {
+      "SelectAddress": "Folosiți această adresă",
+      "CreateNew": "Creare adresă nouă",
+      "Next": "Continuare către Plată",
+      "Confirm": "Confirmare selecție",
+      "Cancel": "Anulare",
+      "SelectShippingAddress": "Selectați adresa și metoda de expediere"
+    },
+    "Msgs": {
+      "UseSavedAddress": "Sau selectați o adresă salvată pentru folosire:",
+      "SelectShippingAddress": "Alegeți mai întâi o adresă de expediere"
+    }
+  },
+  "OrderConfirmation": {
+    "Title": "Confirmare comandă",
+    "Msgs": {
+      "Heading": "Am primit comanda dvs.",
+      "Pending": "Comanda dvs. este în așteptare",
+      "OrderNumber": "Comanda #{{orderId}}",
+      "Details": "O copie a confirmării a fost trimisă la {{emails}}.",
+      "PendingDetails": "Comanda dvs. depășește limita permisă pentru preț. Comanda trebuie aprobată de un administrator înainte de a putea fi procesată.",
+      "ThankYou": "Vă mulțumim pentru că ați cumpărat de la {{storeName}}."
+    }
+  },
+  "SignInPage": {
+    "Title": "Autentificare / Înregistrare"
+  },
+  "Account": {
+    "Title": "Contul meu"
+  },
+  "AccountSummary": {
+    "Title": "Informații personale"
+  },
+  "ChangePasswordSection": {
+    "Title": "MODIFICARE PAROLĂ",
+    "CurrentPasswordLabel": "Parolă curentă",
+    "NewPasswordLabel": "Parola nouă",
+    "VerifyPasswordLabel": "Verificare parolă",
+    "SaveLabel": "Actualizare",
+    "SuccessLabel": "Parola a fost modificată cu succes",
+    "OkLabel": "OK"
+  },
+  "PersonalInformationSection": {
+    "Title": "INFORMAȚII PERSONALE",
+    "Name": "Nume",
+    "EmailAddress": "Adresă e-mail",
+    "PhoneNumber": "Număr de telefon",
+    "Address": "Adresă",
+    "SaveChanges": "Salvaţi modificările",
+    "UpdateSuccessful": "Actualizare cu succes"
+  },
+  "WelcomeUserSection": {
+    "Title": "Bine ați venit, ",
+    "Message": "Acesta este sumarul contului dvs. Puteți modifica informațiile personale și gestiona opțiunile disponibile pentru contul dvs."
+  },
+  "AdminTools": {
+    "buyerManagement": "Gestionare cumpărător",
+    "orgAndBuyer": "Aprobare cumpărător și comandă",
+    "orgManagement": "Gestionarea organizației",
+    "buyerManagementDesc": "Creați, editați sau eliminați cumpărătorii din cadrul organizațiilor dvs.",
+    "orgAndBuyerDesc": "Aprobați sau respingeți înregistrările și comenzile cumpărătorului",
+    "orgManagementDesc": "Adăugați și vizualizați organizațiile dvs.",
+    "adminTools": "Instrumente administrative"
+  },
+  "BuyerOrganizationRegistration": {
+    "OrganizationRegistration": "Înregistrați-vă organizația",
+    "BuyerAdminRegistration": "Înregistrați un administrator",
+    "Title": "Înregistrare organizație",
+    "AddressDetails": "Detalii adresă",
+    "AddressLineAdd": "Adresă - Linia 2",
+    "Back": "Înapoi",
+    "NextRegister": "După aceea, înregistrați un administrator",
+    "CompleteRegistration": "Finalizare înregistrare",
+    "HereAnAccount": "Aveți deja un cont?",
+    "SignIn": "Autentificare",
+    "OrganizationName": "Nume organizație",
+    "AccountPreferences": "Preferințe cont",
+    "Email": "E-mail",
+    "Address1": "Adresă - Linia 1",
+    "Address2": "Linie adresă 2 (opțional)",
+    "City": "Oraș",
+    "Country": "Țară",
+    "State": "Stat / Provincie",
+    "ZipCode": "Cod ZIP / Cod poștal",
+    "FirstName": "Prenume",
+    "LastName": "Nume de familie",
+    "LogonId": "Id conectare",
+    "Phone": "Telefon (opțional)",
+    "Password": "Parolă",
+    "Password2": "Verificare parolă",
+    "Language": "Limbă preferată",
+    "Currency": "Valută preferată",
+    "UseOrganizationAddress": "Folosește aceeași adresă ca organizația",
+    "Submit": "Trimitere",
+    "Clear": "Golire",
+    "Success": "Solicitarea dvs. de înregistrare a fost primită. Contul dvs. așteaptă aprobarea. Nu vă puteți conecta înainte de aprobarea contului.",
+    "OK": "OK",
+    "Msgs": {
+      "InvalidFormat": "Format nevalid"
+    }
+  },
+  "BuyerUserRegistration": {
+    "Title": "Înregistrare cumpărător",
+    "Description": "Dacă organizația dvs. are deja un cont la acest magazin, înregistrați-vă singur pentru a putea cumpăra din cont și plasa comenzi. Atunci când înregistrarea se aprobă, vă puteți autentifica în magazin și puteți cumpăra.",
+    "OrgName": "Organizație",
+    "Email": "E-mail",
+    "Address1": "Adresă - Linia 1",
+    "Address2": "Linie adresă 2 (opțional)",
+    "City": "Oraș",
+    "Country": "Țară",
+    "State": "Stat / Provincie",
+    "ZipCode": "Cod zip / poștal",
+    "FirstName": "Prenume",
+    "LastName": "Nume de familie",
+    "LogonId": "Id conectare",
+    "Phone": "Telefon (opțional)",
+    "Password": "Parolă",
+    "Password2": "Verificare parolă",
+    "Language": "Limbă preferată",
+    "Currency": "Valută preferată",
+    "AddressDetails": "Detalii adresă",
+    "AccountPreferences": "Preferințe cont",
+    "HaveAccount": "Aveți deja un cont?",
+    "AddressLineAdd": "Adăugare Adresă - Linia 2",
+    "SignIn": "Autentificare",
+    "Submit": "Finalizare înregistrare",
+    "Clear": "Golire",
+    "Success": "Solicitarea de activare a contului dvs. a fost primită. Activați-vă contul pentru conectare.",
+    "OK": "OK",
+    "Msgs": {
+      "InvalidFormat": "Format nevalid"
+    }
+  },
+  "Dashboard": {
+    "Title": "Panou de bord",
+    "AccountSettings": "Setări cont",
+    "PersonalInformation": "Informații personale",
+    "AddressBook": "Agendă",
+    "OrderManagement": "Gestionare comandă",
+    "OrderHistory": "Istoric comandă",
+    "RecurringOrders": "Comenzi recursive",
+    "RequisitionLists": "Listele de rechiziție",
+    "InprogressOrders": "Comenzi în curs",
+    "ApproveOrders": "Aprobare comandă"
+  },
+  "Order": {
+    "noPO": "Niciuna",
+    "Status_A": "Autorizarea plății necesită revizuire",
+    "Status_B": "Comandat înapoi",
+    "Status_C": "Plată aprobată",
+    "Status_D": "Comandă finalizată",
+    "Status_E": "Editată momentan de magazin",
+    "Status_F": "Comandă transferată pentru procesare",
+    "Status_G": "Procesare comandă",
+    "Status_I": "Trimis",
+    "Status_K": "Retur asociat",
+    "Status_L": "Inventar insuficient",
+    "Status_M": "Comandă recepționată și pregătită pentru procesare",
+    "Status_N": "Aprobare refuzată",
+    "Status_P": "Comandă în așteptare",
+    "Status_R": "Inventar procesat",
+    "Status_S": "Comandă trimisă",
+    "Status_T": "Blocată momentan de magazin",
+    "Status_W": "Aprobare în așteptare",
+    "Status_V": "Livrată parțial",
+    "Status_X": "Comandă anulată",
+    "NotAvailable": "Nu sunt disponibile informații",
+    "OrderId": "Id comandă",
+    "PONumber": "Număr comandă",
+    "OrderDate": "Data comenzii",
+    "Schedule": "Programare comandă",
+    "NextOrder": "Comanda următoare",
+    "Status": "Stare",
+    "TotalPrice": "Preț total",
+    "Actions": "Acțiuni",
+    "RowCount": "Se afișează de la {from} la {to} din {count}",
+    "NoRecord": "Nu a fost găsită nicio comandă.",
+    "InvalidOrderId": "Introduceți un Id comandă valid.",
+    "Search": "Căutare",
+    "PageSizeLabel": "rânduri",
+    "FirstPage": "Prima pagină",
+    "LastPage": "Ultima pagină",
+    "PreviousPage": "Pagina anterioară",
+    "NextPage": "Pagina următoare",
+    "OrderHistory": "Istoric comandă",
+    "RecurringOrders": "Comenzi recursive",
+    "Once": "Doar o dată",
+    "EveryXDAY": "La fiecare {{frequency}} zi",
+    "EveryXDAY_plural": "La fiecare {{frequency}} zile",
+    "EveryXWEE": "La fiecare {{frequency}} săptămână",
+    "EveryXWEE_plural": "La fiecare {{frequency}} săptămâni",
+    "EveryXMON": "La fiecare {{frequency}} luni",
+    "EveryXMON_plural": "La fiecare {{frequency}} luni",
+    "StateInactive": "Inactivă",
+    "StateActive": "Activă",
+    "StateExpired": "Expirată",
+    "StateCancelled": "Anulată",
+    "StateCompleted": "Terminat",
+    "StateSuspended": "Suspendată",
+    "StatePendingCancel": "Anulare în așteptare",
+    "TooltipCancel": "Anulare",
+    "TooltipReOrder": "Repetare comandă",
+    "FilterResults": "Filtrare rezultate",
+    "OrderDetails": "Detalii comandă",
+    "OrderNumber": "Număr comandă",
+    "HistorySearchPlaceHolder": "Căutare în funcție de ID comandă",
+    "HistoryViewDetailTooltip": "Vizualizare detalii comandă",
+    "Pending": "În așteptare"
+  },
+  "Category": {},
+  "AccountLinksGridView": {
+    "Title": "Instrumentele contului meu",
+    "AddressBookText": "Agendă",
+    "AddressBookDescription": "Gestionați și editați adresele salvate",
+    "OrderHistoryText": "Istoric comandă",
+    "OrderHistoryDescription": "Vizualizați comenzile plasate și comenzile în așteptarea aprobării și detaliile individuale ale comenzii",
+    "WishListText": "Listă de dorințe",
+    "WishListDescription": "Listă de dorințe"
+  },
+  "AccountLinks": {
+    "Title": "Setări cont",
+    "PersonalInformationText": "Informații personale",
+    "PersonalInformationDescription": "Vizualizați și editați informațiile personale ale contului",
+    "AddressBookText": "Agendă",
+    "AddressBookDescription": "Gestionați și editați adresele salvate",
+    "DisabledMessage": "Ne pare rău, această pagină este încă în dezvoltare."
+  },
+  "MyAccount": {
+    "Title": "Contul meu",
+    "AccountSettings": "Setări cont",
+    "PersonalInformation": "Informații personale",
+    "AddressBook": "Agendă",
+    "OrderHistory": "Istoric comandă",
+    "Wishlists": "Liste de dorințe",
+    "CheckoutProfiles": "Profiluri de finalizare a comenzilor"
+  },
+  "AddressCard": {
+    "EditButton": "Editare",
+    "DeleteButton": "Ștergere",
+    "Confirm": "Confirmare șteregere",
+    "Cancel": "Anulare",
+    "UseAddress": "Folosiți această adresă"
+  },
+  "AddressForm": {
+    "Msgs": {
+      "InvalidFormat": "Format nevalid",
+      "InvalidAddressName": "Numele adresei poate conține doar caractere alfanumerice (A-Z, a-z, 0-9) și spații goale."
+    },
+    "Labels": {
+      "FirstName": "Prenume",
+      "LastName": "Nume de familie",
+      "Address1": "Adresă - Linia 1",
+      "Address2": "Linie adresă 2 (opțional)",
+      "City": "Oraș",
+      "Country": "Țară",
+      "State": "Stat / Provincie",
+      "ZipCode": "Cod zip / poștal",
+      "Phone": "Telefon (opțional)",
+      "Email": "E-mail",
+      "NickName": "Nume adresă",
+      "AddressType": "Tip adresă",
+      "Shipping": "Livrare",
+      "Billing": "Facturare",
+      "ShippingAndBilling": "Livrare și facturare"
+    }
+  },
+  "ChangePassword": {
+    "Title": "Modificare parolă",
+    "CurrentPasswordLabel": "Parolă curentă",
+    "NewPasswordLabel": "Parola nouă",
+    "VerifyPasswordLabel": "Verificare parolă",
+    "SaveLabel": "Salvare",
+    "CancelLabel": "Anulare",
+    "SuccessLabel": "Parola a fost modificată cu succes",
+    "OkLabel": "OK"
+  },
+  "CheckoutProfile": {
+    "ShippingInformation": "Informații despre livrare",
+    "CreateCheckoutTitle": "Creare profil de finalizare a comenzilor",
+    "CreateCheckoutButton": "Creare profil de finalizare a comenzilor nou",
+    "BillingInformation": "Informații facturare",
+    "PaymentInformation": "Informații de plată",
+    "ShippingMethod": "Metodă de livrare",
+    "ShipSameAsBill": "Adresa de facturare este identică cu cea de livrare",
+    "Cancel": "Anulare",
+    "Next": "Înainte",
+    "Back": "Înapoi",
+    "CreateProfile": "Creare profil",
+    "UpdateProfile": "Actualizare profil",
+    "Title": "Selectare profil de finalizare a comenzilor",
+    "Label": "Selectare profil de finalizare a comenzilor existent",
+    "MyAcctDesc": "Gestionare și editare profiluri de finalizare a comenzilor rapide pentru finalizări ale comenzii mai rapide",
+    "Name": "Nume profil de finalizare a comenzilor",
+    "Edit": "Editare",
+    "Delete": "Ștergere",
+    "NoneFound": "<0>Aceasta este o nereușită.</0><1>Ne pare rău, însă nu am putut găsi acel profil de finalizare a comenzilor.</1><2>Încercați alt profil de finalizare a comenzilor sau <0>sau creați</0> un profil de finalizare a comenzilor nou.</2>",
+    "NoProfiles": "Nu au fost găsite profiluri de finalizare a comenzilor. <0>Creați</0> un profil de finalizare a comenzilor nou.",
+    "TitleCreate": "Profiluri de finalizare a comenzilor",
+    "CreateMessage": "Creare profil de  finalizare a comenzilor nou",
+    "CreateNewButton": "Creare nou",
+    "ShippingAddr": "ADRESĂ DE LIVRARE",
+    "ShippingMethodDisp": "METODĂ DE LIVRARE",
+    "BillingAddr": "ADRESĂ DE FACTURARE",
+    "BillingMethod": "METODĂ DE FACTURARE",
+    "EditProfile": "Editare profil de finalizare a comenzilor",
+    "ShipAsComplete": "LIVRARE CA FIIND COMPLET",
+    "confirmDelete": "Confirmare șteregere",
+    "selectExisting": "Selectați o adresă existentă. Altfel, <0>creați una nouă</0>.",
+    "sm_Express": "Expres",
+    "sm_Mail": "E-mail",
+    "sm_InternationalPriority": "Internațional - prioritar",
+    "sm_InternationalRegular": "Internațional - obișnuit",
+    "sm_PickupInStore": "Ridicare din magazin",
+    "saveAddress": "Salvare adresă",
+    "invalidProfile": "Acest profil nu este valid. Editați și alegeți o adresă nouă.",
+    "invalidProfileName": "Numele profilului poate conține doar caractere alfanumerice (A-Z, a-z, 0-9) și spații.",
+    "selectExpMonth": "Selectare lună expirare",
+    "selectExpYear": "Selectare an expirare",
+    "payMethods": {
+      "VISA": "Card de credit VISA",
+      "MasterCard": "Card de credit MasterCard",
+      "AMEX": "Card de credit American Express",
+      "COD": "Numerar la livrare"
+    }
+  },
+  "ChildPimCategories": {
+    "title": "Toate {{name}}"
+  },
+  "Confirmation": {
+    "ScheduleOrderCancel": "Toate viitoarele livrări pentru această comandă vor fi anulate.",
+    "ScheduleOrderCancelNotification": "Anularea comenzii necesită o notificare de 12 ore. Toate comenzile ulterioare vor fi anulate, cu excepția comenzii pentru {{next}} care va fi livrată conform programului. Sigur doriți să anulați?",
+    "CancelRecurringOrder": "Anulare comandă recursivă",
+    "SubmitButton": "OK",
+    "CancelButton": "Anulare"
+  },
+  "FeaturedCard": {
+    "ShopNow": "Cumpărați acum"
+  },
+  "ForgotPassword": {
+    "Title": "Ați uitat parola?",
+    "EmailLabel": "Adresă e-mail",
+    "SubmitButton": "Trimitere",
+    "LogonIDLabel": "ID conectare",
+    "ContentText": "Introduceți adresa de e-mail. Veți primi un cod de verificare pentru resetarea parolei.",
+    "ContentTextLogonID": "Introduceți ID-ul de conectare. Veți primi la adresa de e-mail a contului dvs. un cod de verificare pentru resetarea parolei.",
+    "ValidationCodeButton": "Introduceți codul de verificare",
+    "SendVerificationCodeButton": "Trimite-mi codul de verificare",
+    "CodeRecieved": "Ați primit deja un cod de verificare?",
+    "AccountInfoRemember": "Reținere informații despre contul dvs.? ",
+    "SignIn": "Autentificare acum",
+    "Msgs": {
+      "InvalidFormat": "Format nevalid"
+    }
+  },
+  "PriceDisplay": {
+    "Labels": {
+      "Pending": "Preț în așteptare"
+    }
+  },
+  "error-message": {
+    "_ERR_CMD_INVALID_PARAM_2020": "Tastați un ID de conectare în câmpul ID conectare.",
+    "_ERR_CMD_INVALID_PARAM_2050": "Tastați parola în câmpul Parolă.",
+    "_ERR_CMD_INVALID_PARAM_2070": "Tastați parola în câmpul Verificare parolă.",
+    "_ERR_CMD_INVALID_PARAM_5060": "Tastați un nume în câmpul Nume de familie.",
+    "_ERR_CMD_INVALID_PARAM_5066": "Tastați un nume în câmpul Prenume.",
+    "_ERR_CMD_INVALID_PARAM_5210": "Tastați o adresă de e-mail în câmpul E-mail.",
+    "_ERR_CMD_INVALID_PARAM_2190": "Codul de validare pe care l-ați introdus este incorect. Verificați codul pe care l-ați primit și încercați din nou.",
+    "_ERR_CMD_INVALID_PARAM_2080": "Parola introdusă în câmpul verificare parolă nu este identică cu cea introdusă în câmpul parolă nouă.",
+    "_ERR_CMD_INVALID_PARAM": "A apărut o eroare în timpul înregistrării. Încercați din nou mai târziu sau contactați magazinul pentru asistență.",
+    "_ERR_LOGONID_ALREDY_EXIST_2030": "E-mailul introdus există deja. Introduceți un e-mail diferit și încercați din nou.",
+    "_ERR_PASSWORDS_NOT_SAME_2080": "Valoarea introdusă la verificare parolă nu este identică cu parola dvs. Tastați parola dvs. în câmpul Verificare parolă și încercați din nou.",
+    "_ERR_USER_ALREADY_REGISTERD": "Sunteți deja autentificat în magazin. Pentru înregistrare, deconectați-vă și încercați din nou să vă înregistrați.",
+    "_ERR_AUTHENTICATION_MINIMUMLENGTH_PASSWORD_2200": "Ați introdus o parolă cu mai puțin de {{0}} caractere. Parolele trebuie să conțină cel puțin {{0}} caractere și trebuie să includă {{1}} număr(numere) și {{2}} literă(litere). Introduceți o parolă diferită.",
+    "_ERR_AUTHENTICATION_MAXCONSECUTIVECHAR_PASSWORD_2210": "Parola conține un caracter care se repetă de peste {{0}} ori la rând. Introduceți o altă parolă.",
+    "_ERR_AUTHENTICATION_MAXINTANCECHAR_PASSWORD_2220": "Parola  conține un caracter care este folosit de peste {{0}} ori. Introduceți o altă parolă.",
+    "_ERR_AUTHENTICATION_MINIMUMLETTERS_PASSWORD_2230": "Parola dvs. nu conține {{0}} literă (litere). Parolele trebuie să includă cel puțin {{1}} caractere și trebuie să includă {{2}} număr(numere) și {{0}} literă(litere). Introduceți o parolă diferită.",
+    "_ERR_AUTHENTICATION_MINIMUMDIGITS_PASSWORD_2240": "Parola dvs.nu conține {{0}} număr (numere). Parolele trebuie să includă cel puțin {{1}} caractere și trebuie să includă {{2}} număr(numere) și {{0}} literă(litere). Introduceți o parolă diferită.",
+    "_ERR_AUTHENTICATION_USERIDMATCH_PASSWORD_2250": "Parola este identică cu ID-ul de conectare. Tastați o parolă diferită de ID-ul de conectare.",
+    "_ERR_AUTHENTICATION_REUSEOLD_PASSWORD_2260": "Parola introdusă anterior a mai fost folosită. Introduceți o parolă nouă.",
+    "_2040": "Tastați parola curentă în câmpul Parolă curentă.",
+    "_2060": "Tastați parola în câmpul Parolă.",
+    "_2070": "Tastați parola în câmpul Confirmare parolă.",
+    "_2200": "Ați introdus o parolă care are mai puțin de {{0}} caractere. Parolele trebuie să includă cel puțin {{1}} caractere și trebuie să includă {{2}} număr(numere) și {{0}} literă(litere). Introduceți o parolă diferită.",
+    "_2210": "Parola conține un caracter care se repetă de peste {{0}} ori la rând. Introduceți o altă parolă.",
+    "_2220": "Parola conține un caracter care este folosit de peste {{0}} ori. Introduceți o altă parolă.",
+    "_2230": "Parola dvs. nu conține {{0}} literă (litere). Parolele trebuie să includă cel puțin {{1}} caractere și trebuie să includă {{2}} număr(numere) și {{0}} literă(litere). Introduceți o parolă diferită.",
+    "_2240": "Parola dvs. nu conține {{0}} număr (numere). Parolele trebuie să includă cel puțin {{1}} caractere și trebuie să includă {{2}} număr(numere) și {{0}} literă(litere). Introduceți o parolă diferită.",
+    "_ERR_BAD_PARMS_2050": "Parola introdusă nu este corectă. Tastați parola curentă în câmpul Parolă curentă și încercați din nou.",
+    "_ERR_BAD_PARMS_2080": "Parola introdusă în câmpul verificare parolă nu este identică cu cea introdusă în câmpul parolă nouă. Tastați parola dvs. în câmpul Verificare parolă și încercați din nou.",
+    "_2250": "Parola este identică cu ID-ul de conectare. Tastați o parolă diferită de ID-ul de conectare.",
+    "_2260": "Parola introdusă anterior a mai fost folosită. Introduceți o parolă nouă.",
+    "_ERR_AUTHENTICATION_ERROR_2000": "Tastați un ID de conectare în câmpul ID conectare.",
+    "_ERR_AUTHENTICATION_ERROR_2010": "ID-ul de conectare sau parola introdusă nu este corectă. Introduceți din nou informațiile.",
+    "_ERR_AUTHENTICATION_ERROR_2020": "ID-ul de conectare sau parola introdusă nu este corectă. Introduceți din nou informațiile.",
+    "_ERR_AUTHENTICATION_ERROR_2030": "Acreditările de conectare introduse nu sunt valide. Verificați ce ați introdus și încercați din nou.",
+    "_ERR_PASSWORD_FAILED_CMN1019E": "ID-ul de conectare sau parola introdusă nu este corectă. Introduceți din nou informațiile.",
+    "_ERR_PERSON_ACCOUNT_DISABLED_2110": "Acest cont este blocat. Contactați magazinul pentru a vă debloca contul.",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Din cauza a {{0}} încercări nereușite de introducere a parolei, nu veți putea să vă autentificați. Resetați-vă parola sau contactați Reprezentantul de service al clientului pentru asistență.",
+    "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "Așteptați câteva secunde înainte de a încerca din nou autentificarea.",
+    "_2400": "Organizația dvs. este blocată. Momentan nu vă puteți autentifica. ",
+    "_2410": "Nu aveți autoritatea corespunzătoare pentru autentificare. Contactați magazinul pentru mai multe informații.",
+    "_2420": "Nu v-ați activat contul. Trebuie să răspundeți la e-mailul de activare primit.",
+    "_2450": "Nu v-ați activat contul. Trebuie să răspundeți la e-mailul de activare primit.",
+    "_2430": "Parola a fost resetată. Obțineți parola temporară din e-mail și autentificați-vă din nou.",
+    "_2570": "Contul dvs. nu este activat. Dacă ați răspuns deja la e-mailul de activare primit, contactați magazinul nostru pentru asistență.",
+    "_ERR_GENERIC_2110": "Contul dvs. este blocat. Contactați magazinul pentru a vă debloca contul.",
+    "_ERR_MISSING_PARMS_2000": "Tastați un ID de conectare în câmpul ID conectare.",
+    "_ERR_MISSING_PARMS_2010": "ID-ul de conectare introdus nu este valid. Verificați ce ați introdus și încercați din nou.",
+    "_ERR_BAD_PARMS_2010": "E-mailul introdus nu este valid. Verificați ce ați introdus și încercați din nou.",
+    "_ERR_CMD_MISSING_PARAM_2020": "Tastați parola în câmpul Parolă.",
+    "_ERR_MISSING_PARMS_2040": "Tastați parola curentă în câmpul Parolă curentă.",
+    "_ERR_MISSING_PARMS_2060": "Tastați o parolă nouă în câmpul Parolă.",
+    "_ERR_MISSING_PARMS_2070": "Tastați o parolă nouă în câmpul Verificare parolă.",
+    "_ERR_MISSING_PARMS_2100": "Acest utilizator nu are o adresă de e-mail.",
+    "_ERR_BAD_PARMS_1020": "Parola pentru acest ID de conectare nu poate fi resetată. Contactați magazinul pentru asistență.",
+    "_ERR_CMD_INVALID_PARAM_5080": "Tastați o adresă în câmpul Adresă stradă.",
+    "_ERR_CMD_INVALID_PARAM_5100": "Tastați un nume de oraș în câmpul Oraș.",
+    "_ERR_CMD_INVALID_PARAM_5120": "Tastați un nume de stat sau provincie în câmpul Stat/provincie.",
+    "_ERR_CMD_INVALID_PARAM_5140": "Tastați un cod ZIP sau poștal în câmpul cod ZIP/poștal.",
+    "_ERR_CMD_INVALID_PARAM_5160": "Tastați un nume de țară sau regiune în câmpul Țară/regiune.",
+    "_ERR_CMD_INVALID_PARAM_5030": "Tastați un nume în câmpul Pseudonim.",
+    "_ERR_NICKNAME_ALREDY_EXIST_5040": "Numele adresei \"{{0}}\" introduse există deja. Tastați un alt nume în câmpul Nume adresă și încercați din nou.",
+    "_ERR_CMD_MISSING_PARAM_2000": "Tastați ID-ul de conectare (e-mailul) în câmpul E-mail.",
+    "_ERR_CMD_INVALID_PARAM_2010": "ID-ul de conectare (e-mail) introdus nu este valid. Verificați ce ați introdus și încercați din nou.",
+    "ERR_PROMOTION_CODE_INVALID_-1200": "Codul promoției care a fost introdus nu este valid. Verificați codul și încercați din nou.",
+    "ERR_PROMOTION_NOT_AVAILABLE_AT_THIS_TIME_-2200": "Codul promoției care a fost introdus nu este disponibil momentan. Încercați din nou mai târziu.",
+    "ERR_PROMOTION_PER_SHOPPER_LIMIT_EXCEEDED_-1800": "Promoția pe care ați încercat să o revendicați nu se poate aplica la comanda dvs.: a fost atinsă limita de {{1}} per client.",
+    "ERR_PROMOTION_OVERALL_LIMIT_EXCEEDED_-1900": "Promoția pe care ați încercat să o revendicați nu se poate aplica la comanda dvs.: a fost atinsă limita de {{1}} la numărul total de revendicări permise pentru această promoție.",
+    "ERR_PROMOTION_SYSTEM_ERR_-2700": "Codul promoției care a fost introdus nu poate fi procesat. Faceți clic pe linkul Contactați-ne din partea de jos a pagini pentru a contacta Serviciul pentru clienți.",
+    "ERR_PROMOTION_CODE_DUPLICATED_-1150": "Ați introdus un cod promoțional duplicat \"{{0}}\".",
+    "ERR_PROMOTION_UNKNOWN_ERR_-2600": "Codul promoției care a fost introdus nu poate fi procesat. Faceți clic pe linkul Contactați-ne din partea de jos a pagini pentru a contacta Serviciul pentru clienți.",
+    "_ERR_FORMAT_PROMOCODES_NOT_CORRECT_-2820": "Codul promoției care a fost introdus nu este într-un format recunoscut de sistem. Verificați codul și încercați din nou.",
+    "_ERR_PARAMETER_MISSING_-2810": "Lipsește codul promoției sau numele promoției cu cupon. Introduceți un cod al promoției sau un nume al promoției cu cupon.",
+    "_ERR_FORMAT_ORDERIDS_NOT_CORRECT_-2830": "Codul promoției care a fost introdus nu poate fi procesat. Faceți clic pe linkul Contactați-ne din partea de jos a pagini pentru a contacta Serviciul pentru clienți.",
+    "_ERR_PAY_CARD_NUMBER_MISSING_190": "Tastați numărul cardului de credit în câmpul Card de credit.",
+    "_ERR_PAY_CARD_BRAND_MISSING_190": "Selectați tipul de card de credit și încercați din nou.",
+    "_ERR_CREATE_PAYMENT_METHOD": "A apărut o problemă de sistem în timpul procesării comenzii.",
+    "_ERR_CREATE_PAYMENT_METHOD_1007": "A apărut o problemă de sistem în timpul procesării comenzii.",
+    "_ERR_PAY_CARD_NUMBER_INVALID_1005": "Numărul cardului de credit nu este valid. Tastați numărul de cardului de credit în câmpul număr Card de credit și încercați din nou.",
+    "_DBG_API_PAY_BAD_LEN_OR_PREFIX_1005": "Numărul cardului de credit nu este valid. Tastați numărul de cardului de credit în câmpul număr Card de credit și încercați din nou.",
+    "_DBG_API_DO_PAYMENT_BAD_XDATE_1006": "Data expirării introduse nu este validă. Verificați data de pe card și încercați din nou.",
+    "_ERR_PAY_EXPIRY_DATE_INVALID_1006": "Data expirării introduse nu este validă. Verificați data de pe card și încercați din nou.",
+    "_ERR_CREATE_PAYMENT_METHOD_CMN1112E": "Sistemul de plată a întâmpinat o eroare la actualizarea instrucțiunilor de plată.",
+    "_ERR_RDN_ALREADY_EXIST": "Numele organizației care a fost introdus există deja. Tastați un nume diferit și încercați din nou.",
+    "_ERR_CMD_INVALID_PARAM_parentMemberId": "Numele organizației care a fost introdus în câmpul Organizație nu este valid. Trebuie să tastați numele exact al organizației. Dacă nu cunoașteți numele exact, întrebați persoana din compania dvs. care administrează organizația dvs. pentru acest magazin. Dacă organizația dvs. are o organizație părinte, trebuie să folosiți următorul format la introducere: <b>organizație/organizație_părinte</b>, de exemplu, <b>Firma ABC RO/Firma ABC Globală</b>.",
+    "_ERR_CMD_INVALID_PARAM_parentMember": "Numele organizației care a fost introdus în câmpul Organizație nu este valid. Trebuie să tastați numele exact al organizației. Dacă nu cunoașteți numele exact, întrebați persoana din compania dvs. care administrează organizația dvs. pentru acest magazin. Dacă organizația dvs. are o organizație părinte, trebuie să folosiți următorul format la introducere: <b>organizație/organizație_părinte</b>, de exemplu, <b>Firma ABC RO/Firma ABC Globală</b>.",
+    "_ERR_CMD_INVALID_PARAM_org_orgEntityName": "Tastați un nume al organizației în câmpul Nume organizație.",
+    "_API_BAD_INV_2": "Nu există un inventar suficient pentru a cumpăra {{1}} bucăți din {{0}}.",
+    "_ERR_FINDING_ORDER_230": "A apărut o problemă de sistem în timpul procesării comenzii.",
+    "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "A apărut o problemă de sistem. Contactați magazinul pentru asistență.",
+    "_ERR_REMOTE_EXCEPTION_CMN0412E": "A apărut o problemă de sistem în timpul procesării solicitării dvs. Contactați magazinul pentru asistență.",
+    "_ERR_REG_DUPE_ID_CMN0114S": "ID-ul de conectare introdus există deja. Tastați un ID de conectare diferit și încercați din nou.",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "E-mailul introdus nu este valid. Verificați ce ați introdus și încercați din nou.",
+    "_ERR_CMD_INVALID_PARAM_2195": "Codul de validare pe care l-ați introdus a expirat. Trebuie să solicitați un nou cod de validare pentru a vă schimba parola.",
+    "B2B": {
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "ID-ul de conectare introdus nu este valid. Verificați ce ați introdus și încercați din nou.",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "ID-ul de conectare introdus există deja. Tastați un ID de conectare diferit și încercați din nou.",
+      "_ERR_BAD_PARMS_2010": "ID-ul de conectare introdus nu este valid. Verificați ce ați introdus și încercați din nou.",
+      "_ERR_INVALID_NAME_CMN1652E": "Există deja un obiect cu numele „{{0}}”. Alegeți alt nume și încercați din nou."
+    },
+    "_ERR_PASSWORD_EXPIRED_2170": "Parola dvs. curentă a expirat. Introduceți o parolă nouă.",
+    "_ERR_INVALID_NAME_CMN1652E": "Există deja un obiect cu numele „{{0}}”. Alegeți alt nume și încercați din nou."
+  },
+  "success-message": {
+    "ITEM_ADD_SUCCESS": "Articolul a fost adăugat în coș. ",
+    "ViewCart": "Vizualizare coș",
+    "COPY_CART_SUCCESS": "Comanda a fost adăugată în coș. ",
+    "RecurringOrderCancelled": "Comanda a fost anulată cu succes.",
+    "ADD_ADDRESS_SUCCESS": "Noua adresă \"{{0}}\" a fost adăugată cu succes",
+    "EDIT_ADDRESS_SUCCESS": "Adresa \"{{0}}\" a fost actualizată cu succes",
+    "DELETE_ADDRESS_SUCCESS": "Adresa \"{{0}}\" a fost ștearsă cu succes",
+    "RESEND_VERIFICATION_CODE": "Codul de verificare a fost trimis cu succes la adresa dvs. de e-mail",
+    "PASSWORD_RESET_SUCCESS": "Parola a fost resetată cu succes",
+    "CREATE_CHECKOUT_PROFILE_SUCCESS": "Profilul de finalizare a comenzilor „{{0}}” a fost creat cu succes",
+    "COPY_ORDER_SUCCESS": "Comanda a fost copiată cu succes.",
+    "CREATE_ORDER_SUCCESS": "Comanda „{{0}}” a fost creată cu succes.",
+    "DELETE_ORDER_SUCCESS": "Comanda „{{0}}” a fost ștearsă cu succes.",
+    "DeletedCheckoutProfile": "Profilul de finalizare a comenzilor „{{ 0 }}” a fost șters cu succes",
+    "UpdatedCheckoutProfile": "Profilul de finalizare a acomenzii „{{ 0 }}” a fost actualizat cu succes.",
+    "deletedSuccessfully": "A(u) fost șters(e) cu succes {{ n }} articol(e) din comandă",
+    "addedItemSuccessfully": "A fost adăugat cu succes {{ v }} la comanda curentă",
+    "addedNSuccessfully": "Au fost adăugate cu succes {{ v }} articole la comanda curentă"
+  },
+  "notFound": {
+    "notFound": "<p>Ne pare rău, nu am putut găsi ceea ce căutați.</p>\n"
+  },
+  "OrderBillingInfo": {
+    "Title": "Informații facturare",
+    "Labels": {
+      "BillAddress": "Adresă de facturare"
+    }
+  },
+  "OrderDetails": {
+    "Title": "Detalii comandă",
+    "Actions": {
+      "Back": "Înapoi la detaliile de plată",
+      "Next": "Plasare comandă",
+      "NextRecurringOrder": "Plasare comandă recurentă",
+      "BackCart": "Înapoi la coșul de finalizare a comenzii"
+    },
+    "Labels": {
+      "PaymentDetails": "Detalii de plată",
+      "OrderSummary": "Sumar comandă"
+    }
+  },
+  "OrderDiscountSummary": {
+    "Title": "Reduceri aplicate",
+    "Labels": {
+      "Total": "Total"
+    }
+  },
+  "OrderItemTable": {
+    "Title": "Articole comandă",
+    "Labels": {
+      "ItemDetails": "Detalii articol",
+      "SKU": "SKU: ",
+      "Status": "Disponibilitate",
+      "Quantity": "Cantitate",
+      "Price": "Preț",
+      "Actions": "Acțiuni",
+      "Gift": "Cadou gratuit",
+      "NonRecurring": "Articol nerecent",
+      "PageSizeLabel": "rânduri",
+      "FirstPage": "Prima pagină",
+      "LastPage": "Ultima pagină",
+      "PreviousPage": "Pagina anterioară",
+      "NextPage": "Pagina următoare",
+      "RowCount": "Se afișează de la {from} la {to} din {count}"
+    },
+    "Actions": {
+      "Delete": "Ștergere"
+    }
+  },
+  "OrderLinks": {
+    "Title": "Gestionare comandă",
+    "OrderHistoryText": "Istoric comandă",
+    "OrderHistoryDescription": "Vizualizați comenzile plasate și comenzile în așteptarea aprobării și detaliile individuale ale comenzii.",
+    "InprogressOrdersText": "Comenzi în curs",
+    "InprogressOrdersDescription": "Vizualizare și gestionare coemenzi în curs",
+    "RecurringOrdersText": "Comenzi recursive",
+    "RecurringOrdersDescription": "Vizualizați și gestionați lista cu comenzi recursive",
+    "ApproveOrdersText": "Aprobare comandă",
+    "ApproveOrdersDescription": "Aprobați sau respingeți comenzile",
+    "RequisitionListsText": "Listele de rechiziție",
+    "RequisitionListsDescription": "Vizualizați, gestionați și creați liste de rechiziție"
+  },
+  "OrderPaymentInfo": {
+    "Title": "Informații de plată",
+    "Labels": {
+      "BillMethod": "Metodă de plată"
+    }
+  },
+  "OrderShippingInfo": {
+    "Labels": {
+      "ShipAddress": "Adresă de livrare",
+      "ShipMethod": "Metodă de livrare",
+      "CartDetails": "Detali coș",
+      "ShippingDetails": "Detalii livrare",
+      "ShipmentGroup": "Grup de livrare {{index}}",
+      "HideGroupDetails": "Ascundere detalii grup",
+      "ShowGroupDetails": "Afișare detalii grup"
+    }
+  },
+  "OrderTotalSummary": {
+    "Labels": {
+      "Subtotal": "Subtotal",
+      "Tax": "Impozit",
+      "Shipping": "Livrare",
+      "ShippingTax": "Taxă de livrare",
+      "Discount": "Reducere totală",
+      "Total": "Total"
+    }
+  },
+  "PaymentMethodContainer": {
+    "Actions": {
+      "Cancel": "Anulare",
+      "Done": "Niciuna",
+      "SaveAndAdd": "Salvați și adăugați o altă metodă de plată"
+    }
+  },
+  "PaymentInfoCard": {
+    "Title": "Metoda de plată {{number}}",
+    "Labels": {
+      "CreditCard": "Card de credit:",
+      "AmountToPay": "Sumă de plată",
+      "ExpiryDate": "Dată expirare: {{month}}/{{year}}",
+      "BillingAddress": "Adresă de facturare"
+    },
+    "Actions": {
+      "Edit": "Editare",
+      "Delete": "Ștergere"
+    }
+  },
+  "PaymentInfoList": {
+    "Title": {
+      "PayMethod": "Metodă de plată",
+      "WithOrderTotal": "Metode de plată - Total comandă: "
+    },
+    "Msgs": {
+      "PayMethodRequired": "Este necesară cel puțin o metodă de plată.",
+      "InsufficientPayment": "Trebuie să acoperiți totalul comenzii în valoare de {{grandTotal}} cu toate metodele de plată.",
+      "CardDetailsUpdate": "Verificați și actualizați încă o dată detaliile cardului.",
+      "PayMethodNote": "Notă: metodele de plată vor fi salvate numai după ce faceți clic pe butonul Revizuire comandă."
+    },
+    "Actions": {
+      "AddPayMethod": "Adăugați o metodă de plată"
+    }
+  },
+  "PaymentMethodSelection": {
+    "Title": "Metodă de plată",
+    "Msgs": {
+      "CreditCard": "Plată online sigură. Carduri de credit acceptate: {{cards}}",
+      "CVV": "Introduceți un cod CVV valid",
+      "InvalidCardNumber": "Introduceți un număr valid de card de credit",
+      "InvalidFormat": "Format nevalid"
+    },
+    "Labels": {
+      "COD": "Numerar la livrare",
+      "CreditCard": "Card de credit",
+      "CCNumber": "Număr card de credit",
+      "ExpiryDate": "Dată de expirare",
+      "CVV": "Cod CVV",
+      "OrderTotal": "Total comandă",
+      "RemainingAmount": "Sumă rămasă de plată",
+      "AmountToPay": "Sumă de plată",
+      "ExpiryMonth": "Luna de expirare",
+      "ExpiryYear": "Anul de expirare"
+    },
+    "Actions": {
+      "PayRemaining": "Plătiți suma rămasă"
+    }
+  },
+  "PersonalInformation": {
+    "UpdateSuccessful": "Actualizare cu succes",
+    "AccountInformation": "Informaţii cont:",
+    "Edit": "Editare",
+    "Password": "Parolă:",
+    "ChangePassword": "Modificare parolă",
+    "EditAccountInformation": "Editare Informații cont",
+    "FirstName": "Prenume",
+    "LastName": "Nume de familie",
+    "Email": "E-mail",
+    "PhoneNumber": "Număr de telefon (opțional)",
+    "PreferredCurrency": "Valută preferată",
+    "Gender": "Sex",
+    "SelectGender": "Selectare sex",
+    "BirthYear": "Anul nașterii",
+    "BirthMonth": "Luna de naștere",
+    "BirthDate": "Ziua de naștere",
+    "SelectYear": "Selectaţi Anul",
+    "SelectMonth": "Selectaţi Luna",
+    "SelectDate": "Selectare dată",
+    "DateOfBirthEmpty": "Nu specificaţi nicio valoare a datei de naştere dacă preferaţi să păstraţi aceste informaţii confidenţiale",
+    "Cancel": "Anulare",
+    "SaveChanges": "Salvaţi modificările",
+    "CurrentPassword": "Parolă curentă",
+    "NewPassword": "Parola nouă",
+    "VerifyPassword": "Verificare parolă",
+    "SignOutButton": "Deconectare",
+    "actingAs": "Acționare ca:",
+    "resetPass": "Resetați parola utilizatorului",
+    "resetSure": "Sigur doriți să resetați parola pentru acest utilizator?",
+    "resetNo": "Nu",
+    "resetYes": "Da",
+    "stopActing": "Opriți acționarea ca utilizator",
+    "guestUser": "VIZITATOR",
+    "register": "Înregistrare",
+    "enableUser": "Activare utilizator",
+    "disableUser": "Dezactivare utilizator",
+    "disabledMessage": "Ne pare rău, această pagină este încă în dezvoltare."
+  },
+  "ProductFilter": {
+    "Labels": {
+      "filterBy": "Filtrare după",
+      "price": "Preț",
+      "minPrice": "min",
+      "maxPrice": "max"
+    },
+    "Actions": {
+      "showMore": "Afişare mai mult",
+      "showLess": "Afişare mai puţin",
+      "Filter": "Filtrare"
+    }
+  },
+  "ProductGrid": {
+    "Labels": {
+      "filteredBy": "Filtrare după:",
+      "productFound": "{{count}} produs găsit",
+      "productFound_plural": "{{count}} produse găsite",
+      "productSearchFound": "{{count}} produs găsit pentru \"{{searchTerm}}\"",
+      "productSearchFound_plural": "{{count}} produse găsite pentru \"{{searchTerm}}\"",
+      "noMatches": "0 rezultate pentru \"{{searchTerm}}\".",
+      "searchAgain": "Ne pare rău, căutarea pentru \"{{searchTerm}}\" nu a returnat niciun rezultat. Încercați o altă căutare.",
+      "suggestion": "Aţi vrut:",
+      "noProductsFound": "Căutarea pentru <b>{{keyword}}</b> nu a avut niciun rezultat. <br/>Încercați din nou să căutați cu un termen diferit sau să răsfoiți recomandările noastre",
+      "noProductsFoundForFilter": "Ne pare rău, nu s-a găsit niciun rezultat pentru filtrul selectat."
+    },
+    "Actions": {
+      "clearAll": "Curăţare tot"
+    }
+  },
+  "PurchaseOrderNumber": {
+    "Title": "Număr comandă de achiziție",
+    "Msgs": {
+      "PONumberRequired": "Este necesar Numărul comenzii de achiziție"
+    },
+    "Labels": {
+      "PONumber": "Număr comandă de achiziție:"
+    }
+  },
+  "PurchaseOrderSelection": {
+    "Title": "Comandă de achiziție",
+    "Msgs": {
+      "InvalidFormat": "Format nevalid"
+    },
+    "Labels": {
+      "PONumber": "Număr comandă de achiziție"
+    }
+  },
+  "RecurringOrderInfo": {
+    "Title": "Comandă recursivă",
+    "Labels": {
+      "RecurringOrderNumber": "Număr comandă recurentă",
+      "OrderSchedule": "Frecvență",
+      "StartDate": "Dată pornire",
+      "NextDelivery": "Următoarea comandă programată",
+      "OrderHistoryButton": "Istoricul comenzii pentru {{orderId}}"
+    }
+  },
+  "RegistrationLayout": {
+    "NewCustomer": "Client nou?",
+    "SignIn": "Autentificare",
+    "Account": "Aveți deja un cont? ",
+    "FirstName": "Prenume",
+    "LastName": "Nume de familie",
+    "Email": "Adresă e-mail",
+    "Phone": "Telefon (opțional)",
+    "Password": "Parolă",
+    "VerifyPassword": "Verificare parolă",
+    "TextContent": "Primiți idei de design pentru locuință în inboxul dvs.",
+    "Register": "Înregistrare",
+    "RegisterComplete": "Finalizare înregistrare",
+    "Msgs": {
+      "InvalidFormat": "Format nevalid"
+    }
+  },
+  "RegistrationB2BLayout": {
+    "Title": "Înregistrare",
+    "Actions": {
+      "BuyerReg": "Înregistrare cumpărător",
+      "OrgReg": "Înregistrați o organizație",
+      "AddBuyer": "Adăugare cumpărător într-o organizație existentă",
+      "AddOrg": "Adăugare organizație nouă și cont de administrator"
+    }
+  },
+  "ResetPassword": {
+    "Title": "Setare parolă nouă",
+    "ValidationCodeLabel": "Cod de verificare",
+    "NewPasswordLabel": "Parola nouă",
+    "VerifyPasswordLabel": "Verificare parolă nouă",
+    "SubmitButton": "Setare parolă",
+    "ContentText": "Introduceți codul de verificare care v-a fost trimis prin e-mail și parola nouă mai jos.",
+    "ContentTextLogonID": "Introduceți ID-ul de conectare. Veți primi un e-mail cu codul de validare pentru a vă ajuta cu resetarea parolei.",
+    "EmailLabel": "Adresă de e-mail",
+    "LogonIDLabel": "ID conectare",
+    "SuccessMsg": "A reușit",
+    "PasswordNotRecieved": "Nu ați primit un cod de verificare?",
+    "ResendVerificationCode": "Retrimite codul de verificare",
+    "AccountInfoRemember": "Reținere informații despre contul dvs.? ",
+    "SignIn": "Autentificare acum",
+    "Msgs": {
+      "InvalidFormat": "Format nevalid"
+    }
+  },
+  "SearchBar": {
+    "SearchField": "Căutare",
+    "KeywordTitle": "CUVINTE CHEIE",
+    "CategoryTitle": "CATEGORIE",
+    "BrandTitle": "MARCĂ",
+    "Clear": "Golire căutare"
+  },
+  "SessionError": {
+    "TimeoutTitle": "Sesiunea a expirat",
+    "InvalidTitle": "Eroare sesiune nevalidă",
+    "GenericTitle": "Eroare",
+    "TimeoutMsg": "Sesiunea dvs. a expirat și ați fost deconectat cu succes. Autentificați-vă din nou pentru a vă accesa magazinul.",
+    "InvalidMsg": "ID-ul de conectare s-ar putea să fi fost folosit într-o altă locație. Autentificați-vă din nou pentru a vă accesa magazinul.",
+    "InvalidMsgB2C": "Este posibil ca adresa dvs. de e-mail să fi fost folosită într-o altă locație. Autentificați-vă din nou pentru a vă accesa magazinul.",
+    "Email": "E-mail",
+    "Password": "Parolă",
+    "SubmitButton": "Autentificare",
+    "CancelButton": "Anulare",
+    "ActionIncomplete": "Solicitarea dvs. nu a fost finalizată deoarece ID-ul de conectare ar putea fi folosit într-o altă locație. Autentificați-vă din nou pentru continuare."
+  },
+  "SignIn": {
+    "ReturningCustomer": "Client care se întoarce",
+    "Password": "Parolă",
+    "ChangPassword": "Schimbare parolă",
+    "CurrentPassword": "Parolă curentă",
+    "PasswordVerify": "Verificare parolă",
+    "RememberMe": "Reține-mă",
+    "SignInButton": "Autentificare",
+    "Cancel": "Anulare",
+    "Submit": "Trimitere",
+    "ForgotPassword": "Ați uitat parola?",
+    "noAccount": "Nu aveţi un cont? ",
+    "registerNow": "Înregistrați-vă acum",
+    "Label": {
+      "B2B": "ID conectare",
+      "Email": "Adresă e-mail",
+      "rememberMe": "Ține-mă minte"
+    },
+    "Msgs": {
+      "InvalidFormat": "Format nevalid.",
+      "PasswordNotMatch": "Parola și verificarea parolei nu se potrivesc.",
+      "OldPasswordReuse": "Parola introdusă a mai fost folosită. Introduceți o parolă nouă."
+    }
+  },
+  "CommerceEnvironment": {
+    "listSettings": {
+      "relevance": "Relevanţă",
+      "brands": "Mărci",
+      "name": "Nume",
+      "priceLowToHigh": "Preţ (de la mic la mare)",
+      "priceHighToLow": "Preţ (de la mic la mare)"
+    },
+    "inventoryStatus": {
+      "Available": "În stoc",
+      "Allocated": "În stoc",
+      "Unallocated": "Nealocată",
+      "Backordered": "Comandat cu restanță",
+      "OOS": "Nu mai este în stoc",
+      "NA": "Indisponibil"
+    },
+    "recurringOrderFrequency": {
+      "Everyday": "Zilnic",
+      "EveryWeek": "Săptămânal",
+      "EveryTwoWeeks": "La fiecare 2 săptămâni",
+      "EveryThreeWeeks": "La fiecare 3 săptămâni",
+      "EveryFourWeeks": "La fiecare 4 săptămâni"
+    },
+    "languagePopUp": {
+      "Title": "Schimbați limba?",
+      "Message": "Doriți să schimbați limba la {{ language }}?",
+      "Yes": "Da",
+      "No": "Nu"
+    },
+    "currency": {
+      "ROL": "Leu românesc",
+      "RON": "Leu românesc",
+      "ARS": "Peso argentinian",
+      "ATS": "Șiling austriac",
+      "AUD": "Dolar australian",
+      "BEF": "Franc belgian",
+      "BRL": "Brazilian real",
+      "CAD": "Dolar canadian",
+      "CNY": "Yan chinez",
+      "DEM": "Marcă germană",
+      "ESP": "Peseta spaniolă",
+      "EUR": "Euro g",
+      "FRF": "Franc francez",
+      "GBP": "Liră sterlină",
+      "HKD": "Dolar Hong Kong",
+      "ITL": "Liră italiană",
+      "JPY": "Yen japonez",
+      "KRW": "Won sud-coreean",
+      "SGD": "Dolar singaporez",
+      "TWD": "Dolar taiwanez",
+      "USD": "Dolar SUA",
+      "ZAR": "Rand sud-african",
+      "FIM": "Markka finlandeză",
+      "IEP": "Punt irlandez",
+      "LUF": "Franc luxemburghez",
+      "NLG": "Gulden olandez",
+      "PTE": "Escudo portughez",
+      "NOK": "kroner pentru Norvegia",
+      "SEK": "Svenske kroner pentru Suedia",
+      "DKK": "Danske kroner pentru Danemarca",
+      "CHF": "Franc elvețian",
+      "PLN": "Zlot polonez",
+      "RUB": "Rublă rusească",
+      "EGP": "Liră egipteană"
+    },
+    "language": {
+      "-1": "Engleză americană",
+      "-2": "Franceză",
+      "-3": "Germană",
+      "-4": "Italiană",
+      "-5": "Spaniolă",
+      "-6": "Portugheză braziliană",
+      "-7": "Chineză simplificată",
+      "-8": "Chineză tradițională",
+      "-10": "Japoneză",
+      "-21": "Română",
+      "-20": "Rusă",
+      "-9": "Coreeană",
+      "-22": "Poloneză",
+      "-23": "Arabă"
+    }
+  },
+  "InprogressOrders": {
+    "Title": "Comenzi în curs",
+    "CreateNewOrder": "Creare comandă nouă",
+    "NewOrderName": "Nume comandă nouă",
+    "CreateOrder": "Creare comandă",
+    "PrivateOrder": "Comandă privată",
+    "SharedOrder": "Comendă partajată",
+    "Columns": {
+      "Active": "ACTIV",
+      "OrderId": "ID COMANDĂ",
+      "Name": "NUME",
+      "LastUpdated": "ULTIMA ACTUALIZARE",
+      "TotalPrice": "PREȚ TOTAL",
+      "Type": "TIP",
+      "Actions": "ACȚIUNE"
+    },
+    "Status": {
+      "ORD": "Privat",
+      "SHR": "Partajat"
+    },
+    "DeleteDialogTitle": "Ștergere comandă",
+    "DeleteDialogHeading": "Doriți să ștergeți această comandă?",
+    "CopyTitle": "Copiere comandă",
+    "CopyMessage": "Doriți să copiați această comandă?",
+    "CurrentCart": "{{ orderId }} (coș curent)",
+    "InvalidOrderName": "Numele comenzii poate conține doar caractere alfanumerice (A-Z, a-z, 0-9) și spații.",
+    "searchPh": "Căutare ID sau descriere",
+    "NotActiveOrderMessage": "Comanda trebuie să fie activă pentru a adăuga produse"
+  },
+  "InprogressItems": {
+    "orderItem": "ARTICOL COMANDĂ",
+    "creationDate": "DATA CREĂRII",
+    "quantity": "CANTITATE",
+    "contributor": "CONTRIBUITOR",
+    "each": "FIECARE",
+    "actions": "ACȚIUNI",
+    "inprogressOrders": "Comenzi în curs",
+    "createdBy": "CREAT DE",
+    "lastUpdated": "ULTIMA ACTUALIZARE",
+    "totalPrice": "PREȚ TOTAL",
+    "visibility": "LISTĂ PARTAJATĂ",
+    "orderType_SHR": "Partajat",
+    "orderType_ORD": "Privat",
+    "proceed": "Trecere la finalizarea comenzii",
+    "addProds": "Adăugare produse",
+    "privateList": "Listă privată",
+    "sharedList": "Listă partajată",
+    "nProductsSel": "{{ n }} produse selectate",
+    "addSelToCart": "Adăugare selecții în coș",
+    "deleteSelected": "Ștergere selecție",
+    "noItems": "Nu au fost găsită articole de comandă.",
+    "nameForCopiedOrder": "Introduceți un nume pentru comanda nouă"
+  },
+  "commonTable": {
+    "ofTotalCount": "Se afișează {{ from }} - {{ to }} din {{ total }}",
+    "pageSz": {
+      "five": "5 rânduri",
+      "ten": "10 rânduri",
+      "twenty": "20 rânduri"
+    }
+  }
+}

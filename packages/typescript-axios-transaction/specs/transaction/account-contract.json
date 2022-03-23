@@ -1,0 +1,3663 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "9.1.6",
+    "description": "These services provide APIs to manage accounts and contracts.  a contract is an agreement that represents the terms and conditions that apply to a transaction. An account is a relationship between the merchant and the financial institution that processes transactions for that merchant.",
+    "title": "HCL Commerce Services - Account and Contract"
+  },
+  "servers": [
+    {
+      "url": "https://localhost/wcs/resources"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Account",
+      "description": "This class provides RESTful service to manage accounts."
+    },
+    {
+      "name": "Buyer Contract",
+      "description": "This class provides RESTful service to manage buyer contract."
+    }
+  ],
+  "paths": {
+    "/store/{storeId}/account": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account-CreateResponse"
+                },
+                "example": {
+                  "response": {
+                    "accountId": 4000000000000007700
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "description": "The request body for a create account.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account-Details"
+              },
+              "example": {
+                "account": {
+                  "participants": [
+                    {
+                      "participantMember": {
+                        "organizationRef": {
+                          "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                        }
+                      },
+                      "role": "SELLER_CONTACT"
+                    },
+                    {
+                      "participantMember": {
+                        "organizationRef": {
+                          "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                        }
+                      },
+                      "role": "SELLER"
+                    },
+                    {
+                      "participantMember": {
+                        "organizationRef": {
+                          "distinguishName": "o=buyer a organization,o=root organization"
+                        }
+                      },
+                      "role": "ACCOUNT_HOLDER"
+                    }
+                  ],
+                  "accountUniqueKey": {
+                    "accountOwner": {
+                      "organizationRef": {
+                        "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                      }
+                    },
+                    "name": "Buyer A Organization"
+                  },
+                  "accountDescription": {
+                    "longDescription": "This is business account for Buyer A Organization",
+                    "locale": "en_US"
+                  },
+                  "createdInStore": {
+                    "storeRef": {
+                      "owners": [
+                        {
+                          "organizationRef": {
+                            "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                          }
+                        }
+                      ],
+                      "name": "b2bStore"
+                    }
+                  },
+                  "state": "active",
+                  "comment": "Sample business account.",
+                  "allowStoreDefaultContract": true,
+                  "mustUsePriceListPreference": false,
+                  "termConditions": [
+                    {
+                      "class": "com.ibm.commerce.trading.entities.POTCIndividual",
+                      "checkUniqueness": true
+                    },
+                    {
+                      "class": "com.ibm.commerce.trading.entities.POTCBlanket",
+                      "ponumber": "10001"
+                    },
+                    {
+                      "class": "com.ibm.commerce.trading.entities.ShippingTCShippingCharge",
+                      "shippingChargePolicyRef": {
+                        "storeRef": {
+                          "owners": [
+                            {
+                              "organizationRef": {
+                                "distinguishName": "o=root organization"
+                              }
+                            }
+                          ],
+                          "name": "StoreGroup1"
+                        },
+                        "policyName": "StandardShippingChargeBySeller"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Account"
+        ],
+        "summary": "Create a new account",
+        "operationId": "Account-createAccount",
+        "description": "Create an account."
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account-List"
+                },
+                "example": {
+                  "resultList": [
+                    {
+                      "accountId": "4000000000000000007",
+                      "name": "Buyer A Organization Account for b2bStore",
+                      "numberOfContracts": "0",
+                      "representativeName": "Extended Sites Seller Organizationb2bStore"
+                    },
+                    {
+                      "accountId": "4000000000000000008",
+                      "name": "Buyer B Organization Account for b2bStore",
+                      "numberOfContracts": "0",
+                      "representativeName": "Extended Sites Seller Organizationb2bStore"
+                    },
+                    {
+                      "accountId": "4000000000000000004",
+                      "name": "b2bStore BaseContracts",
+                      "numberOfContracts": "1",
+                      "representativeName": null
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The text used for searching accounts by name.",
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "LIKE",
+                "EXACT"
+              ],
+              "default": "LIKE"
+            },
+            "description": "Defines the account name is searched. 'EXACT' means returning names which exactly match(case-insensitive) the input.  'LIKE' means returning names which contains the search input (case-insensitive).",
+            "name": "nameSearchMode",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "description": "Searches business accounts in a store. <br>If 'name' query parameter is specified, only return business accounts with name matches (case-insensitive). <br> 'nameSearchMode' query parameter is used to specify search behavior. 'EXACT' - exactly match or 'LIKE' - as long as contains. Default value is 'LIKE'. <br>If no 'name' query parameter is specified, returns all business accounts in this store.",
+        "summary": "Searches business accounts in a store.",
+        "operationId": "Account-searchAccounts"
+      }
+    },
+    "/store/{storeId}/account/{accountId}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account-Details"
+                },
+                "example": {
+                  "account": {
+                    "accountDescription": {
+                      "longDescription": "This is business account for Buyer C Organization.",
+                      "createTime": "2018-09-25T13:57:07",
+                      "updateTime": "2018-09-25T13:57:07",
+                      "locale": "en_US"
+                    },
+                    "referenceNumber": 4000000000000007700,
+                    "createTime": "2018-09-25T13:57:07",
+                    "termConditions": [
+                      {
+                        "sequenceNumber": 1,
+                        "referenceNumber": 4000000000000008000,
+                        "createTime": "2018-09-25T13:57:07",
+                        "ponumber": "10001",
+                        "changeable": false,
+                        "updateTime": "2018-09-25T13:57:07",
+                        "class": "com.ibm.commerce.trading.entities.POTCBlanket",
+                        "mandatory": false
+                      },
+                      {
+                        "sequenceNumber": 2,
+                        "referenceNumber": 4000000000000008000,
+                        "createTime": "2018-09-25T13:57:07",
+                        "changeable": false,
+                        "updateTime": "2018-09-25T13:57:07",
+                        "class": "com.ibm.commerce.trading.entities.POTCIndividual",
+                        "mandatory": false,
+                        "checkUniqueness": true
+                      },
+                      {
+                        "sequenceNumber": 3,
+                        "referenceNumber": 4000000000000008000,
+                        "createTime": "2018-09-25T13:57:07",
+                        "shippingChargePolicyRef": {
+                          "policyName": "StandardShippingChargeBySeller",
+                          "storeRef": {
+                            "name": "StoreGroup1",
+                            "owners": [
+                              {
+                                "organizationRef": {
+                                  "distinguishName": "o=root organization"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        "changeable": false,
+                        "updateTime": "2018-09-25T13:57:07",
+                        "class": "com.ibm.commerce.trading.entities.ShippingTCShippingCharge",
+                        "mandatory": false
+                      }
+                    ],
+                    "createdInStore": {
+                      "storeRef": {
+                        "name": "b2bStore",
+                        "owners": [
+                          {
+                            "organizationRef": {
+                              "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "mustUsePriceListPreference": false,
+                    "updateTime": "2018-09-25T13:57:07",
+                    "comment": "This is a sample business account.",
+                    "state": "Active",
+                    "allowStoreDefaultContract": true,
+                    "accountUniqueKey": {
+                      "name": "Buyer C Organization",
+                      "accountOwner": {
+                        "organizationRef": {
+                          "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                        }
+                      }
+                    },
+                    "participants": [
+                      {
+                        "role": "SELLER_CONTACT",
+                        "createTime": "2018-09-25T13:57:07",
+                        "updateTime": "2018-09-25T13:57:07",
+                        "participantMember": {
+                          "organizationRef": {
+                            "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                          }
+                        }
+                      },
+                      {
+                        "role": "SELLER",
+                        "createTime": "2018-09-25T13:57:07",
+                        "updateTime": "2018-09-25T13:57:07",
+                        "participantMember": {
+                          "organizationRef": {
+                            "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                          }
+                        }
+                      },
+                      {
+                        "role": "ACCOUNT_HOLDER",
+                        "createTime": "2018-09-25T13:57:07",
+                        "updateTime": "2018-09-25T13:57:07",
+                        "participantMember": {
+                          "organizationRef": {
+                            "distinguishName": "o=buyer c organization,o=root organization"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the account.",
+            "name": "accountId",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "description": "Finds an account by its id.",
+        "summary": "Gets an account by ID",
+        "operationId": "account-findByAccountId"
+      },
+      "put": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account-UpdateResponse"
+                },
+                "example": {
+                  "response": {
+                    "accountId": [
+                      4000000000000006700
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the account.",
+            "name": "accountId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "description": "The request body for updating an account.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account-UpdateRequest"
+              },
+              "example": {
+                "account": {
+                  "accountUniqueKey": {
+                    "accountOwner": {
+                      "organizationRef": {
+                        "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                      }
+                    },
+                    "name": "Buyer C Organization"
+                  },
+                  "accountDescription": {
+                    "longDescription": "This is business account for Buyer C Organization.",
+                    "locale": "en_US"
+                  },
+                  "createdInStore": {
+                    "storeRef": {
+                      "owners": [
+                        {
+                          "organizationRef": {
+                            "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                          }
+                        }
+                      ],
+                      "name": "b2bStore"
+                    }
+                  },
+                  "state": "active",
+                  "comment": "Sample business account.",
+                  "allowStoreDefaultContract": true,
+                  "mustUsePriceListPreference": false
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Account"
+        ],
+        "summary": "Updates an existing account.",
+        "operationId": "Account-updateAccount",
+        "description": "Updates an existing account."
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account-DeleteResponse"
+                },
+                "example": {
+                  "response": {
+                    "accountId": 4000000000000001000
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The unique ID of the account.",
+            "name": "accountId",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "summary": "Deletes a existing account",
+        "operationId": "Account-deleteAccount",
+        "description": "Deletes an existing account."
+      }
+    },
+    "/store/{storeId}/buyer_contract": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyerContract-CreateResponse"
+                },
+                "example": {
+                  "response": {
+                    "contractId": 4000000000000001000
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request aren't valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "description": "The request body for creating a new buyer contract.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuyerContract-Details"
+              },
+              "example": {
+                "buyerContracts": [
+                  {
+                    "class": "com.ibm.commerce.trading.entities.BuyerContract",
+                    "participants": [
+                      {
+                        "participantMember": {
+                          "organizationRef": {
+                            "distinguishName": "o=buyer c organization,o=root organization"
+                          }
+                        },
+                        "role": "BUYER"
+                      }
+                    ],
+                    "contractUniqueKey": {
+                      "contractOwner": {
+                        "organizationRef": {
+                          "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                        }
+                      },
+                      "origin": "Manual",
+                      "name": "Contract1",
+                      "majorVersionNumber": 1,
+                      "minorVersionNumber": 0
+                    },
+                    "contractDescription": {
+                      "shortDescription": "Contract 1",
+                      "longDescription": "Contract 1 Description",
+                      "locale": "en_US"
+                    },
+                    "accountReference": {
+                      "accountRef": {
+                        "accountOwner": {
+                          "organizationRef": {
+                            "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                          }
+                        },
+                        "name": "Buyer C Organization"
+                      }
+                    },
+                    "state": "Draft",
+                    "comment": "This is contract remarks",
+                    "contractUsage": "ORGANIZATION_BUYER",
+                    "creditAllowed": false,
+                    "contractReference": {
+                      "contractRef": {
+                        "contractOwner": {
+                          "organizationRef": {
+                            "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                          }
+                        },
+                        "origin": "Deployment",
+                        "name": "b2bStore Base for Default Contract",
+                        "majorVersionNumber": 1,
+                        "minorVersionNumber": 0
+                      }
+                    },
+                    "termConditions": [
+                      {
+                        "class": "com.ibm.commerce.trading.entities.ShippingTCShippingMode",
+                        "shippingModePolicyRef": {
+                          "storeRef": {
+                            "owners": [
+                              {
+                                "organizationRef": {
+                                  "distinguishName": "ou=b2bstoresas,o=extended sites organization,o=root organization"
+                                }
+                              }
+                            ],
+                            "name": "b2bStoreSAS"
+                          },
+                          "policyName": "B2CExpress1"
+                        }
+                      },
+                      {
+                        "class": "com.ibm.commerce.trading.entities.ShippingTCShippingCharge",
+                        "shippingChargePolicyRef": {
+                          "storeRef": {
+                            "owners": [
+                              {
+                                "organizationRef": {
+                                  "distinguishName": "o=root organization"
+                                }
+                              }
+                            ],
+                            "name": "StoreGroup1"
+                          },
+                          "policyName": "ShippingChargeByCarrier"
+                        }
+                      },
+                      {
+                        "class": "com.ibm.commerce.trading.entities.AddressBookTC",
+                        "usage": "shipping",
+                        "usePersonal": true,
+                        "useParentOrganization": true,
+                        "useAccountHolderOrganization": true
+                      },
+                      {
+                        "class": "com.ibm.commerce.trading.entities.AddressBookTC",
+                        "usage": "billing",
+                        "usePersonal": true,
+                        "useParentOrganization": true,
+                        "useAccountHolderOrganization": true
+                      },
+                      {
+                        "class": "com.ibm.commerce.trading.entities.PaymentTC",
+                        "paymentMethod": {
+                          "paymentPolicyRef": {
+                            "storeRef": {
+                              "owners": [
+                                {
+                                  "organizationRef": {
+                                    "distinguishName": "o=root organization"
+                                  }
+                                }
+                              ],
+                              "name": "StoreGroup1"
+                            },
+                            "policyName": "ApplePay"
+                          },
+                          "paymentMethodDisplayString": {
+                            "name": "This is Apple Pay"
+                          }
+                        }
+                      },
+                      {
+                        "class": "com.ibm.commerce.trading.entities.OrderApprovalTC",
+                        "monetaryAmount": {
+                          "value": 99,
+                          "currency": "USD"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "tags": [
+          "Buyer Contract"
+        ],
+        "summary": "Creates a new buyer contract",
+        "operationId": "ShipMode-createShipMode",
+        "description": "Creates a new buyer contract."
+      }
+    },
+    "/store/{storeId}/buyer_contract/{contractId}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyerContract-Details"
+                },
+                "example": {
+                  "buyerContracts": [
+                    {
+                      "accountReference": {
+                        "accountRef": {
+                          "name": "Buyer C Organization",
+                          "accountOwner": {
+                            "organizationRef": {
+                              "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                            }
+                          }
+                        }
+                      },
+                      "termConditions": [
+                        {
+                          "sequenceNumber": 1,
+                          "referenceNumber": 4000000000000008000,
+                          "createTime": "2018-09-25T14:22:04",
+                          "changeable": false,
+                          "updateTime": "2018-09-25T14:22:04",
+                          "class": "com.ibm.commerce.trading.entities.OrderApprovalTC",
+                          "mandatory": false,
+                          "monetaryAmount": {
+                            "currency": "USD",
+                            "value": 99
+                          }
+                        },
+                        {
+                          "sequenceNumber": 2,
+                          "referenceNumber": 4000000000000008000,
+                          "createTime": "2018-09-25T14:22:04",
+                          "changeable": false,
+                          "paymentMethod": {
+                            "paymentPolicyRef": {
+                              "policyName": "ApplePay",
+                              "storeRef": {
+                                "name": "StoreGroup1",
+                                "owners": [
+                                  {
+                                    "organizationRef": {
+                                      "distinguishName": "o=root organization"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            "paymentMethodDisplayString": {
+                              "name": "This is Apple Pay"
+                            }
+                          },
+                          "updateTime": "2018-09-25T14:22:04",
+                          "class": "com.ibm.commerce.trading.entities.PaymentTC",
+                          "mandatory": false
+                        },
+                        {
+                          "sequenceNumber": 3,
+                          "referenceNumber": 4000000000000008000,
+                          "createTime": "2018-09-25T14:22:04",
+                          "shippingChargePolicyRef": {
+                            "policyName": "ShippingChargeByCarrier",
+                            "storeRef": {
+                              "name": "StoreGroup1",
+                              "owners": [
+                                {
+                                  "organizationRef": {
+                                    "distinguishName": "o=root organization"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "changeable": false,
+                          "updateTime": "2018-09-25T14:22:04",
+                          "class": "com.ibm.commerce.trading.entities.ShippingTCShippingCharge",
+                          "mandatory": false
+                        },
+                        {
+                          "shippingModePolicyRef": {
+                            "policyName": "B2CExpress1",
+                            "storeRef": {
+                              "name": "b2bStoreSAS",
+                              "owners": [
+                                {
+                                  "organizationRef": {
+                                    "distinguishName": "ou=b2bstoresas,o=extended sites organization,o=root organization"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "sequenceNumber": 4,
+                          "referenceNumber": 4000000000000008000,
+                          "createTime": "2018-09-25T14:22:05",
+                          "changeable": false,
+                          "updateTime": "2018-09-25T14:22:05",
+                          "class": "com.ibm.commerce.trading.entities.ShippingTCShippingMode",
+                          "mandatory": false
+                        },
+                        {
+                          "usePersonal": true,
+                          "sequenceNumber": 5,
+                          "useAccountHolderOrganization": true,
+                          "referenceNumber": 4000000000000008000,
+                          "createTime": "2018-09-25T14:22:05",
+                          "usage": "shipping",
+                          "changeable": false,
+                          "updateTime": "2018-09-25T14:22:05",
+                          "class": "com.ibm.commerce.trading.entities.AddressBookTC",
+                          "mandatory": false,
+                          "useParentOrganization": true
+                        },
+                        {
+                          "usePersonal": true,
+                          "sequenceNumber": 6,
+                          "useAccountHolderOrganization": true,
+                          "referenceNumber": 4000000000000008000,
+                          "createTime": "2018-09-25T14:22:05",
+                          "usage": "billing",
+                          "changeable": false,
+                          "updateTime": "2018-09-25T14:22:05",
+                          "class": "com.ibm.commerce.trading.entities.AddressBookTC",
+                          "mandatory": false,
+                          "useParentOrganization": true
+                        }
+                      ],
+                      "contractUsage": "ORGANIZATION_BUYER",
+                      "contractDescription": {
+                        "longDescription": "Contract 1 Description",
+                        "createTime": "2018-09-25T14:22:04",
+                        "updateTime": "2018-09-25T14:22:04",
+                        "shortDescription": "Contract 1",
+                        "locale": "en_US"
+                      },
+                      "updateTime": "2018-09-25T14:22:04",
+                      "contractUniqueKey": {
+                        "minorVersionNumber": 0,
+                        "contractOwner": {
+                          "organizationRef": {
+                            "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                          }
+                        },
+                        "origin": "Manual",
+                        "name": "Contract1",
+                        "majorVersionNumber": 1
+                      },
+                      "referenceNumber": 4000000000000007700,
+                      "createTime": "2018-09-25T14:22:04",
+                      "comment": "This is contract remarks",
+                      "state": "Draft",
+                      "contractReference": {
+                        "contractRef": {
+                          "minorVersionNumber": 0,
+                          "contractOwner": {
+                            "organizationRef": {
+                              "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                            }
+                          },
+                          "origin": "Deployment",
+                          "name": "b2bStore Base for Default Contract",
+                          "majorVersionNumber": 1
+                        }
+                      },
+                      "class": "com.ibm.commerce.trading.entities.BuyerContract",
+                      "creditAllowed": false,
+                      "participants": [
+                        {
+                          "role": "BUYER",
+                          "createTime": "2018-09-25T14:22:04",
+                          "updateTime": "2018-09-25T14:22:04",
+                          "participantMember": {
+                            "organizationRef": {
+                              "distinguishName": "o=buyer c organization,o=root organization"
+                            }
+                          }
+                        },
+                        {
+                          "role": "CREATOR",
+                          "createTime": "2018-09-25T14:22:04",
+                          "updateTime": "2018-09-25T14:22:04",
+                          "participantMember": {
+                            "userRef": {
+                              "distinguishName": "uid=wcsadmin,o=root organization"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the buyer contract.",
+            "name": "contractId",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "Buyer Contract"
+        ],
+        "description": "Gets a buyer contract by its ID.",
+        "summary": "Gets a buyer contract by ID",
+        "operationId": "Contract-findByContractId"
+      },
+      "put": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyerContract-UpdateResponse"
+                },
+                "example": {
+                  "response": {
+                    "contractId": 4000000000000001000
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the buyer contract.",
+            "name": "contractId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "description": "The request body for updating a buyer contract.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuyerContract-Details"
+              },
+              "example": {
+                "buyerContracts": [
+                  {
+                    "class": "com.ibm.commerce.trading.entities.BuyerContract",
+                    "participants": [
+                      {
+                        "participantMember": {
+                          "organizationRef": {
+                            "distinguishName": "o=buyer c organization,o=root organization"
+                          }
+                        },
+                        "role": "SELLER_CONTACT"
+                      }
+                    ],
+                    "contractUniqueKey": {
+                      "contractOwner": {
+                        "organizationRef": {
+                          "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                        }
+                      },
+                      "origin": "Manual",
+                      "name": "Contract1",
+                      "majorVersionNumber": 1,
+                      "minorVersionNumber": 0
+                    },
+                    "contractDescription": {
+                      "shortDescription": "Contract 6",
+                      "longDescription": "Contract 6 Description",
+                      "locale": "en_US"
+                    },
+                    "accountReference": {
+                      "accountRef": {
+                        "accountOwner": {
+                          "organizationRef": {
+                            "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                          }
+                        },
+                        "name": "Buyer C Organization"
+                      }
+                    },
+                    "state": "Draft",
+                    "comment": "This is contract remarks",
+                    "contractUsage": "ORGANIZATION_BUYER",
+                    "creditAllowed": false,
+                    "contractReference": {
+                      "contractRef": {
+                        "contractOwner": {
+                          "organizationRef": {
+                            "distinguishName": "ou=extended sites seller organizationb2bstore,o=extended sites seller organization,o=root organization"
+                          }
+                        },
+                        "origin": "Deployment",
+                        "name": "b2bStore Base for Default Contract",
+                        "majorVersionNumber": 1,
+                        "minorVersionNumber": 0
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "tags": [
+          "Buyer Contract"
+        ],
+        "description": "Updates an existing buyer contract.",
+        "summary": "Updates an existing buyer contract",
+        "operationId": "BuyerContract-updateBuyerContract"
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyerContract-DeleteResponse"
+                },
+                "example": {
+                  "response": {
+                    "contractId": 4000000000000005600
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the buyer contract.",
+            "name": "contractId",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "Buyer Contract"
+        ],
+        "summary": "Deletes the specified contracts by setting the contracts to mark for delete",
+        "operationId": "BuyerContract-deleteBuyerContract",
+        "description": "Deletes the specified contracts by setting the contracts to mark for delete.<br>It does not remove the contract from the database immediately. A contract  has to be in one of the following state to run this command:  Draft, Cancelled, Closed."
+      }
+    },
+    "/store/{storeId}/buyer_contract/{contractId}/addParticipant": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyerContract-AddParticipantResponse"
+                },
+                "example": {
+                  "response": {
+                    "participantId": "4000000000000008005",
+                    "accountId": 4000000000000006000,
+                    "contractId": 4000000000000006000
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the buyer contract.",
+            "name": "contractId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "description": "The request body for adding a participant to a buyer contract.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuyerContract-AddParticipantRequest"
+              },
+              "example": {
+                "memberId": "-3000",
+                "role": "SELLER"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Buyer Contract"
+        ],
+        "summary": "Adds a participant to a buyer contract",
+        "operationId": "BuyerContract-addParticipant",
+        "description": "Adds a participant to a buyer contract."
+      }
+    },
+    "/store/{storeId}/buyer_contract/{contractId}/deleteParticipant": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyerContract-DeleteParticipantResponse"
+                },
+                "example": {
+                  "response": {
+                    "accountId": 4000000000000006000,
+                    "contractId": 4000000000000006000
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the buyer contract.",
+            "name": "contractId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "description": "The request body for deleting participant from a buyer contract.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuyerContract-DeleteParticipantRequest"
+              },
+              "example": {
+                "tcId": 4000000000000006700
+              }
+            }
+          }
+        },
+        "tags": [
+          "Buyer Contract"
+        ],
+        "summary": "Deletes a participant relationship.",
+        "operationId": "BuyerContract-deleteParticipant",
+        "description": "Deletes a participant relationship from a buyer contract."
+      }
+    },
+    "/store/{storeId}/buyer_contract/{contractId}/saveTermCondition": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyerContract-SaveTermConditionResponse"
+                },
+                "example": {
+                  "response": {
+                    "contractId": 4000000000000006000
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the buyer contract.",
+            "name": "contractId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "description": "The request body for adding or updating terms and conditions for a buyer contract.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuyerContract-SaveTermConditionRequest"
+              },
+              "example": {
+                "buyerContracts": [
+                  {
+                    "class": "com.ibm.commerce.trading.entities.BuyerContract",
+                    "termConditions": [
+                      {
+                        "class": "com.ibm.commerce.trading.entities.TermCondition",
+                        "properties": [
+                          {
+                            "name": "catalogFilterId",
+                            "value": "10501"
+                          }
+                        ],
+                        "action": "NEW",
+                        "type": "CatalogFilterTC"
+                      },
+                      {
+                        "class": "com.ibm.commerce.trading.entities.TermCondition",
+                        "properties": [
+                          {
+                            "name": "priceRuleBeginDate"
+                          },
+                          {
+                            "name": "priceRuleId",
+                            "value": "11003"
+                          },
+                          {
+                            "name": "priceRuleExpiryDate"
+                          }
+                        ],
+                        "action": "NEW",
+                        "type": "PriceRuleTC"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "tags": [
+          "Buyer Contract"
+        ],
+        "summary": "Adds or updates terms and conditions for a buyer contract",
+        "operationId": "BuyerContract-saveTermCondition",
+        "description": "Adds or updates terms and conditions for a buyer contract."
+      }
+    },
+    "/store/{storeId}/buyer_contract/{contractId}/deleteTermCondition": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyerContract-DeleteTermConditionResponse"
+                },
+                "example": {
+                  "response": {
+                    "contractId": 4000000000000006000
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the buyer contract.",
+            "name": "contractId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "description": "The request body for adding or deleting terms and conditions for a buyer contract.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuyerContract-DeleteTermConditionRequest"
+              },
+              "example": {
+                "tcId": 4000000000000006700
+              }
+            }
+          }
+        },
+        "tags": [
+          "Buyer Contract"
+        ],
+        "summary": "Adds or updates terms and conditions for a buyer contract",
+        "operationId": "BuyerContract-deleteTermCondition",
+        "description": "Deletes terms and conditions from a buyer contract. The contract has to be in Draft state."
+      }
+    },
+    "/store/{storeId}/buyer_contract/{contractId}/copy": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyerContract-CopyResponse"
+                },
+                "example": {
+                  "response": {
+                    "contractId": 4000000000000007000
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the buyer contract to be copied.",
+            "name": "contractId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "description": "The request body for copying a buyer contract.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuyerContract-CopyRequest"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Buyer Contract"
+        ],
+        "summary": "Copies a buyer contract",
+        "operationId": "BuyerContract-Copy",
+        "description": "Copies a buyer contract. <br> If the command completes successfully, a new contract will be create. The contract will be in Draft state with majorVersion set to 1 and minorVersion set to 0."
+      }
+    },
+    "/store/{storeId}/buyer_contract/{contractId}/submit": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyerContract-SubmitResponse"
+                },
+                "example": {
+                  "response": {
+                    "contractId": 4000000000000006000
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the buyer contract.",
+            "name": "contractId",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "Buyer Contract"
+        ],
+        "summary": "Submits a buyer contract for approval",
+        "operationId": "BuyerContract-Submit",
+        "description": "Submits a buyer contract for approval. <br> If the designated approvers for the contract decides a contract is complete and acceptable, they can move the contract into the approved state. WebSphere Commerce will automatically attempt to deploy an approved contract.<br>If the designated approver for a store decides a contract is not complete or is unacceptable, they can move the contract into the rejected state. A contract in the rejected state can be changed and re-submitted for approval, canceled, or marked for deletion."
+      }
+    },
+    "/store/{storeId}/buyer_contract/{contractId}/newVersion": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyerContract-NewVersionResponse"
+                },
+                "example": {
+                  "response": {
+                    "contractId": 4000000000000007000
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the buyer contract to be copied.",
+            "name": "contractId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "description": "The request body for copying a buyer contract.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuyerContract-NewVersionRequest"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Buyer Contract"
+        ],
+        "summary": "Creates a new version of a specified buyer contract",
+        "operationId": "BuyerContract-NewVersion",
+        "description": "\"Creates a new version of a specified buyer contract. <br>The state of the specified contract has to be in one of the following states: Approved, Active, Suspended, DeploymentInProgress, and DeploymentFailed. <br>The new contract will have the same name as the specified one. <br>If both majorVersion and minorVersion are provided, the command respects the versions. Otherwise, the new contract will have the same major version number with the old contract. The minor version will be one plus the largest minor version with the same contract name,  origin, owner, majorVerion. <br>This new contract will be in Draft version.\""
+      }
+    },
+    "/store/{storeId}/buyer_contract/{contractId}/suspend": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyerContract-SuspendResponse"
+                },
+                "example": {
+                  "response": {
+                    "contractId": 4000000000000005600
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the buyer contract to be suspended.",
+            "name": "contractId",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "Buyer Contract"
+        ],
+        "summary": "Suspends an active buyer contract",
+        "operationId": "BuyerContract-Suspend",
+        "description": "Suspends an active buyer contract and refresh the contract cache."
+      }
+    },
+    "/store/{storeId}/buyer_contract/{contractId}/resume": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyerContract-ResumeResponse"
+                },
+                "example": {
+                  "response": {
+                    "contractId": 4000000000000005600
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the buyer contract to be resumed.",
+            "name": "contractId",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "Buyer Contract"
+        ],
+        "summary": "Resumes the specified buyer contract to Active state",
+        "operationId": "BuyerContract-Resume",
+        "description": "Resumes the specified buyer contract to Active state. <br>The specified contract has to be in Suspended state."
+      }
+    },
+    "/store/{storeId}/buyer_contract/{contractId}/cancel": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyerContract-CancelResponse"
+                },
+                "example": {
+                  "response": {
+                    "contractId": 4000000000000005600
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the buyer contract to be cancelled.",
+            "name": "contractId",
+            "in": "path"
+          }
+        ],
+        "tags": [
+          "Buyer Contract"
+        ],
+        "summary": "Cancels the specified buyer contract by changing its contract state to Cancelled",
+        "operationId": "BuyerContract-Cancel",
+        "description": "Cancels the specified buyer contract by changing its contract state to Cancelled.<br>It does not remove the contract from the database. A contract can be cancelled any time except the contract is in Draft, DeploymentInProgress, or Closed state."
+      }
+    },
+    "/store/{storeId}/buyer_contract/byAccountId/{accountId}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyerContract-ContractList"
+                },
+                "example": {
+                  "resultList": [
+                    {
+                      "longDescription": null,
+                      "endDate": null,
+                      "contractId": "4000000000000002501",
+                      "name": "Contract1",
+                      "shortDescription": "Contract 1",
+                      "state": "3",
+                      "startDate": null,
+                      "createDate": "2018-09-04T20:49:07.688000000Z"
+                    },
+                    {
+                      "longDescription": null,
+                      "endDate": null,
+                      "contractId": "4000000000000003501",
+                      "name": "Contract2",
+                      "shortDescription": "Contract 2",
+                      "state": "0",
+                      "startDate": null,
+                      "createDate": "2018-09-05T15:49:46.923000000Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files."
+          }
+        },
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The store identifier.",
+            "name": "storeId",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the business account which contains the contract.",
+            "name": "accountId",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The text used for searching contracts by name.",
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "LIKE",
+                "EXACT"
+              ],
+              "default": "LIKE"
+            },
+            "description": "Defines the contract name is searched. 'EXACT' means returning names which exactly match(case-insensitive) the input.  'LIKE' means returning names which contains the search input (case-insensitive).",
+            "name": "nameSearchMode",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The text used for searching contracts by short description.",
+            "name": "shortDescription",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "LIKE",
+                "EXACT"
+              ],
+              "default": "LIKE"
+            },
+            "description": "Defines the contract description is searched. 'EXACT' means returning description which exactly match(case-insensitive) the input.  'LIKE' means returning description which contains the search input (case-insensitive).",
+            "name": "descriptionSearchMode",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AllList",
+                "DraftList",
+                "SubmittedList",
+                "RejectedList",
+                "ApprovedList",
+                "ActivatedList",
+                "InactiveList",
+                "CancelledList",
+                "ClosedList",
+                "DeployingList",
+                "DeployFailList",
+                "OpenedList",
+                "SuspendedList"
+              ],
+              "default": "AllList"
+            },
+            "description": "Specifies contracts with which state should be returned. 'AllList' returns contracts in all states.",
+            "name": "state",
+            "in": "query"
+          }
+        ],
+        "tags": [
+          "Buyer Contract"
+        ],
+        "summary": "Searches contracts in a business account.",
+        "operationId": "BuyerContract-searchContracts",
+        "description": "Searches contract in a business account. <br> It accepts 'name' and 'shortDescription' query parameters to search contract with name and short descriptions matching the query parameters (case-insensitive). <br>'nameSearchMode' and 'descriptionSearchMode' query parameters are used to specify search behavior. <br>'state' query parameters are used for specifying contracts with which state should be returned. <br>If more than one query parameter are specified, only contracts which satisfies all specified query parameters are returned. <br>If no query parameter is specified, all contracts in this account are returned."
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Account-CreateResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "properties": {
+              "accountId": {
+                "type": "string",
+                "description": "The unique ID of the business account created."
+              }
+            }
+          }
+        }
+      },
+      "Account-UpdateRequest": {
+        "type": "object",
+        "properties": {
+          "account": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Account"
+            }
+          }
+        }
+      },
+      "Account-UpdateResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "accountId": {
+                "type": "string",
+                "description": "The unique ID of the business account which is updated."
+              }
+            }
+          }
+        }
+      },
+      "Account-DeleteResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "accountId": {
+                "type": "string",
+                "description": "The unique ID of the business account which is deleted."
+              }
+            }
+          }
+        }
+      },
+      "Account-Details": {
+        "type": "object",
+        "properties": {
+          "account": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Account"
+            }
+          }
+        }
+      },
+      "Account-Summary": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "description": "The unique id of the business account."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the business account."
+          },
+          "numberOfContracts": {
+            "type": "string",
+            "description": "The number of contracts in this business account."
+          },
+          "representativeName": {
+            "type": "string",
+            "description": "The name of the representative contact person."
+          }
+        }
+      },
+      "BuyerContract-Summary": {
+        "type": "object",
+        "properties": {
+          "contractId": {
+            "type": "string",
+            "description": "Unique ID for a contract. "
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the contract. Uniquely identifies a version of a Contract of a particular origin for a particular owner."
+          },
+          "state": {
+            "type": "integer",
+            "description": "Indicates the contract state:\n  0 = draft\n  1 = pending approval\n  2 = approved\n  3 = active\n  4 = rejected\n  5 = canceled\n  6 = closed\n  7 = suspended\n  -1 = deployment in progress\n  -2 = deployment failed"
+          },
+          "shortDescription": {
+            "type": "string",
+            "description": "The short description of the contract."
+          },
+          "longDescription": {
+            "type": "string",
+            "description": "The long description of the contract."
+          },
+          "representativeName": {
+            "type": "string",
+            "description": "The name of the representative contact person."
+          },
+          "createDate": {
+            "type": "string",
+            "description": "The time the Contract was created."
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Start time for the contract. If null, the contract starts immediately."
+          },
+          "endDate": {
+            "type": "string",
+            "description": "End time for the contract. If null, the contract has no end time."
+          }
+        }
+      },
+      "Account-List": {
+        "type": "object",
+        "properties": {
+          "resultList": {
+            "description": "A list of business account with summary.",
+            "items": {
+              "$ref": "#/components/schemas/Account-Summary"
+            },
+            "type": "array"
+          }
+        }
+      },
+      "BuyerContract-ContractList": {
+        "type": "object",
+        "properties": {
+          "resultList": {
+            "description": "A list of contracts with summary.",
+            "items": {
+              "$ref": "#/components/schemas/BuyerContract-Summary"
+            },
+            "type": "array"
+          }
+        }
+      },
+      "BuyerContract-CreateResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "contractId": {
+                "type": "string",
+                "description": "The unique ID of the buyer contract which is created."
+              }
+            }
+          }
+        }
+      },
+      "BuyerContract-UpdateResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "contractId": {
+                "type": "string",
+                "description": "The unique ID of the buyer contract which is updated."
+              }
+            }
+          }
+        }
+      },
+      "BuyerContract-Details": {
+        "type": "object",
+        "properties": {
+          "buyerContracts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuyerContract"
+            }
+          }
+        }
+      },
+      "BuyerContract-AddParticipantRequest": {
+        "type": "object",
+        "required": [
+          "memberId",
+          "role"
+        ],
+        "properties": {
+          "memberId": {
+            "type": "string",
+            "description": "The member ID of the participant.",
+            "example": -1000
+          },
+          "role": {
+            "type": "string",
+            "description": "The role type of the participant",
+            "example": "BUYER"
+          },
+          "info": {
+            "type": "string",
+            "description": "The information of the participant"
+          }
+        }
+      },
+      "BuyerContract-AddParticipantResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "properties": {
+              "participantId": {
+                "type": "string",
+                "description": "The ID of the participant relationship created."
+              },
+              "accountId": {
+                "type": "string",
+                "description": "The ID of the account the contract belongs to."
+              },
+              "contractId": {
+                "type": "string",
+                "description": "The ID of the buyer conatract the participant is added."
+              }
+            }
+          }
+        }
+      },
+      "BuyerContract-DeleteParticipantRequest": {
+        "type": "object",
+        "required": [
+          "participantId"
+        ],
+        "properties": {
+          "participantId": {
+            "type": "string",
+            "description": "The id of the participant relationship to delete.",
+            "example": 4000000000000008000
+          }
+        }
+      },
+      "BuyerContract-DeleteParticipantResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "properties": {
+              "accountId": {
+                "type": "string",
+                "description": "The ID of the account the contract belongs to."
+              },
+              "contractId": {
+                "type": "string",
+                "description": "The ID of the buyer conatract the participant is deleted."
+              }
+            }
+          }
+        }
+      },
+      "BuyerContract-CopyRequest": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the new contract.",
+            "example": "New Contract"
+          }
+        }
+      },
+      "BuyerContract-CopyResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "properties": {
+              "contractId": {
+                "type": "string",
+                "description": "The ID of the new contract.",
+                "example": 4000000000000007000
+              }
+            }
+          }
+        }
+      },
+      "BuyerContract-NewVersionRequest": {
+        "type": "object",
+        "properties": {
+          "majorVersion": {
+            "type": "string",
+            "description": "The major version of the new contract.",
+            "example": 1
+          },
+          "minorVersion": {
+            "type": "string",
+            "description": "The minor version of the new contract.",
+            "example": 2
+          }
+        }
+      },
+      "BuyerContract-NewVersionResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "properties": {
+              "contractId": {
+                "type": "string",
+                "description": "The ID of the new version contract.",
+                "example": 4000000000000007000
+              }
+            }
+          }
+        }
+      },
+      "BuyerContract-SubmitResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "properties": {
+              "contractId": {
+                "type": "string",
+                "description": "The ID of the contract which is submitted.",
+                "example": 4000000000000005000
+              }
+            }
+          }
+        }
+      },
+      "BuyerContract-SuspendResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "properties": {
+              "contractId": {
+                "type": "string",
+                "description": "The ID of the contract which is suspended.",
+                "example": 4000000000000005600
+              }
+            }
+          }
+        }
+      },
+      "BuyerContract-ResumeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "properties": {
+              "contractId": {
+                "type": "string",
+                "description": "The ID of the contract which is resumed.",
+                "example": 4000000000000005600
+              }
+            }
+          }
+        }
+      },
+      "BuyerContract-CancelResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "properties": {
+              "contractId": {
+                "type": "string",
+                "description": "The ID of the contract which is cancelled.",
+                "example": 4000000000000005600
+              }
+            }
+          }
+        }
+      },
+      "BuyerContract-DeleteResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "properties": {
+              "contractId": {
+                "type": "string",
+                "description": "The ID of the contract which is deleted.",
+                "example": 4000000000000005600
+              }
+            }
+          }
+        }
+      },
+      "BuyerContract-SaveTermConditionResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "properties": {
+              "contractId": {
+                "type": "string",
+                "description": "The ID of the buyer conatract the terms and conditions are saved."
+              }
+            }
+          }
+        }
+      },
+      "BuyerContract-DeleteTermConditionRequest": {
+        "type": "object",
+        "properties": {
+          "tcId": {
+            "type": "string",
+            "description": "The ID of the term and condition to be deleted.",
+            "example": 4000000000000006700
+          }
+        }
+      },
+      "BuyerContract-DeleteTermConditionResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "properties": {
+              "contractId": {
+                "type": "string",
+                "description": "The ID of the buyer conatract the terms and conditions are deleted."
+              }
+            }
+          }
+        }
+      },
+      "TradingAgreement": {
+        "type": "object",
+        "properties": {
+          "participants": {
+            "type": "array",
+            "description": "The participants of the trading agreement (contract or account).",
+            "items": {
+              "$ref": "#/components/schemas/Participant"
+            }
+          },
+          "referenceNumber": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The unique ID of the trading agreement (contract or account)."
+          },
+          "createTime": {
+            "type": "string",
+            "description": "Time the trading agreement (contract or account) is created."
+          },
+          "updateTime": {
+            "type": "string",
+            "description": "Time the trading agreement (contract or account) is last updated."
+          },
+          "startTime": {
+            "type": "string",
+            "description": "Start time for the TradingAgreement. If not specified, the TradingAgreement starts immediately."
+          },
+          "endTime": {
+            "type": "string",
+            "description": "End time for the TradingAgreement. If not specified, the TradingAgreement has no end time."
+          }
+        }
+      },
+      "Account": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TradingAgreement"
+          }
+        ],
+        "type": "object",
+        "properties": {
+          "accountUniqueKey": {
+            "$ref": "#/components/schemas/AccountUniqueKey"
+          },
+          "accountDescription": {
+            "$ref": "#/components/schemas/TradingAgreementDescription"
+          },
+          "createdInStore": {
+            "type": "object",
+            "description": "The store in which the account is created.",
+            "properties": {
+              "storeRef": {
+                "$ref": "#/components/schemas/StoreRef"
+              }
+            }
+          },
+          "state": {
+            "type": "string",
+            "description": "State of the Account.",
+            "enum": [
+              "Active",
+              "Initial",
+              "Closed"
+            ]
+          },
+          "comment": {
+            "type": "string",
+            "description": "A comment for the business account."
+          },
+          "allowStoreDefaultContract": {
+            "type": "boolean",
+            "description": "Indicates if purchases using Store default contract is allowed."
+          },
+          "mustUsePriceListPreference": {
+            "type": "boolean",
+            "description": "Whether or not the price list preference should be used."
+          },
+          "termConditions": {
+            "type": "array",
+            "description": "The terms and condtions of the account.",
+            "items": {
+              "$ref": "#/components/schemas/AccountTermCondition"
+            }
+          }
+        }
+      },
+      "AccountTermCondition": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/PaymentTC"
+          },
+          {
+            "$ref": "#/components/schemas/POTCIndividual"
+          },
+          {
+            "$ref": "#/components/schemas/POTCBlanket"
+          },
+          {
+            "$ref": "#/components/schemas/POTCLimited"
+          },
+          {
+            "$ref": "#/components/schemas/ShippingTCShippingMode"
+          },
+          {
+            "$ref": "#/components/schemas/ShippingTCShippingCharge"
+          },
+          {
+            "$ref": "#/components/schemas/ShippingTCShipToAddress"
+          },
+          {
+            "$ref": "#/components/schemas/AddressBookTC"
+          },
+          {
+            "$ref": "#/components/schemas/ShippingTCShippingChargeAdjustment"
+          },
+          {
+            "$ref": "#/components/schemas/ExtendedTC"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "class",
+          "mapping": {
+            "com.ibm.commerce.trading.entities.PaymentTC": "#/components/schemas/PaymentTC",
+            "com.ibm.commerce.trading.entities.POTCIndividual": "#/components/schemas/POTCIndividual",
+            "com.ibm.commerce.trading.entities.POTCBlanket": "#/components/schemas/POTCBlanket",
+            "com.ibm.commerce.trading.entities.POTCLimited": "#/components/schemas/POTCLimited",
+            "com.ibm.commerce.trading.entities.ShippingTCShippingMode": "#/components/schemas/ShippingTCShippingMode",
+            "com.ibm.commerce.trading.entities.ShippingTCShippingCharge": "#/components/schemas/ShippingTCShippingCharge",
+            "com.ibm.commerce.trading.entities.ShippingTCShipToAddress": "#/components/schemas/ShippingTCShipToAddress",
+            "com.ibm.commerce.trading.entities.AddressBookTC": "#/components/schemas/AddressBookTC",
+            "com.ibm.commerce.trading.entities.ShippingTCShippingChargeAdjustment": "#/components/schemas/ShippingTCShippingChargeAdjustment",
+            "com.ibm.commerce.trading.entities.ExtendedTC": "#/components/schemas/ExtendedTC"
+          }
+        }
+      },
+      "BuyerContract": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TradingAgreement"
+          }
+        ],
+        "type": "object",
+        "properties": {
+          "class": {
+            "type": "string",
+            "description": "The full entity class name of the buyer contract.",
+            "enum": [
+              "com.ibm.commerce.trading.entities.BuyerContract"
+            ]
+          },
+          "contractUniqueKey": {
+            "$ref": "#/components/schemas/ContractUniqueKey"
+          },
+          "contractDescription": {
+            "$ref": "#/components/schemas/TradingAgreementDescription"
+          },
+          "accountReference": {
+            "$ref": "#/components/schemas/AccountReference"
+          },
+          "state": {
+            "type": "string",
+            "description": "State of the contract.",
+            "enum": [
+              "Active",
+              "Pending",
+              "Approved",
+              "Draft",
+              "Closed",
+              "Reject",
+              "Suspended",
+              "DeploymentInProgress",
+              "DeploymentFailed",
+              "Cancelled"
+            ]
+          },
+          "comment": {
+            "type": "string",
+            "description": "A comment for the contract."
+          },
+          "contractUsage": {
+            "type": "string",
+            "description": "Indicates how the contract will be used",
+            "enum": [
+              "Reseller",
+              "OrganizationBuyer",
+              "SpecialBid",
+              "Default",
+              "Referral",
+              "Supplier",
+              "DelegationGrid"
+            ],
+            "default": "OrganizationBuyer"
+          },
+          "creditAllowed": {
+            "type": "boolean",
+            "description": "Whether or not the credit is allowed for the contract."
+          },
+          "contractReference": {
+            "$ref": "#/components/schemas/ContractReference"
+          },
+          "termConditions": {
+            "type": "array",
+            "description": "The terms and condtions of the buyer contract.",
+            "items": {
+              "$ref": "#/components/schemas/BuyerContractTermCondition"
+            }
+          }
+        }
+      },
+      "BuyerContract-SaveTermConditionRequest": {
+        "type": "object",
+        "properties": {
+          "buyerContracts": {
+            "type": "array",
+            "description": "The buyer contract for saving term and condition.",
+            "items": {
+              "$ref": "#/components/schemas/BuyerContractWithOnlyExtendedTermCondition"
+            }
+          }
+        }
+      },
+      "BuyerContractWithOnlyExtendedTermCondition": {
+        "type": "object",
+        "description": "The buyer contact which only contains extended term and condition.",
+        "properties": {
+          "class": {
+            "type": "string",
+            "description": "The full entity class name of the buyer contract.",
+            "enum": [
+              "com.ibm.commerce.trading.entities.BuyerContract"
+            ]
+          },
+          "termConditions": {
+            "type": "array",
+            "description": "The terms and condtions of the buyer contract.",
+            "items": {
+              "$ref": "#/components/schemas/ExtendedTC"
+            }
+          }
+        }
+      },
+      "BuyerContractTermCondition": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/PaymentTC"
+          },
+          {
+            "$ref": "#/components/schemas/ShippingTCShippingMode"
+          },
+          {
+            "$ref": "#/components/schemas/ShippingTCShippingCharge"
+          },
+          {
+            "$ref": "#/components/schemas/ShippingTCShipToAddress"
+          },
+          {
+            "$ref": "#/components/schemas/AddressBookTC"
+          },
+          {
+            "$ref": "#/components/schemas/OrderApprovalTC"
+          },
+          {
+            "$ref": "#/components/schemas/ExtendedTC"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "class",
+          "mapping": {
+            "com.ibm.commerce.trading.entities.PaymentTC": "#/components/schemas/PaymentTC",
+            "com.ibm.commerce.trading.entities.ShippingTCShippingMode": "#/components/schemas/ShippingTCShippingMode",
+            "com.ibm.commerce.trading.entities.ShippingTCShippingCharge": "#/components/schemas/ShippingTCShippingCharge",
+            "com.ibm.commerce.trading.entities.ShippingTCShipToAddress": "#/components/schemas/ShippingTCShipToAddress",
+            "com.ibm.commerce.trading.entities.AddressBookTC": "#/components/schemas/AddressBookTC",
+            "com.ibm.commerce.trading.entities.OrderApprovalTC": "#/components/schemas/OrderApprovalTC",
+            "com.ibm.commerce.trading.entities.ExtendedTC": "#/components/schemas/ExtendedTC"
+          }
+        }
+      },
+      "Participant": {
+        "type": "object",
+        "description": "The particpant of the trading agreement (account or acontract)",
+        "properties": {
+          "participantMember": {
+            "type": "object",
+            "description": "The participant member of the account or contract.",
+            "properties": {
+              "organizationRef": {
+                "$ref": "#/components/schemas/OrganizationRef"
+              },
+              "role": {
+                "type": "string",
+                "description": "The role the participant played in the organization.",
+                "example": "BUYER"
+              }
+            }
+          }
+        }
+      },
+      "Owner": {
+        "type": "object",
+        "description": "The owning organization.",
+        "properties": {
+          "organizationRef": {
+            "$ref": "#/components/schemas/OrganizationRef"
+          }
+        }
+      },
+      "StoreRef": {
+        "type": "object",
+        "description": "The reference to the store.",
+        "properties": {
+          "owners": {
+            "type": "array",
+            "description": "The owners of the store.",
+            "items": {
+              "$ref": "#/components/schemas/Owner"
+            }
+          },
+          "name": {
+            "type": "string",
+            "description": "The identifier of the store",
+            "example": "b2bStore"
+          }
+        }
+      },
+      "MemberGroupRef": {
+        "type": "object",
+        "description": "The reference to the member group.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/UserRef"
+          },
+          {
+            "$ref": "#/components/schemas/OrganizationRef"
+          }
+        ],
+        "properties": {
+          "memberGroupName": {
+            "type": "string",
+            "description": "The name of the member group."
+          }
+        }
+      },
+      "UserRef": {
+        "type": "object",
+        "description": "The reference to the user.",
+        "properties": {
+          "distinguishName": {
+            "type": "string",
+            "description": "The distinguished name of the user."
+          }
+        }
+      },
+      "OrganizationRef": {
+        "type": "object",
+        "description": "The reference to the organization.",
+        "properties": {
+          "distinguishName": {
+            "type": "string",
+            "description": "The distinguished name of the organization.",
+            "example": "o=buyer a organization,o=root organization"
+          }
+        }
+      },
+      "BusinessPolicyRef": {
+        "type": "object",
+        "description": "The reference to the business policy.",
+        "properties": {
+          "storeRef": {
+            "$ref": "#/components/schemas/StoreRef"
+          },
+          "policyName": {
+            "type": "string",
+            "description": "The name of the payment policy.",
+            "example": "ShippingChargeByCarrier"
+          }
+        }
+      },
+      "AddressReference": {
+        "type": "object",
+        "description": "The reference to the address.",
+        "properties": {
+          "owner": {
+            "$ref": "#/components/schemas/Owner"
+          },
+          "nickName": {
+            "type": "string",
+            "description": "The nick name of the address."
+          }
+        }
+      },
+      "AccountReference": {
+        "type": "object",
+        "description": "The reference to the account.",
+        "properties": {
+          "accountRef": {
+            "$ref": "#/components/schemas/AccountOwner"
+          }
+        }
+      },
+      "AccountUniqueKey": {
+        "type": "object",
+        "description": "The unique key to identify a account, including owning oragnization and account name.",
+        "properties": {
+          "accountOwner": {
+            "$ref": "#/components/schemas/AccountOwner"
+          }
+        }
+      },
+      "ContractReference": {
+        "type": "object",
+        "description": "The reference to the contract.",
+        "properties": {
+          "contractRef": {
+            "$ref": "#/components/schemas/ContractUniqueKey"
+          }
+        }
+      },
+      "ContractUniqueKey": {
+        "type": "object",
+        "description": "The unique key to identify a contract, including owning oragnization, contract name, major version and minor version.",
+        "properties": {
+          "contractOwner": {
+            "$ref": "#/components/schemas/MemberRefType"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/OriginType"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the contract."
+          },
+          "majorVersionNumber": {
+            "type": "integer",
+            "description": "The major version of the contract.",
+            "default": 1
+          },
+          "minorVersionNumber": {
+            "type": "integer",
+            "description": "The minor version of the contract.",
+            "default": 0
+          }
+        }
+      },
+      "MemberRefType": {
+        "type": "object",
+        "description": "The reference to a member.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/UserRef"
+          },
+          {
+            "$ref": "#/components/schemas/OrganizationRef"
+          },
+          {
+            "$ref": "#/components/schemas/MemberGroupRef"
+          }
+        ]
+      },
+      "OriginType": {
+        "type": "string",
+        "description": "How the contract is created.",
+        "enum": [
+          "RFQ",
+          "Manual",
+          "Imported",
+          "2-Party",
+          "Auction",
+          "Exchange",
+          "Deployment"
+        ],
+        "default": "Manual"
+      },
+      "AccountOwner": {
+        "type": "object",
+        "description": "The owner of the account.",
+        "properties": {
+          "organizationRef": {
+            "$ref": "#/components/schemas/OrganizationRef"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the account.",
+            "example": "Buyer A Organization"
+          }
+        }
+      },
+      "TradingAgreementDescription": {
+        "type": "object",
+        "description": "The descriptions of the trading agreement.",
+        "properties": {
+          "shortDescription": {
+            "type": "string",
+            "description": "The short description of the trading agreement."
+          },
+          "longDescription": {
+            "type": "string",
+            "description": "The long description of the trading agreement."
+          },
+          "locale": {
+            "type": "string",
+            "description": "The locale of the descriptions. For example, en_US.",
+            "example": "en_US"
+          }
+        }
+      },
+      "TermConditionDescription": {
+        "type": "object",
+        "description": "The descriptions of the term and condition.",
+        "properties": {
+          "shortDescription": {
+            "type": "string",
+            "description": "The short description of the term and condition.",
+            "example": "Sample term and condition"
+          },
+          "longDescription": {
+            "type": "string",
+            "description": "The long description of the term and condition.",
+            "example": "This is a sample term and condition."
+          },
+          "locale": {
+            "type": "string",
+            "description": "The locale of the descriptions. For example, en_US.",
+            "example": "en_US"
+          }
+        }
+      },
+      "TermCondition": {
+        "type": "object",
+        "description": "Tterms and conditions used in trading agreements, like business accounts and contracts",
+        "required": [
+          "class"
+        ],
+        "properties": {
+          "class": {
+            "type": "string",
+            "description": "The full entity class name for the term and conditoin"
+          },
+          "properties": {
+            "type": "array",
+            "description": "The additional properties of the term and condtion.",
+            "items": {
+              "$ref": "#/components/schemas/Property"
+            }
+          },
+          "termConditionDescription": {
+            "$ref": "#/components/schemas/TermConditionDescription"
+          },
+          "participants": {
+            "type": "array",
+            "description": "The participants of the term and condtion.",
+            "items": {
+              "$ref": "#/components/schemas/Participant"
+            }
+          },
+          "referenceNumber": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The unique ID of the term and condition."
+          },
+          "action": {
+            "type": "string",
+            "description": "The action to the term condition.",
+            "enum": [
+              "new",
+              "update",
+              "delete",
+              "noaction",
+              "ignore"
+            ]
+          },
+          "mandatory": {
+            "type": "boolean",
+            "description": "This column is used to indicate if the trading agreement participant must respond to this term during negotiation."
+          },
+          "changeable": {
+            "type": "boolean",
+            "description": "This column indicates if the trading agreement participant can change the term."
+          },
+          "sequenceNumber": {
+            "type": "integer",
+            "description": "a number indicating the sequence of the term within a trading agreement. This number must be unique within a trading agreement."
+          },
+          "createTime": {
+            "type": "string",
+            "description": "Time that this term and condition was created.",
+            "example": "2018-08-20T10:00:00"
+          },
+          "updateTime": {
+            "type": "string",
+            "description": "Time that this term and condition was last updated.",
+            "example": "2018-08-21T10:00:00"
+          }
+        }
+      },
+      "Property": {
+        "type": "object",
+        "description": "The Property element definition of a name and value pair.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the property."
+          },
+          "value": {
+            "type": "string",
+            "description": "the value of the property."
+          }
+        }
+      },
+      "ExtendedTC": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TermCondition"
+          },
+          {
+            "type": "object",
+            "description": "The extended term and condition.",
+            "properties": {
+              "class": {
+                "type": "string",
+                "description": "The full entity class name of the extended term and condition.",
+                "enum": [
+                  "com.ibm.commerce.trading.entities.TermCondition"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "description": "The types of the extended term and condition.",
+                "enum": [
+                  "CatalogFilterTC",
+                  "PriceRuleTC"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "ShippingTC": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TermCondition"
+          },
+          {
+            "type": "object",
+            "description": "The shipping term and condition. <br>Shipping terms and conditions specify how orders will be shipped, where they will be shipped to and who will pay for the shipping. "
+          }
+        ]
+      },
+      "ShippingTCShippingMode": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ShippingTC"
+          },
+          {
+            "type": "object",
+            "description": "The shipping mode term and condition. <br>This optional term defines how orders created under a contract are shipped. If this term is not specified in a contract, orders can be shipped by any mode available in a store. A shipping mode is also known as a shipping provider. A shipping provider is the combination of a shipping carrier and its shipping service. For example, XYZ Courier, Overnight is a shipping provider.",
+            "properties": {
+              "class": {
+                "type": "string",
+                "description": "The full entity class name of the term and condition.",
+                "enum": [
+                  "com.ibm.commerce.trading.entities.ShippingTCShippingMode"
+                ]
+              },
+              "shippingModePolicyRef": {
+                "$ref": "#/components/schemas/BusinessPolicyRef"
+              }
+            }
+          }
+        ]
+      },
+      "ShippingTCShippingCharge": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ShippingTC"
+          },
+          {
+            "type": "object",
+            "description": "\"The shipping charge term and condition. <br>This term defines who pays for shipping orders. You can adjust the shipping charge using the Accounts or Contracts notebook in the WebSphere Commerce Accelerator. Shipping charge adjustments can be a discount or increase in charge, and can be a fixed price or percentage adjustment.\"",
+            "properties": {
+              "class": {
+                "type": "string",
+                "description": "The full entity class name of the term and condition.",
+                "enum": [
+                  "com.ibm.commerce.trading.entities.ShippingTCShippingCharge"
+                ]
+              },
+              "shippingChargePolicyRef": {
+                "$ref": "#/components/schemas/BusinessPolicyRef"
+              }
+            }
+          }
+        ]
+      },
+      "ShippingTCShipToAddress": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ShippingTC"
+          },
+          {
+            "type": "object",
+            "description": "The shipping to address term and condition. <br>This optional term specifies where products purchased under a contract are shipped. Specifying this term and condition allows you to limit the locations where orders can be shipped. If the ship-to address term and condition is not specified, a ship-to address must be specified each time an order is made under a contract. If this term is specified, the buyer cannot specify a new ship-to address when placing an order, but must select a ship-to address from a list of ship-to addresses.",
+            "properties": {
+              "class": {
+                "type": "string",
+                "description": "The full entity class name of the term and condition.",
+                "enum": [
+                  "com.ibm.commerce.trading.entities.ShippingTCShipToAddress"
+                ]
+              },
+              "addressReference": {
+                "$ref": "#/components/schemas/AddressReference"
+              }
+            }
+          }
+        ]
+      },
+      "ShippingTCShippingChargeAdjustment": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ShippingTC"
+          }
+        ],
+        "type": "object",
+        "description": "The shipping to address term and condition. <br>This term contains specifies shipping discounts for the contract. These discounts specify an adjustment type (percent off or fixed cost), applicable shipping method, the adjustment amount, and the adjustment description.",
+        "properties": {
+          "class": {
+            "type": "string",
+            "description": "The full entity class name of the term and condition.",
+            "enum": [
+              "com.ibm.commerce.trading.entities.ShippingTCShippingChargeAdjustment"
+            ]
+          }
+        },
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/BusinessPolicyRef"
+          },
+          {
+            "$ref": "#/components/schemas/Adjustment"
+          },
+          {
+            "$ref": "#/components/schemas/CatalogGroupOrCatalogEntryRef"
+          },
+          {
+            "$ref": "#/components/schemas/CatalogRef"
+          }
+        ]
+      },
+      "Adjustment": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/PriceAdjustment"
+          },
+          {
+            "$ref": "#/components/schemas/MonetaryAmount"
+          }
+        ]
+      },
+      "CatalogGroupOrCatalogEntryRef": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/CatalogGroupRef"
+          },
+          {
+            "$ref": "#/components/schemas/CatalogEntryRef"
+          }
+        ]
+      },
+      "PriceAdjustment": {
+        "type": "object",
+        "description": "The adjustment to the price.",
+        "properties": {
+          "signedPercentage": {
+            "type": "number",
+            "format": "double",
+            "description": "The singed percentage adjustment.",
+            "example": -5
+          }
+        }
+      },
+      "MonetaryAmount": {
+        "type": "object",
+        "description": "The monetary amount.",
+        "properties": {
+          "value": {
+            "type": "number",
+            "description": "The value of the monetary amount.",
+            "example": 99.99
+          },
+          "currency": {
+            "type": "string",
+            "description": "The currency of the monetary amount.",
+            "example": "USD"
+          }
+        }
+      },
+      "CatalogEntryRef": {
+        "type": "object",
+        "description": "The reference to the catalog entry.",
+        "properties": {
+          "owner": {
+            "$ref": "#/components/schemas/Owner"
+          },
+          "catalogEntryReferenceNumber": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The unique ID of the catalog entry."
+          },
+          "partNumber": {
+            "type": "string",
+            "description": "The part number of the catalog entry."
+          }
+        }
+      },
+      "CatalogRef": {
+        "type": "object",
+        "description": "The reference to the catalog.",
+        "properties": {
+          "owner": {
+            "$ref": "#/components/schemas/Owner"
+          },
+          "catalogReferenceNumber": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The unique ID of the catalog."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the catalog."
+          }
+        }
+      },
+      "CatalogGroupRef": {
+        "type": "object",
+        "description": "The reference to the catalog group.",
+        "properties": {
+          "owner": {
+            "$ref": "#/components/schemas/Owner"
+          },
+          "catalogGroupReferenceNumber": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The unique ID of the catalog group."
+          },
+          "groupIdentifier": {
+            "type": "string",
+            "description": "The identifier of the catalog group."
+          }
+        }
+      },
+      "PurchaseOrderTC": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TermCondition"
+          },
+          {
+            "type": "object",
+            "description": "The purchase order term and condition. <br>provides the ability for you to track and authorize customer purchase order numbers. If a business account includes any purchase order terms and conditions and a contract specifies the use of that account, all purchases under the contract must specify a purchase order number defined with the account. A single purchase order number can then be used for payment authorization."
+          }
+        ]
+      },
+      "POTCIndividual": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PurchaseOrderTC"
+          },
+          {
+            "type": "object",
+            "description": "The purchase order individual term and condition. <br>Used for one order and acceptable purchase order numbers are not predefined. You can specify that customers must use a unique purchase order number for each order placed on behalf of a business account. If you do not require a unique purchase order number for each order, customers may reuse purchase order numbers.",
+            "properties": {
+              "class": {
+                "type": "string",
+                "description": "The full entity class name of the term and condition.",
+                "enum": [
+                  "com.ibm.commerce.trading.entities.POTCIndividual"
+                ]
+              },
+              "checkUniqueness": {
+                "type": "string",
+                "description": "The purchase order number must be unique."
+              }
+            }
+          }
+        ]
+      },
+      "POTCBlanket": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PurchaseOrderTC"
+          },
+          {
+            "type": "object",
+            "description": "The purchase order blanket term and condition. <br>Used for an unlimited number of orders. Blanket purchase order numbers that will be accepted when placing an order must be specified in the business account before buyers attempt to specify a blanket purchase order number.",
+            "properties": {
+              "class": {
+                "type": "string",
+                "description": "The full entity class name of the term and condition.",
+                "enum": [
+                  "com.ibm.commerce.trading.entities.POTCBlanket"
+                ]
+              },
+              "ponumber": {
+                "type": "string",
+                "description": "The purchase order number."
+              }
+            }
+          }
+        ]
+      },
+      "POTCLimited": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PurchaseOrderTC"
+          },
+          {
+            "type": "object",
+            "description": "The purchase order limited term and condition. <br>It defines user can purchase using the specified purchase order number which has the specified spending limit. Used for orders where the total amount of all orders made specifying the limited purchase order number does not exceed a spending limit. The spending limit for a limited purchase order is recorded and used to validate orders that specify a limited purchase order number to ensure the spending limit is not exceeded. Limited purchase order numbers that will be accepted when placing an order must be specified in the business account before buyers attempt to specify a limited purchase order number.",
+            "properties": {
+              "class": {
+                "type": "string",
+                "description": "The full entity class name of the term and condition.",
+                "enum": [
+                  "com.ibm.commerce.trading.entities.POTCLimited"
+                ]
+              },
+              "spendingLimit": {
+                "type": "string",
+                "description": "The spending limit of the order."
+              },
+              "ponumber": {
+                "type": "string",
+                "description": "The purchase order number."
+              }
+            }
+          }
+        ]
+      },
+      "PaymentTC": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TermCondition"
+          },
+          {
+            "type": "object",
+            "description": "The payment method term and condition. <br>This optional term specifies the payment methods that will be accepted for orders made under the contract. The payment method can be as general as a payment type, such as a credit card type, or as specific as a credit card number to be used for payment. If no payment method term is specified in a contract, payment in all methods accepted by the store will be accepted for orders made under the contract.",
+            "properties": {
+              "class": {
+                "type": "string",
+                "description": "The full entity class name of the term and condition.",
+                "enum": [
+                  "com.ibm.commerce.trading.entities.PaymentTC"
+                ]
+              },
+              "paymentMethod": {
+                "type": "object",
+                "description": "The payment method used in this term and condition.",
+                "properties": {
+                  "paymentPolicyRef": {
+                    "$ref": "#/components/schemas/BusinessPolicyRef"
+                  }
+                }
+              },
+              "billToAddress": {
+                "type": "object",
+                "description": "The billing address.",
+                "properties": {
+                  "addressReference": {
+                    "$ref": "#/components/schemas/AddressReference"
+                  }
+                }
+              },
+              "paymentMethodDisplayString": {
+                "$ref": "#/components/schemas/PaymentMethodDisplayString"
+              },
+              "attributeDetails": {
+                "type": "array",
+                "description": "The attributes of the payment method term and condition.",
+                "items": {
+                  "$ref": "#/components/schemas/AttributeDetail"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "PaymentMethodDisplayString": {
+        "type": "object",
+        "description": "The display string of the payment method.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The display name of the payment method."
+          }
+        }
+      },
+      "AttributeDetail": {
+        "type": "object",
+        "description": "The detail of an attribute.",
+        "properties": {
+          "attributeValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttributeValue"
+            }
+          },
+          "attributeName": {
+            "type": "string",
+            "description": "The name of the attribute."
+          }
+        }
+      },
+      "AttributeValue": {
+        "type": "object",
+        "description": "Represents the value of an attribute.",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The value of the attribute."
+          },
+          "operator": {
+            "type": "string",
+            "description": "The operator of the attribute value. For example, '='.\"",
+            "example": "="
+          },
+          "unit": {
+            "type": "string",
+            "description": "The unit of the attribute."
+          }
+        }
+      },
+      "AddressBookTC": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TermCondition"
+          },
+          {
+            "type": "object",
+            "description": "\"The payment method term and condition. <br>This term allows you to specify the address books fromwhich the customer can select the shipping and billing addresses for an order. When completing the checkout process for an order, the customer can select an address from the following address books: their personal address book, their parent organization's address book, or their business account organization's address book.\"",
+            "properties": {
+              "class": {
+                "type": "string",
+                "description": "The full entity class name of the term and condition.",
+                "enum": [
+                  "com.ibm.commerce.trading.entities.AddressBookTC"
+                ]
+              },
+              "usage": {
+                "type": "string",
+                "description": "The usage of the address.",
+                "enum": [
+                  "shipping",
+                  "billing"
+                ]
+              },
+              "usePersonal": {
+                "type": "boolean",
+                "description": "If the billing address is not predefined, customers can whether or not select and address from their personal address book."
+              },
+              "useParentOrganization": {
+                "type": "boolean",
+                "description": "If the billing address is not predefined, customers can whether or not select and address from their parent organization's address book."
+              },
+              "useAccountHolderOrganization": {
+                "type": "boolean",
+                "description": "If the billing address is not predefined, customers can whether or not select and address from their business account organization's address book."
+              }
+            }
+          }
+        ]
+      },
+      "OrderApprovalTC": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TermCondition"
+          },
+          {
+            "type": "object",
+            "description": "The order approval term and condition. <br>This term specifies if orders must be approved by the customer organization before filling the orders. You can specify an optional amount, that includes taxes and shipping, that allows orders with a value below the amount to be filled without approval from the customer organization. If an order total is over this amount, approval is required. If a buyer is placing an order with order items under multiple contracts and one item in the order has a contract specifying this term, the entire order is subject to the order approval term that applies to the item.",
+            "properties": {
+              "class": {
+                "type": "string",
+                "description": "The full entity class name of the term and condition.",
+                "enum": [
+                  "com.ibm.commerce.trading.entities.OrderApprovalTC"
+                ]
+              },
+              "monetaryAmount": {
+                "$ref": "#/components/schemas/MonetaryAmount"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "x-aes-documentation": {
+    "gettingstarted": [
+      {
+        "content": "Some REST services require authentication. Digital Commerce REST services are authenticated on secure and unsecured channels. This authentication can include the use of the WCToken and WCTrustedToken. To use REST services that require authentication, you must first get authentication data by using a supported identity services.\n\nAfter you obtain the authentication data, you must pass either the WCToken or WCTustedToken parameters, or both, within the HTTP header for every request that requires authentication. If a request is sent over HTTP, pass the WCToken parameter in the HTTP header. Do not pass the WCTrustedToken in HTTP requests, as the parameter value might display. Send both the WCToken and the WCTrustedToken parameters when the request is being sent over HTTPS.\n\nThe Digital Commerce REST APIs can also use session cookies that are created by the Digital Commerce store runtime for authentication. These cookies allow you to mix requests to the Digital Commerce REST APIs and the Digital Commerce store runtime within the same user session.\n\n See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Authentication"
+      },
+      {
+        "content": "Digital Commerce REST services support JSON and XML formats for input and output data by default. The default format is JSON. When an XML String is sent to a REST service, you must set Content-Type HTTP header to be \"application/xml\". The REST service converts the XML input data to the JSON format that is accepted by REST services. Therefore, your input XML format must follow a certain structure so that it can be transformed to the JSON object that is accepted by REST services. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Response formats"
+      },
+      {
+        "content": "Preview tokens are encrypted strings that encapsulates a set of preview options and restrictions on when and where the token can be used. Any user who is authorized to access your server and has a preview token, can complete preview actions in the same store for which that token is generated. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a>",
+        "codeSnippets": [],
+        "name": "Preview tokens"
+      },
+      {
+        "content": "Some Digital Commerce REST services require a request to be sent over HTTPS. Learn more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Secure Sockets Layer"
+      }
+    ]
+  }
+}

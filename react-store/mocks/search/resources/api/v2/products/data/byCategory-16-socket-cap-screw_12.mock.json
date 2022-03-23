@@ -1,0 +1,3105 @@
+{
+  "breadCrumbTrailEntryView": [
+    {
+      "label": "Fasteners",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "12",
+      "seo": {
+        "href": "/fasteners"
+      }
+    },
+    {
+      "label": "Screws",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "16",
+      "seo": {
+        "href": "/screws"
+      }
+    }
+  ],
+  "contents": [
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/socket-cap-screw"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3901.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3901.jpg",
+      "shortDescription": "Durable hex drive cap screw with fine thread",
+      "parentCatalogGroupID": "/12/16",
+      "partNumber": "FSC039_3901",
+      "name": "Socket Cap Screw",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "15.99"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "13.7"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_fasteners_screwsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1/4\"-20", "1/4\"-28"],
+              "sequence": ["1.0", "2.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002769", "7000000000000002770"],
+              "value": ["1/4\"-20", "1/4\"-28"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000165",
+          "comparable": "true",
+          "key": "7000000000000000165",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Drive type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Hex_FSC039_3901",
+              "sequence": "1.0",
+              "unitID": "Hex",
+              "id": "7000000000000002777",
+              "image1": "images/catalog/hardware/facets/drivestyles/screws_drivestyle_hex.png",
+              "value": "Hex",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/drivestyles/screws_drivestyle_hex.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Drive type",
+          "facetable": "false",
+          "id": "7000000000000000167",
+          "comparable": "true",
+          "key": "7000000000000000167",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "1.0",
+              "identifier": "Socket_FSC039_3901",
+              "unitID": "Socket",
+              "id": "7000000000000002826",
+              "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_socket.png",
+              "value": "Socket",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_socket.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Head style",
+          "facetable": "false",
+          "id": "7000000000000000147",
+          "comparable": "true",
+          "key": "7000000000000000147",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsLength",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1 1/4\"", "1 1/2\""],
+              "sequence": ["1.0", "2.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002746", "7000000000000002747"],
+              "value": ["1 1/4\"", "1 1/2\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Length",
+          "facetable": "false",
+          "id": "7000000000000000158",
+          "comparable": "true",
+          "key": "7000000000000000158",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Tensile strength (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "1.0",
+              "identifier": "50000 psi_FSC039_3901",
+              "unitID": "psi",
+              "id": "7000000000000002797",
+              "value": "50000 psi"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Tensile strength (min)",
+          "facetable": "false",
+          "id": "7000000000000000144",
+          "comparable": "true",
+          "key": "7000000000000000144",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "sequence": ["1.0", "2.0", "3.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002757", "7000000000000002758", "7000000000000002759"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000161",
+          "comparable": "true",
+          "key": "7000000000000000161",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "25_FSC039_3901",
+              "sequence": "1.0",
+              "id": "7000000000000002807",
+              "value": "25"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "5_FSC039_3901",
+              "sequence": "1.0",
+              "id": "7000000000000002836",
+              "value": "5"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head height",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "1.0",
+              "identifier": "1/4\"_FSC039_3901",
+              "unitID": "inch",
+              "id": "7000000000000002817",
+              "value": "1/4\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Head height",
+          "facetable": "false",
+          "id": "7000000000000000146",
+          "comparable": "true",
+          "key": "7000000000000000146",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "B55_FSC039_3901",
+              "sequence": "1.0",
+              "unitID": "B55",
+              "id": "7000000000000002787",
+              "value": "B55"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "6.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13631"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/knurled-thumb-screw"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3902.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3902.jpg",
+      "shortDescription": "Slip-resistant thumb screw with Class A thread fit",
+      "parentCatalogGroupID": "/12/16",
+      "partNumber": "FSC039_3902",
+      "name": "Knurled Thumb Screw",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "9.95"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "8.2"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_fasteners_screwsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1/4\"-28", "5/16\"-18"],
+              "sequence": ["2.0", "3.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002770", "7000000000000002771"],
+              "value": ["1/4\"-28", "5/16\"-18"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000165",
+          "comparable": "true",
+          "key": "7000000000000000165",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Drive type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "None_FSC039_3902",
+              "sequence": "2.0",
+              "unitID": "None",
+              "id": "7000000000000002778",
+              "image1": "images/catalog/hardware/facets/drivestyles/screws_drivestyle_none.png",
+              "value": "None",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/drivestyles/screws_drivestyle_none.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Drive type",
+          "facetable": "false",
+          "id": "7000000000000000167",
+          "comparable": "true",
+          "key": "7000000000000000167",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "2.0",
+              "identifier": "Knurled_FSC039_3902",
+              "unitID": "Knurled",
+              "id": "7000000000000002827",
+              "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_knurled.png",
+              "value": "Knurled",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_knurled.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Head style",
+          "facetable": "false",
+          "id": "7000000000000000147",
+          "comparable": "true",
+          "key": "7000000000000000147",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsLength",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1 1/2\"", "1\""],
+              "sequence": ["2.0", "3.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002747", "7000000000000002748"],
+              "value": ["1 1/2\"", "1\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Length",
+          "facetable": "false",
+          "id": "7000000000000000158",
+          "comparable": "true",
+          "key": "7000000000000000158",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Tensile strength (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "2.0",
+              "identifier": "70000 psi_FSC039_3902",
+              "unitID": "psi",
+              "id": "7000000000000002798",
+              "value": "70000 psi"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Tensile strength (min)",
+          "facetable": "false",
+          "id": "7000000000000000144",
+          "comparable": "true",
+          "key": "7000000000000000144",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "sequence": ["1.0", "2.0", "3.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002757", "7000000000000002758", "7000000000000002759"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000161",
+          "comparable": "true",
+          "key": "7000000000000000161",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "50_FSC039_3902",
+              "sequence": "2.0",
+              "id": "7000000000000002808",
+              "value": "50"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "5_FSC039_3902",
+              "sequence": "2.0",
+              "id": "7000000000000002837",
+              "value": "5"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head height",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "2.0",
+              "identifier": "5/32\"_FSC039_3902",
+              "unitID": "inch",
+              "id": "7000000000000002818",
+              "value": "5/32\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Head height",
+          "facetable": "false",
+          "id": "7000000000000000146",
+          "comparable": "true",
+          "key": "7000000000000000146",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "B70_FSC039_3902",
+              "sequence": "2.0",
+              "unitID": "B70",
+              "id": "7000000000000002788",
+              "value": "B70"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "6.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13644"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/washer-head-lag-screw"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3903.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3903.jpg",
+      "shortDescription": "Extra-long, low-profile lag screw",
+      "parentCatalogGroupID": "/12/16",
+      "partNumber": "FSC039_3903",
+      "name": "Washer Head Lag Screw",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "9.99"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "8.7"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_fasteners_screwsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "3/8\"-16",
+              "sequence": "4.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000002772",
+              "value": "3/8\"-16"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000165",
+          "comparable": "true",
+          "key": "7000000000000000165",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Drive type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Torx_FSC039_3903",
+              "sequence": "3.0",
+              "unitID": "Torx",
+              "id": "7000000000000002779",
+              "image1": "images/catalog/hardware/facets/drivestyles/screws_drivestyle_torx.png",
+              "value": "Torx",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/drivestyles/screws_drivestyle_torx.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Drive type",
+          "facetable": "false",
+          "id": "7000000000000000167",
+          "comparable": "true",
+          "key": "7000000000000000167",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "3.0",
+              "identifier": "Washer_FSC039_3903",
+              "unitID": "Washer",
+              "id": "7000000000000002828",
+              "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_washer.png",
+              "value": "Washer",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_washer.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Head style",
+          "facetable": "false",
+          "id": "7000000000000000147",
+          "comparable": "true",
+          "key": "7000000000000000147",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsLength",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["2 1/4\"", "2 3/8\"", "3\""],
+              "sequence": ["4.0", "5.0", "6.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002749", "7000000000000002750", "7000000000000002751"],
+              "value": ["2 1/4\"", "2 3/8\"", "3\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Length",
+          "facetable": "false",
+          "id": "7000000000000000158",
+          "comparable": "true",
+          "key": "7000000000000000158",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Tensile strength (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "3.0",
+              "identifier": "70000 psi_FSC039_3903",
+              "unitID": "psi",
+              "id": "7000000000000002799",
+              "value": "70000 psi"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Tensile strength (min)",
+          "facetable": "false",
+          "id": "7000000000000000144",
+          "comparable": "true",
+          "key": "7000000000000000144",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "sequence": ["1.0", "2.0", "3.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002757", "7000000000000002758", "7000000000000002759"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000161",
+          "comparable": "true",
+          "key": "7000000000000000161",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "50_FSC039_3903",
+              "sequence": "3.0",
+              "id": "7000000000000002809",
+              "value": "50"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsFinish",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0", "3.0"],
+              "identifier": ["Uncoated", "Zinc", "Black oxide"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002762", "7000000000000002763", "7000000000000002764"],
+              "value": ["Uncoated", "Zinc", "Black oxide"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Finish",
+          "facetable": "false",
+          "id": "7000000000000000163",
+          "comparable": "true",
+          "key": "7000000000000000163",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "8_FSC039_3903",
+              "sequence": "3.0",
+              "id": "7000000000000002838",
+              "value": "8"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head height",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "3.0",
+              "identifier": "1/8\"_FSC039_3903",
+              "unitID": "inch",
+              "id": "7000000000000002819",
+              "value": "1/8\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Head height",
+          "facetable": "false",
+          "id": "7000000000000000146",
+          "comparable": "true",
+          "key": "7000000000000000146",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "C45_FSC039_3903",
+              "sequence": "3.0",
+              "unitID": "C45",
+              "id": "7000000000000002789",
+              "value": "C45"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "6.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13657"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/captive-panel-screw"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3904.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3904.jpg",
+      "shortDescription": "Hex socket fastener designed for cabinets and enclosures",
+      "parentCatalogGroupID": "/12/16",
+      "partNumber": "FSC039_3904",
+      "name": "Captive Panel Screw",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "15.99"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "13.7"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_fasteners_screwsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1/4\"-28", "5/16\"-18"],
+              "sequence": ["2.0", "3.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002770", "7000000000000002771"],
+              "value": ["1/4\"-28", "5/16\"-18"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000165",
+          "comparable": "true",
+          "key": "7000000000000000165",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Drive type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Hex_FSC039_3904",
+              "sequence": "4.0",
+              "unitID": "Hex",
+              "id": "7000000000000002780",
+              "image1": "images/catalog/hardware/facets/drivestyles/screws_drivestyle_hex.png",
+              "value": "Hex",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/drivestyles/screws_drivestyle_hex.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Drive type",
+          "facetable": "false",
+          "id": "7000000000000000167",
+          "comparable": "true",
+          "key": "7000000000000000167",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "4.0",
+              "identifier": "Socket_FSC039_3904",
+              "unitID": "Socket",
+              "id": "7000000000000002829",
+              "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_socket.png",
+              "value": "Socket",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_socket.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Head style",
+          "facetable": "false",
+          "id": "7000000000000000147",
+          "comparable": "true",
+          "key": "7000000000000000147",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsLength",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1 1/2\"", "2\""],
+              "sequence": ["2.0", "7.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002747", "7000000000000002752"],
+              "value": ["1 1/2\"", "2\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Length",
+          "facetable": "false",
+          "id": "7000000000000000158",
+          "comparable": "true",
+          "key": "7000000000000000158",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Tensile strength (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "4.0",
+              "identifier": "40000 psi_FSC039_3904",
+              "unitID": "psi",
+              "id": "7000000000000002800",
+              "value": "40000 psi"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Tensile strength (min)",
+          "facetable": "false",
+          "id": "7000000000000000144",
+          "comparable": "true",
+          "key": "7000000000000000144",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "sequence": ["1.0", "2.0", "3.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002757", "7000000000000002758", "7000000000000002759"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000161",
+          "comparable": "true",
+          "key": "7000000000000000161",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "25_FSC039_3904",
+              "sequence": "4.0",
+              "id": "7000000000000002810",
+              "value": "25"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2_FSC039_3904",
+              "sequence": "4.0",
+              "id": "7000000000000002839",
+              "value": "2"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head height",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "4.0",
+              "identifier": "1/4\"_FSC039_3904",
+              "unitID": "inch",
+              "id": "7000000000000002820",
+              "value": "1/4\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Head height",
+          "facetable": "false",
+          "id": "7000000000000000146",
+          "comparable": "true",
+          "key": "7000000000000000146",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "C45_FSC039_3904",
+              "sequence": "4.0",
+              "unitID": "C45",
+              "id": "7000000000000002790",
+              "value": "C45"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "6.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13685"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/socket-head-shoulder-screw"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3905.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3905.jpg",
+      "shortDescription": "Precision-grade shoulder screw with hex socket",
+      "parentCatalogGroupID": "/12/16",
+      "partNumber": "FSC039_3905",
+      "name": "Socket Head Shoulder Screw",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "8.5"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "7.24"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_fasteners_screwsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "5/16\"-18",
+              "sequence": "3.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000002771",
+              "value": "5/16\"-18"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000165",
+          "comparable": "true",
+          "key": "7000000000000000165",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Drive type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Hex_FSC039_3905",
+              "sequence": "5.0",
+              "unitID": "Hex",
+              "id": "7000000000000002781",
+              "image1": "images/catalog/hardware/facets/drivestyles/screws_drivestyle_hex.png",
+              "value": "Hex",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/drivestyles/screws_drivestyle_hex.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Drive type",
+          "facetable": "false",
+          "id": "7000000000000000167",
+          "comparable": "true",
+          "key": "7000000000000000167",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "5.0",
+              "identifier": "Socket_FSC039_3905",
+              "unitID": "Socket",
+              "id": "7000000000000002830",
+              "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_socket.png",
+              "value": "Socket",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_socket.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Head style",
+          "facetable": "false",
+          "id": "7000000000000000147",
+          "comparable": "true",
+          "key": "7000000000000000147",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsLength",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1 1/4\"", "2\""],
+              "sequence": ["1.0", "7.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002746", "7000000000000002752"],
+              "value": ["1 1/4\"", "2\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Length",
+          "facetable": "false",
+          "id": "7000000000000000158",
+          "comparable": "true",
+          "key": "7000000000000000158",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Tensile strength (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "5.0",
+              "identifier": "70000 psi_FSC039_3905",
+              "unitID": "psi",
+              "id": "7000000000000002801",
+              "value": "70000 psi"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Tensile strength (min)",
+          "facetable": "false",
+          "id": "7000000000000000144",
+          "comparable": "true",
+          "key": "7000000000000000144",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "sequence": ["1.0", "2.0", "3.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002757", "7000000000000002758", "7000000000000002759"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000161",
+          "comparable": "true",
+          "key": "7000000000000000161",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "50_FSC039_3905",
+              "sequence": "5.0",
+              "id": "7000000000000002811",
+              "value": "50"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "8_FSC039_3905",
+              "sequence": "5.0",
+              "id": "7000000000000002840",
+              "value": "8"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head height",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "5.0",
+              "identifier": "5/32\"_FSC039_3905",
+              "unitID": "inch",
+              "id": "7000000000000002821",
+              "value": "5/32\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Head height",
+          "facetable": "false",
+          "id": "7000000000000000146",
+          "comparable": "true",
+          "key": "7000000000000000146",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "D_FSC039_3905",
+              "sequence": "5.0",
+              "unitID": "day",
+              "id": "7000000000000002791",
+              "value": "D"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "6.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13698"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/fillister-head-machine-screw"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3906.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3906.jpg",
+      "shortDescription": "Small-diameter, fully threaded machine screw",
+      "parentCatalogGroupID": "/12/16",
+      "partNumber": "FSC039_3906",
+      "name": "Fillister Head Machine Screw",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "15.99"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "13.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_fasteners_screwsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1/4\"-20", "1/4\"-28"],
+              "sequence": ["1.0", "2.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002769", "7000000000000002770"],
+              "value": ["1/4\"-20", "1/4\"-28"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000165",
+          "comparable": "true",
+          "key": "7000000000000000165",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Drive type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Frearson_FSC039_3906",
+              "sequence": "6.0",
+              "unitID": "Frearson",
+              "id": "7000000000000002782",
+              "image1": "images/catalog/hardware/facets/drivestyles/screws_drivestyle_frearson.png",
+              "value": "Frearson",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/drivestyles/screws_drivestyle_frearson.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Drive type",
+          "facetable": "false",
+          "id": "7000000000000000167",
+          "comparable": "true",
+          "key": "7000000000000000167",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "6.0",
+              "identifier": "Fillister_FSC039_3906",
+              "unitID": "Fillister",
+              "id": "7000000000000002831",
+              "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_fillister.png",
+              "value": "Fillister",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_fillister.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Head style",
+          "facetable": "false",
+          "id": "7000000000000000147",
+          "comparable": "true",
+          "key": "7000000000000000147",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsLength",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["2 1/4\"", "2\""],
+              "sequence": ["4.0", "7.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002749", "7000000000000002752"],
+              "value": ["2 1/4\"", "2\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Length",
+          "facetable": "false",
+          "id": "7000000000000000158",
+          "comparable": "true",
+          "key": "7000000000000000158",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Tensile strength (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "6.0",
+              "identifier": "40000 psi_FSC039_3906",
+              "unitID": "psi",
+              "id": "7000000000000002802",
+              "value": "40000 psi"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Tensile strength (min)",
+          "facetable": "false",
+          "id": "7000000000000000144",
+          "comparable": "true",
+          "key": "7000000000000000144",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "sequence": ["1.0", "2.0", "3.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002757", "7000000000000002758", "7000000000000002759"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000161",
+          "comparable": "true",
+          "key": "7000000000000000161",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "100_FSC039_3906",
+              "sequence": "6.0",
+              "id": "7000000000000002812",
+              "value": "100"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsFinish",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0", "3.0"],
+              "identifier": ["Uncoated", "Zinc", "Black oxide"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002762", "7000000000000002763", "7000000000000002764"],
+              "value": ["Uncoated", "Zinc", "Black oxide"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Finish",
+          "facetable": "false",
+          "id": "7000000000000000163",
+          "comparable": "true",
+          "key": "7000000000000000163",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2_FSC039_3906",
+              "sequence": "6.0",
+              "id": "7000000000000002841",
+              "value": "2"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head height",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "6.0",
+              "identifier": "1/4\"_FSC039_3906",
+              "unitID": "inch",
+              "id": "7000000000000002822",
+              "value": "1/4\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Head height",
+          "facetable": "false",
+          "id": "7000000000000000146",
+          "comparable": "true",
+          "key": "7000000000000000146",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "B70_FSC039_3906",
+              "sequence": "6.0",
+              "unitID": "B70",
+              "id": "7000000000000002792",
+              "value": "B70"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "6.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13705"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/socket-set-screw"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3907.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3907.jpg",
+      "shortDescription": "Fully threaded, headless cup-point set screw",
+      "parentCatalogGroupID": "/12/16",
+      "partNumber": "FSC039_3907",
+      "name": "Socket Set Screw",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "17.75"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "15.52"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_fasteners_screwsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1/4\"-28", "5/16\"-18"],
+              "sequence": ["2.0", "3.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002770", "7000000000000002771"],
+              "value": ["1/4\"-28", "5/16\"-18"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000165",
+          "comparable": "true",
+          "key": "7000000000000000165",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Drive type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "None_FSC039_3907",
+              "sequence": "7.0",
+              "unitID": "None",
+              "id": "7000000000000002783",
+              "image1": "images/catalog/hardware/facets/drivestyles/screws_drivestyle_none.png",
+              "value": "None",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/drivestyles/screws_drivestyle_none.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Drive type",
+          "facetable": "false",
+          "id": "7000000000000000167",
+          "comparable": "true",
+          "key": "7000000000000000167",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "7.0",
+              "identifier": "None_FSC039_3907",
+              "unitID": "None",
+              "id": "7000000000000002832",
+              "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_none.png",
+              "value": "None",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_none.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Head style",
+          "facetable": "false",
+          "id": "7000000000000000147",
+          "comparable": "true",
+          "key": "7000000000000000147",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsLength",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1 1/4\"", "1 1/2\""],
+              "sequence": ["1.0", "2.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002746", "7000000000000002747"],
+              "value": ["1 1/4\"", "1 1/2\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Length",
+          "facetable": "false",
+          "id": "7000000000000000158",
+          "comparable": "true",
+          "key": "7000000000000000158",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Tensile strength (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "7.0",
+              "identifier": "50000 psi_FSC039_3907",
+              "unitID": "psi",
+              "id": "7000000000000002803",
+              "value": "50000 psi"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Tensile strength (min)",
+          "facetable": "false",
+          "id": "7000000000000000144",
+          "comparable": "true",
+          "key": "7000000000000000144",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "sequence": ["1.0", "2.0", "3.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002757", "7000000000000002758", "7000000000000002759"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000161",
+          "comparable": "true",
+          "key": "7000000000000000161",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "50_FSC039_3907",
+              "sequence": "7.0",
+              "id": "7000000000000002813",
+              "value": "50"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "5_FSC039_3907",
+              "sequence": "7.0",
+              "id": "7000000000000002842",
+              "value": "5"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "C45_FSC039_3907",
+              "sequence": "7.0",
+              "unitID": "C45",
+              "id": "7000000000000002793",
+              "value": "C45"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13742"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/tap-in-binding-post"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3908.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3908.jpg",
+      "shortDescription": "Frearson-drive binding post with permanent drive cap",
+      "parentCatalogGroupID": "/12/16",
+      "partNumber": "FSC039_3908",
+      "name": "Tap-in Binding Post",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "16.5"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "14.22"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_fasteners_screwsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["3/8\"-16", "7/16\"-14"],
+              "sequence": ["4.0", "5.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002772", "7000000000000002773"],
+              "value": ["3/8\"-16", "7/16\"-14"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000165",
+          "comparable": "true",
+          "key": "7000000000000000165",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Drive type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Frearson_FSC039_3908",
+              "sequence": "8.0",
+              "unitID": "Frearson",
+              "id": "7000000000000002784",
+              "image1": "images/catalog/hardware/facets/drivestyles/screws_drivestyle_frearson.png",
+              "value": "Frearson",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/drivestyles/screws_drivestyle_frearson.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Drive type",
+          "facetable": "false",
+          "id": "7000000000000000167",
+          "comparable": "true",
+          "key": "7000000000000000167",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "8.0",
+              "identifier": "Fillister_FSC039_3908",
+              "unitID": "Fillister",
+              "id": "7000000000000002833",
+              "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_fillister.png",
+              "value": "Fillister",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_fillister.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Head style",
+          "facetable": "false",
+          "id": "7000000000000000147",
+          "comparable": "true",
+          "key": "7000000000000000147",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsBarrel length",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0"],
+              "identifier": ["1/2\"", "7/8\""],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002742", "7000000000000002743"],
+              "value": ["1/2\"", "7/8\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Barrel length",
+          "facetable": "false",
+          "id": "7000000000000000156",
+          "comparable": "true",
+          "key": "7000000000000000156",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Tensile strength (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "8.0",
+              "identifier": "40000 psi_FSC039_3908",
+              "unitID": "psi",
+              "id": "7000000000000002804",
+              "value": "40000 psi"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Tensile strength (min)",
+          "facetable": "false",
+          "id": "7000000000000000144",
+          "comparable": "true",
+          "key": "7000000000000000144",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "sequence": ["1.0", "2.0", "3.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002757", "7000000000000002758", "7000000000000002759"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000161",
+          "comparable": "true",
+          "key": "7000000000000000161",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "100_FSC039_3908",
+              "sequence": "8.0",
+              "id": "7000000000000002814",
+              "value": "100"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2_FSC039_3908",
+              "sequence": "8.0",
+              "id": "7000000000000002843",
+              "value": "2"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head height",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "7.0",
+              "identifier": "1/8\"_FSC039_3908",
+              "unitID": "inch",
+              "id": "7000000000000002823",
+              "value": "1/8\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Head height",
+          "facetable": "false",
+          "id": "7000000000000000146",
+          "comparable": "true",
+          "key": "7000000000000000146",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "B55_FSC039_3908",
+              "sequence": "8.0",
+              "unitID": "B55",
+              "id": "7000000000000002794",
+              "value": "B55"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "6.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13755"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/flange-head-screw"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3909.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3909.jpg",
+      "shortDescription": "Nonmarring, high-strength machine screw",
+      "parentCatalogGroupID": "/12/16",
+      "partNumber": "FSC039_3909",
+      "name": "Flange-Head Screw",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "10.5"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "9.52"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_fasteners_screwsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["5/16\"-18", "3/8\"-16", "5/16\"-24"],
+              "sequence": ["3.0", "4.0", "6.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002771", "7000000000000002772", "7000000000000002774"],
+              "value": ["5/16\"-18", "3/8\"-16", "5/16\"-24"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000165",
+          "comparable": "true",
+          "key": "7000000000000000165",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Drive type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Hex_FSC039_3909",
+              "sequence": "9.0",
+              "unitID": "Hex",
+              "id": "7000000000000002785",
+              "image1": "images/catalog/hardware/facets/drivestyles/screws_drivestyle_hex.png",
+              "value": "Hex",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/drivestyles/screws_drivestyle_hex.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Drive type",
+          "facetable": "false",
+          "id": "7000000000000000167",
+          "comparable": "true",
+          "key": "7000000000000000167",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "9.0",
+              "identifier": "Flange_FSC039_3909",
+              "unitID": "Flange",
+              "id": "7000000000000002834",
+              "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_flange.png",
+              "value": "Flange",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_flange.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Head style",
+          "facetable": "false",
+          "id": "7000000000000000147",
+          "comparable": "true",
+          "key": "7000000000000000147",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsLength",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1 1/2\"", "1\""],
+              "sequence": ["2.0", "3.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002747", "7000000000000002748"],
+              "value": ["1 1/2\"", "1\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Length",
+          "facetable": "false",
+          "id": "7000000000000000158",
+          "comparable": "true",
+          "key": "7000000000000000158",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Tensile strength (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "9.0",
+              "identifier": "120000 psi_FSC039_3909",
+              "unitID": "psi",
+              "id": "7000000000000002805",
+              "value": "120000 psi"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Tensile strength (min)",
+          "facetable": "false",
+          "id": "7000000000000000144",
+          "comparable": "true",
+          "key": "7000000000000000144",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "sequence": ["1.0", "2.0", "3.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002757", "7000000000000002758", "7000000000000002759"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000161",
+          "comparable": "true",
+          "key": "7000000000000000161",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "25_FSC039_3909",
+              "sequence": "9.0",
+              "id": "7000000000000002815",
+              "value": "25"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsFinish",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0"],
+              "identifier": ["Uncoated", "Zinc"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002762", "7000000000000002763"],
+              "value": ["Uncoated", "Zinc"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Finish",
+          "facetable": "false",
+          "id": "7000000000000000163",
+          "comparable": "true",
+          "key": "7000000000000000163",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "8_FSC039_3909",
+              "sequence": "9.0",
+              "id": "7000000000000002844",
+              "value": "8"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head height",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "8.0",
+              "identifier": "1/4\"_FSC039_3909",
+              "unitID": "inch",
+              "id": "7000000000000002824",
+              "value": "1/4\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Head height",
+          "facetable": "false",
+          "id": "7000000000000000146",
+          "comparable": "true",
+          "key": "7000000000000000146",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "C33_FSC039_3909",
+              "sequence": "9.0",
+              "unitID": "C33",
+              "id": "7000000000000002795",
+              "value": "C33"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "6.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13768"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/hex-head-shoulder-screw"
+      },
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3910.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fsc039_screws/200x310/fsc039_3910.jpg",
+      "shortDescription": "Versatile screw with an integral journal between the head and thread",
+      "parentCatalogGroupID": "/12/16",
+      "partNumber": "FSC039_3910",
+      "name": "Hex Head Shoulder Screw",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "15.5"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "13.55"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_fasteners_screwsThread size",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1/4\"-20", "3/8\"-16"],
+              "sequence": ["1.0", "4.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002769", "7000000000000002772"],
+              "value": ["1/4\"-20", "3/8\"-16"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Thread size",
+          "facetable": "false",
+          "id": "7000000000000000165",
+          "comparable": "true",
+          "key": "7000000000000000165",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Drive type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Hex_FSC039_3910",
+              "sequence": "10.0",
+              "unitID": "Hex",
+              "id": "7000000000000002786",
+              "image1": "images/catalog/hardware/facets/drivestyles/screws_drivestyle_hex.png",
+              "value": "Hex",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/drivestyles/screws_drivestyle_hex.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Drive type",
+          "facetable": "false",
+          "id": "7000000000000000167",
+          "comparable": "true",
+          "key": "7000000000000000167",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head style",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "10.0",
+              "identifier": "Hex_FSC039_3910",
+              "unitID": "Hex",
+              "id": "7000000000000002835",
+              "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_hex.png",
+              "value": "Hex",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_hex.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Head style",
+          "facetable": "false",
+          "id": "7000000000000000147",
+          "comparable": "true",
+          "key": "7000000000000000147",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsShoulder diameter",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0"],
+              "identifier": ["3/8\"", "1/2\""],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002744", "7000000000000002745"],
+              "value": ["3/8\"", "1/2\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Shoulder diameter",
+          "facetable": "false",
+          "id": "7000000000000000157",
+          "comparable": "true",
+          "key": "7000000000000000157",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Tensile strength (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "10.0",
+              "identifier": "70000 psi_FSC039_3910",
+              "unitID": "psi",
+              "id": "7000000000000002806",
+              "value": "70000 psi"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Tensile strength (min)",
+          "facetable": "false",
+          "id": "7000000000000000144",
+          "comparable": "true",
+          "key": "7000000000000000144",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsShoulder length",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0"],
+              "identifier": ["1 7/16\"", "1 7/8\""],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002755", "7000000000000002756"],
+              "value": ["1 7/16\"", "1 7/8\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Shoulder length",
+          "facetable": "false",
+          "id": "7000000000000000160",
+          "comparable": "true",
+          "key": "7000000000000000160",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "25_FSC039_3910",
+              "sequence": "10.0",
+              "id": "7000000000000002816",
+              "value": "25"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsThread length",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0"],
+              "identifier": ["7/16\"", "9/16\""],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002753", "7000000000000002754"],
+              "value": ["7/16\"", "9/16\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Thread length",
+          "facetable": "false",
+          "id": "7000000000000000159",
+          "comparable": "true",
+          "key": "7000000000000000159",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Grade",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "5_FSC039_3910",
+              "sequence": "10.0",
+              "id": "7000000000000002845",
+              "value": "5"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Grade",
+          "facetable": "false",
+          "id": "7000000000000000148",
+          "comparable": "true",
+          "key": "7000000000000000148",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsSocket depth",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["1/8\"", "3/16\""],
+              "sequence": ["1.0", "2.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002767", "7000000000000002768"],
+              "value": ["1/8\"", "3/16\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Socket depth",
+          "facetable": "false",
+          "id": "7000000000000000164",
+          "comparable": "true",
+          "key": "7000000000000000164",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Head height",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "9.0",
+              "identifier": "1/4\"_FSC039_3910",
+              "unitID": "inch",
+              "id": "7000000000000002825",
+              "value": "1/4\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Head height",
+          "facetable": "false",
+          "id": "7000000000000000146",
+          "comparable": "true",
+          "key": "7000000000000000146",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsHead diameter",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["9/16\"", "3/4\""],
+              "sequence": ["1.0", "2.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002760", "7000000000000002761"],
+              "value": ["9/16\"", "3/4\""]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Head diameter",
+          "facetable": "false",
+          "id": "7000000000000000162",
+          "comparable": "true",
+          "key": "7000000000000000162",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Rockwell hardness (min)",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "B55_FSC039_3910",
+              "sequence": "10.0",
+              "unitID": "B55",
+              "id": "7000000000000002796",
+              "value": "B55"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "6.0",
+          "storeDisplay": "false",
+          "name": "Rockwell hardness (min)",
+          "facetable": "false",
+          "id": "7000000000000000143",
+          "comparable": "true",
+          "key": "7000000000000000143",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsMaterial",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "sequence": ["1.0", "2.0", "3.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002757", "7000000000000002758", "7000000000000002759"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "6.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000161",
+          "comparable": "true",
+          "key": "7000000000000000161",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsFinish",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0", "4.0", "5.0"],
+              "identifier": ["Uncoated", "Zinc", "Nickel", "Passivated"],
+              "unitOfMeasure": ["one", "one", "one", "one"],
+              "unitID": ["C62", "C62", "C62", "C62"],
+              "id": ["7000000000000002762", "7000000000000002763", "7000000000000002765", "7000000000000002766"],
+              "value": ["Uncoated", "Zinc", "Nickel", "Passivated"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "7.0",
+          "storeDisplay": "false",
+          "name": "Finish",
+          "facetable": "false",
+          "id": "7000000000000000163",
+          "comparable": "true",
+          "key": "7000000000000000163",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_screwsKnurled",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["Yes", "No"],
+              "sequence": ["1.0", "2.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002775", "7000000000000002776"],
+              "value": ["Yes", "No"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "8.0",
+          "storeDisplay": "false",
+          "name": "Knurled",
+          "facetable": "false",
+          "id": "7000000000000000166",
+          "comparable": "true",
+          "key": "7000000000000000166",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13793"
+    }
+  ],
+  "facets": [
+    {
+      "entry": [
+        {
+          "count": 0,
+          "label": "({* TO 3])",
+          "value": "price_usd%3A%28%7B*+TO+3%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401234232847932519341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({3 TO 6])",
+          "value": "price_usd%3A%28%7B3+TO+6%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401235132847932549341"
+          }
+        },
+        {
+          "count": 3,
+          "label": "({6 TO 9])",
+          "value": "price_usd%3A%28%7B6+TO+9%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401235432847932579341"
+          }
+        },
+        {
+          "count": 1,
+          "label": "({9 TO 12])",
+          "value": "price_usd%3A%28%7B9+TO+12%5D%29",
+          "extendedData": {
+            "uniqueId": "11211410599101951171151005840123573284793249509341"
+          }
+        },
+        {
+          "count": 5,
+          "label": "({12 TO 15])",
+          "value": "price_usd%3A%28%7B12+TO+15%5D%29",
+          "extendedData": {
+            "uniqueId": "1121141059910195117115100584012349503284793249539341"
+          }
+        }
+      ],
+      "value": "price_usd",
+      "name": "OfferPrice_usd"
+    },
+    {
+      "value": "manufacturer.raw",
+      "name": "Brand",
+      "entry": [
+        {
+          "label": "Arcarocco",
+          "value": "manufacturer.raw%3A%22Arcarocco%22",
+          "count": "2",
+          "extendedData": {
+            "uniqueId": "6511499971141119999111"
+          }
+        },
+        {
+          "label": "Black Key Fasteners",
+          "value": "manufacturer.raw%3A%22Black+Key+Fasteners%22",
+          "count": "2",
+          "extendedData": {
+            "uniqueId": "6610897991073275101121327097115116101110101114115"
+          }
+        },
+        {
+          "label": "Newtonbrook Steel",
+          "value": "manufacturer.raw%3A%22Newtonbrook+Steel%22",
+          "count": "3",
+          "extendedData": {
+            "uniqueId": "78101119116111110981141111111073283116101101108"
+          }
+        },
+        {
+          "label": "Veerman Tools",
+          "value": "manufacturer.raw%3A%22Veerman+Tools%22",
+          "count": "3",
+          "extendedData": {
+            "uniqueId": "86101101114109971103284111111108115"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Brand",
+        "propertyvalue": "manufacturer.raw",
+        "maximumValuesToDisplay": "6",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "0.0",
+        "name": "Brand",
+        "sortorder": "1",
+        "max_display": "6",
+        "fdesc": "The manufacturer",
+        "propertyId": "manufacturer.raw"
+      }
+    }
+  ],
+  "total": 10
+}

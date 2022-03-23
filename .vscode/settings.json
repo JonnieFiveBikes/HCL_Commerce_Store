@@ -1,0 +1,46 @@
+{
+  "files.eol": "\n",
+  "prettier.configPath": ".prettierrc.yaml",
+  "prettier.ignorePath": ".prettierignore",
+  "prettier.endOfLine": "lf",
+  "prettier.printWidth": 120,
+  "prettier.jsxBracketSameLine": true,
+  "editor.formatOnSave": true,
+  "files.trimTrailingWhitespace": true,
+  "fileHeaderComment.template": {
+    "*": [
+      "${commentbegin}",
+      "${commentprefix}==================================================",
+      "${commentprefix} Licensed Materials - Property of HCL Technologies",
+      "${commentprefix}",
+      "${commentprefix} HCL Commerce",
+      "${commentprefix}",
+      "${commentprefix} (C) Copyright HCL Technologies Limited ${year}",
+      "${commentprefix}",
+      "${commentprefix}==================================================",
+      "${commentend}"
+    ],
+    "HCL Commerce": [
+      "${commentbegin}",
+      "${commentprefix}==================================================",
+      "${commentprefix} Licensed Materials - Property of HCL Technologies",
+      "${commentprefix}",
+      "${commentprefix} HCL Commerce",
+      "${commentprefix}",
+      "${commentprefix} (C) Copyright HCL Technologies Limited ${year}",
+      "${commentprefix}",
+      "${commentprefix}==================================================",
+      "${commentend}"
+    ]
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "eslint.workingDirectories": ["./react-store", "packages/react-component", "packages/utils"]
+}

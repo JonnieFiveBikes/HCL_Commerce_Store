@@ -1,0 +1,1047 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "HCL Commerce Services - Price",
+    "description": "These services provide APIs related to pricing in either a B2B or B2C store. Use these classes to: <ul><li> Get information about currency formatting <li> Get entitled prices, range prices, and display prices for catalog entries",
+    "version": "9.1.6"
+  },
+  "servers": [
+    {
+      "url": "https://localhost/wcs/resources"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Currency Format",
+      "description": "A currency format. Contains formatting information on a currency."
+    },
+    {
+      "name": "Price",
+      "description": "This class provides RESTful services to get entitled and range prices."
+    },
+    {
+      "name": "Display Price",
+      "description": "This class provides RESTful services to get the display price (list price) for catalog entries. It uses the DisplayPrice noun."
+    }
+  ],
+  "paths": {
+    "/store/{storeId}/currency_format": {
+      "get": {
+        "tags": [
+          "Currency Format"
+        ],
+        "summary": "Get currency format",
+        "description": "Gets currency format by currency.",
+        "operationId": "CurrencyFormat-findByCurrency",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "byCurrency"
+              ]
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "The query name.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberUsage",
+            "in": "query",
+            "description": "The number usage.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.common.beans.StoreCurrencyFormatDescriptionDataBean_IBM_Store_Details"
+                },
+                "example": {
+                  "resultList": [
+                    {
+                      "numberUsage": -1,
+                      "currencyCode": "USD",
+                      "storeId": "10001",
+                      "langId": -1,
+                      "currencySymbol": "$",
+                      "decimalPlaces": "2"
+                    }
+                  ]
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.common.beans.StoreCurrencyFormatDescriptionDataBean_IBM_Store_Details"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.common.beans.StoreCurrencyFormatDescriptionDataBean_IBM_Store_Details"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.common.beans.StoreCurrencyFormatDescriptionDataBean_IBM_Store_Details"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/store/{storeId}/price": {
+      "get": {
+        "tags": [
+          "Price"
+        ],
+        "summary": "Get prices by part numbers",
+        "description": "Gets the entitled and range prices for catalog entries by part numbers.",
+        "operationId": "Price-byPartNumbers",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "byPartNumbers"
+              ]
+            }
+          },
+          {
+            "name": "partNumber",
+            "in": "query",
+            "description": "The part number of the catalog entry.",
+            "required": true,
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "contractId",
+            "in": "query",
+            "description": "The unique id of the contract.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "The currency of the price.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "JPY",
+                "CNY",
+                "BRL",
+                "EUR",
+                "RON",
+                "RUB",
+                "PLN",
+                "USD",
+                "KRW",
+                "TWD",
+                "CAD",
+                "GBP"
+              ]
+            }
+          },
+          {
+            "name": "quantity",
+            "in": "query",
+            "description": "The quantity of the catalog entry.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uom",
+            "in": "query",
+            "description": "The unit of measurement of the quantity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "The date of the price.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "checkEntitlement",
+            "in": "query",
+            "description": "Whether to enable entitlement check when retrieving prices.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ]
+            }
+          },
+          {
+            "name": "dynamicKitAsItem",
+            "in": "query",
+            "description": "Whether ot treat dynamic kits as items when retrieving prices.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ]
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data returned by a query.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IBM_Store_EntitledPrice_All",
+                "IBM_Store_EntitledPrice_RangePrice_All"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/price-price"
+                },
+                "example": {
+                  "resourceId": "http://localhost:80/wcs/resources/store/10001/price?q=byPartNumbers&partNumber=HTA029_292001&contractId=10001&currency=CAD&quantity=1.0&uom=C62&date=2014-11-24T11:13:26EST",
+                  "EntitledPrice": [
+                    {
+                      "partNumber": "HTA029_292001",
+                      "contractId": "10001",
+                      "UnitPrice": [
+                        {
+                          "price": {
+                            "currency": "CAD",
+                            "value": 22.35
+                          },
+                          "quantity": {
+                            "uom": "C62",
+                            "value": 1
+                          }
+                        }
+                      ],
+                      "productId": "13011"
+                    }
+                  ],
+                  "resourceName": "price"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/price-price"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/price-price"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/price-price"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Price"
+        ],
+        "summary": "Get prices by query",
+        "description": "Finds prices in a store using a structure that allows multiple results in a single query.",
+        "operationId": "Price-findPricesByQuery",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "The currency code to use for example, currency=USD. If no currency code is specified, the store default currency is used. This value is applied to all the queried products unless overridden at the product level.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "JPY",
+                "CNY",
+                "BRL",
+                "EUR",
+                "RON",
+                "RUB",
+                "PLN",
+                "USD",
+                "KRW",
+                "TWD",
+                "CAD",
+                "GBP"
+              ]
+            }
+          },
+          {
+            "name": "profile",
+            "in": "query",
+            "description": "Setting the 'profile' to 'default' or not specifying the 'profile' will result in normal prices being returned. A 'profile' value of 'range' will return the normal prices, and in addition, will return a list of range prices, which includes the minimum and maximum quantities as well as the price for each range.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "default",
+                "range"
+              ]
+            }
+          },
+          {
+            "name": "responseFormat",
+            "in": "query",
+            "description": "The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ]
+            }
+          },
+          {
+            "name": "catalogId",
+            "in": "query",
+            "description": "The catalog identifier. If none is specified, the store default catalog is used.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body for a price query.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.ibm.commerce.rest.price.handler.PriceHandler-PriceRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/com.ibm.commerce.rest.price.handler.PriceHandler-PriceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/price-price"
+                },
+                "example": {
+                  "resourceId": "https://localhost:443/wcs/resources/store/10001/price?currency=USD&profile=range",
+                  "EntitledPrice": [
+                    {
+                      "RangePrice": [
+                        {
+                          "currency": "USD",
+                          "maximumQuantity": {
+                            "uom": "C62",
+                            "value": 5
+                          },
+                          "minimumQuantity": {
+                            "uom": "C62",
+                            "value": 1
+                          },
+                          "priceInRange": {
+                            "currency": "USD",
+                            "value": 60
+                          }
+                        },
+                        {
+                          "currency": "USD",
+                          "minimumQuantity": {
+                            "uom": "C62",
+                            "value": 6
+                          },
+                          "priceInRange": {
+                            "currency": "USD",
+                            "value": 50
+                          }
+                        }
+                      ],
+                      "partNumber": "WCL004_041404",
+                      "contractId": "10001",
+                      "UnitPrice": [
+                        {
+                          "price": {
+                            "currency": "USD",
+                            "value": 50
+                          },
+                          "quantity": {
+                            "uom": "C62",
+                            "value": 7
+                          }
+                        }
+                      ],
+                      "productId": "11016"
+                    }
+                  ],
+                  "resourceName": "price"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/price-price"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/price-price"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/price-price"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/store/{storeId}/display_price": {
+      "get": {
+        "tags": [
+          "Display Price"
+        ],
+        "summary": "Get by part number and price rule ID",
+        "description": "Gets display prices for catalog entries by part numbers and price rule ID.",
+        "operationId": "DisplayPrice-byPartNumbersAndPriceRuleId",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The query name.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "byPartNumbersAndPriceRuleId"
+              ]
+            }
+          },
+          {
+            "name": "partNumber",
+            "in": "query",
+            "description": "The unique id of catalog entry.",
+            "required": true,
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "priceRuleId",
+            "in": "query",
+            "description": "The unique id of price rule.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "The currency of the price.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quantity",
+            "in": "query",
+            "description": "The quantity of the catalog entry.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uom",
+            "in": "query",
+            "description": "The unit of measurement of the quantity.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/display_price-IBM_Store_DisplayPrice"
+                },
+                "example": {
+                  "resourceId": "http://localhost:80/wcs/resources/store/10001/display_price?q=byPartNumbersAndPriceRuleId&partNumber=HTA029_292001&partNumber=AAAZZZ&priceRuleId=10002",
+                  "resultList": [
+                    {
+                      "priceRuleId": "10002",
+                      "catalogEntryId": "13011",
+                      "unitPrice": [
+                        {
+                          "price": {
+                            "currency": "USD",
+                            "value": 20
+                          },
+                          "quantity": {
+                            "uom": "C62",
+                            "value": 1
+                          }
+                        }
+                      ],
+                      "partNumber": "HTA029_292001"
+                    }
+                  ],
+                  "resourceName": "display_price"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/display_price-IBM_Store_DisplayPrice"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/display_price-IBM_Store_DisplayPrice"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/display_price-IBM_Store_DisplayPrice"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "price-price_item.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "display_price-IBM_Store_DisplayPrice_item": {
+        "required": [
+          "partNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "partNumber": {
+            "type": "string"
+          },
+          "priceRuleId": {
+            "type": "string"
+          },
+          "priceRuleName": {
+            "type": "string"
+          },
+          "catalogEntryId": {
+            "type": "string"
+          },
+          "unitPrice": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/display_price-IBM_Store_DisplayPrice_item.unitPrice"
+            }
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/display_price-IBM_Store_DisplayPrice_item.userDataField"
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.rest.price.handler.PriceHandler-PriceRequest": {
+        "required": [
+          "query"
+        ],
+        "type": "object",
+        "properties": {
+          "query": {
+            "$ref": "#/components/schemas/com.ibm.commerce.rest.price.handler.PriceHandler-PriceRequest-Query"
+          }
+        },
+        "description": "Price request."
+      },
+      "price-price": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "EntitledPrice": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/price-price_item"
+            }
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "price-price_item.UnitPrice": {
+        "type": "object",
+        "properties": {
+          "price": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.MonetaryAmountType"
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.QuantityType"
+          }
+        }
+      },
+      "price-price_item": {
+        "required": [
+          "partNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "RangePrice": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/price-price_item.RangePrice"
+            }
+          },
+          "partNumber": {
+            "type": "string"
+          },
+          "contractId": {
+            "type": "string"
+          },
+          "UnitPrice": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/price-price_item.UnitPrice"
+            }
+          },
+          "userDataField": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/price-price_item.userDataField"
+            }
+          },
+          "productId": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.MonetaryAmountType": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "com.ibm.commerce.common.beans.StoreCurrencyFormatDescriptionDataBean_IBM_Store_Details": {
+        "type": "object",
+        "properties": {
+          "numberUsage": {
+            "type": "string"
+          },
+          "currencyCode": {
+            "type": "string"
+          },
+          "storeId": {
+            "type": "string"
+          },
+          "langId": {
+            "type": "string"
+          },
+          "currencySymbol": {
+            "type": "string"
+          },
+          "decimalPlaces": {
+            "type": "string"
+          }
+        }
+      },
+      "price-price_item.RangePrice": {
+        "required": [
+          "minimumQuantity",
+          "priceInRange"
+        ],
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "maximumQuantity": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.QuantityType"
+          },
+          "minimumQuantity": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.QuantityType"
+          },
+          "priceInRange": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.MonetaryAmountType"
+          }
+        }
+      },
+      "display_price-IBM_Store_DisplayPrice": {
+        "type": "object",
+        "properties": {
+          "recordSetCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recordSetComplete": {
+            "type": "boolean"
+          },
+          "recordSetStartNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/display_price-IBM_Store_DisplayPrice_item"
+            }
+          },
+          "recordSetTotal": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "com.ibm.commerce.foundation.common.datatypes.QuantityType": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "uom": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.rest.price.handler.PriceHandler-PriceRequest-Query": {
+        "required": [
+          "name",
+          "products"
+        ],
+        "type": "object",
+        "properties": {
+          "dates": {
+            "type": "array",
+            "description": "The dates on which to query prices on all the products unless overridden at the product level.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "products": {
+            "type": "array",
+            "description": "The products to query.",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.rest.price.handler.PriceHandler-PriceRequest-Product"
+            }
+          },
+          "name": {
+            "type": "string",
+            "description": "The price query name. Valid names are 'byProductID' which requires product IDs to be given for each product and 'byPartNumber' which requires part numbers to be given for each product.",
+            "enum": [
+              "byProductID",
+              "byPartNumber"
+            ]
+          },
+          "contractIds": {
+            "type": "array",
+            "description": "The contract identifiers to use for all the products unless overridden at the product level. An exception will be thrown if an invalid contract identifier is specified. If left empty, the store default contract will be used.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Query information."
+      },
+      "display_price-IBM_Store_DisplayPrice_item.unitPrice": {
+        "type": "object",
+        "properties": {
+          "price": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.MonetaryAmountType"
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/com.ibm.commerce.foundation.common.datatypes.QuantityType"
+          }
+        }
+      },
+      "display_price-IBM_Store_DisplayPrice_item.userDataField": {
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "com.ibm.commerce.rest.price.handler.PriceHandler-PriceRequest-Product": {
+        "type": "object",
+        "properties": {
+          "dates": {
+            "type": "array",
+            "description": "The dates on which to query the product prices.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "currencies": {
+            "type": "array",
+            "description": "The currencies to use on specific products. If not currency is specified, the store default shall be used.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "contractIds": {
+            "type": "array",
+            "description": "The contract identifiers to use on specific products. An exception will be thrown if an invalid contract identifier is specified. If left empty, the store default contract will be used.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "quantities": {
+            "type": "array",
+            "description": "The quantities for which to query the price. If no quantities are specified, a default quantity of 1.0 and unit of measure of 'C62' will be used.",
+            "items": {
+              "$ref": "#/components/schemas/com.ibm.commerce.rest.price.handler.PriceHandler-PriceRequest-Quantity"
+            }
+          },
+          "partNumber": {
+            "type": "string",
+            "description": "The product part number to query. Required if the query is set to : byPartNumber."
+          },
+          "productId": {
+            "type": "string",
+            "description": "The product identifier to query. Required if the query is set to : byProductID."
+          }
+        },
+        "description": "Product information."
+      },
+      "com.ibm.commerce.rest.price.handler.PriceHandler-PriceRequest-Quantity": {
+        "required": [
+          "quantity",
+          "uom"
+        ],
+        "type": "object",
+        "properties": {
+          "uom": {
+            "type": "string",
+            "description": "The unit of measure applicable to the quantity."
+          },
+          "quantity": {
+            "type": "number",
+            "description": "The quantity to query.",
+            "format": "double"
+          }
+        },
+        "description": "Quantity information."
+      }
+    }
+  },
+  "x-aes-documentation": {
+    "gettingstarted": [
+      {
+        "content": "Some REST services require authentication. HCL Commerce REST services are authenticated on secure and unsecured channels. This authentication can include the use of the WCToken and WCTrustedToken. To use REST services that require authentication, you must first get authentication data by using a supported identity services.\n\nAfter you obtain the authentication data, you must pass either the WCToken or WCTustedToken parameters, or both, within the HTTP header for every request that requires authentication. If a request is sent over HTTP, pass the WCToken parameter in the HTTP header. Do not pass the WCTrustedToken in HTTP requests, as the parameter value might display. Send both the WCToken and the WCTrustedToken parameters when the request is being sent over HTTPS.\n\nThe HCL Commerce REST APIs can also use session cookies that are created by the HCL Commerce store runtime for authentication. These cookies allow you to mix requests to the HCL Commerce REST APIs and the HCL Commerce store runtime within the same user session.\n\n See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Authentication"
+      },
+      {
+        "content": "HCL Commerce REST services support JSON and XML formats for input and output data by default. The default format is JSON. When an XML String is sent to a REST service, you must set Content-Type HTTP header to be \"application/xml\". The REST service converts the XML input data to the JSON format that is accepted by REST services. Therefore, your input XML format must follow a certain structure so that it can be transformed to the JSON object that is accepted by REST services. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Response formats"
+      },
+      {
+        "content": "Preview tokens are encrypted strings that encapsulates a set of preview options and restrictions on when and where the token can be used. Any user who is authorized to access your server and has a preview token, can complete preview actions in the same store for which that token is generated. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a>",
+        "codeSnippets": [],
+        "name": "Preview tokens"
+      },
+      {
+        "content": "Some HCL Commerce REST services require a request to be sent over HTTPS. Learn more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "codeSnippets": [],
+        "name": "Secure Sockets Layer"
+      }
+    ]
+  }
+}

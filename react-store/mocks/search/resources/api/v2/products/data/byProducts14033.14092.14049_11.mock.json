@@ -1,0 +1,764 @@
+{
+  "breadCrumbTrailEntryView": [
+    {
+      "label": "Living Room",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "10501",
+      "seo": {
+        "href": "/living-room"
+      }
+    },
+    {
+      "label": "Furniture",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "10502",
+      "seo": {
+        "href": "/furniture"
+      }
+    }
+  ],
+  "contents": [
+    {
+      "hasSingleSKU": false,
+      "buyable": "true",
+      "shortDescription": "A modern single sofa with leather seat and steel legs.",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/chair6_a1_350.jpg",
+      "seo": {
+        "href": "/stonehenge-modern-steelet-single-sofa-lr-fntr-0006"
+      },
+      "partNumber": "LR-FNTR-0006",
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10502",
+      "name": "Stonehenge Modern Steelet Single Sofa",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "500.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "499.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["2.0", "10.0", "10.0", "10.0"],
+              "identifier": ["brown", "darkgrey", "purple", "airforce"],
+              "unitOfMeasure": ["one", "one", "one", "one"],
+              "unitID": ["C62", "C62", "C62", "C62"],
+              "id": ["7000000000000003002", "7000000000000003010", "7000000000000003016", "7000000000000003021"],
+              "image1": [
+                "/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+                "/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+                "/EmeraldCAS/images/catalog/swatches/sw_purple.png",
+                "/EmeraldCAS/images/catalog/swatches/sw_airforce.png"
+              ],
+              "value": ["Brown", "Dark Grey", "Purple", "Airforce"],
+              "image1path": [
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_purple.png",
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_airforce.png"
+              ]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14044"
+    },
+    {
+      "hasSingleSKU": false,
+      "buyable": "true",
+      "shortDescription": "Essential piece of furniture finished in a medium-brown polish.",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/rustic_chair_a1_350.jpg",
+      "seo": {
+        "href": "/rustic-stained-wood-chair-lr-fntr-0007"
+      },
+      "partNumber": "LR-FNTR-0007",
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10502",
+      "name": "Rustic Stained Wood Chair",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "399.99"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "349.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["10.0", "10.0", "10.0"],
+              "identifier": ["oak", "mahogany", "walnut"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000003025", "7000000000000003026", "7000000000000003027"],
+              "image1": [
+                "/EmeraldCAS/images/catalog/swatches/sw_oak.png",
+                "/EmeraldCAS/images/catalog/swatches/sw_mahogany.png",
+                "/EmeraldCAS/images/catalog/swatches/sw_walnut.png"
+              ],
+              "value": ["Oak", "Mahogany", "Walnut"],
+              "image1path": [
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_oak.png",
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_mahogany.png",
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_walnut.png"
+              ]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14049"
+    },
+    {
+      "hasSingleSKU": false,
+      "buyable": "true",
+      "shortDescription": "This classic chair marries form and function together to provide timeless appeal, comfort and stability.",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/cafe_chair_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/cafe_chair_a1_350.jpg",
+      "seo": {
+        "href": "/wooden-cafe-chair-lr-fntr-0008"
+      },
+      "partNumber": "LR-FNTR-0008",
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10502",
+      "name": "Wooden Cafe Chair",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "249.99"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "229.99"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["10.0", "10.0", "10.0"],
+              "identifier": ["pine", "oak", "mahogany"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000003024", "7000000000000003025", "7000000000000003026"],
+              "image1": [
+                "/EmeraldCAS/images/catalog/swatches/sw_pine.png",
+                "/EmeraldCAS/images/catalog/swatches/sw_oak.png",
+                "/EmeraldCAS/images/catalog/swatches/sw_mahogany.png"
+              ],
+              "value": ["Pine", "Oak", "Mahogany"],
+              "image1path": [
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_pine.png",
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_oak.png",
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_mahogany.png"
+              ]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14053"
+    },
+    {
+      "hasSingleSKU": false,
+      "buyable": "true",
+      "shortDescription": "A contemporary styled coffee table that is suited towards large living rooms, providing plenty of space for refreshments.",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/ctable1_a1_350.jpg",
+      "seo": {
+        "href": "/abstract-wooden-coffee-table-lr-fntr-tb-0001"
+      },
+      "partNumber": "LR-FNTR-TB-0001",
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10502",
+      "name": "Abstract Wooden Coffee Table",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "120.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "115.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["2.0", "5.0", "10.0"],
+              "identifier": ["brown", "blonde", "crimson"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000003002", "7000000000000003005", "7000000000000003015"],
+              "image1": [
+                "/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+                "/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+                "/EmeraldCAS/images/catalog/swatches/sw_crimson.png"
+              ],
+              "value": ["Brown", "Blonde", "Crimson"],
+              "image1path": [
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+                "/hclstore/EmeraldCAS/images/catalog/swatches/sw_crimson.png"
+              ]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14156"
+    },
+    {
+      "hasSingleSKU": false,
+      "buyable": "true",
+      "shortDescription": "A contemporary styled coffee table that is suited towards large living rooms, providing plenty of space for refreshments.",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable2_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/ctable2_a1_350.jpg",
+      "seo": {
+        "href": "/abstract-wooden-coffee-table-lr-fntr-tb-0002"
+      },
+      "partNumber": "LR-FNTR-TB-0002",
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10502",
+      "name": "Abstract Wooden Coffee Table",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "180.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "160.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": "10.0",
+              "identifier": "darkgrey",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003010",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+              "value": "Dark Grey",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14160"
+    },
+    {
+      "hasSingleSKU": false,
+      "buyable": "true",
+      "shortDescription": "A modern styled coffee table that is suited towards open-concept areas, providing plenty of space for your refreshments and decor.",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable3_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/ctable3_a1_350.jpg",
+      "seo": {
+        "href": "/abstract-glass-coffee-table-lr-fntr-tb-0003"
+      },
+      "partNumber": "LR-FNTR-TB-0003",
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10502",
+      "name": "Abstract Glass Coffee Table",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "155.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "145.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": "10.0",
+              "identifier": "tan",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003017",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_tan.png",
+              "value": "Tan",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_tan.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14162"
+    },
+    {
+      "hasSingleSKU": false,
+      "buyable": "true",
+      "shortDescription": "A compact pub-style coffee table that provides modern styling and room for all types of refreshments.",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/furniture/ctable4_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/furniture/ctable4_a1_350.jpg",
+      "seo": {
+        "href": "/pub-style-coffee-table-lr-fntr-tb-0004"
+      },
+      "partNumber": "LR-FNTR-TB-0004",
+      "storeID": "11",
+      "parentCatalogGroupID": "/10501/10502",
+      "name": "Pub-style Coffee Table",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "155.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "145.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": "8.0",
+              "identifier": "toffee",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003008",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_toffee.png",
+              "value": "Toffee",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_toffee.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "key": "7000000000000000501",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "14164"
+    }
+  ],
+  "facets": [
+    {
+      "entry": [
+        {
+          "count": 0,
+          "label": "({* TO 99])",
+          "value": "price_usd%3A%28%7B*+TO+99%5D%29",
+          "extendedData": {
+            "uniqueId": "11211410599101951171151005840123423284793257579341"
+          }
+        },
+        {
+          "count": 4,
+          "label": "({99 TO 198])",
+          "value": "price_usd%3A%28%7B99+TO+198%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401235757328479324957569341"
+          }
+        },
+        {
+          "count": 1,
+          "label": "({198 TO 297])",
+          "value": "price_usd%3A%28%7B198+TO+297%5D%29",
+          "extendedData": {
+            "uniqueId": "11211410599101951171151005840123495756328479325057559341"
+          }
+        },
+        {
+          "count": 1,
+          "label": "({297 TO 396])",
+          "value": "price_usd%3A%28%7B297+TO+396%5D%29",
+          "extendedData": {
+            "uniqueId": "11211410599101951171151005840123505755328479325157549341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({396 TO 495])",
+          "value": "price_usd%3A%28%7B396+TO+495%5D%29",
+          "extendedData": {
+            "uniqueId": "11211410599101951171151005840123515754328479325257539341"
+          }
+        }
+      ],
+      "value": "price_usd",
+      "name": "OfferPrice_usd"
+    },
+    {
+      "value": "manufacturer.raw",
+      "name": "Brand",
+      "entry": [
+        {
+          "label": "Home Design",
+          "value": "manufacturer.raw%3A%22Home+Design%22",
+          "count": "2",
+          "extendedData": {
+            "uniqueId": "721111091013268101115105103110"
+          }
+        },
+        {
+          "label": "Moderno",
+          "value": "manufacturer.raw%3A%22Moderno%22",
+          "count": "1",
+          "extendedData": {
+            "uniqueId": "77111100101114110111"
+          }
+        },
+        {
+          "label": "Stockholm",
+          "value": "manufacturer.raw%3A%22Stockholm%22",
+          "count": "1",
+          "extendedData": {
+            "uniqueId": "8311611199107104111108109"
+          }
+        },
+        {
+          "label": "Stonehenge",
+          "value": "manufacturer.raw%3A%22Stonehenge%22",
+          "count": "1",
+          "extendedData": {
+            "uniqueId": "83116111110101104101110103101"
+          }
+        },
+        {
+          "label": "Style Home",
+          "value": "manufacturer.raw%3A%22Style+Home%22",
+          "count": "2",
+          "extendedData": {
+            "uniqueId": "831161211081013272111109101"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Brand",
+        "propertyvalue": "manufacturer.raw",
+        "maximumValuesToDisplay": "6",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "0.0",
+        "name": "Brand",
+        "sortorder": "1",
+        "max_display": "6",
+        "fdesc": "The manufacturer",
+        "propertyId": "manufacturer.raw"
+      }
+    },
+    {
+      "value": "attributes.7000000000000000501.value.raw",
+      "name": "Color",
+      "entry": [
+        {
+          "label": "Brown",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Brown%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "2.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_brown.png",
+            "uniqueId": "66114111119110"
+          }
+        },
+        {
+          "label": "Dark Grey",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Dark+Grey%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_darkgrey.png",
+            "uniqueId": "68971141073271114101121"
+          }
+        },
+        {
+          "label": "Oak",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Oak%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_oak.png",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_oak.png",
+            "uniqueId": "7997107"
+          }
+        },
+        {
+          "label": "Mahogany",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Mahogany%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_mahogany.png",
+          "count": "2",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_mahogany.png",
+            "uniqueId": "779710411110397110121"
+          }
+        },
+        {
+          "label": "Tan",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Tan%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_tan.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_tan.png",
+            "uniqueId": "8497110"
+          }
+        },
+        {
+          "label": "Walnut",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Walnut%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_walnut.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_walnut.png",
+            "uniqueId": "8797108110117116"
+          }
+        },
+        {
+          "label": "Airforce",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Airforce%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_airforce.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_airforce.png",
+            "uniqueId": "6510511410211111499101"
+          }
+        },
+        {
+          "label": "Pine",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Pine%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_pine.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_pine.png",
+            "uniqueId": "80105110101"
+          }
+        },
+        {
+          "label": "Purple",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Purple%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_purple.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_purple.png",
+            "uniqueId": "80117114112108101"
+          }
+        },
+        {
+          "label": "Toffee",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Toffee%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_toffee.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "8.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_toffee.png",
+            "uniqueId": "84111102102101101"
+          }
+        },
+        {
+          "label": "Crimson",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Crimson%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_crimson.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "10.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_crimson.png",
+            "uniqueId": "67114105109115111110"
+          }
+        },
+        {
+          "label": "Blonde",
+          "value": "attributes.7000000000000000501.value.raw%3A%22Blonde%22",
+          "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+          "count": "1",
+          "extendedData": {
+            "unitID": "C62",
+            "unitOfMeasure": "one",
+            "sequence": "5.0",
+            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blonde.png",
+            "uniqueId": "66108111110100101"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Color",
+        "propertyvalue": "Color",
+        "maximumValuesToDisplay": "20",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "1.0",
+        "name": "Color",
+        "sortorder": "0",
+        "max_display": "20",
+        "fdesc": "Color",
+        "propertyId": "7000000000000000501"
+      }
+    }
+  ],
+  "previous": "/search/resources/api/v2/products?storeId=11&categoryId=10502&limit=12&offset=0",
+  "total": 7
+}

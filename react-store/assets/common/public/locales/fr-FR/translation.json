@@ -1,0 +1,1184 @@
+{
+  "Footer": {
+    "CompanyLinks": {
+      "Label": "Entreprise",
+      "OurStory": "Notre histoire",
+      "Careers": "Carrières"
+    },
+    "Copyright": "Copyright HCL Technologies Limited 2020. Tous droits réservés.",
+    "CustomerService": {
+      "Label": "Service client",
+      "ContactUs": "Nous contacter",
+      "ContactUsDescription": "Nous contacter",
+      "PrivacyPolicy": "Politique de confidentialité"
+    },
+    "FollowUs": "Nous suivre",
+    "Description": "Ce modèle de vitrine est créé sur React et HCL Commerce. HCL Commerce fait du commerce agile à échelle réelle.",
+    "DisabledMessage": "Désolé, cette page est toujours en cours de développement."
+  },
+  "Header": {
+    "Actions": {
+      "SignIn": "Se connecter",
+      "SignInRegister": "Se connecter / S'inscrire",
+      "WelcomeFirstname": "Bienvenue, {{firstName}}",
+      "WelcomeNoFirstname": "Bienvenue, {{lastName}}",
+      "WishList": "Liste de présélection",
+      "YourAccount": "Votre compte",
+      "Account": "Compte"
+    },
+    "AccountPopper": {
+      "Welcome": "Bienvenue, {{firstName}} {{lastName}}",
+      "Organization": "Organisation",
+      "Contract": "Contrat",
+      "Edit": "Modifier",
+      "AccountSetting": "Paramètres du compte",
+      "SignOut": "Se déconnecter",
+      "Cart": "Panier ({{count}} article)",
+      "Cart_plural": "Panier ({{count}} articles)"
+    }
+  },
+  "MegaMenu": {
+    "Title": "Produits",
+    "Actions": {
+      "ViewAll": "Tout afficher"
+    }
+  },
+  "AllCategoriesExpandedMenu": {
+    "AllCategoriesLabel": "Toutes les catégories"
+  },
+  "MiniCart": {
+    "Items": "{{count}} article",
+    "Items_plural": "{{count}} articles",
+    "Title": "Votre commande en cours",
+    "Subtotal": "Sous-total pour {{count}} article",
+    "Subtotal_plural": "Sous-total pour {{count}} articles",
+    "Empty": "Votre panier ne contient aucun article.",
+    "Actions": {
+      "Cart": "Afficher le panier complet",
+      "CheckOut": "Paiement",
+      "ViewOrderDetails": "Afficher les détails de la commande"
+    },
+    "MyOrder": "Ma commande",
+    "PrivateOrder": "Commande privée",
+    "SharedOrderConributor": "Commande partagée (Collaborateur)",
+    "SharedOrderAdmin": "Commande partagée (Administrateur)"
+  },
+  "Language": {
+    "-1": "Anglais (US)",
+    "-2": "Français",
+    "-3": "Allemand",
+    "-4": "Italien",
+    "-5": "Espagnol",
+    "-6": "Portugais du Brésil",
+    "-7": "Chinois simplifié",
+    "-8": "Chinois traditionnel",
+    "-10": "Japonais",
+    "-20": "Russe",
+    "-21": "Roumain",
+    "-9": "Coréen",
+    "-22": "Polonais",
+    "-23": "Arabe"
+  },
+  "productDetail": {
+    "Quantity": "Quantité",
+    "QtyError": "La quantité doit être supérieure ou égale à 1.",
+    "Availability": "Disponibilité",
+    "AddToCart": "Ajouter au panier",
+    "AddBundleToCart": "Ajouter le groupement à la commande",
+    "AddBundleToSharedOrder": "Ajouter à la commande partagée",
+    "SelectAttributes": "Sélectionner les attributs",
+    "Description": "Description",
+    "ProductDetails": "Caractéristiques du produit",
+    "Attachments": "Pièces jointes",
+    "AllAttachments": "Toutes les pièces jointes",
+    "ViewAll": "Tout afficher",
+    "Images": "Images",
+    "Videos": "Vidéos",
+    "Documents": "Documents",
+    "PricePending": "Prix en attente",
+    "addToCartErrorMsg": "Les valeurs indiquées dans les zones Quantité sont vides ou ne sont pas valides. Vérifiez que les valeurs correspondent à des entiers positifs et faites une nouvelle tentative.",
+    "any": "Tout",
+    "showAttributes": "Afficher les attributs",
+    "attributeFilter": "Filtre Attribut",
+    "addToCurrentOrder": "Ajouter à la commande",
+    "addToSharedOrder": "Ajouter à la commande partagée",
+    "SignIn": "Veuillez vous connecter pour faire des achats.",
+    "noproductsToDisplay": "Aucun produit à afficher. Veuillez modifier le filtre Attribut et réessayez.",
+    "SKU": "SKU",
+    "PRODUCTSKU": "PRODUIT / SKU",
+    "SelectAnOption": "Sélectionner une option",
+    "Unconfigured": "Non configuré",
+    "Unavailable": "Indisponible",
+    "InStock": "En stock",
+    "Price": "Prix",
+    "Online_Availability": "Disponibilité en ligne",
+    "recommendedProdTitle": "Produits recommandés ",
+    "someWithNoSkus": "Un ou plusieurs produits de la liste ont des attributs non sélectionnés. Veuillez compléter les sélections d'attributs.",
+    "someWithNoAvlSelZero": "Un ou plusieurs articles sélectionnés n'ont pas de stock disponible. Veuillez modifier la quantité sur 0 pour ignorer ces articles.",
+    "someWithNotEnough": "Un ou plusieurs articles sélectionnés n'ont pas assez de stock disponible. Veuillez modifier la quantité pour qu'elle soit inférieure ou égale au stock disponible actuel.",
+    "selectSomething": "Aucun article n'a été sélectionné. Veuillez choisir au moins un article."
+  },
+  "AddressBook": {
+    "AddrMsg": "Ajouter une nouvelle adresse",
+    "AddButton": "Ajouter une adresse",
+    "Title": "Carnet d'adresses",
+    "FilterLabel": "Filtrer par type d'adresse",
+    "NoAddrMsg": "Vous n'avez aucune adresse enregistrée.",
+    "NoAddrForFilterMsg": "Il n'existe aucune d'adresse avec ce type de filtre.",
+    "ShowAllLabel": "Tout afficher",
+    "ShippingLabel": "Expédition",
+    "BillingLabel": "Facturation",
+    "ShippingBillingLabel": "Expédition et facturation",
+    "CreateAddress": "Créer une adresse",
+    "SaveChanges": "Enregistrer les modifications",
+    "Cancel": "Annuler",
+    "EditAddress": "Modifier l'adresse"
+  },
+  "Cart": {
+    "Title": "Panier d'achat",
+    "Msgs": {
+      "Empty": "Votre panier est vide. Laissez-vous tenter !",
+      "PromoCode": "Entrer votre code promotionnel"
+    },
+    "Labels": {
+      "PromoCode": "Code promo",
+      "RecurringOrder": "Planifier en tant que commande récurrente",
+      "Frequency": "Fréquence",
+      "StartDate": "Date de début",
+      "OrderSummary": "Récapitulatif de la commande"
+    },
+    "Actions": {
+      "Checkout": "Règlement",
+      "Apply": "Appliquer",
+      "Checkout-With-Profile": "Payer avec le profil"
+    }
+  },
+  "CheckoutAddress": {
+    "Actions": {
+      "Submit": "Enregistrer et sélectionner cette adresse",
+      "Cancel": "Annuler"
+    },
+    "Payment": {
+      "ChooseFirst": "Veuillez d'abord choisir un mode de paiement."
+    }
+  },
+  "Checkout": {
+    "Title": "Règlement",
+    "CheckoutProfileTitle": "Profil de paiement",
+    "Labels": {
+      "shipping": "Expédition",
+      "payment": "Paiement",
+      "review": "Examiner la commande"
+    },
+    "Actions": {
+      "ReturnCart": "Revenir au panier",
+      "BackTo": "Retour à {{step}}",
+      "ContinueTo": "Poursuivre vers {{step}}",
+      "PlaceOrder": "Passer une commande"
+    }
+  },
+  "Payment": {
+    "Title": "Informations de paiement",
+    "Msgs": {
+      "InvalidFormat": "Format non valide"
+    },
+    "Labels": {
+      "UseMultiple": "Utiliser plusieurs modes de paiement",
+      "PaymentMethod": "Mode de paiement {{number}}",
+      "AddNewAddress": "Ajouter une adresse",
+      "BillingAddress": "Adresse de facturation"
+    },
+    "Actions": {
+      "Back": "Retourner aux détails de l'expédition",
+      "Next": "Examiner la commande",
+      "Finish": "Terminer",
+      "SaveAndAdd": "Enregistrer et ajouter un mode de paiement",
+      "AddAnotherPayMethod": "Ajouter un autre mode de paiement"
+    }
+  },
+  "MultipleShipmentTable": {
+    "Labels": {
+      "ItemDetails": "Détails de l'article",
+      "SKU": "SKU : ",
+      "Quantity": "Quantité",
+      "ShippingDetails": "Détails de l'expédition",
+      "SelectShippingAddressAndMethod": "Sélectionner une adresse et un mode d'expédition",
+      "ChangeSelection": "Modifier la sélection",
+      "nItemsSel": "{{ n }} articles sélectionnés",
+      "noItems": "Aucun article trouvé"
+    }
+  },
+  "Shipping": {
+    "Title": "Détails de l'expédition",
+    "Labels": {
+      "UseMultiple": "Envoyer à plusieurs adresses",
+      "ShippingAddress": "Adresse de livraison",
+      "ShippingMethod": "Mode d'expédition",
+      "SelectShippingMethod": "Choisissez votre mode de livraison",
+      "AddNewAddress": "Ajouter une adresse",
+      "EditAddress": "Modifier l'adresse",
+      "SelectedCount": "{{selected}} éléments sur {{all}} sélectionnés",
+      "ItemsSelected": "{{itemsSelected}} éléments sélectionnés"
+    },
+    "Actions": {
+      "SelectAddress": "Utiliser cette adresse",
+      "CreateNew": "Créer une adresse",
+      "Next": "Aller au paiement",
+      "Confirm": "Confirmer la sélection",
+      "Cancel": "Annuler",
+      "SelectShippingAddress": "Sélectionner une adresse et un mode d'expédition"
+    },
+    "Msgs": {
+      "UseSavedAddress": "Ou sélectionnez une adresse enregistrée à utiliser :",
+      "SelectShippingAddress": "Veuillez commencer par sélectionner une adresse d'expédition"
+    }
+  },
+  "OrderConfirmation": {
+    "Title": "Confirmation de la commande",
+    "Msgs": {
+      "Heading": "Nous avons bien reçu votre commande",
+      "Pending": "Votre commande est en attente.",
+      "OrderNumber": "Commande numéro {{orderId}}",
+      "Details": "Une copie de votre reçu a été envoyée à {{emails}}.",
+      "PendingDetails": "Votre commande dépasse la limite de prix autorisée. La commande doit être approuvée par un administrateur avant de pouvoir être traitée.",
+      "ThankYou": "Merci de votre achat sur {{storeName}}."
+    }
+  },
+  "SignInPage": {
+    "Title": "Se connecter / S'inscrire"
+  },
+  "Account": {
+    "Title": "Mon compte"
+  },
+  "AccountSummary": {
+    "Title": "Informations personnelles"
+  },
+  "ChangePasswordSection": {
+    "Title": "MODIFIER LE MOT DE PASSE",
+    "CurrentPasswordLabel": "Mot de passe actuel",
+    "NewPasswordLabel": "Nouveau mot de passe",
+    "VerifyPasswordLabel": "Confirmer le mot de passe",
+    "SaveLabel": "Mettre à jour",
+    "SuccessLabel": "Le changement du mot de passe a abouti",
+    "OkLabel": "OK"
+  },
+  "PersonalInformationSection": {
+    "Title": "INFORMATIONS PERSONNELLES",
+    "Name": "Nom",
+    "EmailAddress": "Adresse électronique",
+    "PhoneNumber": "Téléphone",
+    "Address": "Adresse",
+    "SaveChanges": "Enregistrer les modifications",
+    "UpdateSuccessful": "La mise à jour a abouti"
+  },
+  "WelcomeUserSection": {
+    "Title": "Bienvenue, ",
+    "Message": "Ceci est le récapitulatif de votre compte. Vous pouvez modifier vos informations personnelles et gérer les options disponibles pour votre compte."
+  },
+  "AdminTools": {
+    "buyerManagement": "Gestion des acheteurs",
+    "orgAndBuyer": "Autorisation de commande et d'acheteur",
+    "orgManagement": "Gestion de l'organisation",
+    "buyerManagementDesc": "Créer, modifier ou supprimer des acheteurs de vos organisations",
+    "orgAndBuyerDesc": "Autoriser ou rejeter des inscriptions d'acheteurs et des commandes",
+    "orgManagementDesc": "Créer et afficher vos organisations",
+    "adminTools": "Outils administratifs"
+  },
+  "BuyerOrganizationRegistration": {
+    "OrganizationRegistration": "Enregistrer votre organisation",
+    "BuyerAdminRegistration": "Enregistrer un administrateur",
+    "Title": "Enregistrement de l'organisation",
+    "AddressDetails": "Détails de l'adresse",
+    "AddressLineAdd": "Ajouter une ligne d'adresse 2",
+    "Back": "Précédent",
+    "NextRegister": "Ensuite, enregistrer un administrateur",
+    "CompleteRegistration": "Terminer l'inscription",
+    "HereAnAccount": "Vous avez déjà un compte ?",
+    "SignIn": "Se connecter",
+    "OrganizationName": "Nom de l'organisation",
+    "AccountPreferences": "Préférences du compte",
+    "Email": "Adresse électronique",
+    "Address1": "Adresse - ligne 1",
+    "Address2": "Adresse - ligne 2 (facultatif)",
+    "City": "Ville",
+    "Country": "Pays",
+    "State": "Département/région",
+    "ZipCode": "Code postal",
+    "FirstName": "Prénom",
+    "LastName": "Nom",
+    "LogonId": "ID de connexion",
+    "Phone": "Téléphone (facultatif)",
+    "Password": "Mot de passe",
+    "Password2": "Confirmer le mot de passe",
+    "Language": "Langue préférée",
+    "Currency": "Devise préférée",
+    "UseOrganizationAddress": "Utiliser la même adresse que l'organisation",
+    "Submit": "Envoyer",
+    "Clear": "Effacer",
+    "Success": "Votre demande d'enregistrement a été reçue. Votre compte est en attente d'autorisation. Vous devez attendre que votre compte soit approuvé pour pouvoir vous connecter.",
+    "OK": "OK",
+    "Msgs": {
+      "InvalidFormat": "Format non valide"
+    }
+  },
+  "BuyerUserRegistration": {
+    "Title": "Enregistrement d'acheteurs",
+    "Description": "Si votre organisation dispose déjà d'un compte auprès de ce magasin, vous pouvez vous enregistrer afin de facturer vos achats sous ce compte et passer des commandes. Une fois votre enregistrement approuvé, vous pourrez vous connecter au magasin et effectuer des achats.",
+    "OrgName": "Organisation",
+    "Email": "Adresse électronique",
+    "Address1": "Adresse - ligne 1",
+    "Address2": "Adresse - ligne 2 (facultatif)",
+    "City": "Ville",
+    "Country": "Pays",
+    "State": "Département/région",
+    "ZipCode": "Code postal",
+    "FirstName": "Prénom",
+    "LastName": "Nom",
+    "LogonId": "ID de connexion",
+    "Phone": "Téléphone (facultatif)",
+    "Password": "Mot de passe",
+    "Password2": "Confirmer le mot de passe",
+    "Language": "Langue préférée",
+    "Currency": "Devise préférée",
+    "AddressDetails": "Détails de l'adresse",
+    "AccountPreferences": "Préférences du compte",
+    "HaveAccount": "Vous avez déjà un compte ?",
+    "AddressLineAdd": "Ajouter une ligne d'adresse 2",
+    "SignIn": "Se connecter",
+    "Submit": "Terminer l'inscription",
+    "Clear": "Effacer",
+    "Success": "Votre demande d'activation de compte a bien été reçue. Activez votre compte pour pouvoir vous connecter.",
+    "OK": "OK",
+    "Msgs": {
+      "InvalidFormat": "Format non valide"
+    }
+  },
+  "Dashboard": {
+    "Title": "Tableau de bord",
+    "AccountSettings": "Paramètres du compte",
+    "PersonalInformation": "Informations personnelles",
+    "AddressBook": "Carnet d'adresses",
+    "OrderManagement": "Gestion des commandes",
+    "OrderHistory": "Historique des commandes",
+    "RecurringOrders": "Commandes récurrentes",
+    "RequisitionLists": "Listes préconfigurées",
+    "InprogressOrders": "Commandes en cours",
+    "ApproveOrders": "Autorisation de commande"
+  },
+  "Order": {
+    "noPO": "Aucun",
+    "Status_A": "Autorisation de paiement devant être examinée",
+    "Status_B": "En amont",
+    "Status_C": "Paiement approuvé",
+    "Status_D": "Commande terminée",
+    "Status_E": "En cours de modification par le magasin",
+    "Status_F": "Commande transférée pour exécution",
+    "Status_G": "Traitement de la commande",
+    "Status_I": "Soumis",
+    "Status_K": "Retour associé",
+    "Status_L": "Stock insuffisant",
+    "Status_M": "Commande reçue et prête pour traitement",
+    "Status_N": "Approbation refusée",
+    "Status_P": "Commande en suspens",
+    "Status_R": "Exécutée à partir du stock",
+    "Status_S": "Commande expédiée",
+    "Status_T": "Actuellement bloquée par le magasin",
+    "Status_W": "En attente d'approbation",
+    "Status_V": "Expédition partielle",
+    "Status_X": "Commande annulée",
+    "NotAvailable": "N/A",
+    "OrderId": "ID de la commande ",
+    "PONumber": "Numéro de bon de commande",
+    "OrderDate": "Date de la commande",
+    "Schedule": "Planification de commande",
+    "NextOrder": "Commande suivante",
+    "Status": "Statut",
+    "TotalPrice": "Prix total",
+    "Actions": "Actions",
+    "RowCount": "Affichage de {from} jusqu'à {to} sur {count}",
+    "NoRecord": "Aucune commande n'a été trouvée.",
+    "InvalidOrderId": "Veuillez saisir un ID de commande valide.",
+    "Search": "Rechercher",
+    "PageSizeLabel": "lignes",
+    "FirstPage": "Première page",
+    "LastPage": "Dernière page",
+    "PreviousPage": "Page précédente",
+    "NextPage": "Page suivante",
+    "OrderHistory": "Historique des commandes",
+    "RecurringOrders": "Commandes récurrentes",
+    "Once": "Une fois uniquement",
+    "EveryXDAY": "{{frequency}} fois par jour",
+    "EveryXDAY_plural": "Tous les {{frequency}} jours",
+    "EveryXWEE": "{{frequency}} fois par semaine",
+    "EveryXWEE_plural": "Toutes les {{frequency}} semaines",
+    "EveryXMON": "Tous les {{frequency}} mois",
+    "EveryXMON_plural": "Tous les {{frequency}} mois",
+    "StateInactive": "Inactif",
+    "StateActive": "Actif",
+    "StateExpired": "Expiré",
+    "StateCancelled": "Annulé",
+    "StateCompleted": "Terminé",
+    "StateSuspended": "Suspendu",
+    "StatePendingCancel": "Annulation en suspens",
+    "TooltipCancel": "Annuler",
+    "TooltipReOrder": "Nouvelle commande",
+    "FilterResults": "Filtrer les résultats",
+    "OrderDetails": "Détails de la commande",
+    "OrderNumber": "Numéro de la commande",
+    "HistorySearchPlaceHolder": "Rechercher par ID de commande",
+    "HistoryViewDetailTooltip": "Afficher les détails de la commande",
+    "Pending": "En attente"
+  },
+  "Category": {},
+  "AccountLinksGridView": {
+    "Title": "Outils Mon compte",
+    "AddressBookText": "Carnet d'adresses",
+    "AddressBookDescription": "Gérer et modifier les adresses enregistrées",
+    "OrderHistoryText": "Historique des commandes",
+    "OrderHistoryDescription": "Afficher les commandes passées et les commandes en attente d'autorisation, ainsi que les détails des commandes individuelles.",
+    "WishListText": "Liste de présélection",
+    "WishListDescription": "Liste de présélection"
+  },
+  "AccountLinks": {
+    "Title": "Paramètres du compte",
+    "PersonalInformationText": "Informations personnelles",
+    "PersonalInformationDescription": "Afficher et modifier les informations personnelles sur le compte",
+    "AddressBookText": "Carnet d'adresses",
+    "AddressBookDescription": "Gérer et modifier vos adresses enregistrées",
+    "DisabledMessage": "Désolé, cette page est toujours en cours de développement."
+  },
+  "MyAccount": {
+    "Title": "Mon compte",
+    "AccountSettings": "Paramètres du compte",
+    "PersonalInformation": "Informations personnelles",
+    "AddressBook": "Carnet d'adresses",
+    "OrderHistory": "Historique des commandes",
+    "Wishlists": "Listes de présélection",
+    "CheckoutProfiles": "Profils de paiement"
+  },
+  "AddressCard": {
+    "EditButton": "Modifier",
+    "DeleteButton": "Supprimer",
+    "Confirm": "Confirmer la suppression",
+    "Cancel": "Annuler",
+    "UseAddress": "Utiliser cette adresse"
+  },
+  "AddressForm": {
+    "Msgs": {
+      "InvalidFormat": "Format non valide",
+      "InvalidAddressName": "Le nom de l'adresse ne peut contenir que des caractères alphanumériques (A-Z, a-z, 0-9) et des espaces blancs."
+    },
+    "Labels": {
+      "FirstName": "Prénom",
+      "LastName": "Nom",
+      "Address1": "Adresse - ligne 1",
+      "Address2": "Adresse - ligne 2 (facultatif)",
+      "City": "Ville",
+      "Country": "Pays",
+      "State": "Département/région",
+      "ZipCode": "Code postal",
+      "Phone": "Téléphone (facultatif)",
+      "Email": "Adresse électronique",
+      "NickName": "Nom de l'adresse",
+      "AddressType": "Type d'adresse",
+      "Shipping": "Frais de port",
+      "Billing": "Facturation",
+      "ShippingAndBilling": "Expédition et facturation"
+    }
+  },
+  "ChangePassword": {
+    "Title": "Modifier le mot de passe",
+    "CurrentPasswordLabel": "Mot de passe actuel",
+    "NewPasswordLabel": "Nouveau mot de passe",
+    "VerifyPasswordLabel": "Confirmer le mot de passe",
+    "SaveLabel": "Enregistrer",
+    "CancelLabel": "Annuler",
+    "SuccessLabel": "Le changement du mot de passe a abouti",
+    "OkLabel": "OK"
+  },
+  "CheckoutProfile": {
+    "ShippingInformation": "Informations relatives à l'expédition",
+    "CreateCheckoutTitle": "Créer le profil de paiement",
+    "CreateCheckoutButton": "Créer un profil de paiement",
+    "BillingInformation": "Informations de facturation",
+    "PaymentInformation": "Informations de paiement",
+    "ShippingMethod": "Mode d'expédition",
+    "ShipSameAsBill": "L'adresse de facturation est la même que l'adresse d'expédition",
+    "Cancel": "Annuler",
+    "Next": "Suivant",
+    "Back": "Précédent",
+    "CreateProfile": "Créer un profil",
+    "UpdateProfile": "Mettre à jour le profil",
+    "Title": "Choix du profil de paiement",
+    "Label": "Sélectionner un profil de paiement existant",
+    "MyAcctDesc": "Gérer et modifier les profils de paiement pour accélérer les paiements",
+    "Name": "Nom du profil de paiement",
+    "Edit": "Modifier",
+    "Delete": "Supprimer",
+    "NoneFound": "<0>C'est raté.</0><1>Désolé, nous n'avons pas trouvé ce profil de paiement.</1><2>Veuillez essayer un autre profil de paiement ou <0>créer un</0> profil de paiement.</2>",
+    "NoProfiles": "Aucun profil de paiement n'a été trouvé <0>Créez un</0> profil de paiement.",
+    "TitleCreate": "Profils de paiement",
+    "CreateMessage": "Créer un profil de paiement",
+    "CreateNewButton": "Créer",
+    "ShippingAddr": "ADRESSE DE LIVRAISON",
+    "ShippingMethodDisp": "MODE D'EXPEDITION",
+    "BillingAddr": "ADRESSE DE FACTURATION",
+    "BillingMethod": "MODE DE FACTURATION",
+    "EditProfile": "Modifier le profil de paiement",
+    "ShipAsComplete": "EXPEDIER LA COMMANDE COMPLETE",
+    "confirmDelete": "Confirmer la suppression",
+    "selectExisting": "Sélectionnez une adresse existante. Sinon, <0>créez une adresse</0>.",
+    "sm_Express": "Express",
+    "sm_Mail": "Courrier",
+    "sm_InternationalPriority": "Livraison internationale prioritaire",
+    "sm_InternationalRegular": "Livraison internationale standard",
+    "sm_PickupInStore": "Enlèvement en magasin",
+    "saveAddress": "Enregistrer l'adresse",
+    "invalidProfile": "Ce profil n'est pas valide. Modifiez-le et choisissez une nouvelle adresse.",
+    "invalidProfileName": "Le nom de profil ne peut contenir que des caractères alphanumériques (A-Z, a-z, 0-9) et des espaces blancs.",
+    "selectExpMonth": "Sélectionnez le mois d'expiration",
+    "selectExpYear": "Sélectionnez l'année d'expiration",
+    "payMethods": {
+      "VISA": "Carte de crédit VISA",
+      "MasterCard": "Carte de crédit MasterCard",
+      "AMEX": "Carte de crédit American Express",
+      "COD": "Contre remboursement"
+    }
+  },
+  "ChildPimCategories": {
+    "title": "Tout {{name}}"
+  },
+  "Confirmation": {
+    "ScheduleOrderCancel": "Toutes les livraisons futures pour cette commande vont être annulées.",
+    "ScheduleOrderCancelNotification": "Une annulation de commande nécessite un préavis de 12 heures. Toutes les commandes futures vont être annulées sauf la commande de {{next}} qui sera livrée comme prévu. Voulez-vous vraiment annuler ?",
+    "CancelRecurringOrder": "Annuler la commande récurrente",
+    "SubmitButton": "OK",
+    "CancelButton": "Annuler"
+  },
+  "FeaturedCard": {
+    "ShopNow": "Acheter maintenant"
+  },
+  "ForgotPassword": {
+    "Title": "Mot de passe oublié ?",
+    "EmailLabel": "Adresse électronique",
+    "SubmitButton": "Envoyer",
+    "LogonIDLabel": "ID de connexion",
+    "ContentText": "Veuillez saisir votre adresse électronique. Vous recevrez un code de vérification vous permettant de réinitialiser votre mot de passe.",
+    "ContentTextLogonID": "Veuillez saisir votre ID de connexion. Vous recevrez, par le biais de l'adresse électronique associée à votre compte, un code de validation qui vous permettra de réinitialiser votre mot de passe.",
+    "ValidationCodeButton": "Entrer le code de vérification",
+    "SendVerificationCodeButton": "M'envoyer un code de vérification",
+    "CodeRecieved": "Vous avez déjà reçu un code de vérification ?",
+    "AccountInfoRemember": "Mémoriser les informations du compte ?",
+    "SignIn": "Se connecter maintenant",
+    "Msgs": {
+      "InvalidFormat": "Format non valide"
+    }
+  },
+  "PriceDisplay": {
+    "Labels": {
+      "Pending": "Prix en attente"
+    }
+  },
+  "error-message": {
+    "_ERR_CMD_INVALID_PARAM_2020": "Entrez un ID de connexion dans la zone ID de connexion.",
+    "_ERR_CMD_INVALID_PARAM_2050": "Entrez votre mot de passe dans la zone Mot de passe.",
+    "_ERR_CMD_INVALID_PARAM_2070": "Entrez votre mot de passe dans la zone Confirmation.",
+    "_ERR_CMD_INVALID_PARAM_5060": "Entrez un nom dans la zone Nom.",
+    "_ERR_CMD_INVALID_PARAM_5066": "Entrez un prénom dans la zone Prénom.",
+    "_ERR_CMD_INVALID_PARAM_5210": "Entrer une adresse e-mail dans la zone Adresse électronique.",
+    "_ERR_CMD_INVALID_PARAM_2190": "Le code de validation que vous avez saisi n'est pas valide. Vérifiez le code que vous avez reçu et faites une nouvelle tentative.",
+    "_ERR_CMD_INVALID_PARAM_2080": "Le mot de passe indiqué pour confirmation ne correspond pas à votre nouveau mot de passe.",
+    "_ERR_CMD_INVALID_PARAM": "Une erreur est survenue pendant l'enregistrement. Réessayez ultérieurement ou prenez contact avec le magasin pour de l'aide.",
+    "_ERR_LOGONID_ALREDY_EXIST_2030": "L'adresse électronique que vous avez saisie existe déjà. Indiquez-en une autre et faites une nouvelle tentative.",
+    "_ERR_PASSWORDS_NOT_SAME_2080": "Le mot de passe indiqué pour confirmation ne correspond pas à votre mot de passe. Entrez votre mot de passe dans la zone Confirmer le mot de passe et réessayez.",
+    "_ERR_USER_ALREADY_REGISTERD": "Vous êtes déjà connecté à ce magasin. Pour vous enregistrer, fermez la session et essayez de vous enregistrer à nouveau.",
+    "_ERR_AUTHENTICATION_MINIMUMLENGTH_PASSWORD_2200": "Vous avez saisi un mot de passe comportant moins de {{0}} caractères.  Les mots de passe doivent être constitués de {{0}} caractères au minimum et inclure au moins {{1}} chiffre(s) et {{2}} lettre(s).  Veuillez saisir un autre mot de passe.",
+    "_ERR_AUTHENTICATION_MAXCONSECUTIVECHAR_PASSWORD_2210": "Votre mot de passe comporte un caractère qui se répète plus de {{0}} fois dans une ligne. Veuillez saisir un autre mot de passe.",
+    "_ERR_AUTHENTICATION_MAXINTANCECHAR_PASSWORD_2220": "Votre mot de passe contient un caractère utilisé plus de {{0}} fois. Veuillez saisir un autre mot de passe.",
+    "_ERR_AUTHENTICATION_MINIMUMLETTERS_PASSWORD_2230": "Votre mot de passe ne contient pas {{0}} lettre(s).  Les mots de passe doivent être constitués de {{1}} caractères au minimum et inclure au moins {{2}} chiffre(s) et {{0}} lettre(s).  Veuillez saisir un autre mot de passe.",
+    "_ERR_AUTHENTICATION_MINIMUMDIGITS_PASSWORD_2240": "Votre mot de passe ne contient pas {{0}} chiffre(s).  Les mots de passe doivent être constitués de {{1}} caractères au minimum et inclure au moins {{0}} chiffre(s) et {{2}} lettre(s).  Veuillez saisir un autre mot de passe.",
+    "_ERR_AUTHENTICATION_USERIDMATCH_PASSWORD_2250": "Votre mot de passe est identique à votre ID de connexion. Entrez un mot de passe différent de votre ID de connexion.",
+    "_ERR_AUTHENTICATION_REUSEOLD_PASSWORD_2260": "Le mot de passe saisi a déjà été utilisé. Entrez un nouveau mot de passe.",
+    "_2040": "Entrez votre mot de passe actuel dans la zone Mot de passe actuel.",
+    "_2060": "Entrez votre mot de passe dans la zone Mot de passe.",
+    "_2070": "Entrez votre mot de passe dans la zone Confirmation du mot de passe.",
+    "_2200": "Vous avez saisi un mot de passe comportant moins de {{0}} caractères. Les mots de passe doivent être constitués de {{0}} caractères au minimum et inclure au moins {{1}} chiffre(s) et {{2}} lettre(s). Veuillez saisir un autre mot de passe.",
+    "_2210": "Votre mot de passe comporte un caractère qui se répète plus de {{0}} fois dans une ligne. Veuillez saisir un autre mot de passe.",
+    "_2220": "Votre mot de passe contient un caractère utilisé plus de {{0}} fois. Veuillez saisir un autre mot de passe.",
+    "_2230": "Votre mot de passe ne contient pas {{0}} lettre(s). Les mots de passe doivent être constitués de {{1}} caractères au minimum et inclure au moins {{2}} chiffre(s) et {{0}} lettre(s).  Veuillez saisir un autre mot de passe.",
+    "_2240": "Votre mot de passe ne contient pas {{0}} chiffre(s). Les mots de passe doivent être constitués de {{1}} caractères au minimum et inclure au moins {{0}} chiffre(s) et {{2}} lettre(s).  Veuillez saisir un autre mot de passe.",
+    "_ERR_BAD_PARMS_2050": "Le mot de passe que vous avez entré est incorrect. Entrez votre mot de passe actuel dans la zone Mot de passe actuel et réessayez.",
+    "_ERR_BAD_PARMS_2080": "Le mot de passe indiqué pour confirmation ne correspond pas à votre nouveau mot de passe. Entrez votre mot de passe dans la zone Confirmation du mot de passe et réessayez.",
+    "_2250": "Votre mot de passe est identique à votre ID de connexion. Entrez un mot de passe différent de votre ID de connexion.",
+    "_2260": "Le mot de passe saisi a déjà été utilisé. Entrez un nouveau mot de passe.",
+    "_ERR_AUTHENTICATION_ERROR_2000": "Entrez un ID de connexion dans la zone ID de connexion.",
+    "_ERR_AUTHENTICATION_ERROR_2010": "L'ID de connexion ou le mot de passe saisi est incorrect. Entrez de nouveau les informations.",
+    "_ERR_AUTHENTICATION_ERROR_2020": "L'ID de connexion ou le mot de passe saisi est incorrect. Entrez de nouveau les informations.",
+    "_ERR_AUTHENTICATION_ERROR_2030": "Les informations de connexion que vous avez entrées ne sont pas valides. Vérifiez votre saisie et réessayez.",
+    "_ERR_PASSWORD_FAILED_CMN1019E": "L'ID de connexion ou le mot de passe saisi est incorrect. Entrez de nouveau les informations.",
+    "_ERR_PERSON_ACCOUNT_DISABLED_2110": "Ce compte est verrouillé. Contactez le magasin pour déverrouiller votre compte.",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "Votre ne serez pas en mesure en raison de {{0}} échecs de connexion. Veuillez réinitialiser votre mot de passe ou demander de l'aide à votre représentant du service client.",
+    "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "Patientez quelques instants avant de tenter de vous connecter à nouveau.",
+    "_2400": "Votre organisation est verrouillée. Vous ne pouvez pas vous connecter pour le moment.",
+    "_2410": "Vous ne disposez pas des droits appropriés pour vous connecter. Prenez contact avec le magasin pour en savoir plus.",
+    "_2420": "Vous n'avez pas activé votre compte. Vous devez répondre au courrier électronique d'activation que vous avez reçu.",
+    "_2450": "Vous n'avez pas activé votre compte. Vous devez répondre au courrier électronique d'activation que vous avez reçu.",
+    "_2430": "Votre mot de passe a été redéfini. Récupérez le mot de passe temporaire dans votre courrier électronique et reconnectez-vous.",
+    "_2570": "Votre compte n'est pas activé. Si vous avez déjà répondu au courrier électronique d'activation que vous avez reçu, contactez votre magasin pour obtenir de l'aide.\n",
+    "_ERR_GENERIC_2110": "Votre compte est verrouillé. Contactez le magasin pour déverrouiller votre compte.",
+    "_ERR_MISSING_PARMS_2000": "Entrez un ID de connexion dans la zone ID de connexion.",
+    "_ERR_MISSING_PARMS_2010": "L'ID de connexion que vous avez entré n'est pas valide. Vérifiez votre saisie et réessayez.",
+    "_ERR_BAD_PARMS_2010": "L'adresse électronique que vous avez entrée n'est pas valide. Vérifiez votre saisie et réessayez.",
+    "_ERR_CMD_MISSING_PARAM_2020": "Entrez votre mot de passe dans la zone Mot de passe.",
+    "_ERR_MISSING_PARMS_2040": "Entrez votre mot de passe actuel dans la zone Mot de passe actuel.",
+    "_ERR_MISSING_PARMS_2060": "Entrez un nouveau mot de passe dans la zone Mot de passe.",
+    "_ERR_MISSING_PARMS_2070": "Entrez un nouveau mot de passe dans la zone Confirmation du mot de passe.",
+    "_ERR_MISSING_PARMS_2100": "Cet utilisateur n'a pas d'adresse électronique.",
+    "_ERR_BAD_PARMS_1020": "Le mot de passe de cet ID de connexion ne peut pas être réinitialisé. Contactez le magasin pour demander de l'assistance.",
+    "_ERR_CMD_INVALID_PARAM_5080": "Entrez une adresse dans la zone Rue.",
+    "_ERR_CMD_INVALID_PARAM_5100": "Entrez un nom de ville dans la zone Ville.",
+    "_ERR_CMD_INVALID_PARAM_5120": "Entrez un nom dans la zone Etat/province.",
+    "_ERR_CMD_INVALID_PARAM_5140": "Entrez un code postal dans la zone Code postal.",
+    "_ERR_CMD_INVALID_PARAM_5160": "Entrez un nom de pays dans la zone Pays.",
+    "_ERR_CMD_INVALID_PARAM_5030": "Entrez un nom dans la zone Alias.",
+    "_ERR_NICKNAME_ALREDY_EXIST_5040": "Le nom d'adresse \"{{0}}\" que vous avez entré existe déjà. Saisissez un autre nom dans la zone Alias puis faites une nouvelle tentative.",
+    "_ERR_CMD_MISSING_PARAM_2000": "Entrez votre ID de connexion (adresse électronique) dans le champ Adresse électronique.",
+    "_ERR_CMD_INVALID_PARAM_2010": "L'ID de connexion (adresse électronique) que vous avez entré n'est pas valide. Vérifiez votre saisie et réessayez.",
+    "ERR_PROMOTION_CODE_INVALID_-1200": "Le code de promotion que vous avez entré n'est pas valide. Vérifiez le code et faites une nouvelle tentative.",
+    "ERR_PROMOTION_NOT_AVAILABLE_AT_THIS_TIME_-2200": "Le code de promotion saisi n'est pas disponible actuellement. Réessayez ultérieurement.",
+    "ERR_PROMOTION_PER_SHOPPER_LIMIT_EXCEEDED_-1800": "La promotion que vous avez essayé d'utiliser ne peut pas être appliquée à votre commande : la limite de {{1}} par client a été atteinte.",
+    "ERR_PROMOTION_OVERALL_LIMIT_EXCEEDED_-1900": "La promotion que vous avez essayé d'utiliser ne peut pas être appliquée à votre commande : la limite de {{1}} portant sur le nombre total d'utilisations permises de cette promotion a été atteinte.",
+    "ERR_PROMOTION_SYSTEM_ERR_-2700": "Le code de promotion saisi n'a pas pu être traité. Cliquez sur le lien Nous contacter situé au bas de la page afin de joindre le Service clientèle.",
+    "ERR_PROMOTION_CODE_DUPLICATED_-1150": "Vous avez indiqué un code promotion en double \"{{0}}\".",
+    "ERR_PROMOTION_UNKNOWN_ERR_-2600": "Le code de promotion saisi n'a pas pu être traité. Cliquez sur le lien Nous contacter situé au bas de la page afin de joindre le Service clientèle.",
+    "_ERR_FORMAT_PROMOCODES_NOT_CORRECT_-2820": "Le format du code de promotion saisi n'est pas reconnu par le système. Vérifiez le code et faites une nouvelle tentative.",
+    "_ERR_PARAMETER_MISSING_-2810": "Le code de promotion ou le nom de la promotion du bon de réduction est manquant. Entrez un code de promotion ou un nom de promotion de bon de réduction.",
+    "_ERR_FORMAT_ORDERIDS_NOT_CORRECT_-2830": "Le code de promotion saisi n'a pas pu être traité. Cliquez sur le lien Nous contacter situé au bas de la page afin de joindre le Service clientèle.",
+    "_ERR_PAY_CARD_NUMBER_MISSING_190": "Entrez le numéro de carte de crédit dans la zone Carte de crédit.",
+    "_ERR_PAY_CARD_BRAND_MISSING_190": "Sélectionnez le type de carte de crédit et faites une nouvelle tentative.",
+    "_ERR_CREATE_PAYMENT_METHOD": "Une erreur système est apparue lors du traitement de votre commande.",
+    "_ERR_CREATE_PAYMENT_METHOD_1007": "Une erreur système est apparue lors du traitement de votre commande.",
+    "_ERR_PAY_CARD_NUMBER_INVALID_1005": "Le numéro de carte de crédit est incorrect. Entrez le numéro de carte de crédit dans la zone Carte de crédit et faites une nouvelle tentative.",
+    "_DBG_API_PAY_BAD_LEN_OR_PREFIX_1005": "Le numéro de carte de crédit est incorrect. Entrez le numéro de carte de crédit dans la zone Carte de crédit et faites une nouvelle tentative.",
+    "_DBG_API_DO_PAYMENT_BAD_XDATE_1006": "La date d'expiration que vous avez saisie n'est pas valide. Vérifiez la date indiquée sur votre carte et faites une nouvelle tentative.",
+    "_ERR_PAY_EXPIRY_DATE_INVALID_1006": "La date d'expiration que vous avez saisie n'est pas valide. Vérifiez la date indiquée sur votre carte et faites une nouvelle tentative.",
+    "_ERR_CREATE_PAYMENT_METHOD_CMN1112E": "Le système de paiement rencontre une erreur lors de la mise à jour des instructions de paiement.",
+    "_ERR_RDN_ALREADY_EXIST": "Le nom d'organisation que vous avez saisi existe déjà. Indiquez-en un autre et faites une nouvelle tentative.",
+    "_ERR_CMD_INVALID_PARAM_parentMemberId": "Le nom d'organisation que vous avez saisi dans la zone Organisation n'est pas valide. Vous devez indiquer le nom exact de l'organisation. Si vous ne le connaissez pas, vérifiez-le auprès de la personne qui gère votre organisation pour ce magasin. Si votre organisation a une organisation mère, vous devez respecter le format suivant pour votre entrée : <b>organisation/organisation_mère</b>, par exemple, <b>ABC France/ABC Monde</b>.",
+    "_ERR_CMD_INVALID_PARAM_parentMember": "Le nom d'organisation que vous avez saisi dans la zone Organisation n'est pas valide. Vous devez indiquer le nom exact de l'organisation. Si vous ne le connaissez pas, vérifiez-le auprès de la personne qui gère votre organisation pour ce magasin. Si votre organisation a une organisation mère, vous devez respecter le format suivant pour votre entrée : <b>organisation/organisation_mère</b>, par exemple, <b>ABC France/ABC Monde</b>.",
+    "_ERR_CMD_INVALID_PARAM_org_orgEntityName": "Entrez un nom d'organisation dans la zone Nom d'organisation.",
+    "_API_BAD_INV_2": "Le stock est insuffisant pour acheter {{1}} unités de {{0}}.",
+    "_ERR_FINDING_ORDER_230": "Une erreur système est survenue lors du traitement de votre commande.",
+    "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "Une erreur système est survenue. Veuillez contacter le magasin pour résoudre le problème.",
+    "_ERR_REMOTE_EXCEPTION_CMN0412E": "Une erreur système est apparue lors du traitement de votre demande. Veuillez contacter le magasin pour obtenir de l'aide.",
+    "_ERR_REG_DUPE_ID_CMN0114S": "L'ID de connexion que vous avez entré existe déjà. Indiquez-en un autre et faites une nouvelle tentative.",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "L'adresse électronique que vous avez entrée n'est pas valide. Vérifiez votre saisie et réessayez.",
+    "_ERR_CMD_INVALID_PARAM_2195": "Le code de validation que vous avez saisi a expiré. Vous devez demander un nouveau code de validation afin de modifier votre mot de passe.",
+    "B2B": {
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "L'ID de connexion que vous avez entré n'est pas valide. Vérifiez votre saisie et réessayez.",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "L'ID de connexion que vous avez entré existe déjà. Indiquez-en un autre et faites une nouvelle tentative.",
+      "_ERR_BAD_PARMS_2010": "L'ID de connexion que vous avez entré n'est pas valide. Vérifiez votre saisie et réessayez.",
+      "_ERR_INVALID_NAME_CMN1652E": "Il existe un autre objet portant le même nom \"{{0}}\". Veuillez lui attribuer un autre nom puis essayer de nouveau."
+    },
+    "_ERR_PASSWORD_EXPIRED_2170": "Votre mot de passe a expiré. Veuillez en saisir un nouveau.",
+    "_ERR_INVALID_NAME_CMN1652E": "Il existe un autre objet portant le même nom \"{{0}}\". Veuillez lui attribuer un autre nom puis essayer de nouveau."
+  },
+  "success-message": {
+    "ITEM_ADD_SUCCESS": "L'article a été ajouté au panier. ",
+    "ViewCart": "Afficher le panier",
+    "COPY_CART_SUCCESS": "La commande a été ajoutée au panier. ",
+    "RecurringOrderCancelled": "La commande a été annulée avec succès.",
+    "ADD_ADDRESS_SUCCESS": "Votre nouvelle adresse \"{{0}}\" a été ajoutée avec succès.",
+    "EDIT_ADDRESS_SUCCESS": "Votre adresse \"{{0}}\" a été mise à jour avec succès.",
+    "DELETE_ADDRESS_SUCCESS": "Votre adresse \"{{0}}\" a été supprimée avec succès.",
+    "RESEND_VERIFICATION_CODE": "Le code de vérification a bien été envoyé sur votre adresse électronique.",
+    "PASSWORD_RESET_SUCCESS": "Le mot de passe a bien été réinitialisé.",
+    "CREATE_CHECKOUT_PROFILE_SUCCESS": "Profil de paiement \"{{0}}\" créé avec succès",
+    "COPY_ORDER_SUCCESS": "Commande copiée avec succès.",
+    "CREATE_ORDER_SUCCESS": "Commande \"{{0}}\" créée avec succès.",
+    "DELETE_ORDER_SUCCESS": "Commande \"{{0}}\" supprimée avec succès.",
+    "DeletedCheckoutProfile": "Profil de paiement \"{{ 0 }}\" supprimé avec succès",
+    "UpdatedCheckoutProfile": "Profil de paiement \"{{ 0 }}\" mis à jour avec succès",
+    "deletedSuccessfully": "{{ n }} article(s) supprimé(s) avec succès de la commande",
+    "addedItemSuccessfully": "{{ v }} ajouté avec succès à la commande en cours",
+    "addedNSuccessfully": "{{ v }} articles ajoutés avec succès à la commande en cours"
+  },
+  "notFound": {
+    "notFound": "<p>Nous sommes désolés, nous n'avons pas trouvé ce que vous recherchez.</p>\n"
+  },
+  "OrderBillingInfo": {
+    "Title": "Informations de facturation",
+    "Labels": {
+      "BillAddress": "Adresse de facturation"
+    }
+  },
+  "OrderDetails": {
+    "Title": "Détails de la commande",
+    "Actions": {
+      "Back": "Retour aux détails des paiements",
+      "Next": "Passer une commande",
+      "NextRecurringOrder": "Passer une commande récurrente",
+      "BackCart": "Retour au panier d'achat"
+    },
+    "Labels": {
+      "PaymentDetails": "Informations de paiement",
+      "OrderSummary": "Récapitulatif de la commande"
+    }
+  },
+  "OrderDiscountSummary": {
+    "Title": "Remises appliquées",
+    "Labels": {
+      "Total": "Total"
+    }
+  },
+  "OrderItemTable": {
+    "Title": "Articles de la commande",
+    "Labels": {
+      "ItemDetails": "Détails de l'article",
+      "SKU": "SKU : ",
+      "Status": "Disponibilité",
+      "Quantity": "Quantité",
+      "Price": "Prix",
+      "Actions": "Actions",
+      "Gift": "Cadeau offert",
+      "NonRecurring": "Article non récurrent",
+      "PageSizeLabel": "lignes",
+      "FirstPage": "Première page",
+      "LastPage": "Dernière page",
+      "PreviousPage": "Page précédente",
+      "NextPage": "Page suivante",
+      "RowCount": "Affichage de {from} jusqu'à {to} sur {count}"
+    },
+    "Actions": {
+      "Delete": "Supprimer"
+    }
+  },
+  "OrderLinks": {
+    "Title": "Gestion des commandes",
+    "OrderHistoryText": "Historique des commandes",
+    "OrderHistoryDescription": "Afficher les commandes passées et les commandes en attente d'autorisation, ainsi que les détails des commandes individuelles.",
+    "InprogressOrdersText": "Commandes en cours",
+    "InprogressOrdersDescription": "Afficher et gérer les commandes en cours",
+    "RecurringOrdersText": "Commandes récurrentes",
+    "RecurringOrdersDescription": "Affichez et gérez la liste des commandes récurrentes",
+    "ApproveOrdersText": "Autorisation de commande",
+    "ApproveOrdersDescription": "Approuvez ou rejetez des commandes",
+    "RequisitionListsText": "Listes préconfigurées",
+    "RequisitionListsDescription": "Affichez, gérez et créez des listes préconfigurées"
+  },
+  "OrderPaymentInfo": {
+    "Title": "Informations de paiement",
+    "Labels": {
+      "BillMethod": "Mode de paiement"
+    }
+  },
+  "OrderShippingInfo": {
+    "Labels": {
+      "ShipAddress": "Adresse de livraison",
+      "ShipMethod": "Mode d'expédition",
+      "CartDetails": "",
+      "ShippingDetails": "Détails de l'expédition",
+      "ShipmentGroup": "Groupe d'expédition {{index}}",
+      "HideGroupDetails": "Masquer les détails du groupe",
+      "ShowGroupDetails": "Afficher les détails du groupe"
+    }
+  },
+  "OrderTotalSummary": {
+    "Labels": {
+      "Subtotal": "Sous-total",
+      "Tax": "Taxes",
+      "Shipping": "Frais de port",
+      "ShippingTax": "Taxe afférente aux frais de port",
+      "Discount": "Remise totale",
+      "Total": "Total"
+    }
+  },
+  "PaymentMethodContainer": {
+    "Actions": {
+      "Cancel": "Annuler",
+      "Done": "Terminé",
+      "SaveAndAdd": "Enregistrer et ajouter un mode de paiement"
+    }
+  },
+  "PaymentInfoCard": {
+    "Title": "Mode de paiement {{number}}",
+    "Labels": {
+      "CreditCard": "Carte de crédit : ",
+      "AmountToPay": "Montant à régler",
+      "ExpiryDate": "Date d'expiration : {{month}}/{{year}}",
+      "BillingAddress": "Adresse de facturation"
+    },
+    "Actions": {
+      "Edit": "Modifier",
+      "Delete": "Supprimer"
+    }
+  },
+  "PaymentInfoList": {
+    "Title": {
+      "PayMethod": "Modes de paiement",
+      "WithOrderTotal": "Modes de paiement - Total de la commande : "
+    },
+    "Msgs": {
+      "PayMethodRequired": "Au moins un mode de paiement est requis.",
+      "InsufficientPayment": "L'ensemble de vos modes de paiement doit vous permettre de régler l'intégralité de la commande, soit {{grandTotal}}.",
+      "CardDetailsUpdate": "Veuillez vérifier et mettre à jour les détails de la carte une fois de plus.",
+      "PayMethodNote": "Remarque : mes modes de paiement ne seront enregistrés qu'après avoir cliqué sur le bouton Consulter la commande."
+    },
+    "Actions": {
+      "AddPayMethod": "Ajouter un mode de paiement"
+    }
+  },
+  "PaymentMethodSelection": {
+    "Title": "Mode de paiement",
+    "Msgs": {
+      "CreditCard": "Paiement en ligne sécurisé. Cartes de crédit acceptées : {{cards}}",
+      "CVV": "Veuillez saisir un code CVV valide.",
+      "InvalidCardNumber": "Veuillez saisir un numéro de carte de crédit valide",
+      "InvalidFormat": "Format non valide"
+    },
+    "Labels": {
+      "COD": "Contre remboursement",
+      "CreditCard": "Carte de crédit",
+      "CCNumber": "Numéro de carte de crédit",
+      "ExpiryDate": "Date d'expiration",
+      "CVV": "Code CVV",
+      "OrderTotal": "Total de la commande",
+      "RemainingAmount": "Montant restant à régler",
+      "AmountToPay": "Montant à régler",
+      "ExpiryMonth": "Mois d'expiration",
+      "ExpiryYear": "Année d'expiration"
+    },
+    "Actions": {
+      "PayRemaining": "Régler le montant restant"
+    }
+  },
+  "PersonalInformation": {
+    "UpdateSuccessful": "La mise à jour a abouti",
+    "AccountInformation": "Informations sur le compte :",
+    "Edit": "Modifier",
+    "Password": "Mot de passe :",
+    "ChangePassword": "Modifier le mot de passe",
+    "EditAccountInformation": "Modifier les informations du compte",
+    "FirstName": "Prénom",
+    "LastName": "Nom",
+    "Email": "Adresse électronique",
+    "PhoneNumber": "Numéro de téléphone (facultatif)",
+    "PreferredCurrency": "Devise préférée",
+    "Gender": "Sexe",
+    "SelectGender": "Sélectionnez le sexe",
+    "BirthYear": "Année de naissance",
+    "BirthMonth": "Mois de naissance",
+    "BirthDate": "Jour de naissance",
+    "SelectYear": "Sélectionnez l'année",
+    "SelectMonth": "Sélectionnez le mois",
+    "SelectDate": "Sélectionner la date",
+    "DateOfBirthEmpty": "N'indiquez pas de valeur d'anniversaire si vous préférez ne pas divulguer ces informations",
+    "Cancel": "Annuler",
+    "SaveChanges": "Enregistrer les modifications",
+    "CurrentPassword": "Mot de passe actuel",
+    "NewPassword": "Nouveau mot de passe",
+    "VerifyPassword": "Confirmer le mot de passe",
+    "SignOutButton": "Se déconnecter",
+    "actingAs": "Agissant comme : ",
+    "resetPass": "Réinitialiser le mot de passe de l'utilisateur",
+    "resetSure": "Etes-vous sûr de vouloir réinitialiser le mot de passe pour cet utilisateur ?",
+    "resetNo": "Non",
+    "resetYes": "Oui",
+    "stopActing": "Arrêter d'agir comme un utilisateur",
+    "guestUser": "VISITEUR",
+    "register": "S'inscrire",
+    "enableUser": "Activer l'utilisateur",
+    "disableUser": "Désactiver l'utilisateur",
+    "disabledMessage": "Désolé, cette page est toujours en cours de développement."
+  },
+  "ProductFilter": {
+    "Labels": {
+      "filterBy": "Filtrer par",
+      "price": "Prix",
+      "minPrice": "min",
+      "maxPrice": "max"
+    },
+    "Actions": {
+      "showMore": "Afficher la suite",
+      "showLess": "Afficher moins",
+      "Filter": "Filtre"
+    }
+  },
+  "ProductGrid": {
+    "Labels": {
+      "filteredBy": "Filtrer par :",
+      "productFound": "{{count}} produit trouvé",
+      "productFound_plural": "{{count}} produits trouvés",
+      "productSearchFound": "{{count}} produit trouvé pour \"{{searchTerm}}\"",
+      "productSearchFound_plural": "{{count}} produits trouvés pour \"{{searchTerm}}\"",
+      "noMatches": "0 correspondance pour \"{{searchTerm}}\".",
+      "searchAgain": "Désolé, votre recherche pour \"{{searchTerm}}\" n'a pas renvoyé de résultats. Essayez une autre recherche.",
+      "suggestion": "Vouliez-vous dire : ",
+      "noProductsFound": "La recherche pour <b>{{keyword}}</b> ne renvoie aucune correspondance valide. <br/>Essayez de rechercher à nouveau en utilisant un autre terme ou parcourez nos recommandations",
+      "noProductsFoundForFilter": "Nous sommes désolés, aucun résultat n'a été trouvé pour le filtre sélectionné."
+    },
+    "Actions": {
+      "clearAll": "Tout effacer"
+    }
+  },
+  "PurchaseOrderNumber": {
+    "Title": "Numéro de bon de commande",
+    "Msgs": {
+      "PONumberRequired": "Numéro de bon de commande requis"
+    },
+    "Labels": {
+      "PONumber": "Numéro du bon de commande :"
+    }
+  },
+  "PurchaseOrderSelection": {
+    "Title": "Bon de commande",
+    "Msgs": {
+      "InvalidFormat": "Format non valide"
+    },
+    "Labels": {
+      "PONumber": "Numéro de bon de commande"
+    }
+  },
+  "RecurringOrderInfo": {
+    "Title": "Commande récurrente",
+    "Labels": {
+      "RecurringOrderNumber": "Numéro de commande récurrente",
+      "OrderSchedule": "Fréquence",
+      "StartDate": "Date de début",
+      "NextDelivery": "Prochaine commande planifiée",
+      "OrderHistoryButton": "Historique des commandes pour {{orderId}}"
+    }
+  },
+  "RegistrationLayout": {
+    "NewCustomer": "Nouveau client ?",
+    "SignIn": "Se connecter",
+    "Account": "Vous avez déjà un compte ?",
+    "FirstName": "Prénom",
+    "LastName": "Nom",
+    "Email": "Adresse électronique",
+    "Phone": "Téléphone (facultatif)",
+    "Password": "Mot de passe",
+    "VerifyPassword": "Confirmer le mot de passe",
+    "TextContent": "Recevez des idées de décoration d'intérieur dans votre boîte de réception",
+    "Register": "S'inscrire",
+    "RegisterComplete": "Terminer l'inscription",
+    "Msgs": {
+      "InvalidFormat": "Format non valide"
+    }
+  },
+  "RegistrationB2BLayout": {
+    "Title": "S'inscrire",
+    "Actions": {
+      "BuyerReg": "Enregistrement d'un acheteur",
+      "OrgReg": "Enregistrer une organisation",
+      "AddBuyer": "Ajouter un acheteur à une organisation existante",
+      "AddOrg": "Ajouter une nouvelle organisation, et un compte administrateur"
+    }
+  },
+  "ResetPassword": {
+    "Title": "Définir un nouveau mot de passe",
+    "ValidationCodeLabel": "Code de vérification",
+    "NewPasswordLabel": "Nouveau mot de passe",
+    "VerifyPasswordLabel": "Confirmer le nouveau mot de passe",
+    "SubmitButton": "Définir le mot de passe",
+    "ContentText": "Veuillez entrer le code de vérification envoyé sur votre adresse électronique, ainsi qu'un nouveau mot de passe, ci-dessous.",
+    "ContentTextLogonID": "Veuillez saisir votre ID de connexion. Vous recevrez un courrier électronique contenant un code de validation vous permettant de réinitialiser votre mot de passe.",
+    "EmailLabel": "Adresse électronique",
+    "LogonIDLabel": "ID de connexion",
+    "SuccessMsg": "Opération réussie",
+    "PasswordNotRecieved": "Vous n'avez pas reçu de code de vérification ?",
+    "ResendVerificationCode": "Renvoyer le code de vérification",
+    "AccountInfoRemember": "Mémoriser les informations du compte ? ",
+    "SignIn": "Se connecter maintenant",
+    "Msgs": {
+      "InvalidFormat": "Format non valide"
+    }
+  },
+  "SearchBar": {
+    "SearchField": "Rechercher",
+    "KeywordTitle": "MOTS-CLES",
+    "CategoryTitle": "CATEGORIE",
+    "BrandTitle": "MARQUE",
+    "Clear": "Effacer la recherche"
+  },
+  "SessionError": {
+    "TimeoutTitle": "Expiration de la session",
+    "InvalidTitle": "Erreur de session non valide",
+    "GenericTitle": "Erreur",
+    "TimeoutMsg": "Votre session a expiré et vous avez été correctement déconnecté. Connectez-vous à nouveau pour accéder à votre magasin.",
+    "InvalidMsg": "Votre ID de connexion peut avoir été utilisé à un autre emplacement. Connectez-vous à nouveau pour accéder à votre magasin.",
+    "InvalidMsgB2C": "Votre adresse électronique peut avoir été utilisée à un autre emplacement. Connectez-vous à nouveau pour accéder à votre magasin.",
+    "Email": "Adresse électronique",
+    "Password": "Mot de passe",
+    "SubmitButton": "Se connecter",
+    "CancelButton": "Annuler",
+    "ActionIncomplete": "Votre requête n'a pas été complétée, car votre ID de connexion est utilisé à un autre emplacement. Connectez-vous à nouveau pour continuer."
+  },
+  "SignIn": {
+    "ReturningCustomer": "Client déjà enregistré",
+    "Password": "Mot de passe",
+    "ChangPassword": "Modifier le mot de passe",
+    "CurrentPassword": "Mot de passe actuel",
+    "PasswordVerify": "Confirmer le mot de passe",
+    "RememberMe": "Se souvenir de moi",
+    "SignInButton": "Se connecter",
+    "Cancel": "Annuler",
+    "Submit": "Envoyer",
+    "ForgotPassword": "Mot de passe oublié ?",
+    "noAccount": "Vous n'avez pas de compte ?",
+    "registerNow": "S'inscrire maintenant",
+    "Label": {
+      "B2B": "ID de connexion",
+      "Email": "Adresse électronique",
+      "rememberMe": "Se souvenir de moi"
+    },
+    "Msgs": {
+      "InvalidFormat": "Format non valide.",
+      "PasswordNotMatch": "Le mot de passe et la confirmation du mot de passe ne correspondent pas.",
+      "OldPasswordReuse": "Le mot de passe saisi a déjà été utilisé. Entrez un nouveau mot de passe."
+    }
+  },
+  "CommerceEnvironment": {
+    "listSettings": {
+      "relevance": "Pertinence",
+      "brands": "Marques",
+      "name": "Nom",
+      "priceLowToHigh": "Prix (du plus bas au plus élevé)",
+      "priceHighToLow": "Prix (du plus élevé au plus bas)"
+    },
+    "inventoryStatus": {
+      "Available": "En stock",
+      "Allocated": "En stock",
+      "Unallocated": "Non attribué",
+      "Backordered": "Commande en amont",
+      "OOS": "Rupture de stock",
+      "NA": "Indisponible"
+    },
+    "recurringOrderFrequency": {
+      "Everyday": "Tous les jours",
+      "EveryWeek": "Toutes les semaines",
+      "EveryTwoWeeks": "Toutes les 2 semaines",
+      "EveryThreeWeeks": "Toutes les 3 semaines",
+      "EveryFourWeeks": "Toutes les 4 semaines"
+    },
+    "languagePopUp": {
+      "Title": "Modifier la langue ?",
+      "Message": "Voulez-vous modifier la langue en {{ language }} ?",
+      "Yes": "Oui",
+      "No": "Non"
+    },
+    "currency": {
+      "ROL": "Leu roumain",
+      "RON": "Leu roumain",
+      "ARS": "Peso argentin",
+      "ATS": "Schilling autrichien",
+      "AUD": "Dollar australien",
+      "BEF": "Franc belge",
+      "BRL": "Real brésilien",
+      "CAD": "Dollar canadien",
+      "CNY": "Yuan chinois",
+      "DEM": "Mark allemand",
+      "ESP": "Peseta espagnole",
+      "EUR": "Euro g",
+      "FRF": "Franc français",
+      "GBP": "Livre sterling",
+      "HKD": "Dollar de Hong Kong",
+      "ITL": "Lire italienne",
+      "JPY": "Yen japonais",
+      "KRW": "Won sud-coréen",
+      "SGD": "Dollar de Singapour",
+      "TWD": "Dollar taïwanais",
+      "USD": "Dollar américain",
+      "ZAR": "Rand sud-africain",
+      "FIM": "Mark finlandais",
+      "IEP": "Livre irlandaise",
+      "LUF": "Franc luxembourgeois",
+      "NLG": "Florin néerlandais",
+      "PTE": "Escudo portugais",
+      "NOK": "Couronne norvégienne",
+      "SEK": "Couronne suédoise",
+      "DKK": "Couronne danoise",
+      "CHF": "Franc suisse",
+      "PLN": "Zloty polonais",
+      "RUB": "Rouble russe",
+      "EGP": "Livre égyptienne"
+    },
+    "language": {
+      "-1": "Anglais (Etats-Unis)",
+      "-2": "Français",
+      "-3": "Allemand",
+      "-4": "Italien",
+      "-5": "Espagnol",
+      "-6": "Portugais du Brésil",
+      "-7": "Chinois simplifié",
+      "-8": "Chinois traditionnel",
+      "-10": "Japonais",
+      "-21": "Roumain",
+      "-20": "Russe",
+      "-9": "Coréen",
+      "-22": "Polonais",
+      "-23": "Arabe"
+    }
+  },
+  "InprogressOrders": {
+    "Title": "Commandes en cours",
+    "CreateNewOrder": "Créer une commande",
+    "NewOrderName": "Nom de la nouvelle commande",
+    "CreateOrder": "Créer une commande",
+    "PrivateOrder": "Commande privée",
+    "SharedOrder": "Commandes partagées",
+    "Columns": {
+      "Active": "ACTIF",
+      "OrderId": "ID DE LA COMMANDE",
+      "Name": "NOM",
+      "LastUpdated": "DERNIERE MISE A JOUR",
+      "TotalPrice": "PRIX TOTAL",
+      "Type": "TYPE",
+      "Actions": "ACTION"
+    },
+    "Status": {
+      "ORD": "Privée",
+      "SHR": "Partagée"
+    },
+    "DeleteDialogTitle": "Supprimer la commande",
+    "DeleteDialogHeading": "Voulez-vous supprimer cette commande ?",
+    "CopyTitle": "Copier la commande",
+    "CopyMessage": "Voulez-vous copier cette commande ?",
+    "CurrentCart": "{{ orderId }} (Panier actuel)",
+    "InvalidOrderName": "Le nom de la commande ne peut contenir que des caractères alphanumériques (A-Z, a-z, 0-9) et des espaces blancs.",
+    "searchPh": "Recherche d'un ID ou d'une description",
+    "NotActiveOrderMessage": "La commande doit être active pour ajouter des produits"
+  },
+  "InprogressItems": {
+    "orderItem": "ARTICLE DE COMMANDE",
+    "creationDate": "DATE DE CREATION",
+    "quantity": "QUANTITE",
+    "contributor": "COLLABORATEUR",
+    "each": "CHACUN",
+    "actions": "ACTIONS",
+    "inprogressOrders": "Commandes en cours",
+    "createdBy": "CREE PAR",
+    "lastUpdated": "DERNIERE MISE A JOUR",
+    "totalPrice": "PRIX TOTAL",
+    "visibility": "LISTE PARTAGEE",
+    "orderType_SHR": "Partagée",
+    "orderType_ORD": "Privée",
+    "proceed": "Passer au paiement des achats",
+    "addProds": "Ajouter des produits",
+    "privateList": "Liste privée",
+    "sharedList": "Liste partagée",
+    "nProductsSel": "{{ n }} produits sélectionnés",
+    "addSelToCart": "Ajouter la sélection au panier",
+    "deleteSelected": "Supprimer la sélection",
+    "noItems": "Aucun article de commande n'a été trouvé.",
+    "nameForCopiedOrder": "Saisir un nom pour la nouvelle commande"
+  },
+  "commonTable": {
+    "ofTotalCount": "Affichage de {{ from }} à {{ to }} sur {{ total }}",
+    "pageSz": {
+      "five": "5 lignes",
+      "ten": "10 lignes",
+      "twenty": "20 lignes"
+    }
+  }
+}

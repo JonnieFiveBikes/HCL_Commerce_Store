@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "prettier",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "ignorePatterns": [
+    "**/*.scss",
+    "**/*.json",
+    "**/*.sh",
+    "**/.gitignore",
+    ".eslintrc",
+    "**/__tests__/",
+    "README.md",
+    "**/*.stories.tsx",
+    "**/*.js",
+    "dist"
+  ],
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": ["off"]
+  }
+}

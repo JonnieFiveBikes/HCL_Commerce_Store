@@ -1,0 +1,115 @@
+{
+  "recordSetCount": 4,
+  "metaData": {
+    "price": "1"
+  },
+  "resourceId": "https://localhost:3738/search/resources/store/2/sitecontent/productSuggestionsBySearchTerm/FB041?langId=-1&catalogId=10501&profileName=IBM_findNavigationSuggestion_PartNumber&searchType=100&pageNumber=1&pageSize=4",
+  "suggestionView": [
+    {
+      "identifier": "Product",
+      "entry": [
+        {
+          "hasSingleSKU": false,
+          "resourceId": "https://localhost:3738/search/resources/store/2/sitecontent/productSuggestionsBySearchTerm/FB041?langId=-1&catalogId=10501&profileName=IBM_findNavigationSuggestion_PartNumber&searchType=100&pageNumber=1&pageSize=413166",
+          "uniqueID": "13166",
+          "partNumber": "FB041_410101",
+          "catalogEntryTypeCode": "ItemBean",
+          "storeID": "10501",
+          "name": "T-Handle Bolt",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": ""
+            },
+            {
+              "usage": "Offer",
+              "contractId": "10009",
+              "description": "I",
+              "currency": "USD",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "hasSingleSKU": false,
+          "resourceId": "https://localhost:3738/search/resources/store/2/sitecontent/productSuggestionsBySearchTerm/FB041?langId=-1&catalogId=10501&profileName=IBM_findNavigationSuggestion_PartNumber&searchType=100&pageNumber=1&pageSize=413167",
+          "uniqueID": "13167",
+          "partNumber": "FB041_410102",
+          "catalogEntryTypeCode": "ItemBean",
+          "storeID": "10501",
+          "name": "T-Handle Bolt",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": ""
+            },
+            {
+              "usage": "Offer",
+              "contractId": "10009",
+              "description": "I",
+              "currency": "USD",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "hasSingleSKU": false,
+          "resourceId": "https://localhost:3738/search/resources/store/2/sitecontent/productSuggestionsBySearchTerm/FB041?langId=-1&catalogId=10501&profileName=IBM_findNavigationSuggestion_PartNumber&searchType=100&pageNumber=1&pageSize=413168",
+          "uniqueID": "13168",
+          "partNumber": "FB041_410103",
+          "catalogEntryTypeCode": "ItemBean",
+          "storeID": "10501",
+          "name": "T-Handle Bolt",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": ""
+            },
+            {
+              "usage": "Offer",
+              "contractId": "10009",
+              "description": "I",
+              "currency": "USD",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "hasSingleSKU": false,
+          "resourceId": "https://localhost:3738/search/resources/store/2/sitecontent/productSuggestionsBySearchTerm/FB041?langId=-1&catalogId=10501&profileName=IBM_findNavigationSuggestion_PartNumber&searchType=100&pageNumber=1&pageSize=413169",
+          "uniqueID": "13169",
+          "partNumber": "FB041_410104",
+          "catalogEntryTypeCode": "ItemBean",
+          "storeID": "10501",
+          "name": "T-Handle Bolt",
+          "price": [
+            {
+              "usage": "Display",
+              "description": "L",
+              "currency": "USD",
+              "value": ""
+            },
+            {
+              "usage": "Offer",
+              "contractId": "10009",
+              "description": "I",
+              "currency": "USD",
+              "value": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "recordSetStartNumber": 0,
+  "resourceName": "sitecontent",
+  "recordSetTotal": 183,
+  "recordSetTotalMatches": 183,
+  "recordSetComplete": "false"
+}

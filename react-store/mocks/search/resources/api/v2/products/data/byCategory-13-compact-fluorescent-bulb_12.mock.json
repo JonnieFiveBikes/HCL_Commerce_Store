@@ -1,0 +1,2317 @@
+{
+  "breadCrumbTrailEntryView": [
+    {
+      "label": "Lighting",
+      "type_": "FACET_ENTRY_CATEGORY",
+      "value": "13",
+      "seo": {
+        "href": "/lighting"
+      }
+    }
+  ],
+  "contents": [
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/compact-fluorescent-bulb"
+      },
+      "thumbnailRaw": "images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4201.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4201.jpg",
+      "shortDescription": "Energy-efficient, screw-in spiral bulb",
+      "parentCatalogGroupID": "/13",
+      "partNumber": "LA042_4201",
+      "name": "Compact Fluorescent Bulb",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "16.5"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "14.55"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_lightingWatts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["14", "18"],
+              "sequence": ["1.0", "2.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002855", "7000000000000002856"],
+              "value": ["14", "18"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Watts",
+          "facetable": "false",
+          "id": "7000000000000000170",
+          "comparable": "true",
+          "key": "7000000000000000170",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "1.0",
+              "identifier": "Fluorescent_LA042_4201",
+              "unitID": "Fluorescent",
+              "id": "7000000000000002916",
+              "value": "Fluorescent"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Bulb type",
+          "facetable": "false",
+          "id": "7000000000000000176",
+          "comparable": "true",
+          "key": "7000000000000000176",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "4_LA042_4201",
+              "sequence": "1.0",
+              "id": "7000000000000002907",
+              "value": "4"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_lightingVolts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["12", "24"],
+              "sequence": ["1.0", "2.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002850", "7000000000000002851"],
+              "value": ["12", "24"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Volts",
+          "facetable": "false",
+          "id": "7000000000000000169",
+          "comparable": "true",
+          "key": "7000000000000000169",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_lightingFinish",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0"],
+              "identifier": ["Frosted", "Yellow"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002868", "7000000000000002869"],
+              "value": ["Frosted", "Yellow"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Finish",
+          "facetable": "false",
+          "id": "7000000000000000171",
+          "comparable": "true",
+          "key": "7000000000000000171",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Lumens",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "1000_LA042_4201",
+              "sequence": "1.0",
+              "id": "7000000000000002889",
+              "value": "1000"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Lumens",
+          "facetable": "false",
+          "id": "7000000000000000174",
+          "comparable": "true",
+          "key": "7000000000000000174",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Base type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Medium screw (E26)_LA042_4201",
+              "sequence": "1.0",
+              "unitID": "screw",
+              "id": "7000000000000002898",
+              "image1": "images/catalog/hardware/facets/basestyles/bulb_basestyle_medium_screw.png",
+              "value": "Medium screw (E26)",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/basestyles/bulb_basestyle_medium_screw.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Base type",
+          "facetable": "false",
+          "id": "7000000000000000175",
+          "comparable": "true",
+          "key": "7000000000000000175",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb shape",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Spiral_LA042_4201",
+              "sequence": "1.0",
+              "unitID": "Spiral",
+              "id": "7000000000000002880",
+              "image1": "images/catalog/hardware/facets/shapes/bulb_shape_spiral.png",
+              "value": "Spiral",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/shapes/bulb_shape_spiral.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Bulb shape",
+          "facetable": "false",
+          "id": "7000000000000000173",
+          "comparable": "true",
+          "key": "7000000000000000173",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb width",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2 5/16\"_LA042_4201",
+              "sequence": "1.0",
+              "unitID": "inch",
+              "id": "7000000000000002871",
+              "value": "2 5/16\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Bulb width",
+          "facetable": "false",
+          "id": "7000000000000000172",
+          "comparable": "true",
+          "key": "7000000000000000172",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13842"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "shortDescription": "Screw-in bulb with elegant pointed tip",
+      "parentCatalogGroupID": "/13",
+      "seo": {
+        "href": "/medium-base-chandelier-bulb"
+      },
+      "thumbnailRaw": "images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4202.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4202.jpg",
+      "partNumber": "LA042_4202",
+      "name": "Medium-base Chandelier Bulb",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "36.5"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "2.37"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_lightingWatts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["20", "40"],
+              "sequence": ["3.0", "4.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002857", "7000000000000002858"],
+              "value": ["20", "40"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Watts",
+          "facetable": "false",
+          "id": "7000000000000000170",
+          "comparable": "true",
+          "key": "7000000000000000170",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Incandescent_LA042_4202",
+              "sequence": "2.0",
+              "unitID": "Incandescent",
+              "id": "7000000000000002917",
+              "value": "Incandescent"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Bulb type",
+          "facetable": "false",
+          "id": "7000000000000000176",
+          "comparable": "true",
+          "key": "7000000000000000176",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2_LA042_4202",
+              "sequence": "2.0",
+              "id": "7000000000000002908",
+              "value": "2"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_lightingVolts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "120",
+              "sequence": "3.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000002852",
+              "value": "120"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Volts",
+          "facetable": "false",
+          "id": "7000000000000000169",
+          "comparable": "true",
+          "key": "7000000000000000169",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Lumens",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "320_LA042_4202",
+              "sequence": "2.0",
+              "id": "7000000000000002890",
+              "value": "320"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Lumens",
+          "facetable": "false",
+          "id": "7000000000000000174",
+          "comparable": "true",
+          "key": "7000000000000000174",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Base type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Medium screw (E26)_LA042_4202",
+              "sequence": "2.0",
+              "unitID": "screw",
+              "id": "7000000000000002899",
+              "image1": "images/catalog/hardware/facets/basestyles/bulb_basestyle_medium_screw.png",
+              "value": "Medium screw (E26)",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/basestyles/bulb_basestyle_medium_screw.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Base type",
+          "facetable": "false",
+          "id": "7000000000000000175",
+          "comparable": "true",
+          "key": "7000000000000000175",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb shape",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Pointed_LA042_4202",
+              "sequence": "2.0",
+              "unitID": "Pointed",
+              "id": "7000000000000002881",
+              "image1": "images/catalog/hardware/facets/shapes/bulb_shape_pointed.png",
+              "value": "Pointed",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/shapes/bulb_shape_pointed.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Bulb shape",
+          "facetable": "false",
+          "id": "7000000000000000173",
+          "comparable": "true",
+          "key": "7000000000000000173",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb width",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "1 \"_LA042_4202",
+              "sequence": "2.0",
+              "unitID": "INH",
+              "id": "7000000000000002872",
+              "value": "1 \""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Bulb width",
+          "facetable": "false",
+          "id": "7000000000000000172",
+          "comparable": "true",
+          "key": "7000000000000000172",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13851"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/standard-incandescent-bulb"
+      },
+      "thumbnailRaw": "images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4203.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4203.jpg",
+      "shortDescription": "Standard household bulb with varying wattage",
+      "parentCatalogGroupID": "/13",
+      "partNumber": "LA042_4203",
+      "name": "Standard Incandescent Bulb",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "5.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "3.65"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_lightingWatts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["15", "25", "60", "100"],
+              "sequence": ["5.0", "6.0", "7.0", "8.0"],
+              "unitOfMeasure": ["one", "one", "one", "one"],
+              "unitID": ["C62", "C62", "C62", "C62"],
+              "id": ["7000000000000002859", "7000000000000002860", "7000000000000002861", "7000000000000002862"],
+              "value": ["15", "25", "60", "100"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Watts",
+          "facetable": "false",
+          "id": "7000000000000000170",
+          "comparable": "true",
+          "key": "7000000000000000170",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "3.0",
+              "identifier": "Incandescent_LA042_4203",
+              "unitID": "Incandescent",
+              "id": "7000000000000002918",
+              "value": "Incandescent"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Bulb type",
+          "facetable": "false",
+          "id": "7000000000000000176",
+          "comparable": "true",
+          "key": "7000000000000000176",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2_LA042_4203",
+              "sequence": "3.0",
+              "id": "7000000000000002909",
+              "value": "2"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_lightingVolts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["120", "130"],
+              "sequence": ["3.0", "4.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002852", "7000000000000002853"],
+              "value": ["120", "130"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Volts",
+          "facetable": "false",
+          "id": "7000000000000000169",
+          "comparable": "true",
+          "key": "7000000000000000169",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_lightingFinish",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "3.0"],
+              "identifier": ["Frosted", "Clear"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002868", "7000000000000002870"],
+              "value": ["Frosted", "Clear"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Finish",
+          "facetable": "false",
+          "id": "7000000000000000171",
+          "comparable": "true",
+          "key": "7000000000000000171",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Lumens",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "160_LA042_4203",
+              "sequence": "3.0",
+              "id": "7000000000000002891",
+              "value": "160"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Lumens",
+          "facetable": "false",
+          "id": "7000000000000000174",
+          "comparable": "true",
+          "key": "7000000000000000174",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Base type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Medium screw (E26)_LA042_4203",
+              "sequence": "3.0",
+              "unitID": "screw",
+              "id": "7000000000000002900",
+              "image1": "images/catalog/hardware/facets/basestyles/bulb_basestyle_medium_screw.png",
+              "value": "Medium screw (E26)",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/basestyles/bulb_basestyle_medium_screw.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Base type",
+          "facetable": "false",
+          "id": "7000000000000000175",
+          "comparable": "true",
+          "key": "7000000000000000175",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb shape",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "General_LA042_4203",
+              "sequence": "3.0",
+              "unitID": "General",
+              "id": "7000000000000002882",
+              "image1": "images/catalog/hardware/facets/shapes/bulb_shape_general.png",
+              "value": "General",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/shapes/bulb_shape_general.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Bulb shape",
+          "facetable": "false",
+          "id": "7000000000000000173",
+          "comparable": "true",
+          "key": "7000000000000000173",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb width",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2 3/8\"_LA042_4203",
+              "sequence": "3.0",
+              "unitID": "inch",
+              "id": "7000000000000002873",
+              "value": "2 3/8\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Bulb width",
+          "facetable": "false",
+          "id": "7000000000000000172",
+          "comparable": "true",
+          "key": "7000000000000000172",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13854"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "shortDescription": "Black light blue fluorescent bulb with screw-in base",
+      "parentCatalogGroupID": "/13",
+      "seo": {
+        "href": "/dual-tube-ultraviolet-bulb"
+      },
+      "thumbnailRaw": "images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4204.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4204.jpg",
+      "partNumber": "LA042_4204",
+      "name": "Dual-tube Ultraviolet Bulb",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "17.99"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "15.77"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_lightingWatts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "25",
+              "sequence": "6.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000002860",
+              "value": "25"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Watts",
+          "facetable": "false",
+          "id": "7000000000000000170",
+          "comparable": "true",
+          "key": "7000000000000000170",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Ultraviolet_LA042_4204",
+              "sequence": "4.0",
+              "unitID": "Ultraviolet",
+              "id": "7000000000000002919",
+              "value": "Ultraviolet"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Bulb type",
+          "facetable": "false",
+          "id": "7000000000000000176",
+          "comparable": "true",
+          "key": "7000000000000000176",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "1_LA042_4204",
+              "sequence": "4.0",
+              "id": "7000000000000002910",
+              "value": "1"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_lightingVolts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "240",
+              "sequence": "5.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000002854",
+              "value": "240"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Volts",
+          "facetable": "false",
+          "id": "7000000000000000169",
+          "comparable": "true",
+          "key": "7000000000000000169",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Lumens",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "160_LA042_4204",
+              "sequence": "4.0",
+              "id": "7000000000000002892",
+              "value": "160"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Lumens",
+          "facetable": "false",
+          "id": "7000000000000000174",
+          "comparable": "true",
+          "key": "7000000000000000174",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Base type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Medium screw (E26)_LA042_4204",
+              "sequence": "4.0",
+              "unitID": "screw",
+              "id": "7000000000000002901",
+              "image1": "images/catalog/hardware/facets/basestyles/bulb_basestyle_medium_screw.png",
+              "value": "Medium screw (E26)",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/basestyles/bulb_basestyle_medium_screw.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Base type",
+          "facetable": "false",
+          "id": "7000000000000000175",
+          "comparable": "true",
+          "key": "7000000000000000175",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb shape",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Dual tube_LA042_4204",
+              "sequence": "4.0",
+              "unitID": "tube",
+              "id": "7000000000000002883",
+              "image1": "images/catalog/hardware/facets/shapes/bulb_shape_dualtube.png",
+              "value": "Dual tube",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/shapes/bulb_shape_dualtube.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Bulb shape",
+          "facetable": "false",
+          "id": "7000000000000000173",
+          "comparable": "true",
+          "key": "7000000000000000173",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb width",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "7/8\"_LA042_4204",
+              "sequence": "4.0",
+              "unitID": "inch",
+              "id": "7000000000000002874",
+              "value": "7/8\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Bulb width",
+          "facetable": "false",
+          "id": "7000000000000000172",
+          "comparable": "true",
+          "key": "7000000000000000172",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13871"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/screw-in-led-bulb"
+      },
+      "thumbnailRaw": "images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4205.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4205.jpg",
+      "shortDescription": "Dimmable energy-saving floodlight bulb",
+      "parentCatalogGroupID": "/13",
+      "partNumber": "LA042_4205",
+      "name": "Screw-in LED Bulb",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "16.5"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "13.65"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_lightingWatts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["8", "9"],
+              "sequence": ["9.0", "10.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002863", "7000000000000002864"],
+              "value": ["8", "9"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Watts",
+          "facetable": "false",
+          "id": "7000000000000000170",
+          "comparable": "true",
+          "key": "7000000000000000170",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "5.0",
+              "identifier": "LED_LA042_4205",
+              "unitID": "LED",
+              "id": "7000000000000002920",
+              "value": "LED"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Bulb type",
+          "facetable": "false",
+          "id": "7000000000000000176",
+          "comparable": "true",
+          "key": "7000000000000000176",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "1_LA042_4205",
+              "sequence": "5.0",
+              "id": "7000000000000002911",
+              "value": "1"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_lightingVolts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "120",
+              "sequence": "3.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000002852",
+              "value": "120"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Volts",
+          "facetable": "false",
+          "id": "7000000000000000169",
+          "comparable": "true",
+          "key": "7000000000000000169",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_lightingFinish",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "3.0"],
+              "identifier": ["Frosted", "Clear"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002868", "7000000000000002870"],
+              "value": ["Frosted", "Clear"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Finish",
+          "facetable": "false",
+          "id": "7000000000000000171",
+          "comparable": "true",
+          "key": "7000000000000000171",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Lumens",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "580_LA042_4205",
+              "sequence": "5.0",
+              "id": "7000000000000002893",
+              "value": "580"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Lumens",
+          "facetable": "false",
+          "id": "7000000000000000174",
+          "comparable": "true",
+          "key": "7000000000000000174",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Base type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Medium screw (E26)_LA042_4205",
+              "sequence": "5.0",
+              "unitID": "screw",
+              "id": "7000000000000002902",
+              "image1": "images/catalog/hardware/facets/basestyles/bulb_basestyle_medium_screw.png",
+              "value": "Medium screw (E26)",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/basestyles/bulb_basestyle_medium_screw.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Base type",
+          "facetable": "false",
+          "id": "7000000000000000175",
+          "comparable": "true",
+          "key": "7000000000000000175",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb shape",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Parabolic_LA042_4205",
+              "sequence": "5.0",
+              "unitID": "Parabolic",
+              "id": "7000000000000002884",
+              "image1": "images/catalog/hardware/facets/shapes/bulb_shape_parabolic.png",
+              "value": "Parabolic",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/shapes/bulb_shape_parabolic.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Bulb shape",
+          "facetable": "false",
+          "id": "7000000000000000173",
+          "comparable": "true",
+          "key": "7000000000000000173",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb width",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2 3/8\"_LA042_4205",
+              "sequence": "5.0",
+              "unitID": "inch",
+              "id": "7000000000000002875",
+              "value": "2 3/8\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Bulb width",
+          "facetable": "false",
+          "id": "7000000000000000172",
+          "comparable": "true",
+          "key": "7000000000000000172",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13873"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "shortDescription": "Multifaceted reflector (MR16) bulb that produces a wide beam of white light",
+      "parentCatalogGroupID": "/13",
+      "seo": {
+        "href": "/halogen-floodlight-bulb"
+      },
+      "thumbnailRaw": "images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4206.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4206.jpg",
+      "partNumber": "LA042_4206",
+      "name": "Halogen Floodlight Bulb",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "19.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "17.65"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_lightingWatts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["60", "50"],
+              "sequence": ["7.0", "11.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002861", "7000000000000002865"],
+              "value": ["60", "50"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Watts",
+          "facetable": "false",
+          "id": "7000000000000000170",
+          "comparable": "true",
+          "key": "7000000000000000170",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Halogen_LA042_4206",
+              "sequence": "6.0",
+              "unitID": "Halogen",
+              "id": "7000000000000002921",
+              "value": "Halogen"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Bulb type",
+          "facetable": "false",
+          "id": "7000000000000000176",
+          "comparable": "true",
+          "key": "7000000000000000176",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "10_LA042_4206",
+              "sequence": "6.0",
+              "id": "7000000000000002912",
+              "value": "10"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_lightingVolts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["12", "24"],
+              "sequence": ["1.0", "2.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002850", "7000000000000002851"],
+              "value": ["12", "24"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Volts",
+          "facetable": "false",
+          "id": "7000000000000000169",
+          "comparable": "true",
+          "key": "7000000000000000169",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Lumens",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "900_LA042_4206",
+              "sequence": "6.0",
+              "id": "7000000000000002894",
+              "value": "900"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Lumens",
+          "facetable": "false",
+          "id": "7000000000000000174",
+          "comparable": "true",
+          "key": "7000000000000000174",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Base type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2-pin_LA042_4206",
+              "sequence": "6.0",
+              "id": "7000000000000002903",
+              "image1": "images/catalog/hardware/facets/basestyles/bulb_basestyle_2pins.png",
+              "value": "2-pin",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/basestyles/bulb_basestyle_2pins.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Base type",
+          "facetable": "false",
+          "id": "7000000000000000175",
+          "comparable": "true",
+          "key": "7000000000000000175",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb shape",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Parabolic_LA042_4206",
+              "sequence": "6.0",
+              "unitID": "Parabolic",
+              "id": "7000000000000002885",
+              "image1": "images/catalog/hardware/facets/shapes/bulb_shape_parabolic.png",
+              "value": "Parabolic",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/shapes/bulb_shape_parabolic.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Bulb shape",
+          "facetable": "false",
+          "id": "7000000000000000173",
+          "comparable": "true",
+          "key": "7000000000000000173",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb width",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2\"_LA042_4206",
+              "sequence": "6.0",
+              "unitID": "inch",
+              "id": "7000000000000002876",
+              "value": "2\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Bulb width",
+          "facetable": "false",
+          "id": "7000000000000000172",
+          "comparable": "true",
+          "key": "7000000000000000172",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13878"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/candelabra-incandescent-bulb"
+      },
+      "thumbnailRaw": "images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4207.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4207.jpg",
+      "shortDescription": "Flame-shaped screw-in bulb with clear or frosted finish",
+      "parentCatalogGroupID": "/13",
+      "partNumber": "LA042_4207",
+      "name": "Candelabra Incandescent Bulb",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "7.61"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "7.61"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_lightingWatts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["14", "18"],
+              "sequence": ["1.0", "2.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002855", "7000000000000002856"],
+              "value": ["14", "18"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Watts",
+          "facetable": "false",
+          "id": "7000000000000000170",
+          "comparable": "true",
+          "key": "7000000000000000170",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "7.0",
+              "identifier": "Incandescent_LA042_4207",
+              "unitID": "Incandescent",
+              "id": "7000000000000002922",
+              "value": "Incandescent"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Bulb type",
+          "facetable": "false",
+          "id": "7000000000000000176",
+          "comparable": "true",
+          "key": "7000000000000000176",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "10_LA042_4207",
+              "sequence": "7.0",
+              "id": "7000000000000002913",
+              "value": "10"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_lightingVolts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["120", "130"],
+              "sequence": ["3.0", "4.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002852", "7000000000000002853"],
+              "value": ["120", "130"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Volts",
+          "facetable": "false",
+          "id": "7000000000000000169",
+          "comparable": "true",
+          "key": "7000000000000000169",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_lightingFinish",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "3.0"],
+              "identifier": ["Frosted", "Clear"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002868", "7000000000000002870"],
+              "value": ["Frosted", "Clear"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Finish",
+          "facetable": "false",
+          "id": "7000000000000000171",
+          "comparable": "true",
+          "key": "7000000000000000171",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Lumens",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "30_LA042_4207",
+              "sequence": "7.0",
+              "id": "7000000000000002895",
+              "value": "30"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Lumens",
+          "facetable": "false",
+          "id": "7000000000000000174",
+          "comparable": "true",
+          "key": "7000000000000000174",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Base type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Candelabra_LA042_4207",
+              "sequence": "7.0",
+              "unitID": "Candelabra",
+              "id": "7000000000000002904",
+              "image1": "images/catalog/hardware/facets/basestyles/bulb_basestyle_medium_candelabra.png",
+              "value": "Candelabra",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/basestyles/bulb_basestyle_medium_candelabra.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Base type",
+          "facetable": "false",
+          "id": "7000000000000000175",
+          "comparable": "true",
+          "key": "7000000000000000175",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb shape",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Flame_LA042_4207",
+              "sequence": "7.0",
+              "unitID": "Flame",
+              "id": "7000000000000002886",
+              "image1": "images/catalog/hardware/facets/shapes/bulb_shape_flame.png",
+              "value": "Flame",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/shapes/bulb_shape_flame.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Bulb shape",
+          "facetable": "false",
+          "id": "7000000000000000173",
+          "comparable": "true",
+          "key": "7000000000000000173",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb width",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "7/8\"_LA042_4207",
+              "sequence": "7.0",
+              "unitID": "inch",
+              "id": "7000000000000002877",
+              "value": "7/8\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Bulb width",
+          "facetable": "false",
+          "id": "7000000000000000172",
+          "comparable": "true",
+          "key": "7000000000000000172",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13883"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/linear-fluorescent-bulb"
+      },
+      "thumbnailRaw": "images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4209.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4209.jpg",
+      "shortDescription": "Shatter-resistant T12 fluorescent bulb with 2-pin base",
+      "parentCatalogGroupID": "/13",
+      "partNumber": "LA042_4209",
+      "name": "Linear Fluorescent Bulb",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "40.5"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "37.25"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_lightingWatts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["20", "60", "100"],
+              "sequence": ["3.0", "7.0", "8.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002857", "7000000000000002861", "7000000000000002862"],
+              "value": ["20", "60", "100"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Watts",
+          "facetable": "false",
+          "id": "7000000000000000170",
+          "comparable": "true",
+          "key": "7000000000000000170",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "8.0",
+              "identifier": "Fluorescent_LA042_4209",
+              "unitID": "Fluorescent",
+              "id": "7000000000000002923",
+              "value": "Fluorescent"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Bulb type",
+          "facetable": "false",
+          "id": "7000000000000000176",
+          "comparable": "true",
+          "key": "7000000000000000176",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "6_LA042_4209",
+              "sequence": "8.0",
+              "id": "7000000000000002914",
+              "value": "6"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_lightingVolts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["120", "240"],
+              "sequence": ["3.0", "5.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002852", "7000000000000002854"],
+              "value": ["120", "240"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Volts",
+          "facetable": "false",
+          "id": "7000000000000000169",
+          "comparable": "true",
+          "key": "7000000000000000169",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_lightingLength",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["2'", "4'", "8'"],
+              "sequence": ["1.0", "2.0", "3.0"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002846", "7000000000000002847", "7000000000000002848"],
+              "value": ["2'", "4'", "8'"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Length",
+          "facetable": "false",
+          "id": "7000000000000000168",
+          "comparable": "true",
+          "key": "7000000000000000168",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Lumens",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2550_LA042_4209",
+              "sequence": "8.0",
+              "id": "7000000000000002896",
+              "value": "2550"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Lumens",
+          "facetable": "false",
+          "id": "7000000000000000174",
+          "comparable": "true",
+          "key": "7000000000000000174",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Base type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "2-pin_LA042_4209",
+              "sequence": "8.0",
+              "id": "7000000000000002905",
+              "image1": "images/catalog/hardware/facets/basestyles/bulb_basestyle_2pins.png",
+              "value": "2-pin",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/basestyles/bulb_basestyle_2pins.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Base type",
+          "facetable": "false",
+          "id": "7000000000000000175",
+          "comparable": "true",
+          "key": "7000000000000000175",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb shape",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Large tube_LA042_4209",
+              "sequence": "8.0",
+              "unitID": "tube",
+              "id": "7000000000000002887",
+              "image1": "images/catalog/hardware/facets/shapes/bulb_shape_largetube.png",
+              "value": "Large tube",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/shapes/bulb_shape_largetube.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Bulb shape",
+          "facetable": "false",
+          "id": "7000000000000000173",
+          "comparable": "true",
+          "key": "7000000000000000173",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb width",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "1 1/2\"_LA042_4209",
+              "sequence": "8.0",
+              "unitID": "inch",
+              "id": "7000000000000002878",
+              "value": "1 1/2\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Bulb width",
+          "facetable": "false",
+          "id": "7000000000000000172",
+          "comparable": "true",
+          "key": "7000000000000000172",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13892"
+    },
+    {
+      "hasSingleSKU": false,
+      "storeID": "12",
+      "buyable": "true",
+      "seo": {
+        "href": "/neon-indicator-bulb"
+      },
+      "thumbnailRaw": "images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4210.jpg",
+      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/lighting/fla42_lighting/200x310/la042_4210.jpg",
+      "shortDescription": "Miniature glow lamp that emits an orange-red light",
+      "parentCatalogGroupID": "/13",
+      "partNumber": "LA042_4210",
+      "name": "Neon Indicator Bulb",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "14.5"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11009",
+          "description": "I",
+          "currency": "USD",
+          "value": "12.97"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "hardware_lightingWatts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": ["10", "30"],
+              "sequence": ["12.0", "13.0"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002866", "7000000000000002867"],
+              "value": ["0.10000000000000001", "0.25"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Watts",
+          "facetable": "false",
+          "id": "7000000000000000170",
+          "comparable": "true",
+          "key": "7000000000000000170",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "sequence": "9.0",
+              "identifier": "Neon_LA042_4210",
+              "unitID": "Neon",
+              "id": "7000000000000002924",
+              "value": "Neon"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "0.0",
+          "storeDisplay": "false",
+          "name": "Bulb type",
+          "facetable": "false",
+          "id": "7000000000000000176",
+          "comparable": "true",
+          "key": "7000000000000000176",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Package quantity",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "6_LA042_4210",
+              "sequence": "9.0",
+              "id": "7000000000000002915",
+              "value": "6"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Package quantity",
+          "facetable": "false",
+          "id": "7000000000000000145",
+          "comparable": "true",
+          "key": "7000000000000000145",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_lightingVolts",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "24",
+              "sequence": "2.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000002851",
+              "value": "24"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Volts",
+          "facetable": "false",
+          "id": "7000000000000000169",
+          "comparable": "true",
+          "key": "7000000000000000169",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_lightingLength",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "1 1/2\"",
+              "sequence": "4.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000002849",
+              "value": "1 1/2\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Length",
+          "facetable": "false",
+          "id": "7000000000000000168",
+          "comparable": "true",
+          "key": "7000000000000000168",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Lumens",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "20_LA042_4210",
+              "sequence": "9.0",
+              "id": "7000000000000002897",
+              "value": "20"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Lumens",
+          "facetable": "false",
+          "id": "7000000000000000174",
+          "comparable": "true",
+          "key": "7000000000000000174",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Base type",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Wire terminal_LA042_4210",
+              "sequence": "9.0",
+              "unitID": "terminal",
+              "id": "7000000000000002906",
+              "image1": "images/catalog/hardware/facets/basestyles/bulb_basestyle_wireterminal.png",
+              "value": "Wire terminal",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/basestyles/bulb_basestyle_wireterminal.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Base type",
+          "facetable": "false",
+          "id": "7000000000000000175",
+          "comparable": "true",
+          "key": "7000000000000000175",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb shape",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Domed_LA042_4210",
+              "sequence": "9.0",
+              "unitID": "Domed",
+              "id": "7000000000000002888",
+              "image1": "images/catalog/hardware/facets/shapes/bulb_shape_largetube.png",
+              "value": "Domed",
+              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/shapes/bulb_shape_largetube.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Bulb shape",
+          "facetable": "false",
+          "id": "7000000000000000173",
+          "comparable": "true",
+          "key": "7000000000000000173",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Bulb width",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "3/8\"_LA042_4210",
+              "sequence": "9.0",
+              "unitID": "inch",
+              "id": "7000000000000002879",
+              "value": "3/8\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "5.0",
+          "storeDisplay": "false",
+          "name": "Bulb width",
+          "facetable": "false",
+          "id": "7000000000000000172",
+          "comparable": "true",
+          "key": "7000000000000000172",
+          "swatchable": "false"
+        }
+      ],
+      "type": "product",
+      "id": "13911"
+    }
+  ],
+  "facets": [
+    {
+      "entry": [
+        {
+          "count": 2,
+          "label": "({* TO 7])",
+          "value": "price_usd%3A%28%7B*+TO+7%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401234232847932559341"
+          }
+        },
+        {
+          "count": 3,
+          "label": "({7 TO 14])",
+          "value": "price_usd%3A%28%7B7+TO+14%5D%29",
+          "extendedData": {
+            "uniqueId": "11211410599101951171151005840123553284793249529341"
+          }
+        },
+        {
+          "count": 3,
+          "label": "({14 TO 21])",
+          "value": "price_usd%3A%28%7B14+TO+21%5D%29",
+          "extendedData": {
+            "uniqueId": "1121141059910195117115100584012349523284793250499341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({21 TO 28])",
+          "value": "price_usd%3A%28%7B21+TO+28%5D%29",
+          "extendedData": {
+            "uniqueId": "1121141059910195117115100584012350493284793250569341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({28 TO 35])",
+          "value": "price_usd%3A%28%7B28+TO+35%5D%29",
+          "extendedData": {
+            "uniqueId": "1121141059910195117115100584012350563284793251539341"
+          }
+        }
+      ],
+      "value": "price_usd",
+      "name": "OfferPrice_usd"
+    },
+    {
+      "value": "manufacturer.raw",
+      "name": "Brand",
+      "entry": [
+        {
+          "label": "Baddeck Worldwide",
+          "value": "manufacturer.raw%3A%22Baddeck+Worldwide%22",
+          "count": "3",
+          "extendedData": {
+            "uniqueId": "6697100100101991073287111114108100119105100101"
+          }
+        },
+        {
+          "label": "Glomor Lighting",
+          "value": "manufacturer.raw%3A%22Glomor+Lighting%22",
+          "count": "3",
+          "extendedData": {
+            "uniqueId": "711081111091111143276105103104116105110103"
+          }
+        },
+        {
+          "label": "Pirini Inc.",
+          "value": "manufacturer.raw%3A%22Pirini+Inc.%22",
+          "count": "3",
+          "extendedData": {
+            "uniqueId": "8010511410511010532731109946"
+          }
+        }
+      ],
+      "extendedData": {
+        "fname": "Brand",
+        "propertyvalue": "manufacturer.raw",
+        "maximumValuesToDisplay": "6",
+        "displayable": "true",
+        "allValuesReturned": "true",
+        "zero_display": "false",
+        "allowMultipleValueSelection": "true",
+        "displaySequence": "0.0",
+        "name": "Brand",
+        "sortorder": "1",
+        "max_display": "6",
+        "fdesc": "The manufacturer",
+        "propertyId": "manufacturer.raw"
+      }
+    }
+  ],
+  "total": 9
+}

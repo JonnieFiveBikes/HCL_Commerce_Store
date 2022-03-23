@@ -1,0 +1,1184 @@
+{
+  "Footer": {
+    "CompanyLinks": {
+      "Label": "公司",
+      "OurStory": "我們的記事",
+      "Careers": "職涯"
+    },
+    "Copyright": "Copyright HCL Technologies Limited 2020. All rights reserved.",
+    "CustomerService": {
+      "Label": "客戶服務",
+      "ContactUs": "聯絡我們",
+      "ContactUsDescription": "聯絡我們",
+      "PrivacyPolicy": "隱私權政策"
+    },
+    "FollowUs": "關注我們",
+    "Description": "本範例網際網路店面是以 React 和 HCL Commerce 為建置基礎。HCL Commerce 能大規模實現敏捷商務。",
+    "DisabledMessage": "抱歉，此頁面仍在開發中。"
+  },
+  "Header": {
+    "Actions": {
+      "SignIn": "登入",
+      "SignInRegister": "登入 / 註冊",
+      "WelcomeFirstname": "歡迎，{{firstName}}",
+      "WelcomeNoFirstname": "歡迎，{{lastName}}",
+      "WishList": "願望清單",
+      "YourAccount": "您的帳戶",
+      "Account": "帳戶"
+    },
+    "AccountPopper": {
+      "Welcome": "歡迎，{{lastName}}{{firstName}}",
+      "Organization": "組織",
+      "Contract": "合約",
+      "Edit": "編輯",
+      "AccountSetting": "帳戶設定",
+      "SignOut": "登出",
+      "Cart": "購物車（{{count}} 項商品）",
+      "Cart_plural": "購物車（{{count}} 項商品）"
+    }
+  },
+  "MegaMenu": {
+    "Title": "產品",
+    "Actions": {
+      "ViewAll": "檢視全部"
+    }
+  },
+  "AllCategoriesExpandedMenu": {
+    "AllCategoriesLabel": "所有種類"
+  },
+  "MiniCart": {
+    "Items": "{{count}} 項商品",
+    "Items_plural": "{{count}} 項商品",
+    "Title": "您目前的訂單",
+    "Subtotal": "{{count}} 項商品小計",
+    "Subtotal_plural": "{{count}} 項商品小計",
+    "Empty": "您的購物車中沒有商品。",
+    "Actions": {
+      "Cart": "檢視整個購物車",
+      "CheckOut": "結帳",
+      "ViewOrderDetails": "檢視訂單詳細資料"
+    },
+    "MyOrder": "我的訂單",
+    "PrivateOrder": "專用訂單",
+    "SharedOrderConributor": "共用訂單（貢獻者）",
+    "SharedOrderAdmin": "共用訂單（管理員）"
+  },
+  "Language": {
+    "-1": "英文（美國）",
+    "-2": "法文",
+    "-3": "德文",
+    "-4": "義大利文",
+    "-5": "西班牙文",
+    "-6": "巴西葡萄牙文",
+    "-7": "簡體中文",
+    "-8": "繁體中文",
+    "-10": "日文",
+    "-20": "俄羅斯文",
+    "-21": "羅馬尼亞文",
+    "-9": "韓文",
+    "-22": "波蘭文",
+    "-23": "阿拉伯文"
+  },
+  "productDetail": {
+    "Quantity": "數量",
+    "QtyError": "數量必須大於或等於 1。",
+    "Availability": "可得性",
+    "AddToCart": "放入購物車",
+    "AddBundleToCart": "將組合新增至訂單",
+    "AddBundleToSharedOrder": "新增至共用訂單",
+    "SelectAttributes": "選取屬性",
+    "Description": "說明",
+    "ProductDetails": "產品詳細資料",
+    "Attachments": "附件",
+    "AllAttachments": "所有附件",
+    "ViewAll": "檢視全部",
+    "Images": "影像",
+    "Videos": "視訊",
+    "Documents": "文件",
+    "PricePending": "價格擱置中",
+    "addToCartErrorMsg": "「數量」欄位中的值無效或空白。請確定值為正整數，然後重試。",
+    "any": "任何",
+    "showAttributes": "顯示屬性",
+    "attributeFilter": "屬性篩選器",
+    "addToCurrentOrder": "新增至訂單",
+    "addToSharedOrder": "新增至共用訂單",
+    "SignIn": "請登入以購物",
+    "noproductsToDisplay": "沒有可顯示的產品。請變更「屬性過濾器」，然後重試。",
+    "SKU": "SKU",
+    "PRODUCTSKU": "產品 / SKU",
+    "SelectAnOption": "選取一個選項",
+    "Unconfigured": "已取消配置",
+    "Unavailable": "無法使用",
+    "InStock": "有庫存",
+    "Price": "價格",
+    "Online_Availability": "線上可得性",
+    "recommendedProdTitle": "推薦的產品 ",
+    "someWithNoSkus": "清單中一個以上的產品具有未選取的屬性。請完成屬性選取。",
+    "someWithNoAvlSelZero": "一個以上選取的商品沒有可用的庫存。請將數量變更為 0 或忽略這些商品。",
+    "someWithNotEnough": "一個以上選取的商品沒有足夠的可用庫存。請將數量變更為小於或等於現行可用的庫存量。",
+    "selectSomething": "未選取任何商品，請至少選取一個商品。"
+  },
+  "AddressBook": {
+    "AddrMsg": "新增地址",
+    "AddButton": "新增地址",
+    "Title": "通訊錄",
+    "FilterLabel": "依地址類型篩選",
+    "NoAddrMsg": "您沒有儲存的地址。",
+    "NoAddrForFilterMsg": "沒有包含此過濾器類型的地址。",
+    "ShowAllLabel": "顯示全部",
+    "ShippingLabel": "運送",
+    "BillingLabel": "帳單",
+    "ShippingBillingLabel": "運送和帳單",
+    "CreateAddress": "建立地址",
+    "SaveChanges": "儲存變更",
+    "Cancel": "取消",
+    "EditAddress": "編輯地址"
+  },
+  "Cart": {
+    "Title": "購物車",
+    "Msgs": {
+      "Empty": "您的購物車是空的。請立即購物！",
+      "PromoCode": "輸入您的促銷代碼"
+    },
+    "Labels": {
+      "PromoCode": "促銷代碼",
+      "RecurringOrder": "將此排程為重複訂單",
+      "Frequency": "頻率",
+      "StartDate": "開始日期",
+      "OrderSummary": "訂單摘要"
+    },
+    "Actions": {
+      "Checkout": "結帳",
+      "Apply": "套用",
+      "Checkout-With-Profile": "使用設定檔結帳"
+    }
+  },
+  "CheckoutAddress": {
+    "Actions": {
+      "Submit": "儲存並選取地址",
+      "Cancel": "取消"
+    },
+    "Payment": {
+      "ChooseFirst": "請先選擇付款方法。"
+    }
+  },
+  "Checkout": {
+    "Title": "結帳",
+    "CheckoutProfileTitle": "結帳設定檔",
+    "Labels": {
+      "shipping": "運送",
+      "payment": "付款",
+      "review": "檢閱訂單"
+    },
+    "Actions": {
+      "ReturnCart": "返回購物車",
+      "BackTo": "回到 {{step}}",
+      "ContinueTo": "繼續進行 {{step}}",
+      "PlaceOrder": "訂購"
+    }
+  },
+  "Payment": {
+    "Title": "付款詳細資料",
+    "Msgs": {
+      "InvalidFormat": "無效格式"
+    },
+    "Labels": {
+      "UseMultiple": "使用多個付款方法\n",
+      "PaymentMethod": "付款方法 {{number}}",
+      "AddNewAddress": "新增新地址",
+      "BillingAddress": "帳單地址"
+    },
+    "Actions": {
+      "Back": "返回運送詳細資料",
+      "Next": "檢閱訂單",
+      "Finish": "完成",
+      "SaveAndAdd": "儲存並新增其他付款方法\n",
+      "AddAnotherPayMethod": "新增其他付款方法\n"
+    }
+  },
+  "MultipleShipmentTable": {
+    "Labels": {
+      "ItemDetails": "商品詳細資料",
+      "SKU": "SKU：",
+      "Quantity": "數量",
+      "ShippingDetails": "運送詳細資料",
+      "SelectShippingAddressAndMethod": "選取運送地址和方法",
+      "ChangeSelection": "變更選取",
+      "nItemsSel": "已選取 {{ n }} 個商品",
+      "noItems": "找不到任何商品"
+    }
+  },
+  "Shipping": {
+    "Title": "運送詳細資料",
+    "Labels": {
+      "UseMultiple": "運送至多個地址",
+      "ShippingAddress": "運送地址",
+      "ShippingMethod": "運送方法",
+      "SelectShippingMethod": "選擇您的遞送方法",
+      "AddNewAddress": "新增新地址",
+      "EditAddress": "編輯地址",
+      "SelectedCount": "已選取 {{selected}} 個商品（共 {{all}} 個）",
+      "ItemsSelected": "已選取 {{itemsSelected}} 個商品"
+    },
+    "Actions": {
+      "SelectAddress": "使用此地址",
+      "CreateNew": "建立新地址",
+      "Next": "繼續付款",
+      "Confirm": "確認選取",
+      "Cancel": "取消",
+      "SelectShippingAddress": "選取運送地址和方法"
+    },
+    "Msgs": {
+      "UseSavedAddress": "或選取要使用的已儲存地址：",
+      "SelectShippingAddress": "請先選取運送地址"
+    }
+  },
+  "OrderConfirmation": {
+    "Title": "訂單確認",
+    "Msgs": {
+      "Heading": "我們已接受到您的訂單",
+      "Pending": "您的訂單擱置中",
+      "OrderNumber": "訂單 #{{orderId}}",
+      "Details": "收據副本已傳送至 {{emails}}。",
+      "PendingDetails": "您的訂單超過允許的價格限制，必須經過管理員核准才能繼續處理此訂單。",
+      "ThankYou": "感謝您在「{{storeName}}」購買商品。"
+    }
+  },
+  "SignInPage": {
+    "Title": "登入 / 註冊"
+  },
+  "Account": {
+    "Title": "我的帳戶"
+  },
+  "AccountSummary": {
+    "Title": "個人資訊"
+  },
+  "ChangePasswordSection": {
+    "Title": "變更密碼",
+    "CurrentPasswordLabel": "目前的密碼",
+    "NewPasswordLabel": "新密碼",
+    "VerifyPasswordLabel": "驗證密碼",
+    "SaveLabel": "更新",
+    "SuccessLabel": "密碼變更順利完成",
+    "OkLabel": "確定"
+  },
+  "PersonalInformationSection": {
+    "Title": "個人資訊",
+    "Name": "名稱",
+    "EmailAddress": "電子郵件地址",
+    "PhoneNumber": "電話號碼",
+    "Address": "地址",
+    "SaveChanges": "儲存變更",
+    "UpdateSuccessful": "更新成功"
+  },
+  "WelcomeUserSection": {
+    "Title": "歡迎，",
+    "Message": "這是您的帳戶摘要。您可以變更個人資訊，並管理帳戶可用的選項。"
+  },
+  "AdminTools": {
+    "buyerManagement": "買方管理",
+    "orgAndBuyer": "買方與訂單核准",
+    "orgManagement": "組織管理",
+    "buyerManagementDesc": "建立、編輯或移除組織之下的買方",
+    "orgAndBuyerDesc": "核准或拒絕買方登錄和訂單",
+    "orgManagementDesc": "新增和檢視您的組織",
+    "adminTools": "管理工具"
+  },
+  "BuyerOrganizationRegistration": {
+    "OrganizationRegistration": "登錄您的組織",
+    "BuyerAdminRegistration": "登錄管理員",
+    "Title": "組織登錄",
+    "AddressDetails": "地址詳細資料",
+    "AddressLineAdd": "新增地址行 2",
+    "Back": "返回",
+    "NextRegister": "接下來，請登錄管理員",
+    "CompleteRegistration": "完成登錄",
+    "HereAnAccount": "已經有帳戶了嗎？",
+    "SignIn": "登入",
+    "OrganizationName": "組織名稱",
+    "AccountPreferences": "帳戶喜好設定",
+    "Email": "電子郵件",
+    "Address1": "地址行 1",
+    "Address2": "地址行 2（選用）",
+    "City": "城市",
+    "Country": "國家/地區",
+    "State": "州/省（縣/市）",
+    "ZipCode": "郵遞區號",
+    "FirstName": "名字",
+    "LastName": "姓氏",
+    "LogonId": "登入 ID",
+    "Phone": "電話號碼（選用）",
+    "Password": "密碼",
+    "Password2": "驗證密碼",
+    "Language": "偏好語言",
+    "Currency": "偏好貨幣",
+    "UseOrganizationAddress": "使用與組織相同的地址",
+    "Submit": "提交",
+    "Clear": "清除",
+    "Success": "已收到您的登錄要求。您的帳戶等待核准。直到核准您的帳戶後，您才能登入。",
+    "OK": "確定",
+    "Msgs": {
+      "InvalidFormat": "無效格式"
+    }
+  },
+  "BuyerUserRegistration": {
+    "Title": "買方登錄",
+    "Description": "如果您的組織已有包含此商店的帳戶，請自行登錄，以便您可以在此帳戶下購物以及下訂單。當您的登錄被核准時，您就可以登入商店並購物。",
+    "OrgName": "組織",
+    "Email": "電子郵件",
+    "Address1": "地址行 1",
+    "Address2": "地址行 2（選用）",
+    "City": "城市",
+    "Country": "國家/地區",
+    "State": "州/省（縣/市）",
+    "ZipCode": "郵遞區號",
+    "FirstName": "名字",
+    "LastName": "姓氏",
+    "LogonId": "登入 ID",
+    "Phone": "電話號碼（選用）",
+    "Password": "密碼",
+    "Password2": "驗證密碼",
+    "Language": "偏好語言",
+    "Currency": "偏好貨幣",
+    "AddressDetails": "地址詳細資料",
+    "AccountPreferences": "帳戶喜好設定",
+    "HaveAccount": "已經有帳戶了嗎？",
+    "AddressLineAdd": "新增地址行 2",
+    "SignIn": "登入",
+    "Submit": "完成登錄",
+    "Clear": "清除",
+    "Success": "已收到您的帳戶啟動要求。請啟動您的帳戶來登入。",
+    "OK": "確定",
+    "Msgs": {
+      "InvalidFormat": "無效格式"
+    }
+  },
+  "Dashboard": {
+    "Title": "儀表板",
+    "AccountSettings": "帳戶設定",
+    "PersonalInformation": "個人資訊",
+    "AddressBook": "通訊錄",
+    "OrderManagement": "訂單管理",
+    "OrderHistory": "訂單歷程",
+    "RecurringOrders": "重複訂單",
+    "RequisitionLists": "申請清單",
+    "InprogressOrders": "進行中訂單",
+    "ApproveOrders": "訂單核准"
+  },
+  "Order": {
+    "noPO": "無",
+    "Status_A": "付款授權需要檢閱",
+    "Status_B": "延期交貨",
+    "Status_C": "付款已核准",
+    "Status_D": "訂單已完成",
+    "Status_E": "目前由商店編輯",
+    "Status_F": "訂單已轉移至履行",
+    "Status_G": "訂單正在處理中",
+    "Status_I": "已提交",
+    "Status_K": "關聯的退貨",
+    "Status_L": "庫存不足",
+    "Status_M": "已收到訂單並準備好進行處理",
+    "Status_N": "核准遭拒",
+    "Status_P": "擱置的訂單",
+    "Status_R": "已滿足庫存",
+    "Status_S": "訂單已出貨",
+    "Status_T": "目前已遭商店鎖定",
+    "Status_W": "擱置中的核准",
+    "Status_V": "部分已出貨",
+    "Status_X": "訂單已取消",
+    "NotAvailable": "不適用",
+    "OrderId": "訂單 ID",
+    "PONumber": "採購單號碼",
+    "OrderDate": "訂購日期",
+    "Schedule": "訂單排程",
+    "NextOrder": "下一筆訂單",
+    "Status": "完成狀態",
+    "TotalPrice": "價格總計",
+    "Actions": "動作",
+    "RowCount": "顯示 {from} 到 {to}（共 {count} 個）",
+    "NoRecord": "找不到訂單。",
+    "InvalidOrderId": "請輸入有效的訂單 ID。",
+    "Search": "搜尋",
+    "PageSizeLabel": "列",
+    "FirstPage": "第一頁",
+    "LastPage": "最後一頁",
+    "PreviousPage": "上一頁",
+    "NextPage": "下一頁",
+    "OrderHistory": "訂單歷程",
+    "RecurringOrders": "重複訂單",
+    "Once": "僅一次",
+    "EveryXDAY": "每 {{frequency}} 天",
+    "EveryXDAY_plural": "每 {{frequency}} 天",
+    "EveryXWEE": "每 {{frequency}} 週",
+    "EveryXWEE_plural": "每 {{frequency}} 週",
+    "EveryXMON": "每 {{frequency}} 個月",
+    "EveryXMON_plural": "每 {{frequency}} 個月",
+    "StateInactive": "非作用中",
+    "StateActive": "作用中",
+    "StateExpired": "已過期",
+    "StateCancelled": "已取消",
+    "StateCompleted": "已完成",
+    "StateSuspended": "已暫停",
+    "StatePendingCancel": "取消擱置中",
+    "TooltipCancel": "取消",
+    "TooltipReOrder": "重新訂購",
+    "FilterResults": "篩選結果",
+    "OrderDetails": "訂單詳細資料",
+    "OrderNumber": "訂單號碼",
+    "HistorySearchPlaceHolder": "依訂單 ID 搜尋",
+    "HistoryViewDetailTooltip": "檢視訂單詳細資料",
+    "Pending": "擱置中"
+  },
+  "Category": {},
+  "AccountLinksGridView": {
+    "Title": "我的帳戶工具",
+    "AddressBookText": "通訊錄",
+    "AddressBookDescription": "管理及編輯儲存的地址",
+    "OrderHistoryText": "訂單歷程",
+    "OrderHistoryDescription": "檢視已下的訂單及擱置核准的訂單，以及個別訂單詳細資料",
+    "WishListText": "希望清單",
+    "WishListDescription": "希望清單"
+  },
+  "AccountLinks": {
+    "Title": "帳戶設定",
+    "PersonalInformationText": "個人資訊",
+    "PersonalInformationDescription": "檢視及編輯個人帳戶資訊",
+    "AddressBookText": "通訊錄",
+    "AddressBookDescription": "管理及編輯您儲存的地址",
+    "DisabledMessage": "抱歉，此頁面仍在開發中。"
+  },
+  "MyAccount": {
+    "Title": "我的帳戶",
+    "AccountSettings": "帳戶設定",
+    "PersonalInformation": "個人資訊",
+    "AddressBook": "通訊錄",
+    "OrderHistory": "訂單歷程",
+    "Wishlists": "願望清單",
+    "CheckoutProfiles": "結帳設定檔"
+  },
+  "AddressCard": {
+    "EditButton": "編輯",
+    "DeleteButton": "刪除",
+    "Confirm": "確認刪除",
+    "Cancel": "取消",
+    "UseAddress": "使用此地址"
+  },
+  "AddressForm": {
+    "Msgs": {
+      "InvalidFormat": "無效格式",
+      "InvalidAddressName": "「地址名稱」只能包含英數字元（A-Z、a-z、0-9）和空格。"
+    },
+    "Labels": {
+      "FirstName": "名字",
+      "LastName": "姓氏",
+      "Address1": "地址行 1",
+      "Address2": "地址行 2（選用）",
+      "City": "城市",
+      "Country": "國家/地區",
+      "State": "州/省（縣/市）",
+      "ZipCode": "郵遞區號",
+      "Phone": "電話號碼（選用）",
+      "Email": "電子郵件",
+      "NickName": "地址名稱",
+      "AddressType": "地址類型",
+      "Shipping": "運送",
+      "Billing": "帳單",
+      "ShippingAndBilling": "運送與帳單"
+    }
+  },
+  "ChangePassword": {
+    "Title": "變更密碼",
+    "CurrentPasswordLabel": "目前的密碼",
+    "NewPasswordLabel": "新密碼",
+    "VerifyPasswordLabel": "驗證密碼",
+    "SaveLabel": "儲存",
+    "CancelLabel": "取消",
+    "SuccessLabel": "密碼變更順利完成",
+    "OkLabel": "確定"
+  },
+  "CheckoutProfile": {
+    "ShippingInformation": "運送資訊",
+    "CreateCheckoutTitle": "建立結帳設定檔",
+    "CreateCheckoutButton": "建立新的結帳設定檔",
+    "BillingInformation": "帳單資訊",
+    "PaymentInformation": "付款資訊",
+    "ShippingMethod": "運送方法",
+    "ShipSameAsBill": "「帳單地址」與「運送地址」相同",
+    "Cancel": "取消",
+    "Next": "下一頁",
+    "Back": "返回",
+    "CreateProfile": "建立設定檔",
+    "UpdateProfile": "更新設定檔",
+    "Title": "結帳設定檔選項",
+    "Label": "選取現有的結帳設定檔",
+    "MyAcctDesc": "管理及編輯快速結帳設定檔，進行更快的結帳",
+    "Name": "結帳設定檔名稱",
+    "Edit": "編輯",
+    "Delete": "刪除",
+    "NoneFound": "<0>發生失誤。</0><1>抱歉，找不到該結帳設定檔。</1><2>請嘗試不同的結帳設定檔或<0>建立新的</0>結帳設定檔。</2>",
+    "NoProfiles": "找不到任何結帳設定檔。<0>建立新的</0>結帳設定檔。",
+    "TitleCreate": "結帳設定檔",
+    "CreateMessage": "建立新的結帳設定檔",
+    "CreateNewButton": "新建",
+    "ShippingAddr": "運送地址",
+    "ShippingMethodDisp": "運送方法",
+    "BillingAddr": "帳單地址",
+    "BillingMethod": "計費方法",
+    "EditProfile": "編輯結帳設定檔",
+    "ShipAsComplete": "完整出貨",
+    "confirmDelete": "確認刪除",
+    "selectExisting": "選取現有的地址。否則，<0>建立新的地址</0>。",
+    "sm_Express": "快遞",
+    "sm_Mail": "郵件",
+    "sm_InternationalPriority": "國際優先",
+    "sm_InternationalRegular": "國際一般",
+    "sm_PickupInStore": "在商店取貨",
+    "saveAddress": "儲存地址",
+    "invalidProfile": "此設定檔無效。請編輯並選擇新的地址。",
+    "invalidProfileName": "「設定檔名稱」只能包含英數字元（A-Z、a-z、0-9）和空格。",
+    "selectExpMonth": "選取到期月份",
+    "selectExpYear": "選取到期年份",
+    "payMethods": {
+      "VISA": "VISA 信用卡",
+      "MasterCard": "MasterCard 信用卡",
+      "AMEX": "American Express 信用卡",
+      "COD": "交貨時付現"
+    }
+  },
+  "ChildPimCategories": {
+    "title": "所有 {{name}}"
+  },
+  "Confirmation": {
+    "ScheduleOrderCancel": "將取消此訂單的所有日後運送。",
+    "ScheduleOrderCancelNotification": "訂單取消需要 12 小時通知時間。將取消所有日後訂單，但 {{next}} 的訂單除外，將依排程運送。您確定要取消嗎？",
+    "CancelRecurringOrder": "取消重複訂單",
+    "SubmitButton": "確定",
+    "CancelButton": "取消"
+  },
+  "FeaturedCard": {
+    "ShopNow": "立即購買"
+  },
+  "ForgotPassword": {
+    "Title": "忘記密碼？",
+    "EmailLabel": "電子郵件地址",
+    "SubmitButton": "提交",
+    "LogonIDLabel": "登入 ID",
+    "ContentText": "請輸入您的電子郵件地址，您將收到一個用來重設您密碼的驗證碼。",
+    "ContentTextLogonID": "請輸入您的登入 ID。您將透過帳戶的電子郵件收到重設密碼的驗證碼。",
+    "ValidationCodeButton": "輸入驗證碼",
+    "SendVerificationCodeButton": "傳送驗證碼給我",
+    "CodeRecieved": "已收到驗證碼了嗎？",
+    "AccountInfoRemember": "記得您的帳戶資訊嗎？",
+    "SignIn": "立即登入",
+    "Msgs": {
+      "InvalidFormat": "無效格式"
+    }
+  },
+  "PriceDisplay": {
+    "Labels": {
+      "Pending": "價格擱置中"
+    }
+  },
+  "error-message": {
+    "_ERR_CMD_INVALID_PARAM_2020": "在「登入 ID」欄位中鍵入登入 ID。",
+    "_ERR_CMD_INVALID_PARAM_2050": "在「密碼」欄位中鍵入您的密碼。",
+    "_ERR_CMD_INVALID_PARAM_2070": "在「驗證密碼」欄位中鍵入您的密碼。",
+    "_ERR_CMD_INVALID_PARAM_5060": "在「姓氏」欄位中鍵入姓氏。",
+    "_ERR_CMD_INVALID_PARAM_5066": "在「名字」欄位中鍵入名字。",
+    "_ERR_CMD_INVALID_PARAM_5210": "在「電子郵件」欄位中鍵入電子郵件地址。",
+    "_ERR_CMD_INVALID_PARAM_2190": "您輸入的驗證碼不正確。請檢查您收到的驗證碼，然後再試一次。",
+    "_ERR_CMD_INVALID_PARAM_2080": "您所輸入的驗證密碼與新密碼不相符。",
+    "_ERR_CMD_INVALID_PARAM": "登錄期間發生錯誤。請稍後重試或聯絡商店以尋求協助。",
+    "_ERR_LOGONID_ALREDY_EXIST_2030": "您輸入的電子郵件已存在。請輸入不同的電子郵件，然後重試。",
+    "_ERR_PASSWORDS_NOT_SAME_2080": "您輸入的驗證密碼不符合您的密碼。請在「驗證密碼」欄位中輸入您的密碼，然後重試。",
+    "_ERR_USER_ALREADY_REGISTERD": "您已登入商店，若要登錄，請登出，然後嘗試重新登錄。",
+    "_ERR_AUTHENTICATION_MINIMUMLENGTH_PASSWORD_2200": "您所輸入的密碼少於 {{0}} 個字元。密碼長度必須至少為 {{0}} 個字元，並包含 {{1}} 個數字和 {{2}} 個字母。請輸入不同的密碼。",
+    "_ERR_AUTHENTICATION_MAXCONSECUTIVECHAR_PASSWORD_2210": "您的密碼包含連續重複超過 {{0}} 次的字元。請輸入不同的密碼。",
+    "_ERR_AUTHENTICATION_MAXINTANCECHAR_PASSWORD_2220": "您的密碼包含使用超過 {{0}} 次的字元。請輸入不同的密碼。",
+    "_ERR_AUTHENTICATION_MINIMUMLETTERS_PASSWORD_2230": "您的密碼未包含 {{0}} 個字母。密碼長度必須至少為 {{1}} 個字元，並包含 {{2}} 個數字和 {{0}} 個字母。請輸入不同的密碼。",
+    "_ERR_AUTHENTICATION_MINIMUMDIGITS_PASSWORD_2240": "您的密碼未包含 {{0}} 個數字。密碼長度必須至少為 {{1}} 個字元，並包含 {{0}} 個數字和 {{2}} 個字母。請輸入不同的密碼。",
+    "_ERR_AUTHENTICATION_USERIDMATCH_PASSWORD_2250": "您的密碼與您的登入 ID 相同。請鍵入與您登入 ID 不同的密碼。",
+    "_ERR_AUTHENTICATION_REUSEOLD_PASSWORD_2260": "先前已使用所輸入的密碼。請輸入新密碼。",
+    "_2040": "在「現行密碼」欄位中鍵入您的現行密碼。",
+    "_2060": "在「密碼」欄位中鍵入您的密碼。",
+    "_2070": "在「確認密碼」欄位中鍵入您的密碼。",
+    "_2200": "您所輸入的密碼少於 {{0}} 個字元。密碼長度必須至少為 {{0}} 個字元，並包含 {{1}} 個數字和 {{2}} 個字母。請輸入不同的密碼。",
+    "_2210": "您的密碼包含連續重複超過 {{0}} 次的字元。請輸入不同的密碼。",
+    "_2220": "您的密碼包含使用超過 {{0}} 次的字元。請輸入不同的密碼。",
+    "_2230": "您的密碼未包含 {{0}} 個字母。密碼長度必須至少為 {{1}} 個字元，並包含 {{2}} 個數字和 {{0}} 個字母。請輸入不同的密碼。",
+    "_2240": "您的密碼未包含 {{0}} 個數字。密碼長度必須至少為 {{1}} 個字元，並包含 {{0}} 個數字和 {{2}} 個字母。請輸入不同的密碼。",
+    "_ERR_BAD_PARMS_2050": "您輸入的密碼不正確。請在「現行密碼」欄位中鍵入您的現行密碼，然後重試。",
+    "_ERR_BAD_PARMS_2080": "您輸入的驗證密碼不符合您的新密碼。請在「驗證密碼」欄位中輸入您的密碼，然後重試。",
+    "_2250": "您的密碼與您的登入 ID 相同。請鍵入與您登入 ID 不同的密碼。",
+    "_2260": "先前已使用所輸入的密碼。請輸入新密碼。",
+    "_ERR_AUTHENTICATION_ERROR_2000": "在「登入 ID」欄位中鍵入登入 ID。",
+    "_ERR_AUTHENTICATION_ERROR_2010": "登入 ID 或輸入的密碼不正確。請重新輸入資訊。",
+    "_ERR_AUTHENTICATION_ERROR_2020": "登入 ID 或輸入的密碼不正確。請重新輸入資訊。",
+    "_ERR_AUTHENTICATION_ERROR_2030": "您輸入的登入認證無效。請檢查您的項目，然後再試一次。",
+    "_ERR_PASSWORD_FAILED_CMN1019E": "登入 ID 或輸入的密碼不正確。請重新輸入資訊。",
+    "_ERR_PERSON_ACCOUNT_DISABLED_2110": "此帳戶已遭鎖定。請聯絡商店來解除鎖定您的帳戶。",
+    "_ERR_PERSON_ACCOUNT_LOCKED_OUT_2490": "由於嘗試輸入密碼失敗 {{0}} 次，因此您將無法登入。請重設您的密碼或聯絡客戶服務代表以取得協助。",
+    "_ERR_LOGIN_NOT_ALLOWED_NOW_2300": "請等待幾秒鐘，再嘗試重新登入。",
+    "_2400": "您的組織已遭鎖定。您目前無法登入。",
+    "_2410": "您沒有適當權限可供登入。如需進一步資訊，請聯絡商店。",
+    "_2420": "您尚未啟動帳戶。您必須回應已接收的啟動電子郵件。",
+    "_2450": "您尚未啟動帳戶。您必須回應已接收的啟動電子郵件。",
+    "_2430": "已重設您的密碼。請從您的電子郵件擷取臨時密碼，然後重新登入。",
+    "_2570": "您的帳戶未啟動。如果已回應您收到的啟動電子郵件，請聯絡商店以尋求協助。",
+    "_ERR_GENERIC_2110": "您的帳戶已鎖定。請聯絡商店以解除鎖定您的帳戶。",
+    "_ERR_MISSING_PARMS_2000": "在「登入 ID」欄位中鍵入登入 ID。",
+    "_ERR_MISSING_PARMS_2010": "您輸入的登入 ID 無效。請檢查您的項目，然後重試。",
+    "_ERR_BAD_PARMS_2010": "您輸入的電子郵件無效。請檢查您的項目，然後重試。",
+    "_ERR_CMD_MISSING_PARAM_2020": "在「密碼」欄位中鍵入您的密碼。",
+    "_ERR_MISSING_PARMS_2040": "在「現行密碼」欄位中鍵入您的現行密碼。",
+    "_ERR_MISSING_PARMS_2060": "在「密碼」欄位中鍵入新密碼。",
+    "_ERR_MISSING_PARMS_2070": "在「驗證密碼」欄位中鍵入新密碼。",
+    "_ERR_MISSING_PARMS_2100": "此使用者沒有電子郵件地址。",
+    "_ERR_BAD_PARMS_1020": "無法重設此登入 ID 的密碼。請聯絡商店以尋求協助。",
+    "_ERR_CMD_INVALID_PARAM_5080": "在「街道地址」欄位中鍵入地址。",
+    "_ERR_CMD_INVALID_PARAM_5100": "在「城市」欄位中鍵入城市名稱。",
+    "_ERR_CMD_INVALID_PARAM_5120": "在「州/省（縣/市）」欄位中鍵入州/省（縣/市）名稱。",
+    "_ERR_CMD_INVALID_PARAM_5140": "在「郵遞區號」欄位中鍵入郵遞區號。",
+    "_ERR_CMD_INVALID_PARAM_5160": "在「國家/地區」欄位中鍵入國家或地區名稱。",
+    "_ERR_CMD_INVALID_PARAM_5030": "在「暱稱」欄位中鍵入暱稱。",
+    "_ERR_NICKNAME_ALREDY_EXIST_5040": "您輸入的地址名稱「{{0}}」已存在。請在「地址名稱」欄位中輸入另一個名稱，然後重試。",
+    "_ERR_CMD_MISSING_PARAM_2000": "在「電子郵件」欄位中鍵入您的登入 ID（電子郵件）。",
+    "_ERR_CMD_INVALID_PARAM_2010": "您輸入的登入 ID（電子郵件）無效。請檢查您的項目，然後重試。",
+    "ERR_PROMOTION_CODE_INVALID_-1200": "您輸入的促銷代碼無效。請驗證此促銷代碼，然後重試。",
+    "ERR_PROMOTION_NOT_AVAILABLE_AT_THIS_TIME_-2200": "目前無法使用您輸入的促銷代碼。請稍後重試。",
+    "ERR_PROMOTION_PER_SHOPPER_LIMIT_EXCEEDED_-1800": "您嘗試兌換的促銷無法套用至訂單：已達到每個客戶 {{1}} 次兌換的限制。",
+    "ERR_PROMOTION_OVERALL_LIMIT_EXCEEDED_-1900": "您嘗試兌換的促銷無法套用至訂單：已達到此促銷容許的兌換總次數 {{1}} 次的限制。",
+    "ERR_PROMOTION_SYSTEM_ERR_-2700": "無法處理您輸入的促銷代碼。請按一下頁面底端的「聯絡我們」鏈結，以聯繫「客戶服務」。",
+    "ERR_PROMOTION_CODE_DUPLICATED_-1150": "您已輸入重複的促銷代碼「{{0}}」。",
+    "ERR_PROMOTION_UNKNOWN_ERR_-2600": "無法處理您輸入的促銷代碼。請按一下頁面底端的「聯絡我們」鏈結，以聯繫「客戶服務」。",
+    "_ERR_FORMAT_PROMOCODES_NOT_CORRECT_-2820": "您輸入的促銷代碼不是採用系統可以識別的格式。請驗證此促銷代碼，然後重試。",
+    "_ERR_PARAMETER_MISSING_-2810": "遺漏促銷代碼或優待券促銷名稱。請輸入促銷代碼或優待券促銷名稱。",
+    "_ERR_FORMAT_ORDERIDS_NOT_CORRECT_-2830": "無法處理您輸入的促銷代碼。請按一下頁面底端的「聯絡我們」鏈結，以聯繫「客戶服務」。",
+    "_ERR_PAY_CARD_NUMBER_MISSING_190": "在「信用卡」欄位中鍵入信用卡號碼。",
+    "_ERR_PAY_CARD_BRAND_MISSING_190": "選取信用卡類型，然後重試。",
+    "_ERR_CREATE_PAYMENT_METHOD": "處理您的訂單時發生系統問題。",
+    "_ERR_CREATE_PAYMENT_METHOD_1007": "處理您的訂單時發生系統問題。",
+    "_ERR_PAY_CARD_NUMBER_INVALID_1005": "信用卡號碼無效。請在「信用卡號碼」欄位中鍵入信用卡號碼，然後重試。",
+    "_DBG_API_PAY_BAD_LEN_OR_PREFIX_1005": "信用卡號碼無效。請在「信用卡號碼」欄位中鍵入信用卡號碼，然後重試。",
+    "_DBG_API_DO_PAYMENT_BAD_XDATE_1006": "您輸入的到期日無效。請檢查卡片上的日期，然後重試。",
+    "_ERR_PAY_EXPIRY_DATE_INVALID_1006": "您輸入的到期日無效。請檢查卡片上的日期，然後重試。",
+    "_ERR_CREATE_PAYMENT_METHOD_CMN1112E": "更新付款指示時，付款系統遭遇錯誤。",
+    "_ERR_RDN_ALREADY_EXIST": "您輸入的組織名稱已存在。請鍵入不同名稱，然後重試。",
+    "_ERR_CMD_INVALID_PARAM_parentMemberId": "您在「組織」欄位中輸入的組織名稱無效。您必須鍵入確切的組織名稱。如果不知道確切名稱，請詢問貴公司中為此商店進行管理的人員。如果貴組織具有母項組織，則您必須針對您的項目使用下列格式：<b>organization/parent_organization</b>，例如，<b>ABC Company US/ABC Company Worldwide</b>。",
+    "_ERR_CMD_INVALID_PARAM_parentMember": "您在「組織」欄位中輸入的組織名稱無效。您必須鍵入確切的組織名稱。如果不知道確切名稱，請詢問貴公司中為此商店進行管理的人員。如果貴組織具有母項組織，則您必須針對您的項目使用下列格式：<b>organization/parent_organization</b>，例如，<b>ABC Company US/ABC Company Worldwide</b>。",
+    "_ERR_CMD_INVALID_PARAM_org_orgEntityName": "在「組織名稱」欄位中輸入組織名稱。",
+    "_API_BAD_INV_2": "庫存不足，無法購買 {{1}} 個單位（共 {{0}} 個）。",
+    "_ERR_FINDING_ORDER_230": "處理您的訂單時發生系統問題。",
+    "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "發生系統問題。請聯絡商店以尋求協助。",
+    "_ERR_REMOTE_EXCEPTION_CMN0412E": "處理您的要求時發生系統問題。請聯絡商店以尋求協助。",
+    "_ERR_REG_DUPE_ID_CMN0114S": "您輸入的登入 ID 已存在。請輸入不同的登入 ID，然後再試一次。",
+    "_ERR_FINDER_EXCEPTION_CMN0411E": "您輸入的電子郵件無效。請檢查您的項目，然後再試一次。",
+    "_ERR_CMD_INVALID_PARAM_2195": "您輸入的驗證碼已過期。您必須要求新的驗證碼，才能變更密碼。",
+    "B2B": {
+      "_ERR_FINDER_EXCEPTION_CMN0411E": "您輸入的登入 ID 無效。請檢查您的項目，然後再試一次。",
+      "_ERR_LOGONID_ALREDY_EXIST_2030": "您輸入的登入 ID 已存在。請鍵入不同的登入 ID，然後重試。",
+      "_ERR_BAD_PARMS_2010": "您輸入的登入 ID 無效。請檢查您的項目，然後再試一次。",
+      "_ERR_INVALID_NAME_CMN1652E": "名稱為「{{0}}」的物件已存在。請選擇不同的名稱，然後再試一次。"
+    },
+    "_ERR_PASSWORD_EXPIRED_2170": "您目前的密碼已到期。請輸入新密碼。",
+    "_ERR_INVALID_NAME_CMN1652E": "名稱為「{{0}}」的物件已存在。請選擇不同的名稱，然後再試一次。"
+  },
+  "success-message": {
+    "ITEM_ADD_SUCCESS": "商品已新增至購物車。",
+    "ViewCart": "檢視購物車",
+    "COPY_CART_SUCCESS": "訂單已新增至購物車。",
+    "RecurringOrderCancelled": "已順利完成取消訂單。",
+    "ADD_ADDRESS_SUCCESS": "已順利新增您的新地址「{{0}}」。",
+    "EDIT_ADDRESS_SUCCESS": "已順利更新您的地址「{{0}}」。",
+    "DELETE_ADDRESS_SUCCESS": "已順利刪除您的地址「{{0}}」。",
+    "RESEND_VERIFICATION_CODE": "驗證碼已成功傳送至您的電子郵件地址",
+    "PASSWORD_RESET_SUCCESS": "已成功重設密碼",
+    "CREATE_CHECKOUT_PROFILE_SUCCESS": "已順利建立結帳設定檔「{{0}}」",
+    "COPY_ORDER_SUCCESS": "已順利複製訂單。",
+    "CREATE_ORDER_SUCCESS": "已順利建立訂單「{{0}}」。",
+    "DELETE_ORDER_SUCCESS": "已順利刪除訂單「{{0}}」。",
+    "DeletedCheckoutProfile": "已順利刪除結帳設定檔「{{ 0 }}」",
+    "UpdatedCheckoutProfile": "已順利更新結帳設定檔「{{ 0 }}」",
+    "deletedSuccessfully": "已從訂單中刪除 {{ n }} 個商品",
+    "addedItemSuccessfully": "已將 {{ v }} 順利新增至現行訂單",
+    "addedNSuccessfully": "已將 {{ v }} 個商品順利新增至現行訂單"
+  },
+  "notFound": {
+    "notFound": "<p>抱歉，找不到您正在尋找的商品。</p>\n"
+  },
+  "OrderBillingInfo": {
+    "Title": "帳單資訊",
+    "Labels": {
+      "BillAddress": "帳單地址"
+    }
+  },
+  "OrderDetails": {
+    "Title": "訂單詳細資料",
+    "Actions": {
+      "Back": "回到付款詳細資料",
+      "Next": "訂購",
+      "NextRecurringOrder": "重複訂購",
+      "BackCart": "回到結帳購物車"
+    },
+    "Labels": {
+      "PaymentDetails": "付款詳細資料",
+      "OrderSummary": "訂單摘要"
+    }
+  },
+  "OrderDiscountSummary": {
+    "Title": "已套用的折扣",
+    "Labels": {
+      "Total": "總計"
+    }
+  },
+  "OrderItemTable": {
+    "Title": "訂購商品",
+    "Labels": {
+      "ItemDetails": "商品詳細資料",
+      "SKU": "SKU：",
+      "Status": "可得性",
+      "Quantity": "數量",
+      "Price": "價格",
+      "Actions": "動作",
+      "Gift": "免費禮物",
+      "NonRecurring": "非重複商品",
+      "PageSizeLabel": "列",
+      "FirstPage": "第一頁",
+      "LastPage": "最後一頁",
+      "PreviousPage": "上一頁",
+      "NextPage": "下一頁",
+      "RowCount": "顯示 {from} 到 {to}（共 {count} 個）"
+    },
+    "Actions": {
+      "Delete": "刪除"
+    }
+  },
+  "OrderLinks": {
+    "Title": "訂單管理",
+    "OrderHistoryText": "訂單歷程",
+    "OrderHistoryDescription": "檢視已訂購的訂單及擱置核准的訂單，以及個別訂單詳細資料。",
+    "InprogressOrdersText": "進行中訂單",
+    "InprogressOrdersDescription": "檢視並管理進行中訂單",
+    "RecurringOrdersText": "重複訂單",
+    "RecurringOrdersDescription": "檢視及管理重複訂單的清單",
+    "ApproveOrdersText": "訂單核准",
+    "ApproveOrdersDescription": "核准或拒絕訂單",
+    "RequisitionListsText": "申請清單",
+    "RequisitionListsDescription": "檢視、管理及建立申請清單"
+  },
+  "OrderPaymentInfo": {
+    "Title": "付款資訊",
+    "Labels": {
+      "BillMethod": "付款方法"
+    }
+  },
+  "OrderShippingInfo": {
+    "Labels": {
+      "ShipAddress": "運送地址",
+      "ShipMethod": "運送方法",
+      "CartDetails": "購物車詳細資料",
+      "ShippingDetails": "運送詳細資料",
+      "ShipmentGroup": "運送群組 {{index}}",
+      "HideGroupDetails": "隱藏群組詳細資料",
+      "ShowGroupDetails": "顯示群組詳細資料"
+    }
+  },
+  "OrderTotalSummary": {
+    "Labels": {
+      "Subtotal": "小計",
+      "Tax": "稅金",
+      "Shipping": "運送",
+      "ShippingTax": "運輸稅",
+      "Discount": "總折扣",
+      "Total": "總計"
+    }
+  },
+  "PaymentMethodContainer": {
+    "Actions": {
+      "Cancel": "取消",
+      "Done": "完成",
+      "SaveAndAdd": "儲存並新增其他付款方法\n"
+    }
+  },
+  "PaymentInfoCard": {
+    "Title": "付款方法 {{number}}",
+    "Labels": {
+      "CreditCard": "信用卡：",
+      "AmountToPay": "付款金額",
+      "ExpiryDate": "到期日：{{month}}/{{year}}",
+      "BillingAddress": "帳單地址"
+    },
+    "Actions": {
+      "Edit": "編輯",
+      "Delete": "刪除"
+    }
+  },
+  "PaymentInfoList": {
+    "Title": {
+      "PayMethod": "付款方法",
+      "WithOrderTotal": "付款方法 - 訂單總計： "
+    },
+    "Msgs": {
+      "PayMethodRequired": "至少需要一個付款方法。",
+      "InsufficientPayment": "您必須在付款方法中包含 {{grandTotal}} 的訂單總計。",
+      "CardDetailsUpdate": "請再次檢查並更新卡片詳細資料。",
+      "PayMethodNote": "附註：只在按一下「檢閱訂單」按鈕時，才會儲存付款方法。"
+    },
+    "Actions": {
+      "AddPayMethod": "新增付款方法"
+    }
+  },
+  "PaymentMethodSelection": {
+    "Title": "付款方法",
+    "Msgs": {
+      "CreditCard": "安全的線上付款。已接受的信用卡：{{cards}}",
+      "CVV": "請輸入有效的 CVV 碼",
+      "InvalidCardNumber": "請輸入有效的信用卡號碼",
+      "InvalidFormat": "無效格式"
+    },
+    "Labels": {
+      "COD": "交貨時付現",
+      "CreditCard": "信用卡",
+      "CCNumber": "信用卡號碼",
+      "ExpiryDate": "到期日",
+      "CVV": "CVV 碼",
+      "OrderTotal": "訂單總計",
+      "RemainingAmount": "剩餘的付款金額",
+      "AmountToPay": "付款金額",
+      "ExpiryMonth": "到期月份",
+      "ExpiryYear": "到期年份"
+    },
+    "Actions": {
+      "PayRemaining": "支付剩餘金額"
+    }
+  },
+  "PersonalInformation": {
+    "UpdateSuccessful": "更新成功",
+    "AccountInformation": "帳戶資訊：",
+    "Edit": "編輯",
+    "Password": "密碼：",
+    "ChangePassword": "變更密碼",
+    "EditAccountInformation": "編輯帳戶資訊",
+    "FirstName": "名字",
+    "LastName": "姓氏",
+    "Email": "電子郵件",
+    "PhoneNumber": "電話號碼（選用）",
+    "PreferredCurrency": "偏好貨幣",
+    "Gender": "性別",
+    "SelectGender": "選取性別",
+    "BirthYear": "出生年份",
+    "BirthMonth": "出生月份",
+    "BirthDate": "出生日期",
+    "SelectYear": "選取年份",
+    "SelectMonth": "選取月份",
+    "SelectDate": "選取日期",
+    "DateOfBirthEmpty": "如果您不想要公開這些資訊，請勿指定任何生日值",
+    "Cancel": "取消",
+    "SaveChanges": "儲存變更",
+    "CurrentPassword": "目前的密碼",
+    "NewPassword": "新密碼",
+    "VerifyPassword": "驗證密碼",
+    "SignOutButton": "登出",
+    "actingAs": "擔任：",
+    "resetPass": "重設使用者密碼",
+    "resetSure": "您確定要重設這位使用者的密碼嗎？",
+    "resetNo": "否",
+    "resetYes": "是",
+    "stopActing": "停止擔任使用者",
+    "guestUser": "訪客",
+    "register": "註冊",
+    "enableUser": "啟用使用者",
+    "disableUser": "停用使用者",
+    "disabledMessage": "抱歉，此頁面仍在開發中。"
+  },
+  "ProductFilter": {
+    "Labels": {
+      "filterBy": "篩選依據",
+      "price": "價格",
+      "minPrice": "分鐘",
+      "maxPrice": "最高"
+    },
+    "Actions": {
+      "showMore": "顯示較多",
+      "showLess": "顯示較少",
+      "Filter": "篩選"
+    }
+  },
+  "ProductGrid": {
+    "Labels": {
+      "filteredBy": "篩選依據：",
+      "productFound": "找到 {{count}} 個產品",
+      "productFound_plural": "找到 {{count}} 個產品",
+      "productSearchFound": "找到 {{count}} 個「{{searchTerm}}」的產品",
+      "productSearchFound_plural": "找到 {{count}} 個「{{searchTerm}}」的產品",
+      "noMatches": "搜尋「{{searchTerm}}」找到 0 個相符的項目。",
+      "searchAgain": "很抱歉，搜尋「{{searchTerm}}」未能傳回任何結果。請嘗試搜尋其他字詞。",
+      "suggestion": "您指的是：",
+      "noProductsFound": "搜尋「<b>{{keyword}}</b>」未能傳回任何符合度高的結果。<br/>請嘗試使用其他字詞再搜尋一次，或瀏覽我們的推薦商品",
+      "noProductsFoundForFilter": "抱歉，選取的篩選器找不到任何結果。"
+    },
+    "Actions": {
+      "clearAll": "全部清除"
+    }
+  },
+  "PurchaseOrderNumber": {
+    "Title": "採購單號碼",
+    "Msgs": {
+      "PONumberRequired": "採購單號碼必填"
+    },
+    "Labels": {
+      "PONumber": "採購單號碼："
+    }
+  },
+  "PurchaseOrderSelection": {
+    "Title": "採購單",
+    "Msgs": {
+      "InvalidFormat": "無效格式"
+    },
+    "Labels": {
+      "PONumber": "採購單號碼"
+    }
+  },
+  "RecurringOrderInfo": {
+    "Title": "重複訂單",
+    "Labels": {
+      "RecurringOrderNumber": "重複訂單號碼",
+      "OrderSchedule": "頻率",
+      "StartDate": "開始日期",
+      "NextDelivery": "下一個排程的訂單",
+      "OrderHistoryButton": "{{orderId}} 的訂單歷程"
+    }
+  },
+  "RegistrationLayout": {
+    "NewCustomer": "新客戶嗎？",
+    "SignIn": "登入",
+    "Account": " 已經有帳戶了嗎？",
+    "FirstName": "名字",
+    "LastName": "姓氏",
+    "Email": "電子郵件地址",
+    "Phone": "電話號碼（選用）",
+    "Password": "密碼",
+    "VerifyPassword": "驗證密碼",
+    "TextContent": "接收傳送到收件匣的室內設計理念",
+    "Register": "註冊",
+    "RegisterComplete": "完成登錄",
+    "Msgs": {
+      "InvalidFormat": "無效格式"
+    }
+  },
+  "RegistrationB2BLayout": {
+    "Title": "註冊",
+    "Actions": {
+      "BuyerReg": "登錄買方",
+      "OrgReg": "登錄組織",
+      "AddBuyer": "在現有組織內新增買方",
+      "AddOrg": "新增組織，以及管理員帳戶"
+    }
+  },
+  "ResetPassword": {
+    "Title": "設定新密碼",
+    "ValidationCodeLabel": "驗證碼",
+    "NewPasswordLabel": "新密碼",
+    "VerifyPasswordLabel": "驗證新密碼",
+    "SubmitButton": "重設密碼",
+    "ContentText": "請在底下輸入已傳送至電子郵件的驗證碼，以及新密碼。",
+    "ContentTextLogonID": "請輸入您的登入 ID。您將收到一封電子郵件，其中附有驗證碼來協助重設您的密碼。",
+    "EmailLabel": "電子郵件地址",
+    "LogonIDLabel": "登入 ID",
+    "SuccessMsg": "順利完成",
+    "PasswordNotRecieved": "沒收到驗證碼嗎？",
+    "ResendVerificationCode": "重新傳送驗證碼",
+    "AccountInfoRemember": "記得您的帳戶資訊嗎？",
+    "SignIn": "立即登入",
+    "Msgs": {
+      "InvalidFormat": "無效格式"
+    }
+  },
+  "SearchBar": {
+    "SearchField": "搜尋",
+    "KeywordTitle": "關鍵字",
+    "CategoryTitle": "種類",
+    "BrandTitle": "品牌",
+    "Clear": "清除搜尋"
+  },
+  "SessionError": {
+    "TimeoutTitle": "階段作業逾時",
+    "InvalidTitle": "無效的階段作業錯誤",
+    "GenericTitle": "錯誤",
+    "TimeoutMsg": "您的階段作業逾時，已將您順利登出。若要存取您的商店，請再次登入。",
+    "InvalidMsg": "您的登入 ID 可能已經在其他位置使用。若要存取您的商店，請再次登入。",
+    "InvalidMsgB2C": "您的電子郵件地址可能已經在其他位置使用。若要存取您的商店，請再次登入。",
+    "Email": "電子郵件",
+    "Password": "密碼",
+    "SubmitButton": "登入",
+    "CancelButton": "取消",
+    "ActionIncomplete": "您的要求未完成，因為您的登入 ID 可能已在其他位置使用。若要繼續操作，請再次登入。"
+  },
+  "SignIn": {
+    "ReturningCustomer": "回購客戶",
+    "Password": "密碼",
+    "ChangPassword": "變更密碼",
+    "CurrentPassword": "目前的密碼",
+    "PasswordVerify": "驗證密碼",
+    "RememberMe": "記住我",
+    "SignInButton": "登入",
+    "Cancel": "取消",
+    "Submit": "提交",
+    "ForgotPassword": "忘記密碼了嗎？",
+    "noAccount": "還沒有帳戶嗎？",
+    "registerNow": "立即登錄",
+    "Label": {
+      "B2B": "登入 ID",
+      "Email": "電子郵件地址",
+      "rememberMe": "記住我"
+    },
+    "Msgs": {
+      "InvalidFormat": "無效格式。",
+      "PasswordNotMatch": "密碼與驗證密碼不相符。",
+      "OldPasswordReuse": "先前已使用所輸入的密碼。請輸入新密碼。"
+    }
+  },
+  "CommerceEnvironment": {
+    "listSettings": {
+      "relevance": "相關性",
+      "brands": "品牌",
+      "name": "名稱",
+      "priceLowToHigh": "價格（由低到高）",
+      "priceHighToLow": "價格（由高到低）"
+    },
+    "inventoryStatus": {
+      "Available": "有庫存",
+      "Allocated": "有庫存",
+      "Unallocated": "未配置",
+      "Backordered": "延期交貨",
+      "OOS": "缺貨",
+      "NA": "無法使用"
+    },
+    "recurringOrderFrequency": {
+      "Everyday": "每天",
+      "EveryWeek": "每週",
+      "EveryTwoWeeks": "每 2 週",
+      "EveryThreeWeeks": "每 3 週",
+      "EveryFourWeeks": "每 4 週"
+    },
+    "languagePopUp": {
+      "Title": "要變更語言嗎？",
+      "Message": "是否要將語言變更為 {{ language }}？",
+      "Yes": "是",
+      "No": "否"
+    },
+    "currency": {
+      "ROL": "羅馬尼亞列伊",
+      "RON": "羅馬尼亞列伊",
+      "ARS": "阿根廷披索",
+      "ATS": "奧地利先令",
+      "AUD": "澳幣",
+      "BEF": "比利時法郎",
+      "BRL": "巴西小銀幣",
+      "CAD": "加拿大幣",
+      "CNY": "中國人民幣",
+      "DEM": "德國馬克",
+      "ESP": "西班牙披塞塔",
+      "EUR": "歐元",
+      "FRF": "法國法郎",
+      "GBP": "英鎊",
+      "HKD": "港幣",
+      "ITL": "義大利里拉",
+      "JPY": "日幣",
+      "KRW": "南韓圜",
+      "SGD": "新加坡幣",
+      "TWD": "新台幣",
+      "USD": "美元",
+      "ZAR": "南非幣",
+      "FIM": "芬蘭馬克",
+      "IEP": "愛爾蘭 Punt",
+      "LUF": "盧森堡法郎",
+      "NLG": "荷蘭基爾德",
+      "PTE": "葡萄牙埃斯庫多",
+      "NOK": "挪威 kroner",
+      "SEK": "瑞典 Svenske kroner",
+      "DKK": "丹麥 Danske kroner",
+      "CHF": "瑞士法郎",
+      "PLN": "波蘭斯洛第",
+      "RUB": "俄羅斯盧布",
+      "EGP": "埃及鎊"
+    },
+    "language": {
+      "-1": "美式英文",
+      "-2": "法文",
+      "-3": "德文",
+      "-4": "義大利文",
+      "-5": "西班牙文",
+      "-6": "巴西葡萄牙文",
+      "-7": "簡體中文",
+      "-8": "繁體中文",
+      "-10": "日文",
+      "-21": "羅馬尼亞文",
+      "-20": "俄羅斯文",
+      "-9": "韓文",
+      "-22": "波蘭文",
+      "-23": "阿拉伯文"
+    }
+  },
+  "InprogressOrders": {
+    "Title": "進行中訂單",
+    "CreateNewOrder": "建立新的訂單",
+    "NewOrderName": "新訂單名稱",
+    "CreateOrder": "建立訂單",
+    "PrivateOrder": "專用訂單",
+    "SharedOrder": "共用訂單",
+    "Columns": {
+      "Active": "作用中",
+      "OrderId": "訂單 ID",
+      "Name": "名稱",
+      "LastUpdated": "最近更新時間",
+      "TotalPrice": "價格總計",
+      "Type": "類型",
+      "Actions": "動作"
+    },
+    "Status": {
+      "ORD": "專用",
+      "SHR": "共用"
+    },
+    "DeleteDialogTitle": "刪除訂單",
+    "DeleteDialogHeading": "是否要刪除此訂單？",
+    "CopyTitle": "複製訂單",
+    "CopyMessage": "是否要複製此訂單？",
+    "CurrentCart": "{{ orderId }}（現行購物車）",
+    "InvalidOrderName": "訂單名稱只能包含英數字元（A-Z、a-z、0-9）和空格。",
+    "searchPh": "搜尋 ID 或說明",
+    "NotActiveOrderMessage": "訂單需要處於作用中的狀態，才能新增產品"
+  },
+  "InprogressItems": {
+    "orderItem": "訂購商品",
+    "creationDate": "建立日期",
+    "quantity": "數量",
+    "contributor": "貢獻者",
+    "each": "每一個",
+    "actions": "動作",
+    "inprogressOrders": "進行中訂單",
+    "createdBy": "建立者",
+    "lastUpdated": "最近更新時間",
+    "totalPrice": "價格總計",
+    "visibility": "共用清單",
+    "orderType_SHR": "共用",
+    "orderType_ORD": "專用",
+    "proceed": "繼續結帳",
+    "addProds": "新增產品",
+    "privateList": "專用清單",
+    "sharedList": "共用清單",
+    "nProductsSel": "已選取 {{ n }} 個產品",
+    "addSelToCart": "將所選項目新增至購物車",
+    "deleteSelected": "刪除選定項目",
+    "noItems": "找不到任何訂單商品。",
+    "nameForCopiedOrder": "輸入新訂單的名稱"
+  },
+  "commonTable": {
+    "ofTotalCount": "正在顯示第 {{ from }} 到 {{ to }} 個，共有 {{ total }} 個",
+    "pageSz": {
+      "five": "5 列",
+      "ten": "10 列",
+      "twenty": "20 列"
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "HCL Commerce Marketplace Sellers",
+    "version": "v1",
+    "description": "Fetch active marketplace sellers for a store."
+  },
+  "servers": [
+    {
+      "url": "https://{hostname}:{port}/wcs/resources",
+      "variables": {
+        "port": {
+          "default": "443",
+          "enum": [
+            "443",
+            "5443"
+          ]
+        },
+        "hostname": {
+          "default": "localhost",
+          "enum": [
+            "localhost",
+            "test.hcl.com"
+          ]
+        }
+      }
+    }
+  ],
+  "externalDocs": {
+    "url": "https://URLForTheTargetDocumentation",
+    "description": "This service provides an API to fetch a list of active marketplace sellers for a store."
+  },
+  "paths": {
+    "/store/{storeId}/marketplace-sellers": {
+      "get": {
+        "tags": [
+          "Marketplace Seller"
+        ],
+        "summary": "Get active marketplace sellers for a store.",
+        "description": "Get active marketplace sellers for a store.",
+        "operationId": "findActiveMarketplaceSellerByStoreId",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "path",
+            "description": "The store id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "langId",
+            "in": "query",
+            "description": "The return language for marketplace seller name and description. The store default language is used if missing.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The sellers with status details are retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/sellerCollection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request could not be understood by the server due to malformed syntax.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid.",
+            "content": {}
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified resource could not be found.",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. For details, see the server log files.",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "seller": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique numeric ID for identifying the organization."
+          },
+          "name": {
+            "type": "string",
+            "description": "The display name for specified language."
+          },
+          "description": {
+            "type": "string",
+            "description": "The short description for specified language."
+          },
+          "status": {
+            "type": "integer",
+            "description": "Status of the marketplace seller organization. Available values: <br> * 1 - The organization is in Active state.<br> * 2 - The organization is in Deactivated state.<br> * 3 - The organization is in Suspended state.<br> * 4 - The organization is in Terminated state.",
+            "format": "int32",
+            "enum": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          "onlineStatus": {
+            "type": "integer",
+            "description": "Online Status of the marketplace seller organization. Available values: <br> * 1 - The organization is in Online state.<br> * 0 - The organization is in Offline state.",
+            "format": "int32",
+            "enum": [
+              0,
+              1
+            ]
+          }
+        }
+      },
+      "sellerCollection": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "marketplaceSellers": {
+            "type": "array",
+            "description": "The items.",
+            "items": {
+              "$ref": "#/components/schemas/seller"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "basicAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Marketplace Seller",
+      "description": "Marketplace seller details and status."
+    }
+  ]
+}

@@ -1,1 +1,6 @@
-tools/scripts/codeGen/swaggerSpec/commerce/
+**/dist/
+**/build
+**/public
+**/specs/
+**/com/hcl/
+**/storybook-static/

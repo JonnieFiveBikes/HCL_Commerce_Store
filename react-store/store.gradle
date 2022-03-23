@@ -1,0 +1,104 @@
+/*
+ *==================================================
+ * Licensed Materials - Property of HCL Technologies
+ *
+ * HCL Commerce
+ *
+ * (C) Copyright HCL Technologies Limited 2020
+ *
+ *==================================================
+ */
+
+
+///////////////////////////////////////
+// Node configuration to compile the UI
+///////////////////////////////////////
+
+apply plugin: 'com.moowork.node'
+
+node {
+    version = '16.13.2'
+    npmVersion = '8.1.2' // Version of npm to use.
+    download = true        // Download node using above parameters
+
+    // Set the work directory for unpacking node
+    //workDir = file("${project.buildDir}/nodejs")
+
+// Set the work directory for NPM
+//npmWorkDir = file("${project.buildDir}/npm")
+}
+
+npm_install {
+  args = ['--loglevel', 'verbose']
+}
+
+npm_test {
+    args = ['--', '--coverage']
+}
+
+npm_cache_clean {
+    args = ['--force']
+}
+
+clean {
+    delete 'node_modules'
+}
+
+/////////////////////////
+// Run test & build store
+/////////////////////////
+
+task buildPackage(type: NpmTask) {
+    description 'running npm build skd packages'
+    group 'Build'
+
+    //args = ['run', 'test']
+    args = ['run', 'build:production', '-ws', '--if-present']
+    println args
+}
+
+task buildStore(type: NpmTask) {
+    description 'running npm test & build'
+    group 'Build'
+
+    //args = ['run', 'test']
+    args = ['run', 'build', '-w=react-store', '--', '--appName', "${appName}"]
+    println args
+}
+
+task lintTest(type: NpmTask) {
+    description 'running npm run lint '
+    group 'Build'
+
+    //args = ['run', 'test']
+    args = ['run', 'lint', '-ws', '--if-present']
+    println args
+}
+
+npm_audit {
+   args = ['--production', '--audit-level=high']
+}
+
+
+task assetZip(type: Zip, dependsOn: buildStore, ) {
+    description 'Creates a ZIP file containing only the compiled application.'
+    group 'Build'
+
+    from "${storeDir}/${distDir}"
+    println 'BUILD DIRECTORY PATH :-  '
+    println "${storeDir}/${distDir}"
+    include '**/*'
+    exclude 'distributions/*'
+    destinationDir= new File("${projectDir}/distributions")
+
+}
+
+build.dependsOn(buildStore)
+buildStore.dependsOn(buildPackage)
+//npm_test.dependsOn(npm_install)
+buildPackage.dependsOn(lintTest)
+lintTest.dependsOn(npm_audit)
+npm_audit.dependsOn(npm_install)
+
+clean.dependsOn(npm_cache_clean)
+

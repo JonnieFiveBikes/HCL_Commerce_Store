@@ -6,6 +6,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      process.env.CI: false 
 
     strategy:
       matrix:
@@ -21,8 +23,7 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run build
-    - env:
-        process.env.CI: false 
+
 
     - uses: jfrog/setup-jfrog-cli@v1
     - run: jfrog --version

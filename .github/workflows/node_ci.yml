@@ -27,7 +27,7 @@ jobs:
     - run: npm install
     - run: npm run build
       env:
-        process.env.CI: false 
+        CI: false 
 
 
     - uses: jfrog/setup-jfrog-cli@v1

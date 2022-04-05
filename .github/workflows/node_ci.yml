@@ -24,15 +24,18 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        registry-url: https://hclcommercestore.jfrog.io/artifactory/api/npm/default-npm-virtual/
+        always-auth: true
+        email: jonathan.harding@gmail.com
     - run: npm install
     - run: npm run build
       env:
         CI: false 
     - run: npm publish
       env:
-        token: ${{secrets.npm_token}}
-        registry-url: https://hclcommercestore.jfrog.io/artifactory/api/npm/default-npm-virtual/
-        always-auth: true
+        NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+        
+        
 
 
 

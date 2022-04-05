@@ -4,6 +4,7 @@ on: [push]
 
 env:
   process.env.CI: false 
+  
 jobs:
   build:
 

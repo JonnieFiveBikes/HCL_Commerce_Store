@@ -34,7 +34,7 @@ jobs:
     - run: jfrog --version
 
 
-      #- uses: actions/upload-artifact@v3.0.0
-      #- name: emerald
-      #- path: dist
+    - uses: actions/upload-artifact@v3.0.0
+    - name: emerald
+    - path: dist
       #- retention-days: 30

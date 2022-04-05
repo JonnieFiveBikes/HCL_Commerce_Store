@@ -19,20 +19,27 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    
+    - name: 'Create .npmrc'
+      shell: bash
+      run: |
+        echo "registry=https://hclcommercestore.jfrog.io/artifactory/api/npm/default-npm-virtual/" > .npmrc
+        echo "_auth = ${{ secrets.npm_token }}" >> .npmrc
+        echo "always-auth = true" >> .npmrc
+      
+    
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        registry-url: https://hclcommercestore.jfrog.io/artifactory/api/npm/default-npm-virtual/
-        always-auth: true
+
     - run: npm install
     - run: npm run build
       env:
         CI: false 
     - run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+ 
         
         
 

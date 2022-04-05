@@ -33,9 +33,8 @@ jobs:
         CI: false 
     - run: npm publish
       env:
-        NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+        token: ${{secrets.npm_token}}
         registry-url: https://hclcommercestore.jfrog.io/artifactory/api/npm/default-npm-virtual/
-        email: jonathan.harding@gmail.com
         always-auth: true
 
 

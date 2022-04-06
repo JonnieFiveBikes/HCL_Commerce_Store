@@ -23,7 +23,7 @@ jobs:
     - name: 'Create .npmrc'
       shell: bash
       run: |
-        echo "registry=https://hclcommercestore.jfrog.io/artifactory/api/npm/default-npm-remote/" > .npmrc
+        echo "registry=https://hclcommercestore.jfrog.io/artifactory/api/npm/default-npm-local/" > .npmrc
         echo "_auth = ${{ secrets.npm_token }}" >> .npmrc
         echo "always-auth = true" >> .npmrc
       

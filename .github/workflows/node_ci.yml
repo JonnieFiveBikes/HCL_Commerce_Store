@@ -39,7 +39,8 @@ jobs:
     - run: npm run build
       env:
         CI: false 
-    - run: npm publish
+    - run: npm pack
+    
  
         
         

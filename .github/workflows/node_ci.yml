@@ -41,6 +41,14 @@ jobs:
         CI: false 
     - run: npm pack
     
+    - name: publish to artifactory
+      uses: advancedcsg-open/action-jfrog-cli@master
+      with:
+        url: 'https://hclcommercestore.jfrog.io/'
+        credentials type: 'apikey'
+        apikey: ${{ secrets.RT_APIKEY }}
+        args: u "*.tgz" "/artifactory/default-generic-local/" --recursive=true --build-name=hcl-commerce-react-store"
+    
  
         
         

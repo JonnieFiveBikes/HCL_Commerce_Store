@@ -35,6 +35,12 @@ jobs:
         apikey: ${{ secrets.RT_APIKEY }}
         args: u "*.tgz" "/artifactory/default-generic-local/" --recursive=true --build-name=hcl-commerce-react-store"
      
+     
+  sonarQubeTrigger:
+    name: SonarQube Trigger
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
     - name: SonarQube Scan
       uses: kitabisa/sonarqube-action@v1.1.0
       with:

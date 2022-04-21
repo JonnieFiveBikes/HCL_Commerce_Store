@@ -16,8 +16,6 @@ jobs:
       matrix:
         node-version: [14.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
@@ -27,7 +25,7 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run build
-    - run: npm pack
+    - run: npm pack  
     
     - name: publish to artifactory
       uses: advancedcsg-open/action-jfrog-cli@master
@@ -36,7 +34,18 @@ jobs:
         credentials type: 'apikey'
         apikey: ${{ secrets.RT_APIKEY }}
         args: u "*.tgz" "/artifactory/default-generic-local/" --recursive=true --build-name=hcl-commerce-react-store"
+     
+    - name: SonarQube Scan
+      uses: kitabisa/sonarqube-action@v1.1.0
+      with:
+        host: ${{ secrets.SONARQUBE_HOST }}
+        login: ${{ secrets.SONARQUBE_TOKEN }}
+        #projectBaseDir: "/path/to/my-custom-project"
+        projectKey: "Emerald"
+        #projectName: "my-custom-project-name"
+        #projectVersion: "v0.0.1"
     
+  
  
         
         

@@ -8,7 +8,7 @@ env:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     env:
       CI: false 
 
@@ -16,30 +16,18 @@ jobs:
       matrix:
         node-version: [14.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-        #Test Comment 2
+
 
     steps:
     - uses: actions/checkout@v3
-    
-    - name: 'Create .npmrc'
-      shell: bash
-      run: |
-        echo "registry=https://hclcommercestore.jfrog.io/artifactory/api/npm/hcldevops/" > .npmrc
-        echo "_auth = ${{ secrets.npm_token }}" >> .npmrc
-        echo "email = jonathan.harding@hcl.com"
-        echo "always-auth = true" >> .npmrc
-      
-    
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm cache clean --force 
+    - run: npm cache clean 
     - run: npm install
     - run: npm run build
-      env:
-        CI: false 
     - run: npm pack
     
     - name: publish to artifactory

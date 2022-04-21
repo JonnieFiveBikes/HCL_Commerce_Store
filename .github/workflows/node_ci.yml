@@ -46,6 +46,7 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
+        projectBaseDir: .
         args: >
           -Dsonar.projectKey=Emerald
   

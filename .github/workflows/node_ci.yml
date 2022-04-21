@@ -42,15 +42,12 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: SonarQube Scan
-      uses: kitabisa/sonarqube-action@v1.1.0
-      with:
-        host: ${{ secrets.SONARQUBE_HOST }}
-        login: ${{ secrets.SONARQUBE_TOKEN }}
-        #projectBaseDir: "/path/to/my-custom-project"
-        projectKey: "Emerald"
-        #projectName: "my-custom-project-name"
-        #projectVersion: "v0.0.1"
-    
+      uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
+        args: >
+          -Dsonar.projectKey=Emerald
   
  
         

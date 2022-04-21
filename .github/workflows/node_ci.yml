@@ -37,6 +37,8 @@ jobs:
         cache: 'npm'
 
     - run: npm install
+      env:
+        CI: false 
     - run: npm run build
       env:
         CI: false 

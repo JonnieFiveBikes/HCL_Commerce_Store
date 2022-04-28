@@ -30,10 +30,10 @@ jobs:
     - name: publish to artifactory
       uses: advancedcsg-open/action-jfrog-cli@master
       with:
-        url: 'https://hclcommercestore.jfrog.io/'
+        url: 'https://secdevopsdemo.jfrog.io/'
         credentials type: 'apikey'
         apikey: ${{ secrets.RT_APIKEY }}
-        args: u "*.tgz" "/artifactory/default-generic-local/" --recursive=true --build-name=hcl-commerce-react-store"
+        args: u "*.tgz" "/artifactory/commerce-generic-local/${{ github.run_number }}/" --recursive=true --build-name=hcl-commerce-react-store"
      
      
   sonarQubeTrigger:

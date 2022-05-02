@@ -1,7 +1,7 @@
 {
   "name": "hcl-commerce-react-store",
   "version": "9.1.6",
-  "private": false,
+  "private": false
 },
   "scripts": {
     "analyze": "source-map-explorer 'dist/emerald/static/js/*.js' --html tools/source-map-explorer.html",

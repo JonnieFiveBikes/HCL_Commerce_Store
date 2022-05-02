@@ -1,7 +1,10 @@
 {
-  "name": "hcl-commerce-react-store",
+  "name": "@quickstart/hcl-commerce-react-store",
   "version": "9.1.6",
-  "private": false
+  "private": false,
+  "publishConfig": {
+    "registry": "https://hclcommercestore.jfrog.io/artifactory/api/npm/default-npm-virtual/"
+  },
   "scripts": {
     "analyze": "source-map-explorer 'dist/emerald/static/js/*.js' --html tools/source-map-explorer.html",
     "start": "node tools/scripts/start.js",
@@ -24,8 +27,8 @@
     "generate-rest": "node tools/scripts/generateRestService.js",
     "pretty-quick": "pretty-quick",
     "generateAsset": "rimraf public && node tools/scripts/copyStoreAsset.js",
-    "cleanupBundle": "node tools/scripts/cleanupBundle.js","scripts",
-    "artifactregistry-login": "npx google-artifactregistry-auth --repo-config=[./.npmrc] --credential-config=[~/.npmrc]"
+    "cleanupBundle": "node tools/scripts/cleanupBundle.js",
+    "artifactregistry-login": "npx google-artifactregistry-auth"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.2",

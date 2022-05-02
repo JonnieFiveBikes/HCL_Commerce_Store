@@ -30,6 +30,7 @@ jobs:
     - run: npm install
     - run: npm run build
     - run: npm pack  
+    - run: npm run artifactregistry-login
     - run: npm publish --registry=https://us-central1-npm.pkg.dev/hcldevops/hcldevops/
      
      

@@ -25,7 +25,9 @@
     "generate-rest": "node tools/scripts/generateRestService.js",
     "pretty-quick": "pretty-quick",
     "generateAsset": "rimraf public && node tools/scripts/copyStoreAsset.js",
-    "cleanupBundle": "node tools/scripts/cleanupBundle.js"
+    "cleanupBundle": "node tools/scripts/cleanupBundle.js","scripts": {
+    "artifactregistry-login": "npx google-artifactregistry-auth --repo-config=[./.npmrc] --credential-config=[~/.npmrc]",
+}
   },
   "dependencies": {
     "@material-ui/core": "^4.11.2",

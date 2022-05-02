@@ -19,11 +19,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Set up Cloud SDK
-      uses: google-github-actions/setup-gcloud@master
+     uses: 'google-github-actions/auth@v0'
       with:
-       project_id: ${{ secrets.GCP_PROJECT_ID }}
-       service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT}}
-       export_default_credentials: true
+        credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:

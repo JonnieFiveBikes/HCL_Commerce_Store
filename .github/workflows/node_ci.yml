@@ -18,6 +18,12 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
     - uses: actions/checkout@v3
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@master
+      with:
+       project_id: ${{ secrets.GCP_PROJECT_ID }}
+       service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT}}
+       export_default_credentials: true
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
@@ -26,14 +32,7 @@ jobs:
     - run: npm install
     - run: npm run build
     - run: npm pack  
-    
-    - name: publish to artifactory
-      uses: advancedcsg-open/action-jfrog-cli@master
-      with:
-        url: 'https://secdevopsdemo.jfrog.io/'
-        credentials type: 'apikey'
-        apikey: ${{ secrets.RT_APIKEY }}
-        args: u "*.tgz" "/artifactory/commerce-generic-local/${{ github.run_number }}/" --recursive=true --build-name=hcl-commerce-react-store"
+    - run: npm publish
      
      
   sonarQubeTrigger:

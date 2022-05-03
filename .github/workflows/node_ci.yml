@@ -32,7 +32,7 @@ jobs:
     - run: npm run build
     - run: npm pack  
     - run: npm run artifactregistry-login
-    - run: npm publish --registry=https://us-central1-npm.pkg.dev/hcldevops/hcldevops/
+    - run: npm publish hclsoftware-hcl-commerce-react-store-9.1.6-${GITHUB_RUN_NUMBER}.tgz --registry=https://us-central1-npm.pkg.dev/hcldevops/hcldevops/
      
      
   sonarQubeTrigger:

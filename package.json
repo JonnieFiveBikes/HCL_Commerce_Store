@@ -1,5 +1,5 @@
 {
-  "name": "@quickstart/hcl-commerce-react-store",
+  "name": "@hclsoftware/hcl-commerce-react-store",
   "version": "9.1.6",
   "private": false,
   "publishConfig": {

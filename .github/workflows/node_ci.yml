@@ -47,7 +47,7 @@ jobs:
         SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
 
   
- ASOCTrigger:
+  ASOCTrigger:
     name: ASOC CodeSweep Trigger
     runs-on: ubuntu-latest
     steps:

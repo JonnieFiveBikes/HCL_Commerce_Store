@@ -1,16 +1,50 @@
 {
   "contents": [
     {
+      "layout": {
+        "id": "13002",
+        "name": "CategoryLandingPageLayout",
+        "containerName": "category-landing-page",
+        "slots": [
+          {
+            "id": "1",
+            "widgets": [
+              {
+                "id": "3505",
+                "name": "PageBannerWidget",
+                "widgetName": "e-marketing-spot-widget",
+                "sequence": 0,
+                "properties": {
+                  "emsName": "Hero",
+                  "emsType": "local"
+                }
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "widgets": [
+              {
+                "id": "3506",
+                "name": "CategoryGrid",
+                "widgetName": "child-category-grid-widget",
+                "sequence": 0
+              }
+            ]
+          }
+        ]
+      },
       "identifier": "fasteners",
+      "store.type": "CPS",
       "tokenName": "CategoryToken",
       "tokenExternalValue": "Fasteners",
       "language": "en_US",
-      "id": 12052,
+      "id": "12052",
       "page": {
         "imageAlternateDescription": "Image for Fasteners from Sapphire",
         "name": "CATEGORY_PAGE",
-        "title": "Fasteners | Sapphire",
         "type": "CategoryPage",
+        "title": "Fasteners | Sapphire",
         "metaDescription": "Screws, bolts, and nuts for a wide range of fastening applications",
         "metaKeyword": "fasteners"
       },

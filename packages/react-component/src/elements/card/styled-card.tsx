@@ -8,9 +8,10 @@
  *
  *==================================================
  */
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { kebabCase } from "lodash-es";
 import styled from "styled-components";
-import { Card } from "@material-ui/core";
+import { Card, CardActionArea } from "@material-ui/core";
 import { Divider } from "@material-ui/core";
 import { StyledButton } from "../button";
 import { StyledLink } from "../link";
@@ -29,6 +30,15 @@ const StyledCardWrapper = styled(({ ...props }) => <Card {...props} />)`
         margin: 0 auto;
       }
     }
+    &.wishlist-card {
+       .MuiTypography-body2 {
+        width: 66%;
+        margin: 0 auto;
+      }
+      position:relative;
+      border: 1px solid  ${theme.palette.divider};
+
+    }
 
     &.address-card, &.payment-card {
       position: relative;
@@ -38,6 +48,7 @@ const StyledCardWrapper = styled(({ ...props }) => <Card {...props} />)`
         font-weight: 400;
       }
     }
+
 
     &.selected {
       border-radius: ${theme.shape.borderRadius}px;
@@ -70,11 +81,21 @@ interface StyledParameterizedCardProps {
   cancelLabel?: string;
   className?: string;
   cardFooter?: any;
+  cardAreaSelector?: any;
 }
 
 const StyledCard: React.FC<StyledParameterizedCardProps> = (props: any) => {
-  const { headerProps, contentComponent, cardActions, cardFooter, confirmLabel, cancelLabel, className, testId } =
-    props;
+  const {
+    headerProps,
+    contentComponent,
+    cardActions,
+    cardFooter,
+    confirmLabel,
+    cancelLabel,
+    className,
+    testId,
+    cardAreaSelector,
+  } = props;
   const [confirmState, setConfirmState] = useState<boolean>(false);
   const [confirmActionIndex, setConfirmActionIndex] = useState<number>(0);
 
@@ -92,13 +113,20 @@ const StyledCard: React.FC<StyledParameterizedCardProps> = (props: any) => {
     toggleConfirm(0);
   };
 
-  const handeActionButtonClick = (v: any, index: number) => {
+  const handleActionButtonClick = (v: any, index: number) => {
     if (v.enableConfirmation) {
       toggleConfirm(index);
     } else {
       v.handleClick();
     }
   };
+  const cardContentMain = useMemo(() => {
+    return (
+      <StyledGrid item xs>
+        <StyledCardContent className="horizontal-padding-2 vertical-padding-2">{contentComponent}</StyledCardContent>
+      </StyledGrid>
+    );
+  }, [contentComponent]);
 
   return (
     <StyledCardWrapper className={className + " full-height"}>
@@ -117,33 +145,44 @@ const StyledCard: React.FC<StyledParameterizedCardProps> = (props: any) => {
           </>
         )}
 
-        {contentComponent && (
+        {cardContentMain ? (
           <>
-            <StyledGrid item xs>
-              <StyledCardContent className="horizontal-padding-2 vertical-padding-2">
-                {contentComponent}
-              </StyledCardContent>
-            </StyledGrid>
+            {cardAreaSelector ? (
+              <CardActionArea data-testid={kebabCase(`card-action-area-${testId}`)} onClick={cardAreaSelector}>
+                {cardContentMain}
+              </CardActionArea>
+            ) : (
+              cardContentMain
+            )}
             {cardActions?.length > 0 && <Divider />}
           </>
-        )}
+        ) : null}
 
         {cardActions?.length > 0 && (
-          <StyledGrid item xs={false}>
+          <StyledGrid container direction="row" alignItems="stretch" justifyContent="flex-start" item xs={false}>
             <StyledCardActions className="horizontal-padding-2 vertical-padding-2">
               {cardActions.map((v: any, index: number) =>
                 v.link ? (
-                  <StyledLink to={v.link} key={v.text + "_" + index}>
-                    {v.text}
-                  </StyledLink>
+                  <StyledGrid item key={v.text + "_" + index}>
+                    <StyledLink
+                      testId={kebabCase(`${testId}-${v.text}`)}
+                      to={v.link}
+                      key={v.text + "_" + index}
+                      state={v.state}>
+                      {v.text}
+                    </StyledLink>
+                  </StyledGrid>
                 ) : (
-                  <StyledButton
-                    testId={`StyledCard_${testId}_${v.text}_${index}`}
-                    variant="text"
-                    key={v.text + "_" + index}
-                    onClick={() => handeActionButtonClick(v, index)}>
-                    <StyledTypography variant="body1">{v.text}</StyledTypography>
-                  </StyledButton>
+                  <StyledGrid item key={v.text + "_" + index}>
+                    <StyledButton
+                      testId={kebabCase(`${testId}-${v.text}`)}
+                      variant={v.outlined ? "outlined" : "text"}
+                      key={v.text + "_" + index}
+                      disabled={v.disable ?? false}
+                      onClick={() => handleActionButtonClick(v, index)}>
+                      <StyledTypography variant="body1">{v.text}</StyledTypography>
+                    </StyledButton>
+                  </StyledGrid>
                 )
               )}
             </StyledCardActions>
@@ -158,7 +197,7 @@ const StyledCard: React.FC<StyledParameterizedCardProps> = (props: any) => {
                   spacing={2}>
                   <StyledGrid item>
                     <StyledButton
-                      testId={`StyledCard_${testId}_confirm`}
+                      testId={kebabCase(`${testId}-confirm`)}
                       className="confirm-action-button"
                       variant="outlined"
                       fullWidth
@@ -168,7 +207,7 @@ const StyledCard: React.FC<StyledParameterizedCardProps> = (props: any) => {
                   </StyledGrid>
                   <StyledGrid item>
                     <StyledButton
-                      testId={`StyledCard_${testId}_cancel`}
+                      testId={kebabCase(`${testId}-cancel`)}
                       className="cancel-action-button"
                       variant="outlined"
                       fullWidth

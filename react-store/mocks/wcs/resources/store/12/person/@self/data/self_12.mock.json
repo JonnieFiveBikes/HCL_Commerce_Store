@@ -1,0 +1,49 @@
+{
+  "lastName": "Test",
+  "country": "Azerbaijan",
+  "zipCode": "52457",
+  "registrationStatus": "RegisteredPerson",
+  "preferredLanguage": "en_US",
+  "resourceId": "https://app:5443/wcs/resources/store/12/person/@self?langId=-1",
+  "city": "NYC",
+  "preferredCurrency": "USD",
+  "distinguishedName": "uid=Test@hcl.com,o=testing,o=root organization",
+  "orgizationId": "7333333333333340836",
+  "addressId": "3074457359258356550",
+  "accountStatus": "Enabled",
+  "email1": "Test@hcl.com",
+  "profileType": "Business",
+  "state": "NYC",
+  "challengeQuestion": "-",
+  "nickName": "Test@hcl.com",
+  "addressType": "ShippingAndBilling",
+  "resourceName": "person",
+  "addressLine": ["NYC, NYC", "", ""],
+  "userId": "5",
+  "registrationDateTime": "2022-06-07T16:17:21.689Z",
+  "organizationDistinguishedName": "o=testing,o=root organization",
+  "firstName": "Test",
+  "logonId": "Test@hcl.com",
+  "receiveEmailPreference": [
+    {
+      "storeID": "12",
+      "value": "false"
+    }
+  ],
+  "lastUpdate": "2022-06-07T16:17:21.689Z",
+  "registrationApprovalStatus": "Approved",
+  "attributes": [
+    {
+      "bProfileAttrValue": "7333333333333340836",
+      "bProfileAttrKey": "organizationId"
+    }
+  ],
+  "passwordExpired": "false",
+  "primary": "true",
+  "receiveSMSPreference": [
+    {
+      "storeID": "12",
+      "value": "false"
+    }
+  ]
+}

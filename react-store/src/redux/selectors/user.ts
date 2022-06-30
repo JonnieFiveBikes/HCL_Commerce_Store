@@ -9,7 +9,18 @@
  *==================================================
  */
 //Redux
+import { REGISTERED, GUEST, GENERIC } from "../../constants/uset";
 import { RootReducerState } from "../reducers";
+
+const userTypeSelector = (state: RootReducerState) => {
+  if (state.user.userLoggedIn) {
+    return REGISTERED;
+  } else if (state.user.isGuest) {
+    return GUEST;
+  } else {
+    return GENERIC;
+  }
+};
 
 const loginStatusSelector = (state: RootReducerState) => {
   return state.user.userLoggedIn || false;
@@ -75,4 +86,5 @@ export {
   userLastUpdatedSelector,
   forUserIdSelector,
   rememberMeSelector,
+  userTypeSelector,
 };

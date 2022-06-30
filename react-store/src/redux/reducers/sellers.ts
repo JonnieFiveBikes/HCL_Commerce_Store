@@ -20,9 +20,9 @@ import { PERMANENT_STORE_DAYS } from "../../configs/common";
 const sellersReducer = createReducer(initStates.sellers, (builder) => {
   builder.addCase(SELLERS_GET_SUCCESS_ACTION, (state: SellerInfoState | any, action: AnyAction) => {
     const { response } = action.payload;
-    const { b2b, marketplaceSellers } = response;
-    const sellers = marketplaceSellers.filter(({ status, onlineStatus }) => 1 === status && 1 === onlineStatus);
-    const showSellerList = !b2b && sellers.length > 0;
+    const { b2b, items: marketplaceSellers } = response;
+    const sellers = marketplaceSellers?.filter(({ status, onlineStatus }) => 1 === status && 1 === onlineStatus);
+    const showSellerList = !b2b && sellers?.length > 0;
     Object.assign(state, response, { sellers, showSellerList, initialized: true });
   });
   builder.addCase(SET_SELLER_SUCCESS_ACTION, (state: SellerInfoState | any, action: AnyAction) => {

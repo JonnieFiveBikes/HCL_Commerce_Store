@@ -155,6 +155,7 @@ export const StyledTh = styled(Th)`
 export const StyledTd = styled(Td)`
   ${({ theme }) => `
      font-weight: 400;
+     word-break: break-word;
      padding: ${theme.spacing(1.5)}px ${theme.spacing(2)}px;
      > div.tdBefore {
        line-height: normal;

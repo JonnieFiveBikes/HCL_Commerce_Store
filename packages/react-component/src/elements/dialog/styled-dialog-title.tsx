@@ -12,14 +12,14 @@ import React from "react";
 import styled from "styled-components";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import CloseIcon from "@material-ui/icons/Close";
-import IconButton from "@material-ui/core/IconButton";
+import { StyledIconButton } from "../icon-button";
 
 const StyledDialogTitle = styled(({ onClickHandler, ...props }) => (
   <DialogTitle {...props}>
     {props.title}
-    <IconButton aria-label="close" onClick={onClickHandler}>
+    <StyledIconButton data-testid="close-dialog-title-icon-button" aria-label="close" onClick={onClickHandler}>
       <CloseIcon />
-    </IconButton>
+    </StyledIconButton>
   </DialogTitle>
 ))`
   ${({ theme }) => `

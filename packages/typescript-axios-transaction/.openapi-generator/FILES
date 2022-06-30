@@ -1481,10 +1481,17 @@ com/hcl/commerce/typescript/axios/term-condition-api.ts
 com/hcl/commerce/typescript/axios/term-condition-description.ts
 com/hcl/commerce/typescript/axios/term-condition.ts
 com/hcl/commerce/typescript/axios/token-api.ts
+com/hcl/commerce/typescript/axios/token-token-result-list.ts
+com/hcl/commerce/typescript/axios/token-token.ts
 com/hcl/commerce/typescript/axios/token-usage-api.ts
+com/hcl/commerce/typescript/axios/tokenusage-tokenusage-result-list.ts
+com/hcl/commerce/typescript/axios/tokenusage-tokenusage.ts
 com/hcl/commerce/typescript/axios/trading-agreement-description.ts
 com/hcl/commerce/typescript/axios/trading-agreement.ts
 com/hcl/commerce/typescript/axios/urlkeyword-api.ts
+com/hcl/commerce/typescript/axios/urlkeyword-urlkeyword-result-list.ts
+com/hcl/commerce/typescript/axios/urlkeyword-urlkeyword-url-keywords.ts
+com/hcl/commerce/typescript/axios/urlkeyword-urlkeyword.ts
 com/hcl/commerce/typescript/axios/user-activate-api.ts
 com/hcl/commerce/typescript/axios/user-behavior-api.ts
 com/hcl/commerce/typescript/axios/user-context-api.ts

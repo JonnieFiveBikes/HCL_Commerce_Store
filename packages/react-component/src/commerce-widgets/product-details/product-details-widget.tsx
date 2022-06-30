@@ -11,6 +11,7 @@
 
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
+import HTMLReactParser from "html-react-parser";
 //UI
 import { StyledGrid, StyledPDPContainer, StyledTypography, StyledButton, StyledTabs } from "../../elements";
 import { ProductAttributes } from "../../components/product-attributes";
@@ -55,6 +56,7 @@ interface ProductDetailsWidgetProps {
   isSharedOrder: boolean;
   SIGNIN: string;
   addToRLButton: any;
+  addToWLButton: any;
 }
 
 export const ProductDetailsWidget: React.FC<ProductDetailsWidgetProps> = (props: any) => {
@@ -92,6 +94,7 @@ export const ProductDetailsWidget: React.FC<ProductDetailsWidgetProps> = (props:
     isSharedOrder,
     SIGNIN,
     addToRLButton,
+    addToWLButton,
     ribbonFinder,
   } = props;
 
@@ -207,35 +210,33 @@ export const ProductDetailsWidget: React.FC<ProductDetailsWidgetProps> = (props:
                             </StyledTypography>
                             <StyledTypography variant="body1" component="div">
                               {availability.map((e: any) => (
-                                <div key={`inventoryDetails_div_${e.storeId}`}>
-                                  <div
-                                    key={`store-name_div_${e.storeId}`}
-                                    id={`product_availability_store_name_${productPartNumber}`}
-                                    className="store-name">
-                                    {e.storeName}
-                                  </div>
-                                  {e.inventoryStatus && (
-                                    <div
-                                      key={`inStock_div_${e.storeId}`}
-                                      className="inventory-status in-stock"
+                                <div
+                                  key={`inventoryDetails_div_${e.onlineStoreId || e.physicalStoreId}_${e.partNumber}`}>
+                                  {e.inventoryStatus ? (
+                                    <StyledTypography
+                                      key={`inStock_div_${e.partNumber}`}
+                                      className="vertical-margin-1"
                                       id={`product_availability_status_inStock_${productPartNumber}`}>
-                                      {translation.CommerceEnvironmentinventoryStatusAvailable}
-                                    </div>
-                                  )}
-                                  {!e.inventoryStatus && (
-                                    <div
-                                      key={`outOfStock_div_${e.storeId}`}
-                                      className="store-inventory out-of-stock"
+                                      {e.physicalStoreId
+                                        ? HTMLReactParser(translation.CommerceEnvironmentinventoryStoreStatusAvailable)
+                                        : HTMLReactParser(translation.CommerceEnvironmentinventoryStatusAvailable)}
+                                    </StyledTypography>
+                                  ) : (
+                                    <StyledTypography
+                                      key={`outOfStock_div_${e.partNumber}`}
+                                      className="vertical-margin-1"
                                       id={`product_availability_status_outOfStock_${productPartNumber}`}>
-                                      {translation.CommerceEnvironmentinventoryStatusOOS}
-                                    </div>
+                                      {e.physicalStoreId
+                                        ? HTMLReactParser(translation.CommerceEnvironmentinventoryStoreStatusOOS)
+                                        : HTMLReactParser(translation.CommerceEnvironmentinventoryStatusOOS)}
+                                    </StyledTypography>
                                   )}
-                                  {seller ? <div>{seller}</div> : null}
                                 </div>
                               ))}
                             </StyledTypography>
                           </>
                         )}
+                        {seller ? <div>{seller}</div> : null}
                         <StyledGrid
                           container
                           spacing={1}
@@ -262,9 +263,9 @@ export const ProductDetailsWidget: React.FC<ProductDetailsWidgetProps> = (props:
                                 : translation.productDetailaddToCurrentOrder}
                             </StyledButton>
                           </StyledGrid>
-                          {loginStatus && isB2B ? (
+                          {loginStatus ? (
                             <StyledGrid item xs={12} sm="auto" className="bottom-margin-1">
-                              {addToRLButton}
+                              {isB2B ? addToRLButton : addToWLButton}
                             </StyledGrid>
                           ) : null}
                         </StyledGrid>

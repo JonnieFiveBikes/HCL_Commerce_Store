@@ -73,7 +73,6 @@ function AccountLinksGridViewLayout() {
       description={linkWishListDescription}
       url={linkWishListURL}
       icon={<ListIcon />}
-      disabled
     />,
   ];
 

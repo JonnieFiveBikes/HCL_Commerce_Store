@@ -20,6 +20,7 @@ const GoBack = ({ from, checked: compare }) => {
   const { t } = useTranslation();
   return (
     <StyledTextLink
+      data-testid="product-compare-back-to-product-list-link"
       label={<StyledTypography variant="button">{t("compare.goBack")}</StyledTypography>}
       onClick={() => navigate(from, { state: { compare } })}
     />

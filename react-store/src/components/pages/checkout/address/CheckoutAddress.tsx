@@ -162,8 +162,8 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
           dispatch(successActions.HANDLE_SUCCESS_MESSAGE_ACTION(successMessage));
           const addressIdFromResponse = addressData.addressId;
           setSelectedAddressId(addressIdFromResponse);
-          setAddressFormData(addressFormDataInit);
           toggleCreateNew(false);
+          setAddressFormData(addressFormDataInit);
         }
       });
   };
@@ -197,8 +197,8 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
           };
           dispatch(successActions.HANDLE_SUCCESS_MESSAGE_ACTION(successMessage));
           setSelectedAddressId(addressData.addressId, updatedAddressData.nickName);
-          setAddressFormData(addressFormDataInit);
           toggleEditAddress(false);
+          setAddressFormData(addressFormDataInit);
         }
       })
       .catch((e) => {

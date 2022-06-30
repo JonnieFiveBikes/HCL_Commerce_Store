@@ -1,0 +1,44 @@
+{
+  "contents": [
+    {
+      "layout": {
+        "id": "12505",
+        "name": "CartPageLayout",
+        "containerName": "cart-page",
+        "slots": [
+          {
+            "id": "2",
+            "widgets": [
+              {
+                "id": "3020",
+                "name": "CartPageProductRecommendation",
+                "widgetName": "e-marketing-spot-widget",
+                "sequence": 0,
+                "properties": {
+                  "emsName": "ShoppingCartRight_CatEntries"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "identifier": "cart",
+      "store.type": "MPS",
+      "tokenName": "StaticPagesToken",
+      "tokenExternalValue": "CartPage",
+      "language": "en_US",
+      "id": "57002",
+      "page": {
+        "imageAlternateDescription": "Image for Emerald cart page",
+        "name": "Content_1002",
+        "type": "ContentPage",
+        "title": "Emerald",
+        "metaDescription": "Emerald shopping cart",
+        "metaKeyword": "Emerald shopping cart"
+      },
+      "storeId": "11",
+      "tokenValue": "1002",
+      "status": 1
+    }
+  ]
+}

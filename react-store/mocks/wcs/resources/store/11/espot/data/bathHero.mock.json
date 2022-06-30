@@ -1,0 +1,50 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "defaultContentDisplaySequence": [
+        {
+          "resultId": "12510",
+          "resultFormat": "MarketingContent",
+          "displaySequence": "1.0"
+        }
+      ],
+      "marketingSpotIdentifier": "13010",
+      "behavior": "0",
+      "eSpotName": "BathHero",
+      "baseMarketingSpotActivityData": [
+        {
+          "contentFormatName": "Text",
+          "baseMarketingSpotActivityName": "BathroomHeroContent",
+          "contentClickAction": "None",
+          "contentId": "12510",
+          "baseMarketingSpotActivityID": "12510",
+          "contentName": "BathroomHeroContent",
+          "baseMarketingSpotDataType": "MarketingContent",
+          "activityIdentifierID": "0",
+          "MarketingContentDescription": [{}],
+          "marketingContentDescription": [
+            {
+              "marketingText": "<div class=\"MuiGrid-root MuiGrid-container marketing-content marketing-backgroundImage marketing-heroImage BathHeroContent\"><img src=\"/EmeraldSAS/images/rooms/bathroom.jpg\"><div class=\"MuiGrid-root MuiGrid-item MuiGrid-grid-xs-10 MuiGrid-grid-md-6 MuiGrid-grid-lg-5 marketing-text marketing-text-vertical-center\"><h2 class=\"MuiTypography-root MuiTypography-h2 bottom-margin-1\">Bath</h2><h5 class=\"MuiTypography-root MuiTypography-h5 bottom-margin-2\">Modernize your bath space with a variety of vanity fixtures and lighting options.</h5></div></div>",
+              "language": "-1"
+            }
+          ],
+          "contentFormatId": "2",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingKey": "mktActivityDescription"
+            },
+            {
+              "baseMarketingValue": "1.0",
+              "baseMarketingKey": "displaySequence"
+            }
+          ],
+          "contentStoreId": "12501"
+        }
+      ]
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/11/espot/BathHero?catalogId=11501&DM_ReturnCatalogGroupId=true&DM_FilterResults=false&langId=-1",
+  "resourceName": "espot"
+}

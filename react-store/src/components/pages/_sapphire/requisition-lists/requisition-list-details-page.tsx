@@ -304,7 +304,7 @@ const RequisitionListDetailsPage = (props: any) => {
         </StyledGrid>
       )}
 
-      <Divider className="full-width bottom-margin-2" />
+      {disabled ? null : <Divider className="full-width bottom-margin-2" />}
       {editMode ? (
         <StyledGrid container spacing={2} className="bottom-margin-1">
           <StyledGrid item>
@@ -325,7 +325,7 @@ const RequisitionListDetailsPage = (props: any) => {
             </StyledButton>
           </StyledGrid>
         </StyledGrid>
-      ) : (
+      ) : disabled ? null : (
         <StyledGrid container spacing={2} className="bottom-margin-1">
           <StyledGrid item xs={false}>
             <StyledButton

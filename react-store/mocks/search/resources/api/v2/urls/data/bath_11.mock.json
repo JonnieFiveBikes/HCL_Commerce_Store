@@ -1,0 +1,23 @@
+{
+  "contents": [
+    {
+      "identifier": "bath",
+      "store.type": "CPS",
+      "tokenName": "CategoryToken",
+      "tokenExternalValue": "Bath",
+      "language": "en_US",
+      "id": "56814",
+      "page": {
+        "imageAlternateDescription": "Image for Bath from Emerald",
+        "name": "CATEGORY_PAGE",
+        "type": "CategoryPage",
+        "title": "Bath | Emerald",
+        "metaDescription": "Modernize your bath space with a variety of vanity fixtures and lighting options",
+        "metaKeyword": "space, light, faucet, mirror, brush, bath, decor"
+      },
+      "storeId": "11",
+      "tokenValue": "10509",
+      "status": 1
+    }
+  ]
+}

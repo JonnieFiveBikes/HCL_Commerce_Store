@@ -100,6 +100,7 @@ function RadioGroupWrapper({
               selected={defaultSelected === v.identifier}
               size="medium"
               key={v.identifier}
+              data-testid={`radio-group-wrapper-${v.identifier.toLowerCase()}-swatch`}
             />
           ) : (
             <StyledFormControlLabel

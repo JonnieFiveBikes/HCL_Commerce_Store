@@ -1,0 +1,10 @@
+{
+  "orderId": "4520481",
+  "orderItem": [
+    {
+      "orderItemId": "10053",
+      "partNumber": "LR-FNTR-0002-0003"
+    }
+  ],
+  "resourceName": "csr-rma-order"
+}

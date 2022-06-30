@@ -27,6 +27,9 @@ import { forUserIdSelector } from "../../../../redux/selectors/user";
 //UI
 import { StyledButton, StyledGrid } from "@hcl-commerce-store-sdk/react-component";
 import { WelcomeUserSection } from "../../_sapphire/account-summary/WelcomeUserSection";
+//Foundation
+import { STORELOCATORACTIONS } from "../../../../_foundation/constants/common";
+import { useStoreLocatorValue } from "../../../../_foundation/context/store-locator-context";
 
 /**
  * Account component
@@ -43,11 +46,14 @@ const Account: React.FC = (props: any) => {
     widget: widgetName,
   };
 
+  const storeLocatorDispach = useStoreLocatorValue().dispatch;
+
   const logOutUser = (props: any) => {
     const payload = {
       ...payloadBase,
     };
     dispatch(userAction.LOGOUT_REQUESTED_ACTION(payload));
+    storeLocatorDispach({ type: STORELOCATORACTIONS.RESET_STORE_SELECTOR });
   };
 
   const SignOut = t("PersonalInformation.SignOutButton");

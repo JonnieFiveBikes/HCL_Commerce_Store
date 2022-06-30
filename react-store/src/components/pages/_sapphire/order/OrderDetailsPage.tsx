@@ -89,6 +89,13 @@ function OrderDetailsPage(props: any) {
 
   const loading = orderId && orderDetails === undefined;
   const notFound = !orderId || (orderDetails && orderDetails.error);
+  const oStatus = t(`Order.Status_${orderDetails?.orderStatus}`);
+  const groups = orderItems?.reduce((m, v) => {
+    m[v.orderItemStatus] = 1;
+    return m;
+  }, {});
+  const grpSize = Object.keys(groups ?? {}).length;
+  const statusDisp = grpSize <= 1 ? oStatus : t("Order.multiStatus");
 
   return (
     <StyledContainer className="page">
@@ -140,7 +147,7 @@ function OrderDetailsPage(props: any) {
                 {t("Order.Status")}
               </StyledTypography>
               <StyledTypography variant="body2" display="block">
-                {t(`Order.Status_${orderDetails.orderStatus}`)}
+                {statusDisp}
               </StyledTypography>
             </StyledGrid>
 

@@ -83,6 +83,7 @@ export const FeatureCard = (props: FeaturedCardProps) => {
                       }}
                       key={index}
                       className="product-swatch-medium"
+                      data-testid={`feature-card-${e.identifier.toLowerCase()}-swatch`}
                     />
                   ))}
               </div>

@@ -21,7 +21,7 @@ import { ProductCardLayout } from "../../../components/widgets/product-card";
  * @param props
  */
 export default function useProductCardWidget(props: any) {
-  const { productListTotal, productList, categoryId, ...rest } = props;
+  const { productListTotal, productList, categoryId, selectedFacets, priceSelected, ...rest } = props;
   const { t } = useTranslation();
   return (
     <StyledGrid container spacing={2} alignItems="stretch" direction="row">
@@ -33,11 +33,11 @@ export default function useProductCardWidget(props: any) {
         ))
       ) : (
         <>
-          {productListTotal === 0 && (
+          {productListTotal === 0 && (Object.keys(selectedFacets)?.length > 0 || priceSelected) ? (
             <StyledGrid item xs={12}>
               {t("ProductGrid.Labels.noProductsFoundForFilter")}
             </StyledGrid>
-          )}
+          ) : null}
         </>
       )}
     </StyledGrid>

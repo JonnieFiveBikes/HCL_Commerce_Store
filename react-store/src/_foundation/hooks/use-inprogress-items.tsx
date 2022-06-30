@@ -181,7 +181,12 @@ const DeleteAction = ({ rowData: r, fullTable: t, headers: h, ...props }) => {
     deleteKeys({ orderId, currency, keys, t, h, s, f });
   };
   return (
-    <StyledIconButton style={{ padding: "0.2rem" }} disabled={disabled} color="primary" onClick={onClickSDK}>
+    <StyledIconButton
+      style={{ padding: "0.2rem" }}
+      disabled={disabled}
+      color="primary"
+      onClick={onClickSDK}
+      data-testid="use-inprogress-delete-outline-icon-button">
       <DeleteOutlineOutlinedIcon />
     </StyledIconButton>
   );
@@ -222,7 +227,12 @@ const AddToCartAction = ({ rowData, fullTable: t, headers: h, ...props }) => {
     addKeysToCart({ keys, t, h, s, f });
   };
   return (
-    <StyledIconButton style={{ padding: "0.2rem" }} disabled={disabled} color="primary" onClick={onClickSKC}>
+    <StyledIconButton
+      style={{ padding: "0.2rem" }}
+      disabled={disabled}
+      color="primary"
+      onClick={onClickSKC}
+      data-testid="use-inprogress-shopping-cart-icon-button">
       <ShoppingCart />
     </StyledIconButton>
   );

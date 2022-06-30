@@ -8,9 +8,10 @@
  *
  *==================================================
  */
-import React from "react";
+import React, { useCallback, useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import MatButton, { ButtonProps } from "@material-ui/core/Button";
+import { debounce } from "lodash-es";
 
 type StyledButtonProps = Omit<
   JSX.IntrinsicElements["a"] &
@@ -19,12 +20,56 @@ type StyledButtonProps = Omit<
       testId: string;
       component?: any;
       to?: any;
+      onClick?: any;
     },
   "css"
 >;
 const CustomMatButton = React.forwardRef((props: StyledButtonProps, ref: any) => {
-  const { variant, className, color, testId, ...re } = props;
+  const { variant, className = "", color, testId, onClick, disabled, ...re } = props;
   const dataTestId = testId ? { "data-testid": `button-${testId}` } : {};
+  const [iDisabled, setIDisabled] = useState<boolean>(false);
+
+  const debounced = useMemo(
+    () =>
+      //debounce to prevent double click
+      debounce(() => {
+        setIDisabled(false);
+      }, 2000),
+    [setIDisabled]
+  );
+
+  const iClassName = useMemo(() => {
+    return iDisabled ? `${className} Mui-disabled` : className;
+  }, [iDisabled, className]);
+
+  const onClickWrapper = useCallback(
+    (event: any) => {
+      if (!iDisabled) {
+        setIDisabled(true);
+        onClick && onClick(event);
+        debounced();
+      }
+    },
+    [onClick, iDisabled, debounced]
+  );
+
+  useEffect(() => {
+    setIDisabled(false);
+    //React virtual dom try to reuse the component,
+    //if the component was reused, the unmount event/initialize is not happenning.
+    //to fix the iDisabled state issue, we can
+    //1. set it to false upon testId changes.
+    //2. add `key` prop to the component(so that React know this is complete different component)
+    //here we are using #1 approach.
+  }, [testId]);
+
+  useEffect(() => {
+    return () => {
+      debounced.cancel();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <MatButton
       {...dataTestId}
@@ -32,7 +77,9 @@ const CustomMatButton = React.forwardRef((props: StyledButtonProps, ref: any) =>
       ref={ref}
       variant={variant || "contained"}
       color={color || "primary"}
-      className={className}
+      className={iClassName}
+      disabled={disabled}
+      onClick={onClickWrapper}
     />
   );
 });
@@ -79,13 +126,21 @@ const StyledButton = styled(CustomMatButton)`
       }
     }
 
+    &.secondary-color-text-button {
+      color: ${theme.palette.text.secondary};
+    }
+
+    &.alert-color-text-button {
+      color: ${theme.palette.text.alert};
+    }
+
     &.MuiButton-text {
       font-size: 0.9rem;
       font-weight: 600;
       padding: 0;
       box-shadow: none;
       min-width: unset;
-      &:not(.Mui-disabled){
+      &:not(.Mui-disabled):not(.secondary-color-text-button):not(.alert-color-text-button) {
         color: ${theme.palette.primary.main};
       }
       background: none;
@@ -102,6 +157,14 @@ const StyledButton = styled(CustomMatButton)`
         background: ${theme.palette.primary.dark};
         border: 2px solid ${theme.palette.primary.dark};
         color: white;
+        opacity: 0.5;
+      }
+    }
+
+    &.MuiButton-outlinedPrimary {
+      &.Mui-disabled {
+        border: 1px solid ${theme.palette.primary.main};
+        color: ${theme.palette.primary.main};
         opacity: 0.5;
       }
     }

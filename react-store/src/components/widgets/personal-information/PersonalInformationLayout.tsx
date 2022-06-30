@@ -19,6 +19,7 @@ import getDisplayName from "react-display-name";
 import { useSite } from "../../../_foundation/hooks/useSite";
 //Custom libraries
 import { ChangePassword } from "../../widgets/change-password";
+import { CountryState } from "../country-state";
 import addressUtil from "../../../utils/addressUtil";
 //Redux
 import { addressDetailsSelector } from "../../../redux/selectors/account";
@@ -279,40 +280,30 @@ function PersonalInformationLayout() {
                 fullWidth
                 autoComplete="address-line1"
               />
-
-              <StyledTextField
-                margin="normal"
-                required
-                name="city"
-                label={t("AddressForm.Labels.City")}
-                onChange={(e) => setCity(e.target.value)}
-                value={city}
-                inputProps={{ maxLength: 40 }}
-                fullWidth
-                autoComplete="city"
-              />
-              <StyledTextField
-                margin="normal"
-                required
-                name="country"
-                label={t("AddressForm.Labels.Country")}
-                onChange={(e) => setCountry(e.target.value)}
-                value={country}
-                inputProps={{ maxLength: 40 }}
-                fullWidth
-                autoComplete="country"
-              />
-              <StyledTextField
-                margin="normal"
-                required
-                name="state"
-                label={t("AddressForm.Labels.State")}
-                onChange={(e) => setState(e.target.value)}
-                value={state}
-                inputProps={{ maxLength: 40 }}
-                fullWidth
-                autoComplete="state"
-              />
+              <StyledGrid container spacing={2}>
+                <StyledGrid item xs={12}>
+                  <StyledTextField
+                    margin="normal"
+                    required
+                    name="city"
+                    label={t("AddressForm.Labels.City")}
+                    onChange={(e) => setCity(e.target.value)}
+                    value={city}
+                    inputProps={{ maxLength: 40 }}
+                    fullWidth
+                    autoComplete="city"
+                  />
+                </StyledGrid>
+              </StyledGrid>
+              <StyledGrid className="top-margin-1" container spacing={2}>
+                <CountryState
+                  country={country}
+                  setCountry={setCountry}
+                  state={state}
+                  setState={setState}
+                  grids={[{ xs: 12 }, { xs: 12 }]}
+                />
+              </StyledGrid>
               <StyledTextField
                 margin="normal"
                 required

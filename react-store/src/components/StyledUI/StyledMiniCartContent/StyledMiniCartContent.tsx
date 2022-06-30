@@ -81,7 +81,7 @@ const StyledMiniCartContent = React.forwardRef<any, MiniCartContentProps>((props
       {orderItems.length > 0 ? (
         <>
           <StyledBox>
-            <OrderItemTable data={orderItems} miniCartView={true} handleMiniCartClose={handleClose} />
+            <OrderItemTable data={orderItems} preShip={true} miniCartView={true} handleMiniCartClose={handleClose} />
           </StyledBox>
           <Divider />
           <StyledGrid container className="horizontal-padding-2 vertical-padding-2">

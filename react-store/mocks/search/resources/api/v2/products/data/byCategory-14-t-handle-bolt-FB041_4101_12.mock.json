@@ -1,4 +1,7 @@
 {
+  "metaData": {
+    "price": "1"
+  },
   "breadCrumbTrailEntryView": [
     {
       "label": "Fasteners",
@@ -20,17 +23,21 @@
   "contents": [
     {
       "hasSingleSKU": false,
-      "storeID": "12",
       "buyable": "true",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=12&categoryId=14&contractId=-11009&currency=USD&langId=-1",
+      "name": "T-Handle Bolt",
+      "shortDescription": "Medium-strength clamping pin",
+      "manufacturer": "Black Key Fasteners",
+      "parentCatalogGroupID": "/12/14",
+      "seller": "",
+      "_ignored": "default.completion",
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4101.jpg",
+      "thumbnail": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4101.jpg",
       "seo": {
         "href": "/t-handle-bolt"
       },
-      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4101.jpg",
-      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4101.jpg",
-      "shortDescription": "Medium-strength clamping pin",
-      "parentCatalogGroupID": "/12/14",
       "partNumber": "FB041_4101",
-      "name": "T-Handle Bolt",
+      "storeID": "12",
       "price": [
         {
           "usage": "Display",
@@ -48,16 +55,17 @@
       ],
       "attributes": [
         {
-          "identifier": "hardware_fasteners_boltsThread size",
+          "identifier": "hardware_fasteners_boltsFinish",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": ["1/4\"-20", "1/4\"-28"],
               "sequence": ["1.0", "2.0"],
+              "identifier": ["Unfinished", "Black oxide"],
               "unitOfMeasure": ["one", "one"],
               "unitID": ["C62", "C62"],
-              "id": ["7000000000000002588", "7000000000000002589"],
-              "value": ["1/4\"-20", "1/4\"-28"]
+              "id": ["7000000000000002595", "7000000000000002596"],
+              "value": ["Unfinished", "Black oxide"]
             }
           ],
           "displayable": "true",
@@ -65,24 +73,24 @@
           "searchable": "false",
           "sequence": "0.0",
           "storeDisplay": "false",
-          "name": "Thread size",
+          "name": "Finish",
           "facetable": "false",
-          "id": "7000000000000000138",
+          "id": "7000000000000000139",
           "comparable": "true",
-          "key": "7000000000000000138",
           "swatchable": "false"
         },
         {
           "identifier": "Head style",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "1.0",
               "identifier": "T-Handle_FB041_4101",
+              "sequence": "1.0",
               "id": "7000000000000002648",
               "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_thandle.png",
               "value": "T-Handle",
-              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_thandle.png"
+              "image1path": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_thandle.png"
             }
           ],
           "displayable": "true",
@@ -94,60 +102,11 @@
           "facetable": "false",
           "id": "7000000000000000147",
           "comparable": "true",
-          "key": "7000000000000000147",
-          "swatchable": "false"
-        },
-        {
-          "identifier": "hardware_fasteners_boltsMaterial",
-          "usage": "Defining",
-          "values": [
-            {
-              "sequence": ["1.0", "2.0", "3.0"],
-              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
-              "unitOfMeasure": ["one", "one", "one"],
-              "unitID": ["C62", "C62", "C62"],
-              "id": ["7000000000000002612", "7000000000000002613", "7000000000000002614"],
-              "value": ["Stainless steel", "Alloy steel", "Brass"]
-            }
-          ],
-          "displayable": "true",
-          "merchandisable": "false",
-          "searchable": "false",
-          "sequence": "1.0",
-          "storeDisplay": "false",
-          "name": "Material",
-          "facetable": "false",
-          "id": "7000000000000000142",
-          "comparable": "true",
-          "key": "7000000000000000142",
-          "swatchable": "false"
-        },
-        {
-          "identifier": "Tensile strength (min)",
-          "usage": "Descriptive",
-          "values": [
-            {
-              "sequence": "1.0",
-              "identifier": "50000 psi_FB041_4101",
-              "unitID": "psi",
-              "id": "7000000000000002624",
-              "value": "50000 psi"
-            }
-          ],
-          "displayable": "true",
-          "merchandisable": "false",
-          "searchable": "false",
-          "sequence": "1.0",
-          "storeDisplay": "false",
-          "name": "Tensile strength (min)",
-          "facetable": "false",
-          "id": "7000000000000000144",
-          "comparable": "true",
-          "key": "7000000000000000144",
           "swatchable": "false"
         },
         {
           "identifier": "hardware_fasteners_boltsLength",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
@@ -162,17 +121,66 @@
           "displayable": "true",
           "merchandisable": "false",
           "searchable": "false",
-          "sequence": "2.0",
+          "sequence": "1.0",
           "storeDisplay": "false",
           "name": "Length",
           "facetable": "false",
           "id": "7000000000000000141",
           "comparable": "true",
-          "key": "7000000000000000141",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Tensile strength (min)",
+          "attribute.natural": "[]",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "50000 psi_FB041_4101",
+              "sequence": "1.0",
+              "unitID": "psi",
+              "id": "7000000000000002624",
+              "value": "50000 psi"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Tensile strength (min)",
+          "facetable": "false",
+          "id": "7000000000000000144",
+          "comparable": "true",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_boltsMaterial",
+          "attribute.natural": "[]",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0", "3.0"],
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002612", "7000000000000002613", "7000000000000002614"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000142",
+          "comparable": "true",
           "swatchable": "false"
         },
         {
           "identifier": "Package quantity",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -191,20 +199,20 @@
           "facetable": "false",
           "id": "7000000000000000145",
           "comparable": "true",
-          "key": "7000000000000000145",
           "swatchable": "false"
         },
         {
-          "identifier": "hardware_fasteners_boltsFinish",
+          "identifier": "hardware_fasteners_boltsThread size",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": ["Unfinished", "Black oxide"],
               "sequence": ["1.0", "2.0"],
+              "identifier": ["1/4\"-20", "1/4\"-28"],
               "unitOfMeasure": ["one", "one"],
               "unitID": ["C62", "C62"],
-              "id": ["7000000000000002595", "7000000000000002596"],
-              "value": ["Unfinished", "Black oxide"]
+              "id": ["7000000000000002588", "7000000000000002589"],
+              "value": ["1/4\"-20", "1/4\"-28"]
             }
           ],
           "displayable": "true",
@@ -212,15 +220,15 @@
           "searchable": "false",
           "sequence": "3.0",
           "storeDisplay": "false",
-          "name": "Finish",
+          "name": "Thread size",
           "facetable": "false",
-          "id": "7000000000000000139",
+          "id": "7000000000000000138",
           "comparable": "true",
-          "key": "7000000000000000139",
           "swatchable": "false"
         },
         {
           "identifier": "Grade",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -239,16 +247,16 @@
           "facetable": "false",
           "id": "7000000000000000148",
           "comparable": "true",
-          "key": "7000000000000000148",
           "swatchable": "false"
         },
         {
           "identifier": "Head height",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "1.0",
               "identifier": "1/4\"_FB041_4101",
+              "sequence": "1.0",
               "unitID": "inch",
               "id": "7000000000000002642",
               "value": "1/4\""
@@ -263,11 +271,11 @@
           "facetable": "false",
           "id": "7000000000000000146",
           "comparable": "true",
-          "key": "7000000000000000146",
           "swatchable": "false"
         },
         {
           "identifier": "Rockwell hardness (min)",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -287,7 +295,6 @@
           "facetable": "false",
           "id": "7000000000000000143",
           "comparable": "true",
-          "key": "7000000000000000143",
           "swatchable": "false"
         }
       ],
@@ -296,17 +303,21 @@
     },
     {
       "hasSingleSKU": false,
-      "storeID": "12",
       "buyable": "true",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=12&categoryId=14&contractId=-11009&currency=USD&langId=-1",
+      "name": "L-Hook Anchor Bolt",
       "shortDescription": "Cylindrical concrete fastener with a 90-degree hook",
+      "manufacturer": "Newtonbrook Steel",
       "parentCatalogGroupID": "/12/14",
+      "seller": "",
+      "_ignored": "default.completion",
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4102.jpg",
+      "thumbnail": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4102.jpg",
       "seo": {
         "href": "/l-hook-anchor-bolt"
       },
-      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4102.jpg",
-      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4102.jpg",
       "partNumber": "FB041_4102",
-      "name": "L-Hook Anchor Bolt",
+      "storeID": "12",
       "price": [
         {
           "usage": "Display",
@@ -324,16 +335,17 @@
       ],
       "attributes": [
         {
-          "identifier": "hardware_fasteners_boltsThread size",
+          "identifier": "hardware_fasteners_boltsLength",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": ["3/4\"-10", "1\"-8"],
-              "sequence": ["3.0", "4.0"],
-              "unitOfMeasure": ["one", "one"],
-              "unitID": ["C62", "C62"],
-              "id": ["7000000000000002590", "7000000000000002591"],
-              "value": ["3/4\"-10", "1\"-8"]
+              "sequence": ["3.0", "4.0", "5.0"],
+              "identifier": ["8\"", "10\"", "12\""],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002602", "7000000000000002603", "7000000000000002604"],
+              "value": ["8\"", "10\"", "12\""]
             }
           ],
           "displayable": "true",
@@ -341,25 +353,25 @@
           "searchable": "false",
           "sequence": "0.0",
           "storeDisplay": "false",
-          "name": "Thread size",
+          "name": "Length",
           "facetable": "false",
-          "id": "7000000000000000138",
+          "id": "7000000000000000141",
           "comparable": "true",
-          "key": "7000000000000000138",
           "swatchable": "false"
         },
         {
           "identifier": "Head style",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "2.0",
               "identifier": "None_FB041_4102",
+              "sequence": "2.0",
               "unitID": "None",
               "id": "7000000000000002649",
               "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_none.png",
               "value": "None",
-              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_none.png"
+              "image1path": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_none.png"
             }
           ],
           "displayable": "true",
@@ -371,11 +383,11 @@
           "facetable": "false",
           "id": "7000000000000000147",
           "comparable": "true",
-          "key": "7000000000000000147",
           "swatchable": "false"
         },
         {
           "identifier": "hardware_fasteners_boltsMaterial",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
@@ -396,16 +408,16 @@
           "facetable": "false",
           "id": "7000000000000000142",
           "comparable": "true",
-          "key": "7000000000000000142",
           "swatchable": "false"
         },
         {
           "identifier": "Tensile strength (min)",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "2.0",
               "identifier": "70000 psi_FB041_4102",
+              "sequence": "2.0",
               "unitID": "psi",
               "id": "7000000000000002625",
               "value": "70000 psi"
@@ -420,20 +432,20 @@
           "facetable": "false",
           "id": "7000000000000000144",
           "comparable": "true",
-          "key": "7000000000000000144",
           "swatchable": "false"
         },
         {
-          "identifier": "hardware_fasteners_boltsLength",
+          "identifier": "hardware_fasteners_boltsThread size",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "sequence": ["3.0", "4.0", "5.0"],
-              "identifier": ["8\"", "10\"", "12\""],
-              "unitOfMeasure": ["one", "one", "one"],
-              "unitID": ["C62", "C62", "C62"],
-              "id": ["7000000000000002602", "7000000000000002603", "7000000000000002604"],
-              "value": ["8\"", "10\"", "12\""]
+              "sequence": ["3.0", "4.0"],
+              "identifier": ["3/4\"-10", "1\"-8"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002590", "7000000000000002591"],
+              "value": ["3/4\"-10", "1\"-8"]
             }
           ],
           "displayable": "true",
@@ -441,15 +453,15 @@
           "searchable": "false",
           "sequence": "2.0",
           "storeDisplay": "false",
-          "name": "Length",
+          "name": "Thread size",
           "facetable": "false",
-          "id": "7000000000000000141",
+          "id": "7000000000000000138",
           "comparable": "true",
-          "key": "7000000000000000141",
           "swatchable": "false"
         },
         {
           "identifier": "Package quantity",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -468,11 +480,11 @@
           "facetable": "false",
           "id": "7000000000000000145",
           "comparable": "true",
-          "key": "7000000000000000145",
           "swatchable": "false"
         },
         {
           "identifier": "Grade",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -491,11 +503,11 @@
           "facetable": "false",
           "id": "7000000000000000148",
           "comparable": "true",
-          "key": "7000000000000000148",
           "swatchable": "false"
         },
         {
           "identifier": "Rockwell hardness (min)",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -515,7 +527,6 @@
           "facetable": "false",
           "id": "7000000000000000143",
           "comparable": "true",
-          "key": "7000000000000000143",
           "swatchable": "false"
         }
       ],
@@ -524,17 +535,21 @@
     },
     {
       "hasSingleSKU": false,
-      "storeID": "12",
       "buyable": "true",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=12&categoryId=14&contractId=-11009&currency=USD&langId=-1",
+      "name": "Square Head Bolt",
+      "shortDescription": "High-security, high-strength machine bolt",
+      "manufacturer": "Newtonbrook Steel",
+      "parentCatalogGroupID": "/12/14",
+      "seller": "",
+      "_ignored": "default.completion",
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4103.jpg",
+      "thumbnail": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4103.jpg",
       "seo": {
         "href": "/square-head-bolt"
       },
-      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4103.jpg",
-      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4103.jpg",
-      "shortDescription": "High-security, high-strength machine bolt",
-      "parentCatalogGroupID": "/12/14",
       "partNumber": "FB041_4103",
-      "name": "Square Head Bolt",
+      "storeID": "12",
       "price": [
         {
           "usage": "Display",
@@ -552,16 +567,17 @@
       ],
       "attributes": [
         {
-          "identifier": "hardware_fasteners_boltsThread size",
+          "identifier": "hardware_fasteners_boltsFinish",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": ["1/4\"-20", "1/4\"-28"],
-              "sequence": ["1.0", "2.0"],
+              "sequence": ["1.0", "3.0"],
+              "identifier": ["Unfinished", "Zinc"],
               "unitOfMeasure": ["one", "one"],
               "unitID": ["C62", "C62"],
-              "id": ["7000000000000002588", "7000000000000002589"],
-              "value": ["1/4\"-20", "1/4\"-28"]
+              "id": ["7000000000000002595", "7000000000000002597"],
+              "value": ["Unfinished", "Zinc"]
             }
           ],
           "displayable": "true",
@@ -569,25 +585,25 @@
           "searchable": "false",
           "sequence": "0.0",
           "storeDisplay": "false",
-          "name": "Thread size",
+          "name": "Finish",
           "facetable": "false",
-          "id": "7000000000000000138",
+          "id": "7000000000000000139",
           "comparable": "true",
-          "key": "7000000000000000138",
           "swatchable": "false"
         },
         {
           "identifier": "Head style",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "3.0",
               "identifier": "Square_FB041_4103",
+              "sequence": "3.0",
               "unitID": "Square",
               "id": "7000000000000002650",
               "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_square.png",
               "value": "Square",
-              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_square.png"
+              "image1path": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_square.png"
             }
           ],
           "displayable": "true",
@@ -599,60 +615,11 @@
           "facetable": "false",
           "id": "7000000000000000147",
           "comparable": "true",
-          "key": "7000000000000000147",
-          "swatchable": "false"
-        },
-        {
-          "identifier": "hardware_fasteners_boltsMaterial",
-          "usage": "Defining",
-          "values": [
-            {
-              "sequence": ["1.0", "2.0", "3.0"],
-              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
-              "unitOfMeasure": ["one", "one", "one"],
-              "unitID": ["C62", "C62", "C62"],
-              "id": ["7000000000000002612", "7000000000000002613", "7000000000000002614"],
-              "value": ["Stainless steel", "Alloy steel", "Brass"]
-            }
-          ],
-          "displayable": "true",
-          "merchandisable": "false",
-          "searchable": "false",
-          "sequence": "1.0",
-          "storeDisplay": "false",
-          "name": "Material",
-          "facetable": "false",
-          "id": "7000000000000000142",
-          "comparable": "true",
-          "key": "7000000000000000142",
-          "swatchable": "false"
-        },
-        {
-          "identifier": "Tensile strength (min)",
-          "usage": "Descriptive",
-          "values": [
-            {
-              "sequence": "3.0",
-              "identifier": "120000 psi_FB041_4103",
-              "unitID": "psi",
-              "id": "7000000000000002626",
-              "value": "120000 psi"
-            }
-          ],
-          "displayable": "true",
-          "merchandisable": "false",
-          "searchable": "false",
-          "sequence": "1.0",
-          "storeDisplay": "false",
-          "name": "Tensile strength (min)",
-          "facetable": "false",
-          "id": "7000000000000000144",
-          "comparable": "true",
-          "key": "7000000000000000144",
           "swatchable": "false"
         },
         {
           "identifier": "hardware_fasteners_boltsLength",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
@@ -667,17 +634,66 @@
           "displayable": "true",
           "merchandisable": "false",
           "searchable": "false",
-          "sequence": "2.0",
+          "sequence": "1.0",
           "storeDisplay": "false",
           "name": "Length",
           "facetable": "false",
           "id": "7000000000000000141",
           "comparable": "true",
-          "key": "7000000000000000141",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Tensile strength (min)",
+          "attribute.natural": "[]",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "120000 psi_FB041_4103",
+              "sequence": "3.0",
+              "unitID": "psi",
+              "id": "7000000000000002626",
+              "value": "120000 psi"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Tensile strength (min)",
+          "facetable": "false",
+          "id": "7000000000000000144",
+          "comparable": "true",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_boltsMaterial",
+          "attribute.natural": "[]",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0", "3.0"],
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002612", "7000000000000002613", "7000000000000002614"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000142",
+          "comparable": "true",
           "swatchable": "false"
         },
         {
           "identifier": "Package quantity",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -696,20 +712,20 @@
           "facetable": "false",
           "id": "7000000000000000145",
           "comparable": "true",
-          "key": "7000000000000000145",
           "swatchable": "false"
         },
         {
-          "identifier": "hardware_fasteners_boltsFinish",
+          "identifier": "hardware_fasteners_boltsThread size",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": ["Unfinished", "Zinc"],
-              "sequence": ["1.0", "3.0"],
+              "sequence": ["1.0", "2.0"],
+              "identifier": ["1/4\"-20", "1/4\"-28"],
               "unitOfMeasure": ["one", "one"],
               "unitID": ["C62", "C62"],
-              "id": ["7000000000000002595", "7000000000000002597"],
-              "value": ["Unfinished", "Zinc"]
+              "id": ["7000000000000002588", "7000000000000002589"],
+              "value": ["1/4\"-20", "1/4\"-28"]
             }
           ],
           "displayable": "true",
@@ -717,15 +733,15 @@
           "searchable": "false",
           "sequence": "3.0",
           "storeDisplay": "false",
-          "name": "Finish",
+          "name": "Thread size",
           "facetable": "false",
-          "id": "7000000000000000139",
+          "id": "7000000000000000138",
           "comparable": "true",
-          "key": "7000000000000000139",
           "swatchable": "false"
         },
         {
           "identifier": "Grade",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -744,16 +760,16 @@
           "facetable": "false",
           "id": "7000000000000000148",
           "comparable": "true",
-          "key": "7000000000000000148",
           "swatchable": "false"
         },
         {
           "identifier": "Head height",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "2.0",
               "identifier": "3/8\"_FB041_4103",
+              "sequence": "2.0",
               "unitID": "inch",
               "id": "7000000000000002643",
               "value": "3/8\""
@@ -768,11 +784,11 @@
           "facetable": "false",
           "id": "7000000000000000146",
           "comparable": "true",
-          "key": "7000000000000000146",
           "swatchable": "false"
         },
         {
           "identifier": "Rockwell hardness (min)",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -792,7 +808,6 @@
           "facetable": "false",
           "id": "7000000000000000143",
           "comparable": "true",
-          "key": "7000000000000000143",
           "swatchable": "false"
         }
       ],
@@ -801,17 +816,21 @@
     },
     {
       "hasSingleSKU": false,
-      "storeID": "12",
       "buyable": "true",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=12&categoryId=14&contractId=-11009&currency=USD&langId=-1",
+      "name": "Hex Head Bolt",
+      "shortDescription": "Partially threaded machine bolt with a six-sided head",
+      "manufacturer": "Arcarocco",
+      "parentCatalogGroupID": "/12/14",
+      "seller": "",
+      "_ignored": "default.completion",
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4104.jpg",
+      "thumbnail": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4104.jpg",
       "seo": {
         "href": "/hex-head-bolt"
       },
-      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4104.jpg",
-      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4104.jpg",
-      "shortDescription": "Partially threaded machine bolt with a six-sided head",
-      "parentCatalogGroupID": "/12/14",
       "partNumber": "FB041_4104",
-      "name": "Hex Head Bolt",
+      "storeID": "12",
       "price": [
         {
           "usage": "Display",
@@ -829,16 +848,17 @@
       ],
       "attributes": [
         {
-          "identifier": "hardware_fasteners_boltsThread size",
+          "identifier": "hardware_fasteners_boltsFinish",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": ["1/4\"-28", "3/8\"-16"],
-              "sequence": ["2.0", "5.0"],
+              "sequence": ["1.0", "3.0"],
+              "identifier": ["Unfinished", "Zinc"],
               "unitOfMeasure": ["one", "one"],
               "unitID": ["C62", "C62"],
-              "id": ["7000000000000002589", "7000000000000002592"],
-              "value": ["1/4\"-28", "3/8\"-16"]
+              "id": ["7000000000000002595", "7000000000000002597"],
+              "value": ["Unfinished", "Zinc"]
             }
           ],
           "displayable": "true",
@@ -846,25 +866,25 @@
           "searchable": "false",
           "sequence": "0.0",
           "storeDisplay": "false",
-          "name": "Thread size",
+          "name": "Finish",
           "facetable": "false",
-          "id": "7000000000000000138",
+          "id": "7000000000000000139",
           "comparable": "true",
-          "key": "7000000000000000138",
           "swatchable": "false"
         },
         {
           "identifier": "Head style",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "4.0",
               "identifier": "Hex_FB041_4104",
+              "sequence": "4.0",
               "unitID": "Hex",
               "id": "7000000000000002651",
               "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_hex.png",
               "value": "Hex",
-              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_hex.png"
+              "image1path": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_hex.png"
             }
           ],
           "displayable": "true",
@@ -876,60 +896,11 @@
           "facetable": "false",
           "id": "7000000000000000147",
           "comparable": "true",
-          "key": "7000000000000000147",
-          "swatchable": "false"
-        },
-        {
-          "identifier": "hardware_fasteners_boltsMaterial",
-          "usage": "Defining",
-          "values": [
-            {
-              "sequence": ["1.0", "2.0", "3.0"],
-              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
-              "unitOfMeasure": ["one", "one", "one"],
-              "unitID": ["C62", "C62", "C62"],
-              "id": ["7000000000000002612", "7000000000000002613", "7000000000000002614"],
-              "value": ["Stainless steel", "Alloy steel", "Brass"]
-            }
-          ],
-          "displayable": "true",
-          "merchandisable": "false",
-          "searchable": "false",
-          "sequence": "1.0",
-          "storeDisplay": "false",
-          "name": "Material",
-          "facetable": "false",
-          "id": "7000000000000000142",
-          "comparable": "true",
-          "key": "7000000000000000142",
-          "swatchable": "false"
-        },
-        {
-          "identifier": "Tensile strength (min)",
-          "usage": "Descriptive",
-          "values": [
-            {
-              "sequence": "4.0",
-              "identifier": "120000 psi_FB041_4104",
-              "unitID": "psi",
-              "id": "7000000000000002627",
-              "value": "120000 psi"
-            }
-          ],
-          "displayable": "true",
-          "merchandisable": "false",
-          "searchable": "false",
-          "sequence": "1.0",
-          "storeDisplay": "false",
-          "name": "Tensile strength (min)",
-          "facetable": "false",
-          "id": "7000000000000000144",
-          "comparable": "true",
-          "key": "7000000000000000144",
           "swatchable": "false"
         },
         {
           "identifier": "hardware_fasteners_boltsLength",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
@@ -944,17 +915,66 @@
           "displayable": "true",
           "merchandisable": "false",
           "searchable": "false",
-          "sequence": "2.0",
+          "sequence": "1.0",
           "storeDisplay": "false",
           "name": "Length",
           "facetable": "false",
           "id": "7000000000000000141",
           "comparable": "true",
-          "key": "7000000000000000141",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Tensile strength (min)",
+          "attribute.natural": "[]",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "120000 psi_FB041_4104",
+              "sequence": "4.0",
+              "unitID": "psi",
+              "id": "7000000000000002627",
+              "value": "120000 psi"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Tensile strength (min)",
+          "facetable": "false",
+          "id": "7000000000000000144",
+          "comparable": "true",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_boltsMaterial",
+          "attribute.natural": "[]",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0", "3.0"],
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002612", "7000000000000002613", "7000000000000002614"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000142",
+          "comparable": "true",
           "swatchable": "false"
         },
         {
           "identifier": "Package quantity",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -973,20 +993,20 @@
           "facetable": "false",
           "id": "7000000000000000145",
           "comparable": "true",
-          "key": "7000000000000000145",
           "swatchable": "false"
         },
         {
-          "identifier": "hardware_fasteners_boltsFinish",
+          "identifier": "hardware_fasteners_boltsThread size",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": ["Unfinished", "Zinc"],
-              "sequence": ["1.0", "3.0"],
+              "sequence": ["2.0", "5.0"],
+              "identifier": ["1/4\"-28", "3/8\"-16"],
               "unitOfMeasure": ["one", "one"],
               "unitID": ["C62", "C62"],
-              "id": ["7000000000000002595", "7000000000000002597"],
-              "value": ["Unfinished", "Zinc"]
+              "id": ["7000000000000002589", "7000000000000002592"],
+              "value": ["1/4\"-28", "3/8\"-16"]
             }
           ],
           "displayable": "true",
@@ -994,15 +1014,15 @@
           "searchable": "false",
           "sequence": "3.0",
           "storeDisplay": "false",
-          "name": "Finish",
+          "name": "Thread size",
           "facetable": "false",
-          "id": "7000000000000000139",
+          "id": "7000000000000000138",
           "comparable": "true",
-          "key": "7000000000000000139",
           "swatchable": "false"
         },
         {
           "identifier": "Grade",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -1021,16 +1041,16 @@
           "facetable": "false",
           "id": "7000000000000000148",
           "comparable": "true",
-          "key": "7000000000000000148",
           "swatchable": "false"
         },
         {
           "identifier": "Head height",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "3.0",
               "identifier": "1/4\"_FB041_4104",
+              "sequence": "3.0",
               "unitID": "inch",
               "id": "7000000000000002644",
               "value": "1/4\""
@@ -1045,11 +1065,11 @@
           "facetable": "false",
           "id": "7000000000000000146",
           "comparable": "true",
-          "key": "7000000000000000146",
           "swatchable": "false"
         },
         {
           "identifier": "Rockwell hardness (min)",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -1069,7 +1089,6 @@
           "facetable": "false",
           "id": "7000000000000000143",
           "comparable": "true",
-          "key": "7000000000000000143",
           "swatchable": "false"
         }
       ],
@@ -1078,17 +1097,21 @@
     },
     {
       "hasSingleSKU": false,
-      "storeID": "12",
       "buyable": "true",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=12&categoryId=14&contractId=-11009&currency=USD&langId=-1",
+      "name": "Structural Coastal Bolt",
+      "shortDescription": "Coarsely threaded, multi-purpose bolt available with corrosion-resistant coating",
+      "manufacturer": "Black Key Fasteners",
+      "parentCatalogGroupID": "/12/14",
+      "seller": "",
+      "_ignored": "default.completion",
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4105.jpg",
+      "thumbnail": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4105.jpg",
       "seo": {
         "href": "/structural-coastal-bolt"
       },
-      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4105.jpg",
-      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4105.jpg",
-      "shortDescription": "Coarsely threaded, multi-purpose bolt available with corrosion-resistant coating",
-      "parentCatalogGroupID": "/12/14",
       "partNumber": "FB041_4105",
-      "name": "Structural Coastal Bolt",
+      "storeID": "12",
       "price": [
         {
           "usage": "Display",
@@ -1106,16 +1129,17 @@
       ],
       "attributes": [
         {
-          "identifier": "hardware_fasteners_boltsThread size",
+          "identifier": "hardware_fasteners_boltsFinish",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": ["1/4\"-20", "1/4\"-28"],
-              "sequence": ["1.0", "2.0"],
+              "sequence": ["3.0", "4.0"],
+              "identifier": ["Zinc", "Hot dipped galvanized"],
               "unitOfMeasure": ["one", "one"],
               "unitID": ["C62", "C62"],
-              "id": ["7000000000000002588", "7000000000000002589"],
-              "value": ["1/4\"-20", "1/4\"-28"]
+              "id": ["7000000000000002597", "7000000000000002598"],
+              "value": ["Zinc", "Hot dipped galvanized"]
             }
           ],
           "displayable": "true",
@@ -1123,25 +1147,25 @@
           "searchable": "false",
           "sequence": "0.0",
           "storeDisplay": "false",
-          "name": "Thread size",
+          "name": "Finish",
           "facetable": "false",
-          "id": "7000000000000000138",
+          "id": "7000000000000000139",
           "comparable": "true",
-          "key": "7000000000000000138",
           "swatchable": "false"
         },
         {
           "identifier": "Head style",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "5.0",
               "identifier": "Hex_FB041_4105",
+              "sequence": "5.0",
               "unitID": "Hex",
               "id": "7000000000000002652",
               "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_hex.png",
               "value": "Hex",
-              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_hex.png"
+              "image1path": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_hex.png"
             }
           ],
           "displayable": "true",
@@ -1153,60 +1177,11 @@
           "facetable": "false",
           "id": "7000000000000000147",
           "comparable": "true",
-          "key": "7000000000000000147",
-          "swatchable": "false"
-        },
-        {
-          "identifier": "hardware_fasteners_boltsMaterial",
-          "usage": "Defining",
-          "values": [
-            {
-              "sequence": ["1.0", "2.0", "3.0"],
-              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
-              "unitOfMeasure": ["one", "one", "one"],
-              "unitID": ["C62", "C62", "C62"],
-              "id": ["7000000000000002612", "7000000000000002613", "7000000000000002614"],
-              "value": ["Stainless steel", "Alloy steel", "Brass"]
-            }
-          ],
-          "displayable": "true",
-          "merchandisable": "false",
-          "searchable": "false",
-          "sequence": "1.0",
-          "storeDisplay": "false",
-          "name": "Material",
-          "facetable": "false",
-          "id": "7000000000000000142",
-          "comparable": "true",
-          "key": "7000000000000000142",
-          "swatchable": "false"
-        },
-        {
-          "identifier": "Tensile strength (min)",
-          "usage": "Descriptive",
-          "values": [
-            {
-              "sequence": "5.0",
-              "identifier": "50000 psi_FB041_4105",
-              "unitID": "psi",
-              "id": "7000000000000002628",
-              "value": "50000 psi"
-            }
-          ],
-          "displayable": "true",
-          "merchandisable": "false",
-          "searchable": "false",
-          "sequence": "1.0",
-          "storeDisplay": "false",
-          "name": "Tensile strength (min)",
-          "facetable": "false",
-          "id": "7000000000000000144",
-          "comparable": "true",
-          "key": "7000000000000000144",
           "swatchable": "false"
         },
         {
           "identifier": "hardware_fasteners_boltsLength",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
@@ -1221,17 +1196,66 @@
           "displayable": "true",
           "merchandisable": "false",
           "searchable": "false",
-          "sequence": "2.0",
+          "sequence": "1.0",
           "storeDisplay": "false",
           "name": "Length",
           "facetable": "false",
           "id": "7000000000000000141",
           "comparable": "true",
-          "key": "7000000000000000141",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Tensile strength (min)",
+          "attribute.natural": "[]",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "50000 psi_FB041_4105",
+              "sequence": "5.0",
+              "unitID": "psi",
+              "id": "7000000000000002628",
+              "value": "50000 psi"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Tensile strength (min)",
+          "facetable": "false",
+          "id": "7000000000000000144",
+          "comparable": "true",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "hardware_fasteners_boltsMaterial",
+          "attribute.natural": "[]",
+          "usage": "Defining",
+          "values": [
+            {
+              "sequence": ["1.0", "2.0", "3.0"],
+              "identifier": ["Stainless steel", "Alloy steel", "Brass"],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002612", "7000000000000002613", "7000000000000002614"],
+              "value": ["Stainless steel", "Alloy steel", "Brass"]
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "false",
+          "searchable": "false",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "false",
+          "id": "7000000000000000142",
+          "comparable": "true",
           "swatchable": "false"
         },
         {
           "identifier": "Package quantity",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -1250,20 +1274,20 @@
           "facetable": "false",
           "id": "7000000000000000145",
           "comparable": "true",
-          "key": "7000000000000000145",
           "swatchable": "false"
         },
         {
-          "identifier": "hardware_fasteners_boltsFinish",
+          "identifier": "hardware_fasteners_boltsThread size",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": ["Zinc", "Hot dipped galvanized"],
-              "sequence": ["3.0", "4.0"],
+              "sequence": ["1.0", "2.0"],
+              "identifier": ["1/4\"-20", "1/4\"-28"],
               "unitOfMeasure": ["one", "one"],
               "unitID": ["C62", "C62"],
-              "id": ["7000000000000002597", "7000000000000002598"],
-              "value": ["Zinc", "Hot dipped galvanized"]
+              "id": ["7000000000000002588", "7000000000000002589"],
+              "value": ["1/4\"-20", "1/4\"-28"]
             }
           ],
           "displayable": "true",
@@ -1271,15 +1295,15 @@
           "searchable": "false",
           "sequence": "3.0",
           "storeDisplay": "false",
-          "name": "Finish",
+          "name": "Thread size",
           "facetable": "false",
-          "id": "7000000000000000139",
+          "id": "7000000000000000138",
           "comparable": "true",
-          "key": "7000000000000000139",
           "swatchable": "false"
         },
         {
           "identifier": "Grade",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -1298,16 +1322,16 @@
           "facetable": "false",
           "id": "7000000000000000148",
           "comparable": "true",
-          "key": "7000000000000000148",
           "swatchable": "false"
         },
         {
           "identifier": "Head height",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "4.0",
               "identifier": "5/16\"_FB041_4105",
+              "sequence": "4.0",
               "unitID": "inch",
               "id": "7000000000000002645",
               "value": "5/16\""
@@ -1322,11 +1346,11 @@
           "facetable": "false",
           "id": "7000000000000000146",
           "comparable": "true",
-          "key": "7000000000000000146",
           "swatchable": "false"
         },
         {
           "identifier": "Rockwell hardness (min)",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -1346,7 +1370,6 @@
           "facetable": "false",
           "id": "7000000000000000143",
           "comparable": "true",
-          "key": "7000000000000000143",
           "swatchable": "false"
         }
       ],
@@ -1355,17 +1378,21 @@
     },
     {
       "hasSingleSKU": false,
-      "storeID": "12",
       "buyable": "true",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=12&categoryId=14&contractId=-11009&currency=USD&langId=-1",
+      "name": "Concrete Bolt",
+      "shortDescription": "Hex-washer head bolt with serrated threads",
+      "manufacturer": "Black Key Fasteners",
+      "parentCatalogGroupID": "/12/14",
+      "seller": "",
+      "_ignored": "default.completion",
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4106.jpg",
+      "thumbnail": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4106.jpg",
       "seo": {
         "href": "/concrete-bolt"
       },
-      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4106.jpg",
-      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4106.jpg",
-      "shortDescription": "Hex-washer head bolt with serrated threads",
-      "parentCatalogGroupID": "/12/14",
       "partNumber": "FB041_4106",
-      "name": "Concrete Bolt",
+      "storeID": "12",
       "price": [
         {
           "usage": "Display",
@@ -1383,16 +1410,17 @@
       ],
       "attributes": [
         {
-          "identifier": "hardware_fasteners_boltsThread size",
+          "identifier": "hardware_fasteners_boltsLength",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": "3/4\"-10",
-              "sequence": "3.0",
-              "unitOfMeasure": "one",
-              "unitID": "C62",
-              "id": "7000000000000002590",
-              "value": "3/4\"-10"
+              "sequence": ["8.0", "9.0", "10.0"],
+              "identifier": ["2\"", "2 1/4\"", "3\""],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002607", "7000000000000002608", "7000000000000002609"],
+              "value": ["2\"", "2 1/4\"", "3\""]
             }
           ],
           "displayable": "true",
@@ -1400,25 +1428,25 @@
           "searchable": "false",
           "sequence": "0.0",
           "storeDisplay": "false",
-          "name": "Thread size",
+          "name": "Length",
           "facetable": "false",
-          "id": "7000000000000000138",
+          "id": "7000000000000000141",
           "comparable": "true",
-          "key": "7000000000000000138",
           "swatchable": "false"
         },
         {
           "identifier": "Head style",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "6.0",
               "identifier": "Hex_FB041_4106",
+              "sequence": "6.0",
               "unitID": "Hex",
               "id": "7000000000000002653",
               "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_hex.png",
               "value": "Hex",
-              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_hex.png"
+              "image1path": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_hex.png"
             }
           ],
           "displayable": "true",
@@ -1430,11 +1458,11 @@
           "facetable": "false",
           "id": "7000000000000000147",
           "comparable": "true",
-          "key": "7000000000000000147",
           "swatchable": "false"
         },
         {
           "identifier": "hardware_fasteners_boltsMaterial",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
@@ -1455,16 +1483,16 @@
           "facetable": "false",
           "id": "7000000000000000142",
           "comparable": "true",
-          "key": "7000000000000000142",
           "swatchable": "false"
         },
         {
           "identifier": "Tensile strength (min)",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "6.0",
               "identifier": "120000 psi_FB041_4106",
+              "sequence": "6.0",
               "unitID": "psi",
               "id": "7000000000000002629",
               "value": "120000 psi"
@@ -1479,20 +1507,20 @@
           "facetable": "false",
           "id": "7000000000000000144",
           "comparable": "true",
-          "key": "7000000000000000144",
           "swatchable": "false"
         },
         {
-          "identifier": "hardware_fasteners_boltsLength",
+          "identifier": "hardware_fasteners_boltsThread size",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "sequence": ["8.0", "9.0", "10.0"],
-              "identifier": ["2\"", "2 1/4\"", "3\""],
-              "unitOfMeasure": ["one", "one", "one"],
-              "unitID": ["C62", "C62", "C62"],
-              "id": ["7000000000000002607", "7000000000000002608", "7000000000000002609"],
-              "value": ["2\"", "2 1/4\"", "3\""]
+              "sequence": ["2.0", "3.0"],
+              "identifier": ["1/4\"-28", "3/4\"-10"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002589", "7000000000000002590"],
+              "value": ["1/4\"-28", "3/4\"-10"]
             }
           ],
           "displayable": "true",
@@ -1500,15 +1528,15 @@
           "searchable": "false",
           "sequence": "2.0",
           "storeDisplay": "false",
-          "name": "Length",
+          "name": "Thread size",
           "facetable": "false",
-          "id": "7000000000000000141",
+          "id": "7000000000000000138",
           "comparable": "true",
-          "key": "7000000000000000141",
           "swatchable": "false"
         },
         {
           "identifier": "Package quantity",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -1527,11 +1555,11 @@
           "facetable": "false",
           "id": "7000000000000000145",
           "comparable": "true",
-          "key": "7000000000000000145",
           "swatchable": "false"
         },
         {
           "identifier": "Grade",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -1550,16 +1578,16 @@
           "facetable": "false",
           "id": "7000000000000000148",
           "comparable": "true",
-          "key": "7000000000000000148",
           "swatchable": "false"
         },
         {
           "identifier": "Head height",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "5.0",
               "identifier": "1/4\"_FB041_4106",
+              "sequence": "5.0",
               "unitID": "inch",
               "id": "7000000000000002646",
               "value": "1/4\""
@@ -1574,11 +1602,11 @@
           "facetable": "false",
           "id": "7000000000000000146",
           "comparable": "true",
-          "key": "7000000000000000146",
           "swatchable": "false"
         },
         {
           "identifier": "Rockwell hardness (min)",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -1598,7 +1626,6 @@
           "facetable": "false",
           "id": "7000000000000000143",
           "comparable": "true",
-          "key": "7000000000000000143",
           "swatchable": "false"
         }
       ],
@@ -1607,17 +1634,21 @@
     },
     {
       "hasSingleSKU": false,
-      "storeID": "12",
       "buyable": "true",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=12&categoryId=14&contractId=-11009&currency=USD&langId=-1",
+      "name": "Hanger Bolt",
       "shortDescription": "Dual-threaded general purpose hanger bolt",
+      "manufacturer": "Veerman Tools",
       "parentCatalogGroupID": "/12/14",
+      "seller": "",
+      "_ignored": "default.completion",
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4107.jpg",
+      "thumbnail": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4107.jpg",
       "seo": {
         "href": "/hanger-bolt"
       },
-      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4107.jpg",
-      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4107.jpg",
       "partNumber": "FB041_4107",
-      "name": "Hanger Bolt",
+      "storeID": "12",
       "price": [
         {
           "usage": "Display",
@@ -1635,16 +1666,17 @@
       ],
       "attributes": [
         {
-          "identifier": "hardware_fasteners_boltsThread size",
+          "identifier": "hardware_fasteners_boltsLength",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": ["1/4\"-20", "5/16\"-18"],
-              "sequence": ["1.0", "6.0"],
-              "unitOfMeasure": ["one", "one"],
-              "unitID": ["C62", "C62"],
-              "id": ["7000000000000002588", "7000000000000002593"],
-              "value": ["1/4\"-20", "5/16\"-18"]
+              "sequence": ["8.0", "9.0", "10.0"],
+              "identifier": ["2\"", "2 1/4\"", "3\""],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002607", "7000000000000002608", "7000000000000002609"],
+              "value": ["2\"", "2 1/4\"", "3\""]
             }
           ],
           "displayable": "true",
@@ -1652,25 +1684,25 @@
           "searchable": "false",
           "sequence": "0.0",
           "storeDisplay": "false",
-          "name": "Thread size",
+          "name": "Length",
           "facetable": "false",
-          "id": "7000000000000000138",
+          "id": "7000000000000000141",
           "comparable": "true",
-          "key": "7000000000000000138",
           "swatchable": "false"
         },
         {
           "identifier": "Head style",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "7.0",
               "identifier": "None_FB041_4107",
+              "sequence": "7.0",
               "unitID": "None",
               "id": "7000000000000002654",
               "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_none.png",
               "value": "None",
-              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_none.png"
+              "image1path": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_none.png"
             }
           ],
           "displayable": "true",
@@ -1682,11 +1714,11 @@
           "facetable": "false",
           "id": "7000000000000000147",
           "comparable": "true",
-          "key": "7000000000000000147",
           "swatchable": "false"
         },
         {
           "identifier": "hardware_fasteners_boltsMaterial",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
@@ -1707,16 +1739,16 @@
           "facetable": "false",
           "id": "7000000000000000142",
           "comparable": "true",
-          "key": "7000000000000000142",
           "swatchable": "false"
         },
         {
           "identifier": "Tensile strength (min)",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "7.0",
               "identifier": "70000 psi_FB041_4107",
+              "sequence": "7.0",
               "unitID": "psi",
               "id": "7000000000000002630",
               "value": "70000 psi"
@@ -1731,20 +1763,20 @@
           "facetable": "false",
           "id": "7000000000000000144",
           "comparable": "true",
-          "key": "7000000000000000144",
           "swatchable": "false"
         },
         {
-          "identifier": "hardware_fasteners_boltsLength",
+          "identifier": "hardware_fasteners_boltsThread size",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "sequence": ["8.0", "9.0", "10.0"],
-              "identifier": ["2\"", "2 1/4\"", "3\""],
-              "unitOfMeasure": ["one", "one", "one"],
-              "unitID": ["C62", "C62", "C62"],
-              "id": ["7000000000000002607", "7000000000000002608", "7000000000000002609"],
-              "value": ["2\"", "2 1/4\"", "3\""]
+              "sequence": ["1.0", "6.0"],
+              "identifier": ["1/4\"-20", "5/16\"-18"],
+              "unitOfMeasure": ["one", "one"],
+              "unitID": ["C62", "C62"],
+              "id": ["7000000000000002588", "7000000000000002593"],
+              "value": ["1/4\"-20", "5/16\"-18"]
             }
           ],
           "displayable": "true",
@@ -1752,15 +1784,15 @@
           "searchable": "false",
           "sequence": "2.0",
           "storeDisplay": "false",
-          "name": "Length",
+          "name": "Thread size",
           "facetable": "false",
-          "id": "7000000000000000141",
+          "id": "7000000000000000138",
           "comparable": "true",
-          "key": "7000000000000000141",
           "swatchable": "false"
         },
         {
           "identifier": "Package quantity",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -1779,11 +1811,11 @@
           "facetable": "false",
           "id": "7000000000000000145",
           "comparable": "true",
-          "key": "7000000000000000145",
           "swatchable": "false"
         },
         {
           "identifier": "Grade",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -1802,11 +1834,11 @@
           "facetable": "false",
           "id": "7000000000000000148",
           "comparable": "true",
-          "key": "7000000000000000148",
           "swatchable": "false"
         },
         {
           "identifier": "Rockwell hardness (min)",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -1826,7 +1858,6 @@
           "facetable": "false",
           "id": "7000000000000000143",
           "comparable": "true",
-          "key": "7000000000000000143",
           "swatchable": "false"
         }
       ],
@@ -1835,17 +1866,21 @@
     },
     {
       "hasSingleSKU": false,
-      "storeID": "12",
       "buyable": "true",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=12&categoryId=14&contractId=-11009&currency=USD&langId=-1",
+      "name": "Machinery Eyebolt",
+      "shortDescription": "Partially threaded eyebolt ideal for lifting and rigging",
+      "manufacturer": "Arcarocco",
+      "parentCatalogGroupID": "/12/14",
+      "seller": "",
+      "_ignored": "default.completion",
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4108.jpg",
+      "thumbnail": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4108.jpg",
       "seo": {
         "href": "/machinery-eyebolt"
       },
-      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4108.jpg",
-      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4108.jpg",
-      "shortDescription": "Partially threaded eyebolt ideal for lifting and rigging",
-      "parentCatalogGroupID": "/12/14",
       "partNumber": "FB041_4108",
-      "name": "Machinery Eyebolt",
+      "storeID": "12",
       "price": [
         {
           "usage": "Display",
@@ -1863,16 +1898,17 @@
       ],
       "attributes": [
         {
-          "identifier": "hardware_fasteners_boltsThread size",
+          "identifier": "hardware_fasteners_boltsLength",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": ["3/8\"-16", "7/16\"-14"],
-              "sequence": ["5.0", "7.0"],
+              "sequence": ["8.0", "10.0"],
+              "identifier": ["2\"", "3\""],
               "unitOfMeasure": ["one", "one"],
               "unitID": ["C62", "C62"],
-              "id": ["7000000000000002592", "7000000000000002594"],
-              "value": ["3/8\"-16", "7/16\"-14"]
+              "id": ["7000000000000002607", "7000000000000002609"],
+              "value": ["2\"", "3\""]
             }
           ],
           "displayable": "true",
@@ -1880,25 +1916,25 @@
           "searchable": "false",
           "sequence": "0.0",
           "storeDisplay": "false",
-          "name": "Thread size",
+          "name": "Length",
           "facetable": "false",
-          "id": "7000000000000000138",
+          "id": "7000000000000000141",
           "comparable": "true",
-          "key": "7000000000000000138",
           "swatchable": "false"
         },
         {
           "identifier": "Head style",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "8.0",
               "identifier": "Eye_FB041_4108",
+              "sequence": "8.0",
               "unitID": "Eye",
               "id": "7000000000000002655",
               "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_eye.png",
               "value": "Eye",
-              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_eye.png"
+              "image1path": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_eye.png"
             }
           ],
           "displayable": "true",
@@ -1910,11 +1946,11 @@
           "facetable": "false",
           "id": "7000000000000000147",
           "comparable": "true",
-          "key": "7000000000000000147",
           "swatchable": "false"
         },
         {
           "identifier": "hardware_fasteners_boltsMaterial",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
@@ -1935,16 +1971,16 @@
           "facetable": "false",
           "id": "7000000000000000142",
           "comparable": "true",
-          "key": "7000000000000000142",
           "swatchable": "false"
         },
         {
           "identifier": "Tensile strength (min)",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "8.0",
               "identifier": "70000 psi_FB041_4108",
+              "sequence": "8.0",
               "unitID": "psi",
               "id": "7000000000000002631",
               "value": "70000 psi"
@@ -1959,20 +1995,20 @@
           "facetable": "false",
           "id": "7000000000000000144",
           "comparable": "true",
-          "key": "7000000000000000144",
           "swatchable": "false"
         },
         {
-          "identifier": "hardware_fasteners_boltsLength",
+          "identifier": "hardware_fasteners_boltsThread size",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "sequence": ["8.0", "10.0"],
-              "identifier": ["2\"", "3\""],
+              "sequence": ["5.0", "7.0"],
+              "identifier": ["3/8\"-16", "7/16\"-14"],
               "unitOfMeasure": ["one", "one"],
               "unitID": ["C62", "C62"],
-              "id": ["7000000000000002607", "7000000000000002609"],
-              "value": ["2\"", "3\""]
+              "id": ["7000000000000002592", "7000000000000002594"],
+              "value": ["3/8\"-16", "7/16\"-14"]
             }
           ],
           "displayable": "true",
@@ -1980,15 +2016,15 @@
           "searchable": "false",
           "sequence": "2.0",
           "storeDisplay": "false",
-          "name": "Length",
+          "name": "Thread size",
           "facetable": "false",
-          "id": "7000000000000000141",
+          "id": "7000000000000000138",
           "comparable": "true",
-          "key": "7000000000000000141",
           "swatchable": "false"
         },
         {
           "identifier": "Package quantity",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -2007,11 +2043,11 @@
           "facetable": "false",
           "id": "7000000000000000145",
           "comparable": "true",
-          "key": "7000000000000000145",
           "swatchable": "false"
         },
         {
           "identifier": "hardware_fasteners_boltsShank length",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
@@ -2032,11 +2068,11 @@
           "facetable": "false",
           "id": "7000000000000000140",
           "comparable": "true",
-          "key": "7000000000000000140",
           "swatchable": "false"
         },
         {
           "identifier": "Grade",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -2055,16 +2091,16 @@
           "facetable": "false",
           "id": "7000000000000000148",
           "comparable": "true",
-          "key": "7000000000000000148",
           "swatchable": "false"
         },
         {
           "identifier": "Head height",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "6.0",
               "identifier": "5/8\"_FB041_4108",
+              "sequence": "6.0",
               "unitID": "inch",
               "id": "7000000000000002647",
               "value": "5/8\""
@@ -2079,11 +2115,11 @@
           "facetable": "false",
           "id": "7000000000000000146",
           "comparable": "true",
-          "key": "7000000000000000146",
           "swatchable": "false"
         },
         {
           "identifier": "Rockwell hardness (min)",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -2103,7 +2139,6 @@
           "facetable": "false",
           "id": "7000000000000000143",
           "comparable": "true",
-          "key": "7000000000000000143",
           "swatchable": "false"
         }
       ],
@@ -2112,17 +2147,21 @@
     },
     {
       "hasSingleSKU": false,
-      "storeID": "12",
       "buyable": "true",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=12&categoryId=14&contractId=-11009&currency=USD&langId=-1",
+      "name": "Round-Bend U-Bolt",
       "shortDescription": "Versatile long-tangent bolt with two threaded arms",
+      "manufacturer": "Veerman Tools",
       "parentCatalogGroupID": "/12/14",
+      "seller": "",
+      "_ignored": "default.completion",
+      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4109.jpg",
+      "thumbnail": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4109.jpg",
       "seo": {
         "href": "/round-bend-u-bolt"
       },
-      "thumbnailRaw": "images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4109.jpg",
-      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/fbo41_bolts/200x310/fbo41_4109.jpg",
       "partNumber": "FB041_4109",
-      "name": "Round-Bend U-Bolt",
+      "storeID": "12",
       "price": [
         {
           "usage": "Display",
@@ -2140,16 +2179,17 @@
       ],
       "attributes": [
         {
-          "identifier": "hardware_fasteners_boltsThread size",
+          "identifier": "hardware_fasteners_boltsLength",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": "1/4\"-20",
-              "sequence": "1.0",
-              "unitOfMeasure": "one",
-              "unitID": "C62",
-              "id": "7000000000000002588",
-              "value": "1/4\"-20"
+              "sequence": ["7.0", "8.0", "12.0"],
+              "identifier": ["1 1/2\"", "2\"", "1\""],
+              "unitOfMeasure": ["one", "one", "one"],
+              "unitID": ["C62", "C62", "C62"],
+              "id": ["7000000000000002606", "7000000000000002607", "7000000000000002611"],
+              "value": ["1 1/2\"", "2\"", "1\""]
             }
           ],
           "displayable": "true",
@@ -2157,25 +2197,25 @@
           "searchable": "false",
           "sequence": "0.0",
           "storeDisplay": "false",
-          "name": "Thread size",
+          "name": "Length",
           "facetable": "false",
-          "id": "7000000000000000138",
+          "id": "7000000000000000141",
           "comparable": "true",
-          "key": "7000000000000000138",
           "swatchable": "false"
         },
         {
           "identifier": "Head style",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "9.0",
               "identifier": "None_FB041_4109",
+              "sequence": "9.0",
               "unitID": "None",
               "id": "7000000000000002656",
               "image1": "images/catalog/hardware/facets/headstyles/fasteners_headstyles_none.png",
               "value": "None",
-              "image1path": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_none.png"
+              "image1path": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/facets/headstyles/fasteners_headstyles_none.png"
             }
           ],
           "displayable": "true",
@@ -2187,11 +2227,11 @@
           "facetable": "false",
           "id": "7000000000000000147",
           "comparable": "true",
-          "key": "7000000000000000147",
           "swatchable": "false"
         },
         {
           "identifier": "hardware_fasteners_boltsMaterial",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
@@ -2212,16 +2252,16 @@
           "facetable": "false",
           "id": "7000000000000000142",
           "comparable": "true",
-          "key": "7000000000000000142",
           "swatchable": "false"
         },
         {
           "identifier": "Tensile strength (min)",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "9.0",
               "identifier": "70000 psi_FB041_4109",
+              "sequence": "9.0",
               "unitID": "psi",
               "id": "7000000000000002632",
               "value": "70000 psi"
@@ -2236,20 +2276,20 @@
           "facetable": "false",
           "id": "7000000000000000144",
           "comparable": "true",
-          "key": "7000000000000000144",
           "swatchable": "false"
         },
         {
-          "identifier": "hardware_fasteners_boltsLength",
+          "identifier": "hardware_fasteners_boltsThread size",
+          "attribute.natural": "[]",
           "usage": "Defining",
           "values": [
             {
-              "sequence": ["7.0", "8.0", "12.0"],
-              "identifier": ["1 1/2\"", "2\"", "1\""],
-              "unitOfMeasure": ["one", "one", "one"],
-              "unitID": ["C62", "C62", "C62"],
-              "id": ["7000000000000002606", "7000000000000002607", "7000000000000002611"],
-              "value": ["1 1/2\"", "2\"", "1\""]
+              "identifier": "1/4\"-20",
+              "sequence": "1.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000002588",
+              "value": "1/4\"-20"
             }
           ],
           "displayable": "true",
@@ -2257,15 +2297,15 @@
           "searchable": "false",
           "sequence": "2.0",
           "storeDisplay": "false",
-          "name": "Length",
+          "name": "Thread size",
           "facetable": "false",
-          "id": "7000000000000000141",
+          "id": "7000000000000000138",
           "comparable": "true",
-          "key": "7000000000000000141",
           "swatchable": "false"
         },
         {
           "identifier": "Package quantity",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -2284,11 +2324,11 @@
           "facetable": "false",
           "id": "7000000000000000145",
           "comparable": "true",
-          "key": "7000000000000000145",
           "swatchable": "false"
         },
         {
           "identifier": "Grade",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -2307,11 +2347,11 @@
           "facetable": "false",
           "id": "7000000000000000148",
           "comparable": "true",
-          "key": "7000000000000000148",
           "swatchable": "false"
         },
         {
           "identifier": "Rockwell hardness (min)",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -2331,7 +2371,6 @@
           "facetable": "false",
           "id": "7000000000000000143",
           "comparable": "true",
-          "key": "7000000000000000143",
           "swatchable": "false"
         }
       ],
@@ -2380,6 +2419,14 @@
           "value": "price_usd%3A%28%7B32+TO+40%5D%29",
           "extendedData": {
             "uniqueId": "1121141059910195117115100584012351503284793252489341"
+          }
+        },
+        {
+          "count": 1,
+          "label": "({40 TO * ])",
+          "value": "price_usd%3A%28%7B40+TO+*+%5D%29",
+          "extendedData": {
+            "uniqueId": "1121141059910195117115100584012352483284793242329341"
           }
         }
       ],

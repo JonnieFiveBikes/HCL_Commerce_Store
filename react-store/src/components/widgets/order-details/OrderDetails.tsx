@@ -13,6 +13,8 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
+import { useLocation } from "react-router";
+import { get } from "lodash-es";
 //Foundation libraries
 import cartService from "../../../_foundation/apis/transaction/cart.service";
 import paymentInstructionService from "../../../_foundation/apis/transaction/paymentInstruction.service";
@@ -31,8 +33,10 @@ import { PaymentInfoList } from "../payment-info-list";
 import { PAYMENT } from "../../../constants/order";
 import { Y, EMPTY_STRING } from "../../../constants/common";
 import storeUtil from "../../../utils/storeUtil";
-
+import { SHIPMODE } from "../../../constants/order";
 import { useCheckoutProfileReview } from "../../../_foundation/hooks/use-checkout-profile-review";
+import { SELECTED_PROFILE } from "../../../_foundation/constants/common";
+import OrderPickupInfo from "../order-pickup-info/order-pickup-info";
 //UI
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
@@ -47,9 +51,7 @@ import {
 } from "@hcl-commerce-store-sdk/react-component";
 import ReccuringOrderIcon from "@material-ui/icons/Repeat";
 import { Divider } from "@material-ui/core";
-import { SELECTED_PROFILE } from "../../../_foundation/constants/common";
-import { useLocation } from "react-router";
-import { get } from "lodash-es";
+
 interface OrderDetailsProps {
   order: any;
   orderItems: any[];
@@ -296,14 +298,20 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
       {(!isRecurringOrder || !!showRecurringHistoryLink || !recurringOrderNumber) && (
         <>
           {orderItems ? (
-            <OrderShippingInfo
-              shippingInfo={{
-                orderItems,
-                shipAsComplete,
-                parentComponent,
-                paymentInstruction,
-              }}
-            />
+            <>
+              {orderItems[0].shipModeCode === SHIPMODE.shipModeCode.PickUp ? (
+                <OrderPickupInfo {...{ parentComponent, orderItems }} />
+              ) : (
+                <OrderShippingInfo
+                  shippingInfo={{
+                    orderItems,
+                    shipAsComplete,
+                    parentComponent,
+                    paymentInstruction,
+                  }}
+                />
+              )}
+            </>
           ) : (
             <StyledGrid item xs={12}>
               <StyledPaper>
@@ -366,7 +374,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
                   direction="row"
                   alignItems="flex-start"
                   className="horizontal-padding-2"
-                  {...(hasDiscounts && { justify: "space-between" })}
+                  {...(hasDiscounts && { justifyContent: "space-between" })}
                   spacing={2}>
                   {hasDiscounts && (
                     <StyledGrid item xs={12} md={4}>

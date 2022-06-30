@@ -13,6 +13,7 @@ import React, { ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
 //Custom libraries
 import addressUtil from "../../../utils/addressUtil";
+import { CountryState } from "../country-state";
 import {
   CHECKOUT,
   ADDRESS_SHIPPING,
@@ -21,7 +22,6 @@ import {
   ADDRESS_BOOK,
   EMPTY_STRING,
 } from "../../../constants/common";
-
 //UI
 import {
   StyledGrid,
@@ -54,19 +54,20 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
   const page = props.page ? props.page : CHECKOUT; // Default page is checkout
   const edit = props.edit ? props.edit : false;
 
-  function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const newAdressFormData = { ...addressFormData };
-    if (event.target.name && event.target.name.trim() !== EMPTY_STRING) {
+    if (event?.target?.name?.trim() !== EMPTY_STRING) {
       newAdressFormData[event.target.name] = event.target.value;
       setAddressFormData(newAdressFormData);
     }
-  }
+  };
 
   return (
     <StyledGrid container spacing={3}>
       <StyledGrid item xs={12}>
         <StyledTextField
           required
+          data-testid="nickName"
           id={`${cid}-nickName`}
           name="nickName"
           label={t("AddressForm.Labels.NickName")}
@@ -88,18 +89,25 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
         <StyledGrid item xs={12}>
           <StyledInputLabel className="bottom-margin-1">{t("AddressForm.Labels.AddressType")}</StyledInputLabel>
           <StyledFormControl component="fieldset">
-            <StyledRadioGroup name="addressType" value={addressFormData.addressType} onChange={handleChange}>
+            <StyledRadioGroup
+              name="addressType"
+              data-testid="addressType"
+              value={addressFormData.addressType}
+              onChange={handleChange}>
               <StyledFormControlLabel
+                data-testid="addressType-shipping"
                 value={ADDRESS_SHIPPING}
                 control={<StyledRadio />}
                 label={t("AddressForm.Labels.Shipping")}
               />
               <StyledFormControlLabel
+                data-testid="addressType-billing"
                 value={ADDRESS_BILLING}
                 control={<StyledRadio />}
                 label={t("AddressForm.Labels.Billing")}
               />
               <StyledFormControlLabel
+                data-testid="addressType-shipping-billing"
                 value={ADDRESS_SHIPPING_BILLING}
                 control={<StyledRadio />}
                 label={t("AddressForm.Labels.ShippingAndBilling")}
@@ -111,6 +119,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
       <StyledGrid item xs={12} sm={6}>
         <StyledTextField
           id={`${cid}-firstName`}
+          data-testid="firstName"
           name="firstName"
           label={t("AddressForm.Labels.FirstName")}
           onChange={handleChange}
@@ -125,6 +134,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
         <StyledTextField
           required
           id={`${cid}-lastName`}
+          data-testid="lastName"
           name="lastName"
           label={t("AddressForm.Labels.LastName")}
           onChange={handleChange}
@@ -138,6 +148,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
       <StyledGrid item xs={12}>
         <StyledTextField
           required
+          data-testid="address1"
           id={`${cid}-address1`}
           name="addressLine1"
           label={t("AddressForm.Labels.Address1")}
@@ -151,6 +162,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
 
       <StyledGrid item xs={12}>
         <StyledTextField
+          data-testid="address2"
           id={`${cid}-address2`}
           name="addressLine2"
           label={t("AddressForm.Labels.Address2")}
@@ -166,6 +178,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
         <StyledTextField
           required
           id={`${cid}-city`}
+          data-testid="city"
           name="city"
           label={t("AddressForm.Labels.City")}
           onChange={handleChange}
@@ -175,42 +188,13 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
           autoComplete="address-level2"
         />
       </StyledGrid>
-
-      <StyledGrid item xs={12} sm={6}>
-        {/* TODO: country list to be retrieved from transaction server */}
-        <StyledTextField
-          required
-          id={`${cid}-country`}
-          name="country"
-          label={t("AddressForm.Labels.Country")}
-          onChange={handleChange}
-          value={addressFormData.country}
-          inputProps={{ maxLength: 40 }}
-          fullWidth
-          autoComplete="country"
-        />
-      </StyledGrid>
-      <StyledGrid item xs={12} sm={6}>
-        {/* TODO: states need to reload based on country selection and can either be dropdown
-      (fetch list from transaction server) or textbox */}
-        <StyledTextField
-          required
-          id={`${cid}-state`}
-          name="state"
-          label={t("AddressForm.Labels.State")}
-          onChange={handleChange}
-          value={addressFormData.state}
-          inputProps={{ maxLength: 40 }}
-          fullWidth
-          autoComplete="state"
-        />
-      </StyledGrid>
-
+      <CountryState addressFormData={addressFormData} setAddressFormData={setAddressFormData} />
       <StyledGrid item xs={12} sm={6}>
         <StyledTextField
           required
           id={`${cid}-zipCode`}
           name="zipCode"
+          data-testid="zipcode"
           label={t("AddressForm.Labels.ZipCode")}
           onChange={handleChange}
           value={addressFormData.zipCode}
@@ -224,6 +208,7 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
           id={`${cid}-phone`}
           name="phone1"
           type="tel"
+          data-testid="phone"
           label={t("AddressForm.Labels.Phone")}
           onChange={handleChange}
           value={addressFormData.phone1}
@@ -238,11 +223,11 @@ const AddressForm: React.FC<AddressFormProps> = (props: any) => {
           autoComplete="phone"
         />
       </StyledGrid>
-
       <StyledGrid item xs={12}>
         <StyledTextField
           required
           id={`${cid}-email`}
+          data-testid="email"
           name="email1"
           type="email"
           label={t("AddressForm.Labels.Email")}

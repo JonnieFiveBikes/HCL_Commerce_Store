@@ -70,9 +70,11 @@ const orderDetailsReducer = createReducer(initStates.orderDetails, (builder) => 
             seo: { href: "" },
             manufacturer: "",
             price: [],
+            seller: "",
+            sellerId: "",
           };
           const newItem = newAsMap[item.productId];
-          const { id, name, thumbnail, attributes, seo, manufacturer, price } = newItem;
+          const { id, name, thumbnail, attributes, seo, manufacturer, price, seller, sellerId } = newItem;
           return {
             ...obj,
             id,
@@ -82,6 +84,8 @@ const orderDetailsReducer = createReducer(initStates.orderDetails, (builder) => 
             seo,
             manufacturer,
             price,
+            seller,
+            sellerId,
           };
         });
       }

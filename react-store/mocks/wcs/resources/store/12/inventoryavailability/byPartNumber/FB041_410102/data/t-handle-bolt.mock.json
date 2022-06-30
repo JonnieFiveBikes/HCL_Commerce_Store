@@ -1,0 +1,15 @@
+{
+  "InventoryAvailability": [
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13166",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_410101",
+      "onlineStoreId": "12"
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/12/inventoryavailability/byPartNumber/FB041_410101?langId=-1",
+  "resourceName": "inventoryavailability"
+}

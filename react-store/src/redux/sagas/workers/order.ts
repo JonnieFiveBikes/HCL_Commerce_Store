@@ -35,6 +35,7 @@ import {
   FETCH_ALLOWABLE_PAYMETHODS_S_ACTION,
   FETCH_ALLOWABLE_PAYMETHODS_F_ACTION,
 } from "../../actions/order";
+import { WISHLIST_MOVE_ITEMS_ACTION } from "../../actions/wish-list";
 import { fetchOrderItemDetailsByIds } from "./orderDetails";
 import { CartApi, ShippingInfoApi } from "@hcl-commerce-store-sdk/typescript-axios-transaction";
 import { site } from "../../../_foundation/constants/site";
@@ -93,12 +94,20 @@ export function* addItem(action: any) {
     let catentryIds: string[] = [];
     let partnumbers: string[] = [];
     let quantities: any[] = [];
+    let physicalStoreIds: string[] = [];
+    let shipModeIds: string[] = [];
     if (payload.partnumber) {
       partnumbers = payload.partnumber instanceof Array ? payload.partnumber : [payload.partnumber];
       quantities = payload.quantity instanceof Array ? payload.quantity : [payload.quantity];
     } else if (payload.catentryId) {
       catentryIds = payload.catentryId instanceof Array ? payload.catentryId : [payload.catentryId];
       quantities = payload.quantity instanceof Array ? payload.quantity : [payload.quantity];
+    }
+    if (payload.physicalStoreId) {
+      physicalStoreIds = payload.physicalStoreId instanceof Array ? payload.physicalStoreId : [payload.physicalStoreId];
+    }
+    if (payload.shipModeId) {
+      shipModeIds = payload.shipModeId instanceof Array ? payload.shipModeId : [payload.shipModeId];
     }
 
     for (const i in partnumbers) {
@@ -107,6 +116,12 @@ export function* addItem(action: any) {
         partNumber: partnumbers[i],
         contractId: payload.contractId,
       };
+      if (physicalStoreIds[i]) {
+        Object.assign(_orderItems[i], { physicalStoreId: physicalStoreIds[i] });
+      }
+      if (shipModeIds[i]) {
+        Object.assign(_orderItems[i], { shipModeId: shipModeIds[i] });
+      }
     }
     for (const i in catentryIds) {
       _orderItems[i] = {
@@ -114,6 +129,12 @@ export function* addItem(action: any) {
         productId: catentryIds[i],
         contractId: payload.contractId,
       };
+      if (physicalStoreIds[i]) {
+        Object.assign(_orderItems[i], { physicalStoreId: physicalStoreIds[i] });
+      }
+      if (shipModeIds[i]) {
+        Object.assign(_orderItems[i], { shipModeId: shipModeIds[i] });
+      }
     }
     let body = {};
     if (payload.widget) {
@@ -177,6 +198,9 @@ export function* addItem(action: any) {
       link,
     };
     yield put(HANDLE_SUCCESS_MESSAGE_ACTION(msg));
+    if (payload.fromWishList) {
+      yield put(WISHLIST_MOVE_ITEMS_ACTION(payload));
+    }
   } catch (error) {
     yield put({ type: ACTIONS.ITEM_ADD_ERROR, error });
   }
@@ -262,6 +286,7 @@ export function* fetchCart(action: any) {
 
     if (!activeInprogressOrder) {
       const responseCart = yield call(cartService.getCart, { ...parameters });
+      yield* fetchShipInfo(action);
 
       let catentries: any = null;
       if (responseCart) {

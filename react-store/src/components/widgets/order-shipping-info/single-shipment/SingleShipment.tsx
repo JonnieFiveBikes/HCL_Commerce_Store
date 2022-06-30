@@ -26,6 +26,7 @@ import { useSelector } from "react-redux";
 import { allowableShipModesSelector } from "../../../../redux/selectors/order";
 import { useEffect } from "react";
 import storeUtil from "../../../../utils/storeUtil";
+import { useSite } from "../../../../_foundation/hooks/useSite";
 interface SingleShipmentProps<T> {
   orderItems: [T, ...T[]];
   selectedProfileOrderItem: [T, ...T[]];
@@ -43,26 +44,35 @@ const SingleShipment: React.FC<SingleShipmentProps<any>> = ({
   const shipModes = useSelector(allowableShipModesSelector);
   const item = orderItems[0];
   const [shipModeMap, setShipModeMap] = useState<any>({});
+  const preShip = showHeading;
+  const { mySite, storeDisplayName } = useSite();
+  const [partitionedBySellers, setPartBySellers] = useState<any[]>([]);
+  const readOnly = true;
+  const className = "review-order";
+  const detailsClass = "flex-direction--column";
 
   useEffect(() => {
     setShipModeMap(storeUtil.toMap(shipModes, "shipModeId"));
   }, [shipModes]);
 
+  useEffect(() => {
+    const parts = storeUtil.partitionBySellers(orderItems, storeDisplayName, mySite);
+    setPartBySellers(parts);
+  }, [orderItems]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const heading = showHeading ? (
+    <StyledTypography variant="h4">{t("OrderShippingInfo.Labels.CartDetails")}</StyledTypography>
+  ) : null;
+  const details = partitionedBySellers.length ? (
+    partitionedBySellers.map((s, key) => <OrderItemTable {...{ preShip, readOnly, className, key, ...s }} />)
+  ) : (
+    <OrderItemTable {...{ data: orderItems, preShip, readOnly, className }} />
+  );
+
   return (
     <>
       <StyledGrid item xs={12}>
-        {showHeading ? (
-          <OrderDetailSubsection
-            heading={<StyledTypography variant="h4">{t("OrderShippingInfo.Labels.CartDetails")}</StyledTypography>}
-            details={
-              <OrderItemTable data={orderItems} readOnly={true} className="review-order" />
-            }></OrderDetailSubsection>
-        ) : (
-          <OrderDetailSubsection
-            details={
-              <OrderItemTable data={orderItems} readOnly={true} className="review-order" />
-            }></OrderDetailSubsection>
-        )}
+        <OrderDetailSubsection {...{ heading, details, detailsClass }}></OrderDetailSubsection>
       </StyledGrid>
       <StyledGrid item xs={12}>
         <OrderDetailSubsection

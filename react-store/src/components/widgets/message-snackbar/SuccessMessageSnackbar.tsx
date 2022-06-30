@@ -9,7 +9,7 @@
  *==================================================
  */
 //Standard libraries
-import React from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 //Custom libraries
@@ -20,16 +20,19 @@ import { SuccessMessageReducerState } from "../../../redux/reducers/reducerState
 import { RESET_SUCCESS_MESSAGE_ACTION } from "../../../redux/actions/success";
 //UI
 import { SnackbarOrigin } from "@material-ui/core";
+import { forUserIdSelector } from "../../../redux/selectors/user";
 
 const useMessageSnackbar = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const success: SuccessMessageReducerState = useSelector(successSelector);
 
+  const forUserId = useSelector(forUserIdSelector);
   const anchorOrigin: SnackbarOrigin = {
     horizontal: "center",
-    vertical: "bottom",
+    vertical: forUserId ? "top" : "bottom",
   };
+
   let message = null;
   if (success.key) {
     message = t(success.key, success.messageParameters);
@@ -45,6 +48,15 @@ const useMessageSnackbar = () => {
   const handleClose = () => {
     dispatch(RESET_SUCCESS_MESSAGE_ACTION());
   };
+
+  // in CSR mode, snackbars are shown at the top of the iframe -- scroll there as necessary
+  useEffect(() => {
+    if (message && forUserId) {
+      // useEffect is already async -- no need to use setTimeout
+      const w = window.top ?? window;
+      w.scrollTo(0, 0);
+    }
+  }, [message, forUserId]);
 
   return {
     anchorOrigin,

@@ -92,6 +92,8 @@ export const initStatesNoAddresses: ShippingTestState = {
       ],
       totalAdjustment: "-25.00000",
     },
+    orderMethodIsPickup: false,
+    pickupPerson: null,
     numItems: 1,
     orderItems: [
       {
@@ -396,6 +398,8 @@ export const inistatesWithAddress: ShippingTestState = {
       ],
       totalAdjustment: "-25.00000",
     },
+    orderMethodIsPickup: false,
+    pickupPerson: null,
     numItems: 1,
     orderItems: [
       {

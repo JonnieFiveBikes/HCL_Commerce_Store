@@ -61,7 +61,7 @@ const CreateRequisitionList: React.FC = () => {
     toggleExpand();
   };
   return (
-    <StyledAccordion expanded={isExpanded} onClick={toggleExpand}>
+    <StyledAccordion testId={`create-requisition-list`} expanded={isExpanded} onClick={toggleExpand}>
       <StyledAccordionSummary
         className="horizontal-padding-2 vertical-padding-2 rl-cr8-acrdn"
         expandIcon={<ExpandMoreIcon />}>
@@ -71,7 +71,7 @@ const CreateRequisitionList: React.FC = () => {
         />
       </StyledAccordionSummary>
       <Divider className="bottom-margin-3" />
-      <StyledAccordionDetails onClick={toggleExpand}>
+      <StyledAccordionDetails data-testid="create-requisition-lists-accordion-details" onClick={toggleExpand}>
         <StyledGrid container item spacing={1}>
           <StyledGrid item xs={12}>
             <StyledFormHelperText>

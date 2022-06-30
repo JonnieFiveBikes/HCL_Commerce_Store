@@ -14,6 +14,7 @@ import {
   StyledCardMedia,
   StyledIconButton,
   StyledLink,
+  StyledButton,
   StyledProgressPlaceholder,
   StyledSwatch,
   StyledTypography,
@@ -65,35 +66,26 @@ const HeaderWrapper = styled.div`
     .addAnotherProduct {
       display: flex;
       justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: ${theme.spacing(0.5)}px;
+      color: ${theme.palette.primary.dark};
+      opacity: 0.75;
 
-      button {
+      &:hover {
+        opacity: 1;
+      }
+
+      .icon {
+        background: ${theme.palette.primary.dark};
+        color: white;
+        width: ${theme.spacing(5)}px;
+        height: ${theme.spacing(5)}px;
+        border-radius: ${theme.spacing(2.5)}px;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: ${theme.spacing(1)}px;
-        color: ${theme.palette.primary.dark};
-        border: 0;
-        background: none;
-        cursor: pointer;
-        padding: ${theme.spacing(2)}px;
         opacity: 0.75;
-
-        &:hover {
-          opacity: 1;
-        }
-
-        .icon {
-          background: ${theme.palette.primary.dark};
-          color: white;
-          width: ${theme.spacing(5)}px;
-          height: ${theme.spacing(5)}px;
-          border-radius: ${theme.spacing(2.5)}px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          opacity: 0.75;
-        }
       }
     }
   `}
@@ -119,7 +111,7 @@ const ThumbnailTemplate = ({ seo, thumbnail, name }) => {
 };
 
 const HeaderTemplate = ({ current }) => {
-  const { context, title, prices, currency } = current ?? {};
+  const { context, title, prices, currency, keyLookup } = current ?? {};
   const { from, imageSrc, product, all, setProdsById } = context ?? {};
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -129,6 +121,7 @@ const HeaderTemplate = ({ current }) => {
       {context.product ? (
         <>
           <StyledIconButton
+            data-testid={`product-compare-${product.partNumber.toLowerCase()}-close-button`}
             className="closeButton"
             onClick={() => {
               delete all[product.id];
@@ -143,14 +136,21 @@ const HeaderTemplate = ({ current }) => {
           </StyledTypography>
         </>
       ) : (
-        <div className="addAnotherProduct column">
-          <button color="primary" onClick={() => navigate(from, { state: { compare: all } })}>
-            <div className="icon">
-              <AddIcon />
-            </div>
-            <StyledTypography variant="body2">{t(title)}</StyledTypography>
-          </button>
-        </div>
+        <>
+          <div className="addAnotherProduct">
+            <StyledButton
+              variant="text"
+              testId={`product-compare-add-another-product-${keyLookup?.key}`}
+              onClick={() => navigate(from, { state: { compare: all } })}>
+              <div className="icon">
+                <AddIcon />
+              </div>
+            </StyledButton>
+          </div>
+          <StyledTypography className="addAnotherProduct" variant="body2" component="div">
+            {t(title)}
+          </StyledTypography>
+        </>
       )}
     </HeaderWrapper>
   ) : null;
@@ -256,7 +256,7 @@ const useCompareHelper = () => {
         headerStyle: { verticalAlign: "middle", width: `${prodWidths}%` },
         title: "compare.addAnother",
         header: HeaderTemplate,
-        keyLookup: { key: `placeholder_${i}` },
+        keyLookup: { key: `placeholder-${i}` },
         context: { all: productsById, from },
       });
     }
@@ -292,6 +292,7 @@ const useCompareHelper = () => {
         jsxVals.push(
           ...images.map((i, x) => (
             <StyledSwatch
+              data-testid={`product-compare-${product.partNumber.toLowerCase()}-swatch-${attrVals[x]}`}
               style={{ backgroundImage: `url("${i}")` }}
               key={`${id}_${x}`}
               title={attrVals[x]}

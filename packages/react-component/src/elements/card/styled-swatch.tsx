@@ -60,7 +60,13 @@ const StyledSwatchButton = styled.button`
   `}
 `;
 
-function StyledSwatch(props: { className?: string; selected?: boolean; size?: string; [extraPrps: string]: any }) {
+function StyledSwatch(props: {
+  className?: string;
+  selected?: boolean;
+  size?: string;
+
+  [extraPrps: string]: any;
+}) {
   const { className, selected, size } = props;
   const classList = `${className ? className : ""} ${selected ? "selected" : ""} ${size ? size : ""}`;
   return (

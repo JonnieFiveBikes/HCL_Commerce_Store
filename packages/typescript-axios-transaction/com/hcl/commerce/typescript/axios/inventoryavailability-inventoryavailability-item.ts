@@ -80,6 +80,24 @@ export interface InventoryavailabilityInventoryavailabilityItem {
      * @type {string}
      * @memberof InventoryavailabilityInventoryavailabilityItem
      */
+    x_customField1?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof InventoryavailabilityInventoryavailabilityItem
+     */
+    x_customField2?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof InventoryavailabilityInventoryavailabilityItem
+     */
+    x_customField3?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof InventoryavailabilityInventoryavailabilityItem
+     */
     productId?: string;
 }
 

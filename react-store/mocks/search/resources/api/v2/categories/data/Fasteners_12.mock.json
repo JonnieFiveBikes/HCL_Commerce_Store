@@ -1,15 +1,23 @@
 {
   "contents": [
     {
-      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_hw_fasteners.png",
+      "name": "Fasteners",
+      "identifier": "Fasteners",
+      "shortDescription": "Screws, bolts, and nuts for a wide range of fastening applications",
+      "resourceId": "https://search:30901/search/resources/api/v2/categories?storeId=12&identifier=Fasteners&contractId=-11009&langId=-1",
+      "uniqueID": "12",
+      "parentCatalogGroupID": "/12",
+      "thumbnail": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_hw_fasteners.png",
       "seo": {
         "href": "/fasteners"
       },
-      "name": "Fasteners",
-      "identifier": "Fasteners",
       "storeID": "12",
+      "fullImage": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_hw_fasteners.png",
       "id": "12",
       "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=12&id=-1"
+        },
         "children": [
           "href: /search/resources/api/v2/categories?storeId=12&id=14",
           "href: /search/resources/api/v2/categories?storeId=12&id=15",

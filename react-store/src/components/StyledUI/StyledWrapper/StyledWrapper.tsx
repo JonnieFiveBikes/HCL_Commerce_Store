@@ -139,6 +139,10 @@ const StyledWrapper = styled.div`
         text-align: left;
       }
 
+      .pointer-event-none {
+        pointer-events: none;
+      }
+
       .marketing-button {
         font-family: ${theme.typography.fontFamily};
         font-size: ${theme.typography.button.fontSize}px;

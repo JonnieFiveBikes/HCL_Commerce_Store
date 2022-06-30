@@ -10,7 +10,7 @@
  */
 //Standard libraries
 import React, { lazy, useMemo } from "react";
-import { Navigate } from "react-router";
+import { Navigate, useLocation } from "react-router";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import Axios, { Canceler } from "axios";
@@ -35,20 +35,19 @@ import { CommerceEnvironment } from "../../constants/common";
 import * as lsActions from "../../redux/actions/local-storage";
 import { OPEN_CONFIRMATION_ACTION } from "../../redux/actions/confirmation";
 import { withProductContext } from "../context/product-context";
-import { useParams } from "react-router";
 
 const SEO: React.FC = (props: any) => {
   const widgetName = getDisplayName(SEO);
   const { mySite: site } = useSite();
   const dispatch = useDispatch();
   const seoConfig = useSelector(seoSelector);
-  const params = useParams();
-  const url = params["*"];
+  const location = useLocation();
+  const { pathname } = location;
   const { t, i18n } = useTranslation();
   const identifier = useMemo(() => {
-    const _i = url || HOME;
+    const _i = pathname.substring(1) || HOME;
     return _i.split(CHILD_ROUTE_SEPARATOR)[0];
-  }, [url]);
+  }, [pathname]);
   const [first, setFirst] = React.useState(true);
 
   const cancels: Canceler[] = [];
@@ -111,10 +110,12 @@ const SEO: React.FC = (props: any) => {
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [site, identifier, dispatch]);
+  }, [site, identifier]);
 
   React.useEffect(
-    () => () => cancels.forEach((cancel) => cancel()),
+    () => () => {
+      cancels.forEach((cancel) => cancel());
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
@@ -132,23 +133,23 @@ const SEO: React.FC = (props: any) => {
     }
   }, [first, handleOpen, identifier, seoConfig]);
 
+  const ActiveC = useMemo(() => {
+    if (seoConfig && seoConfig[identifier]) {
+      const c = seoConfig[identifier];
+      const token = c.tokenName;
+      return token === PRODUCT_TOKEN
+        ? withProductContext(lazy(() => import(`../../components/commerce-layouts/${c.layout.containerName}`)))
+        : lazy(() => import(`../../components/commerce-layouts/${c.layout.containerName}`));
+    } else {
+      return () => <></>;
+    }
+  }, [seoConfig, identifier]);
+
   const ActiveComponent = useMemo(
-    () => () => {
+    () => {
       if (seoConfig && seoConfig[identifier]) {
         const c = seoConfig[identifier];
         const slots = c.layout.slots;
-        const token = c.tokenName;
-
-        let ActiveC;
-
-        if (token === PRODUCT_TOKEN) {
-          //wrap any layout used for product with ProductContext
-          ActiveC = withProductContext(
-            lazy(() => import(`../../components/commerce-layouts/${c.layout.containerName}`))
-          );
-        } else {
-          ActiveC = lazy(() => import(`../../components/commerce-layouts/${c.layout.containerName}`));
-        }
 
         //GA360
         if (site.enableGA && seoConfig[identifier].page) {
@@ -160,24 +161,26 @@ const SEO: React.FC = (props: any) => {
           }
         }
 
-        return c.redirect && c.redirect.trim() !== "" ? (
-          <Navigate replace to={c.redirect} />
-        ) : (
-          <div className="page">
-            <Helmet>
-              <meta charSet="utf-8" />
-              <meta name="description" content={c.page.metaDescription}></meta>
-              <meta name="keywords" content={c.page.metaKeyword}></meta>
-              <title>{c.page.title}</title>
-            </Helmet>
-            <ActiveC page={c.page} slots={slots} {...props} />
-          </div>
-        );
+        return () =>
+          c.redirect && c.redirect.trim() !== "" ? (
+            <Navigate replace to={c.redirect} />
+          ) : (
+            <div className="page">
+              <Helmet>
+                <meta charSet="utf-8" />
+                <meta name="description" content={c.page.metaDescription}></meta>
+                <meta name="keywords" content={c.page.metaKeyword}></meta>
+                <title>{c.page.title}</title>
+              </Helmet>
+              <ActiveC page={c.page} slots={slots} {...props} />
+            </div>
+          );
       } else {
-        return <StyledProgressPlaceholder className="vertical-padding-20" />;
+        return () => <StyledProgressPlaceholder className="vertical-padding-20" />;
       }
     },
-    [seoConfig, identifier, props, site]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [seoConfig, identifier, site, ActiveC]
   );
 
   return <>{!first ? <ActiveComponent /> : <StyledProgressPlaceholder className="vertical-padding-20" />}</>;

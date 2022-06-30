@@ -12,4 +12,4 @@
  * The service response contains big number and number in the response
  * needs to be parsed to string
  */
-export const numberParserRequiredServices = ["organization", "usercontext"];
+export const numberParserRequiredServices = { organization: {}, usercontext: {} };

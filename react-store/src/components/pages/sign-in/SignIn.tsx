@@ -18,12 +18,15 @@ import { RegistrationLayout } from "../../widgets/registration";
 import { RegistrationB2BLayout } from "../../widgets/registration-b2b";
 import { StandardPageHero2BlocksLayout } from "../../layouts/standard-page-hero-2-blocks";
 import { SectionContent } from "../../../_foundation/constants/section-content-type";
+import { useLocation } from "react-router";
 
 const Sign: React.FC = (props: any) => {
   const { mySite } = useSite();
   const isB2B: boolean = mySite?.isB2B ? mySite.isB2B : false;
   const [showSignIn, setShowSignIn] = useState(true);
   const redirectRoute: string = props.location?.state?.redirectRoute ? props.location.state.redirectRoute : "";
+  const location: any = useLocation();
+  const checkoutFlow = location.state?.checkoutFlow;
 
   const toggleSignInRegisterpage = (flag: boolean) => {
     setShowSignIn(flag);
@@ -37,6 +40,7 @@ const Sign: React.FC = (props: any) => {
             cid="sign-in-registration-page-signin"
             redirectRoute={redirectRoute}
             hideRegistrationPage={toggleSignInRegisterpage}
+            checkoutFlow={checkoutFlow}
           />
         );
       },

@@ -533,7 +533,7 @@ img {
   background: white;
 
   .MuiGrid-item:last-child {
-    min-height: 120px;
+    min-height: 140px;
     position: relative;
     margin-top: 8px;
   }
@@ -845,6 +845,7 @@ table.list-item-table {
   }
 }
 
+.add-to-wl,
 .add-to-rl {
   align-items: flex-end;
 }
@@ -852,11 +853,13 @@ table.list-item-table {
 .button-combo {
   &:first-child {
     justify-content: flex-end;
+    .add-to-wl,
     .add-to-rl {
       align-items: flex-end;
     }
   }
   &:not(:first-child) {
+    .add-to-wl,
     .add-to-rl {
       align-items: flex-start;
     }
@@ -878,4 +881,29 @@ table.better-pivot {
       }
     }
   }
+}
+
+.flex-direction--column {
+  flex-direction: column;
+}
+
+.width--auto {
+  width: auto;
+}
+
+@mixin account-welcome-common {
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.account-welcome {
+  @include account-welcome-common;
+  max-width: 155px;
+}
+
+.account-welcome-popup {
+  @include account-welcome-common;
+  max-width: 265px;
 }

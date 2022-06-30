@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "title": "HCL Commerce Marketplace Sellers",
-    "version": "v1",
-    "description": "Fetch active marketplace sellers for a store."
+    "version": "V9.1.10 Preview",
+    "description": "<p>Fetch active marketplace sellers for a store.<p> <p>Please note that these APIs are introduced in HCL Commerce V9.1.10 as <b>preview version</b>. HCL Commerce reserves the right to make modification to these APIs when they are GA in the future release. </p>"
   },
   "servers": [
     {
@@ -57,6 +57,27 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The position within the resulting dataset where the query begins returning item records. If the offset is \"5\", the records that returned begin with the sixth record that matches the query parameters. If the offset is \"0\", the records that are returned begin with the first record that matches the query parameters.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of records to return.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
           }
         ],
         "responses": {
@@ -66,6 +87,32 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/sellerCollection"
+                },
+                "example": {
+                  "count": 3,
+                  "items": [
+                    {
+                      "onlineStatus": 1,
+                      "name": "Seller A",
+                      "description": "Seller A sells modern designed furnitures and high quality bath accessories",
+                      "id": "7000000000000007001",
+                      "status": 1
+                    },
+                    {
+                      "onlineStatus": 1,
+                      "name": "Seller B",
+                      "description": "Seller B sells modern designed living and dining furnitures.",
+                      "id": "7000000000000007002",
+                      "status": 1
+                    },
+                    {
+                      "onlineStatus": 1,
+                      "name": "Seller C",
+                      "description": "Seller C sells high quality bath accessories and dining room furnitures.",
+                      "id": "7000000000000007003",
+                      "status": 1
+                    }
+                  ]
                 }
               }
             }
@@ -139,9 +186,9 @@
           "count": {
             "type": "integer"
           },
-          "marketplaceSellers": {
+          "items": {
             "type": "array",
-            "description": "The items.",
+            "description": "The list of items.",
             "items": {
               "$ref": "#/components/schemas/seller"
             }

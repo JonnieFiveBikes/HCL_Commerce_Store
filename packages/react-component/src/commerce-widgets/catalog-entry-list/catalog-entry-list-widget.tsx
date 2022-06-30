@@ -10,7 +10,7 @@
  */
 //Standard libraries
 import React, { ChangeEvent, Fragment } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { LazyComponentProps, trackWindowScroll } from "react-lazy-load-image-component";
 //UI
 import {
@@ -21,6 +21,7 @@ import {
   StyledButton,
   StyledTypography,
   StyledFormControl,
+  StyledLink,
 } from "../../elements";
 
 /**
@@ -103,7 +104,7 @@ const CatalogEntryListWidget: React.FC<CatalogEntryListWidgetProps> = (props: an
 
   return (
     <div className="product-listing-container productListingWidget top-margin-3">
-      {(productListTotal === 0 || !productListTotal) && searchTerm !== "" && (
+      {productListTotal === 0 && searchTerm !== "" && !selectFacetRemove ? (
         <div id={`productGrid_div_18_${cid}`} className="suggested-keywords">
           <h4 id={`productGrid_p_19_${cid}`}>{translation.ProductGridLabelsnoMatches}</h4>
           <p id={`productGrid_p_21_${cid}`}>{translation.ProductGridLabelssearchAgain}</p>
@@ -112,18 +113,19 @@ const CatalogEntryListWidget: React.FC<CatalogEntryListWidgetProps> = (props: an
               {translation.ProductGridLabelssuggestion}
               <br />
               {suggestedKeywords?.map((keyword: string, index: number) => (
-                <Link
+                <StyledLink
                   key={keyword}
                   to={SEARCH + "?searchTerm=" + keyword}
                   className="suggestion-link"
-                  id={`productGrid_a_22_${index}_${cid}`}>
+                  id={`productGrid_a_22_${index}_${cid}`}
+                  testId={`suggestedKeywords_${keyword}`}>
                   {keyword} <br />
-                </Link>
+                </StyledLink>
               ))}
             </>
           )}
         </div>
-      )}
+      ) : null}
       {/* Search result is 1, then go to PDP directly */}
       {productListTotal === 1 &&
         isValidUrl(productList) &&
@@ -132,7 +134,7 @@ const CatalogEntryListWidget: React.FC<CatalogEntryListWidgetProps> = (props: an
         !priceSelected &&
         !selectFacetRemove && <Navigate replace to={productList[0].seo.href} />}
 
-      {productListTotal > 1 && (
+      {productListTotal > 1 ? (
         <StyledGrid container className="bottom-margin-1" justifyContent="space-between" alignItems="center">
           <StyledGrid item>
             <StyledTypography variant="subtitle2">
@@ -145,6 +147,7 @@ const CatalogEntryListWidget: React.FC<CatalogEntryListWidgetProps> = (props: an
             <StyledGrid item>
               <StyledFormControl variant="outlined">
                 <StyledSelect
+                  data-testid="list-sort-option"
                   id={`productGrid_select_6_${cid}`}
                   value={selectedSortOption}
                   native
@@ -160,10 +163,10 @@ const CatalogEntryListWidget: React.FC<CatalogEntryListWidgetProps> = (props: an
             </StyledGrid>
           </StyledGrid>
         </StyledGrid>
-      )}
+      ) : null}
 
       {/* Facet selection listing */}
-      {productListTotal > 0 && (Object.keys(selectedFacets).length > 0 || priceSelected) && (
+      {Object.keys(selectedFacets).length > 0 || priceSelected ? (
         <StyledGrid item container direction="row" alignItems="center" className="bottom-margin-3">
           <StyledTypography variant="body2">{translation.ProductGridLabelsfilteredBy}</StyledTypography>
           {Object.keys(selectedFacets).map((key: string, index: number) => (
@@ -174,6 +177,7 @@ const CatalogEntryListWidget: React.FC<CatalogEntryListWidgetProps> = (props: an
                 label={selectedFacets[key]}
                 onClick={() => onFacetRemove(key)}
                 onDelete={() => onFacetRemove(key)}
+                data-testid={`catalog-entry-list-${key}-selected-facet-chip`}
               />
             </Fragment>
           ))}
@@ -184,17 +188,18 @@ const CatalogEntryListWidget: React.FC<CatalogEntryListWidgetProps> = (props: an
               label={formattedPriceDisplay}
               onClick={() => clearPriceFacet()}
               onDelete={() => clearPriceFacet()}
+              data-testid="catalog-entry-list-formatted-price-chip"
             />
           )}
           {(Object.keys(selectedFacets).length > 1 || (priceSelected && Object.keys(selectedFacets).length > 0)) && (
             <StyledButton testId="clear-all-facets" variant="text" className="left-margin-1">
-              <Link onClick={(event) => onClearAll(event)} to="" className="clear-all">
+              <StyledLink onClick={(event) => onClearAll(event)} to="" className="clear-all" testId="clear-all-facets">
                 {translation.ProductGridActionsclearAll}
-              </Link>
+              </StyledLink>
             </StyledButton>
           )}
         </StyledGrid>
-      )}
+      ) : null}
 
       {/* Product listing and pagination */}
       {ProductCards}

@@ -1,35 +1,119 @@
 {
-  "resourceId": "https://localhost:443/wcs/resources/store/2/cart/@self/usable_payment_info",
-  "orderId": "3119512",
+  "resourceId": "https://app:5443/wcs/resources/store/12/cart/@self/usable_payment_info?langId=-1",
+  "orderId": "5069794",
   "resourceName": "cart",
   "usablePaymentInformation": [
     {
-      "xumet_policyId": "12009",
+      "xumet_policyId": "-12001",
       "usableBillingAddress": [
         {
-          "nickName": "Buyer A Organization",
-          "addressId": "4721531370"
+          "nickName": "testing@test.com",
+          "addressId": "3074457359258356550"
         }
       ],
-      "paymentTermConditionId": "4000000000000005023",
-      "description": "test visa",
+      "paymentTermConditionId": "",
+      "description": "Apple Pay",
+      "xumet_attrPageName": "SimplePunchout",
+      "language": "-1",
+      "paymentMethodName": "ApplePay"
+    },
+    {
+      "xumet_policyId": "15506",
+      "usableBillingAddress": [
+        {
+          "nickName": "testing@test.com",
+          "addressId": "3074457359258356550"
+        }
+      ],
+      "paymentTermConditionId": "",
+      "description": "Cash on delivery",
+      "xumet_attrPageName": "StandardCOD",
+      "language": "-1",
+      "paymentMethodName": "COD"
+    },
+    {
+      "xumet_policyId": "15504",
+      "usableBillingAddress": [
+        {
+          "nickName": "testing@test.com",
+          "addressId": "3074457359258356550"
+        }
+      ],
+      "paymentTermConditionId": "",
+      "description": "Bill me later",
+      "xumet_attrPageName": "StandardBillMeLater",
+      "language": "-1",
+      "paymentMethodName": "BillMeLater"
+    },
+    {
+      "xumet_policyId": "15507",
+      "usableBillingAddress": [
+        {
+          "nickName": "testing@test.com",
+          "addressId": "3074457359258356550"
+        }
+      ],
+      "paymentTermConditionId": "",
+      "description": "MasterCard Credit Card",
+      "xumet_attrPageName": "StandardMasterCard",
+      "language": "-1",
+      "paymentMethodName": "MasterCard"
+    },
+    {
+      "xumet_policyId": "15508",
+      "usableBillingAddress": [
+        {
+          "nickName": "testing@test.com",
+          "addressId": "3074457359258356550"
+        }
+      ],
+      "paymentTermConditionId": "",
+      "description": "Pay later",
+      "xumet_attrPageName": "StandardPayLater",
+      "language": "-1",
+      "paymentMethodName": "PayLater"
+    },
+    {
+      "xumet_policyId": "15509",
+      "usableBillingAddress": [
+        {
+          "nickName": "testing@test.com",
+          "addressId": "3074457359258356550"
+        }
+      ],
+      "paymentTermConditionId": "",
+      "description": "VISA Credit Card",
       "xumet_attrPageName": "StandardVisa",
       "language": "-1",
       "paymentMethodName": "VISA"
     },
     {
-      "xumet_policyId": "12006",
+      "xumet_policyId": "15505",
       "usableBillingAddress": [
         {
-          "nickName": "Buyer A Organization",
-          "addressId": "4721531370"
+          "nickName": "testing@test.com",
+          "addressId": "3074457359258356550"
         }
       ],
-      "paymentTermConditionId": "4000000000000005025",
-      "description": "test cod",
-      "xumet_attrPageName": "StandardCOD",
+      "paymentTermConditionId": "",
+      "description": "Check",
+      "xumet_attrPageName": "StandardCheck",
       "language": "-1",
-      "paymentMethodName": "COD"
+      "paymentMethodName": "Check"
+    },
+    {
+      "xumet_policyId": "15503",
+      "usableBillingAddress": [
+        {
+          "nickName": "testing@test.com",
+          "addressId": "3074457359258356550"
+        }
+      ],
+      "paymentTermConditionId": "",
+      "description": "American Express Credit Card",
+      "xumet_attrPageName": "StandardAmex",
+      "language": "-1",
+      "paymentMethodName": "AMEX"
     }
   ]
 }

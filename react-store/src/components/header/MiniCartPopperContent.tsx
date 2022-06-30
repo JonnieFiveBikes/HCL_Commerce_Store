@@ -14,12 +14,12 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 //Custom libraries
-import { CART, CHECKOUT, IP_ORDER_DETAILS } from "../../constants/routes";
+import { CART, CHECKOUT, IP_ORDER_DETAILS, SIGNIN } from "../../constants/routes";
 import { MINICART_CONFIGS } from "../../configs/order";
 import { PRIVATE_ORDER_TYPE } from "../../constants/order";
 //Redux
 import { numItemsSelector, cartSelector, orderItemsSelector } from "../../redux/selectors/order";
-import { forUserIdSelector, userIdSelector } from "../../redux/selectors/user";
+import { forUserIdSelector, userIdSelector, loginStatusSelector } from "../../redux/selectors/user";
 //UI
 import { ClickAwayListener } from "@material-ui/core";
 import { StyledMiniCartContent } from "../StyledUI";
@@ -37,6 +37,7 @@ interface MiniCartPopperContentProps {
 const MiniCartPopperContent: React.FC<MiniCartPopperContentProps> = (props: any) => {
   const { handleClose } = props;
   const numItems = useSelector(numItemsSelector);
+  const loginStatus = useSelector(loginStatusSelector);
   const cart = useSelector(cartSelector);
   const orderItems = useSelector(orderItemsSelector);
   const { t } = useTranslation();
@@ -64,7 +65,11 @@ const MiniCartPopperContent: React.FC<MiniCartPopperContentProps> = (props: any)
 
   const handleCheckoutOnClick = () => {
     handleClose();
-    navigate(CHECKOUT);
+    if (loginStatus) {
+      navigate(CHECKOUT);
+    } else {
+      navigate(SIGNIN, { state: { checkoutFlow: true } });
+    }
   };
 
   const initOrderTotalSummary = () => {

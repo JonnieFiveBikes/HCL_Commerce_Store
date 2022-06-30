@@ -11,6 +11,12 @@
 import { RootReducerState } from "../redux/reducers";
 
 export const initStates: RootReducerState = {
+  countries: {
+    countries: [],
+  },
+  wishList: {
+    list: [],
+  },
   categories: {
     categories: [],
   },
@@ -56,6 +62,8 @@ export const initStates: RootReducerState = {
     isRecurringOrderDisabled: false,
     allowableShipModes: [],
     activeInprogressOrder: null,
+    orderMethodIsPickup: false,
+    pickupPerson: null,
   },
   error: {
     errorKey: null,

@@ -22,6 +22,8 @@ import {
   FETCH_ORDER_DETAILS_FAIL_ACTION,
 } from "../../actions/orderDetails";
 import { currentContractIdSelector } from "../../selectors/contract";
+import { SELLER_PARAM } from "../../../_foundation/constants/common";
+import { EMPTY_STRING } from "../../../constants/common";
 
 export function* getOrderDetails(action: any) {
   const { orderId, currency } = action.payload;
@@ -47,7 +49,12 @@ export function* getOrderDetails(action: any) {
         return p;
       }, {});
 
-      const itemDetailsParams = { currency, contracts };
+      const itemDetailsParams = {
+        currency,
+        contracts,
+        // add empty seller parameter -- don't filter when fetching order-item details
+        query: { [SELLER_PARAM]: EMPTY_STRING },
+      };
       const itemDetails = yield call(fetchOrderItemDetailsByIds, itemDetailsParams);
       yield put(
         FETCH_ORDER_ITEM_DETAILS_SUCCESS_ACTION({

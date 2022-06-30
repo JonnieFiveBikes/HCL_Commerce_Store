@@ -19,7 +19,7 @@ import getSymbolFromCurrency from "currency-symbol-map";
 import { useSite } from "./useSite";
 import { localStorageUtil } from "../utils/storageUtil";
 import paymentInstructionService from "../apis/transaction/paymentInstruction.service";
-import { ACCOUNT, LOCALE } from "../constants/common";
+import { ACCOUNT } from "../constants/common";
 //Custom libraries
 import { PAYMENT_CONFIGS } from "../../configs/order";
 import { PAYMENT, PO_NUMBER, EXPIRY, ACCOUNT_CC, CC_CVC, EXPIRE_YEAR, EXPIRE_MONTH } from "../../constants/order";
@@ -32,6 +32,7 @@ import { activeOrgSelector } from "../../redux/selectors/organization";
 import * as orderActions from "../../redux/actions/order";
 import * as organizationAction from "../../redux/actions/organization";
 import * as accountActions from "../../redux/actions/account";
+import { useTranslation } from "react-i18next";
 
 export interface CreditCardFormDataType {
   account: string;
@@ -75,7 +76,9 @@ export const useCheckoutPayment = (props: any) => {
   const { mySite } = useSite();
   const CancelToken = Axios.CancelToken;
   const cancels: Canceler[] = [];
-  const locale = localStorageUtil.get(LOCALE);
+  const {
+    i18n: { language },
+  } = useTranslation();
 
   const isB2B = mySite ? mySite.isB2B : false;
   const PAYMENT_INFO_INIT: PaymentInfoType = {
@@ -145,7 +148,7 @@ export const useCheckoutPayment = (props: any) => {
       dispatch(organizationAction.GET_ORGANIZATION_ADDRESS_ACTION(param));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mySite, locale]);
+  }, [mySite, language]);
 
   useEffect(() => {
     if (cart?.paymentInstruction?.length > 0) {
@@ -552,15 +555,15 @@ export const useCheckoutPayment = (props: any) => {
         setIsReviewOrderClicked(false);
       }
 
-      navigate(ROUTES.CHECKOUT_REVIEW);
+      navigate(`../${ROUTES.CHECKOUT_REVIEW}`);
     }
   }
   /**
    * Go back to the previous checkout step
    */
-  function back() {
-    navigate(ROUTES.CHECKOUT_SHIPPING);
-  }
+  const back = (isPickup) => {
+    navigate(`../${isPickup ? ROUTES.CHECKOUT_PICKUP : ROUTES.CHECKOUT_SHIPPING}`);
+  };
 
   return {
     createNewAddress,

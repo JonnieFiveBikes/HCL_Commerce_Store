@@ -288,7 +288,11 @@ export const useRequisitionListItems = (props) => {
       addKeysToCart({ keys, t, h, s, f });
     };
     return (
-      <StyledIconButton style={{ padding: "0.2rem" }} color="primary" onClick={onClickSKC}>
+      <StyledIconButton
+        style={{ padding: "0.2rem" }}
+        color="primary"
+        onClick={onClickSKC}
+        data-testid="use-requisition-shopping-cart-icon-button">
         <ShoppingCart />
       </StyledIconButton>
     );
@@ -346,7 +350,12 @@ export const useRequisitionListItems = (props) => {
       deleteKeys({ orderId, currency, keys, t, h, s, f });
     };
     return (
-      <StyledIconButton style={{ padding: "0.2rem" }} color="primary" onClick={onClickSDK} {...{ disabled }}>
+      <StyledIconButton
+        style={{ padding: "0.2rem" }}
+        color="primary"
+        onClick={onClickSDK}
+        {...{ disabled }}
+        data-testid="use-requisition-delete-icon-button">
         <DeleteOutlineOutlinedIcon />
       </StyledIconButton>
     );

@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * HCL Commerce Transaction server Services 
- * These services provide APIs to interact with transaction
+ * HCL Commerce Services - Account and Contract
+ * These services provide APIs to manage accounts and contracts.  a contract is an agreement that represents the terms and conditions that apply to a transaction. An account is a relationship between the merchant and the financial institution that processes transactions for that merchant.
  *
  * The version of the OpenAPI document: 9.1.6
  * 
@@ -20,6 +20,8 @@ import { Configuration } from '../../../../../configuration';
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../../../../../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../../../../../base';
+// @ts-ignore
+import { TokenToken } from '../../../../../com/hcl/commerce/typescript/axios';
 /**
  * TokenApi - axios parameter creator
  * @export
@@ -93,7 +95,7 @@ export const TokenApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async tokenFindByUrlKeywordNames(storeId: string, q: string, urlKeywordName: Array<string>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+        async tokenFindByUrlKeywordNames(storeId: string, q: string, urlKeywordName: Array<string>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenToken>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.tokenFindByUrlKeywordNames(storeId, q, urlKeywordName, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -116,7 +118,7 @@ export const TokenApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        tokenFindByUrlKeywordNames(storeId: string, q: string, urlKeywordName: Array<string>, options?: any): AxiosPromise<object> {
+        tokenFindByUrlKeywordNames(storeId: string, q: string, urlKeywordName: Array<string>, options?: any): AxiosPromise<TokenToken> {
             return localVarFp.tokenFindByUrlKeywordNames(storeId, q, urlKeywordName, options).then((request) => request(axios, basePath));
         },
     };

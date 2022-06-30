@@ -1,0 +1,44 @@
+{
+  "contents": [
+    {
+      "layout": {
+        "id": "13005",
+        "name": "CartPageLayout",
+        "containerName": "cart-page",
+        "slots": [
+          {
+            "id": "2",
+            "widgets": [
+              {
+                "id": "3518",
+                "name": "CartPageProductRecommendation",
+                "widgetName": "e-marketing-spot-widget",
+                "sequence": 0,
+                "properties": {
+                  "emsName": "ShoppingCartRight_CatEntries"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "identifier": "cart",
+      "store.type": "BMP",
+      "tokenName": "StaticPagesToken",
+      "tokenExternalValue": "CartPage",
+      "language": "en_US",
+      "id": "58002",
+      "page": {
+        "imageAlternateDescription": "Image for Sapphire cart page",
+        "name": "Content_1502",
+        "type": "ContentPage",
+        "title": "Sapphire",
+        "metaDescription": "Sapphire shopping cart",
+        "metaKeyword": "Sapphire shopping cart"
+      },
+      "storeId": "12",
+      "tokenValue": "1502",
+      "status": 1
+    }
+  ]
+}

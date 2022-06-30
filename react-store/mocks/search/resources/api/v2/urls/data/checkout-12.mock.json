@@ -1,0 +1,44 @@
+{
+  "contents": [
+    {
+      "layout": {
+        "id": "13006",
+        "name": "CheckoutPageLayout",
+        "containerName": "check-out-page",
+        "slots": [
+          {
+            "id": "2",
+            "widgets": [
+              {
+                "id": "3520",
+                "name": "CheckoutPageContentRecommendation",
+                "widgetName": "e-marketing-spot-widget",
+                "sequence": 0,
+                "properties": {
+                  "emsName": "Home_Promotion"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "identifier": "checkout",
+      "store.type": "BMP",
+      "tokenName": "StaticPagesToken",
+      "tokenExternalValue": "CheckOutPage",
+      "language": "en_US",
+      "id": "58003",
+      "page": {
+        "imageAlternateDescription": "Image for Sapphire checkout",
+        "name": "Content_1503",
+        "type": "ContentPage",
+        "title": "Sapphire",
+        "metaDescription": "Sapphire checkout",
+        "metaKeyword": "Sapphire checkout"
+      },
+      "storeId": "12",
+      "tokenValue": "1503",
+      "status": 1
+    }
+  ]
+}

@@ -24,8 +24,6 @@ import {
   StyledHeaderActions,
 } from "@hcl-commerce-store-sdk/react-component";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { useWinDimsInEM } from "../../_foundation/hooks/use-win-dims-in-em";
-import { S_MOBILE_W, XS_MOBILE_W } from "../../constants/common";
 
 interface MiniCartProps {
   id: string;
@@ -44,10 +42,15 @@ const MiniCart = React.forwardRef<HTMLButtonElement | null, MiniCartProps>((prop
   const { t } = useTranslation();
   const numItems = useSelector(numItemsSelector);
   const [arrowRef, setArrowRef] = useState<any>(null);
-  const { w } = useWinDimsInEM();
-  const xSmall = XS_MOBILE_W;
-  const small = S_MOBILE_W;
-  const offset = w <= xSmall ? { offset: "-48" } : undefined;
+
+  // keep mini-cart placement always as "bottom" and just adjust the offset from the left depending on where the anchor is
+  const calcOffset = () => {
+    const mcw = 125;
+    const left = ref?.current?.offsetLeft;
+    const rc = left < mcw ? `${mcw - left}` : "0";
+    return rc;
+  };
+  const offset = calcOffset();
 
   return (
     <>
@@ -71,9 +74,9 @@ const MiniCart = React.forwardRef<HTMLButtonElement | null, MiniCartProps>((prop
         open={open}
         anchorEl={ref?.current}
         onClose={handleClose}
-        placement={w <= xSmall ? "bottom-start" : w <= small ? "bottom" : "bottom-end"}
+        placement="bottom"
         modifiers={{
-          offset,
+          offset: { offset },
           flip: {
             enabled: false,
           },

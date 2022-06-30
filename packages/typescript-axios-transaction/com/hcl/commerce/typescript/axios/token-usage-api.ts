@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * HCL Commerce Transaction server Services 
- * These services provide APIs to interact with transaction
+ * HCL Commerce Services - Account and Contract
+ * These services provide APIs to manage accounts and contracts.  a contract is an agreement that represents the terms and conditions that apply to a transaction. An account is a relationship between the merchant and the financial institution that processes transactions for that merchant.
  *
  * The version of the OpenAPI document: 9.1.6
  * 
@@ -20,6 +20,8 @@ import { Configuration } from '../../../../../configuration';
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../../../../../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../../../../../base';
+// @ts-ignore
+import { TokenusageTokenusage } from '../../../../../com/hcl/commerce/typescript/axios';
 /**
  * TokenUsageApi - axios parameter creator
  * @export
@@ -85,7 +87,7 @@ export const TokenUsageApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async tokenUsageFindByAll(storeId: string, q: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+        async tokenUsageFindByAll(storeId: string, q: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenusageTokenusage>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.tokenUsageFindByAll(storeId, q, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -107,7 +109,7 @@ export const TokenUsageApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        tokenUsageFindByAll(storeId: string, q: string, options?: any): AxiosPromise<object> {
+        tokenUsageFindByAll(storeId: string, q: string, options?: any): AxiosPromise<TokenusageTokenusage> {
             return localVarFp.tokenUsageFindByAll(storeId, q, options).then((request) => request(axios, basePath));
         },
     };

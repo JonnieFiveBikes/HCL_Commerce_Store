@@ -10,7 +10,6 @@
  */
 //Standard libraries
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 //Common libraries
 import { PAGINATION } from "../../constants/common";
 //UI
@@ -22,6 +21,7 @@ import {
   TableColumnDef,
   useTableUtils,
   useCustomTable,
+  StyledLink,
 } from "@hcl-commerce-store-sdk/react-component";
 import { useMemo } from "react";
 import { get } from "lodash-es";
@@ -38,7 +38,7 @@ const ItemDetailsCell = ({ rowData, ...props }) => {
     <>
       <StyledTypography variant="body2">
         {rowData.seo && rowData.seo.href ? (
-          <Link to={rowData.seo?.href}>{rowData.name ? rowData.name : rowData.partNumber}</Link>
+          <StyledLink to={rowData.seo?.href}>{rowData.name ? rowData.name : rowData.partNumber}</StyledLink>
         ) : rowData.name ? (
           rowData.name
         ) : (
@@ -65,7 +65,7 @@ const ThumbnailCell = ({ rowData, ...props }) => {
   const A = (
     <StyledAvatar alt={rowData.name} src={rowData.thumbnail} style={{ margin: "0", justifyContent: "flex-start" }} />
   );
-  return <>{rowData.seo && rowData.seo.href ? <Link to={rowData.seo?.href}>{A}</Link> : <>{A}</>}</>;
+  return <>{rowData.seo && rowData.seo.href ? <StyledLink to={rowData.seo?.href}>{A}</StyledLink> : <>{A}</>}</>;
 };
 
 const ShippingCell = ({ rowData, ...props }) => {

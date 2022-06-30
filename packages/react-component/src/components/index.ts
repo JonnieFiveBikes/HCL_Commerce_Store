@@ -22,3 +22,4 @@ export * from "./feature-card";
 export * from "./custom-table";
 export * from "./search-box";
 export * from "./ribbon-ad";
+export * from "./marker-icon";

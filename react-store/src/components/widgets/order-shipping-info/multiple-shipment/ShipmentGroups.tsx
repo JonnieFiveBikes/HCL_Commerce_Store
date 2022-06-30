@@ -74,11 +74,12 @@ const ShippingGroupSummary = ({ index, group }: ShipmentGroupSummaryProps) => {
 
 export interface ShipmentGroupsProps {
   groups: any[];
+  preShip?: boolean;
 }
 
 const ShipmentGroups: React.FC<ShipmentGroupsProps> = (props: ShipmentGroupsProps) => {
   const { t } = useTranslation();
-  const { groups } = props;
+  const { groups, preShip } = props;
   return (
     <StyledGrid item xs={12}>
       <OrderDetailSubsection
@@ -90,7 +91,7 @@ const ShipmentGroups: React.FC<ShipmentGroupsProps> = (props: ShipmentGroupsProp
         details={
           <>
             {groups.map((group, index) => (
-              <StyledAccordion key={index} className="shipment-group">
+              <StyledAccordion testId={`shipment-group-${index}`} key={index} className="shipment-group">
                 <StyledAccordionSummary
                   className="shipment-group-summary"
                   expandIcon={
@@ -131,7 +132,7 @@ const ShipmentGroups: React.FC<ShipmentGroupsProps> = (props: ShipmentGroupsProp
                   style={{ flexDirection: "column" }}
                   id={`group-${index}-details`}
                   className="shipment-group-details">
-                  <OrderItemTable data={group} readOnly={true} className="review-order full-width" />
+                  <OrderItemTable preShip={preShip} data={group} readOnly={true} className="review-order full-width" />
                 </StyledAccordionDetails>
               </StyledAccordion>
             ))}

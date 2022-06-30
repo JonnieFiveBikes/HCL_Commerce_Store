@@ -154,6 +154,7 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = (props: Pa
                                       <StyledSelect
                                         required
                                         native
+                                        data-testid="expiry-month"
                                         id="expire_month"
                                         name="expire_month"
                                         value={paymentInfo.creditCardFormData?.expire_month}
@@ -172,6 +173,7 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = (props: Pa
                                       <StyledSelect
                                         native
                                         required
+                                        data-testid="expiry-year"
                                         name="expire_year"
                                         value={paymentInfo.creditCardFormData?.expire_year}
                                         onChange={(event) => handleCreditCardChange(event, currentPaymentNumber)}

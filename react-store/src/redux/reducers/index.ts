@@ -27,10 +27,12 @@ import confirmation from "./confirmation";
 import recurringOrder from "./recurringOrder";
 import orderDetails from "./orderDetails";
 import site from "./site";
+import wishList from "./wish-list";
 import localStorage from "./local-storage";
 import checkoutProfile from "./checkout-profile";
 import categories from "./category";
 import sellers from "./sellers";
+import countries from "./country";
 
 import {
   ErrorReducerState,
@@ -50,12 +52,15 @@ import {
   SiteReducerState,
   ApiReducerState,
   CheckoutProfileReducerState,
+  WishListReducerState,
   CategoryReducerState,
   SellerInfoState,
+  CountryReducerState,
 } from "./reducerStateInterface";
 
 export * from "./reducerStateInterface";
 export interface RootReducerState {
+  countries: CountryReducerState;
   account: AccountReducerState;
   api: ApiReducerState;
   catalog: CatalogReducerState;
@@ -73,12 +78,14 @@ export interface RootReducerState {
   orderDetails: OrderDetailsMapReducerState;
   site: SiteReducerState;
   checkoutProfile: CheckoutProfileReducerState;
+  wishList: WishListReducerState;
   categories: CategoryReducerState;
   sellers: SellerInfoState;
 }
 
 const reducers = {
   account,
+  countries,
   api,
   catalog,
   user,
@@ -96,6 +103,7 @@ const reducers = {
   site,
   localStorage,
   checkoutProfile,
+  wishList,
   categories,
   sellers,
 };

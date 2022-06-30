@@ -24,6 +24,21 @@ const StyledCarouselProvider = styled(({ ...props }) => <CarouselProvider {...pr
   margin-top: ${theme.spacing(3)}px;
   height: 320px;
 
+  ${theme.breakpoints.down(410)} {
+    .carousel__slider.carousel__slider--horizontal {
+      height: inherit;
+      > .carousel__slider-tray-wrapper.carousel__slider-tray-wrap--horizontal {
+        height: inherit;
+        > .carousel__slider-tray.carousel__slider-tray--horizontal {
+          height: inherit;
+          > .carousel__slide {
+            height: inherit;
+          }
+        }
+      }
+    }
+  }
+
   .carousel__back-button,
   .carousel__next-button {
     position: absolute;
@@ -58,14 +73,21 @@ const StyledCarouselProvider = styled(({ ...props }) => <CarouselProvider {...pr
 `;
 
 const StyledSlide = styled(({ ...props }) => <Slide {...props} />)`
-  text-align: center;
+  ${({ theme }) => `
+    text-align: center;
 
-  .product-card {
-    max-width: 245px;
-    min-width: 225px;
-    display: inline-block;
-    max-height: 330px;
-  }
+    .product-card {
+      max-width: 245px;
+      ${theme.breakpoints.down(410)} {
+        min-width: 195px;
+      }
+      ${theme.breakpoints.up(410)} {
+        min-width: 225px;
+      }
+      display: inline-block;
+      max-height: 330px;
+    }
+  `}
 `;
 
 const StyledStaticSlideList = styled.div`

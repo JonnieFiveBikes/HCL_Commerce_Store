@@ -48,6 +48,10 @@ function* loginAndFetchDetail(payload: any) {
   });
   const loginPayload2 = response2.data;
   yield put(FETCH_USER_DETAILS_SUCCESS_ACTION(loginPayload2));
+
+  if (payload?.checkoutFn) {
+    payload.checkoutFn();
+  }
 }
 
 const preProcessLogonAndChangePasswordError = (error: any) => {

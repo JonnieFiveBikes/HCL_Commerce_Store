@@ -213,3 +213,12 @@ export const CS = ", "; // comma-space
 
 export const SEARCH_PLP_PROFILE = "HCL_V2_findProductsByCategoryWithPriceRange";
 export const SEARCH_FIND_PROFILE = "HCL_V2_findProductsBySearchTermWithPrice";
+
+export const SELF_PICKUP = "1";
+export const PICKUP_ONBEHALF = "2";
+export const ACOMP = {
+  input: "input",
+  reset: "reset",
+};
+export const PICKUP_PREFIX = "pickup_";
+export const MP_ENABLED = "hcl.marketplace.enabled";

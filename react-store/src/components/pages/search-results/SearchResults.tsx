@@ -14,8 +14,8 @@ import { useLocation } from "react-router-dom";
 //Custom libraries
 import { ProductListingPageLayout } from "@hcl-commerce-store-sdk/react-component";
 import { SectionContent } from "../../../_foundation/constants/section-content-type";
-import FacetNavigationWidget from "../../commerce-widgets/facet-navigation-widget";
-import CatalogEntryListWidget from "../../commerce-widgets/catalog-entry-list-widget";
+import FacetNavigationWidget from "../../commerce-widgets/facet-navigation-widget/facet-navigation-widget";
+import CatalogEntryListWidget from "../../commerce-widgets/catalog-entry-list-widget/catalog-entry-list-widget";
 import { SEARCHTERM } from "../../../constants/common";
 //UI
 import { StyledContainer } from "@hcl-commerce-store-sdk/react-component";

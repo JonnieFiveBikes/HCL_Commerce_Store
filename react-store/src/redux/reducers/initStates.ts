@@ -18,13 +18,18 @@ import {
   SearchReducerState,
   OrderDetailsMapReducerState,
   ApiReducerState,
+  WishListReducerState,
   CategoryReducerState,
   SellerInfoState,
+  CountryReducerState,
 } from "./reducerStateInterface";
 
 const accountDefaultState: AccountReducerState = {
   orders: null,
   address: null,
+};
+const wishListDefaultState: WishListReducerState = {
+  list: null,
 };
 const catalogDefaultState: CatalogReducerState = {
   productList: [],
@@ -59,6 +64,8 @@ const orderDefaultState: OrderReducerState = {
   allowableShipModes: [],
   activeInprogressOrder: null,
   allowablePaymethods: [],
+  orderMethodIsPickup: false,
+  pickupPerson: null,
 };
 const errorDefaultState: ErrorReducerState = {
   errorKey: null,
@@ -91,6 +98,9 @@ const sellerDefaultState: SellerInfoState = {
   langId: -1,
 };
 
+const countryDefaultState: CountryReducerState = {
+  countries: [],
+};
 export const defaultStates = {
   account: accountDefaultState,
   api: apiDefaultState,
@@ -109,8 +119,10 @@ export const defaultStates = {
   orderDetails,
   checkoutProfile: { curUserProfiles: [] },
   site: { currentSite: null },
+  wishList: wishListDefaultState,
   categories: categoriesDefaultState,
   sellers: sellerDefaultState,
+  countries: countryDefaultState,
 };
 
 export const clearState = (o: any) => {

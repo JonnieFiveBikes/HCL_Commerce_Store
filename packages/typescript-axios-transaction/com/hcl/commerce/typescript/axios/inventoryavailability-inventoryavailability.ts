@@ -23,6 +23,18 @@ import { InventoryavailabilityInventoryavailabilityItem } from './inventoryavail
 export interface InventoryavailabilityInventoryavailability {
     /**
      * 
+     * @type {string}
+     * @memberof InventoryavailabilityInventoryavailability
+     */
+    resourceId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InventoryavailabilityInventoryavailability
+     */
+    resourceName: string;
+    /**
+     * 
      * @type {Array<InventoryavailabilityInventoryavailabilityItem>}
      * @memberof InventoryavailabilityInventoryavailability
      */

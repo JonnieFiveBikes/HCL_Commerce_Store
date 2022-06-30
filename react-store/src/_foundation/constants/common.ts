@@ -61,3 +61,23 @@ export const STATIC_PAGES_TOKEN = "StaticPagesToken";
 
 export const CHILD_ROUTE_SEPARATOR = "/";
 export const SELLER_PARAM = "seller";
+
+//Store locator
+export const SELECTED_STORE = "SELECTED_STORE";
+export const STORELOCATORACTIONS = {
+  UPDATE_SELECTION_SUCCESS: "UPDATE_SELECTION_SUCCESS",
+  RESET_STORE_SELECTOR: "RESET_STORE_SELECTOR",
+};
+export const STORELOCATORLIBRARY: any = ["places"];
+export const KILOMETERS = "KM";
+export const STORELISTRADIUS = 40;
+export const GOOGLEMAPREGION = "ca";
+export const GOOGLEMAPZOOM = {
+  INIT: 9,
+  ZOOMIN: 14,
+};
+export const DEFAULT_LOCATION = {
+  //Toronto
+  lat: 43.653217,
+  lng: -79.383181,
+};

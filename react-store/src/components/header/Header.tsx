@@ -21,8 +21,9 @@ import { paramCase } from "change-case";
 //Foundation libraries
 import { useSite } from "../../_foundation/hooks/useSite";
 import categoryService from "../../_foundation/apis/search/categories.service";
-import { LOCALE } from "../../_foundation/constants/common";
+import { STORELOCATORACTIONS } from "../../_foundation/constants/common";
 import { localStorageUtil } from "../../_foundation/utils/storageUtil";
+import { useStoreLocatorValue } from "../../_foundation/context/store-locator-context";
 
 //Custom libraries
 import { headerConfig } from "./headerConstant";
@@ -44,6 +45,7 @@ import { ORG_SWITCH_ACTION } from "../../redux/actions/organization";
 import { CONTRACT_SWITCH_ACTION } from "../../redux/actions/contract";
 import { LOGOUT_REQUESTED_ACTION } from "../../redux/actions/user";
 import { UPDATE_CATEGORIES_STATE_ACTION } from "../../redux/actions/category";
+import { SELLERS_GET_ACTION } from "../../redux/actions/sellers";
 import { currentContractIdSelector } from "../../redux/selectors/contract";
 import { successSelector } from "../../redux/selectors/success";
 import { SuccessMessageReducerState } from "../../redux/reducers/reducerStateInterface";
@@ -78,6 +80,7 @@ import { SELLER_STORAGE_KEY } from "../../constants/common";
 import { SET_SELLER_ACTION } from "../../redux/actions/sellers";
 import { Sellers } from "./sellers";
 import { StyledList } from "@hcl-commerce-store-sdk/react-component";
+import { StoreLocatorButton } from "./store-locator-button";
 
 interface HeaderProps {
   loggedIn: boolean;
@@ -164,7 +167,10 @@ const Header: React.FC<HeaderProps> = (props: any) => {
   const languageToggleElRef = useRef<HTMLButtonElement>(null);
 
   const { mySite } = useSite();
-  const { t } = useTranslation();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
   const theme = useTheme();
   const dispatch = useDispatch();
 
@@ -180,8 +186,6 @@ const Header: React.FC<HeaderProps> = (props: any) => {
   const sellers = localStorageUtil.get(SELLER_STORAGE_KEY);
 
   const userPreviousLoggedIn = useRef();
-
-  const locale = localStorageUtil.get(LOCALE);
 
   const isB2B = Boolean(mySite?.isB2B);
   const loggedIn = props.loggedIn;
@@ -204,6 +208,8 @@ const Header: React.FC<HeaderProps> = (props: any) => {
   const payload = {
     ...payloadBase,
   };
+
+  const storeLocatorDispach = useStoreLocatorValue().dispatch;
 
   const handleMyAccountClick = () => {
     setMyAccountPopperOpen(true);
@@ -270,6 +276,7 @@ const Header: React.FC<HeaderProps> = (props: any) => {
       ...payload,
     };
     dispatch(LOGOUT_REQUESTED_ACTION(param));
+    storeLocatorDispach({ type: STORELOCATORACTIONS.RESET_STORE_SELECTOR });
   };
 
   useEffect(() => {
@@ -305,7 +312,18 @@ const Header: React.FC<HeaderProps> = (props: any) => {
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mySite, contractId, locale, selectedSellers]);
+  }, [mySite, contractId, language, selectedSellers]);
+
+  useEffect(() => {
+    const payloadBase: any = {
+      widget: widgetName,
+      cancelToken: new CancelToken(function executor(c) {
+        cancels.push(c);
+      }),
+    };
+    dispatch(SELLERS_GET_ACTION(payloadBase));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [language]);
 
   useEffect(() => {
     if (success && success.key) {
@@ -316,9 +334,10 @@ const Header: React.FC<HeaderProps> = (props: any) => {
   }, [success]);
 
   useEffect(() => {
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
+    //splice to empty array
+    cancels.splice(0, cancels.length).forEach((cancel) => {
+      cancel();
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -401,6 +420,9 @@ const Header: React.FC<HeaderProps> = (props: any) => {
                     </StyledSearchBarButton>
                   </StyledGrid>
                 </Hidden>
+                <StyledGrid item>
+                  <StoreLocatorButton />
+                </StyledGrid>
                 {isShoppingEnabled && (
                   <StyledGrid item>
                     <MiniCart
@@ -421,7 +443,7 @@ const Header: React.FC<HeaderProps> = (props: any) => {
                       color="secondary"
                       className="header-actionsButton"
                       onClick={handleMyAccountClick}
-                      testId="heaher-action-account">
+                      testId="header-action-account">
                       {isTablet ? (
                         <StyledHeaderActions>
                           <AccountBoxIcon />
@@ -431,7 +453,7 @@ const Header: React.FC<HeaderProps> = (props: any) => {
                         </StyledHeaderActions>
                       ) : (
                         <StyledBox className="welcome-text" display="flex" flexDirection="column">
-                          <StyledTypography variant="button" component="p">
+                          <StyledTypography variant="button" component="p" className="account-welcome">
                             {firstName
                               ? t("Header.Actions.WelcomeFirstname", {
                                   firstName,

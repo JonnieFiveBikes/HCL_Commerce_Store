@@ -76,6 +76,7 @@ function Footer(props: any) {
               <StyledTooltip title={`${t("Footer.DisabledMessage")}`}>
                 <Link
                   key={v.linkURL}
+                  data-testid={v.linkURL}
                   // to={`/${v.linkURL}`}
                   to="/"
                   onClick={(event) => event.preventDefault()}
@@ -109,7 +110,7 @@ function Footer(props: any) {
           {companyLinks.map((v: any) => (
             <div key={v.linkURL}>
               <StyledTooltip title={`${t("Footer.DisabledMessage")}`}>
-                <Link key={v.linkURL} to="/" onClick={(event) => event.preventDefault()}>
+                <Link data-testid={v.linkURL} key={v.linkURL} to="/" onClick={(event) => event.preventDefault()}>
                   {v.linkText}
                 </Link>
               </StyledTooltip>

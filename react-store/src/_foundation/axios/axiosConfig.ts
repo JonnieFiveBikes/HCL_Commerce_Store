@@ -44,26 +44,32 @@ import { API_CALL_ACTION } from "../../redux/actions/api";
 
 const GUEST_IDENTITY: string = "guestidentity";
 
-const isESSvcInList = (req: AxiosRequestConfig, list: string[]) => {
+const isESSvcInList = (req: AxiosRequestConfig, list: any) => {
   const { url = "" } = req;
+  const _list = Object.keys(list);
   if (url) {
     const path = `${site.searchContext}/`;
     const search = url.split("?")[0].split(path).pop();
     // can do some extra work here to replace store-ids in the list, but right
     //   now we have no such services to be filtered (that use store-id)
-    return search && list.indexOf(search) >= 0;
+    return search && _list.indexOf(search) >= 0;
   }
   return false;
 };
 
-const isServiceInList = (request: AxiosRequestConfig, serviceList: string[]) => {
-  const { url = "" } = request;
+const isServiceInList = (request: AxiosRequestConfig, serviceList: any) => {
+  const { url = "", method } = request;
+  const _method = method?.toUpperCase();
+  const _serviceList = Object.keys(serviceList);
   if (url) {
     const storePath = `${site.transactionContext}/store/`;
     const path = url.split("?")[0].split(storePath).pop();
     if (path) {
       const serviceName = path.split("/")[1];
-      return serviceList.indexOf(serviceName) > -1;
+      return _serviceList.some((s) => {
+        const { skip = "" } = serviceList[s];
+        return s === serviceName && skip !== _method;
+      });
     }
   }
   return false;
@@ -171,8 +177,15 @@ const isUseSnackbarHandleError = (error: AxiosError) => {
     if (skipErrorSnackbar === true) {
       return false;
     }
+    if (skipErrorSnackbar?.error) {
+      const errs = error.response?.data?.errors ?? [];
+      const e = errs[0];
+      if (e.errorKey === skipErrorSnackbar.error || e.errorCode === skipErrorSnackbar.error) {
+        return false;
+      }
+    }
   }
-  return !(error.isAxiosError && error.response && error.response.status === NOT_FOUND);
+  return !(error.isAxiosError && error.response?.status === NOT_FOUND);
 };
 
 const showAPIFlow = (method: any, requestUrl: any, widget: any = "Browser") => {
@@ -200,6 +213,10 @@ const showAPIFlow = (method: any, requestUrl: any, widget: any = "Browser") => {
 };
 
 const processForUserParameter = (request: AxiosRequestConfig) => {
+  if (request[SKIP_WC_TOKEN_HEADER]) {
+    //no wctoken, forUserId does not make sense.
+    return;
+  }
   const currentUser = storageSessionHandler.getCurrentUserAndLoadAccount();
   if (currentUser && currentUser.forUserId && request.url && request.url.indexOf(FOR_USER_ID) === -1) {
     const searchParam = request.url.split("?")[1];

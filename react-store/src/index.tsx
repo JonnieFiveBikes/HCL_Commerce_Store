@@ -28,6 +28,8 @@ import { StyleSheetManager, ThemeProvider as StyledThemeProvider } from "styled-
 import { StyledCircularProgress } from "@hcl-commerce-store-sdk/react-component";
 import { CurrentTheme } from "./themes";
 import "./index.scss";
+import { StoreLocatorProvider } from "./_foundation/context/store-locator-context";
+import { StoreShippingModeProvider } from "./_foundation/context/store-shipping-mode-context";
 
 const rootElement = document.getElementById("root");
 
@@ -39,7 +41,11 @@ render(
           <StyledThemeProvider theme={CurrentTheme}>
             <MuiThemeProvider theme={CurrentTheme}>
               <CssBaseline />
-              <App />
+              <StoreLocatorProvider>
+                <StoreShippingModeProvider>
+                  <App />
+                </StoreShippingModeProvider>
+              </StoreLocatorProvider>
             </MuiThemeProvider>
           </StyledThemeProvider>
         </StylesProvider>

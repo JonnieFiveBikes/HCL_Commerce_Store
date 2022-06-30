@@ -45,7 +45,7 @@ const CreateInprogressOrders: React.FC = () => {
     useCreateInprogressOrder();
 
   return (
-    <StyledAccordion>
+    <StyledAccordion testId={`in-progress-order-create`}>
       <StyledAccordionSummary
         className="horizontal-padding-2 vertical-padding-2 ip-cr8-acrdn"
         expandIcon={<ExpandMoreIcon />}>

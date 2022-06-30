@@ -22,9 +22,17 @@ import assignedPromotionCode from "../../_foundation/apis/transaction/assignedPr
 import { localStorageUtil } from "../../_foundation/utils/storageUtil";
 import { ACCOUNT, SELECTED_PROFILE } from "../../_foundation/constants/common";
 //Custom libraries
-import { CHECKOUT, CHECKOUT_REVIEW } from "../../constants/routes";
+import { CHECKOUT, CHECKOUT_REVIEW, SIGNIN } from "../../constants/routes";
 import { RECURRING_ORDER_OPTIONS, RESOURCE_NAME_CART } from "../../constants/order";
-import { INVENTORY, CommerceEnvironment, KEY_CODES, ORDER_ID, HYPHEN, EMPTY_STRING } from "../../constants/common";
+import {
+  INVENTORY,
+  CommerceEnvironment,
+  KEY_CODES,
+  ORDER_ID,
+  HYPHEN,
+  EMPTY_STRING,
+  SLASH,
+} from "../../constants/common";
 //Redux
 import * as orderActions from "../../redux/actions/order";
 import {
@@ -41,6 +49,7 @@ import { enUS, fr, de, it, es, ptBR, zhCN, zhTW, ja, ru, ro } from "date-fns/loc
 //GA360
 import AsyncCall from "../../_foundation/gtm/async.service";
 import cartService from "../apis/transaction/cart.service";
+import storeUtil from "../../utils/storeUtil";
 /**
  * Shopping cart component
  * displays order item table, order total summary and promo code section
@@ -352,47 +361,23 @@ export const useCart = () => {
           .copyOrder(parameters)
           .then((res) => {
             if (res?.status === 200) {
-              navigate(CHECKOUT_REVIEW, { state: { selectedProfile } });
+              navigate(`${CHECKOUT}${SLASH}${CHECKOUT_REVIEW}`, { state: { selectedProfile } });
             }
           })
           .catch((e) => console.log("Couldn't copy shipping info from checkout profile"));
       } else {
-        navigate(CHECKOUT);
+        if (loginStatus) {
+          navigate(CHECKOUT);
+        } else {
+          navigate(SIGNIN, { state: { checkoutFlow: true } });
+        }
       }
     }
   }
 
   useEffect(() => {
-    if (orderItems?.length) {
-      const collector: { [k: string]: any } = {};
-      const unk: any[] = [];
-      let n = 0;
-
-      // partition products by their sellers -- collect products with no-known sellers into a separate list
-      orderItems.forEach((p, i) => {
-        if (p.sellerId) {
-          const o = collector[p.sellerId] ?? { idx: i, seller: { id: p.sellerId, seller: p.seller }, data: [] };
-          o.data.push(p);
-          collector[p.sellerId] = o;
-          ++n;
-        } else {
-          unk.push(p);
-        }
-      });
-
-      // partition only if there is at least one SKU with a seller specified
-      if (n) {
-        const vals = Object.values(collector).sort((a, b) => a.idx - b.idx);
-        if (unk.length) {
-          vals.push({ seller: { id: storeDisplayName, seller: storeDisplayName }, data: unk });
-        }
-        setPartBySellers(vals);
-      } else {
-        setPartBySellers([]);
-      }
-    } else {
-      setPartBySellers([]);
-    }
+    const parts = storeUtil.partitionBySellers(orderItems, storeDisplayName, mySite);
+    setPartBySellers(parts);
   }, [orderItems]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return {

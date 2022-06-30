@@ -1,0 +1,23 @@
+{
+  "contents": [
+    {
+      "identifier": "dining-room",
+      "store.type": "CPS",
+      "tokenName": "CategoryToken",
+      "tokenExternalValue": "DiningRoom",
+      "language": "en_US",
+      "id": "56821",
+      "page": {
+        "imageAlternateDescription": "Image for Dining Room from Emerald",
+        "name": "CATEGORY_PAGE",
+        "type": "CategoryPage",
+        "title": "Dining Room | Emerald",
+        "metaDescription": "Entertain your guests with dining room furniture and decor that fits any space",
+        "metaKeyword": "family dining, evening, entertain, elegant, buffets"
+      },
+      "storeId": "11",
+      "tokenValue": "10505",
+      "status": 1
+    }
+  ]
+}

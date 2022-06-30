@@ -1,0 +1,58 @@
+{
+  "contents": [
+    {
+      "layout": {
+        "id": "13001",
+        "name": "HomePageLayout",
+        "containerName": "home-page",
+        "slots": [
+          {
+            "id": "1",
+            "widgets": [
+              {
+                "id": "3502",
+                "name": "HomePageBannerWidget",
+                "widgetName": "content-recommendation-widget",
+                "sequence": 0,
+                "properties": {
+                  "emsName": "Home Hero"
+                }
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "widgets": [
+              {
+                "id": "3503",
+                "name": "HomePagePromotion",
+                "widgetName": "content-recommendation-widget",
+                "sequence": 0,
+                "properties": {
+                  "emsName": "Home_Promotion"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "identifier": "home",
+      "store.type": "BMP",
+      "tokenName": "StaticPagesToken",
+      "tokenExternalValue": "HomePage",
+      "language": "en_US",
+      "id": "58001",
+      "page": {
+        "imageAlternateDescription": "Image for Sapphire home page",
+        "name": "Content_1501",
+        "type": "ContentPage",
+        "title": "Welcome to Sapphire",
+        "metaDescription": "Shop Sapphire online. Commerce Model Store entity",
+        "metaKeyword": "Sapphire Commerce Model Store entity"
+      },
+      "storeId": "12",
+      "tokenValue": "1501",
+      "status": 1
+    }
+  ]
+}

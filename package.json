@@ -1,10 +1,10 @@
 {
   "name": "hcl-commerce-store-sdk",
-  "version": "9.1.10",
+  "version": "9.1.11",
   "description": "HCL Commerce React Store SDK",
   "resolutions": {
     "browserslist": "4.17.0",
-    "css-what": "^5.0.1",
+    "css-what": "^6.1.0",
     "follow-redirects": "1.14.7",
     "dns-packet": "^5.2.2",
     "glob-parent": "5.1.2",
@@ -27,7 +27,8 @@
     "packages/react-component",
     "packages/typescript-axios-es",
     "packages/typescript-axios-transaction",
-    "react-store"
+    "react-store",
+    "react-widget"
   ],
   "engines": {
     "node": ">=16.0.0",

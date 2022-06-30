@@ -38,6 +38,7 @@ export const ProductProvider = ({ children }: any) => {
   const [filterSkuState, setFilterSkuState] = React.useState<Array<any>>([]);
   const [definingAttributeList, setDefiningAttributeList] = React.useState<Array<object>>([]);
   const [attributeState, setAttributeState] = React.useState<Map<any, any>>(() => new Map());
+  const [skuAndPickupMode, setSkuAndPickupMode] = React.useState<Map<any, any>>(() => new Map());
 
   /**
    * Get product information from part number
@@ -107,6 +108,8 @@ export const ProductProvider = ({ children }: any) => {
         setCurrentProdSelect,
         skuAndQuantities,
         setSkuAndQuantities,
+        skuAndPickupMode,
+        setSkuAndPickupMode,
         filterSkuState,
         setFilterSkuState,
         definingAttributeList,

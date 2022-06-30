@@ -1,0 +1,113 @@
+{
+  "resourceId": "https://app:5443/wcs/resources/store/12/cart/@self/usable_shipping_info?langId=-1",
+  "usableShippingAddress": [
+    {
+      "nickName": "testing@test.com",
+      "addressId": "3074457359258356550"
+    }
+  ],
+  "orderId": "5069794",
+  "orderItem": [
+    {
+      "usableShippingMode": [
+        {
+          "shipModeCode": "PickupInStore",
+          "description": "Pickup in store",
+          "shipModeId": "15001",
+          "language": "-1"
+        },
+        {
+          "carrier": "Express",
+          "shipModeCode": "Express",
+          "description": "Express",
+          "shipModeId": "15002",
+          "language": "-1"
+        },
+        {
+          "carrier": "Mail",
+          "shipModeCode": "Mail",
+          "description": "Mail",
+          "shipModeId": "15501",
+          "language": "-1"
+        },
+        {
+          "carrier": "XYZ Carrier",
+          "shipModeCode": "US Regular Delivery",
+          "description": "US - Regular Delivery",
+          "shipModeId": "16001",
+          "language": "-1"
+        },
+        {
+          "carrier": "XYZ Carrier",
+          "shipModeCode": "US - Overnight Delivery",
+          "description": "US - Overnight Delivery",
+          "shipModeId": "16002",
+          "language": "-1"
+        },
+        {
+          "carrier": "XYZ Carrier",
+          "shipModeCode": "US - 2-Day Express Delivery",
+          "description": "US - 2-Day Express Delivery",
+          "shipModeId": "16003",
+          "language": "-1"
+        },
+        {
+          "carrier": "International Carrier",
+          "shipModeCode": "International Priority",
+          "description": "International Priority",
+          "shipModeId": "16004",
+          "language": "-1"
+        },
+        {
+          "carrier": "International Carrier",
+          "shipModeCode": "International Regular",
+          "description": "International Regular",
+          "shipModeId": "16005",
+          "language": "-1"
+        },
+        {
+          "carrier": "XYZ Carrier",
+          "shipModeCode": "A1",
+          "description": "International mail",
+          "shipModeId": "16501",
+          "language": "-1"
+        },
+        {
+          "carrier": "XYZ Carrier",
+          "shipModeCode": "A2",
+          "description": "Express mail",
+          "shipModeId": "16502",
+          "language": "-1"
+        },
+        {
+          "carrier": "XYZ Carrier",
+          "shipModeCode": "A3",
+          "description": "Courier",
+          "shipModeId": "16503",
+          "language": "-1"
+        },
+        {
+          "shipModeCode": "PickupInStore",
+          "description": "Pickup in store",
+          "shipModeId": "16504",
+          "language": "-1"
+        }
+      ],
+      "usableShippingChargePolicy": [
+        {
+          "name": "StandardShippingChargeBySeller",
+          "type": "ShippingCharge",
+          "uniqueID": "-7001"
+        }
+      ],
+      "usableShippingAddress": [
+        {
+          "nickName": "testing@test.com",
+          "addressId": "3074457359258356550"
+        }
+      ],
+      "orderItemId": "10006"
+    }
+  ],
+  "resourceName": "cart"
+}

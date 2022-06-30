@@ -23,6 +23,7 @@ import { useSite } from "../../../../_foundation/hooks/useSite";
 import addressUtil from "../../../../utils/addressUtil";
 import { SIGNIN } from "../../../../constants/routes";
 import { EMPTY_STRING } from "../../../../constants/common";
+import { CountryState } from "../../../widgets/country-state";
 //UI
 import {
   StyledGrid,
@@ -424,19 +425,12 @@ const BuyerOrganizationRegistration = (props: any) => {
                             onChange={(e) => setOrganizationZipCode(e.target.value)}
                           />
                         </StyledGrid>
-                        <StyledGrid item xs={12} sm={6}>
-                          <StyledTextField
-                            required
-                            inputProps={{
-                              maxLength: 40,
-                            }}
-                            label={t("BuyerOrganizationRegistration.State")}
-                            name="organizationState"
-                            fullWidth
-                            value={organizationState}
-                            onChange={(e) => setOrganizationState(e.target.value)}
-                          />
-                        </StyledGrid>
+                        <CountryState
+                          country={organizationCountry}
+                          setCountry={setOrganizationCountry}
+                          state={organizationState}
+                          setState={setOrganizationState}
+                        />
                         <StyledGrid item xs={12} sm={6}>
                           <StyledTextField
                             required
@@ -448,19 +442,6 @@ const BuyerOrganizationRegistration = (props: any) => {
                             fullWidth
                             value={organizationCity}
                             onChange={(e) => setOrganizationCity(e.target.value)}
-                          />
-                        </StyledGrid>
-                        <StyledGrid item xs={12} sm={6}>
-                          <StyledTextField
-                            required
-                            inputProps={{
-                              maxLength: 40,
-                            }}
-                            label={t("BuyerOrganizationRegistration.Country")}
-                            name="organizationCountry"
-                            fullWidth
-                            value={organizationCountry}
-                            onChange={(e) => setOrganizationCountry(e.target.value)}
                           />
                         </StyledGrid>
                         <StyledGrid item xs={12}>
@@ -690,21 +671,7 @@ const BuyerOrganizationRegistration = (props: any) => {
                                 onChange={(e) => setZipCode(e.target.value)}
                               />
                             </StyledGrid>
-
-                            <StyledGrid item xs={12} sm={6}>
-                              <StyledTextField
-                                required
-                                inputProps={{
-                                  maxLength: 40,
-                                }}
-                                label={t("BuyerOrganizationRegistration.State")}
-                                name="state"
-                                fullWidth
-                                value={state}
-                                onChange={(e) => setState(e.target.value)}
-                              />
-                            </StyledGrid>
-
+                            <CountryState country={country} setCountry={setCountry} state={state} setState={setState} />
                             <StyledGrid item xs={12} sm={6}>
                               <StyledTextField
                                 required
@@ -716,19 +683,6 @@ const BuyerOrganizationRegistration = (props: any) => {
                                 fullWidth
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
-                              />
-                            </StyledGrid>
-                            <StyledGrid item xs={12} sm={6}>
-                              <StyledTextField
-                                required
-                                inputProps={{
-                                  maxLength: 40,
-                                }}
-                                label={t("BuyerOrganizationRegistration.Country")}
-                                name="country"
-                                fullWidth
-                                value={country}
-                                onChange={(e) => setCountry(e.target.value)}
                               />
                             </StyledGrid>
                           </>
@@ -747,6 +701,7 @@ const BuyerOrganizationRegistration = (props: any) => {
                             <StyledInputLabel shrink>{t("BuyerOrganizationRegistration.Language")}</StyledInputLabel>
                             <StyledSelect
                               value={`${language}`}
+                              data-testid="language"
                               name="language"
                               native
                               onChange={(e) => setLanguage(e.target.value)}
@@ -764,6 +719,7 @@ const BuyerOrganizationRegistration = (props: any) => {
                             <StyledInputLabel shrink>{t("BuyerOrganizationRegistration.Currency")}</StyledInputLabel>
                             <StyledSelect
                               value={`${currency}`}
+                              data-testid="currency"
                               name="currency"
                               native
                               onChange={(e) => setCurrency(e.target.value)}

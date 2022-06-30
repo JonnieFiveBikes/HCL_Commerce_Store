@@ -10,7 +10,7 @@
  */
 //Standard libraries
 import React from "react";
-import { Link } from "react-router-dom";
+import { kebabCase } from "lodash-es";
 //Foundation
 import { useSite } from "../../_foundation/hooks/useSite";
 //UI
@@ -20,6 +20,7 @@ import {
   StyledAccordion,
   StyledAccordionDetails,
   StyledAccordionSummary,
+  StyledLink,
 } from "@hcl-commerce-store-sdk/react-component";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -64,13 +65,13 @@ const MegaMenuLink = (props: any) => {
           breadcrumbs={link.state?.breadCrumbTrailEntryView ?? []}
         />
       ) : (
-        <Link to={link.pathname} onClick={onClick}>
+        <StyledLink to={link.pathname} onClick={onClick}>
           <StyledMenuItem role="menuitem">
             <StyledMenuTypography variant="body1">
               <span>{name}</span>
             </StyledMenuTypography>
           </StyledMenuItem>
-        </Link>
+        </StyledLink>
       )}
     </>
   );
@@ -170,6 +171,7 @@ const MegaMenuColumn: React.FC<MegaMenuColumnProps> = (props: any) => {
   };
   return (
     <StyledAccordion
+      testId={`mega-menu-column-${kebabCase(page.name)}`}
       elevation={0}
       square={true}
       expanded={isMobile ? level === 1 || activeMenuId === id : activeParentMenuId === id || activeMenuId === id}
@@ -179,7 +181,7 @@ const MegaMenuColumn: React.FC<MegaMenuColumnProps> = (props: any) => {
         expandIcon={icon}
         aria-controls={`${id}bh-content`}
         id={`${id}bh-header`}>
-        <Link to={page.seo?.href} onClick={onClick}>
+        <StyledLink to={page.seo?.href} onClick={onClick}>
           <StyledMenuItem>
             <StyledMenuTypography
               variant={level === 1 ? "overline" : "body2"}
@@ -189,7 +191,7 @@ const MegaMenuColumn: React.FC<MegaMenuColumnProps> = (props: any) => {
               {page.name}
             </StyledMenuTypography>
           </StyledMenuItem>
-        </Link>
+        </StyledLink>
       </StyledAccordionSummary>
       <StyledAccordionDetails>{childrenList}</StyledAccordionDetails>
     </StyledAccordion>

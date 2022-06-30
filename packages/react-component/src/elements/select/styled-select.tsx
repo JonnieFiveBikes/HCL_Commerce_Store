@@ -13,7 +13,11 @@ import Select from "@material-ui/core/Select";
 import React from "react";
 import { dimensions } from "../../themes/variables";
 
-const StyledSelect = styled(({ ...props }) => <Select {...props} />)`
+const SelectWrapper = React.forwardRef((props: any, ref: any) => {
+  return <Select {...props} ref={ref} />;
+});
+
+const StyledSelect = styled(SelectWrapper)`
   ${({ theme }) => `
     .MuiOutlinedInput-input {
       padding: 0 ${theme.spacing(2)}px;

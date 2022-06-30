@@ -103,7 +103,7 @@ export const CheckoutProfileEach: React.FC<CheckoutProfileEachProps> = ({ profil
 
   return (
     <StyledGrid container className="vertical-margin-1">
-      <StyledAccordion style={{ flex: "1" }}>
+      <StyledAccordion testId={`checkout-profile-${p.xchkout_ProfileName}`} style={{ flex: "1" }}>
         <StyledAccordionSummary className="horizontal-padding-2 vertical-padding-2">
           <StyledGrid container direction="column">
             <StyledGrid item>
@@ -162,7 +162,7 @@ export const CheckoutProfileEach: React.FC<CheckoutProfileEachProps> = ({ profil
               />
               <StyledGrid item>
                 <StyledButton
-                  testId={`checkout-profile-${p.xchkout_ProfileId}-edit`}
+                  testId={`checkout-profile-${p.xchkout_ProfileName}-edit`}
                   color="primary"
                   onClick={EditCheckoutProfile}
                   variant="text"
@@ -173,7 +173,7 @@ export const CheckoutProfileEach: React.FC<CheckoutProfileEachProps> = ({ profil
               </StyledGrid>
               <StyledGrid item>
                 <StyledButton
-                  testId={`checkout-profile-${p.xchkout_ProfileId}-delete`}
+                  testId={`checkout-profile-${p.xchkout_ProfileName}-delete`}
                   color="primary"
                   onClick={setConfirmState.bind(null, true)}
                   variant="text"

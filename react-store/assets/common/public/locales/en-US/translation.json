@@ -84,7 +84,7 @@
     "Quantity": "Quantity",
     "QtyError": "Quantity must be greater or equal to 1.",
     "Availability": "Availability",
-    "AddToCart": "Add to cart",
+    "AddToCart": "Add to Cart",
     "Seller": "<0>Sold and Shipped by</0><1>{{ seller }}</1>",
     "SellerSimple": "Sold and Shipped by {{ seller }}",
     "AddBundleToCart": "Add Bundle to Order",
@@ -128,7 +128,9 @@
     "noAttributes": "No attributes.",
     "noproductsKit": "No products to display.",
     "addToRL": "Add to Requisition List",
-    "createRL": "Create New Requisition List"
+    "createRL": "Create New Requisition List",
+    "addToWL": "Add to Wish List",
+    "createWL": "Create new Wish List"
   },
   "AddressBook": {
     "AddrMsg": "Add a new address",
@@ -165,6 +167,12 @@
       "ContinueShopping": "Continue Shopping",
       "Apply": "Apply",
       "Checkout-With-Profile": "Checkout With Profile"
+    },
+    "Availability": {
+      "NOT_AVAIL_PICKUP": "Not available for pickup at <b>{{storeName}}</b>",
+      "AVAIL_PICKUP": "In stock for pickup at <b>{{storeName}}</b>",
+      "NOT_AVAIL_DELIVERY":"Not available online for delivery",
+      "AVAIL_DELIVERY":"In stock online for delivery"
     }
   },
   "CheckoutAddress": {
@@ -182,14 +190,17 @@
     "Labels": {
       "shipping": "Shipping",
       "payment": "Payment",
-      "review": "Review Order"
+      "review": "Review Order",
+      "pickup-store": "Pickup Store",
+      "pickup": "Pickup Details"
     },
     "Actions": {
       "ReturnCart": "Return to Cart",
       "BackTo": "Back to {{step}}",
       "ContinueTo": "Continue to {{step}}",
       "PlaceOrder": "Place Order"
-    }
+    },
+    "PickupNotAvailable": "Pickup not available under your current account and contract settings."
   },
   "Payment": {
     "Title": "Payment Details",
@@ -204,6 +215,7 @@
     },
     "Actions": {
       "Back": "Back to Shipping Details",
+      "BackToPickup": "Back to Pickup Details",
       "Next": "Review Order",
       "Finish": "Finish",
       "SaveAndAdd": "Save and add another payment method",
@@ -441,7 +453,8 @@
     "OrderNumber": "Order Number",
     "HistorySearchPlaceHolder": "Search by Order ID",
     "HistoryViewDetailTooltip": "View order details",
-    "Pending": "Pending"
+    "Pending": "Pending",
+    "multiStatus": "Multiple Statuses"
   },
   "Category": {},
   "AccountLinksGridView": {
@@ -599,6 +612,7 @@
     }
   },
   "error-message": {
+    "ViewCart": "View Cart",
     "_ERR_CMD_INVALID_PARAM_2020": "Type a logon ID in the Logon ID field.",
     "_ERR_CMD_INVALID_PARAM_2050": "Type your password in the Password field.",
     "_ERR_CMD_INVALID_PARAM_2070": "Type your password in the Verify password field.",
@@ -687,20 +701,23 @@
     "_ERR_CMD_INVALID_PARAM_parentMember": "The organization name you entered in the Organization field is not valid. You must type the exact organization name. If you do not know the exact name, ask the person in your company who administers your organization for this store. If your organization has a parent organization, you must use the following format for your entry: <b>organization/parent_organization</b>, for example, <b>ABC Company US/ABC Company Worldwide</b>.",
     "_ERR_CMD_INVALID_PARAM_org_orgEntityName": "Type an organization name in the Organization name field.",
     "_API_BAD_INV_2": "There is insufficient inventory to purchase {{1}} units of {{0}}.",
+    "_API_BAD_INV_DELIVERY": "One or more items in your cart do not have sufficient inventory for delivery. Adjust items in your cart and try again.",
+    "_API_BAD_INV_PICKUP": "One or more items in your cart do not have sufficient inventory for pickup. Select a different store or adjust items in your cart and try again.",
     "_ERR_FINDING_ORDER_230": "A system problem occurred while processing your order.",
     "ERR_INTERNAL_SERVER_ERROR_CWXFR0230E": "A system problem occurred. Please contact the store for assistance.",
     "_ERR_REMOTE_EXCEPTION_CMN0412E": "A system problem occurred while processing your request. Please contact the store for assistance.",
     "_ERR_REG_DUPE_ID_CMN0114S": "The logon ID you entered already exists. Type a different logon ID and try again.",
     "_ERR_FINDER_EXCEPTION_CMN0411E": "The email that you entered is not valid. Check your entry and try again.",
     "_ERR_CMD_INVALID_PARAM_2195": "The validation code that you entered has expired. You need to request for a new validation code in order to change your password.",
+    "_ERR_PASSWORD_EXPIRED_2170": "Your current password has expired. Please enter a new password.",
+    "_ERR_INVALID_NAME_CMN1652E": "An object with the name \"{{0}}\" already exists. Please choose a different name and try again.",
+    "_ERR_GOOGLE_MAP_NOT_SUPPORT": "Your browser does not support Google Maps.",
     "B2B": {
       "_ERR_FINDER_EXCEPTION_CMN0411E": "The logon ID that you entered is not valid. Check your entry and try again.",
       "_ERR_LOGONID_ALREDY_EXIST_2030": "The logon ID you entered already exists. Type a different logon ID and try again.",
       "_ERR_BAD_PARMS_2010": "The logon ID that you entered is not valid. Check your entry and try again.",
       "_ERR_INVALID_NAME_CMN1652E": "An object with the name \"{{0}}\" already exists. Please choose a different name and try again."
-    },
-    "_ERR_PASSWORD_EXPIRED_2170": "Your current password has expired. Please enter a new password.",
-    "_ERR_INVALID_NAME_CMN1652E": "An object with the name \"{{0}}\" already exists. Please choose a different name and try again."
+    }
   },
   "success-message": {
     "ITEM_ADD_SUCCESS": "Item was added to cart. ",
@@ -727,8 +744,14 @@
     "addedItemRLSuccessfully": "Successfully added {{ v }} to cart",
     "addedNRLSuccessfully": "Successfully added {{ v }} items to cart",
     "deletedItemListSuccessfully": "Successfully deleted {{ n }} item(s) from list",
+    "CREATE_WISHLIST_SUCCESS": "New wish list \"{{0}}\" has been created successfully",
+    "DELETE_WISHLIST_SUCCESS": "Wish list \"{{0}}\" has been deleted successfully",
+    "DELETE_WISHLIST_ITEM_SUCCESS": "\"{{0}}\" has been deleted from the wish list successfully",
+    "DELETE_WISHLIST_ITEMS_SUCCESS": "\"{{0}}\" items have been deleted from the wish list successfully",
+    "WISHLIST_ADD_SUCCESS": "Item has been successfully added to \"{{0}}\" list",
     "addItemListSuccessfully": "Successfully added {{ v }} to list",
-    "addNItemsSuc": "Successfully added {{ n }} items to list"
+    "addNItemsSuc": "Successfully added {{ n }} items to list",
+    "UPDATE_WISHLIST_NAME_SUCCESS": "Wishlist name has been updated to \"{{0}}\""
   },
   "notFound": {
     "notFound": "<p>Sorry, we couldn&#39;t find what you are looking for.</p>\n"
@@ -776,7 +799,8 @@
       "NextPage": "Next Page",
       "RowCount": "Showing {from} to {to} of {count}",
       "showAttrs": "Show attributes",
-      "hideAttrs": "Hide attributes"
+      "hideAttrs": "Hide attributes",
+      "status": "Status"
     },
     "Actions": {
       "Delete": "Delete"
@@ -1028,6 +1052,7 @@
     "KeywordTitle": "KEYWORDS",
     "CategoryTitle": "CATEGORY",
     "BrandTitle": "BRAND",
+    "SellerTitle": "SELLER",
     "Clear": "Clear search"
   },
   "SessionError": {
@@ -1052,6 +1077,10 @@
     "PasswordVerify": "Verify Password",
     "RememberMe": "Remember Me",
     "SignInButton": "Sign In",
+    "SignInAndCheckoutButton": "Sign In and Checkout",
+    "SignInAndCheckoutTitle": "Sign In & Checkout",
+    "CheckoutAsGuestMsg": "Don't have an account? Checkout as a guest.",
+    "CheckoutAsGuestButton": "Checkout as a guest",
     "Cancel": "Cancel",
     "Submit": "Submit",
     "ForgotPassword": "Forgot your password?",
@@ -1068,6 +1097,30 @@
       "OldPasswordReuse": "The password entered was previously used. Enter a new password."
     }
   },
+  "Pickup": {
+    "PickupOrderMsg": "Who will pick up your order?",
+    "IllPickupRadioLabel": "I'll pick it up",
+    "SomeoneElseRadioLabel": "Someone else will pick it up",
+    "HowPickupOrderMsg": "How to pick up your order",
+    "EmailMsg": "A message will be sent to the email address you provided when your order is ready for pickup. Pick up is FREE. Please come prepared with your order number and Identification card.",
+    "ContinueMsg": "Continue to payment to see your final order total (including shipping fees & taxes).",
+    "BackButton": "Back",
+    "ProceedPayment": "Continue to Payment",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "Email": "Email Address",
+    "Phone": "Phone Number",
+    "ContinuePickupDetails": "Continue to Pickup Details",
+    "BackToPickupStore": "Back to Pickup Store",
+    "ContinueCheckout": "Continue to Checkout",
+    "PickupPersonFullName": "Pickup Person's Full Name",
+    "PickupPersonEmail": "Pickup Person's Email",
+    "BuyerFullName": "Buyer's Full Name",
+    "PickupContactTitle": "Pick Up Contact",
+    "PickupStoreTitle": "Pick Up Location",
+    "ContactDetailsTitle": "Contact Details",
+    "PickupDetailsTitle": "Pick Up Details"
+  },
   "CommerceEnvironment": {
     "listSettings": {
       "relevance": "Relevance",
@@ -1083,6 +1136,22 @@
       "Backordered": "Backordered",
       "OOS": "Out of Stock",
       "NA": "Not Available"
+    },
+    "inventoryStatusOnline": {
+      "Available": "In stock online",
+      "Allocated": "In stock online",
+      "Unallocated": "Unallocated online",
+      "Backordered": "Backordered online",
+      "OOS": "Out of stock online",
+      "NA": "Not available online"
+    },
+    "inventoryStatusStore": {
+      "Available": "In stock at <b>{{store}}</b>",
+      "Allocated": "In stock at <b>{{store}}</b>",
+      "Unallocated": "Unallocated at <b>{{store}}</b>",
+      "Backordered": "Backordered at <b>{{store}}</b>",
+      "OOS": "Out of stock at <b>{{store}}</b>",
+      "NA": "Not available at <b>{{store}}</b>"
     },
     "recurringOrderFrequency": {
       "Everyday": "Everyday",
@@ -1293,6 +1362,40 @@
       "twenty": "20 rows"
     }
   },
+  "WishList": {
+    "CreateWishListTitle": "Create a new Wish List",
+    "CreateList": "Create List",
+    "WishListName": "Wish List Name",
+    "Title": "Wish Lists",
+    "NoWishListMessage": "You have not created any wish lists yet.",
+    "WishListEmptyMessage": "The list is currently empty",
+    "ViewList": "View List",
+    "WishListItemsMessage": "Here are some of the items on your list",
+    "InvalidWishListName": "Invalid wish list name",
+    "Confirm": "Confirm",
+    "ConfirmDelete": "Confirm removal",
+    "Cancel": "Cancel",
+    "ConfirmDeleteSelectedMsg": "Do you want to remove the selected items from this wish list?",
+    "ConfirmDeleteMsg": "Are you sure you want to remove your wish list?",
+    "ConfirmDeleteTitle": "Remove Wish List?",
+    "EmptyWishListMsg": "No products added to this wish list yet.",
+    "Actions": {
+      "AddToCart": "Move to Cart",
+      "SelectAll": "Select All Products",
+      "EditList": "Edit List Details",
+      "Delete": "Remove",
+      "Save": "Save Changes",
+      "AddSelectedToCart": "Move selected to Cart",
+      "DeletedSelected": "Remove selected",
+      "DeleteList": "Remove List"
+    },
+    "ProductSelected": "{{ n }} products selected"
+  },
+  "OrderMethod": {
+    "Message": "How would you like to get your order?",
+    "Delivery": "I'd like it delivered",
+    "Pickup": "I'll pick it up"
+  },
   "compare": {
     "compare": "Compare",
     "start": "Compare {{ n }} products",
@@ -1317,5 +1420,25 @@
     "mp": "Marketplace",
     "emMp": "{{ store }} Marketplace",
     "fBy": "Filter by Marketplace Seller"
+  },
+  "StoreLocator": {
+    "title": "Store Locator",
+    "home": "Home",
+    "searchStore": "Search Store",
+    "findNearestStore": "Find Nearest Store",
+    "selected": "Selected",
+    "setAsMyStore": "Set As My Store",
+    "hide": "Hide",
+    "expand": "Expand",
+    "clearSearch": "Clear Search",
+    "searchResults": "Showing {{n}} results near \"{{p}}\"",
+    "searchResultsNearYou": "Showing {{n}} results near by you",
+    "getDirections": "Get Directions",
+    "stopDirections": "Stop Directions",
+    "searchAPickUpStore": "Search a pickup store",
+    "noResults": "No Results Found Near \"{{p}}\"",
+    "noResultsNearYou": "No Results Found Near You",
+    "locateStore": "Locate Store",
+    "directionNotAvailable": "Directions to this store are not available from your location"
   }
 }

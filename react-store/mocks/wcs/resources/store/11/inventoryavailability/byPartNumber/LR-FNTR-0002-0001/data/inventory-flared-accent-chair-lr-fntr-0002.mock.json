@@ -1,0 +1,15 @@
+{
+  "InventoryAvailability": [
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Emerald",
+      "productId": "14023",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "LR-FNTR-0002-0001",
+      "onlineStoreId": "11"
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/11/inventoryavailability/byPartNumber/LR-FNTR-0002-0001?langId=-1",
+  "resourceName": "inventoryavailability"
+}

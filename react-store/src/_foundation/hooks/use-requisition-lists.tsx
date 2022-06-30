@@ -240,7 +240,7 @@ export const useRequisitionList = (): any => {
           query: {
             orderId: rowData.orderId,
             name: data.newName,
-            status: userId === rowData.orderInfo.memberId ? rowData.orderInfo.status : "Y",
+            status: rowData.orderInfo.status,
           },
         };
         const { cancelToken, ...others } = payloadBase;
@@ -311,17 +311,26 @@ export const useRequisitionList = (): any => {
 
       return (
         <div style={{ display: "flex" }}>
-          <StyledIconButton style={{ padding: "0" }} color="primary" onClick={() => copyList(rowData)}>
+          <StyledIconButton
+            style={{ padding: "0" }}
+            color="primary"
+            onClick={() => copyList(rowData)}
+            data-testid="use-requisition-content-copy-icon-button">
             <ContentCopyOutlinedIcon />
           </StyledIconButton>
           <StyledIconButton
             style={{ padding: "0" }}
             color="primary"
             onClick={() => deleteList(rowData)}
-            {...{ disabled }}>
+            {...{ disabled }}
+            data-testid="use-requisition-delete-outline-icon-button">
             <DeleteOutlineOutlinedIcon />
           </StyledIconButton>
-          <StyledIconButton style={{ padding: "0" }} color="primary" onClick={() => handleCopyCart(rowData)}>
+          <StyledIconButton
+            style={{ padding: "0" }}
+            color="primary"
+            onClick={() => handleCopyCart(rowData)}
+            data-testid="use-requisition-add-shopping-icon-button">
             <AddShoppingCart color="primary" />
           </StyledIconButton>
         </div>

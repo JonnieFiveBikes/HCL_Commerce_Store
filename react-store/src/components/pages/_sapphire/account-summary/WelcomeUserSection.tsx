@@ -23,7 +23,7 @@ function WelcomeUserSection() {
 
   return (
     <>
-      <StyledTypography variant="h4" className="vertical-margin-4">
+      <StyledTypography variant="h4" className="vertical-margin-4 break-word">
         {title}
         {addressDetails?.firstName}
       </StyledTypography>

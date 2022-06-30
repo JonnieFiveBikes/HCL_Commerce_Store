@@ -38,15 +38,16 @@ interface OrderDetailSubSectionProps {
    * The elements to be rendered in details section.
    */
   details: any;
+  detailsClass?: string;
 }
 
 const OrderDetailSubsection: React.FC<OrderDetailSubSectionProps> = (props) => {
-  const { heading, details, actions } = props;
+  const { heading, details, actions, detailsClass } = props;
   const detailsArray = Array.isArray(details) ? details : [details];
   const { t } = useTranslation();
   return (
     <StyledPaper>
-      <StyledAccordion defaultExpanded={true}>
+      <StyledAccordion testId={`order-shipping-details-group`} defaultExpanded={true}>
         <StyledAccordionSummary
           IconButtonProps={{ className: "accordion-icon-text" }}
           expandIcon={
@@ -75,7 +76,7 @@ const OrderDetailSubsection: React.FC<OrderDetailSubSectionProps> = (props) => {
           {heading && <StyledContainer className="vertical-margin-2">{heading}</StyledContainer>}
         </StyledAccordionSummary>
         <Divider />
-        <StyledAccordionDetails>
+        <StyledAccordionDetails className={detailsClass}>
           {detailsArray?.map((detail: any, index: number) => (
             <Fragment key={index}>
               <StyledContainer className="vertical-margin-2">{detail}</StyledContainer>

@@ -36,7 +36,7 @@ import {
 import OrderHistoryPage from "../../components/pages/_sapphire/order/OrderHistoryPage";
 import { useSite } from "./useSite";
 import { CONSTANTS } from "../../constants/order-history-table";
-import { get, isNil } from "lodash-es";
+import { chunk, get, isNil } from "lodash-es";
 import { COPY_CART_ACTION } from "../../redux/actions/order";
 
 export const useOrderHistoryTable = (props?) => {
@@ -156,7 +156,14 @@ export const useOrderHistoryTable = (props?) => {
         filters: asFilter,
         display: {
           template: ({ rowData, ...props }) => {
-            return <StyledTypography>{statusLookup[rowData.orderStatus]}</StyledTypography>;
+            const oStatus = statusLookup[rowData.orderStatus];
+            const groups = rowData.orderItem?.reduce((m, v) => {
+              m[v.orderItemStatus] = 1;
+              return m;
+            }, {});
+            const grpSize = Object.keys(groups ?? {}).length;
+            const disp = grpSize <= 1 ? oStatus : t("Order.multiStatus");
+            return <StyledTypography>{disp}</StyledTypography>;
           },
         },
       },
@@ -221,7 +228,7 @@ export const useOrderHistoryTable = (props?) => {
     return columns;
   }, [t, i18n, mySite]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const getPage = ({ page, pageSize, filters, search }) => {
+  const getPage = async ({ page, pageSize, filters, search }) => {
     if (isNil(pageSize)) {
       pageSize = state.pgSz;
     } else if (pageSize !== state.pgSz) {
@@ -236,16 +243,18 @@ export const useOrderHistoryTable = (props?) => {
       filters = state.filters;
     }
 
-    getOrderHistories({ filters, pageSize, page, search }).then((r) => {
-      setState({
-        ...state,
-        pgSz: pageSize,
-        offset: page === 0 ? 0 : page * pageSize,
-        data: r.data,
-        count: r.totalCount,
-        search,
-        filters,
-      });
+    const r = await getOrderHistories({ filters, pageSize, page, search });
+    // need to fetch order-items to determine cumulative status (seller-specific)
+    await getOrderItems(r);
+
+    setState({
+      ...state,
+      pgSz: pageSize,
+      offset: page === 0 ? 0 : page * pageSize,
+      data: r.data,
+      count: r.totalCount,
+      search,
+      filters,
     });
   };
 
@@ -256,10 +265,6 @@ export const useOrderHistoryTable = (props?) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const payloadBase: any = {
-    widget: widgetName,
-  };
-
   const statusQuery = "N,M,A,B,C,R,S,D,F,G,L,W";
   const getPONumber = (buyerPONumber: string) => {
     if (buyerPONumber) {
@@ -269,7 +274,7 @@ export const useOrderHistoryTable = (props?) => {
           cancelToken: new CancelToken(function executor(c) {
             cancels.push(c);
           }),
-          ...payloadBase,
+          widget: widgetName,
         })
         .then((r) => r.data)
         .then((d2) => {
@@ -285,6 +290,24 @@ export const useOrderHistoryTable = (props?) => {
     } else {
       return Promise.resolve({ buyerPONumber: "none", value: noPoString });
     }
+  };
+
+  const getOrderItems = async (container) => {
+    let count = 0;
+    const ids = container.data.map((o) => o.orderId);
+
+    // do 5 at a time
+    const blocks = chunk(ids, 5);
+    const x = blocks.map(async (block) => {
+      const p = block.map((orderId) => {
+        const payload: any = { widget: widgetName, cancelToken: new CancelToken((c) => cancels.push(c)), orderId };
+        return orderService.findByOrderId(payload);
+      });
+      const r = await Promise.all(p);
+      r.forEach(({ data }) => (container.data[count++].orderItem = data.orderItem));
+    });
+
+    await Promise.all(x);
   };
 
   const getOrderHistories = (query) => {
@@ -303,8 +326,8 @@ export const useOrderHistoryTable = (props?) => {
     const NUMERIC = REG_EX.NUMERIC;
     cancels = [];
     const payload = {
+      widget: widgetName,
       cancelToken: new CancelToken((c) => cancels.push(c)),
-      ...payloadBase,
     };
     if (search && search.trim() !== "" && NUMERIC.test(search)) {
       return orderService

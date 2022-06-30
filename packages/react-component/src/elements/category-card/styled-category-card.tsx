@@ -20,27 +20,27 @@ export const StyledCategoryCard = styled(({ ...props }) =>
 )`
   ${({ theme }) => `
    display: block;
- 
+
    img {
      display: block;
      transition: transform ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeIn};
    }
- 
+
    a&:hover {
      .MuiPaper-root {
        box-shadow: ${theme.shadows[2]};
      }
- 
+
      img {
        transform: scale(0.92);
        border-radius: ${theme.shape.borderRadius}px;
      }
- 
+
      .MuiTypography-root  {
        color: ${theme.palette.primary.main};
      }
    }
- 
+
    ${theme.breakpoints.down("sm")} {
      .category-card-text {
        &.MuiTypography-h3 {

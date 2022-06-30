@@ -16,8 +16,8 @@ import { dimensions } from "../../themes/variables";
 const thumbnailSize = dimensions.productCard.thumbnail;
 
 const StyledCardMedia = styled(({ ...props }) => <CardMedia {...props} />)`
-  width: ${thumbnailSize}px;
-  height: ${thumbnailSize}px;
+  width: ${(props) => props.size ?? thumbnailSize}px;
+  height: ${(props) => props.size ?? thumbnailSize}px;
   margin: 20px auto 10px;
   background-size: contain;
   position: relative;

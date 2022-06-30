@@ -15,7 +15,7 @@ import CardActions from "@material-ui/core/CardActions";
 const StyledCardActions = styled(({ ...props }) => <CardActions {...props} />)`
   ${({ theme }) => `
       &.MuiCardActions-spacing > :not(:first-child) {
-        margin-left: ${theme.spacing(2.5)}px
+        margin-left: ${theme.spacing(2.5)}px;
       }
   `}
 `;

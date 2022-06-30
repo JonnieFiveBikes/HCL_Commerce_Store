@@ -8,7 +8,7 @@
  *
  *==================================================
  */
-
+//UI
 import {
   StyledFormControl,
   StyledSelect,
@@ -17,18 +17,22 @@ import {
   StyledLink,
   StyledTooltip,
 } from "@hcl-commerce-store-sdk/react-component";
+import styled from "styled-components";
+import AddIcon from "@material-ui/icons/Add";
+//Standard libraries
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
-import { EMPTY_STRING, XS_MOBILE_W } from "../../../constants/common";
-import { REQUISITION_LISTS } from "../../../constants/routes";
-import AddIcon from "@material-ui/icons/Add";
+import axios, { Canceler } from "axios";
+import { useSelector } from "react-redux";
+import { kebabCase } from "lodash-es";
+//Foundation
 import svc from "../../../_foundation/apis/transaction/requisitionList.service";
 import { useSite } from "../../../_foundation/hooks/useSite";
-import axios, { Canceler } from "axios";
-import { forUserIdSelector, loginStatusSelector, userIdSelector } from "../../../redux/selectors/user";
-import { useSelector } from "react-redux";
 import { useWinDimsInEM } from "../../../_foundation/hooks/use-win-dims-in-em";
+//Common libraries
+import { EMPTY_STRING, XS_MOBILE_W } from "../../../constants/common";
+import { REQUISITION_LISTS } from "../../../constants/routes";
+import { forUserIdSelector, loginStatusSelector, userIdSelector } from "../../../redux/selectors/user";
 
 const ValueRenderer = styled(({ children, ...props }) => <div {...props}>{children}</div>)`
   ${({ theme }) => `
@@ -139,6 +143,7 @@ export const AddToRequisitionListButton = ({ disabled, addFn }) => {
                 PaperProps: { style: { maxHeight: "200px" } },
               }}
               value={selectedRL ?? EMPTY_STRING}
+              data-testid="requisition-list-selection"
               id="requisitionList_select"
               placeholder={t("productDetail.addToRL")}
               displayEmpty
@@ -146,12 +151,13 @@ export const AddToRequisitionListButton = ({ disabled, addFn }) => {
               {...{ open, onClick, disabled, renderValue }}>
               {list.map((option: any, i) => (
                 <StyledMenuItem
+                  data-testid={kebabCase(`add-to-reqlist-options-${option.description}-${i}-menu-item`)}
                   key={i}
                   id={`${option}-${i}`}
                   value={option}
                   onClick={selectRL.bind(null, option)}
                   className="bordered">
-                  <StyledMenuTypography>{option.description}</StyledMenuTypography>
+                  <StyledMenuTypography className="wrapText">{option.description}</StyledMenuTypography>
                 </StyledMenuItem>
               ))}
               <StyledMenuItem id="requisitionList_option_create" value="create">

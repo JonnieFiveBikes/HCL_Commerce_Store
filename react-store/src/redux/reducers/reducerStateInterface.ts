@@ -22,6 +22,10 @@ export interface AccountReducerState {
   orders: any | null;
   address: any;
 }
+export interface WishListReducerState {
+  list: any;
+  movementData?: any; // information about items moved from WL to cart
+}
 export interface CatalogReducerState {
   productList: any[]; //Stores list of product objects for the current category/search
   productListTotal: number; //Stores total number of products in the current category/search
@@ -65,6 +69,8 @@ export interface OrderReducerState {
   allowableShipModes: any[];
   activeInprogressOrder: any;
   allowablePaymethods?: any[];
+  orderMethodIsPickup: boolean;
+  pickupPerson: any;
 }
 
 export interface UserReducerState {
@@ -220,4 +226,8 @@ export interface SellerInfoState {
   langId: number;
   selected?: string[];
   initialized?: boolean;
+}
+
+export interface CountryReducerState {
+  countries: any[];
 }

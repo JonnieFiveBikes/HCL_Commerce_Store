@@ -32,7 +32,10 @@ export const TableSelection = (props) => {
           display: "flex",
           alignItems: "center",
         }}>
-        <StyledIconButton color="primary" onClick={() => cancelSelection({ s: tableState, f: setTableState })}>
+        <StyledIconButton
+          color="primary"
+          onClick={() => cancelSelection({ s: tableState, f: setTableState })}
+          data-testid="table-selection-cancel-icon-button">
           <Cancel style={{ display: "flex", alignItems: "center" }} />
         </StyledIconButton>
         <StyledTypography style={{ marginLeft: "0.25rem" }} variant="h4" component="p">

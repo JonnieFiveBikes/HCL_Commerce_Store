@@ -223,17 +223,23 @@ const ActionsCell = ({ rowData, ...props }) => {
         style={{ padding: "0" }}
         color="primary"
         disabled={rowData.orderInfo.buyerId === userId ? false : true}
-        onClick={() => copyOrder(rowData)}>
+        onClick={() => copyOrder(rowData)}
+        data-testid="use-inprogress-content-copy-icon-button">
         <ContentCopyOutlinedIcon />
       </StyledIconButton>
       <StyledIconButton
         style={{ padding: "0" }}
         color="primary"
         disabled={rowData.orderInfo.buyerId === userId ? false : true}
-        onClick={() => deleteOrder(rowData)}>
+        onClick={() => deleteOrder(rowData)}
+        data-testid="use-inprogress-delete-outline-icon-button">
         <DeleteOutlineOutlinedIcon />
       </StyledIconButton>
-      <StyledIconButton style={{ padding: "0" }} color="primary" onClick={() => goToOrder(rowData)}>
+      <StyledIconButton
+        style={{ padding: "0" }}
+        color="primary"
+        onClick={() => goToOrder(rowData)}
+        data-testid="use-inprogress-goto-order-outline-icon-button">
         <GoToOrderDetailsOutlinedIcon />
       </StyledIconButton>
     </div>

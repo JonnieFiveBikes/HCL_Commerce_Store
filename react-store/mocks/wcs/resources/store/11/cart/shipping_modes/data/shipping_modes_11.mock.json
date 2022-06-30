@@ -1,0 +1,60 @@
+{
+  "usableShippingMode": [
+    {
+      "field1": null,
+      "shipModeCode": "PickupInStore",
+      "shipModeDescription": "Pickup in store",
+      "shipModeId": "13501",
+      "field2": null
+    },
+    {
+      "field1": null,
+      "shipModeCode": "Express",
+      "shipModeDescription": "Express",
+      "shipModeId": "13502",
+      "field2": "Express"
+    },
+    {
+      "field1": null,
+      "shipModeCode": "Mail",
+      "shipModeDescription": "Mail",
+      "shipModeId": "14001",
+      "field2": "Mail"
+    },
+    {
+      "field1": null,
+      "shipModeCode": "US Regular Delivery",
+      "shipModeDescription": "US - Regular Delivery",
+      "shipModeId": "14501",
+      "field2": "5 to 10 business days"
+    },
+    {
+      "field1": null,
+      "shipModeCode": "US - Overnight Delivery",
+      "shipModeDescription": "US - Overnight Delivery",
+      "shipModeId": "14502",
+      "field2": "1 business day"
+    },
+    {
+      "field1": null,
+      "shipModeCode": "US - 2-Day Express Delivery",
+      "shipModeDescription": "US - 2-Day Express Delivery",
+      "shipModeId": "14503",
+      "field2": "2 business days"
+    },
+    {
+      "field1": null,
+      "shipModeCode": "International Priority",
+      "shipModeDescription": "International Priority",
+      "shipModeId": "14504",
+      "field2": "1 to 3 business days"
+    },
+    {
+      "field1": null,
+      "shipModeCode": "International Regular",
+      "shipModeDescription": "International Regular",
+      "shipModeId": "14505",
+      "field2": "7 to 14 business days"
+    }
+  ]
+}

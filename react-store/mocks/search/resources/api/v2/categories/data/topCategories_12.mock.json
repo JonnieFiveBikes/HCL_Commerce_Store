@@ -1,24 +1,33 @@
 {
   "contents": [
     {
-      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_hw_fasteners.png",
+      "name": "Fasteners",
+      "identifier": "Fasteners",
+      "shortDescription": "Screws, bolts, and nuts for a wide range of fastening applications",
+      "resourceId": "https://search:30901/search/resources/api/v2/categories?storeId=12&depthAndLimit=11%2C11&contractId=-11009&langId=-1",
+      "uniqueID": "12",
+      "parentCatalogGroupID": "/12",
+      "thumbnail": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_hw_fasteners.png",
       "seo": {
         "href": "/fasteners"
       },
-      "name": "Fasteners",
-      "identifier": "Fasteners",
       "storeID": "12",
       "sequence": "1.0",
       "children": [
         {
-          "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_fbo_bolts.png",
+          "name": "Bolts",
+          "identifier": "Bolts",
+          "shortDescription": "Bolts designed to hold fast over the long term",
+          "resourceId": "https://search:30901/search/resources/api/v2/categories?storeId=12&depthAndLimit=11%2C11&contractId=-11009&langId=-1",
+          "uniqueID": "14",
+          "parentCatalogGroupID": "/12/14",
+          "thumbnail": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_fbo_bolts.png",
           "seo": {
             "href": "/bolts"
           },
-          "name": "Bolts",
-          "identifier": "Bolts",
           "storeID": "12",
           "sequence": "1.0",
+          "fullImage": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_fbo_bolts.png",
           "id": "14",
           "links": {
             "parent": {
@@ -31,14 +40,19 @@
           "description": "Bolts designed to hold fast over the long term"
         },
         {
-          "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_fnu_nuts.png",
+          "name": "Nuts",
+          "identifier": "Nuts",
+          "shortDescription": "High-strength nuts in various finishes",
+          "resourceId": "https://search:30901/search/resources/api/v2/categories?storeId=12&depthAndLimit=11%2C11&contractId=-11009&langId=-1",
+          "uniqueID": "15",
+          "parentCatalogGroupID": "/12/15",
+          "thumbnail": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_fnu_nuts.png",
           "seo": {
             "href": "/nuts"
           },
-          "name": "Nuts",
-          "identifier": "Nuts",
           "storeID": "12",
           "sequence": "1.0",
+          "fullImage": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_fnu_nuts.png",
           "id": "15",
           "links": {
             "parent": {
@@ -51,14 +65,19 @@
           "description": "High-strength nuts in various finishes"
         },
         {
-          "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_fsc_screws.png",
+          "name": "Screws",
+          "identifier": "Screws",
+          "shortDescription": "Top-quality screws to suit all your fastening needs",
+          "resourceId": "https://search:30901/search/resources/api/v2/categories?storeId=12&depthAndLimit=11%2C11&contractId=-11009&langId=-1",
+          "uniqueID": "16",
+          "parentCatalogGroupID": "/12/16",
+          "thumbnail": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_fsc_screws.png",
           "seo": {
             "href": "/screws"
           },
-          "name": "Screws",
-          "identifier": "Screws",
           "storeID": "12",
           "sequence": "1.0",
+          "fullImage": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/fasteners/category/catr_fsc_screws.png",
           "id": "16",
           "links": {
             "parent": {
@@ -73,6 +92,9 @@
       ],
       "id": "12",
       "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=12&id=-1"
+        },
         "children": [
           "href: /search/resources/api/v2/categories?storeId=12&id=14",
           "href: /search/resources/api/v2/categories?storeId=12&id=15",
@@ -85,16 +107,23 @@
       "description": "Screws, bolts, and nuts for a wide range of fastening applications"
     },
     {
-      "thumbnail": "/ExtendedSitesCatalogAssetStore/images/catalog/hardware/lighting/category/catr_hw_lighting.png",
+      "resourceId": "https://search:30901/search/resources/api/v2/categories?storeId=12&depthAndLimit=11%2C11&contractId=-11009&langId=-1",
+      "uniqueID": "13",
+      "parentCatalogGroupID": "/13",
+      "thumbnail": "/hclstore/ExtendedSitesCatalogAssetStore/images/catalog/hardware/lighting/category/catr_hw_lighting.png",
       "seo": {
         "href": "/lighting"
       },
       "name": "Lighting",
       "identifier": "Hardware Lighting",
+      "shortDescription": "Light bulbs in every shape and size",
       "storeID": "12",
       "sequence": "2.0",
       "id": "13",
       "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=12&id=-1"
+        },
         "self": {
           "href": "/search/resources/api/v2/categories?storeId=12&id=13"
         }

@@ -27,6 +27,9 @@ import {
   FETCH_ORDERS_SUCCESS_ACTION,
   FETCH_ALLOWABLE_SHIPMODES_SUCCESS_ACTION,
   FETCH_ALLOWABLE_PAYMETHODS_S_ACTION,
+  ORDER_METHOD_SET_PICKUP_ACTION,
+  ORDER_METHOD_RESET_ACTION,
+  SET_PICKUP_PERSON_ACTION,
 } from "../actions/order";
 
 /**
@@ -284,6 +287,16 @@ const orderReducer = createReducer(initStates.order, (builder) => {
   builder.addCase(FETCH_ALLOWABLE_PAYMETHODS_S_ACTION, (state: OrderReducerState, action: AnyAction) => {
     const m = action.payload.methods ?? [];
     state.allowablePaymethods = m.filter(({ policyName: p }) => PAYMENT.policies[p]);
+  });
+
+  builder.addCase(ORDER_METHOD_SET_PICKUP_ACTION, (state: OrderReducerState, action: AnyAction) => {
+    state.orderMethodIsPickup = true;
+  });
+  builder.addCase(ORDER_METHOD_RESET_ACTION, (state: OrderReducerState, action: AnyAction) => {
+    state.orderMethodIsPickup = false;
+  });
+  builder.addCase(SET_PICKUP_PERSON_ACTION, (state: OrderReducerState, action: AnyAction) => {
+    state.pickupPerson = action.payload;
   });
 });
 

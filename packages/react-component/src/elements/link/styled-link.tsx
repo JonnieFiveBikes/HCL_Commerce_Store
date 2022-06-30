@@ -17,9 +17,9 @@ const LinkWrapper = (props: any) => {
   let dataTestId;
 
   if (!testId) {
-    dataTestId = to ? { "data-testid": to.split("/").join("-") } : {};
+    dataTestId = to ? { "data-testid": to.split("/").filter(Boolean).join("-") } : {};
   } else {
-    dataTestId = { "data-testid": `link-${testId}` };
+    dataTestId = { "data-testid": `${testId}-link` };
   }
 
   return <Link {...{ ...dataTestId, ...rest, to }} />;

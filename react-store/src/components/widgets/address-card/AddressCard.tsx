@@ -367,7 +367,7 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
     contentComponent
   ) : (
     <StyledCard
-      testId={`${widgetName}-${addressId}`}
+      testId={`${widgetName}-${nickName}`}
       className={`address-card ${isSelected ? "selected" : ""}`}
       headerProps={headerComponent}
       contentComponent={contentComponent}

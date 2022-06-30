@@ -202,7 +202,7 @@ export const useCheckoutReview = (props: any): any => {
   }
 
   function back() {
-    usingProfile ? navigate(ROUTES.CART) : navigate(ROUTES.CHECKOUT_PAYMENT);
+    usingProfile ? navigate(ROUTES.CART) : navigate(`../${ROUTES.CHECKOUT_PAYMENT}`);
   }
 
   return {

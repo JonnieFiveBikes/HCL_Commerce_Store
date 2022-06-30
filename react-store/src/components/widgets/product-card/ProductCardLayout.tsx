@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { commonUtil } from "@hcl-commerce-store-sdk/utils";
 import { useSite } from "../../../_foundation/hooks/useSite";
 
-import { useBreadcrumbTrail } from "../../../_foundation/hooks/use-breadcrumb-trail";
+import { useBreadcrumbTrail } from "../../commerce-widgets/breadcrumb-trail-widget/hooks/use-breadcrumb-trail";
 //Custom libraries
 import { DEFINING, EMPTY_STRING } from "../../../constants/common";
 //Redux
@@ -131,6 +131,9 @@ export default function ProductCard(props: ProductCardProps) {
                 key={`${attributeValue.id[index3]}_${index2}_${index3}`}
                 alt={attributeValue.value[index3]}
                 onClick={(e) => onSwatchClick(e, attributeValue.id[index3])}
+                data-testid={`product-card-layout-${attribute.identifier.toLowerCase()}-${attributeValue.id[
+                  index3
+                ].toLowerCase()}-swatch`}
               />
             );
           });
@@ -142,6 +145,7 @@ export default function ProductCard(props: ProductCardProps) {
               }}
               key={`${attributeValue.id}_${index2}`}
               alt={attributeValue.value}
+              data-testid={`product-card-layout-${attribute.identifier.toLowerCase()}-${attributeValue.id.toLowerCase()}-swatch`}
               onClick={(e) => onSwatchClick(e, attributeValue.id)}
             />
           );

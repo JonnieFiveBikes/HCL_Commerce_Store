@@ -1,0 +1,33 @@
+{
+  "contents": [
+    {
+      "name": "Dining Room",
+      "identifier": "DiningRoom",
+      "shortDescription": "Entertain your guests with dining room furniture and decor that fits any space",
+      "resourceId": "https://search:30901/search/resources/api/v2/categories?storeId=11&identifier=DiningRoom&contractId=-11005&langId=-1",
+      "uniqueID": "10505",
+      "parentCatalogGroupID": "/10505",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/diningroom/category/dep_diningroom.jpg",
+      "seo": {
+        "href": "/dining-room"
+      },
+      "storeID": "11",
+      "fullImage": "/hclstore/EmeraldCAS/images/catalog/diningroom/category/dep_diningroom.jpg",
+      "id": "10505",
+      "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=-1"
+        },
+        "children": [
+          "href: /search/resources/api/v2/categories?storeId=11&id=10507",
+          "href: /search/resources/api/v2/categories?storeId=11&id=10506",
+          "href: /search/resources/api/v2/categories?storeId=11&id=10508"
+        ],
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10505"
+        }
+      },
+      "description": "Entertain your guests with dining room furniture and decor that fits any space"
+    }
+  ]
+}

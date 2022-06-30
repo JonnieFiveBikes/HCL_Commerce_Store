@@ -356,3 +356,14 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Migration, upgrading
+
+### V9.1.10.0 to V9.1.11.0
+
+The locations of some files in the commerce-widgets folder have been adjusted. Additionally, some files pertaining to react hooks that were closely associated with widgets have also been moved into the commerce-widgets folder. Using the e-marketing-spot-widget as an example:
+
+- moved `src/_foundation/context/espot-context.tsx` to `src/components/commerce-widgets/e-marketing-spot-widget/hooks/espot-context.tsx`
+- moved `src/_foundation/hooks/use-espot-helper.tsx` to `src/components/commerce-widgets/e-marketing-spot-widget/hooks/use-espot-helper.tsx`
+- moved `src/_foundation/hooks/use-espot.tsx` to `src/components/commerce-widgets/e-marketing-spot-widget/hooks/use-espot.tsx`
+- moved `src/components/commerce-widgets/e-marketing-spot-widget.tsx` to `src/components/commerce-widgets/e-marketing-spot-widget/e-marketing-spot-widget.tsx`

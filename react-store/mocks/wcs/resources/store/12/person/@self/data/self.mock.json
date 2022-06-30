@@ -1,0 +1,49 @@
+{
+  "orderTypeCode": "ORD",
+  "totalShippingCharge": "0.00000",
+  "resourceId": "https://app:5443/wcs/resources/store/12/cart/@self?langId=-1&sortOrderItemBy=orderItemID",
+  "orgUniqueID": "7333333333333340835",
+  "orgDistinguishedName": "o=harinderorg,o=root organization",
+  "orderId": "2100287607",
+  "lastUpdateDate": "2022-06-07T08:07:22.175Z",
+  "channel": {
+    "channelIdentifer": {
+      "channelName": "Telesales",
+      "uniqueID": "-4"
+    },
+    "userData": null,
+    "description": {
+      "language": "-1",
+      "value": "Used when operations performed by a telesales representative."
+    }
+  },
+  "orderStatus": "P",
+  "x_isPurchaseOrderNumberRequired": "false",
+  "totalShippingChargeCurrency": "USD",
+  "x_firstName": "Aksjjjj",
+  "grandTotalCurrency": "USD",
+  "buyerId": "2003",
+  "buyerDistinguishedName": "uid=test1@gmail.com,o=harinderorg,o=root organization",
+  "recordSetCount": "0",
+  "x_isPersonalAddressesAllowedForShipping": "true",
+  "storeNameIdentifier": "Sapphire",
+  "totalProductPriceCurrency": "USD",
+  "totalProductPrice": "0.00000",
+  "locked": "false",
+  "recordSetComplete": "true",
+  "totalAdjustmentCurrency": "USD",
+  "totalSalesTaxCurrency": "USD",
+  "totalSalesTax": "0.00000",
+  "grandTotal": "0.00000",
+  "storeUniqueID": "12",
+  "recordSetStartNumber": "0",
+  "resourceName": "cart",
+  "recordSetTotal": "0",
+  "shipAsComplete": "true",
+  "x_trackingIds": "",
+  "totalShippingTax": "0.00000",
+  "totalShippingTaxCurrency": "USD",
+  "prepareIndicator": "false",
+  "x_lastName": "Upabjj",
+  "totalAdjustment": "0.00000"
+}

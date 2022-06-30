@@ -153,13 +153,11 @@ const AddressBook: React.FC = (props: any) => {
                   <StyledFormControl variant="outlined" fullWidth>
                     <StyledFormHelperText>{t("AddressBook.FilterLabel")}</StyledFormHelperText>
                     <StyledSelect
+                      data-testid="addresstype-filter"
                       native
                       fullWidth
                       value={type}
-                      onChange={handleChange}
-                      inputProps={{
-                        name: "id",
-                      }}>
+                      onChange={handleChange}>
                       <option value={0}>{t("AddressBook.ShowAllLabel")}</option>
                       <option value={1}>{t("AddressBook.ShippingLabel")}</option>
                       <option value={2}>{t("AddressBook.BillingLabel")}</option>

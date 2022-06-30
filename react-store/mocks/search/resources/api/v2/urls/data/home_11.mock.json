@@ -1,0 +1,97 @@
+{
+  "contents": [
+    {
+      "layout": {
+        "id": "12501",
+        "name": "HomePageLayout",
+        "containerName": "home-page",
+        "slots": [
+          {
+            "id": "1",
+            "widgets": [
+              {
+                "id": "3002",
+                "name": "HomePageBannerWidget",
+                "widgetName": "content-recommendation-widget",
+                "sequence": 0,
+                "properties": {
+                  "emsName": "Home Hero"
+                }
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "widgets": [
+              {
+                "id": "3003",
+                "name": "HomePageFreeDelivery",
+                "widgetName": "content-recommendation-widget",
+                "sequence": 0,
+                "properties": {
+                  "emsName": "Free Delivery"
+                }
+              },
+              {
+                "id": "3004",
+                "name": "HomePageProductRecommendation",
+                "widgetName": "catalog-entry-recommendation-widget",
+                "sequence": 1,
+                "properties": {
+                  "emsName": "Home_ProductRec",
+                  "populationChoice": "useWebactivity"
+                }
+              },
+              {
+                "id": "3005",
+                "name": "HomePagePromotion",
+                "widgetName": "content-recommendation-widget",
+                "sequence": 2,
+                "properties": {
+                  "emsName": "Home_Promotion"
+                }
+              },
+              {
+                "id": "3006",
+                "name": "HomePageFeaturedProductRecommendation",
+                "widgetName": "featured-product-recommendation-widget",
+                "sequence": 3,
+                "properties": {
+                  "emsName": "Featured_ProductRec",
+                  "populationChoice": "useWebactivity"
+                }
+              },
+              {
+                "id": "3007",
+                "name": "HomePageCategoryRecommendation",
+                "widgetName": "category-recommendation-widget",
+                "sequence": 4,
+                "properties": {
+                  "emsName": "Home_CategoryRec",
+                  "populationChoice": "useWebactivity"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "identifier": "home",
+      "store.type": "MPS",
+      "tokenName": "StaticPagesToken",
+      "tokenExternalValue": "HomePage",
+      "language": "en_US",
+      "id": "57001",
+      "page": {
+        "imageAlternateDescription": "Image for Emerald home page",
+        "name": "Content_1001",
+        "type": "ContentPage",
+        "title": "Welcome to Emerald",
+        "metaDescription": "Shop Emerald online. Commerce Model Store entity",
+        "metaKeyword": "Emerald Commerce Model Store entity"
+      },
+      "storeId": "11",
+      "tokenValue": "1001",
+      "status": 1
+    }
+  ]
+}

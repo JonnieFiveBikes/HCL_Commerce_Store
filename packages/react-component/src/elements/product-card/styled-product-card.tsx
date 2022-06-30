@@ -10,7 +10,6 @@
  */
 //Standard libraries
 import React, { useMemo } from "react";
-import { Link } from "react-router-dom";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 //Custom libraries
 import styled from "styled-components";
@@ -20,10 +19,11 @@ import { StyledTypography } from "../typography";
 import { StyledCard, StyledCardMedia } from "../card";
 import { StyledCheckbox } from "../check-box";
 import { StyledFormControlLabel } from "../form";
+import { StyledLink } from "../link";
 import { RibbonAd } from "../../components/ribbon-ad";
 
 const StyledProductCard = styled(({ className, ...props }) =>
-  props.to ? <Link className={className} {...props} /> : <StyledBox className={className} {...props} />
+  props.to ? <StyledLink className={className} {...props} /> : <StyledBox className={className} {...props} />
 )`
   ${({ theme }) => `
     display: block;
@@ -59,13 +59,14 @@ const FlexWrapper = styled.div`
 `;
 
 const CompareBox = ({ compare, product, catentryId }) => {
-  const { type: t } = product;
+  const { type: t, partNumber } = product;
   const visibility = t === "product" || t === "item" || t === "variant" ? "visible" : "hidden";
   return (
     <div style={{ marginLeft: "16px", visibility }}>
       <StyledFormControlLabel
         control={
           <StyledCheckbox
+            data-testid={`product-compare-${partNumber.toLowerCase()}-checkbox`}
             className="compare-checkbox"
             disabled={!!(!compare.data.checked[catentryId] && compare.data.disabled)}
             checked={!!compare.data.checked[catentryId]}

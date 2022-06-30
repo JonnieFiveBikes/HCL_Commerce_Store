@@ -44,6 +44,25 @@ const shippingInfoService = {
       options
     );
   },
+
+  /**
+   * Gets shipping modes for the shopping cart.
+   * @summary Get shipping modes
+   * @param {string} storeId The store identifier.
+   * @param {string} [locale] The locale to use for example, locale&#x3D;en_US. If the \&quot;langId\&quot; parameter is specified, the \&quot;locale\&quot; parameter is ignored. If no locale is specified, the store default locale is used.
+   * @param {string} [langId] Language identifier. If not specified, the \&quot;locale\&quot; parameter is used. If \&quot;locale\&quot; is not specified, then the store default language is used.
+   * @param {string} [responseFormat] The response format. Valid values are json and xml. If the request contains an input body, it must use the format specified in responseFormat. If the responseFormat is not specified, the accept  HTTP header determines the format of the response. If the accept  HTTP header is not specified then default response format is json.
+   * @param {*} [options] Override http request option.
+   */
+  getAllowableShippingModes(
+    storeId: string,
+    locale?: string,
+    langId?: string,
+    responseFormat?: string,
+    options?: any
+  ): AxiosPromise<any> {
+    return shippingInfoApiInstance.cartGetAllowableShippingModes(storeId, locale, langId, responseFormat, options);
+  },
 };
 
 export default shippingInfoService;

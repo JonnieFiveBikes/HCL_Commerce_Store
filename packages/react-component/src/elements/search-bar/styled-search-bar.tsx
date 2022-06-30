@@ -24,6 +24,7 @@ const StyledSearchBar = styled.div`
   position: relative;
 
   .searchBar-results {
+    z-index: 1;
     position: absolute;
     top: ${(headerHeight - searchBarHeight) * 0.5 + searchBarHeight}px;
     left: 0;

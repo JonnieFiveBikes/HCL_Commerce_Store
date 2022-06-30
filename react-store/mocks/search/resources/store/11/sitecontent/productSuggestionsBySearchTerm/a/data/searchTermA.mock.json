@@ -1,0 +1,64 @@
+{
+  "recordSetComplete": "false",
+  "recordSetCount": 4,
+  "recordSetStartNumber": 0,
+  "recordSetTotal": 274,
+  "recordSetTotalMatches": 274,
+  "resourceId": "https://search:30901/search/resources/store/11/sitecontent/productSuggestionsBySearchTerm/a?pageSize=4&pageNumber=1&searchType=200&contractId=-11009&catalogId=11501&profileName=IBM_findNavigationSuggestion_PartNumber&langId=-1",
+  "resourceName": "sitecontent",
+  "suggestionView": [
+    {
+      "identifier": "Product",
+      "entry": [
+        {
+          "catalogEntryTypeCode": "ItemBean",
+          "hasSingleSKU": false,
+          "name": "Allen Desk",
+          "partNumber": "FNU040_400904",
+          "price": [
+            { "usage": "Display", "description": "L", "currency": "USD", "value": "11.5" },
+            { "usage": "Offer", "contractId": "-11009", "description": "I", "currency": "USD", "value": "9.52" }
+          ],
+          "resourceId": "https://search:30901/search/resources/store/11/sitecontent/productSuggestionsBySearchTerm/a?pageSize=4&pageNumber=1&searchType=200&contractId=-11009&catalogId=11501&profileName=IBM_findNavigationSuggestion_PartNumber&langId=-1",
+          "uniqueID": "13597"
+        },
+        {
+          "catalogEntryTypeCode": "ItemBean",
+          "hasSingleSKU": false,
+          "name": "Allen Desk",
+          "partNumber": "FNU040_4009018",
+          "price": [
+            { "usage": "Display", "description": "L", "currency": "USD", "value": "11.5" },
+            { "usage": "Offer", "contractId": "-11009", "description": "I", "currency": "USD", "value": "9.52" }
+          ],
+          "resourceId": "https://search:30901/search/resources/store/11/sitecontent/productSuggestionsBySearchTerm/a?pageSize=4&pageNumber=1&searchType=200&contractId=-11009&catalogId=11501&profileName=IBM_findNavigationSuggestion_PartNumber&langId=-1",
+          "uniqueID": "13611"
+        },
+        {
+          "catalogEntryTypeCode": "ItemBean",
+          "hasSingleSKU": false,
+          "name": "Allen Desk",
+          "partNumber": "FNU040_400905",
+          "price": [
+            { "usage": "Display", "description": "L", "currency": "USD", "value": "11.5" },
+            { "usage": "Offer", "contractId": "-11009", "description": "I", "currency": "USD", "value": "9.52" }
+          ],
+          "resourceId": "https://search:30901/search/resources/store/11/sitecontent/productSuggestionsBySearchTerm/a?pageSize=4&pageNumber=1&searchType=200&contractId=-11009&catalogId=11501&profileName=IBM_findNavigationSuggestion_PartNumber&langId=-1",
+          "uniqueID": "13598"
+        },
+        {
+          "catalogEntryTypeCode": "ItemBean",
+          "hasSingleSKU": false,
+          "name": "Allen Desk",
+          "partNumber": "FNU040_400908",
+          "price": [
+            { "usage": "Display", "description": "L", "currency": "USD", "value": "11.5" },
+            { "usage": "Offer", "contractId": "-11009", "description": "I", "currency": "USD", "value": "9.52" }
+          ],
+          "resourceId": "https://search:30901/search/resources/store/11/sitecontent/productSuggestionsBySearchTerm/a?pageSize=4&pageNumber=1&searchType=200&contractId=-11009&catalogId=11501&profileName=IBM_findNavigationSuggestion_PartNumber&langId=-1",
+          "uniqueID": "13601"
+        }
+      ]
+    }
+  ]
+}

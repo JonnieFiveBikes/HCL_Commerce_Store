@@ -22,6 +22,7 @@ import { useSite } from "../../../../_foundation/hooks/useSite";
 import addressUtil from "../../../../utils/addressUtil";
 import { SIGNIN } from "../../../../constants/routes";
 import { EMPTY_STRING } from "../../../../constants/common";
+import { CountryState } from "../../../widgets/country-state";
 //UI
 import {
   StyledGrid,
@@ -385,19 +386,7 @@ const BuyerUserRegistration = (props: any) => {
                       onChange={(e) => setZipCode(e.target.value)}
                     />
                   </StyledGrid>
-                  <StyledGrid item xs={12} sm={6}>
-                    <StyledTextField
-                      required
-                      inputProps={{
-                        maxLength: 40,
-                      }}
-                      label={t("BuyerUserRegistration.State")}
-                      name="state"
-                      fullWidth
-                      value={state}
-                      onChange={(e) => setState(e.target.value)}
-                    />
-                  </StyledGrid>
+                  <CountryState country={country} setCountry={setCountry} state={state} setState={setState} />
                   <StyledGrid item xs={12} sm={6}>
                     <StyledTextField
                       required
@@ -411,19 +400,6 @@ const BuyerUserRegistration = (props: any) => {
                       onChange={(e) => setCity(e.target.value)}
                     />
                   </StyledGrid>
-                  <StyledGrid item xs={12} sm={6}>
-                    <StyledTextField
-                      required
-                      inputProps={{
-                        maxLength: 40,
-                      }}
-                      label={t("BuyerUserRegistration.Country")}
-                      name="country"
-                      fullWidth
-                      value={country}
-                      onChange={(e) => setCountry(e.target.value)}
-                    />
-                  </StyledGrid>
                 </StyledGrid>
                 <Divider className="top-margin-3 bottom-margin-2" />
                 <StyledTypography variant="h5" className="bottom-margin-2">
@@ -435,6 +411,7 @@ const BuyerUserRegistration = (props: any) => {
                       <StyledInputLabel shrink>{t("BuyerUserRegistration.Language")}</StyledInputLabel>
                       <StyledSelect
                         value={language}
+                        data-testid="language"
                         name="language"
                         native
                         onChange={(e) => setLanguage(e.target.value)}
@@ -452,6 +429,7 @@ const BuyerUserRegistration = (props: any) => {
                       <StyledInputLabel shrink>{t("BuyerUserRegistration.Currency")}</StyledInputLabel>
                       <StyledSelect
                         value={currency}
+                        data-testid="currency"
                         name="currency"
                         native
                         onChange={(e) => setCurrency(e.target.value)}

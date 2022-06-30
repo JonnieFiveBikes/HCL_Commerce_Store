@@ -44,6 +44,9 @@ import {
 } from "@hcl-commerce-store-sdk/react-component";
 import { useCSRForUser } from "../../../_foundation/hooks/useCSRForUser";
 import { HOME } from "../../../constants/routes";
+//Foundation
+import { useStoreLocatorValue } from "../../../_foundation/context/store-locator-context";
+import { STORELOCATORACTIONS } from "../../../_foundation/constants/common";
 
 export const SessionErrorDialog = () => {
   const un = useSelector(logonIdSelector);
@@ -69,6 +72,8 @@ export const SessionErrorDialog = () => {
   const rememberMe = useSelector(rememberMeSelector);
 
   const { handleForUserSessionError } = useCSRForUser();
+
+  const storeLocatorDispach = useStoreLocatorValue().dispatch;
 
   const usernameInput = React.createRef<HTMLInputElement>();
 
@@ -124,8 +129,9 @@ export const SessionErrorDialog = () => {
       dispatch(CANCEL_REMEMBER_ME_SESSION_ERROR_ACTION(payload));
     } else {
       dispatch(CANCEL_SESSION_ERROR_ACTION(payload));
+      storeLocatorDispach({ type: STORELOCATORACTIONS.RESET_STORE_SELECTOR });
     }
-  }, [dispatch, navigate, rememberMe, widgetName]);
+  }, [dispatch, navigate, rememberMe, widgetName, storeLocatorDispach]);
 
   useEffect(() => {
     if (userInitStatus && !loginStatus && handled === false) {

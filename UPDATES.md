@@ -164,6 +164,66 @@ The React Store Application (Emerald and Sapphire) has been updated with the fol
 
 This version of the React Store Application requires corresponding HCL Commerce Version 9.1.10.
 
+### 2022/06/30 HCL Commerce Version 9.1.11 - Refreshed Store Application
+
+The React Store Application (Emerald and Sapphire) has been updated with the following enhancements:
+
+1. Wish Lists
+2. Store Locator
+3. BOPIS (Buy Online Pickup in Store)
+4. Auto-complete for Country (and State) Selections
+5. Seller-based Grouping (for Marketplace) throughout Checkout Flow and in Order History
+
+Some issues that were addressed:
+
+1. Extra click handling on buttons (using `debounce`)
+2. New mock responses for improved shopping flow in mock mode
+3. `data-testid` attribute addition on most clickable elements and some others (as necessary) for hooking e2e flows
+
+To provide backward compatibility, the REST service generation tools have been restored as below:
+
+- react-store/tools/scripts/codeGen/readme.md
+- react-store/tools/scripts/codeGen/templates/swagger/clazz.mustache
+- react-store/tools/scripts/codeGen/templates/swagger/method.mustache
+- react-store/tools/scripts/codeGen/templates/swagger/request.mustache
+- react-store/tools/scripts/generateRestService.js
+
+Some file locations in the `react-store` workspace have been updated for better proximity with consuming code. These are:
+
+| Previous Location                                                          | New Location                                                                                                         |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| src/components/commerce-widgets/attribute-filter-widget.tsx                | src/components/commerce-widgets/attribute-filter-widget/attribute-filter-widget.tsx                                  |
+| src/components/commerce-widgets/breadcrumb-trail-widget.tsx                | src/components/commerce-widgets/breadcrumb-trail-widget/breadcrumb-trail-widget.tsx                                  |
+| src/\_foundation/hooks/use-breadcrumb-trail.tsx                            | src/components/commerce-widgets/breadcrumb-trail-widget/hooks/use-breadcrumb-trail.tsx                               |
+| src/components/commerce-widgets/bundle-widget.tsx                          | src/components/commerce-widgets/bundle-widget/bundle-widget.tsx                                                      |
+| src/\_foundation/hooks/use-bundle.tsx                                      | src/components/commerce-widgets/bundle-widget/hooks/use-bundle.tsx                                                   |
+| src/components/commerce-widgets/catalog-entry-list-widget.tsx              | src/components/commerce-widgets/catalog-entry-list-widget/catalog-entry-list-widget.tsx                              |
+| src/\_foundation/hooks/use-product-grid-layout.tsx                         | src/components/commerce-widgets/catalog-entry-list-widget/hooks/use-product-grid-layout.tsx                          |
+| src/components/commerce-widgets/catalog-entry-recommendation-widget.tsx    | src/components/commerce-widgets/catalog-entry-recommendation-widget/catalog-entry-recommendation-widget.tsx          |
+| src/components/commerce-widgets/category-recommendation-widget.tsx         | src/components/commerce-widgets/category-recommendation-widget/category-recommendation-widget.tsx                    |
+| src/components/commerce-widgets/child-category-grid-widget.tsx             | src/components/commerce-widgets/child-category-grid-widget/child-category-grid-widget.tsx                            |
+| src/\_foundation/hooks/use-child-category-grid.tsx                         | src/components/commerce-widgets/child-category-grid-widget/hooks/use-child-category-grid.tsx                         |
+| src/components/commerce-widgets/content-carousel-widget.tsx                | src/components/commerce-widgets/content-carousel-widget/content-carousel-widget.tsx                                  |
+| src/\_foundation/hooks/use-content-carousel.tsx                            | src/components/commerce-widgets/content-carousel-widget/hooks/use-content-carousel.tsx                               |
+| src/components/commerce-widgets/content-recommendation-widget.tsx          | src/components/commerce-widgets/content-recommendation-widget/content-recommendation-widget.tsx                      |
+| src/components/commerce-widgets/e-marketing-spot-widget.tsx                | src/components/commerce-widgets/e-marketing-spot-widget/e-marketing-spot-widget.tsx                                  |
+| src/\_foundation/context/espot-context.tsx                                 | src/components/commerce-widgets/e-marketing-spot-widget/hooks/espot-context.tsx                                      |
+| src/\_foundation/hooks/use-espot-helper.tsx                                | src/components/commerce-widgets/e-marketing-spot-widget/hooks/use-espot-helper.tsx                                   |
+| src/\_foundation/hooks/use-espot.tsx                                       | src/components/commerce-widgets/e-marketing-spot-widget/hooks/use-espot.tsx                                          |
+| src/components/commerce-widgets/facet-navigation-widget.tsx                | src/components/commerce-widgets/facet-navigation-widget/facet-navigation-widget.tsx                                  |
+| src/\_foundation/hooks/use-product-filter.tsx                              | src/components/commerce-widgets/facet-navigation-widget/hooks/use-product-filter.tsx                                 |
+| src/components/commerce-widgets/featured-product-recommendation-widget.tsx | src/components/commerce-widgets/featured-product-recommendation-widget/featured-product-recommendation-widget.tsx    |
+| src/\_foundation/hooks/use-featured-product-recommendation.tsx             | src/components/commerce-widgets/featured-product-recommendation-widget/hooks/use-featured-product-recommendation.tsx |
+| src/\_foundation/hooks/use-kit.tsx                                         | src/components/commerce-widgets/kit-widget/hooks/use-kit.tsx                                                         |
+| src/components/commerce-widgets/kit-widget.tsx                             | src/components/commerce-widgets/kit-widget/kit-widget.tsx                                                            |
+| src/\_foundation/hooks/use-merchandising-association.tsx                   | src/components/commerce-widgets/merchandising-association-widget/hooks/use-merchandising-association.tsx             |
+| src/components/commerce-widgets/merchandising-association-widget.tsx       | src/components/commerce-widgets/merchandising-association-widget/merchandising-association-widget.tsx                |
+| src/\_foundation/hooks/use-product-details.tsx                             | src/components/commerce-widgets/product-details-widget/hooks/use-product-details.tsx                                 |
+| src/components/commerce-widgets/product-details-widget.tsx                 | src/components/commerce-widgets/product-details-widget/product-details-widget.tsx                                    |
+| src/\_foundation/hooks/use-product-b2b-details-layout.tsx                  | src/components/commerce-widgets/product-information-widget/hooks/use-product-b2b-details-layout.tsx                  |
+| src/components/commerce-widgets/product-information-widget.tsx             | src/components/commerce-widgets/product-information-widget/product-information-widget.tsx                            |
+| src/components/commerce-widgets/sku-list-widget.tsx                        | src/components/commerce-widgets/sku-list-widget/sku-list-widget.tsx                                                  |
+
 ## Limitations
 
 The list of latest features delivered in the React Store Applications are described for Emerald:

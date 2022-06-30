@@ -104,3 +104,6 @@ export const SHARRED_ORDER_TTYPE = "SHR";
 
 export const RESOURCE_NAME_CART = "cart";
 export const N_ITEMS_ADDED = "addedNSuccessfully";
+
+export const DELIVERY = "delivery";
+export const PICKUP = "pickup";

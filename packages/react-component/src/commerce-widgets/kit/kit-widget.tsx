@@ -9,6 +9,7 @@
  *==================================================
  */
 
+import HTMLReactParser from "html-react-parser";
 import {
   StyledGrid,
   StyledPDPContainer,
@@ -39,6 +40,8 @@ interface BundleWidgetProps {
   addRequisitionListButton: any;
   kit?: any;
   ribbonFinder?: any;
+  seller?: any;
+  physicalAvailabilityImageText?: any;
 }
 
 export const KitWidget: React.FC<BundleWidgetProps> = (props: any) => {
@@ -59,6 +62,8 @@ export const KitWidget: React.FC<BundleWidgetProps> = (props: any) => {
     availabilityImageText,
     kit,
     ribbonFinder,
+    seller,
+    physicalAvailabilityImageText,
   } = props;
   const ribbonAds = ribbonFinder(kit);
   return (
@@ -81,12 +86,34 @@ export const KitWidget: React.FC<BundleWidgetProps> = (props: any) => {
                           {translation.productDetailSKU}: {productPartNumber}
                         </StyledTypography>
                       </StyledGrid>
-                      <StyledGrid item>
-                        <StyledProductImage src={availabilityImageText.src} style={{ verticalAlign: "text-bottom" }} />
+                      <StyledGrid item container spacing={1}>
+                        <StyledGrid item>
+                          <StyledProductImage
+                            src={availabilityImageText.src}
+                            style={{ verticalAlign: "text-bottom" }}
+                          />
+                        </StyledGrid>
+                        <StyledGrid item>
+                          <StyledTypography variant="body2">
+                            {HTMLReactParser(availabilityImageText.text)}
+                          </StyledTypography>
+                        </StyledGrid>
                       </StyledGrid>
-                      <StyledGrid item>
-                        <StyledTypography variant="body2">{availabilityImageText.text}</StyledTypography>
-                      </StyledGrid>
+                      {physicalAvailabilityImageText ? (
+                        <StyledGrid item container spacing={1}>
+                          <StyledGrid item>
+                            <StyledProductImage
+                              src={physicalAvailabilityImageText.src}
+                              style={{ verticalAlign: "text-bottom" }}
+                            />
+                          </StyledGrid>
+                          <StyledGrid item>
+                            <StyledTypography variant="body2">
+                              {HTMLReactParser(physicalAvailabilityImageText.text)}
+                            </StyledTypography>
+                          </StyledGrid>
+                        </StyledGrid>
+                      ) : null}
                     </StyledGrid>
                   )}
                   {displayShortDesc && (
@@ -125,6 +152,7 @@ export const KitWidget: React.FC<BundleWidgetProps> = (props: any) => {
                     strict={true}
                     onChange={(q) => updateProductQuantity(q)}
                   />
+                  {seller ? <div>{seller}</div> : null}
                   {tableData?.data?.length > 0 && <>{addKitButton}</>}
                   <StyledGrid item xs={12}>
                     {productDetailTabsChildren?.length > 0 && (

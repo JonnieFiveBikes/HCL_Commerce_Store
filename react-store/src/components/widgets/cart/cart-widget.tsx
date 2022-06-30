@@ -166,6 +166,7 @@ const CartWidget: React.FC<any> = (props: CartLayout) => {
                             labelId="frequency"
                             native
                             name="frequency"
+                            data-testid="recurring-order-frequency"
                             onChange={(event: { target: { value: any } }) =>
                               setRecurringOrderFrequency(event.target.value)
                             }
@@ -208,15 +209,17 @@ const CartWidget: React.FC<any> = (props: CartLayout) => {
               partitionedBySellers.map((s, key) => (
                 <OrderItemTable
                   {...{
+                    preShip: true,
                     outerClassName: key > 0 ? "vertical-padding-2 horizontal-padding-2 top-margin-2" : null,
                     key,
                     ...s,
                   }}
                   readOnly={false}
+                  cartPage={true}
                 />
               ))
             ) : orderItems.length > 0 ? (
-              <OrderItemTable data={orderItems} readOnly={false} />
+              <OrderItemTable data={orderItems} preShip={true} readOnly={false} cartPage={true} />
             ) : (
               <StyledPaper>
                 <StyledContainer className="vertical-margin-2">
@@ -267,6 +270,7 @@ const CartWidget: React.FC<any> = (props: CartLayout) => {
                           onClick={() => onPromoCodeRemove(promoCode.code)}
                           onDelete={() => onPromoCodeRemove(promoCode.code)}
                           id={`cart_link_3_${index}`}
+                          data-testid={`cart-widget-${promoCode.code.toLowerCase()}-chip`}
                         />
                       </StyledGrid>
                     ))}

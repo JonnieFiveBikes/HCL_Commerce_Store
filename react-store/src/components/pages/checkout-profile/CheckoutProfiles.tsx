@@ -142,7 +142,7 @@ const CheckoutProfiles: React.FC = (props: any) => {
             direction="column"
             wrap="nowrap">
             <StyledGrid container className="vertical-margin-1">
-              <StyledAccordion style={{ flex: "1" }}>
+              <StyledAccordion testId={`checkout-profile-create`} style={{ flex: "1" }}>
                 <StyledAccordionSummary
                   className="horizontal-padding-2 vertical-padding-2 cprof-cr8-acrdn"
                   expandIcon={<ExpandMoreIcon />}>
@@ -166,7 +166,7 @@ const CheckoutProfiles: React.FC = (props: any) => {
                         InputProps={{
                           endAdornment: (
                             <InputAdornment position="end">
-                              <SearchIcon onClick={() => null} />
+                              <SearchIcon data-testid="dummy-search-icon" onClick={() => null} />
                             </InputAdornment>
                           ),
                         }}

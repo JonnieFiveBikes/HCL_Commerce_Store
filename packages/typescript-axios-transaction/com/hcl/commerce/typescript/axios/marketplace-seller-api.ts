@@ -33,10 +33,12 @@ export const MarketplaceSellerApiAxiosParamCreator = function (configuration?: C
          * @summary Get active marketplace sellers for a store.
          * @param {string} storeId The store id.
          * @param {string} [langId] The return language for marketplace seller name and description. The store default language is used if missing.
+         * @param {number} [offset] The position within the resulting dataset where the query begins returning item records. If the offset is \&quot;5\&quot;, the records that returned begin with the sixth record that matches the query parameters. If the offset is \&quot;0\&quot;, the records that are returned begin with the first record that matches the query parameters.
+         * @param {number} [limit] The maximum number of records to return.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findActiveMarketplaceSellerByStoreId: async (storeId: string, langId?: string, options: any = {}): Promise<RequestArgs> => {
+        findActiveMarketplaceSellerByStoreId: async (storeId: string, langId?: string, offset?: number, limit?: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'storeId' is not null or undefined
             assertParamExists('findActiveMarketplaceSellerByStoreId', 'storeId', storeId)
             const localVarPath = `/store/{storeId}/marketplace-sellers`
@@ -54,6 +56,14 @@ export const MarketplaceSellerApiAxiosParamCreator = function (configuration?: C
 
             if (langId !== undefined) {
                 localVarQueryParameter['langId'] = langId;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
             }
 
 
@@ -82,11 +92,13 @@ export const MarketplaceSellerApiFp = function(configuration?: Configuration) {
          * @summary Get active marketplace sellers for a store.
          * @param {string} storeId The store id.
          * @param {string} [langId] The return language for marketplace seller name and description. The store default language is used if missing.
+         * @param {number} [offset] The position within the resulting dataset where the query begins returning item records. If the offset is \&quot;5\&quot;, the records that returned begin with the sixth record that matches the query parameters. If the offset is \&quot;0\&quot;, the records that are returned begin with the first record that matches the query parameters.
+         * @param {number} [limit] The maximum number of records to return.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findActiveMarketplaceSellerByStoreId(storeId: string, langId?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SellerCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findActiveMarketplaceSellerByStoreId(storeId, langId, options);
+        async findActiveMarketplaceSellerByStoreId(storeId: string, langId?: string, offset?: number, limit?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SellerCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.findActiveMarketplaceSellerByStoreId(storeId, langId, offset, limit, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -104,11 +116,13 @@ export const MarketplaceSellerApiFactory = function (configuration?: Configurati
          * @summary Get active marketplace sellers for a store.
          * @param {string} storeId The store id.
          * @param {string} [langId] The return language for marketplace seller name and description. The store default language is used if missing.
+         * @param {number} [offset] The position within the resulting dataset where the query begins returning item records. If the offset is \&quot;5\&quot;, the records that returned begin with the sixth record that matches the query parameters. If the offset is \&quot;0\&quot;, the records that are returned begin with the first record that matches the query parameters.
+         * @param {number} [limit] The maximum number of records to return.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findActiveMarketplaceSellerByStoreId(storeId: string, langId?: string, options?: any): AxiosPromise<SellerCollection> {
-            return localVarFp.findActiveMarketplaceSellerByStoreId(storeId, langId, options).then((request) => request(axios, basePath));
+        findActiveMarketplaceSellerByStoreId(storeId: string, langId?: string, offset?: number, limit?: number, options?: any): AxiosPromise<SellerCollection> {
+            return localVarFp.findActiveMarketplaceSellerByStoreId(storeId, langId, offset, limit, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -125,11 +139,13 @@ export class MarketplaceSellerApi extends BaseAPI {
      * @summary Get active marketplace sellers for a store.
      * @param {string} storeId The store id.
      * @param {string} [langId] The return language for marketplace seller name and description. The store default language is used if missing.
+     * @param {number} [offset] The position within the resulting dataset where the query begins returning item records. If the offset is \&quot;5\&quot;, the records that returned begin with the sixth record that matches the query parameters. If the offset is \&quot;0\&quot;, the records that are returned begin with the first record that matches the query parameters.
+     * @param {number} [limit] The maximum number of records to return.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MarketplaceSellerApi
      */
-    public findActiveMarketplaceSellerByStoreId(storeId: string, langId?: string, options?: any) {
-        return MarketplaceSellerApiFp(this.configuration).findActiveMarketplaceSellerByStoreId(storeId, langId, options).then((request) => request(this.axios, this.basePath));
+    public findActiveMarketplaceSellerByStoreId(storeId: string, langId?: string, offset?: number, limit?: number, options?: any) {
+        return MarketplaceSellerApiFp(this.configuration).findActiveMarketplaceSellerByStoreId(storeId, langId, offset, limit, options).then((request) => request(this.axios, this.basePath));
     }
 }

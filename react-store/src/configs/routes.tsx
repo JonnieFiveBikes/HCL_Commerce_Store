@@ -23,6 +23,7 @@ const AddressBook = lazy(() => import("../components/pages/address-book/AddressB
 const EditAddress = lazy(() => import("../components/pages/address-book/EditAddress"));
 const AddAddress = lazy(() => import("../components/pages/address-book/AddAddress"));
 const SearchResults = lazy(() => import("../components/pages/search-results/SearchResults"));
+const StoreLocator = lazy(() => import("../components/pages/store-locator/store-locator"));
 
 //checkout
 const Shipping = lazy(() => import("../components/pages/checkout/shipping/Shipping"));
@@ -31,8 +32,16 @@ const Billing = lazy(() => import("../components/widgets/checkout-payment"));
 const Review = lazy(() => import("../components/widgets/checkout-review"));
 const CheckoutProfiles = lazy(() => import("../components/pages/checkout-profile/CheckoutProfiles"));
 
+//BOPIS
+const PickupStore = lazy(() => import("../components/pages/checkout/pickup/pickup-store"));
+const PickupDetails = lazy(() => import("../components/pages/checkout/pickup/pickup-details"));
+
 //Emerald pages
 const Account = lazy(() => import("../components/pages/_emerald/account/Account"));
+
+//Wish List
+const WishList = lazy(() => import("../components/pages/wish-list/wish-list"));
+const ViewWishList = lazy(() => import("../components/pages/wish-list/view-wish-list"));
 
 //Sapphire pages
 const Dashboard = lazy(() => import("../components/pages/_sapphire/dashboard/Dashboard"));
@@ -62,21 +71,31 @@ const ViewUploadLogs = lazy(() => import("../components/pages/_sapphire/requisit
 
 const Compare = lazy(() => import("../components/pages/compare/compare"));
 
-const CheckoutRouteConfig = (props) => [
+const CheckoutRouteConfig = [
   {
     key: ROUTES.CHECKOUT_SHIPPING,
     path: ROUTES.CHECKOUT_SHIPPING,
-    element: <Shipping {...props} />,
+    element: <Shipping />,
   },
   {
     key: ROUTES.CHECKOUT_PAYMENT,
     path: ROUTES.CHECKOUT_PAYMENT,
-    element: <Billing {...props} />,
+    element: <Billing />,
   },
   {
     key: ROUTES.CHECKOUT_REVIEW,
     path: ROUTES.CHECKOUT_REVIEW,
-    element: <Review {...props} />,
+    element: <Review />,
+  },
+  {
+    key: ROUTES.CHECKOUT_PICKUP,
+    path: ROUTES.CHECKOUT_PICKUP,
+    element: <PickupDetails />,
+  },
+  {
+    key: ROUTES.CHECKOUT_PICKUP_STORE,
+    path: ROUTES.CHECKOUT_PICKUP_STORE,
+    element: <PickupStore />,
   },
 ];
 
@@ -85,6 +104,13 @@ const CompareConfig = {
   path: ROUTES.COMPARE_ROUTE,
   exact: true,
   element: <Compare />,
+};
+
+const StoreLocatorConfig = {
+  key: ROUTES.STORE_LOCATOR,
+  path: ROUTES.STORE_LOCATOR,
+  exact: true,
+  element: <StoreLocator />,
 };
 
 const B2BRouteConfig: any[] = [
@@ -252,7 +278,14 @@ const B2BRouteConfig: any[] = [
     isProtected: ROUTES.REGISTER_PROTECTED,
     element: <ViewUploadLogs />,
   },
+  StoreLocatorConfig,
   CompareConfig,
+  {
+    key: ROUTES.CHECKOUT,
+    path: ROUTES.CHECKOUT,
+    element: <SEO />,
+    children: CheckoutRouteConfig,
+  },
   {
     key: "other",
     path: "/*",
@@ -355,7 +388,28 @@ const B2CRouteConfig: any[] = [
     isProtected: ROUTES.REGISTER_PROTECTED,
     element: <InprogressOrders />,
   },
+  StoreLocatorConfig,
   CompareConfig,
+  {
+    key: ROUTES.WISH_LIST,
+    path: ROUTES.WISH_LIST,
+    exact: true,
+    isProtected: ROUTES.REGISTER_PROTECTED,
+    element: <WishList />,
+  },
+  {
+    key: ROUTES.VIEW_WISH_LIST_ROUTE,
+    path: ROUTES.VIEW_WISH_LIST_ROUTE,
+    exact: true,
+    isProtected: ROUTES.REGISTER_PROTECTED,
+    element: <ViewWishList />,
+  },
+  {
+    key: ROUTES.CHECKOUT,
+    path: ROUTES.CHECKOUT,
+    element: <SEO />,
+    children: CheckoutRouteConfig,
+  },
   {
     key: "other",
     path: "/*",

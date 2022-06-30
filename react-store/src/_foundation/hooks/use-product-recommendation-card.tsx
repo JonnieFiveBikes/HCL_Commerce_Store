@@ -100,6 +100,7 @@ export const useProductRecommendationCard = (props: any) => {
         style={{
           backgroundImage: `url("${e.image1path}")`,
         }}
+        data-testid={`product-recommendation-${e.identifier.toLowerCase()}-swatch`}
       />
     );
   });

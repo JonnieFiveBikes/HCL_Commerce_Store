@@ -27,6 +27,7 @@ interface BundleWidgetProps {
   FormattedPriceDisplay: any;
   tableData: any;
   addBundleButton: any;
+  seller?: any;
 }
 
 export const BundleWidget: React.FC<BundleWidgetProps> = (props: any) => {
@@ -45,6 +46,7 @@ export const BundleWidget: React.FC<BundleWidgetProps> = (props: any) => {
     addBundleButton,
     bundle,
     ribbonFinder,
+    seller,
   } = props;
   const ribbonAds = ribbonFinder(bundle);
   return (
@@ -94,6 +96,7 @@ export const BundleWidget: React.FC<BundleWidgetProps> = (props: any) => {
                       </span>
                     ) : null}
                   </StyledTypography>
+                  {seller ? <div>{seller}</div> : null}
                   {tableData?.data?.length > 0 && <>{addBundleButton}</>}
                   <StyledGrid item xs={12}>
                     {productDetailTabsChildren?.length > 0 && (

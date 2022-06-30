@@ -9,87 +9,90 @@
  *==================================================
  */
 //Standard libraries
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
-import { Navigate, useLocation, useParams, useRoutes } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
 import cartService from "../../../_foundation/apis/transaction/cart.service";
 //Custom libraries
 import * as ROUTES from "../../../constants/routes";
-import { ROUTE_CONFIG } from "../../../configs/routes";
 import { RESOURCE_NAME_CART } from "../../../constants/order";
 //Redux
 import * as orderActions from "../../../redux/actions/order";
-import { numItemsSelector, isFetchingSelector, cartSelector, orderItemsSelector } from "../../../redux/selectors/order";
+import {
+  numItemsSelector,
+  isFetchingSelector,
+  cartSelector,
+  orderItemsSelector,
+  orderMethodIsPickupSelector,
+} from "../../../redux/selectors/order";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
-import { guestStatusSelector } from "../../../redux/selectors/user";
 import { RESET_ACTIVE_INPROGRESS_ORDER_ACTION } from "../../../redux/actions/order";
 //UI
 import {
   StyledContainer,
   StyledPaper,
-  StyledTypography,
   StyledStep,
   StyledStepLabel,
   StyledStepper,
   StyledProgressPlaceholder,
   StyledLink,
-  StyledBreadcrumbs,
 } from "@hcl-commerce-store-sdk/react-component";
 //GA360
 import UADataService from "../../../_foundation/gtm/ua/uaData.service";
 import GA4DataService from "../../../_foundation/gtm/ga4/ga4Data.service";
 import AsyncCall from "../../../_foundation/gtm/async.service";
-import { SLASH } from "../../../constants/common";
-
-const RouteRenderer = (props) => {
-  const avecProps: any[] = ROUTE_CONFIG.Checkout(props);
-  return useRoutes(avecProps);
-};
+import OrderMethod from "../../widgets/order-method/order-method";
+import { CheckoutStepperGuard } from "./stepper-guard";
 
 /**
  * Checkout component
  * displays shipping, billing, payment, review sections
  * @param props
  */
-const Checkout: React.FC = (props: any) => {
+const Checkout: React.FC = () => {
   const widgetName = getDisplayName(Checkout);
-  const params = useParams();
   const location: any = useLocation();
-  const url = SLASH + params["*"];
-  const isGuest = useSelector(guestStatusSelector);
+  const { pathname } = location;
   const contractId = useSelector(currentContractIdSelector);
   const isFetching = useSelector(isFetchingSelector);
   const numItems = useSelector(numItemsSelector);
   const cart = useSelector(cartSelector);
   const isPONumberRequired = useMemo(() => cart?.x_isPurchaseOrderNumberRequired === "true", [cart]);
-  const MemRouteRenderer = useCallback(RouteRenderer, []);
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { mySite, storeDisplayName } = useSite();
   const CancelToken = Axios.CancelToken;
   const cancels: Canceler[] = [];
-
-  const steps = ["shipping", "payment", "review"];
+  const orderMethodIsPickup = useSelector(orderMethodIsPickupSelector);
+  const [visited, setVisited] = useState(-1);
   const stepsRoutes = {
     shipping: ROUTES.CHECKOUT_SHIPPING,
     payment: ROUTES.CHECKOUT_PAYMENT,
     review: ROUTES.CHECKOUT_REVIEW,
+    pickup: ROUTES.CHECKOUT_PICKUP,
+    "pickup-store": ROUTES.CHECKOUT_PICKUP_STORE,
   };
-  const calculateStep = () => {
-    if (url === ROUTES.CHECKOUT) {
+  const steps = useMemo(() => {
+    return orderMethodIsPickup ? ROUTES.PICKUP_STEPS : ROUTES.DELIVERY_STEPS;
+  }, [orderMethodIsPickup]);
+
+  const isCheckoutWithProfile = useMemo(() => {
+    return location?.state?.selectedProfile ? true : false;
+  }, [location?.state?.selectedProfile]);
+
+  const activeStep = useMemo(() => {
+    if (pathname === ROUTES.CHECKOUT) {
       return 0;
     } else {
-      const path = url.substr(ROUTES.CHECKOUT.length + 1);
+      const path = pathname.substr(ROUTES.CHECKOUT.length + 1);
       return steps.indexOf(path);
     }
-  };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const activeStep = useMemo(calculateStep, [params]);
+  }, [steps, pathname]);
 
   const defaultCurrencyID: string = mySite ? mySite.defaultCurrencyID : "";
 
@@ -102,11 +105,9 @@ const Checkout: React.FC = (props: any) => {
     }),
   };
 
-  const shippingProps = {};
-  const paymentProps = { isPONumberRequired };
-  const reviewOrderProps = { isPONumberRequired };
-  const extraProps: any =
-    activeStep === 0 ? shippingProps : activeStep === 1 ? paymentProps : activeStep === 2 ? reviewOrderProps : {};
+  const extraProps: any = useMemo(() => {
+    return { isPONumberRequired };
+  }, [isPONumberRequired]);
 
   //GA360
   if (mySite.enableGA) {
@@ -196,26 +197,11 @@ const Checkout: React.FC = (props: any) => {
   return isFetching === undefined || isFetching ? (
     <StyledProgressPlaceholder className="vertical-padding-15" />
   ) : numItems < 1 ? (
-    isGuest ? (
-      <Navigate replace to={ROUTES.CART} />
-    ) : mySite.isB2B ? (
-      <Navigate replace to={ROUTES.ORDER_HISTORY} />
-    ) : (
-      <Navigate replace to={ROUTES.CART} />
-    )
+    <Navigate replace to={ROUTES.CART} />
   ) : (
     <StyledContainer className="page">
-      <StyledBreadcrumbs className="top-padding-6 vertical-padding-3">
-        <StyledLink to={ROUTES.CART}>
-          <StyledTypography variant="h4">{t("Cart.Title")}</StyledTypography>
-        </StyledLink>
-        <span>
-          <StyledTypography variant="h4">
-            {location.state?.selectedProfile ? t("Checkout.CheckoutProfileTitle") : t("Checkout.Title")}
-          </StyledTypography>
-        </span>
-      </StyledBreadcrumbs>
-      <StyledPaper className="bottom-margin-2">
+      {activeStep <= 0 ? <OrderMethod /> : null}
+      <StyledPaper className="top-margin-2 bottom-margin-2">
         <StyledStepper activeStep={activeStep}>
           {steps.map((key, i) => (
             <StyledStep key={key}>
@@ -230,9 +216,13 @@ const Checkout: React.FC = (props: any) => {
           ))}
         </StyledStepper>
       </StyledPaper>
-
-      {(location.pathname === ROUTES.CHECKOUT && <Navigate replace to={ROUTES.CHECKOUT_SHIPPING} />) || (
-        <MemRouteRenderer {...extraProps} />
+      {location.pathname === ROUTES.CHECKOUT ? (
+        <Navigate replace to={orderMethodIsPickup ? ROUTES.CHECKOUT_PICKUP_STORE : ROUTES.CHECKOUT_SHIPPING} />
+      ) : (
+        <>
+          <CheckoutStepperGuard {...{ activeStep, steps, setVisited, visited, isCheckoutWithProfile }} />
+          <Outlet context={{ extraProps }} />
+        </>
       )}
     </StyledContainer>
   );

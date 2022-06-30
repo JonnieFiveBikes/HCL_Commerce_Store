@@ -16,8 +16,6 @@ import Axios, { Canceler } from "axios";
 //Foundation libraries
 import { useSite } from "./useSite";
 import fileUploadJobService from "../apis/transaction/fileUploadJob.service";
-import { LOCALE } from "../../_foundation/constants/common";
-import { localStorageUtil } from "../../_foundation/utils/storageUtil";
 //Custom libraries
 import { EMPTY_STRING, PAGINATION } from "../../constants/common";
 import { get } from "lodash-es";
@@ -232,7 +230,11 @@ const StatusCell = ({ rowData, ...props }) => {
 };
 
 const RefreshButton = ({ getTableData }) => (
-  <StyledIconButton style={{ padding: 0 }} color="secondary" onClick={getTableData}>
+  <StyledIconButton
+    style={{ padding: 0 }}
+    color="secondary"
+    onClick={getTableData}
+    data-testid="use-view-upload-refresh-icon-button">
     <RefreshIcon />
   </StyledIconButton>
 );
@@ -253,7 +255,6 @@ export const useViewUploadLogs = () => {
       cancels.push(c);
     }),
   };
-  const locale = localStorageUtil.get(LOCALE);
 
   const dateFormatOptions: Intl.DateTimeFormatOptions = {
     year: "numeric",
@@ -369,7 +370,7 @@ export const useViewUploadLogs = () => {
         },
       },
     ],
-    [locale] // eslint-disable-line react-hooks/exhaustive-deps
+    [i18n.language] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   const doSearch = ({ search }) => {

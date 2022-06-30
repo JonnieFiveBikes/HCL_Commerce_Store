@@ -10,6 +10,7 @@
  */
 //Standard libraries
 import React, { useState } from "react";
+import { kebabCase } from "lodash-es";
 //UI
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import {
@@ -54,6 +55,7 @@ export const ProductAttributeFilterWidget: React.FC<ProductAttributeFilterWidget
       scrollable={true}
       sidebarContent={definingAttributeList.map((attr: any, index: number) => (
         <StyledAccordion
+          testId={`product-attr-filter-${attr.identifier}`}
           defaultExpanded={!isMobile}
           key={attr.identifier}
           expanded={!isMobile || isActiveAttrId === attr.identifier}
@@ -71,7 +73,9 @@ export const ProductAttributeFilterWidget: React.FC<ProductAttributeFilterWidget
               <strong key={attr.identifier}>{attr.name}</strong>
             </StyledTypography>
           </StyledAccordionSummary>
-          <StyledAccordionDetails key={"AccordDetail_" + attr.identifier}>
+          <StyledAccordionDetails
+            key={"AccordDetail_" + attr.identifier}
+            data-testid={kebabCase(`product-attribute-filter-${attr.identifier}-accordion-detail`)}>
             <StyledSwatchRadioGroup
               values={attr.values}
               name={attr.name}

@@ -1,0 +1,212 @@
+{
+  "totalShippingCharge": "0.00000",
+  "orderTypeCode": "ORD",
+  "resourceId": "https://app:5443/wcs/resources/store/11/order/2875792?langId=-1",
+  "orderId": "2875792",
+  "lastUpdateDate": "2022-06-14T06:07:06.377Z",
+  "channel": {
+    "channelIdentifer": {
+      "channelName": "Telesales",
+      "uniqueID": "-4"
+    },
+    "userData": null,
+    "description": {
+      "language": "-1",
+      "value": "Used when operations performed by a telesales representative."
+    }
+  },
+  "orderStatus": "M",
+  "x_isPurchaseOrderNumberRequired": "false",
+  "x_firstName": "Testing first name",
+  "totalShippingChargeCurrency": "USD",
+  "buyerId": "3",
+  "grandTotalCurrency": "USD",
+  "buyerDistinguishedName": "uid=test@gmail.com,o=default organization,o=root organization",
+  "recordSetCount": "1",
+  "paymentInstruction": [
+    {
+      "piId": "10001",
+      "country": "United States",
+      "personTitle": "",
+      "lastName": "Testing last name",
+      "zipCode": "4161234567",
+      "city": "NYC,",
+      "postalCode": "4161234567",
+      "phone2": "",
+      "phone2Publish": "true",
+      "phone1Publish": "true",
+      "piDescription": "Cash on delivery",
+      "payMethodId": "COD",
+      "phone1": "",
+      "xpaym_tokenization": "false",
+      "email2": "",
+      "email1": "test@gmail.com",
+      "xpaym_policyId": "14506",
+      "fax2": "",
+      "state": "54321",
+      "fax1": "",
+      "piAmount": "524.99000",
+      "billing_address_id": "3074457359255088146",
+      "nickName": "test@gmail.com",
+      "addressLine": ["1 Main Street", "", ""],
+      "piLanguage": "-1",
+      "stateOrProvinceName": "54321",
+      "piStatus": "Success",
+      "firstName": "Testing first name",
+      "piCurrency": "USD",
+      "protocolData": [
+        {
+          "name": "billing_address_id",
+          "value": "3074457359255088146"
+        },
+        {
+          "name": "billto_zipcode",
+          "value": "4161234567"
+        },
+        {
+          "name": "billto_address1",
+          "value": "1 Main Street"
+        },
+        {
+          "name": "billto_lastname",
+          "value": "Testing last name"
+        },
+        {
+          "name": "billto_country",
+          "value": "United States"
+        },
+        {
+          "name": "billto_stateprovince",
+          "value": "54321"
+        },
+        {
+          "name": "billto_city",
+          "value": "NYC,"
+        },
+        {
+          "name": "billto_firstname",
+          "value": "Testing first name"
+        },
+        {
+          "name": "payment_method",
+          "value": "COD"
+        }
+      ],
+      "middleName": "",
+      "xpaym_punchoutPayment": "false"
+    }
+  ],
+  "x_isPersonalAddressesAllowedForShipping": "true",
+  "storeNameIdentifier": "Emerald",
+  "totalProductPriceCurrency": "USD",
+  "totalProductPrice": "549.99000",
+  "locked": "false",
+  "placedDate": "2022-06-14T06:07:05.760Z",
+  "recordSetComplete": "true",
+  "totalAdjustmentCurrency": "USD",
+  "totalSalesTaxCurrency": "USD",
+  "totalSalesTax": "0.00000",
+  "orderItem": [
+    {
+      "zipCode": "4161234567",
+      "personTitle": "",
+      "country": "United States",
+      "unitUom": "C62",
+      "shippingChargeCurrency": "USD",
+      "lastUpdateDate": "2022-06-14T06:07:05.760Z",
+      "postalCode": "4161234567",
+      "phone2": "",
+      "availableDate": "2022-06-14T06:07:04.659Z",
+      "phone2Publish": "true",
+      "salesTax": "0.00000",
+      "phone1Publish": "true",
+      "phone1": "",
+      "addressId": "3074457359255088146",
+      "correlationGroup": "10003",
+      "email2": "",
+      "email1": "test@gmail.com",
+      "fax2": "",
+      "shippingCharge": "0.00000",
+      "fax1": "",
+      "state": "54321",
+      "orderItemPrice": "549.99000",
+      "shipModeLanguage": "-1",
+      "unitPrice": "549.99000",
+      "productId": "14023",
+      "shipModeCode": "Mail",
+      "shipModeDescription": "Mail",
+      "nickName": "test@gmail.com",
+      "fulfillmentCenterName": "Emerald",
+      "firstName": "Testing first name",
+      "adjustment": [
+        {
+          "amount": "-25.00000",
+          "code": "Save $25 on all orders over $200 USD",
+          "usage": "Discount",
+          "description": "Save $25 on all orders over $200 USD",
+          "currency": "USD",
+          "language": "-1"
+        }
+      ],
+      "totalAdjustment": {
+        "currency": "USD",
+        "value": "-25.00000"
+      },
+      "orderItemInventoryStatus": "Allocated",
+      "lastName": "Testing last name",
+      "city": "NYC,",
+      "expectedShipDate": "2022-06-15T06:07:09.124Z",
+      "xitem_isPersonalAddressesAllowedForShipping": "true",
+      "shippingTax": "0.00000",
+      "orderItemStatus": "M",
+      "offerID": "18045",
+      "currency": "USD",
+      "createDate": "2022-06-14T04:59:26.440Z",
+      "salesTaxCurrency": "USD",
+      "quantity": "1.0",
+      "fulfillmentCenterId": "13001",
+      "orderItemId": "10003",
+      "shipModeId": "14501",
+      "xitem_memberId": "3",
+      "orderItemFulfillmentStatus": "Unreleased",
+      "isExpedited": "false",
+      "addressLine": ["1 Main Street", "", ""],
+      "xitem_lastName": "Testing last name",
+      "shippingTaxCurrency": "USD",
+      "stateOrProvinceName": "54321",
+      "carrier": "Mail",
+      "UOM": "C62",
+      "fulfillmentCenterOwnerId": "-11000",
+      "freeGift": "false",
+      "xitem_firstName": "Testing first name",
+      "unitQuantity": "1.0",
+      "contractId": "-11005",
+      "middleName": "",
+      "partNumber": "LR-FNTR-0002-0001"
+    }
+  ],
+  "grandTotal": "524.99000",
+  "storeUniqueID": "11",
+  "recordSetStartNumber": "0",
+  "resourceName": "order",
+  "recordSetTotal": "1",
+  "shipAsComplete": "true",
+  "x_trackingIds": "",
+  "totalShippingTax": "0.00000",
+  "prepareIndicator": "true",
+  "totalShippingTaxCurrency": "USD",
+  "adjustment": [
+    {
+      "amount": "-25.00000",
+      "code": "Save $25 on all orders over $200 USD",
+      "displayLevel": "Order",
+      "usage": "Discount",
+      "descriptionLanguage": "-1",
+      "xadju_calUsageId": "-1",
+      "description": "Save $25 on all orders over $200 USD",
+      "currency": "USD"
+    }
+  ],
+  "x_lastName": "Testing last name",
+  "totalAdjustment": "-25.00000"
+}

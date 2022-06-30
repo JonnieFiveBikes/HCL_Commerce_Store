@@ -9,5 +9,5 @@
  *==================================================
  */
 
-export const axiosHeaderIgnoredServices = ["adminLookup", "online_store"];
-export const axiosESIgnoredService = ["api/v2/urls"];
+export const axiosHeaderIgnoredServices = { adminLookup: {}, online_store: {} };
+export const axiosESIgnoredService = { "api/v2/urls": {} };

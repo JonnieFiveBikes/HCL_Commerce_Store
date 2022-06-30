@@ -20,7 +20,7 @@ import getDisplayName from "react-display-name";
 import { useSite } from "../../../_foundation/hooks/useSite";
 import { SKIP_WC_TOKEN_HEADER } from "../../../_foundation/constants/common";
 //Custom libraries
-import { FORGOT_PASSWORD, SIGNIN } from "../../../constants/routes";
+import { FORGOT_PASSWORD, CHECKOUT, SIGNIN } from "../../../constants/routes";
 import { EMPTY_STRING } from "../../../constants/common";
 import addressUtil from "../../../../src/utils/addressUtil";
 //Redux
@@ -47,12 +47,13 @@ interface SignInContext {
   cid: string;
   redirectRoute?: string;
   hideRegistrationPage: any;
+  checkoutFlow?: any;
 }
 
 function SignInLayout({ cid, hideRegistrationPage, ...props }: SignInContext) {
   const widgetName = getDisplayName(SignInLayout);
   const passwordExpiredError: any = useSelector(passwordExpiredErrorSelector);
-  const { redirectRoute } = props;
+  const { redirectRoute, checkoutFlow } = props;
   const loginStatus = useSelector(loginStatusSelector);
   const { mySite } = useSite();
   const dispatch = useDispatch();
@@ -68,6 +69,10 @@ function SignInLayout({ cid, hideRegistrationPage, ...props }: SignInContext) {
   const emailLabel = t("SignIn.Label.Email");
   const isB2B: boolean = mySite?.isB2B ? mySite.isB2B : false;
   const navigate = useNavigate();
+  const signInTitle = checkoutFlow ? t("SignIn.SignInAndCheckoutTitle") : t("SignIn.SignInButton");
+  const signInButton = checkoutFlow ? t("SignIn.SignInAndCheckoutButton") : t("SignIn.SignInButton");
+  const noAccountMsg = checkoutFlow ? t("SignIn.CheckoutAsGuestMsg") : t("SignIn.noAccount");
+  const registerButton = checkoutFlow ? t("SignIn.CheckoutAsGuestButton") : t("SignIn.registerNow");
 
   const CancelToken = Axios.CancelToken;
   const cancels: Canceler[] = [];
@@ -103,9 +108,8 @@ function SignInLayout({ cid, hideRegistrationPage, ...props }: SignInContext) {
     return flag;
   };
 
-  const onRegisterClick = useCallback(() => {
-    hideRegistrationPage(false);
-  }, [hideRegistrationPage]);
+  const onRegisterClick = () => hideRegistrationPage(false);
+  const onCheckoutAsGuestClick = () => navigate(CHECKOUT);
 
   const onRememberMeChecked = useCallback((_event: any, value: boolean) => {
     setRememberMe(value);
@@ -113,12 +117,14 @@ function SignInLayout({ cid, hideRegistrationPage, ...props }: SignInContext) {
 
   const handleSubmit = (props: any) => {
     props.preventDefault();
+
+    const checkoutFn = checkoutFlow ? () => navigate(CHECKOUT) : null;
     const payload = {
       body: {
         logonId: email,
         logonPassword,
       },
-      query: {},
+      checkoutFn,
       ...payloadBase,
     };
     if (rememberMe) payload.query.rememberMe = rememberMe;
@@ -271,7 +277,7 @@ function SignInLayout({ cid, hideRegistrationPage, ...props }: SignInContext) {
         ) : (
           <>
             <StyledTypography component="h1" variant="h4" className="bottom-margin-1">
-              {t("SignIn.SignInButton")}
+              {signInTitle}
             </StyledTypography>
             <form onSubmit={handleSubmit} noValidate>
               <StyledTextField
@@ -304,13 +310,13 @@ function SignInLayout({ cid, hideRegistrationPage, ...props }: SignInContext) {
                   type: "password",
                 }}
               />
-              {process.env.REACT_APP_PERSISTENT_SESSION?.toLowerCase() === "true" && (
+              {process.env.REACT_APP_PERSISTENT_SESSION?.toLowerCase() === "true" ? (
                 <StyledFormControlLabel
                   className="vertical-padding-1"
                   control={<StyledCheckbox checked={rememberMe} color="primary" onChange={onRememberMeChecked} />}
                   label={t("SignIn.Label.rememberMe")}
                 />
-              )}
+              ) : null}
               <StyledTypography variant="body1" color="primary" className="vertical-margin-1">
                 <StyledLink to={FORGOT_PASSWORD}>{t("SignIn.ForgotPassword")}</StyledLink>
               </StyledTypography>
@@ -321,23 +327,23 @@ function SignInLayout({ cid, hideRegistrationPage, ...props }: SignInContext) {
                   color="primary"
                   disabled={!canContinue()}
                   className="login-process-button vertical-margin-2">
-                  {t("SignIn.SignInButton")}
+                  {signInButton}
                 </StyledButton>
-                {!isB2B && (
+                {!isB2B ? (
                   <>
                     <Divider className="vertical-margin-2" />
                     <StyledTypography variant="body1" className="bottom-margin-1  top-margin-3">
-                      {t("SignIn.noAccount")}
+                      {noAccountMsg}
                     </StyledTypography>
                     <StyledButton
                       testId="sign-in-register"
                       color="secondary"
-                      onClick={onRegisterClick}
+                      onClick={checkoutFlow ? onCheckoutAsGuestClick : onRegisterClick}
                       className="login-process-button  bottom-margin-1">
-                      {t("SignIn.registerNow")}
+                      {registerButton}
                     </StyledButton>
                   </>
-                )}
+                ) : null}
               </StyledBox>
             </form>
           </>

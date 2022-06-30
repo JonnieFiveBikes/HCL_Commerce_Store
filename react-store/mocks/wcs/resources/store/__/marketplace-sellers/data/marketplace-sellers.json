@@ -1,38 +1,4 @@
 {
-  "showSellerList": true,
-  "showSellerFacets": true,
-  "langId": "-1",
-  "count": 6,
-  "marketplaceSellers": [
-    {
-      "name": "Acme",
-      "identifier": "acme",
-      "id": "800000000000000000000000000000"
-    },
-    {
-      "name": "Not No Name",
-      "identifier": "notNoName",
-      "id": "800000000000000000000000000001"
-    },
-    {
-      "name": "Creations by Adrian",
-      "identifier": "creationsByAdrian",
-      "id": "800000000000000000000000000002"
-    },
-    {
-      "name": "Princess Home Decor",
-      "identifier": "princessHomeDecor",
-      "id": "800000000000000000000000000003"
-    },
-    {
-      "name": "Harp Fashions",
-      "identifier": "harpFashions",
-      "id": "800000000000000000000000000004"
-    },
-    {
-      "name": "Leopard Designs",
-      "identifier": "leopardDesigns",
-      "id": "800000000000000000000000000005"
-    }
-  ]
+  "count": 0,
+  "items": []
 }

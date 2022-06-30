@@ -2,15 +2,16 @@
   "contents": [
     {
       "identifier": "t-handle-bolt",
+      "store.type": "CPS",
       "tokenName": "ProductToken",
       "tokenExternalValue": "FB041_4101",
       "language": "en_US",
-      "id": 13318,
+      "id": "13318",
       "page": {
         "imageAlternateDescription": "Image for T-Handle Bolt from Sapphire",
         "name": "PRODUCT_PAGE",
-        "title": "T-Handle Bolt | Sapphire",
         "type": "ProductPage",
+        "title": "T-Handle Bolt | Sapphire",
         "metaDescription": "Medium-strength clamping pin",
         "metaKeyword": " Black Key Fasteners"
       },

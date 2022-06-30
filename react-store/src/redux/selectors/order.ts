@@ -25,3 +25,5 @@ export const ordersListSelector = (state: RootReducerState) => state.order.listO
 export const allowableShipModesSelector = (state: RootReducerState) => state.order.allowableShipModes;
 export const activeInprogressOrderSelector = (state: RootReducerState) => state.order.activeInprogressOrder;
 export const allowablePaymethodsSelector = (state: RootReducerState) => state.order.allowablePaymethods;
+export const orderMethodIsPickupSelector = (state: RootReducerState) => state.order.orderMethodIsPickup;
+export const pickupPersonSelector = (state: RootReducerState) => state.order.pickupPerson;

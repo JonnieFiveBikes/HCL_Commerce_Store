@@ -1,0 +1,195 @@
+{
+  "orderTypeCode": "ORD",
+  "totalShippingCharge": "0.00000",
+  "resourceId": "https://app:5443/wcs/resources/store/12/cart/@self?langId=-1&currency=USD&sortOrderItemBy=orderItemID",
+  "orgUniqueID": "-2001",
+  "orgDistinguishedName": "o=root organization",
+  "orderId": "120812108",
+  "lastUpdateDate": "2022-06-14T13:19:49.743Z",
+  "channel": {
+    "channelIdentifer": {
+      "channelName": "Telesales",
+      "uniqueID": "-4"
+    },
+    "userData": null,
+    "description": {
+      "language": "-1",
+      "value": "Used when operations performed by a telesales representative."
+    }
+  },
+  "orderStatus": "P",
+  "x_isPurchaseOrderNumberRequired": "false",
+  "totalShippingChargeCurrency": "USD",
+  "grandTotalCurrency": "USD",
+  "buyerId": "-1000",
+  "buyerDistinguishedName": "uid=wcsadmin,o=root organization",
+  "recordSetCount": "1",
+  "paymentInstruction": [
+    {
+      "piId": "11503",
+      "personTitle": "",
+      "lastName": "test last name",
+      "country": "United States",
+      "zipCode": "4332",
+      "city": "NYC",
+      "postalCode": "4332",
+      "phone2": "",
+      "phone2Publish": "true",
+      "phone1Publish": "true",
+      "piDescription": "Cash on delivery",
+      "payMethodId": "COD",
+      "phone1": "8888888888",
+      "xpaym_tokenization": "false",
+      "email2": "",
+      "email1": "test@m.com",
+      "fax2": "",
+      "xpaym_policyId": "15506",
+      "state": "New York",
+      "fax1": "",
+      "piAmount": "22.25000",
+      "billing_address_id": "3074457360855688250",
+      "nickName": "m",
+      "addressLine": ["Street 234", "NYC", ""],
+      "piLanguage": "-1",
+      "stateOrProvinceName": "New York",
+      "piStatus": "Success",
+      "firstName": "test",
+      "protocolData": [
+        {
+          "name": "billing_address_id",
+          "value": "3074457360855688250"
+        },
+        {
+          "name": "billto_zipcode",
+          "value": "4332"
+        },
+        {
+          "name": "billto_address1",
+          "value": "Street 234"
+        },
+        {
+          "name": "billto_country",
+          "value": "United States"
+        },
+        {
+          "name": "billto_lastname",
+          "value": "test last name"
+        },
+        {
+          "name": "billto_stateprovince",
+          "value": "New York"
+        },
+        {
+          "name": "billto_city",
+          "value": "NYC"
+        },
+        {
+          "name": "payment_method",
+          "value": "COD"
+        },
+        {
+          "name": "billto_firstname",
+          "value": "test"
+        }
+      ],
+      "piCurrency": "USD",
+      "middleName": "",
+      "xpaym_punchoutPayment": "false"
+    }
+  ],
+  "x_isPersonalAddressesAllowedForShipping": "true",
+  "storeNameIdentifier": "Sapphire",
+  "totalProductPriceCurrency": "USD",
+  "totalProductPrice": "22.25000",
+  "locked": "false",
+  "recordSetComplete": "true",
+  "totalAdjustmentCurrency": "USD",
+  "totalSalesTaxCurrency": "USD",
+  "totalSalesTax": "0.00000",
+  "grandTotal": "22.25000",
+  "orderItem": [
+    {
+      "personTitle": "",
+      "country": "United States",
+      "zipCode": "4332",
+      "unitUom": "C62",
+      "shippingChargeCurrency": "USD",
+      "lastUpdateDate": "2022-06-14T13:19:49.750Z",
+      "postalCode": "4332",
+      "phone2": "",
+      "language": "-1",
+      "phone2Publish": "true",
+      "phone1Publish": "true",
+      "salesTax": "0.00000",
+      "addressId": "3074457360855688250",
+      "phone1": "8888888888",
+      "correlationGroup": "25042",
+      "email2": "",
+      "usableShippingChargePolicy": [
+        {
+          "name": "StandardShippingChargeBySeller",
+          "type": "ShippingCharge",
+          "uniqueID": "-7001"
+        }
+      ],
+      "email1": "test@m.com",
+      "fax2": "",
+      "state": "New York",
+      "fax1": "",
+      "shippingCharge": "0.00000",
+      "orderItemPrice": "22.25000",
+      "shipModeLanguage": "-1",
+      "unitPrice": "22.25000",
+      "shipModeCode": "Mail",
+      "productId": "13167",
+      "shipModeDescription": "Mail",
+      "nickName": "Test",
+      "fulfillmentCenterName": "Sapphire",
+      "firstName": "test",
+      "totalAdjustment": {
+        "currency": "USD",
+        "value": "0.00000"
+      },
+      "orderItemInventoryStatus": "Available",
+      "lastName": "test last name",
+      "city": "NYC",
+      "expectedShipDate": "2022-06-14T13:20:10.105Z",
+      "description": "Mail",
+      "xitem_isPersonalAddressesAllowedForShipping": "true",
+      "shippingTax": "0.00000",
+      "orderItemStatus": "P",
+      "offerID": "13167",
+      "currency": "USD",
+      "createDate": "2022-06-14T13:16:23.813Z",
+      "salesTaxCurrency": "USD",
+      "quantity": "1.0",
+      "orderItemId": "25042",
+      "fulfillmentCenterId": "14001",
+      "shipModeId": "15501",
+      "xitem_memberId": "-1000",
+      "isExpedited": "false",
+      "addressLine": ["Street 234", "NYC", ""],
+      "orderItemFulfillmentStatus": "Unreleased",
+      "shippingTaxCurrency": "USD",
+      "stateOrProvinceName": "New York",
+      "carrier": "Mail",
+      "UOM": "C62",
+      "fulfillmentCenterOwnerId": "-11001",
+      "freeGift": "false",
+      "unitQuantity": "1.0",
+      "contractId": "-11009",
+      "middleName": "",
+      "partNumber": "FB041_410102"
+    }
+  ],
+  "storeUniqueID": "12",
+  "recordSetStartNumber": "0",
+  "resourceName": "cart",
+  "recordSetTotal": "1",
+  "shipAsComplete": "true",
+  "x_trackingIds": "",
+  "totalShippingTax": "0.00000",
+  "totalShippingTaxCurrency": "USD",
+  "prepareIndicator": "false",
+  "totalAdjustment": "0.00000"
+}

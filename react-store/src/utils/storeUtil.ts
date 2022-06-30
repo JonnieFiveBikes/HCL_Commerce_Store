@@ -9,7 +9,19 @@
  *==================================================
  */
 //Custom libraries
-import { REG_EX, SLASH, EMPTY_STRING, DESCRIPTIVE, STRING_TRUE, EXCLUSIVE, OFFER, CS } from "../constants/common";
+import { TFunction } from "react-i18next";
+import {
+  REG_EX,
+  SLASH,
+  EMPTY_STRING,
+  DESCRIPTIVE,
+  STRING_TRUE,
+  EXCLUSIVE,
+  OFFER,
+  CS,
+  MP_ENABLED,
+} from "../constants/common";
+import { INVENTORY_STATUS, SHIPMODE } from "../constants/order";
 
 /**
  * @param obj
@@ -148,6 +160,104 @@ const storeUtil = {
    * @returns obj elements joined by comma-space if it's an array, otherwise obj itself
    */
   csValue: (obj) => asArray(obj).join(CS),
+
+  /**
+   * by-seller partitioner
+   */
+  partitionBySellers: (orderItems, storeName, siteInfo) => {
+    const parts: any[] = [];
+    const { userData = {} } = siteInfo?.storeCfg ?? {};
+    const isMP = STRING_TRUE === userData[MP_ENABLED];
+
+    if (isMP && orderItems?.length) {
+      const collector: { [k: string]: any } = {};
+      const unk: any[] = [];
+      let n = 0;
+
+      // partition products by their sellers -- collect products with no-known sellers into a separate list
+      orderItems.forEach((p, i) => {
+        if (p.sellerId) {
+          const o = collector[p.sellerId] ?? { idx: i, seller: { id: p.sellerId, seller: p.seller }, data: [] };
+          o.data.push(p);
+          collector[p.sellerId] = o;
+          ++n;
+        } else {
+          unk.push(p);
+        }
+      });
+
+      // partition only if there is at least one SKU with a seller specified
+      if (n) {
+        parts.push(...Object.values(collector).sort((a, b) => a.idx - b.idx));
+        if (unk.length) {
+          parts.push({ seller: { id: storeName, seller: storeName }, data: unk });
+        }
+      }
+    }
+    return parts;
+  },
+
+  constructInventoryMessage: (
+    rowData: any,
+    translate: TFunction<"translation", undefined>,
+    cartPage = false,
+    physicalStoreName = ""
+  ) => {
+    if (cartPage) {
+      return rowData.availability
+        ? translate(`Cart.Availability.${rowData.availability}`, { storeName: physicalStoreName })
+        : "";
+    } else {
+      return rowData.availableDate === ""
+        ? rowData.orderItemInventoryStatus === INVENTORY_STATUS.available ||
+          rowData.orderItemInventoryStatus === INVENTORY_STATUS.allocated
+          ? rowData.physicalStoreExternalId
+            ? translate("CommerceEnvironment.inventoryStatusStore.Available", {
+                store: rowData.physicalStoreExternalId,
+              })
+            : translate("CommerceEnvironment.inventoryStatusOnline.Available")
+          : rowData.physicalStoreExternalId
+          ? translate("CommerceEnvironment.inventoryStatusStore.OOS", { store: rowData.physicalStoreExternalId })
+          : translate("CommerceEnvironment.inventoryStatusOnline.OOS")
+        : rowData.availableDate <= new Date()
+        ? rowData.physicalStoreExternalId
+          ? translate("CommerceEnvironment.inventoryStatusStore.Available", {
+              store: rowData.physicalStoreExternalId,
+            })
+          : translate("CommerceEnvironment.inventoryStatusOnline.Available")
+        : rowData.orderItemInventoryStatus !== INVENTORY_STATUS.backordered
+        ? rowData.physicalStoreExternalId
+          ? translate("CommerceEnvironment.inventoryStatusStore.Available", {
+              store: rowData.physicalStoreExternalId,
+            })
+          : translate("CommerceEnvironment.inventoryStatusOnline.Available")
+        : rowData.physicalStoreExternalId
+        ? translate("CommerceEnvironment.inventoryStatusStore.Backordered", {
+            store: rowData.physicalStoreExternalId,
+          })
+        : translate("CommerceEnvironment.inventoryStatusOnline.Backordered");
+    }
+  },
+  /**
+   * Validate orderitems to make sure it not pickup mixed with other shipping method.
+   * @param orderItems
+   * @returns true if it not mixed, false otherwise.
+   */
+  validatePickupOrOnline: (orderItems: any[]) => {
+    if (orderItems.length === 0) {
+      return true;
+    }
+    const pickups = orderItems.filter((e: any) => e.shipModeCode === SHIPMODE.shipModeCode.PickUp);
+    return pickups.length === orderItems.length;
+  },
+
+  isOrderItemsPickup: (orderItems: any[]) => {
+    if (orderItems.length === 0) {
+      return false;
+    }
+    const notPickup = orderItems.some((e: any) => e.shipModeCode !== SHIPMODE.shipModeCode.PickUp);
+    return !notPickup;
+  },
 };
 
 export default storeUtil;

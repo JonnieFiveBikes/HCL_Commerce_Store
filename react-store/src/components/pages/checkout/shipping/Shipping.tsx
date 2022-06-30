@@ -28,11 +28,14 @@ import {
   StyledSwitch,
   StyledBox,
   StyledIconLabel,
-  StyledSelect,
   StyledFormControl,
-  StyledInputLabel,
+  StyledRadioGroup,
+  StyledFormControlLabel,
+  StyledRadio,
+  StyledFormHelperText,
 } from "@hcl-commerce-store-sdk/react-component";
 import CheckOutlinedIcon from "@material-ui/icons/CheckOutlined";
+import { withOutletContext } from "../stepper-guard";
 
 /**
  * Shipping and billing section
@@ -255,24 +258,30 @@ const Shipping: React.FC = (props: any) => {
                     </StyledTypography>
                   )}
                   <StyledFormControl variant="outlined" disabled={isDisabled()}>
-                    <StyledInputLabel disableAnimation={true} shrink htmlFor="checkout-ship-method">
-                      {t("Shipping.Labels.SelectShippingMethod")}
-                    </StyledInputLabel>
+                    <StyledFormHelperText component="div">
+                      <StyledTypography variant="body1">
+                        <b>{t("Shipping.Labels.SelectShippingMethod")}</b>
+                      </StyledTypography>
+                    </StyledFormHelperText>
                     {usableShippingMethods[0] && (
-                      <StyledSelect
+                      <StyledRadioGroup
                         data-testid="shipping-method-select"
-                        native
                         value={selectedShipModeIds[0] || EMPTY_STRING}
                         onChange={(event: ChangeEvent<HTMLSelectElement>) =>
                           setSelectedshipModeId(0, event.target.value)
                         }
-                        id="checkout-ship-method">
+                        name="shippingMethodModes">
                         {usableShippingMethods[0].map((m) => (
-                          <option key={m.shipModeId} value={m.shipModeId}>
-                            {m.description || m.shipModeCode}
-                          </option>
+                          <StyledFormControlLabel
+                            key={m.shipModeId}
+                            value={m.shipModeId}
+                            control={<StyledRadio />}
+                            label={
+                              <StyledTypography variant="body2">{m.description || m.shipModeCode}</StyledTypography>
+                            }
+                          />
                         ))}
-                      </StyledSelect>
+                      </StyledRadioGroup>
                     )}
                   </StyledFormControl>
                 </StyledGrid>
@@ -321,4 +330,4 @@ const Shipping: React.FC = (props: any) => {
     </StyledPaper>
   );
 };
-export default Shipping;
+export default withOutletContext(Shipping);

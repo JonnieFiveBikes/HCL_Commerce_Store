@@ -10,14 +10,15 @@
  */
 //Standard libraries
 import React from "react";
-import { Link } from "react-router-dom";
 //UI
-import { StyledTypography, StyledBreadcrumbs } from "../../elements";
+import { StyledTypography, StyledBreadcrumbs, StyledLink } from "../../elements";
 
 interface BreadcrumbWidgetProps {
   cid: string;
   breadcrumbs: Array<any>;
 }
+
+const SLASH = "/";
 
 /**
  * Breadcrumb widget component
@@ -34,14 +35,15 @@ export const BreadcrumbWidget: React.FC<BreadcrumbWidgetProps> = (props: any) =>
       <StyledBreadcrumbs>
         {breadcrumbs.map((breadcrumb: any, index: number) =>
           index < breadcrumbs.length - 1 && breadcrumb.seo && breadcrumb.seo.href ? (
-            <Link
+            <StyledLink
+              {...(breadcrumb.seo.href === SLASH ? { testId: `breadcrumb-home` } : {})}
               to={breadcrumb.seo.href}
               color="inherit"
               state={{ breadCrumbTrailEntryView: breadcrumbs.slice(0, index + 1) }}
-              key={breadcrumb.value}
-              id={`breadcrumb_a_1_${cid}_${index}`}>
+              id={`breadcrumb_a_1_${cid}_${index}`}
+              key={breadcrumb.value}>
               {breadcrumb.label}
-            </Link>
+            </StyledLink>
           ) : (
             <span key={`${breadcrumb.value}_${index}`} className="break-word">
               {breadcrumb.label}

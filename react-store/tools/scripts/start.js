@@ -16,11 +16,12 @@ const { ALL_APP, MODE, PORT, DEFAULT_APP } = require("./buildConstant");
 
 let opts = {
   //defaults
-  string: ["appName", "mode", "port"],
+  string: ["appName", "mode", "port", "https"],
   default: {
     appName: DEFAULT_APP,
     mode: MODE.DEFAULT,
     port: "",
+    https: "",
   },
 };
 
@@ -34,8 +35,10 @@ if (cmdArgs.mode.trim() === "") {
   cmdArgs.mode = MODE.DEFAULT;
 }
 
+console.debug(cmdArgs);
+
 const port = cmdArgs.port !== "" ? cmdArgs.port : cmdArgs.mode === MODE.PREVIEW ? PORT.PREVIEW : PORT.DEV;
-const https = cmdArgs.mode === MODE.PREVIEW ? true : false;
+const https = cmdArgs.mode === MODE.PREVIEW || cmdArgs.https.toLowerCase() === "true";
 const runPOption = {
   parallel: true,
   printName: true,

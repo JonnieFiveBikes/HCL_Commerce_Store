@@ -26,7 +26,7 @@ interface OrderShippingInfoProps {
 const OrderShippingInfo: React.FC<OrderShippingInfoProps> = (props: any) => {
   const { shippingInfo } = props;
   const { orderItems, parentComponent, paymentInstruction } = shippingInfo;
-
+  const preShip = parentComponent === "Review";
   const formatShippingGroup = () => {
     const groups: any[] = [];
     /**
@@ -63,10 +63,10 @@ const OrderShippingInfo: React.FC<OrderShippingInfoProps> = (props: any) => {
         <SingleShipment
           orderItems={shippingGroups[0]}
           selectedProfileOrderItem={paymentInstruction.length > 0 ? paymentInstruction : []}
-          showHeading={parentComponent === "Review"}
+          showHeading={preShip}
         />
       )}
-      {shippingGroups.length > 1 && <ShipmentGroups groups={shippingGroups} />}
+      {shippingGroups.length > 1 && <ShipmentGroups {...{ preShip, groups: shippingGroups }} />}
     </>
   );
 };

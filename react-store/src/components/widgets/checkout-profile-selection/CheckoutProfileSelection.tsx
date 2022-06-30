@@ -113,6 +113,7 @@ const CheckoutProfileSelection: React.FC<CheckoutProfileProps> = (props: any) =>
             value={selectedProfile}
             onChange={profileChangeHandler}
             fullWidth
+            data-testid="checkout-profile-select"
             id="checkout-profile-select">
             {profileList.map(({ id, name }, index) => (
               <option key={`${id}_${index}`} value={id}>

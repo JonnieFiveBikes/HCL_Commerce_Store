@@ -1,0 +1,12 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "marketingSpotIdentifier": "14501",
+      "behavior": "0",
+      "eSpotName": "ShoppingCartRight_CatEntries"
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/12/espot/ShoppingCartRight_CatEntries?catalogId=10501&DM_ReturnCatalogGroupId=true&DM_FilterResults=false&langId=-1",
+  "resourceName": "espot"
+}

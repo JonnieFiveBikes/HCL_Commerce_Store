@@ -1,0 +1,200 @@
+{
+  "totalShippingCharge": "0.00000",
+  "orderTypeCode": "ORD",
+  "resourceId": "https://app:5443/wcs/resources/store/12/order/5069794?langId=-1",
+  "orgUniqueID": "7333333333333340836",
+  "orgDistinguishedName": "o=testing,o=root organization",
+  "orderId": "5069794",
+  "lastUpdateDate": "2022-06-08T18:15:40.046Z",
+  "channel": {
+    "channelIdentifer": {
+      "channelName": "Telesales",
+      "uniqueID": "-4"
+    },
+    "userData": null,
+    "description": {
+      "language": "-1",
+      "value": "Used when operations performed by a telesales representative."
+    }
+  },
+  "orderStatus": "M",
+  "x_isPurchaseOrderNumberRequired": "false",
+  "x_firstName": "Test",
+  "totalShippingChargeCurrency": "USD",
+  "buyerId": "5",
+  "grandTotalCurrency": "USD",
+  "buyerDistinguishedName": "uid=Test@hcl.com,o=testing,o=root organization",
+  "orderDescription": "3275020",
+  "recordSetCount": "1",
+  "paymentInstruction": [
+    {
+      "piId": "10006",
+      "country": "Azerbaijan",
+      "personTitle": "",
+      "lastName": "Test",
+      "zipCode": "52457",
+      "city": "NYC",
+      "postalCode": "5247",
+      "phone2": "",
+      "phone2Publish": "true",
+      "phone1Publish": "true",
+      "piDescription": "Cash on delivery",
+      "payMethodId": "COD",
+      "phone1": "",
+      "xpaym_tokenization": "false",
+      "email2": "",
+      "email1": "test@hcl.com",
+      "xpaym_policyId": "15506",
+      "fax2": "",
+      "state": "NYC",
+      "fax1": "",
+      "piAmount": "22.25000",
+      "billing_address_id": "3074457359258356550",
+      "nickName": "test@hcl.com",
+      "addressLine": ["NYC, NYC", "", ""],
+      "piLanguage": "-1",
+      "stateOrProvinceName": "NYC",
+      "piStatus": "Success",
+      "firstName": "",
+      "piCurrency": "USD",
+      "protocolData": [
+        {
+          "name": "billing_address_id",
+          "value": "3074457359258356550"
+        },
+        {
+          "name": "billto_zipcode",
+          "value": "Test"
+        },
+        {
+          "name": "billto_address1",
+          "value": "NYC, NYC"
+        },
+        {
+          "name": "billto_country",
+          "value": "Azerbaijan"
+        },
+        {
+          "name": "billto_lastname",
+          "value": "Test"
+        },
+        {
+          "name": "billto_stateprovince",
+          "value": "NYC"
+        },
+        {
+          "name": "billto_city",
+          "value": "NYC"
+        },
+        {
+          "name": "billto_firstname",
+          "value": "Test"
+        },
+        {
+          "name": "payment_method",
+          "value": "COD"
+        }
+      ],
+      "middleName": "",
+      "xpaym_punchoutPayment": "false"
+    }
+  ],
+  "x_isPersonalAddressesAllowedForShipping": "true",
+  "storeNameIdentifier": "Sapphire",
+  "totalProductPriceCurrency": "USD",
+  "totalProductPrice": "22.25000",
+  "locked": "false",
+  "placedDate": "2022-06-08T18:15:39.940Z",
+  "recordSetComplete": "true",
+  "totalAdjustmentCurrency": "USD",
+  "totalSalesTaxCurrency": "USD",
+  "totalSalesTax": "0.00000",
+  "orderItem": [
+    {
+      "zipCode": "52752",
+      "personTitle": "",
+      "country": "Azerbaijan",
+      "unitUom": "C62",
+      "shippingChargeCurrency": "USD",
+      "lastUpdateDate": "2022-06-08T18:15:39.940Z",
+      "postalCode": "52368",
+      "phone2": "",
+      "availableDate": "2022-06-08T18:15:39.762Z",
+      "phone2Publish": "true",
+      "salesTax": "0.00000",
+      "phone1Publish": "true",
+      "phone1": "",
+      "addressId": "3074457359258356550",
+      "correlationGroup": "10006",
+      "usableShippingChargePolicy": [
+        {
+          "name": "StandardShippingChargeBySeller",
+          "type": "ShippingCharge",
+          "uniqueID": "-7001"
+        }
+      ],
+      "email2": "",
+      "email1": "Test@hcl.com",
+      "fax2": "",
+      "shippingCharge": "0.00000",
+      "fax1": "",
+      "state": "NYC",
+      "orderItemPrice": "22.25000",
+      "shipModeLanguage": "-1",
+      "unitPrice": "22.25000",
+      "productId": "13166",
+      "shipModeCode": "Mail",
+      "shipModeDescription": "Mail",
+      "nickName": "Test@hcl.com",
+      "fulfillmentCenterName": "Sapphire",
+      "firstName": "Test",
+      "totalAdjustment": {
+        "currency": "USD",
+        "value": "0.00000"
+      },
+      "orderItemInventoryStatus": "Allocated",
+      "lastName": "Test",
+      "city": "NYC",
+      "expectedShipDate": "2022-06-10T05:09:44.688Z",
+      "xitem_isPersonalAddressesAllowedForShipping": "true",
+      "shippingTax": "0.00000",
+      "orderItemStatus": "M",
+      "offerID": "13166",
+      "currency": "USD",
+      "createDate": "2022-06-08T17:02:49.443Z",
+      "salesTaxCurrency": "USD",
+      "quantity": "1.0",
+      "fulfillmentCenterId": "14001",
+      "orderItemId": "10006",
+      "shipModeId": "15501",
+      "xitem_memberId": "5",
+      "orderItemFulfillmentStatus": "Unreleased",
+      "isExpedited": "false",
+      "addressLine": ["NYC, NYC", "", ""],
+      "xitem_lastName": "Test",
+      "shippingTaxCurrency": "USD",
+      "stateOrProvinceName": "NYC",
+      "carrier": "Mail",
+      "UOM": "C62",
+      "fulfillmentCenterOwnerId": "-11001",
+      "freeGift": "false",
+      "xitem_firstName": "Test",
+      "unitQuantity": "1.0",
+      "contractId": "-11009",
+      "middleName": "",
+      "partNumber": "FB041_410101"
+    }
+  ],
+  "grandTotal": "22.25000",
+  "storeUniqueID": "12",
+  "recordSetStartNumber": "0",
+  "resourceName": "order",
+  "recordSetTotal": "1",
+  "shipAsComplete": "true",
+  "x_trackingIds": "",
+  "totalShippingTax": "0.00000",
+  "prepareIndicator": "true",
+  "totalShippingTaxCurrency": "USD",
+  "x_lastName": "Test",
+  "totalAdjustment": "0.00000"
+}

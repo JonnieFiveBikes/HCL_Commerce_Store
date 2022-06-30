@@ -1,0 +1,34 @@
+{
+  "contents": [
+    {
+      "name": "Bath",
+      "identifier": "Bath",
+      "shortDescription": "Modernize your bath space with a variety of vanity fixtures and lighting options",
+      "resourceId": "https://search:30901/search/resources/api/v2/categories?storeId=11&identifier=Bath&contractId=-11005&langId=-1",
+      "uniqueID": "10509",
+      "parentCatalogGroupID": "/10509",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/bathroom/category/dep_bathroom.jpg",
+      "seo": {
+        "href": "/bath"
+      },
+      "storeID": "11",
+      "fullImage": "/hclstore/EmeraldCAS/images/catalog/bathroom/category/dep_bathroom.jpg",
+      "id": "10509",
+      "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=-1"
+        },
+        "children": [
+          "href: /search/resources/api/v2/categories?storeId=11&id=10510",
+          "href: /search/resources/api/v2/categories?storeId=11&id=10512",
+          "href: /search/resources/api/v2/categories?storeId=11&id=3074457345616677668",
+          "href: /search/resources/api/v2/categories?storeId=11&id=10511"
+        ],
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10509"
+        }
+      },
+      "description": "Modernize your bath space with a variety of vanity fixtures and lighting options"
+    }
+  ]
+}

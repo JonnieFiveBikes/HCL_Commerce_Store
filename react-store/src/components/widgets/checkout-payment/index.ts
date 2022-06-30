@@ -8,6 +8,7 @@
  *
  *==================================================
  */
+import { withOutletContext } from "../../pages/checkout/stepper-guard";
 import CheckoutPayment from "./checkout-payment";
 
-export default CheckoutPayment;
+export default withOutletContext(CheckoutPayment);

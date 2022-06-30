@@ -98,6 +98,7 @@ export const Sellers = () => {
       <StyledWrapper>
         <StyledFormControl variant="outlined">
           <StyledSelect
+            data-testid="mp-seller-select"
             style={{ maxWidth: `${XS_MOBILE_W}em` }}
             MenuProps={{
               anchorOrigin: { vertical: "bottom", horizontal: "left" },
@@ -114,6 +115,7 @@ export const Sellers = () => {
             fullWidth>
             {sellers?.sellers.map((s, i) => (
               <StyledMenuItem
+                data-testid={`mp-seller-select-${s.name.toLowerCase()}`}
                 key={i}
                 id={`${s}-${i}`}
                 value={s.id}

@@ -81,10 +81,11 @@ const ComponentWrapper: React.FC<PaginationProps> = (props: any) => {
   const recordOffset = useMemo(() => (clientSide ? page * pageSize : offset), [clientSide, page, pageSize, offset]);
 
   return (
-    <StyledGrid container className="top-margin-1" alignItems="center" justifyContent="flex-end" wrap="nowrap">
-      <StyledGrid item>
+    <StyledGrid container className="top-margin-1" alignItems="center" justifyContent="flex-end">
+      <StyledGrid item xs={12} sm="auto">
         <StyledSelect
           value={pageSize || ""}
+          data-testid="page-size"
           name="page-size"
           onChange={(e) => {
             const pgSz = parseInt(e.target.value);
@@ -103,46 +104,46 @@ const ComponentWrapper: React.FC<PaginationProps> = (props: any) => {
           ))}
         </StyledSelect>
       </StyledGrid>
-      <StyledGrid item>
+      <StyledGrid item xs={12} sm="auto" container alignItems="center" justifyContent="center" className="width--auto">
         <StyledIconButton
           color="secondary"
           size="small"
           disabled={totalRecords === 0 || page === 0}
-          onClick={() => doPage(0, pageSize)}>
+          onClick={() => doPage(0, pageSize)}
+          data-testid="table-pagination-first-page-icon-button">
           <FirstPageIcon />
         </StyledIconButton>
-      </StyledGrid>
-      <StyledGrid item>
+
         <StyledIconButton
           color="secondary"
           size="small"
           disabled={totalRecords === 0 || page === 0}
-          onClick={() => doPage(page - 1, pageSize)}>
+          onClick={() => doPage(page - 1, pageSize)}
+          data-testid="table-actions-back-icon-button">
           <ArrowBackIcon />
         </StyledIconButton>
-      </StyledGrid>
-      <StyledGrid item>
+
         {t(labels.ofTotalCount, {
           from: totalRecords === 0 ? 0 : recordOffset + 1,
           to: totalRecords === 0 ? 0 : pageSize + recordOffset > totalRecords ? totalRecords : pageSize + recordOffset,
           total: totalRecords,
         })}
-      </StyledGrid>
-      <StyledGrid item>
+
         <StyledIconButton
           color="secondary"
           size="small"
           disabled={totalRecords === 0 || page === totalPages - 1}
-          onClick={() => doPage(page + 1, pageSize)}>
+          onClick={() => doPage(page + 1, pageSize)}
+          data-testid="table-actions-forward-icon-button">
           <ArrowForwardIcon />
         </StyledIconButton>
-      </StyledGrid>
-      <StyledGrid item>
+
         <StyledIconButton
           color="secondary"
           size="small"
           disabled={totalRecords === 0 || page === totalPages - 1}
-          onClick={() => doPage(totalPages - 1, pageSize)}>
+          onClick={() => doPage(totalPages - 1, pageSize)}
+          data-testid="table-actions-last-page-icon-button">
           <LastPageIcon />
         </StyledIconButton>
       </StyledGrid>

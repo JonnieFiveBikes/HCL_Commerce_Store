@@ -7,6 +7,6 @@
       "eSpotName": "Home_ProductRec"
     }
   ],
-  "resourceId": "https://app:5443/wcs/resources/store/12/espot/Home_ProductRec?name=Home_ProductRec&langId=-1",
+  "resourceId": "https://app:5443/wcs/resources/store/12/espot/Home_ProductRec?catalogId=10501&DM_ReturnCatalogGroupId=true&DM_FilterResults=false&langId=-1",
   "resourceName": "espot"
 }

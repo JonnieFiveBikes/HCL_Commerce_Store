@@ -1,0 +1,53 @@
+{{!
+ *==================================================
+ * Licensed Materials - Property of HCL Technologies
+ *
+ * HCL Commerce
+ *
+ * (C) Copyright HCL Technologies Limited 2020
+ *
+ *==================================================
+ }}
+    if(!header.get("Content-Type")){
+      header.append("Content-Type","application/json; charset=utf-8");
+    }
+    const accept = header.get("Accept");
+    if (accept !== null && accept.indexOf("application/json") > -1) {
+      header.set("Accept", "application/json");
+    }
+    if ( header.get( "content-type" ) === "multipart/form-data" && Object.keys( form ).length > 0 ) {
+      const formData = new FormData();
+      for ( const p in form ) {
+        if ( form[p].name !== undefined ) {
+          formData.append( p, form[p], form[p].name );
+        } else {
+          formData.append( p, form[p] );
+        }
+      }
+      body = formData;
+    }
+    else if ( Object.keys( form ).length > 0 ) {
+      header.set( "content-type", "application/x-www-form-urlencoded" );
+      for ( const p in form ) {
+        formParams.append( p, form[p] );
+      }
+      formParams.sort();
+      body = formParams;
+    }
+    const headerObject: any = {};
+    for (const headerPair of header.entries()) {
+      headerObject[headerPair[0]] = headerPair[1];
+    }
+    queryParameters.sort();
+    const requestOptions: AxiosRequestConfig = Object.assign(
+      {
+        params: queryParameters,
+        method: method,
+        headers: headerObject,
+        data: body,
+        url: requestUrl
+      },
+      { ...parameters }
+    );
+
+    return Axios.request(requestOptions);

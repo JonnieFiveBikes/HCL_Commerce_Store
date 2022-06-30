@@ -8,6 +8,7 @@
  *
  *==================================================
  */
+import { withOutletContext } from "../../pages/checkout/stepper-guard";
 import CheckoutReview from "./CheckoutReview";
 
-export default CheckoutReview;
+export default withOutletContext(CheckoutReview);

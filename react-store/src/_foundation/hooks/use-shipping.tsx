@@ -30,7 +30,24 @@ import * as orderActions from "../../redux/actions/order";
 import * as organizationAction from "../../redux/actions/organization";
 import { currentContractIdSelector } from "../../redux/selectors/contract";
 import * as accountActions from "../../redux/actions/account";
-import React from "react";
+import { GENERIC_ERROR_ACTION } from "../../redux/actions/error";
+import { BAD_INV_ERROR } from "../../constants/errors";
+
+const handleShipError = (error: any, dispatch) => {
+  const errs = error.response?.data?.errors ?? [];
+  const e = errs[0];
+  if (e && e.errorKey === BAD_INV_ERROR) {
+    const _error = {
+      errorKey: `${BAD_INV_ERROR}_DELIVERY`,
+      linkAction: {
+        url: ROUTES.CART,
+        key: "ViewCart",
+      },
+    };
+    dispatch(GENERIC_ERROR_ACTION(_error));
+  }
+  console.log("unable to update the shipping.", error);
+};
 
 export const useShipping = () => {
   const navigate = useNavigate();
@@ -130,15 +147,20 @@ export const useShipping = () => {
     };
     const payload = {
       ...payloadBase,
+      skipErrorSnackbar: { error: "_API_BAD_INV" },
       body,
     };
-    await shippingInfoService.updateOrderShippingInfo(payload);
-    dispatch(orderActions.GET_SHIPINFO_ACTION({ ...payloadBase }));
-    dispatch(orderActions.GET_CART_ACTION({ ...payloadBase, fetchCatentries: true }));
-    setSelectShipment(false);
-    setTempItemsList([]);
-    setCheckboxesActive(false);
-    setItemsMap({});
+
+    try {
+      await shippingInfoService.updateOrderShippingInfo(payload);
+      dispatch(orderActions.GET_CART_ACTION({ ...payloadBase, fetchCatentries: true }));
+      setSelectShipment(false);
+      setTempItemsList([]);
+      setCheckboxesActive(false);
+      setItemsMap({});
+    } catch (error) {
+      handleShipError(error, dispatch);
+    }
   }
 
   const handleSelectShipmentChangeForSingleItem = (items) => {
@@ -391,19 +413,7 @@ export const useShipping = () => {
     const addressIds = [...selectedShipAddressIds];
     addressIds.splice(index, 1, addressId);
     setSelectedShipAddressIds(addressIds);
-    if (!useMultipleShipment) {
-      const body = {
-        ...shipInfoBody,
-        addressId: addressIds[0],
-      };
-      const payload = {
-        ...payloadBase,
-        body,
-      };
-      await shippingInfoService.updateOrderShippingInfo(payload);
-      dispatch(orderActions.GET_SHIPINFO_ACTION({ ...payloadBase }));
-      dispatch(orderActions.GET_CART_ACTION({ ...payloadBase }));
-    } else {
+    if (useMultipleShipment) {
       const orderItemsArray: any[] = [];
       let itemChanged: boolean = false;
       selectedItems.forEach((item) => {
@@ -436,7 +446,6 @@ export const useShipping = () => {
           body,
         };
         await shippingInfoService.updateOrderShippingInfo(payload);
-        dispatch(orderActions.GET_SHIPINFO_ACTION({ ...payloadBase }));
         dispatch(orderActions.GET_CART_ACTION({ ...payloadBase }));
       }
     }
@@ -481,63 +490,47 @@ export const useShipping = () => {
   function canContinueSingleShipment() {
     return selectedShipModeIds.length > 0 && selectedShipAddressIds.length > 0;
   }
-  /**
-   * Check and verify the existing shipMode is changed by shopper.
-   */
-  function shipModeUpdated(): boolean {
-    return !orderItems[0] || selectedShipModeIds[0] !== orderItems[0].shipModeId;
-  }
 
   /**
    * Submit the selected address or new address form
    */
   async function submit() {
-    if (!useMultipleShipment && !canContinue()) {
-      let isSingleShipModeId = true;
-      if (!useMultipleShipment && orderItems?.length > 1) {
-        const addressIds = orderItems.map((o) => o.addressId);
-        const isSingleAddressId = addressIds.every((addressId, index, array) => addressId === array[0]);
-        if (!isSingleAddressId) {
-          const body = {
-            ...shipInfoBody,
-            addressId: addressIds[0],
-          };
-          const payload = {
-            ...payloadBase,
-            body,
-          };
-          await shippingInfoService.updateOrderShippingInfo(payload);
-        }
-
-        const shipModeIds = orderItems.map((o) => o.shipModeId);
-        isSingleShipModeId = shipModeIds.every((shipModeId, index, array) => shipModeId === array[0]);
-      }
-
-      if (shipModeUpdated() || !isSingleShipModeId) {
-        const body = {
-          ...shipInfoBody,
-          shipModeId: selectedShipModeIds[0],
-          orderItem: [],
+    if (!useMultipleShipment) {
+      const orderItemsArray: any[] = [];
+      orderItems.forEach((item) => {
+        const orderItemId = item.orderItemId;
+        const shipModeId = selectedShipModeIds[0];
+        const addressId = selectedShipAddressIds[0];
+        const orderItemJson = {
+          shipModeId: shipModeId,
+          orderItemId: orderItemId,
+          addressId: addressId,
         };
-        const shipInfoPayload = {
-          ...payloadBase,
-          body,
-        };
-
-        await shippingInfoService.updateOrderShippingInfo(shipInfoPayload);
+        orderItemsArray.push(orderItemJson);
+      });
+      const body = {
+        ...shipInfoBody,
+        orderItem: orderItemsArray,
+      };
+      const payload = {
+        ...payloadBase,
+        skipErrorSnackbar: { error: "_API_BAD_INV" },
+        body,
+      };
+      try {
+        await shippingInfoService.updateOrderShippingInfo(payload);
+        dispatch(orderActions.GET_CART_ACTION({ ...payloadBase }));
+        navigate(`../${ROUTES.CHECKOUT_PAYMENT}`);
+      } catch (error: any) {
+        handleShipError(error, dispatch);
       }
-      dispatch(orderActions.FETCHING_CART_ACTION({ ...payloadBase }));
+    } else {
+      navigate(`../${ROUTES.CHECKOUT_PAYMENT}`);
     }
-    navigate(ROUTES.CHECKOUT_PAYMENT);
   }
 
   useEffect(() => {
     if (mySite) {
-      dispatch(
-        orderActions.GET_SHIPINFO_ACTION({
-          ...payloadBase,
-        })
-      );
       dispatch(
         accountActions.GET_ADDRESS_DETAIL_ACTION({
           ...payloadBase,
@@ -610,7 +603,7 @@ export const useShipping = () => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!skipMultipleShipment) {
       setMultipleShipment();
     }

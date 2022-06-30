@@ -11,6 +11,7 @@
 
 // Standard libraries
 import React from "react";
+import { kebabCase } from "lodash-es";
 
 // Custom libraries
 import { StyledButton, StyledCardActions, StyledGrid } from "../../elements";
@@ -30,7 +31,7 @@ const AttachmentFooter: React.FC<any> = ({ footer }: any) => {
       <StyledGrid container direction="row" justifyContent="space-between" alignItems="center">
         <StyledGrid item>
           <StyledButton
-            testId={`product-attachment-${footer.attachmentAssetPath}`}
+            testId={`product-attachment-${kebabCase(footer.name)}`}
             color="secondary"
             size="small"
             variant="text"

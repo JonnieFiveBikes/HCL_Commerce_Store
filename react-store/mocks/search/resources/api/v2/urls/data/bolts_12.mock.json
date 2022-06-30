@@ -2,15 +2,16 @@
   "contents": [
     {
       "identifier": "bolts",
+      "store.type": "CPS",
       "tokenName": "CategoryToken",
       "tokenExternalValue": "Bolts",
       "language": "en_US",
-      "id": 12054,
+      "id": "12054",
       "page": {
         "imageAlternateDescription": "Image for Bolts from Sapphire",
         "name": "CATEGORY_PAGE",
-        "title": "Bolts | Sapphire",
         "type": "ProductListPage",
+        "title": "Bolts | Sapphire",
         "metaDescription": "Bolts designed to hold fast over the long term",
         "metaKeyword": "bolts"
       },

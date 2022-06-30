@@ -17,6 +17,7 @@ import { AxiosPromise } from "axios";
 import { getSite } from "../../hooks/useSite";
 import { StoreLocatorApi } from "@hcl-commerce-store-sdk/typescript-axios-transaction";
 import { site } from "../../constants/site";
+import { SKIP_WC_TOKEN_HEADER } from "../../constants/common";
 
 const storeLocatorApiInstance = new StoreLocatorApi(undefined, site.transactionContext);
 const storeLocatorService = {
@@ -52,6 +53,9 @@ const storeLocatorService = {
       siteLevelStoreSearch,
       ...options
     } = parameters;
+    //HC-17679 Previewtoken cause error for storelocator services.
+    //skip WCToken to workaround the issue.
+    options[SKIP_WC_TOKEN_HEADER] = true;
     return storeLocatorApiInstance.storeLocatorFindStores(
       storeId,
       latitude,
@@ -89,6 +93,9 @@ const storeLocatorService = {
       pageSize,
       ...options
     } = parameters;
+    //HC-17679 Previewtoken cause error for storelocator services.
+    //skip WCToken to workaround the issue.
+    options[SKIP_WC_TOKEN_HEADER] = true;
     return storeLocatorApiInstance.storeLocatorFindByStoreUniqueIds(
       storeId,
       physicalStoreId,

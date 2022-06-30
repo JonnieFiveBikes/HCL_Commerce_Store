@@ -9,7 +9,6 @@
  *==================================================
  */
 //Standard libraries
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 //Custom libraries
@@ -21,11 +20,14 @@ import { RESET_ERROR_ACTION } from "../../../redux/actions/error";
 import { genericErrorSelector } from "../../../redux/selectors/error";
 //UI
 import { SnackbarOrigin } from "@material-ui/core";
+import { forUserIdSelector } from "../../../redux/selectors/user";
+import { useEffect } from "react";
 
 const useErrorMessageSnackbar = () => {
+  const forUserId = useSelector(forUserIdSelector);
   const anchorOrigin: SnackbarOrigin = {
     horizontal: "center",
-    vertical: "bottom",
+    vertical: forUserId ? "top" : "bottom",
   };
 
   const dispatch = useDispatch();
@@ -82,23 +84,38 @@ const useErrorMessageSnackbar = () => {
   if (errorKeys.length > 0) {
     errorMessage = t(errorKeys, { ...errorParameters });
   }
+  const { linkAction: _linkAction } = error;
+  const linkAction = { ..._linkAction };
+  if (linkAction?.key) {
+    linkAction["text"] = t(`error-message.${linkAction.key}`);
+  }
 
   const handleClose = () => {
     dispatch(RESET_ERROR_ACTION());
   };
+
+  // in CSR mode, snackbars are shown at the top of the iframe -- scroll there as necessary
+  useEffect(() => {
+    if (errorMessage && forUserId) {
+      // useEffect is already async -- no need to use setTimeout
+      const w = window.top ?? window;
+      w.scrollTo(0, 0);
+    }
+  }, [errorMessage, forUserId]);
 
   return {
     anchorOrigin,
     handleClose,
     errorMessage,
     error,
+    linkAction,
     isOrderLockError,
     handleLockOrderError,
   };
 };
 
 const ErrorMessageSnackbar = () => {
-  const { anchorOrigin, handleClose, errorMessage, error, isOrderLockError, handleLockOrderError } =
+  const { anchorOrigin, handleClose, errorMessage, error, isOrderLockError, handleLockOrderError, linkAction } =
     useErrorMessageSnackbar();
   if (isOrderLockError(error)) {
     handleLockOrderError(error);
@@ -111,6 +128,7 @@ const ErrorMessageSnackbar = () => {
           anchorOrigin={anchorOrigin}
           severity="error"
           message={errorMessage}
+          linkAction={linkAction}
           ClickAwayListenerProps={{
             mouseEvent: "onMouseDown",
           }}></MessageSnackbar>

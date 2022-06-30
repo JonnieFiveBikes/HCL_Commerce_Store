@@ -33,7 +33,8 @@ export const PanelExpanderCell = ({ rowData, current, headers, ...props }) => {
         const newState = !get(s, `${k}.${TableConstants.PANEL}`, false);
         set(s, `${k}.${TableConstants.PANEL}`, newState);
         setTableState({ ...s });
-      }}>
+      }}
+      data-testid="panel-expander-icon-button">
       {noPanel ? null : get(s, `${k}.${TableConstants.PANEL}`) ? <O /> : <C />}
     </StyledIconButton>
   );

@@ -23,10 +23,12 @@ import * as CONTEXT from "./watchers/context";
 import * as ORGANIZATION from "./watchers/organization";
 import * as RECURRINGORDER from "./watchers/recurringOrder";
 import * as ORDERDETAILS from "./watchers/orderDetails";
+import * as WISHLIST from "./watchers/wish-list";
 import * as LOCAL_STORAGE from "./watchers/local-storage";
 import * as CHECKOUT_PROFILE from "./watchers/checkout-profile";
 import * as CATEGORY from "./watchers/category";
 import * as SELLERS from "./watchers/sellers";
+import * as COUNTRY from "./watchers/country";
 
 /**
  * Root Saga
@@ -47,7 +49,9 @@ export default function* rootSaga() {
     ORDERDETAILS.watchSaga(),
     LOCAL_STORAGE.watchSaga(),
     CHECKOUT_PROFILE.watchSaga(),
+    WISHLIST.watchSaga(),
     CATEGORY.watchSaga(),
     SELLERS.watchSaga(),
+    COUNTRY.watchSaga(),
   ]);
 }

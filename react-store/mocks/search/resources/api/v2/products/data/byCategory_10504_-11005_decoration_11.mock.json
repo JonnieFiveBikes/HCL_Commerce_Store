@@ -1,4 +1,7 @@
 {
+  "metaData": {
+    "price": "1"
+  },
   "breadCrumbTrailEntryView": [
     {
       "label": "Living Room",
@@ -20,17 +23,27 @@
   "contents": [
     {
       "hasSingleSKU": false,
-      "storeID": "11",
-      "parentCatalogGroupID": "/10501/10504",
       "buyable": "true",
-      "shortDescription": "A decorative wall mirror that can be used as an accent in a contemporary living room.",
-      "seo": {
-        "href": "/accent-mirror-lr-deco-0001"
-      },
-      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/decoration/mirror1_a1_600.jpg",
-      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/decoration/mirror1_a1_600.jpg",
-      "partNumber": "LR-DECO-0001",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=11&categoryId=10504&limit=12&offset=0&contractId=-11005&currency=USD&langId=-1&profileName=HCL_V2_findProductsByCategoryWithPriceRange",
+      "parentCatalogGroupID": "/10501/10504",
       "name": "Accent Mirror",
+      "shortDescription": "A decorative wall mirror that can be used as an accent in a contemporary living room.",
+      "manufacturer": "Stockholm",
+      "seller": "",
+      "groupingProperties": {
+        "groupCount": 1,
+        "groupOwner": "14002",
+        "groupHero": "14002"
+      },
+      "_ignored": "default.completion",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/decoration/mirror1_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/decoration/mirror1_a1_350.jpg",
+      "seo": {
+        "href": "/accent-mirror-lr-deco-0001-0001"
+      },
+      "parentCatalogEntryID": "14001",
+      "partNumber": "LR-DECO-0001-0001",
+      "storeID": "11",
       "price": [
         {
           "usage": "Display",
@@ -49,11 +62,12 @@
       "attributes": [
         {
           "identifier": "ProductDimensions",
+          "attribute.natural": "[\"12\\\"x30\\\"x1\\\"\"]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "16.0",
               "identifier": "12x30x1",
+              "sequence": "16.0",
               "unitID": "INH",
               "id": "7000000000000003093",
               "value": "12\"x30\"x1\""
@@ -68,11 +82,11 @@
           "facetable": "true",
           "id": "7000000000000000510",
           "comparable": "true",
-          "key": "7000000000000000510",
           "swatchable": "false"
         },
         {
           "identifier": "ItemWeight",
+          "attribute.natural": "[\"23 lbs\"]",
           "usage": "Descriptive",
           "values": [
             {
@@ -92,11 +106,11 @@
           "facetable": "true",
           "id": "7000000000000000511",
           "comparable": "true",
-          "key": "7000000000000000511",
           "swatchable": "false"
         },
         {
           "identifier": "Materials",
+          "attribute.natural": "[\"Metal, Glass\"]",
           "usage": "Descriptive",
           "values": [
             {
@@ -116,11 +130,11 @@
           "facetable": "true",
           "id": "7000000000000000503",
           "comparable": "true",
-          "key": "7000000000000000503",
           "swatchable": "false"
         },
         {
           "identifier": "Shape",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -131,7 +145,7 @@
               "value": "Oval"
             }
           ],
-          "displayable": "false",
+          "displayable": "true",
           "merchandisable": "false",
           "searchable": "false",
           "sequence": "4.0",
@@ -140,11 +154,11 @@
           "facetable": "false",
           "id": "7000000000000000509",
           "comparable": "false",
-          "key": "7000000000000000509",
           "swatchable": "false"
         },
         {
           "identifier": "DescriptiveColor",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -155,7 +169,7 @@
               "value": "Black"
             }
           ],
-          "displayable": "false",
+          "displayable": "true",
           "merchandisable": "false",
           "searchable": "false",
           "sequence": "5.0",
@@ -164,26 +178,35 @@
           "facetable": "false",
           "id": "7000000000000000505",
           "comparable": "false",
-          "key": "7000000000000000505",
           "swatchable": "false"
         }
       ],
-      "type": "product",
-      "id": "14001"
+      "type": "item",
+      "id": "14002"
     },
     {
-      "hasSingleSKU": false,
-      "storeID": "11",
-      "parentCatalogGroupID": "/10501/10504",
+      "hasSingleSKU": true,
       "buyable": "true",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=11&categoryId=10504&limit=12&offset=0&contractId=-11005&currency=USD&langId=-1&profileName=HCL_V2_findProductsByCategoryWithPriceRange",
+      "parentCatalogGroupID": "/10501/10504",
+      "name": "Framed Mirror",
       "shortDescription": "A modern wall mirror that can be used to open up your living room space.",
+      "manufacturer": "Bender Home Fashions",
+      "seller": "",
+      "groupingProperties": {
+        "groupCount": 1,
+        "groupOwner": "14003",
+        "groupHero": "14004"
+      },
+      "_ignored": "default.completion",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/decoration/mirror2_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/decoration/mirror2_a1_350.jpg",
       "seo": {
         "href": "/framed-mirror-lr-deco-0002"
       },
-      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/decoration/mirror2_a1_350.jpg",
-      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/decoration/mirror2_a1_350.jpg",
       "partNumber": "LR-DECO-0002",
-      "name": "Framed Mirror",
+      "storeID": "11",
+      "relationship.item.id": "14004",
       "price": [
         {
           "usage": "Display",
@@ -202,11 +225,12 @@
       "attributes": [
         {
           "identifier": "ProductDimensions",
+          "attribute.natural": "[\"65\\\"x40\\\"x3\\\"\"]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "17.0",
               "identifier": "65x40x3",
+              "sequence": "17.0",
               "unitID": "INH",
               "id": "7000000000000003094",
               "value": "65\"x40\"x3\""
@@ -221,11 +245,11 @@
           "facetable": "true",
           "id": "7000000000000000510",
           "comparable": "true",
-          "key": "7000000000000000510",
           "swatchable": "false"
         },
         {
           "identifier": "ItemWeight",
+          "attribute.natural": "[\"60 lbs\"]",
           "usage": "Descriptive",
           "values": [
             {
@@ -245,11 +269,11 @@
           "facetable": "true",
           "id": "7000000000000000511",
           "comparable": "true",
-          "key": "7000000000000000511",
           "swatchable": "false"
         },
         {
           "identifier": "Materials",
+          "attribute.natural": "[\"Wood, Glass\"]",
           "usage": "Descriptive",
           "values": [
             {
@@ -269,11 +293,11 @@
           "facetable": "true",
           "id": "7000000000000000503",
           "comparable": "true",
-          "key": "7000000000000000503",
           "swatchable": "false"
         },
         {
           "identifier": "Shape",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -284,7 +308,7 @@
               "value": "Rectangle"
             }
           ],
-          "displayable": "false",
+          "displayable": "true",
           "merchandisable": "false",
           "searchable": "false",
           "sequence": "4.0",
@@ -293,11 +317,11 @@
           "facetable": "false",
           "id": "7000000000000000509",
           "comparable": "false",
-          "key": "7000000000000000509",
           "swatchable": "false"
         },
         {
           "identifier": "DescriptiveColor",
+          "attribute.natural": "[]",
           "usage": "Descriptive",
           "values": [
             {
@@ -308,7 +332,7 @@
               "value": "Dark Brown"
             }
           ],
-          "displayable": "false",
+          "displayable": "true",
           "merchandisable": "false",
           "searchable": "false",
           "sequence": "5.0",
@@ -317,7 +341,6 @@
           "facetable": "false",
           "id": "7000000000000000505",
           "comparable": "false",
-          "key": "7000000000000000505",
           "swatchable": "false"
         }
       ],
@@ -326,17 +349,30 @@
     },
     {
       "hasSingleSKU": false,
-      "storeID": "11",
-      "parentCatalogGroupID": "/10501/10504",
       "buyable": "true",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=11&categoryId=10504&limit=12&offset=0&contractId=-11005&currency=USD&langId=-1&profileName=HCL_V2_findProductsByCategoryWithPriceRange",
+      "parentCatalogGroupID": "/10501/10504",
+      "name": "Striped Area Rug",
       "shortDescription": "A plush, soft area rug that features cool contemporary colors in a striped pattern to complement your living room decor.",
+      "manufacturer": "Style Home",
+      "seller": "",
+      "groupingProperties": {
+        "groupOfferPriceRange": ["180.0", "180.0"],
+        "groupListPriceRange": ["180.0", "180.0"],
+        "groupCount": 2,
+        "groupOwner": "14005",
+        "groupMaxPriceValue": "180.0",
+        "groupHero": "14006",
+        "groupMinPriceValue": "180.0"
+      },
+      "_ignored": "default.completion",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/decoration/rug1_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/decoration/rug1_a1_350.jpg",
       "seo": {
         "href": "/striped-area-rug-lr-deco-0003"
       },
-      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/decoration/rug1_a1_350.jpg",
-      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/decoration/rug1_a1_350.jpg",
       "partNumber": "LR-DECO-0003",
-      "name": "Striped Area Rug",
+      "storeID": "11",
       "price": [
         {
           "usage": "Display",
@@ -355,11 +391,12 @@
       "attributes": [
         {
           "identifier": "Color",
+          "attribute.natural": "[\"Blue\",\"Seaweed\",\"Purple\"]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": ["blue", "seaweed", "purple"],
               "sequence": ["9.0", "10.0", "10.0"],
+              "identifier": ["blue", "seaweed", "purple"],
               "unitOfMeasure": ["one", "one", "one"],
               "unitID": ["C62", "C62", "C62"],
               "id": ["7000000000000003011", "7000000000000003014", "7000000000000003016"],
@@ -385,16 +422,16 @@
           "facetable": "true",
           "id": "7000000000000000501",
           "comparable": "true",
-          "key": "7000000000000000501",
           "swatchable": "false"
         },
         {
           "identifier": "ProductDimensions",
+          "attribute.natural": "[\"60\\\"x40\\\"x1\\\"\"]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "18.0",
               "identifier": "60x40x1",
+              "sequence": "18.0",
               "unitID": "INH",
               "id": "7000000000000003095",
               "value": "60\"x40\"x1\""
@@ -409,11 +446,11 @@
           "facetable": "true",
           "id": "7000000000000000510",
           "comparable": "true",
-          "key": "7000000000000000510",
           "swatchable": "false"
         },
         {
           "identifier": "ItemWeight",
+          "attribute.natural": "[\"10 lbs\"]",
           "usage": "Descriptive",
           "values": [
             {
@@ -433,11 +470,11 @@
           "facetable": "true",
           "id": "7000000000000000511",
           "comparable": "true",
-          "key": "7000000000000000511",
           "swatchable": "false"
         },
         {
           "identifier": "Materials",
+          "attribute.natural": "[\"Polyester, Cotton, Latex\"]",
           "usage": "Descriptive",
           "values": [
             {
@@ -457,16 +494,16 @@
           "facetable": "true",
           "id": "7000000000000000503",
           "comparable": "true",
-          "key": "7000000000000000503",
           "swatchable": "false"
         },
         {
           "identifier": "Pattern",
+          "attribute.natural": "[\"Striped\"]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "2.0",
               "identifier": "Striped",
+              "sequence": "2.0",
               "unitID": "Striped",
               "id": "7000000000000003111",
               "value": "Striped"
@@ -481,7 +518,6 @@
           "facetable": "true",
           "id": "7000000000000000512",
           "comparable": "true",
-          "key": "7000000000000000512",
           "swatchable": "false"
         }
       ],
@@ -490,17 +526,196 @@
     },
     {
       "hasSingleSKU": false,
-      "storeID": "11",
-      "parentCatalogGroupID": "/10501/10504",
       "buyable": "true",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=11&categoryId=10504&limit=12&offset=0&contractId=-11005&currency=USD&langId=-1&profileName=HCL_V2_findProductsByCategoryWithPriceRange",
+      "parentCatalogGroupID": "/10501/10504",
+      "name": "Striped Area Rug",
+      "shortDescription": "A plush, soft area rug that features cool contemporary colors in a striped pattern to complement your living room decor.",
+      "manufacturer": "Style Home",
+      "seller": "",
+      "groupingProperties": {
+        "groupCount": 1,
+        "groupOwner": "14007",
+        "groupHero": "14007"
+      },
+      "_ignored": "default.completion",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/decoration/rug1_b1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/decoration/rug1_b1_350.jpg",
+      "seo": {
+        "href": "/striped-area-rug-lr-deco-0003-0002"
+      },
+      "parentCatalogEntryID": "14005",
+      "partNumber": "LR-DECO-0003-0002",
+      "storeID": "11",
+      "price": [
+        {
+          "usage": "Display",
+          "description": "L",
+          "currency": "USD",
+          "value": "180.0"
+        },
+        {
+          "usage": "Offer",
+          "contractId": "-11005",
+          "description": "I",
+          "currency": "USD",
+          "value": "180.0"
+        }
+      ],
+      "attributes": [
+        {
+          "identifier": "Color",
+          "attribute.natural": "[\"Seaweed\"]",
+          "usage": "Defining",
+          "values": [
+            {
+              "identifier": "seaweed",
+              "sequence": "10.0",
+              "unitOfMeasure": "one",
+              "unitID": "C62",
+              "id": "7000000000000003014",
+              "image1": "/EmeraldCAS/images/catalog/swatches/sw_seaweed.png",
+              "value": "Seaweed",
+              "image1path": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_seaweed.png"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Color",
+          "facetable": "true",
+          "id": "7000000000000000501",
+          "comparable": "true",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ProductDimensions",
+          "attribute.natural": "[\"60\\\"x40\\\"x1\\\"\"]",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "60x40x1",
+              "sequence": "18.0",
+              "unitID": "INH",
+              "id": "7000000000000003095",
+              "value": "60\"x40\"x1\""
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "1.0",
+          "storeDisplay": "false",
+          "name": "Product Dimensions",
+          "facetable": "true",
+          "id": "7000000000000000510",
+          "comparable": "true",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "ItemWeight",
+          "attribute.natural": "[\"10 lbs\"]",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "10lbs",
+              "sequence": "1.0",
+              "unitID": "LBR",
+              "id": "7000000000000003097",
+              "value": "10 lbs"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "2.0",
+          "storeDisplay": "false",
+          "name": "Item Weight",
+          "facetable": "true",
+          "id": "7000000000000000511",
+          "comparable": "true",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Materials",
+          "attribute.natural": "[\"Polyester, Cotton, Latex\"]",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "polyester-cotton-latex",
+              "sequence": "12.0",
+              "unitID": "Latex",
+              "id": "7000000000000003052",
+              "value": "Polyester, Cotton, Latex"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "3.0",
+          "storeDisplay": "false",
+          "name": "Material",
+          "facetable": "true",
+          "id": "7000000000000000503",
+          "comparable": "true",
+          "swatchable": "false"
+        },
+        {
+          "identifier": "Pattern",
+          "attribute.natural": "[\"Striped\"]",
+          "usage": "Descriptive",
+          "values": [
+            {
+              "identifier": "Striped",
+              "sequence": "2.0",
+              "unitID": "Striped",
+              "id": "7000000000000003111",
+              "value": "Striped"
+            }
+          ],
+          "displayable": "true",
+          "merchandisable": "true",
+          "searchable": "true",
+          "sequence": "4.0",
+          "storeDisplay": "false",
+          "name": "Pattern",
+          "facetable": "true",
+          "id": "7000000000000000512",
+          "comparable": "true",
+          "swatchable": "false"
+        }
+      ],
+      "type": "item",
+      "id": "14007"
+    },
+    {
+      "hasSingleSKU": false,
+      "buyable": "true",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=11&categoryId=10504&limit=12&offset=0&contractId=-11005&currency=USD&langId=-1&profileName=HCL_V2_findProductsByCategoryWithPriceRange",
+      "parentCatalogGroupID": "/10501/10504",
+      "name": "Braided Accent Rug",
       "shortDescription": "A stylish hand-crafted accent rug that features a pointed braided texture to accent your living space in a warm, welcoming way.",
+      "manufacturer": "Rugs America",
+      "seller": "",
+      "groupingProperties": {
+        "groupOfferPriceRange": ["200.0", "200.0"],
+        "groupListPriceRange": ["200.0", "200.0"],
+        "groupCount": 3,
+        "groupOwner": "14009",
+        "groupMaxPriceValue": "200.0",
+        "groupHero": "14011",
+        "groupMinPriceValue": "200.0"
+      },
+      "_ignored": "default.completion",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/decoration/rug2_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/decoration/rug2_a1_350.jpg",
       "seo": {
         "href": "/braided-accent-rug-lr-deco-0004"
       },
-      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/decoration/rug2_a1_350.jpg",
-      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/decoration/rug2_a1_350.jpg",
       "partNumber": "LR-DECO-0004",
-      "name": "Braided Accent Rug",
+      "storeID": "11",
       "price": [
         {
           "usage": "Display",
@@ -519,11 +734,12 @@
       "attributes": [
         {
           "identifier": "Color",
+          "attribute.natural": "[\"Blue\",\"Seaweed\",\"Crimson\"]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": ["blue", "seaweed", "crimson"],
               "sequence": ["9.0", "10.0", "10.0"],
+              "identifier": ["blue", "seaweed", "crimson"],
               "unitOfMeasure": ["one", "one", "one"],
               "unitID": ["C62", "C62", "C62"],
               "id": ["7000000000000003011", "7000000000000003014", "7000000000000003015"],
@@ -549,16 +765,16 @@
           "facetable": "true",
           "id": "7000000000000000501",
           "comparable": "true",
-          "key": "7000000000000000501",
           "swatchable": "false"
         },
         {
           "identifier": "ProductDimensions",
+          "attribute.natural": "[\"60\\\"x40\\\"x1\\\"\"]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "18.0",
               "identifier": "60x40x1",
+              "sequence": "18.0",
               "unitID": "INH",
               "id": "7000000000000003095",
               "value": "60\"x40\"x1\""
@@ -573,11 +789,11 @@
           "facetable": "true",
           "id": "7000000000000000510",
           "comparable": "true",
-          "key": "7000000000000000510",
           "swatchable": "false"
         },
         {
           "identifier": "ItemWeight",
+          "attribute.natural": "[\"15 lbs\"]",
           "usage": "Descriptive",
           "values": [
             {
@@ -597,11 +813,11 @@
           "facetable": "true",
           "id": "7000000000000000511",
           "comparable": "true",
-          "key": "7000000000000000511",
           "swatchable": "false"
         },
         {
           "identifier": "Materials",
+          "attribute.natural": "[\"Vinyl, Wool\"]",
           "usage": "Descriptive",
           "values": [
             {
@@ -621,16 +837,16 @@
           "facetable": "true",
           "id": "7000000000000000503",
           "comparable": "true",
-          "key": "7000000000000000503",
           "swatchable": "false"
         },
         {
           "identifier": "Pattern",
+          "attribute.natural": "[\"Braided\"]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "2.0",
               "identifier": "Braided",
+              "sequence": "2.0",
               "unitID": "Braided",
               "id": "7000000000000003112",
               "value": "Braided"
@@ -645,7 +861,6 @@
           "facetable": "true",
           "id": "7000000000000000512",
           "comparable": "true",
-          "key": "7000000000000000512",
           "swatchable": "false"
         }
       ],
@@ -654,17 +869,30 @@
     },
     {
       "hasSingleSKU": false,
-      "storeID": "11",
-      "parentCatalogGroupID": "/10501/10504",
       "buyable": "true",
+      "resourceId": "https://search:30901/search/resources/api/v2/products?storeId=11&categoryId=10504&limit=12&offset=0&contractId=-11005&currency=USD&langId=-1&profileName=HCL_V2_findProductsByCategoryWithPriceRange",
+      "parentCatalogGroupID": "/10501/10504",
+      "name": "Bordered Decorative Rug",
       "shortDescription": "A modern decorative rug that features a leaf pattern surrounded by warm tones, highlights, and accents.",
+      "manufacturer": "Rugs America",
+      "seller": "",
+      "groupingProperties": {
+        "groupOfferPriceRange": ["169.99", "169.99"],
+        "groupListPriceRange": ["200.0", "200.0"],
+        "groupCount": 4,
+        "groupOwner": "14013",
+        "groupMaxPriceValue": "169.99",
+        "groupHero": "14017",
+        "groupMinPriceValue": "169.99"
+      },
+      "_ignored": "default.completion",
+      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/decoration/rug3_a1_350.jpg",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/decoration/rug3_a1_350.jpg",
       "seo": {
         "href": "/bordered-decorative-rug-lr-deco-0005"
       },
-      "thumbnailRaw": "/EmeraldCAS/images/catalog/livingroom/decoration/rug3_a1_350.jpg",
-      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/livingroom/decoration/rug3_a1_350.jpg",
       "partNumber": "LR-DECO-0005",
-      "name": "Bordered Decorative Rug",
+      "storeID": "11",
       "price": [
         {
           "usage": "Display",
@@ -683,11 +911,12 @@
       "attributes": [
         {
           "identifier": "Color",
+          "attribute.natural": "[\"Blue\",\"Crimson\",\"Purple\",\"Tan\"]",
           "usage": "Defining",
           "values": [
             {
-              "identifier": ["blue", "crimson", "purple", "tan"],
               "sequence": ["9.0", "10.0", "10.0", "10.0"],
+              "identifier": ["blue", "crimson", "purple", "tan"],
               "unitOfMeasure": ["one", "one", "one", "one"],
               "unitID": ["C62", "C62", "C62", "C62"],
               "id": ["7000000000000003011", "7000000000000003015", "7000000000000003016", "7000000000000003017"],
@@ -715,16 +944,16 @@
           "facetable": "true",
           "id": "7000000000000000501",
           "comparable": "true",
-          "key": "7000000000000000501",
           "swatchable": "false"
         },
         {
           "identifier": "ProductDimensions",
+          "attribute.natural": "[\"60\\\"x40\\\"x1\\\"\"]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "18.0",
               "identifier": "60x40x1",
+              "sequence": "18.0",
               "unitID": "INH",
               "id": "7000000000000003095",
               "value": "60\"x40\"x1\""
@@ -739,11 +968,11 @@
           "facetable": "true",
           "id": "7000000000000000510",
           "comparable": "true",
-          "key": "7000000000000000510",
           "swatchable": "false"
         },
         {
           "identifier": "ItemWeight",
+          "attribute.natural": "[\"15 lbs\"]",
           "usage": "Descriptive",
           "values": [
             {
@@ -763,11 +992,11 @@
           "facetable": "true",
           "id": "7000000000000000511",
           "comparable": "true",
-          "key": "7000000000000000511",
           "swatchable": "false"
         },
         {
           "identifier": "Materials",
+          "attribute.natural": "[\"Polyester, Cotton\"]",
           "usage": "Descriptive",
           "values": [
             {
@@ -787,16 +1016,16 @@
           "facetable": "true",
           "id": "7000000000000000503",
           "comparable": "true",
-          "key": "7000000000000000503",
           "swatchable": "false"
         },
         {
           "identifier": "Pattern",
+          "attribute.natural": "[\"Solid\"]",
           "usage": "Descriptive",
           "values": [
             {
-              "sequence": "2.0",
               "identifier": "Solid",
+              "sequence": "2.0",
               "unitID": "Solid",
               "id": "7000000000000003109",
               "value": "Solid"
@@ -811,7 +1040,6 @@
           "facetable": "true",
           "id": "7000000000000000512",
           "comparable": "true",
-          "key": "7000000000000000512",
           "swatchable": "false"
         }
       ],
@@ -860,6 +1088,14 @@
           "value": "price_usd%3A%28%7B160+TO+200%5D%29",
           "extendedData": {
             "uniqueId": "11211410599101951171151005840123495448328479325048489341"
+          }
+        },
+        {
+          "count": 0,
+          "label": "({200 TO * ])",
+          "value": "price_usd%3A%28%7B200+TO+*+%5D%29",
+          "extendedData": {
+            "uniqueId": "112114105991019511711510058401235048483284793242329341"
           }
         }
       ],
@@ -920,12 +1156,12 @@
       }
     },
     {
-      "value": "attributes.7000000000000000510.value.raw",
+      "value": "facets.7000000000000000510.value.raw",
       "name": "Product Dimensions",
       "entry": [
         {
           "label": "60\"x40\"x1\"",
-          "value": "attributes.7000000000000000510.value.raw%3A%2260%5C%22x40%5C%22x1%5C%22%22",
+          "value": "facets.7000000000000000510.value.raw%3A%2260%5C%22x40%5C%22x1%5C%22%22",
           "count": "3",
           "extendedData": {
             "unitID": "C62",
@@ -935,7 +1171,7 @@
         },
         {
           "label": "12\"x30\"x1\"",
-          "value": "attributes.7000000000000000510.value.raw%3A%2212%5C%22x30%5C%22x1%5C%22%22",
+          "value": "facets.7000000000000000510.value.raw%3A%2212%5C%22x30%5C%22x1%5C%22%22",
           "count": "1",
           "extendedData": {
             "unitID": "C62",
@@ -945,7 +1181,7 @@
         },
         {
           "label": "65\"x40\"x3\"",
-          "value": "attributes.7000000000000000510.value.raw%3A%2265%5C%22x40%5C%22x3%5C%22%22",
+          "value": "facets.7000000000000000510.value.raw%3A%2265%5C%22x40%5C%22x3%5C%22%22",
           "count": "1",
           "extendedData": {
             "unitID": "C62",
@@ -971,71 +1207,71 @@
       }
     },
     {
-      "value": "attributes.7000000000000000501.value.raw",
+      "value": "facets.7000000000000000501.value.raw",
       "name": "Color",
       "entry": [
         {
           "label": "Blue",
-          "value": "attributes.7000000000000000501.value.raw%3A%22Blue%22",
+          "value": "facets.7000000000000000501.value.raw%3A%22Blue%22",
           "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blue.png",
           "count": "3",
           "extendedData": {
             "unitID": "C62",
             "unitOfMeasure": "one",
             "sequence": "9.0",
-            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_blue.png",
+            "image1": "/EmeraldCAS/images/catalog/swatches/sw_blue.png",
             "uniqueId": "66108117101"
           }
         },
         {
           "label": "Seaweed",
-          "value": "attributes.7000000000000000501.value.raw%3A%22Seaweed%22",
+          "value": "facets.7000000000000000501.value.raw%3A%22Seaweed%22",
           "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_seaweed.png",
           "count": "2",
           "extendedData": {
             "unitID": "C62",
             "unitOfMeasure": "one",
             "sequence": "10.0",
-            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_seaweed.png",
+            "image1": "/EmeraldCAS/images/catalog/swatches/sw_seaweed.png",
             "uniqueId": "8310197119101101100"
           }
         },
         {
           "label": "Purple",
-          "value": "attributes.7000000000000000501.value.raw%3A%22Purple%22",
+          "value": "facets.7000000000000000501.value.raw%3A%22Purple%22",
           "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_purple.png",
           "count": "2",
           "extendedData": {
             "unitID": "C62",
             "unitOfMeasure": "one",
             "sequence": "10.0",
-            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_purple.png",
+            "image1": "/EmeraldCAS/images/catalog/swatches/sw_purple.png",
             "uniqueId": "80117114112108101"
           }
         },
         {
           "label": "Crimson",
-          "value": "attributes.7000000000000000501.value.raw%3A%22Crimson%22",
+          "value": "facets.7000000000000000501.value.raw%3A%22Crimson%22",
           "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_crimson.png",
           "count": "2",
           "extendedData": {
             "unitID": "C62",
             "unitOfMeasure": "one",
             "sequence": "10.0",
-            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_crimson.png",
+            "image1": "/EmeraldCAS/images/catalog/swatches/sw_crimson.png",
             "uniqueId": "67114105109115111110"
           }
         },
         {
           "label": "Tan",
-          "value": "attributes.7000000000000000501.value.raw%3A%22Tan%22",
+          "value": "facets.7000000000000000501.value.raw%3A%22Tan%22",
           "image": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_tan.png",
           "count": "1",
           "extendedData": {
             "unitID": "C62",
             "unitOfMeasure": "one",
             "sequence": "10.0",
-            "image1": "/hclstore/EmeraldCAS/images/catalog/swatches/sw_tan.png",
+            "image1": "/EmeraldCAS/images/catalog/swatches/sw_tan.png",
             "uniqueId": "8497110"
           }
         }
@@ -1057,12 +1293,12 @@
       }
     },
     {
-      "value": "attributes.7000000000000000511.value.raw",
+      "value": "facets.7000000000000000511.value.raw",
       "name": "Item Weight",
       "entry": [
         {
           "label": "15 lbs",
-          "value": "attributes.7000000000000000511.value.raw%3A%2215+lbs%22",
+          "value": "facets.7000000000000000511.value.raw%3A%2215+lbs%22",
           "count": "2",
           "extendedData": {
             "unitID": "C62",
@@ -1072,7 +1308,7 @@
         },
         {
           "label": "60 lbs",
-          "value": "attributes.7000000000000000511.value.raw%3A%2260+lbs%22",
+          "value": "facets.7000000000000000511.value.raw%3A%2260+lbs%22",
           "count": "1",
           "extendedData": {
             "unitID": "C62",
@@ -1082,7 +1318,7 @@
         },
         {
           "label": "10 lbs",
-          "value": "attributes.7000000000000000511.value.raw%3A%2210+lbs%22",
+          "value": "facets.7000000000000000511.value.raw%3A%2210+lbs%22",
           "count": "1",
           "extendedData": {
             "unitID": "C62",
@@ -1092,7 +1328,7 @@
         },
         {
           "label": "23 lbs",
-          "value": "attributes.7000000000000000511.value.raw%3A%2223+lbs%22",
+          "value": "facets.7000000000000000511.value.raw%3A%2223+lbs%22",
           "count": "1",
           "extendedData": {
             "unitID": "C62",
@@ -1118,12 +1354,12 @@
       }
     },
     {
-      "value": "attributes.7000000000000000503.value.raw",
+      "value": "facets.7000000000000000503.value.raw",
       "name": "Material",
       "entry": [
         {
           "label": "Wood, Glass",
-          "value": "attributes.7000000000000000503.value.raw%3A%22Wood%2C+Glass%22",
+          "value": "facets.7000000000000000503.value.raw%3A%22Wood%2C+Glass%22",
           "count": "1",
           "extendedData": {
             "unitID": "C62",
@@ -1133,7 +1369,7 @@
         },
         {
           "label": "Metal, Glass",
-          "value": "attributes.7000000000000000503.value.raw%3A%22Metal%2C+Glass%22",
+          "value": "facets.7000000000000000503.value.raw%3A%22Metal%2C+Glass%22",
           "count": "1",
           "extendedData": {
             "unitID": "C62",
@@ -1143,7 +1379,7 @@
         },
         {
           "label": "Polyester, Cotton, Latex",
-          "value": "attributes.7000000000000000503.value.raw%3A%22Polyester%2C+Cotton%2C+Latex%22",
+          "value": "facets.7000000000000000503.value.raw%3A%22Polyester%2C+Cotton%2C+Latex%22",
           "count": "1",
           "extendedData": {
             "unitID": "C62",
@@ -1153,7 +1389,7 @@
         },
         {
           "label": "Polyester, Cotton",
-          "value": "attributes.7000000000000000503.value.raw%3A%22Polyester%2C+Cotton%22",
+          "value": "facets.7000000000000000503.value.raw%3A%22Polyester%2C+Cotton%22",
           "count": "1",
           "extendedData": {
             "unitID": "C62",
@@ -1163,7 +1399,7 @@
         },
         {
           "label": "Vinyl, Wool",
-          "value": "attributes.7000000000000000503.value.raw%3A%22Vinyl%2C+Wool%22",
+          "value": "facets.7000000000000000503.value.raw%3A%22Vinyl%2C+Wool%22",
           "count": "1",
           "extendedData": {
             "unitID": "C62",
@@ -1189,12 +1425,12 @@
       }
     },
     {
-      "value": "attributes.7000000000000000512.value.raw",
+      "value": "facets.7000000000000000512.value.raw",
       "name": "Pattern",
       "entry": [
         {
           "label": "Braided",
-          "value": "attributes.7000000000000000512.value.raw%3A%22Braided%22",
+          "value": "facets.7000000000000000512.value.raw%3A%22Braided%22",
           "count": "1",
           "extendedData": {
             "unitID": "C62",
@@ -1204,7 +1440,7 @@
         },
         {
           "label": "Striped",
-          "value": "attributes.7000000000000000512.value.raw%3A%22Striped%22",
+          "value": "facets.7000000000000000512.value.raw%3A%22Striped%22",
           "count": "1",
           "extendedData": {
             "unitID": "C62",
@@ -1214,7 +1450,7 @@
         },
         {
           "label": "Solid",
-          "value": "attributes.7000000000000000512.value.raw%3A%22Solid%22",
+          "value": "facets.7000000000000000512.value.raw%3A%22Solid%22",
           "count": "1",
           "extendedData": {
             "unitID": "C62",
@@ -1241,5 +1477,5 @@
     }
   ],
   "previous": "/search/resources/api/v2/products?storeId=11&categoryId=10504&limit=12&offset=0",
-  "total": 5
+  "total": 6
 }

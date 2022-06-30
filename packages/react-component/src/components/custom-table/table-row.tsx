@@ -47,7 +47,7 @@ export const TableRow: React.FC<TableRowProps> = (props) => {
   return isEmpty ? (
     <SRTr style={{ height: "25vh" }}>
       <SRTd style={{ verticalAlign: "middle", textAlign: "center" }} colSpan={colSpan} key={"message-displayer-td"}>
-        <StyledTypography>{t(labels.emptyMsg)}</StyledTypography>
+        <StyledTypography data-testid="empty-table-message">{t(labels.emptyMsg)}</StyledTypography>
       </SRTd>
     </SRTr>
   ) : (

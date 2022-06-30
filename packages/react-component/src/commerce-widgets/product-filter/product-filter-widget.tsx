@@ -10,7 +10,6 @@
  */
 //Standard libraries
 import React, { useState, Fragment } from "react";
-import { Link } from "react-router-dom";
 
 //UI
 import {
@@ -25,6 +24,7 @@ import {
   StyledAccordionSummary,
   StyledSwatch,
   StyledNumberInput,
+  StyledLink,
 } from "../../elements";
 
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -117,6 +117,7 @@ export const ProductFilterWidget: React.FC<ProductFilterProps> = (props: any) =>
           (facet: any, index: number) =>
             showFacet(facet) && (
               <StyledAccordion
+                testId={`productFilter-facet-${facet.name}`}
                 defaultExpanded={!isMobile}
                 key={facet.value}
                 expanded={!isMobile || isActiveFacetId === facet.value}
@@ -141,12 +142,13 @@ export const ProductFilterWidget: React.FC<ProductFilterProps> = (props: any) =>
                           label={formattedPriceDisplay}
                           onClick={() => clearPriceFacet()}
                           onDelete={() => clearPriceFacet()}
+                          data-testid="product-filter-formatted-price-chip"
                         />
                       ) : (
                         <StyledGrid
                           container
                           className="price-filter price-filter-input"
-                          id={`productFilter_div_12_${index}_${cid}`}>
+                          id={`productFilter_div_12_${index}`}>
                           <StyledGrid xs={12} container item onClick={onInputClick}>
                             <StyledGrid item xs className="right-margin-1 bottom-margin-1">
                               <StyledNumberInput
@@ -171,11 +173,11 @@ export const ProductFilterWidget: React.FC<ProductFilterProps> = (props: any) =>
                           </StyledGrid>
                           <StyledGrid xs={12} item>
                             <StyledButton
-                              testId={`productFilter_price_button_19_${index}_${cid}`}
+                              testId={`productFilter_price_facet`}
                               disabled={!isSubmitButtonEnabled}
                               size="small"
                               className="price-go"
-                              id={`productFilter_button_19_${index}_${cid}`}
+                              id={`productFilter_button_19_${index}`}
                               onClick={() => onPriceSubmit()}>
                               {filterLabel}
                             </StyledButton>
@@ -196,6 +198,7 @@ export const ProductFilterWidget: React.FC<ProductFilterProps> = (props: any) =>
                                 onClick={() => onFacetChange(entry.value, entry.label)}
                                 size="medium"
                                 selected={isFacetSelected(entry.value)}
+                                data-testid={`product-filter-${entry.value.toLowerCase()}-swatch`}
                               />
                             ) : (
                               <StyledFormControlLabel
@@ -220,22 +223,24 @@ export const ProductFilterWidget: React.FC<ProductFilterProps> = (props: any) =>
                         ))}
                       <div className="top-margin-1 full-width">
                         {facet.entry && showMoreButton(facet) && (
-                          <Link
+                          <StyledLink
                             to=""
                             className="go-link"
                             id={`productFilter_a_26_${index}_${cid}`}
+                            testId={`productFilter_${showMoreLabel}`}
                             onClick={(event) => toggleFacetLimit(event, facet.value)}>
                             {showMoreLabel}
-                          </Link>
+                          </StyledLink>
                         )}
                         {facet.entry && showLessButton(facet) && (
-                          <Link
+                          <StyledLink
                             to=""
                             className="go-link"
                             id={`productFilter_a_27_${index}_${cid}`}
+                            testId={`productFilter_${showLessLabel}`}
                             onClick={(event) => toggleFacetLimit(event, facet.value)}>
                             {showLessLabel}
-                          </Link>
+                          </StyledLink>
                         )}
                       </div>
                     </StyledGrid>

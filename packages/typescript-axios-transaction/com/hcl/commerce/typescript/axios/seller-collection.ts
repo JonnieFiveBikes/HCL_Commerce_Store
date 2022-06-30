@@ -28,11 +28,11 @@ export interface SellerCollection {
      */
     count?: number;
     /**
-     * The items.
+     * The list of items.
      * @type {Array<Seller>}
      * @memberof SellerCollection
      */
-    marketplaceSellers?: Array<Seller>;
+    items?: Array<Seller>;
 }
 
 

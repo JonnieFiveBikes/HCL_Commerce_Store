@@ -1,51 +1,71 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "HCL Commerce Services - Store Configurations",
-    "description": "These services provide APIs related to the store configuration in a B2B or B2C store. Use these classes to: <ul><li> Get configuration details <li> Get flow information by flow ID <li> Get configuration details for system integrations <li> Get available resource URLs for a store <li> Get SEO-related information",
-    "version": "9.1.6"
+    "title": "Store Configurations",
+    "description": "Provide APIs related to the store configuration in a B2B or B2C store. Use these services to: <ul><li> Get configuration details <li> Get flow information by flow ID <li> Get configuration details for system integrations <li> Get available resource URLs for a store <li> Get SEO-related information",
+    "version": "9.1"
   },
   "servers": [
     {
-      "url": "https://localhost/wcs/resources"
+      "url": "https://{hostname}:{port}/wcs/resources",
+      "variables": {
+        "port": {
+          "default": "443",
+          "enum": [
+            "443",
+            "5443"
+          ]
+        },
+        "hostname": {
+          "default": "localhost",
+          "enum": [
+            "localhost",
+            "test.hcl.com"
+          ]
+        }
+      }
     }
   ],
+  "externalDocs": {
+    "description": "Some REST services require authentication. HCL Commerce REST services are authenticated on secure and unsecured channels. This authentication can include the use of the WCToken and WCTrustedToken. To use REST services that require authentication, you must first get authentication data by using a supported identity services.\n\nAfter you obtain the authentication data, you must pass either the WCToken or WCTustedToken parameters, or both, within the HTTP header for every request that requires authentication. If a request is sent over HTTP, pass the WCToken parameter in the HTTP header. Do not pass the WCTrustedToken in HTTP requests, as the parameter value might display. Send both the WCToken and the WCTrustedToken parameters when the request is being sent over HTTPS.\n\nThe HCL Commerce REST APIs can also use session cookies that are created by the HCL Commerce store runtime for authentication. These cookies allow you to mix requests to the HCL Commerce REST APIs and the HCL Commerce store runtime within the same user session.\n\n",
+    "url": "https://help.hcltechsw.com/commerce/9.1.0/webservices/concepts/cwvrestauth.html?hl=rest%2Cauthentication"
+  },
   "tags": [
     {
       "name": "Configuration",
-      "description": "This class provides RESTful services to get configuration details."
+      "description": "Provides RESTful services to get configuration details."
     },
     {
       "name": "Flow",
-      "description": "This class provides RESTful services to get flow information by flow id."
+      "description": "Provides RESTful services to get flow information by flow id."
     },
     {
       "name": "Integration Configuration",
-      "description": "This class provides RESTful services to retrieve configuration details for system integrations."
+      "description": "Provides RESTful services to retrieve configuration details for system integrations."
     },
     {
       "name": "Store",
-      "description": "This class provides RESTful services to get available resource URLs for a store."
+      "description": "Provides RESTful services to get available resource URLs for a store."
     },
     {
       "name": "Substitution Parameters",
-      "description": "This class provides RESTful services to get the SEO related information."
+      "description": "Provides RESTful services to get the SEO related information."
     },
     {
       "name": "Token Usage",
-      "description": "This class provides RESTful services to get the SEO related information."
+      "description": "Provides RESTful services to get the SEO related information."
     },
     {
       "name": "Token",
-      "description": "This class provides RESTful services to get the SEO related information."
+      "description": "Provides RESTful services to get the SEO related information."
     },
     {
       "name": "URL Keyword",
-      "description": "This class provides RESTful services to get the SEO related information."
+      "description": "Provides RESTful services to get the SEO related information."
     },
     {
       "name": "Redirect Rule",
-      "description": "This class provides RESTful services to get the SEO related information."
+      "description": "Provides RESTful services to get the SEO related information."
     }
   ],
   "paths": {
@@ -177,11 +197,11 @@
         ],
         "responses": {
           "200": {
-            "description": "No response was specified.",
+            "description": "The requested completed successfully.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Empty"
+                  "$ref": "#/components/schemas/flow-flow"
                 }
               }
             }
@@ -223,22 +243,22 @@
           "200": {
             "description": "The requested completed successfully.",
             "content": {
-              "application/atom+xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
                 }
               },
-              "application/xhtml+xml": {
+              "application/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
                 }
               },
-              "application/xml": {
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
+                }
+              },
+              "application/xhtml+xml": {
                 "schema": {
                   "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
                 }
@@ -302,24 +322,24 @@
           "200": {
             "description": "The requested completed successfully.",
             "content": {
-              "application/atom+xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
-                }
-              },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
-                }
-              },
-              "application/xhtml+xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
+                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.integration_configuration-session_key"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean"
+                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.integration_configuration-session_key"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.integration_configuration-session_key"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.beans.integration_configuration-session_key"
                 }
               }
             }
@@ -376,6 +396,54 @@
                 "getSalesTaxCalculationRule"
               ]
             }
+          },
+          {
+            "name": "high",
+            "in": "query",
+            "description": "The high range.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "low",
+            "in": "query",
+            "description": "The low range.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "storeIdentifier",
+            "in": "query",
+            "description": "The storeIdentifier.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "usage",
+            "in": "query",
+            "description": "The usage.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data to be returned by a query.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IBM_Store_Summary"
+              ]
+            }
           }
         ],
         "responses": {
@@ -384,22 +452,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/store-store"
+                  "$ref": "#/components/schemas/com.ibm.commerce.order.calculation.CalculationRuleCombineCmd"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/store-store"
+                  "$ref": "#/components/schemas/com.ibm.commerce.order.calculation.CalculationRuleCombineCmd"
                 }
               },
               "application/xhtml+xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/store-store"
+                  "$ref": "#/components/schemas/com.ibm.commerce.order.calculation.CalculationRuleCombineCmd"
                 }
               },
               "application/atom+xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/store-store"
+                  "$ref": "#/components/schemas/com.ibm.commerce.order.calculation.CalculationRuleCombineCmd"
                 }
               }
             }
@@ -462,24 +530,24 @@
           "200": {
             "description": "The requested completed successfully.",
             "content": {
-              "application/atom+xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Empty"
-                }
-              },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Empty"
-                }
-              },
-              "application/xhtml+xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Empty"
+                  "$ref": "#/components/schemas/substitutionparameters-substitutionparameters"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Empty"
+                  "$ref": "#/components/schemas/substitutionparameters-substitutionparameters"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/substitutionparameters-substitutionparameters"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/substitutionparameters-substitutionparameters"
                 }
               }
             }
@@ -529,12 +597,40 @@
             "name": "q",
             "in": "query",
             "description": "The query name.",
+            "required": true,
             "schema": {
               "type": "string",
               "enum": [
                 "findOnlineStoresByRange",
                 "findOnlineStore"
               ]
+            }
+          },
+          {
+            "name": "high",
+            "in": "query",
+            "description": "The high range.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "low",
+            "in": "query",
+            "description": "The low range.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profileName",
+            "in": "query",
+            "description": "Profile name. Profiles determine the subset of data to be returned by a query.",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -575,22 +671,22 @@
                         },
                         {
                           "displayName": "Aurora",
-                          "description": "Commerce モデル・ストア・エンティティー",
+                          "description": "Commerce Ã£\u0083Â¢Ã£\u0083\u0087Ã£\u0083Â«Ã£\u0083Â»Ã£\u0082Â¹Ã£\u0083\u0088Ã£\u0082Â¢Ã£\u0083Â»Ã£\u0082Â¨Ã£\u0083Â³Ã£\u0083\u0086Ã£\u0082Â£Ã£\u0083\u0086Ã£\u0082Â£Ã£\u0083Â¼",
                           "languageId": -10
                         },
                         {
                           "displayName": "Aurora",
-                          "description": "�\ufffd업 모�\ufffd� �\ufffd�\ufffd 엔티티",
+                          "description": "Ã¬\u0083\ufffdÃ¬\u0097\u0085 Ã«ÂªÂ¨Ã«\ufffdÂ¸ Ã¬\u0083\ufffdÃ¬Â \ufffd Ã¬\u0097\u0094Ã\u00ad\u008bÂ°Ã\u00ad\u008bÂ°",
                           "languageId": -9
                         },
                         {
                           "displayName": "Aurora",
-                          "description": "商�\u00ad模�\ufffd商店實體",
+                          "description": "Ã¥\u0095\u0086Ã¦Â¥\u00adÃ¦Â¨Â¡Ã¥Â¼\ufffdÃ¥\u0095\u0086Ã¥Âº\u0097Ã¥Â¯Â¦Ã©Â«\u0094",
                           "languageId": -8
                         },
                         {
                           "displayName": "Aurora",
-                          "description": "商业模型商店实体",
+                          "description": "Ã¥\u0095\u0086Ã¤Â¸\u009aÃ¦Â¨Â¡Ã¥\u009e\u008bÃ¥\u0095\u0086Ã¥Âº\u0097Ã¥Â®\u009eÃ¤Â½\u0093",
                           "languageId": -7
                         },
                         {
@@ -605,17 +701,17 @@
                         },
                         {
                           "displayName": "Aurora",
-                          "description": "Entità negozio modello in commercio",
+                          "description": "EntitÃ\u0083Â  negozio modello in commercio",
                           "languageId": -4
                         },
                         {
                           "displayName": "Aurora",
-                          "description": "Commerce-Modell - Geschäftsentität",
+                          "description": "Commerce-Modell - GeschÃ\u0083Â¤ftsentitÃ\u0083Â¤t",
                           "languageId": -3
                         },
                         {
                           "displayName": "Aurora",
-                          "description": "Entité Magasin modèle Commerce",
+                          "description": "EntitÃ\u0083Â© Magasin modÃ\u0083Â¨le Commerce",
                           "languageId": -2
                         },
                         {
@@ -636,7 +732,7 @@
                             "city": "Ubraniowo",
                             "zipOrPostalCode": "0x-1xx",
                             "addressLine": [
-                              "ul. Słowicza 1x",
+                              "ul. SÃ\u0085\u0082owicza 1x",
                               "nr lok. 9x",
                               null
                             ],
@@ -721,15 +817,15 @@
                           "emailAddress1": "info@Aurora.xxx",
                           "fax1": "02-1xx-2xxx",
                           "address": {
-                            "city": "�\ufffd�류 �\ufffd가",
+                            "city": "Ã¬\ufffd\u0098Ã«Â¥\u0098 Ã¬\u0083\ufffdÃªÂ°\u0080",
                             "zipOrPostalCode": "1xx-5xx",
                             "addressLine": [
-                              "여�\ufffd��\ufffd��\ufffd�",
-                              "xx번지",
+                              "Ã¬\u0097Â¬Ã¬\ufffd\u0098Ã«\ufffd\u0084Ã«\ufffd\u0099",
+                              "xxÃ«Â²\u0088Ã¬Â§\u0080",
                               null
                             ],
-                            "stateOrProvinceName": "서울시",
-                            "country": "한�\u00ad"
+                            "stateOrProvinceName": "Ã¬\u0084\u009cÃ¬\u009aÂ¸Ã¬\u008b\u009c",
+                            "country": "Ã\u00ad\u0095\u009cÃªÂµ\u00ad"
                           },
                           "contactInfoIdentifier": {
                             "contactInfoId": "10010",
@@ -765,11 +861,11 @@
                           "emailAddress1": "info@Aurora.xxx",
                           "fax1": "86-21-63265678",
                           "address": {
-                            "city": "�\ufffd�湾区",
+                            "city": "Ã¥\ufffdÂ¢Ã¦Â¹Â¾Ã¥\u008cÂº",
                             "zipOrPostalCode": "200021",
                             "addressLine": [
-                              "淮海�\u00ad路 3333 �\ufffd�",
-                              "10 楼",
+                              "Ã¦Â·Â®Ã¦ÂµÂ·Ã¤Â¸\u00adÃ¨Â·Â¯ 3333 Ã¥\ufffdÂ·",
+                              "10 Ã¦Â¥Â¼",
                               null
                             ],
                             "stateOrProvinceName": "ON",
@@ -817,7 +913,7 @@
                               null
                             ],
                             "stateOrProvinceName": "Barcelona",
-                            "country": "España"
+                            "country": "EspaÃ\u0083Â±a"
                           },
                           "contactInfoIdentifier": {
                             "contactInfoId": "10014",
@@ -856,7 +952,7 @@
                             "city": "Modenhausen",
                             "zipOrPostalCode": "67 1xx",
                             "addressLine": [
-                              "Modehausstraße 11",
+                              "ModehausstraÃ\u0083\u009fe 11",
                               "Whg. 4",
                               null
                             ],
@@ -879,7 +975,7 @@
                             "zipOrPostalCode": "Lxx 1xx",
                             "addressLine": [
                               "125 Avenue Henri Martin",
-                              "Allée C",
+                              "AllÃ\u0083Â©e C",
                               null
                             ],
                             "stateOrProvinceName": "ON",
@@ -948,7 +1044,7 @@
                             "city": "Ubraniowo",
                             "zipOrPostalCode": "0x-1xx",
                             "addressLine": [
-                              "ul. Słowicza 1x",
+                              "ul. SÃ\u0085\u0082owicza 1x",
                               "nr lok. 9x",
                               null
                             ],
@@ -1037,15 +1133,15 @@
                           "emailAddress1": "info@Aurora.xxx",
                           "fax1": "02-1xx-2xxx",
                           "address": {
-                            "city": "�\ufffd�류 �\ufffd가",
+                            "city": "Ã¬\ufffd\u0098Ã«Â¥\u0098 Ã¬\u0083\ufffdÃªÂ°\u0080",
                             "zipOrPostalCode": "1xx-5xx",
                             "addressLine": [
-                              "여�\ufffd��\ufffd��\ufffd�",
-                              "xx번지",
+                              "Ã¬\u0097Â¬Ã¬\ufffd\u0098Ã«\ufffd\u0084Ã«\ufffd\u0099",
+                              "xxÃ«Â²\u0088Ã¬Â§\u0080",
                               null
                             ],
-                            "stateOrProvinceName": "서울시",
-                            "country": "한�\u00ad"
+                            "stateOrProvinceName": "Ã¬\u0084\u009cÃ¬\u009aÂ¸Ã¬\u008b\u009c",
+                            "country": "Ã\u00ad\u0095\u009cÃªÂµ\u00ad"
                           },
                           "contactInfoIdentifier": {
                             "contactInfoId": "10009",
@@ -1083,11 +1179,11 @@
                           "emailAddress1": "info@Aurora.xxx",
                           "fax1": "86-21-63265678",
                           "address": {
-                            "city": "�\ufffd�湾区",
+                            "city": "Ã¥\ufffdÂ¢Ã¦Â¹Â¾Ã¥\u008cÂº",
                             "zipOrPostalCode": "200021",
                             "addressLine": [
-                              "淮海�\u00ad路 3333 �\ufffd�",
-                              "10 楼",
+                              "Ã¦Â·Â®Ã¦ÂµÂ·Ã¤Â¸\u00adÃ¨Â·Â¯ 3333 Ã¥\ufffdÂ·",
+                              "10 Ã¦Â¥Â¼",
                               null
                             ],
                             "stateOrProvinceName": "ON",
@@ -1137,7 +1233,7 @@
                               null
                             ],
                             "stateOrProvinceName": "Barcelona",
-                            "country": "España"
+                            "country": "EspaÃ\u0083Â±a"
                           },
                           "contactInfoIdentifier": {
                             "contactInfoId": "10013",
@@ -1178,7 +1274,7 @@
                             "city": "Modenhausen",
                             "zipOrPostalCode": "67 1xx",
                             "addressLine": [
-                              "Modehausstraße 11",
+                              "ModehausstraÃ\u0083\u009fe 11",
                               "Whg. 4",
                               null
                             ],
@@ -1202,7 +1298,7 @@
                             "zipOrPostalCode": "Lxx 1xx",
                             "addressLine": [
                               "125 Avenue Henri Martin",
-                              "Allée C",
+                              "AllÃ\u0083Â©e C",
                               null
                             ],
                             "stateOrProvinceName": "ON",
@@ -1315,6 +1411,7 @@
             "schema": {
               "type": "string",
               "enum": [
+                "all",
                 "findByAll"
               ]
             }
@@ -1324,24 +1421,24 @@
           "200": {
             "description": "The requested completed successfully.",
             "content": {
-              "application/atom+xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Empty"
-                }
-              },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Empty"
-                }
-              },
-              "application/xhtml+xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Empty"
+                  "$ref": "#/components/schemas/tokenusage-tokenusage"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Empty"
+                  "$ref": "#/components/schemas/tokenusage-tokenusage"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/tokenusage-tokenusage"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/tokenusage-tokenusage"
                 }
               }
             }
@@ -1395,9 +1492,19 @@
             "schema": {
               "type": "string",
               "enum": [
+                "findAllByUsage",
                 "findByStoreNameAndUsage",
                 "findByStoreIdentifier"
               ]
+            }
+          },
+          {
+            "name": "storeIdentifier",
+            "in": "query",
+            "description": "The store identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           },
           {
@@ -1426,15 +1533,6 @@
             "name": "usage",
             "in": "query",
             "description": "The usage.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "storeIdentifier",
-            "in": "query",
-            "description": "The store identifier.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1541,22 +1639,22 @@
             "content": {
               "application/atom+xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Empty"
+                  "$ref": "#/components/schemas/token-token"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Empty"
+                  "$ref": "#/components/schemas/token-token"
                 }
               },
               "application/xhtml+xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Empty"
+                  "$ref": "#/components/schemas/token-token"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Empty"
+                  "$ref": "#/components/schemas/token-token"
                 }
               }
             }
@@ -1624,6 +1722,7 @@
                   "$ref": "#/components/schemas/com.ibm.commerce.rest.store.handler.StoreHandler.StoreInformation"
                 },
                 "example": {
+                  "resourceName": "string",
                   "geonodeUrl": "http://localhost/wcs/resources/store/10001/geonode/...",
                   "personUrl": "https://localhost/wcs/resources/store/10001/person/@self/...",
                   "storeName": "Aurora",
@@ -1707,6 +1806,7 @@
             "schema": {
               "type": "string",
               "enum": [
+                "byLanguageIdAndTokenNameValue",
                 "byTokenName"
               ]
             }
@@ -1719,30 +1819,48 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "tokenValue",
+            "in": "query",
+            "description": "The input token value.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "languageId",
+            "in": "query",
+            "description": "the return language of the query token.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "The requested completed successfully.",
             "content": {
-              "application/atom+xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Empty"
-                }
-              },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Empty"
-                }
-              },
-              "application/xhtml+xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Empty"
+                  "$ref": "#/components/schemas/urlkeyword-urlkeyword"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Empty"
+                  "$ref": "#/components/schemas/urlkeyword-urlkeyword"
+                }
+              },
+              "application/xhtml+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/urlkeyword-urlkeyword"
+                }
+              },
+              "application/atom+xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/urlkeyword-urlkeyword"
                 }
               }
             }
@@ -1817,7 +1935,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/store-store"
+                  "$ref": "#/components/schemas/store-databean_response"
                 },
                 "example": {
                   "jspPath": "/Aurora/",
@@ -1847,17 +1965,17 @@
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/store-store"
+                  "$ref": "#/components/schemas/store-databean_response"
                 }
               },
               "application/xhtml+xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/store-store"
+                  "$ref": "#/components/schemas/store-databean_response"
                 }
               },
               "application/atom+xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/store-store"
+                  "$ref": "#/components/schemas/store-databean_response"
                 }
               }
             }
@@ -1991,6 +2109,15 @@
                 "byConfigurationIds",
                 "all"
               ]
+            }
+          },
+          {
+            "name": "configurationId",
+            "in": "query",
+            "description": "The store identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -2309,22 +2436,22 @@
             "content": {
               "application/atom+xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Empty"
+                  "$ref": "#/components/schemas/redirectrule-redirectrule"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Empty"
+                  "$ref": "#/components/schemas/redirectrule-redirectrule"
                 }
               },
               "application/xhtml+xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Empty"
+                  "$ref": "#/components/schemas/redirectrule-redirectrule"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Empty"
+                  "$ref": "#/components/schemas/redirectrule-redirectrule"
                 }
               }
             }
@@ -2358,6 +2485,12 @@
       "configuration-configuration": {
         "type": "object",
         "properties": {
+          "resourceId": {
+            "type": "string"
+          },
+          "resourceName": {
+            "type": "string"
+          },
           "resultList": {
             "type": "array",
             "items": {
@@ -2411,16 +2544,22 @@
       "store-store": {
         "type": "object",
         "properties": {
+          "resourceId": {
+            "type": "string"
+          },
           "recordSetCount": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "recordSetComplete": {
             "type": "boolean"
           },
           "recordSetStartNumber": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
+          },
+          "resourceName": {
+            "type": "string"
           },
           "resultList": {
             "type": "array",
@@ -2430,7 +2569,7 @@
           },
           "recordSetTotal": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           }
         }
       },
@@ -2453,7 +2592,11 @@
           "wishlistUrl"
         ],
         "type": "object",
+        "x-graphql-type-name": "storeInformation",
         "properties": {
+          "resourceName": {
+            "type": "string"
+          },
           "geonodeUrl": {
             "type": "string",
             "description": "Store geonode api url."
@@ -2519,13 +2662,8 @@
       },
       "store-OnlineStoreUserDataType": {
         "type": "object",
-        "properties": {
-          "userDataField": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/store-OnlineStoreUserDataType.userDataField"
-            }
-          }
+        "additionalProperties": {
+          "type": "string"
         }
       },
       "store-OnlineStoreRelatedStoresType": {
@@ -2579,6 +2717,7 @@
       },
       "com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.storeIdentifier.externalIdentifier": {
         "type": "object",
+        "nullable": true,
         "properties": {
           "ownerID": {
             "type": "string"
@@ -2603,27 +2742,28 @@
         "type": "object",
         "properties": {
           "storeIdentifier": {
-            "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.storeIdentifier"
+            "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.storeIdentifier",
+            "nullable": true
           },
           "catalogIdentifier": {
-            "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.catalogIdentifier"
+            "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.catalogIdentifier",
+            "nullable": true
           },
           "uniqueID": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "userData": {
-            "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.userData"
+            "$ref": "#/components/schemas/com.ibm.commerce.infrastructure.facade.datatypes.DefaultCatalogType.userData",
+            "nullable": true
           }
         }
       },
       "store-OnlineStoreContactInfoType": {
         "required": [
           "emailAddress1",
-          "emailAddress2",
           "fax1",
-          "fax2",
-          "telephone1",
-          "telephone2"
+          "telephone1"
         ],
         "type": "object",
         "properties": {
@@ -2664,6 +2804,7 @@
           "identifier"
         ],
         "type": "object",
+        "nullable": true,
         "properties": {
           "ownerID": {
             "type": "string"
@@ -2702,7 +2843,8 @@
           "addressLine": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           },
           "stateOrProvinceName": {
@@ -2731,7 +2873,96 @@
         }
       },
       "com.ibm.commerce.infrastructure.beans.IntegrationConfigurationDataBean": {
-        "type": "object"
+        "type": "object",
+        "x-graphql-type-name": "integrationConfigurationDataBean",
+        "properties": {
+          "security": {
+            "type": "object",
+            "properties": {
+              "aesFilesEnabled": {
+                "type": "boolean"
+              },
+              "aesDbEnabled": {
+                "type": "boolean"
+              },
+              "hashAlgorithmPriorities": {
+                "type": "string",
+                "nullable": true
+              },
+              "multiHashEnabled": {
+                "type": "boolean"
+              },
+              "ciHostname": {
+                "type": "string"
+              }
+            }
+          },
+          "session": {
+            "type": "object",
+            "properties": {
+              "referrerCookieAge": {
+                "type": "integer"
+              },
+              "allowMultiLogon": {
+                "type": "boolean"
+              },
+              "cookie": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  }
+                }
+              },
+              "loginTimeout": {
+                "type": "object",
+                "properties": {
+                  "enable": {
+                    "type": "boolean"
+                  },
+                  "buffer": {
+                    "type": "integer"
+                  },
+                  "timeout": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "persistentSession": {
+                "type": "object",
+                "properties": {
+                  "delayNewGuestPersistentSessionEnabled": {
+                    "type": "boolean"
+                  },
+                  "personalizationIdLogoffRefreshEnabled": {
+                    "type": "boolean"
+                  },
+                  "cookieExpiryOffset": {
+                    "type": "integer"
+                  },
+                  "enable": {
+                    "type": "boolean"
+                  },
+                  "cookieExpiryTime": {
+                    "type": "integer"
+                  },
+                  "personalizationIdEnabled": {
+                    "type": "boolean"
+                  },
+                  "guestUserMigrationEnabled": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "keepSessionAliveEnabled": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
       },
       "store-store_item": {
         "type": "object",
@@ -2814,7 +3045,8 @@
             "type": "string"
           },
           "value": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -2950,9 +3182,357 @@
           "resultList": {
             "type": "array",
             "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "flow-flow": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string"
+          }
+        }
+      },
+      "substitutionparameters-substitutionparameters": {
+        "type": "object",
+        "properties": {
+          "resourceId": {
+            "type": "string"
+          },
+          "resourceName": {
+            "type": "string"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
               "type": "object",
               "properties": {
-                "feature": {
+                "implementationClass": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "parameterName": {
+                  "type": "string"
+                },
+                "storeId": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "tokenusage-tokenusage": {
+        "type": "object",
+        "properties": {
+          "resourceId": {
+            "type": "string"
+          },
+          "resourceName": {
+            "type": "string"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "storeentId": {
+                  "type": "integer"
+                },
+                "isStatic": {
+                  "type": "integer"
+                },
+                "typeId": {
+                  "type": "integer"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "primaryToken": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "token-token": {
+        "type": "object",
+        "properties": {
+          "resourceId": {
+            "type": "string"
+          },
+          "resourceName": {
+            "type": "string"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tokenName": {
+                  "type": "string"
+                },
+                "urlKeywordName": {
+                  "type": "string"
+                },
+                "tokenValue": {
+                  "type": "string"
+                },
+                "urlKeywordId": {
+                  "type": "integer"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "urlkeyword-urlkeyword": {
+        "type": "object",
+        "properties": {
+          "resourceId": {
+            "type": "string"
+          },
+          "resourceName": {
+            "type": "string"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tokenName": {
+                  "type": "string"
+                },
+                "urlKeywords": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "storeentId": {
+                        "type": "integer"
+                      },
+                      "keywordId": {
+                        "type": "integer"
+                      },
+                      "mobileUrlKeyword": {
+                        "type": "string"
+                      },
+                      "languageId": {
+                        "type": "integer"
+                      },
+                      "urlKeyword": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                },
+                "tokenValue": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "redirectrule-redirectrule": {
+        "type": "object",
+        "properties": {
+          "resourceId": {
+            "type": "string"
+          },
+          "resourceName": {
+            "type": "string"
+          },
+          "resultList": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "store-storeIdentifierResponse": {
+        "type": "object",
+        "properties": {
+          "resultList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/store-storeIdentifier_item"
+            }
+          }
+        },
+        "required": [
+          "resultList"
+        ]
+      },
+      "store-storeIdentifier_item": {
+        "type": "object",
+        "properties": {
+          "inventorySystem": {
+            "type": "integer"
+          },
+          "defaultCurrency": {
+            "type": "string"
+          },
+          "storeName": {
+            "type": "string"
+          },
+          "defaultLanguageId": {
+            "type": "string"
+          },
+          "storeId": {
+            "type": "string"
+          },
+          "defaultCatalogId": {
+            "type": "string"
+          }
+        }
+      },
+      "store-databean_response": {
+        "type": "object",
+        "properties": {
+          "relatedStores": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/store-OnlineStoreRelatedStoresType"
+            }
+          },
+          "storeLevel": {
+            "type": "string",
+            "nullable": true
+          },
+          "storeType": {
+            "type": "string"
+          },
+          "jspStoreDirFilePath": {
+            "type": "string"
+          },
+          "filePath": {
+            "type": "string"
+          },
+          "jspStoreDir": {
+            "type": "string"
+          },
+          "persistentSession": {
+            "type": "integer"
+          },
+          "directory": {
+            "type": "string"
+          },
+          "jspPath": {
+            "type": "string"
+          },
+          "masterCatalog": {
+            "type": "object",
+            "properties": {
+              "catalogId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "catalogId"
+            ]
+          },
+          "storeEntityDescription": {
+            "type": "object",
+            "properties": {
+              "displayName": {
+                "type": "string"
+              },
+              "contactAddressId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "displayName",
+              "contactAddressId"
+            ]
+          },
+          "supportedLanguages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/store-databean_supportedLanguages"
+            }
+          },
+          "status": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "relatedStores",
+          "storeLevel",
+          "storeType",
+          "jspStoreDirFilePath",
+          "filePath",
+          "jspStoreDir",
+          "persistentSession",
+          "directory",
+          "jspPath",
+          "masterCatalog",
+          "storeEntityDescription",
+          "supportedLanguages",
+          "status"
+        ]
+      },
+      "store-databean_supportedLanguages": {
+        "type": "object",
+        "properties": {
+          "languageId": {
+            "type": "string"
+          },
+          "localeName": {
+            "type": "string"
+          },
+          "nativeDescriptionString": {
+            "type": "string"
+          },
+          "descriptionString": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "languageId",
+          "localeName",
+          "nativeDescriptionString",
+          "descriptionString"
+        ]
+      },
+      "com.ibm.commerce.infrastructure.beans.integration_configuration-session_key": {
+        "type": "object",
+        "x-graphql-type-name": "integrationconfigurationsessionkey",
+        "properties": {
+          "security": {
+            "type": "object",
+            "properties": {
+              "encryptedSessionKey": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "com.ibm.commerce.order.calculation.CalculationRuleCombineCmd": {
+        "type": "object",
+        "x-graphql-type-name": "calculationRuleCombineCmd",
+        "properties": {
+          "resultList": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "taskName": {
                   "type": "string"
                 }
               }
@@ -2960,27 +3540,33 @@
           }
         }
       }
+    },
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
     }
   },
+  "security": [
+    {
+      "basicAuth": []
+    }
+  ],
   "x-aes-documentation": {
     "gettingstarted": [
       {
-        "content": "Some REST services require authentication. HCL Commerce REST services are authenticated on secure and unsecured channels. This authentication can include the use of the WCToken and WCTrustedToken. To use REST services that require authentication, you must first get authentication data by using a supported identity services.\n\nAfter you obtain the authentication data, you must pass either the WCToken or WCTustedToken parameters, or both, within the HTTP header for every request that requires authentication. If a request is sent over HTTP, pass the WCToken parameter in the HTTP header. Do not pass the WCTrustedToken in HTTP requests, as the parameter value might display. Send both the WCToken and the WCTrustedToken parameters when the request is being sent over HTTPS.\n\nThe HCL Commerce REST APIs can also use session cookies that are created by the HCL Commerce store runtime for authentication. These cookies allow you to mix requests to the HCL Commerce REST APIs and the HCL Commerce store runtime within the same user session.\n\n See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
-        "codeSnippets": [],
-        "name": "Authentication"
-      },
-      {
-        "content": "HCL Commerce REST services support JSON and XML formats for input and output data by default. The default format is JSON. When an XML String is sent to a REST service, you must set Content-Type HTTP header to be \"application/xml\". The REST service converts the XML input data to the JSON format that is accepted by REST services. Therefore, your input XML format must follow a certain structure so that it can be transformed to the JSON object that is accepted by REST services. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "content": "HCL Commerce REST services support JSON and XML formats for input and output data by default. The default format is JSON. When an XML String is sent to a REST service, you must set Content-Type HTTP header to be \"application/xml\". The REST service converts the XML input data to the JSON format that is accepted by REST services. Therefore, your input XML format must follow a certain structure so that it can be transformed to the JSON object that is accepted by REST services. See more here: <a href=https://help.hcltechsw.com/commerce/9.1.0/webservices/refs/rwvrestxmlformat.html?hl=rest%2Cresponse%2Cformats </a> ",
         "codeSnippets": [],
         "name": "Response formats"
       },
       {
-        "content": "Preview tokens are encrypted strings that encapsulates a set of preview options and restrictions on when and where the token can be used. Any user who is authorized to access your server and has a preview token, can complete preview actions in the same store for which that token is generated. See more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a>",
+        "content": "Preview tokens are encrypted strings that encapsulates a set of preview options and restrictions on when and where the token can be used. Any user who is authorized to access your server and has a preview token, can complete preview actions in the same store for which that token is generated. See more here: <a href=https://help.hcltechsw.com/commerce/9.1.0/developer/concepts/cpvpreviewtoken.html?hl=preview%2Ctokens </a>",
         "codeSnippets": [],
         "name": "Preview tokens"
       },
       {
-        "content": "Some HCL Commerce REST services require a request to be sent over HTTPS. Learn more here: <a href=https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html> https://help.hcltechsw.com/commerce/9.0.0/restapi/concepts/cwvrestapi_store.html </a> ",
+        "content": "Some HCL Commerce REST services require a request to be sent over HTTPS. Learn more here: <a href=https://help.hcltechsw.com/commerce/9.1.0/webservices/tasks/twvrestssl.html?hl=securing%2Crest%2Cservices%2Cusing%2Csecure%2Csockets%2Clayer%2Cssl </a> ",
         "codeSnippets": [],
         "name": "Secure Sockets Layer"
       }

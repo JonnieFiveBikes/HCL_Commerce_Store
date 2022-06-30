@@ -30,13 +30,12 @@ import {
   ORDER_APPROVAL,
   INPROGRESS_ORDERS,
   CHECKOUT_PROFILES,
+  WISH_LIST,
   REQUISITION_LISTS,
   // APPROVE_ORDERS
 } from "../../../constants/routes";
 import { forUserIdSelector, userIdSelector } from "../../../redux/selectors/user";
 import personService from "../../../_foundation/apis/transaction/person.service";
-import { LOCALE } from "../../../_foundation/constants/common";
-import { localStorageUtil } from "../../../_foundation/utils/storageUtil";
 import { IBM_ASSIGNED_ROLE_DETAILS, BUYER_ADMIN_ROLE, BUYER_APPROVAL_ROLE } from "../../../constants/common";
 //UI
 import {
@@ -80,7 +79,11 @@ function CustomAccountSidebar(props: CustomAccountSidebarProps) {
                   <StyledListItemText primary={pageObj.title} />
                 </StyledListItem>
               ) : (
-                <StyledLink key={uniqueIndex} to={pageObj.link} className="section-link">
+                <StyledLink
+                  testId={`account-sidebar-${pageObj.link.split("/").filter(Boolean).join("-")}`}
+                  key={uniqueIndex}
+                  to={pageObj.link}
+                  className="section-link">
                   <StyledListItem>
                     <StyledListItemText primary={pageObj.title} />
                   </StyledListItem>
@@ -108,14 +111,15 @@ interface AccountSidebarProps {
 
 const useSectionArray = (isB2B: boolean) => {
   const widgetName = getDisplayName(AccountSidebar);
-  const { t } = useTranslation();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
   const CancelToken = Axios.CancelToken;
   const cancels: Canceler[] = [];
 
   const userId = useSelector(userIdSelector);
   const forUserId = useSelector(forUserIdSelector);
-
-  const locale = localStorageUtil.get(LOCALE);
 
   const payloadBase: any = {
     widget: widgetName,
@@ -172,7 +176,7 @@ const useSectionArray = (isB2B: boolean) => {
         },
         {
           title: t("MyAccount.Wishlists"),
-          link: "",
+          link: WISH_LIST,
         },
       ],
     },
@@ -256,7 +260,7 @@ const useSectionArray = (isB2B: boolean) => {
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const sectionsArray = useMemo(() => formatSectionArray(), [buyerRole, isB2B, locale]);
+  const sectionsArray = useMemo(() => formatSectionArray(), [buyerRole, isB2B, language]);
 
   React.useEffect(() => {
     if (userId || forUserId) {

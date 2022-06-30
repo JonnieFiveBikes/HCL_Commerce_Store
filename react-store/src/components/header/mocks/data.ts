@@ -25,6 +25,8 @@ const initStatesBase: OrderReducerState = {
   isRecurringOrderDisabled: false,
   allowableShipModes: [],
   activeInprogressOrder: null,
+  orderMethodIsPickup: false,
+  pickupPerson: null,
 };
 
 export const ONE_ITEM = 1;

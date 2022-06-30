@@ -16,4 +16,5 @@ export const CONSTANTS = {
   quantity: "quantity",
   orderItemPrice: "orderItemPrice",
   orderItemActions: "orderItemActions",
+  status: "orderItemStatus",
 };

@@ -65,9 +65,10 @@ const StyledTypography = styled(({ ...rest }) => <Typography {...rest} />)`
       }
     }
     &.wrapText {
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        word-break: break-word;
+      white-space: normal;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
     }
 
     &.error {

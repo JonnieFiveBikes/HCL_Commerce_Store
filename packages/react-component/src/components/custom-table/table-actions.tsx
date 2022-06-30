@@ -60,7 +60,7 @@ export const TableActions = (props) => {
     <StyledGrid container className="bottom-margin-1" spacing={2} justifyContent="flex-end">
       {hasFilters ? (
         <StyledGrid item xs={12} md={7} {...get(grids, "[0]", {})}>
-          <StyledAccordion>
+          <StyledAccordion testId={`table-action-filter`}>
             <StyledAccordionSummary className="horizontal-padding-2" expandIcon={<ExpandMoreIcon />}>
               <StyledTypography variant="h6">{t(labels.filter)}</StyledTypography>
             </StyledAccordionSummary>
@@ -115,7 +115,7 @@ export const TableActions = (props) => {
               ),
               endAdornment: (
                 <InputAdornment position="end">
-                  <StyledIconButton onClick={() => doSearch("")}>
+                  <StyledIconButton onClick={() => doSearch("")} data-testid="table-actions-icon-button">
                     <CloseIcon />
                   </StyledIconButton>
                 </InputAdornment>

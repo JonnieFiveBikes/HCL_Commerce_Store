@@ -1,0 +1,222 @@
+{
+  "InventoryAvailability": [
+    {
+      "availableQuantity": "89.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13168",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_410103",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "100.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13167",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_410102",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "0.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13166",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Unavailable",
+      "partNumber": "FB041_410101",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13185",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_4101020",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13172",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_410107",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13186",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_4101021",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13171",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_410106",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13175",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_4101010",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13170",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_410105",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13169",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_410104",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13189",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_4101024",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13178",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_4101013",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13179",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_4101014",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13187",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_4101022",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13174",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_410109",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13176",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_4101011",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13188",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_4101023",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13173",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_410108",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13177",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_4101012",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13182",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_4101017",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13183",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_4101018",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13180",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_4101015",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13181",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_4101016",
+      "onlineStoreId": "12"
+    },
+    {
+      "availableQuantity": "101.0",
+      "onlineStoreName": "Sapphire",
+      "productId": "13184",
+      "unitOfMeasure": "C62",
+      "inventoryStatus": "Available",
+      "partNumber": "FB041_4101019",
+      "onlineStoreId": "12"
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/12/inventoryavailability/byPartNumber/FB041_410101,FB041_410102,FB041_410103,FB041_410104,FB041_410105,FB041_410106,FB041_410107,FB041_410108,FB041_410109,FB041_4101010,FB041_4101011,FB041_4101012,FB041_4101013,FB041_4101014,FB041_4101015,FB041_4101016,FB041_4101017,FB041_4101018,FB041_4101019,FB041_4101020,FB041_4101021,FB041_4101022,FB041_4101023,FB041_4101024?langId=-1",
+  "resourceName": "inventoryavailability"
+}

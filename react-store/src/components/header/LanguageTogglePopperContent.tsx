@@ -39,7 +39,10 @@ const LanguageTogglePopperContent: React.FC<LanguageTogglePopperContentProps> = 
           return (
             <StyledGrid key={lid} container spacing={1}>
               <StyledGrid item>
-                <StyledButton testId="language-toggle-select-language" variant="text" onClick={onClickLanguage}>
+                <StyledButton
+                  testId={`language-toggle-select-language-${lid}`}
+                  variant="text"
+                  onClick={onClickLanguage}>
                   <StyledListItemText style={{ whiteSpace: "nowrap" }}>{t(`Language.${lid}`)}</StyledListItemText>
                 </StyledButton>
               </StyledGrid>

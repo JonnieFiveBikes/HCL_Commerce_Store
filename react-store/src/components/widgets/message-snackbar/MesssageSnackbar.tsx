@@ -10,11 +10,11 @@
  */
 //Standard libraries
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import HTMLReactParser from "html-react-parser";
 //UI
 import { SnackbarOrigin } from "@material-ui/core";
-import { StyledSnackbar, StyledAlert } from "@hcl-commerce-store-sdk/react-component";
+import { StyledSnackbar, StyledAlert, StyledLink } from "@hcl-commerce-store-sdk/react-component";
 
 interface MessageSnackbarProperty {
   anchorOrigin: SnackbarOrigin;
@@ -48,7 +48,7 @@ const MessageSnackbar = ({
         ) : (
           <span>
             {message && HTMLReactParser(message)}
-            <Link to={linkAction.url}>{linkAction.text}</Link>
+            <StyledLink to={linkAction.url}>{linkAction.text}</StyledLink>
           </span>
         )}
       </>

@@ -207,7 +207,7 @@ const EditAddress = (props) => {
         <StyledPaper className="horizontal-padding-3 vertical-padding-3">
           <StyledGrid item xs={12} md={6}>
             <AddressForm
-              cid="newAddress"
+              cid="editAddress"
               setAddressFormData={setEditddressFormData}
               addressFormData={editAddressFormData}
               page={ADDRESS_BOOK}

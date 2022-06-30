@@ -204,7 +204,7 @@ const CheckoutProfileBilling = (props: any) => {
               </StyledInputLabel>
 
               <StyledSelect
-                testId="checkout-profile-billing-method-select"
+                data-testid="checkout-profile-billing-method-select"
                 native
                 fullWidth
                 value={
@@ -247,6 +247,7 @@ const CheckoutProfileBilling = (props: any) => {
                   <StyledSelect
                     required
                     native
+                    data-testid="expiry-month"
                     id="expire_month"
                     name="expire_month"
                     value={cProf?.billingData?.expire_month?.value ?? ""}
@@ -272,6 +273,7 @@ const CheckoutProfileBilling = (props: any) => {
                   <StyledSelect
                     native
                     required
+                    data-testid="expiry-year"
                     name="expire_year"
                     value={cProf?.billingData?.expire_year?.value ?? ""}
                     onChange={(e) => setPmtMethod(e, "expire_year")}

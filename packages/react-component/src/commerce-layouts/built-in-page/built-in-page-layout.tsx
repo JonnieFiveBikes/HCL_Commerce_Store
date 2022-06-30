@@ -4,12 +4,12 @@
  *
  * HCL Commerce
  *
- * (C) Copyright HCL Technologies Limited 2021
+ * (C) Copyright HCL Technologies Limited 2022
  *
  *==================================================
  */
 //Standard libraries
-import React from "react";
+import React, { useCallback } from "react";
 //UI
 import { StyledGrid, StyledContainer } from "../../elements";
 //types
@@ -22,7 +22,7 @@ import { PageLayoutProps } from "../..";
  * @param slots All the slots containing commerce widgets in this layout.
  */
 export const BuiltInPageLayout: React.FC<PageLayoutProps> = ({ cid, slots = [], ...props }) => {
-  const SlotOne = () => {
+  const SlotOne = useCallback(() => {
     return (
       <>
         {slots["1"] && (
@@ -35,9 +35,10 @@ export const BuiltInPageLayout: React.FC<PageLayoutProps> = ({ cid, slots = [], 
         )}
       </>
     );
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cid]);
 
-  const SlotTwo = () => {
+  const SlotTwo = useCallback(() => {
     return (
       <>
         {slots["builtIn"] && (
@@ -50,9 +51,10 @@ export const BuiltInPageLayout: React.FC<PageLayoutProps> = ({ cid, slots = [], 
         )}
       </>
     );
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cid]);
 
-  const SlotThree = () => {
+  const SlotThree = useCallback(() => {
     return (
       <>
         {slots["2"] && (
@@ -65,7 +67,8 @@ export const BuiltInPageLayout: React.FC<PageLayoutProps> = ({ cid, slots = [], 
         )}
       </>
     );
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cid]);
 
   return (
     <StyledContainer id={cid}>

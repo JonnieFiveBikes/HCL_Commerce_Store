@@ -54,7 +54,7 @@ const UploadRequisitionList: React.FC = () => {
   } = useUploadReqisitionList();
   const browseClickHandler = () => uploadFileRef.current.click();
   return (
-    <StyledAccordion>
+    <StyledAccordion testId={`upload-requisition-list`}>
       <StyledAccordionSummary
         className="horizontal-padding-2 vertical-padding-2 rl-upload-acrdn"
         expandIcon={<ExpandMoreIcon />}>

@@ -1,0 +1,378 @@
+{
+  "MarketingSpotData": [
+    {
+      "nextTimeLimit": "-1",
+      "marketingSpotIdentifier": "13001",
+      "behavior": "0",
+      "eSpotName": "ShoppingCartRight_CatEntries",
+      "baseMarketingSpotActivityData": [
+        {
+          "baseMarketingSpotActivityName": "Circular Chandelier",
+          "productId": "14189",
+          "description": [
+            {
+              "longDescription": "Perfect for projecting light over a coffee table or highlighting your favorite living room decor, the circular chandelier features 3 lamp holders to create a versatile light source. Its woven-style surround complements any modern living space.",
+              "thumbnail": "/EmeraldCAS/images/catalog/livingroom/lighting/light5_a1_350.jpg",
+              "language": "-1",
+              "shortDescription": "A modern ceiling light fixture that helps project light directly underneath it, while creating accent lighting through its surrounds.",
+              "fullImage": "/EmeraldCAS/images/catalog/livingroom/lighting/light5_a1_600.jpg",
+              "productName": "Circular Chandelier"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "349.99",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Shopping cart future featured products rule",
+          "baseMarketingSpotActivityID": "14189",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "LR-LITB-0005",
+          "activityIdentifierID": "11005",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "349.99",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "100",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "400.00"
+        },
+        {
+          "baseMarketingSpotActivityName": "Rattan Ceiling Light",
+          "productId": "14193",
+          "description": [
+            {
+              "longDescription": "Available in a variety of warm tones, this ceiling light is idealfor adding additional ceiling lighting to your living space. It features a single lamp holder, surrounded by rattan, to create accent lighting throughout the room.",
+              "thumbnail": "/EmeraldCAS/images/catalog/livingroom/lighting/light7_a1_350.jpg",
+              "language": "-1",
+              "shortDescription": "A warm light fixture that creates an elegant atmosphere in contemporary living rooms.",
+              "fullImage": "/EmeraldCAS/images/catalog/livingroom/lighting/light7_a1_600.jpg",
+              "productName": "Rattan Ceiling Light"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "749.99",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Shopping cart future featured products rule",
+          "baseMarketingSpotActivityID": "14193",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "LR-LITB-0007",
+          "activityIdentifierID": "11005",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "749.99",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "100",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "800.00"
+        },
+        {
+          "baseMarketingSpotActivityName": "Ant Chair",
+          "productId": "14220",
+          "description": [
+            {
+              "longDescription": "Treat your guests to the ultimate in comfort and modern style with the ant chair. Its shape is designed to suit your modern living decor, while providing longlasting comfort. Its wooden surface is easy to clean, and its compact design is stackable for easy storage. The chair's classic styling is complemented with chrome legs and rubber feet. Some assembly required.",
+              "thumbnail": "/EmeraldCAS/images/catalog/diningroom/chairs/dinchair2_a1_350.jpg",
+              "language": "-1",
+              "shortDescription": "A modern ant chair that combines form and function to make your dining experience comfortable and elegant.",
+              "fullImage": "/EmeraldCAS/images/catalog/diningroom/chairs/dinchair2_a1_600.jpg",
+              "productName": "Ant Chair"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "99.99",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Shopping cart future featured products rule",
+          "baseMarketingSpotActivityID": "14220",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "DR-CHRS-0002",
+          "activityIdentifierID": "11005",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "99.99",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "100",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "100.00"
+        },
+        {
+          "baseMarketingSpotActivityName": "StyleHome Comfy Dining chair",
+          "productId": "14234",
+          "description": [
+            {
+              "longDescription": "Dining chair from StyleHome made for utmost comfort. Foam covered with fabric on back rest and the sit, this looks great and feels great in around any dining table.",
+              "thumbnail": "/EmeraldCAS/images/catalog/diningroom/chairs/dinchair4_a1_350.jpg",
+              "language": "-1",
+              "shortDescription": "A dining chair with foam sit and back rest.",
+              "fullImage": "/EmeraldCAS/images/catalog/diningroom/chairs/dinchair4_a1_600.jpg",
+              "productName": "StyleHome Comfy Dining chair"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "225.00",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Shopping cart future featured products rule",
+          "baseMarketingSpotActivityID": "14234",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "DR-CHRS-0004",
+          "activityIdentifierID": "11005",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "225.00",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "100",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "225.00"
+        },
+        {
+          "baseMarketingSpotActivityName": "Modern Armchair",
+          "productId": "14166",
+          "description": [
+            {
+              "longDescription": "Give your living room a bold new look with the modern and comfortable blue armchair. The armchair features a compact design, comfortable oversized pillow, easy to clean polyester fabric, and button tufts along the lower backrest. The armchair's modern styling is complemented with durable light brown wooden legs. No assembly required.",
+              "thumbnail": "/EmeraldCAS/images/catalog/livingroom/furniture/furniture1_a1_600.png",
+              "language": "-1",
+              "shortDescription": "A compact modern armchair that offers comfortable and sleek styling to accent your home's living room.",
+              "fullImage": "/EmeraldCAS/images/catalog/livingroom/furniture/furniture1_a1_600.png",
+              "productName": "Modern Armchair"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "749.99",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Shopping cart featured products",
+          "baseMarketingSpotActivityID": "14166",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "LR-FUCH-0001",
+          "activityIdentifierID": "11001",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "749.99",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "800.00"
+        },
+        {
+          "baseMarketingSpotActivityName": "Soft Vintage Armchair",
+          "productId": "14172",
+          "description": [
+            {
+              "longDescription": "Make your living room extra comfortable with the soft vintage armchair. The armchair features wide armrests, a removable seat pillow, soft microfiber fabric, and dark brown wooden accents. The armchair's lounging styling is complemented with durable dark brown wooden legs that match its accents. No assembly required.",
+              "thumbnail": "/EmeraldCAS/images/catalog/livingroom/furniture/furniture3_a1_600.png",
+              "language": "-1",
+              "shortDescription": "A warm and cozy armchair that offers superior comfort and lounge room styling to accent your home's living room.",
+              "fullImage": "/EmeraldCAS/images/catalog/livingroom/furniture/furniture3_a1_600.png",
+              "productName": "Soft Vintage Armchair"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "639.99",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Shopping cart featured products",
+          "baseMarketingSpotActivityID": "14172",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "LR-FUCH-0003",
+          "activityIdentifierID": "11001",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "639.99",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "700.00"
+        },
+        {
+          "baseMarketingSpotActivityName": "Nordic Loveseat",
+          "productId": "14178",
+          "description": [
+            {
+              "longDescription": "Give your living room an open and modern feel with the Nordic loveseat. The loveseat features a modern simple design, wide armrests, layered cushioning, and easy to clean polyester fabric. The loveseat's modern styling is complemented with wide brushed steel legs. No assembly required.",
+              "thumbnail": "/EmeraldCAS/images/catalog/livingroom/furniture/furniture5_a1_600.png",
+              "language": "-1",
+              "shortDescription": "A simple and modern casual loveseat that offers comfort and contemporary styling to accent your home's living room.",
+              "fullImage": "/EmeraldCAS/images/catalog/livingroom/furniture/furniture5_a1_600.png",
+              "productName": "Nordic Loveseat"
+            }
+          ],
+          "listPriceCurrency": "USD",
+          "activityFormat": "web",
+          "standardPrice": "1999.99",
+          "ownerID": "7000000000000003501",
+          "activityIdentifierName": "Shopping cart featured products",
+          "baseMarketingSpotActivityID": "14178",
+          "baseMarketingSpotDataType": "CatalogEntry",
+          "productPartNumber": "LR-FUCH-0005",
+          "activityIdentifierID": "11001",
+          "standardPriceCurrency": "USD",
+          "contractPrice": [
+            {
+              "minorVersionNumber": "0",
+              "contractPrice": "1999.99",
+              "origin": "6",
+              "name": "Emerald - Emerald",
+              "contractID": "-11005",
+              "currency": "USD",
+              "ownerID": "-11000",
+              "minimumQuantity": "1.0",
+              "majorVersionNumber": "1"
+            }
+          ],
+          "attributes": [
+            {
+              "stringValue": "EmeraldCAS",
+              "name": "rootDirectory"
+            }
+          ],
+          "catalogEntryTypeCode": "ProductBean",
+          "activityPriority": "1",
+          "properties": [
+            {
+              "baseMarketingValue": "Recommend a product to a customer that satisfies the chosen target conditions.",
+              "baseMarketingKey": "mktActivityDescription"
+            }
+          ],
+          "listPrice": "2500.00"
+        }
+      ]
+    }
+  ],
+  "resourceId": "https://app:5443/wcs/resources/store/11/espot/ShoppingCartRight_CatEntries?catalogId=11501&DM_ReturnCatalogGroupId=true&DM_FilterResults=false&langId=-1",
+  "resourceName": "espot"
+}

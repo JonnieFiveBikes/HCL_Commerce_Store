@@ -301,6 +301,7 @@ const useRecurringOrderTable = () => {
           <>
             <StyledTooltip title={t("Order.TooltipReOrder")}>
               <AddShoppingCart
+                data-testid="reorder-add-to-cart"
                 color="primary"
                 onClick={() => {
                   handleCopyCart(rowData);
@@ -310,6 +311,7 @@ const useRecurringOrderTable = () => {
             <StyledTooltip title={t("Order.TooltipCancel")}>
               {rowData.state !== "Active" ? (
                 <Cancel
+                  data-testid="cancel-recurring"
                   color="disabled"
                   onClick={() => {
                     handleCancelCart(rowData);

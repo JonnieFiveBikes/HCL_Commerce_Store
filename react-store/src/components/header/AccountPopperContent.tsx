@@ -11,7 +11,6 @@
 //Standard libraries
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 //Custom libraries
@@ -32,6 +31,7 @@ import {
   StyledFormControl,
   StyledInputLabel,
   StyledProgressPlaceholder,
+  StyledLink,
 } from "@hcl-commerce-store-sdk/react-component";
 import { Divider } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -129,6 +129,7 @@ function AccountPopperContent(props: any): JSX.Element {
               {t("Header.AccountPopper.Organization")}
             </StyledInputLabel>
             <StyledSelect
+              data-testid="account-popper-org-select"
               native
               fullWidth
               value={activeOrg.organizationId}
@@ -150,6 +151,7 @@ function AccountPopperContent(props: any): JSX.Element {
               {t("Header.AccountPopper.Contract")}
             </StyledInputLabel>
             <StyledSelect
+              data-testid="account-popper-contract-select"
               native
               fullWidth
               value={currentContractId}
@@ -183,9 +185,9 @@ function AccountPopperContent(props: any): JSX.Element {
       <StyledListItem>
         <StyledListItemText
           primary={
-            <>
-              <StyledTypography variant="body2">{t("Header.AccountPopper.Welcome", { ...userName })}</StyledTypography>
-            </>
+            <StyledTypography className="account-welcome-popup" variant="body2">
+              {t("Header.AccountPopper.Welcome", { ...userName })}
+            </StyledTypography>
           }></StyledListItemText>
       </StyledListItem>
     );
@@ -193,7 +195,11 @@ function AccountPopperContent(props: any): JSX.Element {
 
   const AccountSetting = () => {
     return (
-      <Link to={isB2B ? ROUTES.DASHBOARD : ROUTES.ACCOUNT} id="head-popper-myaccount_link" onClick={handleClose}>
+      <StyledLink
+        testId={`account-popper-${isB2B ? "dashboard" : "account"}`}
+        to={isB2B ? ROUTES.DASHBOARD : ROUTES.ACCOUNT}
+        id="acount-popper-myaccount-dashboard-link"
+        onClick={handleClose}>
         <StyledListItem>
           <StyledListItemIcon>
             <AccountCircleIcon />
@@ -203,21 +209,21 @@ function AccountPopperContent(props: any): JSX.Element {
               <>{isB2B ? t("Dashboard.Title") : t("Header.AccountPopper.AccountSetting")}</>
             }></StyledListItemText>
         </StyledListItem>
-      </Link>
+      </StyledLink>
     );
   };
 
   const LogoutSection = () => {
     return (
       // eslint-disable-next-line jsx-a11y/anchor-is-valid
-      <a href="#" onClick={(event) => handleLogout(event)}>
+      <StyledLink testId={`account-popper-signout`} to="" onClick={(event) => handleLogout(event)}>
         <StyledListItem>
           <StyledListItemIcon>
             <ExitToAppIcon />
           </StyledListItemIcon>
           <StyledListItemText primary={<>{t("Header.AccountPopper.SignOut")}</>}></StyledListItemText>
         </StyledListItem>
-      </a>
+      </StyledLink>
     );
   };
 

@@ -1,0 +1,100 @@
+{
+  "contents": [
+    {
+      "resourceId": "https://search:30901/search/resources/api/v2/categories?storeId=11&parentCategoryId=10509&contractId=-11005&langId=-1",
+      "uniqueID": "3074457345616677668",
+      "parentCatalogGroupID": "/10509/3074457345616677668",
+      "seo": {
+        "href": "/test-subcat-1"
+      },
+      "name": "Test Subcat 1",
+      "identifier": "test_subcat_01",
+      "shortDescription": "added for short desc",
+      "storeID": "11",
+      "sequence": "0.0",
+      "id": "3074457345616677668",
+      "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10509"
+        },
+        "children": ["href: /search/resources/api/v2/categories?storeId=11&id=3074457345616677669"],
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=3074457345616677668"
+        }
+      },
+      "description": "added for short desc"
+    },
+    {
+      "resourceId": "https://search:30901/search/resources/api/v2/categories?storeId=11&parentCategoryId=10509&contractId=-11005&langId=-1",
+      "uniqueID": "10510",
+      "parentCatalogGroupID": "/10509/10510",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/bathroom/category/lighting.jpg",
+      "seo": {
+        "href": "/lighting"
+      },
+      "name": "Lighting",
+      "identifier": "BathLighting",
+      "shortDescription": "Plenty of ceiling-mounted light fixtures to create bright, even lighting throughout your bathroom",
+      "storeID": "11",
+      "sequence": "1.0",
+      "id": "10510",
+      "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10509"
+        },
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10510"
+        }
+      },
+      "description": "Plenty of ceiling-mounted light fixtures to create bright, even lighting throughout your bathroom"
+    },
+    {
+      "resourceId": "https://search:30901/search/resources/api/v2/categories?storeId=11&parentCategoryId=10509&contractId=-11005&langId=-1",
+      "uniqueID": "10511",
+      "parentCatalogGroupID": "/10509/10511",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/bathroom/category/fixtures.jpg",
+      "seo": {
+        "href": "/fixtures"
+      },
+      "name": "Fixtures",
+      "identifier": "Fixtures",
+      "shortDescription": "Find the perfect faucet and showerhead to transform your master ensuite into an open, modern bath space",
+      "storeID": "11",
+      "sequence": "2.0",
+      "id": "10511",
+      "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10509"
+        },
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10511"
+        }
+      },
+      "description": "Find the perfect faucet and showerhead to transform your master ensuite into an open, modern bath space"
+    },
+    {
+      "resourceId": "https://search:30901/search/resources/api/v2/categories?storeId=11&parentCategoryId=10509&contractId=-11005&langId=-1",
+      "uniqueID": "10512",
+      "parentCatalogGroupID": "/10509/10512",
+      "thumbnail": "/hclstore/EmeraldCAS/images/catalog/bathroom/category/accessories.jpg",
+      "seo": {
+        "href": "/accessories"
+      },
+      "name": "Accessories",
+      "identifier": "Accessories",
+      "shortDescription": "Accent your bath with stylish accessories and makeup mirrors",
+      "storeID": "11",
+      "sequence": "3.0",
+      "id": "10512",
+      "links": {
+        "parent": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10509"
+        },
+        "self": {
+          "href": "/search/resources/api/v2/categories?storeId=11&id=10512"
+        }
+      },
+      "description": "Accent your bath with stylish accessories and makeup mirrors"
+    }
+  ]
+}

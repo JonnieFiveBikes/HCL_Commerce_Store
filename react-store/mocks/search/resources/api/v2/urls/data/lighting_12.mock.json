@@ -2,15 +2,16 @@
   "contents": [
     {
       "identifier": "lighting",
+      "store.type": "CPS",
       "tokenName": "CategoryToken",
       "tokenExternalValue": "Hardware Lighting",
       "language": "en_US",
-      "id": 12053,
+      "id": "12053",
       "page": {
         "imageAlternateDescription": "Image for Lighting from Sapphire",
         "name": "CATEGORY_PAGE",
-        "title": "Lighting | Sapphire",
         "type": "ProductListPage",
+        "title": "Lighting | Sapphire",
         "metaDescription": "Light bulbs in every shape and size",
         "metaKeyword": "lighting"
       },

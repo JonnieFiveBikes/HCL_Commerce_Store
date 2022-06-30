@@ -27,6 +27,8 @@ import {
   StyledSwitch,
   StyledTypography,
 } from "@hcl-commerce-store-sdk/react-component";
+import { useSelector } from "react-redux";
+import { orderMethodIsPickupSelector } from "../../../redux/selectors/order";
 
 const CheckoutPayment: React.FC = (props: any) => {
   const {
@@ -66,7 +68,8 @@ const CheckoutPayment: React.FC = (props: any) => {
     isEditPayment,
     isValidPaymentList,
   } = useCheckoutPayment(props);
-
+  const orderMethodIsPickup = useSelector(orderMethodIsPickupSelector);
+  const previous = () => back(orderMethodIsPickup);
   const { t } = useTranslation();
   const onHandleAddNewPayment = () => handleAddNewPayment();
   return (
@@ -185,36 +188,33 @@ const CheckoutPayment: React.FC = (props: any) => {
         </>
       )}
 
-      {!createNewAddress && !editAddress && !addNewPayment && !editPayment && (
+      {!createNewAddress && !editAddress && !addNewPayment && !editPayment ? (
         <StyledGrid container spacing={1} justifyContent="space-between" className="checkout-actions">
-          <StyledGrid item xs={false}>
-            <StyledButton testId="payment-go-back" color="secondary" onClick={() => back()}>
-              {t("Payment.Actions.Back")}
+          <StyledGrid item sm={true}>
+            <StyledButton testId="payment-go-back" color="secondary" onClick={previous}>
+              {t(`Payment.Actions.${orderMethodIsPickup ? "BackToPickup" : "Back"}`)}
             </StyledButton>
           </StyledGrid>
-
-          <StyledGrid item xs spacing={1} container justifyContent="flex-end" className="checkout-actions">
-            {useMultiplePayment ? (
-              <StyledGrid item>
-                {!addNewPayment && !editPayment && selectedPaymentInfoList.length > 0 && allowMorePayments ? (
-                  <StyledButton testId="payment-add-pay-method" color="secondary" onClick={onHandleAddNewPayment}>
-                    {t("Payment.Actions.AddAnotherPayMethod")}
-                  </StyledButton>
-                ) : null}
-              </StyledGrid>
-            ) : null}
+          {useMultiplePayment ? (
             <StyledGrid item>
-              <StyledButton
-                testId="submit-paymentgo-to-review"
-                color="primary"
-                disabled={!canContinue()}
-                onClick={() => submit()}>
-                {t("Payment.Actions.Next")}
-              </StyledButton>
+              {!addNewPayment && !editPayment && selectedPaymentInfoList.length > 0 && allowMorePayments ? (
+                <StyledButton testId="payment-add-pay-method" color="secondary" onClick={onHandleAddNewPayment}>
+                  {t("Payment.Actions.AddAnotherPayMethod")}
+                </StyledButton>
+              ) : null}
             </StyledGrid>
+          ) : null}
+          <StyledGrid item>
+            <StyledButton
+              testId="submit-payment-go-to-review"
+              color="primary"
+              disabled={!canContinue()}
+              onClick={() => submit()}>
+              {t("Payment.Actions.Next")}
+            </StyledButton>
           </StyledGrid>
         </StyledGrid>
-      )}
+      ) : null}
       {selectedPaymentInfoList.length > 0 &&
       !isOrderTotalMet() &&
       !addNewPayment &&

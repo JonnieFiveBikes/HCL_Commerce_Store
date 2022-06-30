@@ -12,7 +12,7 @@
 
 //Standard libraries
 import React, { Dispatch, Suspense, useCallback } from "react";
-import { BrowserRouter, useRoutes } from "react-router-dom";
+import { BrowserRouter, useLocation, useRoutes } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
@@ -27,6 +27,7 @@ import { storageSessionHandler, localStorageUtil } from "./_foundation/utils/sto
 import { LOCALE } from "./_foundation/constants/common";
 import storeService from "./_foundation/apis/transaction/store.service";
 import { PRODUCTION } from "./_foundation/constants/common";
+import shippingInfoService from "./_foundation/apis/transaction/shippingInfo.service";
 //Custom libraries
 import { ROUTE_CONFIG } from "./configs/routes";
 import { CommerceEnvironment, DISCOVER_FEATURE, EMPTY_STRING, HYPHEN, UNDERSCORE } from "./constants/common";
@@ -37,9 +38,12 @@ import { useCSRForUser } from "./_foundation/hooks/useCSRForUser";
 import SuccessMessageSnackbar from "./components/widgets/message-snackbar/SuccessMessageSnackbar";
 import ErrorMessageSnackbar from "./components/widgets/message-snackbar/ErrorMessageSnackbar";
 import { IFRAME_RESIZER } from "./_foundation/constants/csr";
-//Redux
+//Redux and context
 import { forUserIdSelector, loginStatusSelector } from "./redux/selectors/user";
 import { INIT_STATE_FROM_STORAGE_ACTION, LISTEN_USER_FROM_STORAGE_ACTION } from "./redux/actions/user";
+import { GET_COUNTRY_STATE_LIST_ACTION } from "./redux/actions/country";
+import { SELLERS_GET_ACTION } from "./redux/actions/sellers";
+import { useStoreShippingModeValue } from "./_foundation/context/store-shipping-mode-context";
 //UI
 import { StyledWrapper } from "./components/StyledUI";
 import { StyledGrid, StyledProgressPlaceholder } from "@hcl-commerce-store-sdk/react-component";
@@ -49,16 +53,17 @@ import "./App.scss";
 import GTMDLService from "./_foundation/gtm/ua/gtmDataLayer.service";
 //GA4
 import GA4GTMDLService from "./_foundation/gtm/ga4/gtmDataLayer.service";
-import { SELLERS_GET_ACTION } from "./redux/actions/sellers";
 
 const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
   React.useEffect(() => {
     //scroll to top on path change.
     setTimeout(() => {
       window.scrollTo(0, 0);
     });
-  }, []);
-  return <></>;
+  }, [pathname]);
+  return null;
 };
 
 const RouteRenderer = () => {
@@ -77,6 +82,7 @@ const App: React.FC = (props: any) => {
   const { receiveParentMessage } = useCSRForUser();
   const CancelToken = Axios.CancelToken;
   const MemRouteRenderer = useCallback(RouteRenderer, []);
+  const { setStoreShippingMode } = useStoreShippingModeValue();
 
   const cancels: Canceler[] = [];
   const payloadBase: any = {
@@ -142,11 +148,18 @@ const App: React.FC = (props: any) => {
     if (mySite) {
       dispatch(INIT_STATE_FROM_STORAGE_ACTION({ ...payloadBase }));
       dispatch(SELLERS_GET_ACTION({ ...payloadBase }));
+      dispatch(GET_COUNTRY_STATE_LIST_ACTION({ ...payloadBase }));
       storageSessionHandler.triggerUserStorageListener(() =>
         dispatch(LISTEN_USER_FROM_STORAGE_ACTION({ ...payloadBase }))
       );
       setTranslate();
       isDiscoverEnabled(mySite.storeID);
+      shippingInfoService
+        .getAllowableShippingModes(mySite.storeID, undefined, undefined, undefined, { widget: widgetName })
+        .then((res) => {
+          setStoreShippingMode(res.data?.usableShippingMode ?? []);
+        })
+        .catch((e) => console.log("fail to get store shipping mode", e));
       //GA360
       if (mySite.enableGA) {
         if (mySite.enableUA) {

@@ -14,12 +14,16 @@ export const HOME = "/";
 //Order
 export const CART = "/cart";
 export const CHECKOUT = "/checkout";
-export const CHECKOUT_SHIPPING = `${CHECKOUT}/shipping`;
-export const CHECKOUT_PAYMENT = `${CHECKOUT}/payment`;
-export const CHECKOUT_REVIEW = `${CHECKOUT}/review`;
+export const CHECKOUT_SHIPPING = `shipping`;
+export const CHECKOUT_PAYMENT = `payment`;
+export const CHECKOUT_REVIEW = `review`;
+export const CHECKOUT_PICKUP = `pickup`;
+export const CHECKOUT_PICKUP_STORE = `pickup-store`;
 export const ORDER_CONFIRMATION = "/order-confirmation";
 export const ORDER_HISTORY = "/order-history";
 export const WISH_LIST = "/wish-list";
+export const WISH_LIST_ID = "/:wishListId";
+export const VIEW_WISH_LIST_ROUTE = `${WISH_LIST}${WISH_LIST_ID}`;
 export const RECURRING_ORDERS = "/recurring-orders";
 export const INPROGRESS_ORDERS = "/inprogress-orders";
 export const REQUISITION_LISTS = "/requisition-lists";
@@ -70,3 +74,7 @@ export const REQUISITION_LIST_DETAILS = "/requisition-list-details";
 export const REQUISITION_LIST_DETAILS_ROUTE = `${REQUISITION_LIST_DETAILS}${LIST_ID_PARAM}`;
 
 export const COMPARE_ROUTE = "/compare-products";
+
+export const STORE_LOCATOR = "/store-locator";
+export const DELIVERY_STEPS = ["shipping", "payment", "review"];
+export const PICKUP_STEPS = ["pickup-store", "pickup", "payment", "review"];

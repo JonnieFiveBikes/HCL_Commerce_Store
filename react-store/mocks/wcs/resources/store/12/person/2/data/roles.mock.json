@@ -1,0 +1,30 @@
+{
+  "rolesWithDetails": [
+    {
+      "displayName": "Registered Customer",
+      "roleId": "-29",
+      "name": "Registered Customer",
+      "description": null
+    },
+    {
+      "displayName": "Buyer Administrator",
+      "roleId": "-21",
+      "name": "Buyer Administrator",
+      "description": null
+    },
+    {
+      "displayName": "Buyer Approver",
+      "roleId": "-22",
+      "name": "Buyer Approver",
+      "description": null
+    },
+    {
+      "displayName": "Buyer (buy-side)",
+      "roleId": "-24",
+      "name": "Buyer (buy-side)",
+      "description": null
+    }
+  ],
+  "displayName": "",
+  "userId": "5"
+}

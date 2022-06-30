@@ -58,7 +58,7 @@ const panelExpanderHeader = ({ showPanelOnMobile }) => {
       key: TableConstants.PANEL,
     },
     display: {
-      cellStyle: { verticalAlign: "middle" },
+      cellStyle: { verticalAlign: "middle", wordBreak: "normal" },
       cellClass: showPanelOnMobile ? "" : "hideOnMobile",
       template: PanelExpanderCell,
     },

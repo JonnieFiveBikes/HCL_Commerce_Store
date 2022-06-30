@@ -112,7 +112,7 @@ const catalogReducer = createReducer(initStates.catalog, (builder) => {
     adjustFacets({ state, facets, selectedSellers, site });
 
     state.productList = response["contents"] ? response.contents : [];
-    state.productListTotal = response.total;
+    state.productListTotal = response.total ?? 0;
     if (response["metaData"]) {
       state.priceMode = response.metaData.price;
     }

@@ -29,6 +29,9 @@ import { AdministrativeToolsLayout } from "../../../widgets/administrative-tools
 import { PersonalInformationLayout } from "../../../widgets/personal-information";
 import { RecentOrders } from "../../../widgets/recent-orders";
 import { WelcomeUserSection } from "../account-summary/WelcomeUserSection";
+//Foundation
+import { useStoreLocatorValue } from "../../../../_foundation/context/store-locator-context";
+import { STORELOCATORACTIONS } from "../../../../_foundation/constants/common";
 
 /**
  * Dashboard component
@@ -44,9 +47,11 @@ function Dashboard() {
   const CancelToken = Axios.CancelToken;
   const cancels: Canceler[] = [];
   const dispatch = useDispatch();
+  const storeLocatorDispach = useStoreLocatorValue().dispatch;
   const logOutUser = (props: any) => {
     const payload = { widget };
     dispatch(userAction.LOGOUT_REQUESTED_ACTION(payload));
+    storeLocatorDispach({ type: STORELOCATORACTIONS.RESET_STORE_SELECTOR });
   };
   const getPerson = () => {
     const param = {

@@ -1,0 +1,44 @@
+{
+  "contents": [
+    {
+      "layout": {
+        "id": "13007",
+        "name": "OrderConfirmationPageLayout",
+        "containerName": "order-confirmation-page",
+        "slots": [
+          {
+            "id": "2",
+            "widgets": [
+              {
+                "id": "3522",
+                "name": "OrderConfirmationPageProductRecommendation",
+                "widgetName": "e-marketing-spot-widget",
+                "sequence": 0,
+                "properties": {
+                  "emsName": "Home_ProductRec"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "identifier": "order-confirmation",
+      "store.type": "BMP",
+      "tokenName": "StaticPagesToken",
+      "tokenExternalValue": "OrderConfirmationPage",
+      "language": "en_US",
+      "id": "58004",
+      "page": {
+        "imageAlternateDescription": "Image for Sapphire order confirmation",
+        "name": "Content_1504",
+        "type": "ContentPage",
+        "title": "Sapphire",
+        "metaDescription": "Sapphire order confirmation",
+        "metaKeyword": "Sapphire order confirmation"
+      },
+      "storeId": "12",
+      "tokenValue": "1504",
+      "status": 1
+    }
+  ]
+}

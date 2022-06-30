@@ -120,17 +120,17 @@ function StyledSidebar({ title, sidebarContent, linkTo, breakpoint, className, s
     <StyledSidebarWrapper className={className} scrollable={scrollable}>
       <StyledNavigationHeader className="section-title section-heading">
         {linkTo ? (
-          <StyledLink to={linkTo}>
+          <StyledLink testId={`account-sidebar-${title.toLowerCase()}`} to={linkTo}>
             <StyledTypography variant="subtitle1">{title}</StyledTypography>
           </StyledLink>
         ) : (
           <StyledTypography variant="subtitle1">{title}</StyledTypography>
         )}
-        {isMobile && (
-          <StyledListItemIcon onClick={() => setOpen(!open)}>
+        {isMobile ? (
+          <StyledListItemIcon data-testid="expand-more-list-item-icon" onClick={() => setOpen(!open)}>
             <ExpandMoreIcon />
           </StyledListItemIcon>
-        )}
+        ) : null}
       </StyledNavigationHeader>
       {sidebarContent}
     </StyledSidebarWrapper>

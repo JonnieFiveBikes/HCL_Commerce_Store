@@ -81,9 +81,8 @@ const PaymentInfoList: React.FC<PaymentInfoListProps> = (props: PaymentInfoListP
           <StyledGrid item xs={12}>
             <StyledButton
               testId="payment-list-add-new"
-              className="border-solid-bold"
-              size="small"
-              variant="outlined"
+              className="checkout-actions"
+              color="secondary"
               onClick={onHandleAddNewPayment}>
               {t("PaymentInfoList.Actions.AddPayMethod")}
             </StyledButton>

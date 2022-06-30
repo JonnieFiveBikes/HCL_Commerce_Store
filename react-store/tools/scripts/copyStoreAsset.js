@@ -11,7 +11,7 @@
 console.log(
   `
 ============================
-Running copyStoreAssest...
+Running copyStoreAssets...
 ============================
 `
 );
@@ -74,9 +74,7 @@ const httpsToken = new RegExp("{{https}}", "g");
 function copyMissingLangObject(source, target, targetPrefix, outputQueue) {
   const srcKeys = Object.keys(source);
   const objKeys = srcKeys.filter((k) => typeof source[k] !== "string");
-  const missing = srcKeys.filter(
-    (k) => target[k] === undefined && typeof source[k] === "string"
-  );
+  const missing = srcKeys.filter((k) => target[k] === undefined && typeof source[k] === "string");
 
   // copy dummy string keys
   missing.forEach((k) => (target[k] = `${targetPrefix}:${source[k]}`));
@@ -125,9 +123,7 @@ function generateDummyTranslations() {
   const enJson = fs.readJsonSync("./public/locales/en-US/translation.json", {
     encoding: "utf-8",
   });
-  langs
-    .filter((l) => l !== "en-US")
-    .forEach(async (l) => processLang(enJson, l));
+  langs.filter((l) => l !== "en-US").forEach(async (l) => processLang(enJson, l));
 }
 
 function copyAsset() {

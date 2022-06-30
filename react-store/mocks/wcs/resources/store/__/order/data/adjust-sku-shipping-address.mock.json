@@ -1,0 +1,65 @@
+{
+  "orderId": "4520481",
+  "orderItem": [
+    {
+      "orderItemId": "10053",
+      "partNumber": "LR-FNTR-0002-0004",
+      "quantity": 1,
+      "orderItemPrice": 579.99,
+      "unitPrice": 579.99
+    }
+  ],
+  "addresses": [
+    {
+      "id": "3074457359265682093",
+      "address1": "Apt #18",
+      "address2": "3436 Aymer ST",
+      "address3": null,
+      "addressType": "SB",
+      "bestCallingTime": null,
+      "billingCode": null,
+      "billingCodeType": null,
+      "businessTitle": null,
+      "city": "Montreal",
+      "country": "Canada",
+      "createdDateTime": "2022-04-29T13:05:36.250Z",
+      "email1": "abc@abc.com",
+      "email2": null,
+      "fax1": null,
+      "fax2": null,
+      "field1": null,
+      "field2": null,
+      "field3": null,
+      "firstName": "Andrew",
+      "lastName": "Smith",
+      "memberId": "4",
+      "middleName": null,
+      "mobilePhone1": null,
+      "mobilePhone1Country": null,
+      "nickName": "shipping 2",
+      "officeAddress": null,
+      "organizationName": null,
+      "organizationUnitName": null,
+      "packageSuppression": null,
+      "personTitle": null,
+      "phone1": null,
+      "phone1Type": null,
+      "phone2": null,
+      "phone2Type": null,
+      "primary": 0,
+      "publishPhone1": null,
+      "publishPhone2": null,
+      "selfAddress": 0,
+      "shippingGeoCode": null,
+      "state": "on",
+      "status": "P",
+      "taxGeoCode": null,
+      "zipCode": "M2B4L6",
+      "links": {
+        "self": {
+          "href": "https://web:8000/rest/admin/v2/addresses/3074457359265682093"
+        }
+      }
+    }
+  ]
+}

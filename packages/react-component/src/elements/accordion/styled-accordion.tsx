@@ -10,9 +10,13 @@
  */
 import React from "react";
 import styled from "styled-components";
-import Accordion from "@material-ui/core/Accordion";
+import Accordion, { AccordionProps } from "@material-ui/core/Accordion";
 
-const StyledAccordion = styled((props: any) => <Accordion {...props} />)`
+interface StyledAccordionProps extends AccordionProps {
+  testId: string;
+}
+
+const StyledAccordionWrapper = styled((props: any) => <Accordion {...props} />)`
   ${({ theme }) => `
     &.MuiAccordion-root.Mui-expanded {
       margin: 0;
@@ -33,5 +37,9 @@ const StyledAccordion = styled((props: any) => <Accordion {...props} />)`
     }
   `}
 `;
+
+const StyledAccordion: React.FC<StyledAccordionProps> = ({ testId, ...props }) => {
+  return <StyledAccordionWrapper data-testid={testId} {...props} />;
+};
 
 export { StyledAccordion };

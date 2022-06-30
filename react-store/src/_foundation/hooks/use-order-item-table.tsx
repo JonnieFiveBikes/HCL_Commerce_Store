@@ -4,23 +4,24 @@
  *
  * HCL Commerce
  *
- * (C) Copyright HCL Technologies Limited 2020
+ * (C) Copyright HCL Technologies Limited 2022
  *
  *==================================================
  */
 //Standard libraries
 import { useState, useEffect, useMemo } from "react";
+import HTMLReactParser from "html-react-parser";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router";
 //Foundation libraries
 import { useSite } from "../../_foundation/hooks/useSite";
 //Custom libraries
 import { CONSTANTS } from "../../constants/order-item-table";
 import FormattedPriceDisplay from "../../components/widgets/formatted-price-display";
-import { INVENTORY_STATUS } from "../../constants/order";
 import { PAGINATION_CONFIGS } from "../../configs/order";
+import * as ROUTES from "../../constants/routes";
 //Redux
 import { currentContractIdSelector } from "../../redux/selectors/contract";
 import * as orderActions from "../../redux/actions/order";
@@ -43,17 +44,22 @@ import {
   useTableUtils,
   TableConstants,
   useCustomTable,
+  StyledLink,
+  StyledCircularProgress,
 } from "@hcl-commerce-store-sdk/react-component";
 
 //GA360
 import AsyncCall from "../../_foundation/gtm/async.service";
-import { cartSelector } from "../../redux/selectors/order";
+import { cartSelector, orderMethodIsPickupSelector } from "../../redux/selectors/order";
 import { useWinDimsInEM } from "./use-win-dims-in-em";
 import { STRING_TRUE, XS_MOBILE_W } from "../../constants/common";
 import { get } from "lodash-es";
 import Closed from "@material-ui/icons/ChevronRight";
 import Open from "@material-ui/icons/ExpandMoreOutlined";
 import storeUtil from "../../utils/storeUtil";
+import inventoryavailabilityService from "../apis/transaction/inventoryavailability.service";
+import { useStoreLocatorValue } from "../context/store-locator-context";
+import { sellersSelector } from "../../redux/selectors/sellers";
 
 const OpenDrawer = () => {
   const { t } = useTranslation();
@@ -114,6 +120,58 @@ const DetailPanel = ({ rowData, ...props }) => {
   ) : null;
 };
 
+function calculateAvailability(o: any, availability: Availability, counter: any) {
+  const { onlineInventory, sellerInventory, physicalStoreInventory } = availability;
+  const deliveryInventory = [...onlineInventory, ...sellerInventory];
+  const { partNumber } = o;
+  let count = counter[partNumber];
+  try {
+    const qty = parseInt(o.quantity);
+    if (physicalStoreInventory.length > 0) {
+      //pickup in store
+      if (!count) {
+        const _avl = physicalStoreInventory.find((i) => i.partNumber === partNumber);
+        if (_avl?.availableQuantity) {
+          count = parseInt(_avl.availableQuantity);
+        }
+      }
+      if (!count || count < qty) {
+        o["availability"] = "NOT_AVAIL_PICKUP";
+      } else {
+        count = count - qty;
+        o["availability"] = "AVAIL_PICKUP";
+      }
+      counter[partNumber] = count;
+    } else {
+      if (!count) {
+        const _avl = deliveryInventory.find((i) => i.partNumber === partNumber);
+        if (_avl?.availableQuantity) {
+          count = parseInt(_avl.availableQuantity);
+        }
+      }
+      if (!count || count < qty) {
+        o["availability"] = "NOT_AVAIL_DELIVERY";
+      } else {
+        count = count - qty;
+        o["availability"] = "AVAIL_DELIVERY";
+      }
+      counter[partNumber] = count;
+    }
+  } catch (e) {
+    console.log("fail to calculate availability", o, availability, e);
+  }
+}
+
+interface PartNumberMap {
+  [key: string]: Set<string>;
+}
+
+interface Availability {
+  onlineInventory: any[];
+  physicalStoreInventory: any[];
+  sellerInventory: any[];
+}
+
 /**
  * Order item table component
  * displays order item table with item info, inventory status, quantity and actions
@@ -129,19 +187,116 @@ export const useOrderItemTable = (props: any) => {
   const contractId = useSelector(currentContractIdSelector);
   const loginStatus = useSelector(loginStatusSelector);
   const isRecurringOrderFeatureEnabled = mySite?.isB2B && loginStatus;
-  const dataProps = props.data;
+  const { preShip, data: dataProps, cartPage = false } = props;
   const { tableState, setTableState } = useCustomTable();
   const { setValueForCell } = useTableUtils();
   const [actionData, setActionData] = useState<any>(null);
+  const sellers = useSelector(sellersSelector);
+  const orderMethodIsPickup = useSelector(orderMethodIsPickupSelector);
+  const reviewPage = useLocation().pathname === ROUTES.CHECKOUT + "/" + ROUTES.CHECKOUT_REVIEW;
+
+  const storeId: string = mySite ? mySite.storeID : "";
+  const payloadBase: any = {
+    storeId: storeId,
+    cancelToken: new CancelToken(function executor(c) {
+      cancels.push(c);
+    }),
+  };
+  const { storeLocator } = useStoreLocatorValue();
+  const selectedStore = useMemo(() => storeLocator.selectedStore, [storeLocator]);
+  const [availability, setAvailability] = useState<Availability>();
+
+  const getInventory = async (pnMap: PartNumberMap) => {
+    let physicalStoreInventory: any[] = [];
+    let onlineInventory: any[] = [];
+    let sellerInventory: any[] = [];
+    if (orderMethodIsPickup && selectedStore) {
+      const _pns: string[] = [];
+      Object.values(pnMap).forEach((pn: Set<string>) => _pns.push(...Array.from(pn)));
+      const _params = {
+        ...payloadBase,
+        partNumbers: _pns.join(),
+        physicalStoreName: selectedStore.physicalStoreName,
+      };
+      try {
+        const resp = await inventoryavailabilityService.getInventoryAvailabilityByPartNumber(_params);
+        physicalStoreInventory = (resp.data.InventoryAvailability ?? []).filter((a) => a.physicalStoreId);
+      } catch (e) {
+        console.log("fail to get physical inventory", _params, e);
+      }
+    } else {
+      const _ops: Promise<any>[] = [];
+      const _sps: Promise<any>[] = [];
+      for (const [key, _pn] of Object.entries(pnMap)) {
+        if (key === "online") {
+          //online inventory, only one sevice call.
+          const _params = {
+            ...payloadBase,
+            partNumbers: Array.from(_pn).join(),
+          };
+          _ops.push(inventoryavailabilityService.getInventoryAvailabilityByPartNumber(_params));
+        } else {
+          //seller inventory call, grouped by sellerId
+          const _params = {
+            ...payloadBase,
+            partNumbers: Array.from(_pn).join(),
+            sellerId: key,
+          };
+          _sps.push(inventoryavailabilityService.getInventoryAvailabilityByPartNumber(_params));
+        }
+      }
+      if (_ops.length > 0) {
+        try {
+          const _oresp = await _ops[0];
+          onlineInventory = _oresp.data.InventoryAvailability ?? [];
+        } catch (e) {
+          console.log("fail to get online inventory", e);
+        }
+      }
+      if (_sps.length > 0) {
+        try {
+          const _resps = await Promise.all(_sps);
+          sellerInventory = (
+            _resps.reduce((p, c) => {
+              const _a: any[] = c.data.InventoryAvailability ?? [];
+              p.push(..._a);
+              return p;
+            }, []) as any[]
+          ).filter((a) => a.x_sellerId);
+        } catch (e) {
+          console.log("fail to get seller inventory", e);
+        }
+      }
+    }
+
+    setAvailability({
+      onlineInventory,
+      sellerInventory,
+      physicalStoreInventory,
+    });
+  };
+
   /**
    * Initialize table data by making a copy
    * Material-table alters the input data, so data cannot be of immutable type
    * @returns Copy of the data prop
    */
   const data = useMemo(() => {
-    const newData = (dataProps ?? []).map((oi) => ({ ...oi }));
+    /**
+     * {partnumber: remainingInventory}
+     * This is based on one partnumber only have one seller
+     */
+    const counter: any = {};
+    const newData = (dataProps ?? []).map((oi) => {
+      const _oi = { ...oi };
+      if (availability) {
+        calculateAvailability(_oi, availability, counter);
+      }
+      return _oi;
+    });
     return newData;
-  }, [dataProps]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataProps, availability]);
 
   const readOnly = props.readOnly !== undefined ? props.readOnly : true;
   const miniCartView = props.miniCartView !== undefined ? props.miniCartView : false;
@@ -158,8 +313,26 @@ export const useOrderItemTable = (props: any) => {
    */
   const initQuantityData = () => {
     const newData: any = {};
+    const pnMap: PartNumberMap = {};
     if (dataProps) {
-      dataProps.map((oi) => {
+      //get all inventories
+      dataProps.forEach((oi) => {
+        const { partNumber, fulfillmentCenterOwnerId } = oi;
+        if (sellers?.sellers?.some((s) => s.id === fulfillmentCenterOwnerId)) {
+          let pSet: Set<string> = pnMap[fulfillmentCenterOwnerId];
+          if (!pSet) {
+            pSet = new Set<string>();
+            pnMap[fulfillmentCenterOwnerId] = pSet;
+          }
+          pSet.add(partNumber);
+        } else {
+          let pSet: Set<string> = pnMap["online"];
+          if (!pSet) {
+            pSet = new Set<string>();
+            pnMap["online"] = pSet;
+          }
+          pSet.add(partNumber);
+        }
         if (oi.quantity) {
           try {
             const parsedQty = parseInt(oi.quantity);
@@ -167,15 +340,15 @@ export const useOrderItemTable = (props: any) => {
               newData[oi.orderItemId] = parsedQty;
             }
           } catch (e) {
-            console.log("Could not parse quantity");
+            console.log("Could not parse quantity", e);
           }
         }
-        return null;
       });
     }
+    getInventory(pnMap);
     return newData;
   };
-  const [quantityList, setQuantityList] = useState<any>(initQuantityData());
+  const [quantityList, setQuantityList] = useState<any>({});
   const defaultOptions = {
     toolbar: false,
     header: !miniCartView,
@@ -202,27 +375,23 @@ export const useOrderItemTable = (props: any) => {
         }),
       };
       const itemValCalc = ({ rowData: r }) => r.name || r.partNumber;
-      const oaValCalc = ({ rowData: r }) => {
-        return r.availableDate === ""
-          ? r.orderItemInventoryStatus === INVENTORY_STATUS.available ||
-            r.orderItemInventoryStatus === INVENTORY_STATUS.allocated
-            ? t("CommerceEnvironment.inventoryStatus.Available")
-            : t("CommerceEnvironment.inventoryStatus.OOS")
-          : r.availableDate <= new Date()
-          ? t("CommerceEnvironment.inventoryStatus.Available")
-          : r.orderItemInventoryStatus !== INVENTORY_STATUS.backordered
-          ? t("CommerceEnvironment.inventoryStatus.Available")
-          : t("CommerceEnvironment.inventoryStatus.Backordered");
+      const oaValCalc = ({ rowData }) => {
+        return storeUtil.constructInventoryMessage(rowData, t, cartPage, selectedStore?.storeName);
       };
       const priceCalc = ({ rowData: r }) => Number(r.orderItemPrice);
       const quantityCalc = ({ rowData: r }) => Number(quantityList[r.orderItemId]);
+      const statusCalc = ({ rowData: r }) => t(`Order.Status_${r.orderItemStatus}`);
 
       const QuantityDisplay = (props: any) => (
-        <StyledTypography>{quantityList[props.rowData.orderItemId]}</StyledTypography>
+        <StyledTypography data-testid={`order-item-quantity-${props.rowData.partNumber}`}>
+          {quantityList[props.rowData.orderItemId]}
+        </StyledTypography>
       );
 
       const OrderItemPrice = (props: any) => (
-        <StyledTypography align={miniCartView ? "right" : "inherit"}>
+        <StyledTypography
+          data-testid={`order-item-price-${props.rowData.partNumber}`}
+          align={miniCartView ? "right" : "inherit"}>
           <FormattedPriceDisplay min={parseFloat(props.rowData.orderItemPrice)} currency={props.rowData.currency} />
         </StyledTypography>
       );
@@ -230,13 +399,14 @@ export const useOrderItemTable = (props: any) => {
         return (
           <>
             {rowData.seo && rowData.seo.href ? (
-              <Link to={rowData.seo?.href} onClick={handleMiniCartClose ? handleMiniCartClose : null}>
+              <StyledLink to={rowData.seo?.href} onClick={handleMiniCartClose ? handleMiniCartClose : null}>
                 <StyledAvatar
+                  data-testid={`order-item-thumbnail-image-${rowData.partNumber}`}
                   alt={rowData.name}
                   src={rowData.thumbnail}
                   style={{ margin: "0", justifyContent: "flex-start" }}
                 />
-              </Link>
+              </StyledLink>
             ) : (
               <StyledAvatar alt={rowData.name} src={rowData.thumbnail} />
             )}
@@ -252,7 +422,8 @@ export const useOrderItemTable = (props: any) => {
         const itemMemberId = rowData.xitem_memberId;
         const { w } = useWinDimsInEM();
         const mobile = !miniCartView && w > XS_MOBILE_W ? true : undefined;
-        const disabled = rowData.freeGift === "true" || (cart?.buyerId !== userId && userId !== itemMemberId);
+        const disabled =
+          rowData.freeGift === "true" || (cart?.buyerId !== userId && userId !== itemMemberId) || reviewPage;
 
         /**
          * Dispatch quantity update action for order item
@@ -284,6 +455,7 @@ export const useOrderItemTable = (props: any) => {
           <QuantityDisplay rowData={rowData} />
         ) : (
           <StyledNumberInput
+            data-testid={`order-item-quantity-input-${rowData.partNumber}`}
             mobile={mobile}
             value={quantityList[rowData.orderItemId]}
             min={1}
@@ -305,16 +477,16 @@ export const useOrderItemTable = (props: any) => {
               <StyledGrid item>
                 <StyledTypography variant="body2" style={{ wordBreak: "break-word" }}>
                   {rowData.seo && rowData.seo.href ? (
-                    <Link to={rowData.seo?.href} onClick={handleMiniCartClose}>
+                    <StyledLink to={rowData.seo?.href} onClick={handleMiniCartClose}>
                       {rowData.name ? rowData.name : rowData.partNumber}
-                    </Link>
+                    </StyledLink>
                   ) : rowData.name ? (
                     rowData.name
                   ) : (
                     rowData.partNumber
                   )}
                 </StyledTypography>
-                <StyledTypography variant="body1">
+                <StyledTypography data-testid={`order-item-sku-${rowData.partNumber}`} variant="body1">
                   {!miniCartView && t("OrderItemTable.Labels.SKU")}
                   {rowData.partNumber}
                 </StyledTypography>
@@ -329,7 +501,7 @@ export const useOrderItemTable = (props: any) => {
                   </StyledTypography>
                 )}
               </StyledGrid>
-              {miniCartView && (
+              {miniCartView && !reviewPage && (
                 <StyledGrid item>
                   <DeleteActionCell {...{ rowData }} />
                 </StyledGrid>
@@ -387,11 +559,17 @@ export const useOrderItemTable = (props: any) => {
             disabled={disabled}
             color="primary"
             style={{ padding: "0.2rem" }}
-            onClick={() => removeItem(rowData)}>
+            onClick={() => removeItem(rowData)}
+            data-testid={`order-remove-item-button-${rowData.partNumber}`}>
             {miniCartView ? <CloseIcon /> : <DeleteOutlineIcon />}
           </StyledIconButton>
         );
       };
+
+      const ItemStatusCell = ({ rowData: r }) => {
+        return t(`Order.Status_${r.orderItemStatus}`);
+      };
+
       let columns: TableColumnDef[] = [
         {
           title: "",
@@ -417,26 +595,32 @@ export const useOrderItemTable = (props: any) => {
           },
         },
         {
+          title: t("OrderItemTable.Labels.status"),
+          keyLookup: {
+            key: CONSTANTS.status,
+          },
+          sortable: { fn: statusCalc },
+          display: {
+            template: ItemStatusCell,
+          },
+        },
+        {
           title: t("OrderItemTable.Labels.Status"),
           keyLookup: {
             key: CONSTANTS.orderItemInventoryStatus,
           },
           sortable: { fn: oaValCalc },
           display: {
-            template: ({ rowData, ...props }) => (
-              <>
-                {rowData.availableDate === ""
-                  ? rowData.orderItemInventoryStatus === INVENTORY_STATUS.available ||
-                    rowData.orderItemInventoryStatus === INVENTORY_STATUS.allocated
-                    ? t("CommerceEnvironment.inventoryStatus.Available")
-                    : t("CommerceEnvironment.inventoryStatus.OOS")
-                  : rowData.availableDate <= new Date()
-                  ? t("CommerceEnvironment.inventoryStatus.Available")
-                  : rowData.orderItemInventoryStatus !== INVENTORY_STATUS.backordered
-                  ? t("CommerceEnvironment.inventoryStatus.Available")
-                  : t("CommerceEnvironment.inventoryStatus.Backordered")}
-              </>
-            ),
+            template: ({ rowData, ...props }) => {
+              const _avi = storeUtil.constructInventoryMessage(rowData, t, cartPage, selectedStore?.storeName);
+              return _avi ? (
+                <StyledTypography data-testid={`order-item-inventory-status-${rowData.partNumber}`}>
+                  {HTMLReactParser(_avi)}
+                </StyledTypography>
+              ) : (
+                <StyledCircularProgress />
+              );
+            },
           },
         },
 
@@ -484,6 +668,12 @@ export const useOrderItemTable = (props: any) => {
       if (readOnly) {
         columns = columns.filter((col) => col.keyLookup.key !== CONSTANTS.orderItemActions);
       }
+
+      // don't show status if order hasn't been shipped
+      if (preShip) {
+        columns = columns.filter(({ keyLookup: { key: k } }) => k !== CONSTANTS.status);
+      }
+
       if (miniCartView) {
         columns = columns.filter(
           (col) =>

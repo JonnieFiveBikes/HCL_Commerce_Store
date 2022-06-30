@@ -20,7 +20,7 @@ import FormattedPriceDisplay from "../../../widgets/formatted-price-display";
 //UI
 import { CustomTable, StyledTypography, withCustomTableContext } from "@hcl-commerce-store-sdk/react-component";
 import { PAGINATION } from "../../../../constants/common";
-import { cloneDeep } from "lodash-es";
+import { chunk, cloneDeep } from "lodash-es";
 
 interface RecurringOrderHistoryProps {
   parentOrderId: string;
@@ -33,10 +33,10 @@ const ATTR2COL = {
   orderStatus: "STATUS",
 };
 const DIRECTION = { asc: "ASC", desc: "DESC" };
+const CancelToken = Axios.CancelToken;
 
 const useRecurringOrder = (props) => {
   const { parentOrderId } = props;
-  const CancelToken = Axios.CancelToken;
   const cancels: Canceler[] = useMemo(() => [], []);
 
   const { t, i18n } = useTranslation();
@@ -82,9 +82,15 @@ const useRecurringOrder = (props) => {
         title: t("Order.Status"),
         keyLookup: { key: "orderStatus" },
         display: {
-          cellStyle,
-          template: ({ rowData }) => {
-            return <>{t(`Order.Status_${rowData.orderStatus}`)}</>;
+          template: ({ rowData, ...props }) => {
+            const oStatus = t(`Order.Status_${rowData.orderStatus}`);
+            const groups = rowData.orderItem?.reduce((m, v) => {
+              m[v.orderItemStatus] = 1;
+              return m;
+            }, {});
+            const grpSize = Object.keys(groups ?? {}).length;
+            const disp = grpSize <= 1 ? oStatus : t("Order.multiStatus");
+            return <>{disp}</>;
           },
         },
         sortable: {},
@@ -118,6 +124,28 @@ const useRecurringOrder = (props) => {
     []
   );
 
+  const getOrderItems = useCallback(
+    async (container) => {
+      let count = 0;
+      const ids = container.data.map((o) => o.orderId);
+      const widget = getDisplayName(RecurringOrderHistory);
+
+      // do 5 at a time
+      const blocks = chunk(ids, 5);
+      const x = blocks.map(async (block) => {
+        const p = block.map((orderId) => {
+          const payload: any = { widget, cancelToken: new CancelToken((c) => cancels.push(c)), orderId };
+          return orderService.findByOrderId(payload);
+        });
+        const r = await Promise.all(p);
+        r.forEach(({ data }) => (container.data[count++].orderItem = data.orderItem));
+      });
+
+      await Promise.all(x);
+    },
+    [cancels]
+  );
+
   const getOrders = useCallback(
     async (query, orderId) => {
       const widget = getDisplayName(RecurringOrderHistory);
@@ -148,12 +176,18 @@ const useRecurringOrder = (props) => {
         const { recordSetTotal: t, Order: data = [] } = r.data;
         Object.assign(result, { totalCount: parseInt(t), data });
       } catch (e) {
-        return result;
+        console.log("Unable to fetch already-recurred orders for parent: %o", orderId);
+      }
+
+      try {
+        await getOrderItems(result);
+      } catch (e) {
+        console.log("Unable to fetch order-items for already-recurred orders");
       }
 
       return result;
     },
-    [CancelToken, cancels]
+    [getOrderItems, cancels]
   );
 
   const getPage = useCallback(

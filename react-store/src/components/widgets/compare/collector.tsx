@@ -242,7 +242,11 @@ export const CompareCollectorWidget = (props) => {
               <StyledGrid item sm={9} md={10} container spacing={2}>
                 <StyledGrid item>
                   {data.len > 1 ? (
-                    <StyledButton testId="open-compare" size="small" color="primary" onClick={compare.openCompare}>
+                    <StyledButton
+                      testId="compare-selected-products"
+                      size="small"
+                      color="primary"
+                      onClick={compare.openCompare}>
                       {t("compare.compSel")}
                     </StyledButton>
                   ) : (
@@ -250,11 +254,13 @@ export const CompareCollectorWidget = (props) => {
                   )}
                 </StyledGrid>
                 <Actions item>
-                  <OutlinedButton onClick={compare.removeAll}>{t("compare.clearSel")}</OutlinedButton>
+                  <OutlinedButton data-testid="button-clear-selection" onClick={compare.removeAll}>
+                    {t("compare.clearSel")}
+                  </OutlinedButton>
                 </Actions>
               </StyledGrid>
               <Actions sm={3} md={2} className="right">
-                <OutlinedButton onClick={setOpen.bind(null, !open)}>
+                <OutlinedButton data-testid="button-hide-expand" onClick={setOpen.bind(null, !open)}>
                   {t(open ? "compare.hide" : "compare.expand")}
                   {open ? <ExpandMoreIcon /> : <ExpandLessIcon />}
                 </OutlinedButton>
@@ -267,7 +273,11 @@ export const CompareCollectorWidget = (props) => {
                 <StyledGrid item sm={12} container className="bottom-margin-2">
                   {data.storage.filter(Boolean).map((obj, i) => (
                     <ThumbBox key={i} xs={12 / data.max} className="thumb">
-                      <StyledIconButton className="closeIcon" color="primary" onClick={remove.bind(this, obj)}>
+                      <StyledIconButton
+                        data-testid={`button-product-compare-${obj.partNumber.toLowerCase()}-close`}
+                        className="closeIcon"
+                        color="primary"
+                        onClick={remove.bind(this, obj)}>
                         <CloseIcon fontSize="small" />
                       </StyledIconButton>
                       <StyledProductImage src={obj.thumbnail} />

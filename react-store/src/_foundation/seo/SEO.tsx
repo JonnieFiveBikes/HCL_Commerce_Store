@@ -46,7 +46,8 @@ const SEO: React.FC = (props: any) => {
   const { t, i18n } = useTranslation();
   const identifier = useMemo(() => {
     const _i = pathname.substring(1) || HOME;
-    return _i.split(CHILD_ROUTE_SEPARATOR)[0];
+    //Rest client is using URLSearchParams to encode the query parameters.
+    return decodeURI(_i.split(CHILD_ROUTE_SEPARATOR)[0]);
   }, [pathname]);
   const [first, setFirst] = React.useState(true);
 
@@ -104,7 +105,7 @@ const SEO: React.FC = (props: any) => {
     if (site !== null && identifier) {
       dispatch(
         GET_SEO_CONFIG_ACTION({
-          identifier: identifier,
+          identifier,
           ...payloadBase,
         })
       );

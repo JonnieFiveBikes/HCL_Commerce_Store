@@ -16,7 +16,7 @@ on:
   # TODO: Uncomment/comment triggers based on your needs
   # Triggers the workflow on push or pull request events but only for the main branch
    push:
-     branches: [ main ]
+   branches: [ main ]
 #   pull_request:
 #     branches: [ main ]
 

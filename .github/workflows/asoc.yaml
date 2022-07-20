@@ -15,7 +15,7 @@ name: HCL ASoC SAST Workflow
 on:
   # TODO: Uncomment/comment triggers based on your needs
   # Triggers the workflow on push or pull request events but only for the main branch
-#   push:
+   push:
      branches: [ main ]
 #   pull_request:
 #     branches: [ main ]

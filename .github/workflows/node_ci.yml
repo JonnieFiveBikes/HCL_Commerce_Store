@@ -60,12 +60,7 @@ jobs:
           asoc_secret: ${{secrets.ASOC_SECRET}}
         env: 
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          ASOC_KEY: ${{ secrets.ASOC_KEY }}
-          ASOC_SECRET: ${{ secrets.ASOC_SECRET }}
-          ASOC_SCAN_NAME: Automated Scan from Github Actions
-          ASOC_APPID: ${{ secrets.ASOC_APPID }}
-          ASOC_TARGET_DIR: main
-          ASOC_WAIT: True
+ 
         
         
 

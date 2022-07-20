@@ -34,7 +34,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
         with:
-          path: src
+          repository: JonnieFiveBikes/HCL_Commerce_Store/src
 
       # Runs a set of commands using the runners shell
       - name: Check powershell version

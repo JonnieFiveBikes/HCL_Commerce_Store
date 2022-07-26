@@ -46,6 +46,7 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
         BUILD_NUMBER: 9.1.6-${{ github.run_number }}
+        GITHUB_SHA: ${{GITHUB_SHA}}
 
   
   ASOCTrigger:

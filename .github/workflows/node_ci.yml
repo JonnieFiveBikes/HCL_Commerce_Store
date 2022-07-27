@@ -45,8 +45,8 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
-        BUILD_NUMBER: ${{ github.run_number }}
-        GITHUB_SHA: ${{github.SHA}}
+        BUILD_NUMBER: ${{ github.run_attempt }}
+        GITHUB_SHA1: ${{github.sha}}
 
   
   ASOCTrigger:

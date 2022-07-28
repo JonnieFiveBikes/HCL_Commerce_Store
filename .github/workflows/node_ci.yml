@@ -47,6 +47,9 @@ jobs:
         SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
         BUILD_NUMBER: ${{ github.run_number }}
         GITHUB_SHA: ${{ github.sha }}
+        SONAR_LINKS_CI: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        SONAR_ANALYSIS_BUILDURL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
 
   
   ASOCTrigger:

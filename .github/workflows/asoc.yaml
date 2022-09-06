@@ -49,8 +49,8 @@ jobs:
       # Runs AppScan Step
       - name: Perform HCL AppScan Security Analysis
         env:
-          ASOC_KEY: ${{ secrets.ASOC_API_KEY }}
-          ASOC_SECRET: ${{ secrets.ASOC_API_SECRET }}
+          ASOC_KEY: ${{ secrets.ASOC_KEY }}
+          ASOC_SECRET: ${{ secrets.ASOC_SECRET }}
           ASOC_SCAN_NAME: Automated Scan from Github Actions
           ASOC_APPID: ${{ secrets.ASOC_APPID }}
           ASOC_TARGET_DIR: main

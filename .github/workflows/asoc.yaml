@@ -24,7 +24,7 @@ jobs:
       - name: Checkout ASoC SAST Repo
         uses: actions/checkout@v2
         with:
-          repository: cwtravis/asoc-sast-linux
+          repository: jonniefivebikes/asoc-sast-linux
           path: asoc
         
       # Runs a set of commands using the runners shell

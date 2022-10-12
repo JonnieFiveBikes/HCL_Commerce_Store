@@ -7,7 +7,7 @@
 [//]: #
 [//]: # "================================================="
 
-## Introduction
+## Introductiontest
 
 This project is the HCL Commerce Store SDK. The project provides a development environment with React store applications for a
 B2C-based store called Emerald and a B2B-based store called Sapphire. The applications themselves share common code and differ

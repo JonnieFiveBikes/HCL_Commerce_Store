@@ -58,3 +58,15 @@ jobs:
         with:
           name: hcl_appscan_results
           path: reports/
+
+  # Step to Link Scan with BuildURL via http post
+  Link:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy Stage
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'https://accelerate.hcldevops.com/reporting-consumer/pluginEndpoint/627bf129eb24cc00180e2767/asoc'
+        method: 'GET'
+        data: '{{"scanId":"", "buildUrl": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}}'
+  

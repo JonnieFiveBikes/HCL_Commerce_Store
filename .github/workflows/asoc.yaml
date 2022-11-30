@@ -48,6 +48,7 @@ jobs:
           ASOC_APPID: ${{ secrets.ASOC_APPID }}
           ASOC_TARGET_DIR: main
           ASOC_WAIT: True
+          SONAR_ANALYSIS_BUILDURL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           
         run: |
           python3 asoc/RunSAST.py

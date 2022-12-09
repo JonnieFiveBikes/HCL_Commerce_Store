@@ -5,7 +5,10 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
-COPY ["package.json", "package-lock.json*", "./"]
+RUN echo fs.inotify.max_user_watches=524288 > /etc/sysctl.conf 
+RUN echo sysctl -p
+
+#COPY ["package.json", "package-lock.json*", "./"]
 
 COPY . .
 
@@ -13,4 +16,4 @@ RUN npm install --production
 
 #CMD [ "npm", "run mock" ]
 EXPOSE 3000
-CMD npm run mock -D FOREGROUND
+CMD npm --prefix=/app run mock -D FOREGROUND

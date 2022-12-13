@@ -1,6 +1,6 @@
-name: Node.js CI 
+name: Sonarqube.js CI 
 
-on: [push]
+on: [pullrequest]
 
 env:
   CI: false 

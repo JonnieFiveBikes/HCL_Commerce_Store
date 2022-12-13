@@ -59,5 +59,24 @@ jobs:
           name: hcl_appscan_results
           path: reports/
 
+  ASOCTrigger:
+    name: ASOC CodeSweep Trigger
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Run AppScan CodeSweep
+        uses: HCL-TECH-SOFTWARE/appscan-codesweep-action@v1
+        with:
+          asoc_key: ${{secrets.ASOC_KEY}}
+          asoc_secret: ${{secrets.ASOC_SECRET}}
+        env: 
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+ 
+        
+        
+
+
+
 
   

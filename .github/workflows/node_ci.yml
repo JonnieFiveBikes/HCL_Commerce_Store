@@ -58,7 +58,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: jonniefivebikes/emerald:latest, jonniefivebikes/emerald:9.1.6-${{GITHUB_RUN_NUMBER}}
+          tags: jonniefivebikes/emerald:latest
      
 #  sonarQubeTrigger:
 #    name: SonarQube Trigger

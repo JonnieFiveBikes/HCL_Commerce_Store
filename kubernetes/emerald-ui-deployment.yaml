@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - image: hub.docker.io/jonniefivebikes/emerald:latest
-        name: emerald-ui
+        name: emerald
         ports:
         - containerPort: 3000

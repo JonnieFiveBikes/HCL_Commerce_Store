@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guestbook-ui
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: emerald-ui
+  template:
+    metadata:
+      labels:
+        app: emerald-ui
+    spec:
+      containers:
+      - image: hub.docker.io/jonniefivebikes/emerald:latest
+        name: emerald-ui
+        ports:
+        - containerPort: 3000

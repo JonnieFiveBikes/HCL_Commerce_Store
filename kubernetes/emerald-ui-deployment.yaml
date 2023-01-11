@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: emerald-ui
+  name: emerald
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: emerald-ui
+      app: emerald
   template:
     metadata:
       labels:
-        app: emerald-ui
+        app: emerald
     spec:
       containers:
       - image: hub.docker.io/jonniefivebikes/emerald:latest

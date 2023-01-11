@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: guestbook-ui
+  name: emerald-ui
 spec:
   ports:
   - port: 3000

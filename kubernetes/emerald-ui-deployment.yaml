@@ -14,7 +14,7 @@ spec:
         app: emerald
     spec:
       containers:
-      - image: docker.io/jonniefivebikes/emerald:latest
+      - image: docker.io/jonniefivebikes/emerald:201
         name: emerald
         ports:
         - containerPort: 3000

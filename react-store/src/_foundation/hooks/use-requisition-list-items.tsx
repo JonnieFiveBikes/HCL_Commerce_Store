@@ -25,9 +25,10 @@ import {
   useTableUtils,
   TableConstants,
   StyledGrid,
+  StyledTooltip,
 } from "@hcl-commerce-store-sdk/react-component";
-import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
-import ShoppingCart from "@material-ui/icons/ShoppingCart";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import { EMPTY_STRING, OFFER } from "../../constants/common";
 import { CONSTANTS } from "../../constants/requisition-list-items";
 import { useEffect, useMemo } from "react";
@@ -35,7 +36,6 @@ import { PAGINATION } from "../../constants/common";
 import * as orderActions from "../../redux/actions/order";
 import { currentContractIdSelector } from "../../redux/selectors/contract";
 import { useDispatch, useSelector } from "react-redux";
-import Axios, { Canceler } from "axios";
 import { useSite } from "./useSite";
 import storeUtil from "../../utils/storeUtil";
 import { get } from "lodash-es";
@@ -52,12 +52,11 @@ const useUtils = () => {
   const dispatch = useDispatch();
   const { mySite } = useSite();
   const storeId: string = mySite ? mySite.storeID : "";
-  const cancels: Canceler[] = [];
-  const CancelToken = Axios.CancelToken;
+  const controller = useMemo(() => new AbortController(), []);
   const payloadBase: any = {
     storeId: storeId,
     widget: "Requisition List Items",
-    cancelToken: new CancelToken((c) => cancels.push(c)),
+    signal: controller.signal,
   };
 
   const deleteKeys = ({ orderId, currency, keys, t, h, s, f }) => {
@@ -147,7 +146,7 @@ const useUtils = () => {
   );
 
   useEffect(
-    () => () => cancels.forEach((cancel) => cancel()),
+    () => () => controller.abort(),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
@@ -214,12 +213,11 @@ const QuantityCell = ({ rowData: r, headers: h }) => {
   const { mySite } = useSite();
   const storeId: string = mySite ? mySite.storeID : "";
   const currency: string = get(mySite, "defaultCurrencyID", "");
-  const cancels: Canceler[] = [];
-  const CancelToken = Axios.CancelToken;
+  const controller = useMemo(() => new AbortController(), []);
   const payloadBase: any = {
     storeId: storeId,
     widget: "Requisition List Items",
-    cancelToken: new CancelToken((c) => cancels.push(c)),
+    signal: controller.signal,
   };
   const onChangeQuantity = (_new) => {
     setValueForCell(CONSTANTS.quantity, _new, r, h, s, f);
@@ -252,7 +250,7 @@ const QuantityCell = ({ rowData: r, headers: h }) => {
   useEffect(() => {
     setValueForCell(CONSTANTS.quantity, r.quantity, r, h, s, f);
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -277,12 +275,12 @@ export const useRequisitionListItems = (props) => {
   const { deleteKeys, findSelectedKeys, getRowKey, addKeysToCart } = useUtils();
   const { tableState: s, setTableState: f } = useCustomTable();
   const { setCurrentContextValue, getCurrentContext, getValueForCell, setValueForCell } = useTableUtils();
-  const cancels: Canceler[] = [];
+  const controller = useMemo(() => new AbortController(), []);
   const forUserId = useSelector(forUserIdSelector);
   const uId = useSelector(userIdSelector);
   const userId = forUserId ?? uId;
 
-  const AddToCartAction = ({ rowData, fullTable: t, headers: h, ...props }) => {
+  const AddToCartAction = ({ rowData, fullTable: t, headers: h, tooltipTitle, ...props }) => {
     const onClickSKC = () => {
       const keys = [getRowKey(rowData, h)];
       addKeysToCart({ keys, t, h, s, f });
@@ -293,7 +291,9 @@ export const useRequisitionListItems = (props) => {
         color="primary"
         onClick={onClickSKC}
         data-testid="use-requisition-shopping-cart-icon-button">
-        <ShoppingCart />
+        <StyledTooltip title={tooltipTitle}>
+          <ShoppingCart />
+        </StyledTooltip>
       </StyledIconButton>
     );
   };
@@ -340,7 +340,7 @@ export const useRequisitionListItems = (props) => {
     );
   };
 
-  const DeleteAction = ({ rowData: r, fullTable: t, headers: h, ...props }) => {
+  const DeleteAction = ({ rowData: r, fullTable: t, headers: h, tooltipTitle, ...props }) => {
     const orderId = get(getCurrentContext(s), "orderId");
     const buyerId = get(getCurrentContext(s), "buyerId");
     const currency: string = get(mySite, "defaultCurrencyID", "");
@@ -356,7 +356,9 @@ export const useRequisitionListItems = (props) => {
         onClick={onClickSDK}
         {...{ disabled }}
         data-testid="use-requisition-delete-icon-button">
-        <DeleteOutlineOutlinedIcon />
+        <StyledTooltip title={tooltipTitle}>
+          <DeleteOutlineOutlinedIcon />
+        </StyledTooltip>
       </StyledIconButton>
     );
   };
@@ -490,8 +492,10 @@ export const useRequisitionListItems = (props) => {
           cellStyle,
           template: ({ rowData, fullTable, headers, ...props }) => (
             <>
-              <DeleteAction {...{ rowData, fullTable, headers, ...props }} />
-              <AddToCartAction {...{ rowData, fullTable, headers, ...props }} />
+              <DeleteAction {...{ rowData, fullTable, headers, tooltipTitle: t("CheckoutProfile.Delete"), ...props }} />
+              <AddToCartAction
+                {...{ rowData, fullTable, headers, tooltipTitle: t("productDetail.AddToCart"), ...props }}
+              />
             </>
           ),
         },
@@ -524,7 +528,7 @@ export const useRequisitionListItems = (props) => {
 
   useEffect(() => {
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -15,7 +15,7 @@ import { useNavigate, useParams } from "react-router";
 import Axios, { Canceler } from "axios";
 
 import { useTranslation } from "react-i18next";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 import { OK } from "http-status-codes";
 //Custom libraries
 import requisitionListService from "../../../../_foundation/apis/transaction/requisitionList.service";

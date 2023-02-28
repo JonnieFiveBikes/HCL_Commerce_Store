@@ -23,12 +23,48 @@ import { sessionErrorSelector } from "../../selectors/error";
 //Foundation libraries
 import { getSite } from "../../../_foundation/hooks/useSite";
 let handlingError = false;
+
+type Error = {
+  isAxiosError: boolean;
+  config: {
+    url: string;
+    method: string;
+  };
+  response: {
+    status: number;
+    data: {
+      errorCode?: string;
+      errorMessage?: string;
+      code?: string;
+      errors: {
+        errorCode: string;
+        errorKey: string;
+      }[];
+    };
+  };
+};
+
+const isApprovalError = (e: Error) => {
+  let rc = false;
+  if (e?.response) {
+    const { data } = e.response;
+    const { errorCode } = data ?? {};
+
+    // master approval error-code list is here:
+    // <gh02>/.../commerce-approval/blob/master/approval/src/main/resources/messages/approval-error-codes.properties
+    if (errorCode?.match(/^APRV.*\d+$/)) {
+      rc = true;
+    }
+  }
+  return rc;
+};
+
 /**
  * Saga worker to invoke get orders API
  */
 export function* handleAxiosErrors(action: any) {
   const mySite = getSite();
-  const { payload: error } = action;
+  const { payload: error }: { payload: Error } = action;
   const isLogoff =
     error.config && error.config.url.endsWith("loginidentity/@self") && error.config.method.toLowerCase() === "delete";
   //ignore logoff error
@@ -43,7 +79,7 @@ export function* handleAxiosErrors(action: any) {
         e.errorKey === ERRORS.EXPIRED_ACTIVITY_TOKEN_ERROR ||
         e.errorCode === ERRORS.ACTIVITY_TOKEN_ERROR_CODE ||
         e.errorKey === ERRORS.ACTIVITY_TOKEN_ERROR_KEY ||
-        e.erroCode === ERRORS.COOKIE_EXPIRED_ERROR_CODE ||
+        e.errorCode === ERRORS.COOKIE_EXPIRED_ERROR_CODE ||
         e.errorKey === ERRORS.COOKIE_EXPIRED_ERROR_KEY
       ) {
         const payload = {
@@ -119,10 +155,8 @@ export function* handleAxiosErrors(action: any) {
       };
       yield put(HANDLE_SESSION_ERROR_ACTION(payload));
     } else {
-      const payload = {
-        errorMessage: error.toLocaleString(),
-        handled: false,
-      };
+      const errorMessage = isApprovalError(error) ? error.response.data.errorMessage : error.toLocaleString();
+      const payload = { errorMessage, handled: false };
       yield put(HANDLE_SESSION_ERROR_ACTION(payload));
     }
     setTimeout(() => {

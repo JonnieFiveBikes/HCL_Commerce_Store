@@ -8,8 +8,8 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import FormHelperText from "@material-ui/core/FormHelperText";
+import styled from "@mui/styled-engine-sc";
+import FormHelperText from "@mui/material/FormHelperText";
 import { StyledTypography } from "../typography";
 
 const StyledFormHelperText = styled(({ ...props }) => (
@@ -19,7 +19,7 @@ const StyledFormHelperText = styled(({ ...props }) => (
     return `
       padding: 0;
       margin: 0;
-      margin-bottom: ${theme.spacing(0.5)}px;
+      margin-bottom: ${theme.spacing(0.5)};
     `;
   }}
 `;

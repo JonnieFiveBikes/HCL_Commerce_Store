@@ -1,4 +1,4 @@
-## @hcl-commerce-store-sdk/typescript-axios-es@9.1.7
+## @hcl-commerce-store-sdk/typescript-axios-es@9.1.12
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -24,10 +24,8 @@ It can be used in both TypeScript and JavaScript. In TypeScript, the definition 
 
 To build and compile the typescript sources to javascript use:
 
-```
-npm install
-npm run build:production
-```
+- `npm install`
+- `npm run build:dev` (or `npm run build:production` for an optimized bundle)
 
 ### Publishing
 
@@ -40,21 +38,19 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @hcl-commerce-store-sdk/typescript-axios-es@9.1.11 --save
+npm install @hcl-commerce-store-sdk/typescript-axios-es@9.1.12 --save
 ```
 
 _unPublished (not recommended):_
 
 ```
 npm install PATH_TO_GENERATED_PACKAGE --save
-
+```
 
 ### Generating or Re-generating
 
 ```
 
-npx openapi-generator-cli generate -g typescript-axios -c config.yaml -i specs/es-query.json
-
-```
+npx @openapitools/openapi-generator-cli generate -g typescript-axios -c config.yaml -i specs/es-query.json
 
 ```

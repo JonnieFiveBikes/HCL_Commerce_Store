@@ -10,13 +10,13 @@
  */
 //Standard libraries
 import React from "react";
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { StyledContentCarouselSlider, StyledProgressPlaceholder } from "../../elements";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 
-const StyledContentCarouselLayout = styled.div`
+const StyledContentCarouselLayout = styled("div")`
   ${({ theme }) => `
-    margin: ${theme.spacing(4)}px 0;
+    margin: ${theme.spacing(4)} 0;
   `}
 `;
 

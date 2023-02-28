@@ -9,10 +9,9 @@
  *==================================================
  */
 //Standard libraries
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import Axios, { Canceler } from "axios";
 import { useSelector } from "react-redux";
 import getDisplayName from "react-display-name";
 //Foundation libraries
@@ -55,14 +54,10 @@ function PersonalInformationLayout() {
   const [zipCode, setZipCode] = useState<string>(addressDetails?.zipCode);
   const { mySite } = useSite();
 
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
-
+  const controller = useMemo(() => new AbortController(), []);
   const payloadBase: any = {
     widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+    signal: controller.signal,
   };
   const cancel = () => {
     setEditView(false);
@@ -133,7 +128,7 @@ function PersonalInformationLayout() {
 
   useEffect(() => {
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

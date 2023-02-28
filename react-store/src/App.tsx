@@ -60,7 +60,7 @@ const ScrollToTop = () => {
   React.useEffect(() => {
     //scroll to top on path change.
     setTimeout(() => {
-      window.scrollTo(0, 0);
+      (window.top ?? window).scrollTo(0, 0);
     });
   }, [pathname]);
   return null;

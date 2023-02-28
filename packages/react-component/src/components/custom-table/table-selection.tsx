@@ -9,7 +9,7 @@
  *---------------------------------------------------
  */
 
-import Cancel from "@material-ui/icons/CancelOutlined";
+import Cancel from "@mui/icons-material/CancelOutlined";
 import { StyledGrid, StyledIconButton, StyledTypography } from "../../elements";
 import { useTableUtils } from "../../hooks";
 import { TableConstants } from "../../types";

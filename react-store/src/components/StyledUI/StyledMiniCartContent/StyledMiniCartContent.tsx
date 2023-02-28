@@ -14,7 +14,7 @@ import React from "react";
 import { OrderItemTable } from "../../widgets/order-item-table";
 import FormattedPriceDisplay from "../../widgets/formatted-price-display";
 //UI
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 import {
   StyledBox,
   StyledButton,
@@ -101,7 +101,7 @@ const StyledMiniCartContent = React.forwardRef<any, MiniCartContentProps>((props
         </StyledTypography>
       )}
       <Divider />
-      <StyledBox className="horizontal-padding-2 vertical-padding-1" align="center">
+      <StyledBox className="horizontal-padding-2 vertical-padding-1" textAlign="center">
         {isB2B && !isOrderOwner ? (
           <StyledButton testId="handle-cart-on-click" color="secondary" onClick={handleCartOnClick}>
             {cartLinkLabel}

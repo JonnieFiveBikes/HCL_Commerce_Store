@@ -10,8 +10,7 @@
  */
 
 //Standard libraries
-import { useRef, useEffect, useState } from "react";
-import Axios, { Canceler } from "axios";
+import { useRef, useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router";
 import { CREATED } from "http-status-codes";
 //Custom libraries
@@ -30,11 +29,10 @@ import { VIEW_UPLOAD_LOGS } from "../../constants/routes";
 
 export const useUploadReqisitionList = (): any => {
   const uploadFileRef = useRef(null);
-  const cancels: Canceler[] = [];
-  const CancelToken = Axios.CancelToken;
+  const controller = useMemo(() => new AbortController(), []);
   const payloadBase: any = {
     widget: "UploadRequisitionList",
-    cancelToken: new CancelToken((c) => cancels.push(c)),
+    signal: controller.signal,
   };
   const navigate = useNavigate();
   const [requisitionListName, setRequisitionListName] = useState<string>(EMPTY_STRING);
@@ -46,7 +44,7 @@ export const useUploadReqisitionList = (): any => {
 
   useEffect(() => {
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

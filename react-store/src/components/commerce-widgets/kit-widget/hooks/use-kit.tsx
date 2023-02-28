@@ -49,6 +49,7 @@ import { loginStatusSelector } from "../../../../redux/selectors/user";
 import { GetCategoriesSelector } from "../../../../redux/selectors/category";
 import * as wishListActions from "../../../../redux/actions/wish-list";
 import { breadcrumbsSelector } from "../../../../redux/selectors/catalog";
+import { sellersSelector } from "../../../../redux/selectors/sellers";
 //UI
 import {
   AttachmentLayout,
@@ -553,7 +554,7 @@ const useKit = (props) => {
     }
   };
 
-  const AddKitButton = useCallback(
+  const addKitButton = useMemo(
     () => {
       const inventoryAvailable = onlineStoreInventory.inventoryStatus === AVAILABLE_KEY ? true : false;
       const someWithNoAvlSelZero = !inventoryAvailable && productQuantity > 0;
@@ -854,13 +855,15 @@ const useKit = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [physicalStoreInventory, productQuantity]);
 
+  const sellers = useSelector(sellersSelector);
   //GA360
   useEffect(() => {
     if (addItemActionTriggered) {
       //GA360
       if (mySite.enableGA) {
+        const storeName = mySite.storeName;
         AsyncCall.sendAddToCartEvent(
-          { cart, currentSelection: rows },
+          { cart, currentSelection: rows, sellers, storeName },
           { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
         );
       }
@@ -917,7 +920,7 @@ const useKit = (props) => {
     displayOfferPrice,
     displayListPrice,
     productDetailTabsChildren,
-    addKitButton: <AddKitButton />,
+    addKitButton: addKitButton,
     definingAttrs,
     displayFullImage,
     FormattedPriceDisplay,

@@ -8,15 +8,17 @@
  *
  *==================================================
  */
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { useMatch } from "react-router";
 import { useSelector } from "react-redux";
 //custom libraries
 import { HOME } from "../../../constants/routes";
 //custom redux
 import { forUserIdSelector } from "../../../redux/selectors/user";
+import { useSite } from "../../../_foundation/hooks/useSite";
+import { MP_ENABLED, MP_SELLER_REG_ENABLED, STRING_TRUE } from "../../../constants/common";
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled("div")`
   ${(props) => {
     const theme = props.theme;
     const match = useMatch({
@@ -25,6 +27,9 @@ const StyledWrapper = styled.div`
       caseSensitive: true,
     });
     const forUserId = useSelector(forUserIdSelector);
+    const { mySite } = useSite();
+    const { userData = {} } = mySite?.storeCfg ?? {};
+    const mpSellerRegEnabled = STRING_TRUE === userData[MP_ENABLED] && STRING_TRUE === userData[MP_SELLER_REG_ENABLED];
 
     let headingClasses = "";
 
@@ -43,50 +48,53 @@ const StyledWrapper = styled.div`
     for (let i = 1; i <= 20; i += 1) {
       paddingClasses += `
         .horizontal-padding-${i} {
-          padding-left: ${theme.spacing(i)}px;
-          padding-right: ${theme.spacing(i)}px;
+          padding-left: ${theme.spacing(i)};
+          padding-right: ${theme.spacing(i)};
         }
         .vertical-padding-${i} {
-          padding-top: ${theme.spacing(i)}px;
-          padding-bottom: ${theme.spacing(i)}px;
+          padding-top: ${theme.spacing(i)};
+          padding-bottom: ${theme.spacing(i)};
         }
         .top-padding-${i} {
-          padding-top: ${theme.spacing(i)}px;
+          padding-top: ${theme.spacing(i)};
         }
         .bottom-padding-${i} {
-          padding-bottom: ${theme.spacing(i)}px;
+          padding-bottom: ${theme.spacing(i)};
         }
         .left-padding-${i} {
-          padding-left: ${theme.spacing(i)}px;
+          padding-left: ${theme.spacing(i)};
         }
         .right-padding-${i} {
-          padding-right: ${theme.spacing(i)}px;
+          padding-right: ${theme.spacing(i)};
         }
         .horizontal-margin-${i} {
-          margin-left: ${theme.spacing(i)}px;
-          margin-right: ${theme.spacing(i)}px;
+          margin-left: ${theme.spacing(i)};
+          margin-right: ${theme.spacing(i)};
         }
         .vertical-margin-${i} {
-          margin-top: ${theme.spacing(i)}px;
-          margin-bottom: ${theme.spacing(i)}px;
+          margin-top: ${theme.spacing(i)};
+          margin-bottom: ${theme.spacing(i)};
         }
         .top-margin-${i} {
-          margin-top: ${theme.spacing(i)}px;
+          margin-top: ${theme.spacing(i)};
         }
         .bottom-margin-${i} {
-          margin-bottom: ${theme.spacing(i)}px;
+          margin-bottom: ${theme.spacing(i)};
         }
         .left-margin-${i} {
-          margin-left: ${theme.spacing(i)}px;
+          margin-left: ${theme.spacing(i)};
         }
         .right-margin-${i} {
-          margin-right: ${theme.spacing(i)}px;
+          margin-right: ${theme.spacing(i)};
         }
       `;
     }
 
     return `
       font-family: ${theme.typography.fontFamily};
+
+      ${mpSellerRegEnabled ? ".marketplace-seller-reg-off { display: none !important; }" : ""}
+      ${!mpSellerRegEnabled ? ".marketplace-seller-reg-on { display: none !important; }" : ""}
 
       ${paddingClasses}
       ${headingClasses}
@@ -147,7 +155,7 @@ const StyledWrapper = styled.div`
         font-family: ${theme.typography.fontFamily};
         font-size: ${theme.typography.button.fontSize}px;
         border-radius: ${theme.shape.borderRadius}px;
-        padding: ${theme.spacing(1)}px ${theme.spacing(2)}px;
+        padding: ${theme.spacing(1)} ${theme.spacing(2)};
         letter-spacing: 0.02rem;
         box-shadow: none;
         color: ${theme.palette.text.secondary};
@@ -212,19 +220,19 @@ const StyledWrapper = styled.div`
                 width: 150%;
               }
 
-              ${theme.breakpoints.down("xl")} {
+              ${theme.breakpoints.up("xl")} {
                 transform: translateZ(-1px) translateY(-150%) translateX(-25%);
               }
 
-              ${theme.breakpoints.down("lg")} {
+              ${theme.breakpoints.down("xl")} {
                 transform: translateZ(-1px) translateY(-120%) translateX(-25%);
               }
 
-              ${theme.breakpoints.down("md")} {
+              ${theme.breakpoints.down("lg")} {
                 transform: translateZ(-1px) translateY(-80%) translateX(-25%);
               }
 
-              ${theme.breakpoints.down("sm")} {
+              ${theme.breakpoints.down("md")} {
                 transform: translateZ(-1px) translateY(-80%) translateX(-30%);
                 img {
                   max-width: 250%;

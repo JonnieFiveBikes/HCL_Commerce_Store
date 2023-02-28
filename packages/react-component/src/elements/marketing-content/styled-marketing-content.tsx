@@ -9,7 +9,7 @@
  *
  *==================================================
  */
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 
 export const StyledMarketingContent = styled(({ ...props }) => <div {...props} />)`
   ${({ theme }) => `
@@ -57,7 +57,7 @@ export const StyledMarketingContent = styled(({ ...props }) => <div {...props} /
           transform: translateX(-50%) translateY(-50%);
           height: auto;
 
-          ${theme.breakpoints.down("sm")} {
+          ${theme.breakpoints.down("md")} {
             height: 100%;
             width: auto;
           }

@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 //Common libraries
 import { PAGINATION } from "../../constants/common";
 //UI
-import EditIcon from "@material-ui/icons/Edit";
+import EditIcon from "@mui/icons-material/Edit";
 import {
   StyledAvatar,
   StyledTypography,
@@ -22,10 +22,12 @@ import {
   useTableUtils,
   useCustomTable,
   StyledLink,
+  StyledTooltip,
 } from "@hcl-commerce-store-sdk/react-component";
 import { useMemo } from "react";
 import { get } from "lodash-es";
 import storeUtil from "../../utils/storeUtil";
+import addrUtil from "../../utils/addressUtil";
 
 const QuantityCell = ({ rowData, ...props }) => {
   const qty = parseInt(get(rowData, "quantity", 0));
@@ -70,7 +72,9 @@ const ThumbnailCell = ({ rowData, ...props }) => {
 
 const ShippingCell = ({ rowData, ...props }) => {
   const { t } = useTranslation();
-  const { __handleMethod__: fn, __validAddress__: valid, __itemsMap__: m, orderItemId } = rowData;
+  const { __handleMethod__: fn, __validAddress__: valid, __displayData__ } = rowData;
+  const addressData = __displayData__ ?? rowData;
+
   const onSelecting = () => fn(rowData);
   return (
     <>
@@ -79,7 +83,6 @@ const ShippingCell = ({ rowData, ...props }) => {
           <StyledButton
             testId={"multiple-shipment-select-address-method"}
             variant="text"
-            disabled={m[orderItemId] === true}
             onClick={onSelecting}
             startIcon={<EditIcon />}>
             <StyledTypography variant="body2" align="left">
@@ -90,15 +93,15 @@ const ShippingCell = ({ rowData, ...props }) => {
       ) : (
         <>
           <StyledTypography variant="body2">{rowData.shipModeDescription}</StyledTypography>
-          {rowData.addressLine?.length > 2 ? (
+          {addressData.addressLine?.length > 2 ? (
             <StyledTypography variant="body1">
-              {rowData.addressLine[0]}, {rowData.addressLine[1]}
+              {addressData.addressLine[0]}, {addressData.addressLine[1]}
             </StyledTypography>
           ) : null}
           <StyledTypography variant="body1">
-            {rowData.city}, {rowData.state}, {rowData.zipCode}
+            {addressData.city}, {addressData.state}, {addressData.zipCode}
           </StyledTypography>
-          <StyledTypography variant="body1">{rowData.country}</StyledTypography>
+          <StyledTypography variant="body1">{addressData.country}</StyledTypography>
         </>
       )}
     </>
@@ -106,7 +109,7 @@ const ShippingCell = ({ rowData, ...props }) => {
 };
 
 const AddressCell = ({ rowData, ...props }) => {
-  const { __handleMethod__: fn, __validAddress__: valid, __itemsMap__: m, orderItemId } = rowData;
+  const { __handleMethod__: fn, __validAddress__: valid } = rowData;
   const { t } = useTranslation();
   const onChangeSelection = () => fn(rowData);
   return (
@@ -114,7 +117,6 @@ const AddressCell = ({ rowData, ...props }) => {
       {valid && (
         <StyledButton
           testId={"multiple-shipment-table-change-select"}
-          disabled={m[orderItemId] === true}
           onClick={onChangeSelection}
           variant="text"
           startIcon={<EditIcon />}>
@@ -127,98 +129,72 @@ const AddressCell = ({ rowData, ...props }) => {
 
 export const useMultipleShipmentTable = (props: any) => {
   const { t } = useTranslation();
-  const { itemsMap, data: dataProps, usableAddresses, handleSelectShipmentChangeForSingleItem } = props;
+  const { data: dataProps, usableAddresses = {}, handleSingleSelect, handleMultiSelect, checkMultiSelect } = props;
 
   const data = useMemo(
     () =>
       (dataProps ?? []).map((oi) => ({
         ...oi,
-        __handleMethod__: handleSelectShipmentChangeForSingleItem,
-        __itemsMap__: itemsMap ?? {},
-        __validAddress__: !!(usableAddresses ?? []).find(({ addressId: a }) => a === oi.addressId),
+        __handleMethod__: handleSingleSelect,
+        __validAddress__: addrUtil.validAddr(usableAddresses[oi.orderItemId]?.byId[oi.nickName]),
+        __displayData__: usableAddresses[oi.orderItemId]?.byId[oi.nickName],
       })),
-    [dataProps, itemsMap, usableAddresses, handleSelectShipmentChangeForSingleItem]
+    [dataProps, usableAddresses, handleSingleSelect]
   );
 
   const columns: TableColumnDef[] = [
     {
       idProp: "orderItemId",
       title: "",
-      keyLookup: {
-        key: "thumbnail",
-      },
-      display: {
-        cellStyle: {
-          verticalAlign: "middle",
-          textAlign: "center",
-        },
-        template: ThumbnailCell,
-      },
+      keyLookup: { key: "thumbnail" },
+      display: { cellStyle: { verticalAlign: "middle", textAlign: "center" }, template: ThumbnailCell },
     },
     {
       title: t("MultipleShipmentTable.Labels.ItemDetails"),
-      keyLookup: {
-        key: "itemDetails",
-      },
+      keyLookup: { key: "itemDetails" },
       idProp: "name",
-      display: {
-        template: ItemDetailsCell,
-      },
+      display: { template: ItemDetailsCell },
     },
 
     {
       title: t("MultipleShipmentTable.Labels.Quantity"),
-      keyLookup: {
-        key: "quantity",
-      },
-      display: {
-        cellStyle: {
-          textAlign: "center",
-        },
-        template: QuantityCell,
-      },
+      keyLookup: { key: "quantity" },
+      display: { cellStyle: { textAlign: "center" }, template: QuantityCell },
     },
     {
-      keyLookup: {
-        key: "shippingDetails",
-      },
+      keyLookup: { key: "shippingDetails" },
       title: t("MultipleShipmentTable.Labels.ShippingDetails"),
-      display: {
-        template: ShippingCell,
-      },
+      display: { template: ShippingCell },
     },
     {
       title: "",
-      keyLookup: {
-        key: "changeAddress",
-      },
-      display: {
-        cellStyle: {
-          textAlign: "center",
-        },
-        template: AddressCell,
-      },
+      keyLookup: { key: "changeAddress" },
+      display: { cellStyle: { textAlign: "center" }, template: AddressCell },
     },
   ];
-
-  const multiSelect = (keys) => {
-    props.handleMultiSelect(keys);
-  };
 
   const MultiAssignAction = ({ fullTable: tbl, headers: h, ...props }) => {
     const { tableState: s } = useCustomTable();
     const { findSelectedKeys } = useTableUtils();
     const { t } = useTranslation();
-    const onMultiSelect = () => multiSelect(findSelectedKeys(s));
+    const keys = findSelectedKeys(s);
+    const valid = checkMultiSelect(keys);
+    const onMultiSelect = () => handleMultiSelect(keys);
+
     return (
-      <StyledButton
-        testId="group-select-shipping-address"
-        color="primary"
-        onClick={onMultiSelect}
-        style={{ marginLeft: "0.5rem" }}
-        className="button">
-        {t("MultipleShipmentTable.Labels.SelectShippingAddressAndMethod")}
-      </StyledButton>
+      <StyledTooltip open={valid ? false : true} title={t("MultipleShipmentTable.Labels.SelInvalid")}>
+        <span>
+          <StyledButton
+            testId="group-select-shipping-address"
+            color="primary"
+            disabled={!valid}
+            onClick={onMultiSelect}
+            style={{ marginLeft: "0.5rem" }}
+            className="button">
+            {t("MultipleShipmentTable.Labels.SelectShippingAddressAndMethod")}
+          </StyledButton>
+        </span>
+      </StyledTooltip>
     );
   };
 

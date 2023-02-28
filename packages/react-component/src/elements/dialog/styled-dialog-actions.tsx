@@ -9,12 +9,12 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import DialogActions from "@material-ui/core/DialogActions";
+import styled from "@mui/styled-engine-sc";
+import DialogActions from "@mui/material/DialogActions";
 
 const StyledDialogActions = styled(({ ...props }) => <DialogActions {...props} />)`
   ${({ theme }) => `
-    padding: ${theme.spacing(2)}px 0 0;
+    padding: ${theme.spacing(2)} 0 0;
     justify-content: flex-start;
   `}
 `;

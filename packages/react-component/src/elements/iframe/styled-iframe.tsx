@@ -9,7 +9,7 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 
 const StylediFrame = styled(
   React.forwardRef<HTMLIFrameElement, any>(({ title, ...props }: any, ref: any) => (

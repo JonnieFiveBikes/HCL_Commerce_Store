@@ -19,7 +19,7 @@ import {
   StyledTextField,
   StyledTypography,
 } from "@hcl-commerce-store-sdk/react-component";
-import DescriptionIcon from "@material-ui/icons/Description";
+import DescriptionIcon from "@mui/icons-material/Description";
 
 interface PurchaseOrderNumberProps {
   poNumber: string;

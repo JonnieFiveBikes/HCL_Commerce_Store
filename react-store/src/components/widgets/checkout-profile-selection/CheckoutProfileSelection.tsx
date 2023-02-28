@@ -9,9 +9,8 @@
  *==================================================
  */
 //Standard libraries
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Axios, { Canceler } from "axios";
 //Custom libraries
 import { EMPTY_STRING } from "../../../constants/common";
 //UI
@@ -45,12 +44,11 @@ const CheckoutProfileSelection: React.FC<CheckoutProfileProps> = (props: any) =>
   const empty = { id: EMPTY_STRING, name: EMPTY_STRING };
   const [profileList, setProfileList] = useState<any[]>([]);
   const { selectedProfile, setSelectedProfile } = props;
-  const cancels: Canceler[] = [];
-  const CancelToken = Axios.CancelToken;
+  const controller = useMemo(() => new AbortController(), []);
   const widget = getDisplayName(CheckoutProfileSelection);
   const payloadBase: any = {
     widget,
-    cancelToken: new CancelToken((c) => cancels.push(c)),
+    signal: controller.signal,
   };
   const fromState = useSelector(checkoutProfileSelector);
   const dispatch = useDispatch();
@@ -59,7 +57,7 @@ const CheckoutProfileSelection: React.FC<CheckoutProfileProps> = (props: any) =>
   useEffect(
     () => {
       dispatch(CPROF_FETCH_ALL_ACTION({ ...payloadBase }));
-      return () => cancels.forEach((cancel) => cancel());
+      return () => controller.abort();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []

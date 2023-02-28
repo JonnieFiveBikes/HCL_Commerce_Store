@@ -11,12 +11,12 @@
 import React from "react";
 //UI
 
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { StyledProductRecommendationSlider, StyledProgressPlaceholder, StyledTypography } from "../../elements";
 
-const StyledProductRecommendationLayout = styled.div`
+const StyledProductRecommendationLayout = styled("div")`
   ${({ theme }) => `
-    margin: ${theme.spacing(4)}px 0;
+    margin: ${theme.spacing(4)} 0;
   `}
 `;
 

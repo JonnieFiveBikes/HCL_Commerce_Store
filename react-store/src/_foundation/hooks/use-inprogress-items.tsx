@@ -25,10 +25,11 @@ import {
   useTableUtils,
   TableConstants,
   StyledGrid,
+  StyledTooltip,
 } from "@hcl-commerce-store-sdk/react-component";
-import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
-import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
-import ShoppingCart from "@material-ui/icons/ShoppingCart";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import ShoppingCart from "@mui/icons-material/ShoppingCart";
 
 import { CONSTANTS } from "../../constants/inprogress-items";
 import { useEffect, useMemo, useState } from "react";
@@ -61,6 +62,7 @@ const useUtils = () => {
       const fetchCatentries = true;
       s[TableConstants.HEADERS][TableConstants.CHECKBOX] = false;
       updateSelection({ t, h, s, f });
+
       dispatch(
         orderActions.REMOVE_INPROGRESS_ORDER_ITEM_ACTION({
           ...payloadBase,
@@ -162,7 +164,7 @@ const MultiDeleteAction = ({ fullTable: tbl, headers: h, ...props }) => {
   );
 };
 
-const DeleteAction = ({ rowData: r, fullTable: t, headers: h, ...props }) => {
+const DeleteAction = ({ rowData: r, fullTable: t, headers: h, tooltipTitle, ...props }) => {
   const { mySite } = useSite();
   const { tableState: s, setTableState: f } = useCustomTable();
   const { getRowKey, deleteKeys, getValueForCell, getCurrentContext } = useUtils();
@@ -187,7 +189,9 @@ const DeleteAction = ({ rowData: r, fullTable: t, headers: h, ...props }) => {
       color="primary"
       onClick={onClickSDK}
       data-testid="use-inprogress-delete-outline-icon-button">
-      <DeleteOutlineOutlinedIcon />
+      <StyledTooltip title={tooltipTitle}>
+        <DeleteOutlineOutlinedIcon />
+      </StyledTooltip>
     </StyledIconButton>
   );
 };
@@ -216,7 +220,7 @@ const MultiAddToCartAction = ({ fullTable: tbl, headers: h, ...props }) => {
   );
 };
 
-const AddToCartAction = ({ rowData, fullTable: t, headers: h, ...props }) => {
+const AddToCartAction = ({ rowData, fullTable: t, headers: h, tooltipTitle, ...props }) => {
   const { tableState: s, setTableState: f } = useCustomTable();
   const { getRowKey, addKeysToCart, getCurrentContext } = useUtils();
   const cart = useSelector(cartSelector);
@@ -233,7 +237,9 @@ const AddToCartAction = ({ rowData, fullTable: t, headers: h, ...props }) => {
       color="primary"
       onClick={onClickSKC}
       data-testid="use-inprogress-shopping-cart-icon-button">
-      <ShoppingCart />
+      <StyledTooltip title={tooltipTitle}>
+        <ShoppingCart />
+      </StyledTooltip>
     </StyledIconButton>
   );
 };
@@ -496,8 +502,10 @@ export const useInprogressItems = (props: InprogressItemsHookProps) => {
           cellStyle,
           template: ({ rowData, fullTable, headers, ...props }) => (
             <>
-              <AddToCartAction {...{ rowData, fullTable, headers, ...props }} />
-              <DeleteAction {...{ rowData, fullTable, headers, ...props }} />
+              <AddToCartAction
+                {...{ rowData, fullTable, headers, tooltipTitle: t("productDetail.AddToCart"), ...props }}
+              />
+              <DeleteAction {...{ rowData, fullTable, headers, tooltipTitle: t("CheckoutProfile.Delete"), ...props }} />
             </>
           ),
         },

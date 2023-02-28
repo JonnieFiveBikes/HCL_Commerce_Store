@@ -11,6 +11,8 @@
 
 import { call, put } from "redux-saga/effects";
 import * as a from "../../actions/checkout-profile";
+import { ADDRESS_DETAILS_GET_SUCCESS } from "../../action-types/account";
+
 import { get } from "lodash-es";
 import { getSite } from "../../../_foundation/hooks/useSite";
 import { CheckoutProfileApi } from "@hcl-commerce-store-sdk/typescript-axios-transaction";
@@ -38,6 +40,8 @@ export function* fetchAllProfilesSelf(action: any) {
     if (w) {
       p["widget"] = w;
     }
+
+    yield put({ type: ADDRESS_DETAILS_GET_SUCCESS, response: s.data });
     yield put(a.CPROF_FETCH_ALL_SUCCESS_ACTION(p));
   } catch (e) {
     yield put(a.CPROF_FETCH_ALL_FAILURE_ACTION(e));

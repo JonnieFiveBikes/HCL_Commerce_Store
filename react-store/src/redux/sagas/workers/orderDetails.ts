@@ -18,7 +18,6 @@ import productsService from "../../../_foundation/apis/search/products.service";
 import {
   FETCH_ORDER_DETAILS_SUCCESS_ACTION,
   FETCH_ORDER_ITEM_DETAILS_SUCCESS_ACTION,
-  FETCH_ORDER_ITEM_DETAILS_FAIL_ACTION,
   FETCH_ORDER_DETAILS_FAIL_ACTION,
 } from "../../actions/orderDetails";
 import { currentContractIdSelector } from "../../selectors/contract";
@@ -26,14 +25,14 @@ import { SELLER_PARAM } from "../../../_foundation/constants/common";
 import { EMPTY_STRING } from "../../../constants/common";
 
 export function* getOrderDetails(action: any) {
-  const { orderId, currency } = action.payload;
+  const { orderId, currency, ...rest } = action.payload;
   const contractId = yield select(currentContractIdSelector);
   try {
     const response = yield call(orderService.findByOrderId, action.payload);
     const orderDetails = response.data;
     yield put(FETCH_ORDER_DETAILS_SUCCESS_ACTION(orderDetails));
     try {
-      const orderItems: any[] = orderDetails.orderItem;
+      const orderItems: any[] = orderDetails.orderItem ?? [];
       const contracts = orderItems.reduce((p, c) => {
         let localContractId = contractId;
         if (c.contractId !== "") {
@@ -50,6 +49,7 @@ export function* getOrderDetails(action: any) {
       }, {});
 
       const itemDetailsParams = {
+        ...rest,
         currency,
         contracts,
         // add empty seller parameter -- don't filter when fetching order-item details
@@ -63,7 +63,7 @@ export function* getOrderDetails(action: any) {
         })
       );
     } catch (error) {
-      yield put(FETCH_ORDER_ITEM_DETAILS_FAIL_ACTION(error));
+      yield put(FETCH_ORDER_ITEM_DETAILS_SUCCESS_ACTION({ orderId }));
     }
   } catch (error) {
     yield put(FETCH_ORDER_DETAILS_FAIL_ACTION({ orderId, error }));
@@ -72,8 +72,8 @@ export function* getOrderDetails(action: any) {
 
 export const fetchOrderItemDetailsByIds = (param: any) => {
   const promiseArray: Promise<any>[] = [];
-  const { currency, widget, contracts, query } = param;
-  const paramBase = { currency, widget };
+  const { currency, widget, contracts, query, ...rest } = param;
+  const paramBase = { currency, widget, ...rest };
 
   Object.keys(contracts).forEach((key) => {
     const ids = chunk(contracts[key], 50);

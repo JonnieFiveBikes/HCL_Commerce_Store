@@ -8,8 +8,8 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import FormGroup from "@material-ui/core/FormGroup";
+import styled from "@mui/styled-engine-sc";
+import FormGroup from "@mui/material/FormGroup";
 import React from "react";
 
 const StyledFormGroup = styled(({ ...props }) => <FormGroup {...props} />)`

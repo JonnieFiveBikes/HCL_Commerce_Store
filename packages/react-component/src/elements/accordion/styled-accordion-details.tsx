@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
+import styled from "@mui/styled-engine-sc";
+import AccordionDetails from "@mui/material/AccordionDetails";
 
 const StyledAccordionDetails = styled(({ ...props }) => <AccordionDetails {...props} />)`
   ${({ theme }) => `

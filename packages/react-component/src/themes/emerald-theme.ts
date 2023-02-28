@@ -8,9 +8,10 @@
  *
  *==================================================
  */
-import { createTheme } from "@material-ui/core";
+import { createTheme } from "@mui/material";
 import { sharedOverrides, merge, responsiveFontSizes } from "./shared-theme";
 import { palette } from "./color-palette";
+import { Theme } from "@mui/material/styles";
 
 const { main, light, dark } = palette.emerald;
 
@@ -45,6 +46,6 @@ export const emeraldOverrides = {
 };
 
 const combinedOverides = merge(sharedOverrides, emeraldOverrides);
-const theme = responsiveFontSizes(createTheme(combinedOverides));
+const theme: Theme = responsiveFontSizes(createTheme(combinedOverides));
 
 export default theme;

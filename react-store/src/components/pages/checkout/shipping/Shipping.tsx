@@ -9,11 +9,10 @@
  *==================================================
  */
 //Standard libraries
-import React, { ChangeEvent } from "react";
-import { Divider } from "@material-ui/core";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import LocalShippingIcon from "@material-ui/icons/LocalShipping";
-import { EMPTY_STRING } from "../../../../constants/common";
+import React from "react";
+import { Divider } from "@mui/material";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 //Custom libraries
 import CheckoutAddress, { CheckoutPageType } from "../address/CheckoutAddress";
 import { MultipleShipmentTable } from "./MultipleShipmentTable";
@@ -34,49 +33,39 @@ import {
   StyledRadio,
   StyledFormHelperText,
 } from "@hcl-commerce-store-sdk/react-component";
-import CheckOutlinedIcon from "@material-ui/icons/CheckOutlined";
 import { withOutletContext } from "../stepper-guard";
+import { useTranslation } from "react-i18next";
 
 /**
  * Shipping and billing section
  * displays shipping and billing input/selection
  * @param props
  */
-const Shipping: React.FC = (props: any) => {
+const Shipping: React.FC = () => {
+  const { t } = useTranslation();
   const {
-    usableShipAddresses,
-    usableShippingMethods,
-    selectedShipAddressIds,
-    setSelectedShipAddressId,
-    selectedShipModeIds,
-    setSelectedshipModeId,
     useMultipleShipment,
-    handleMultipleShipmentChange,
-    t,
+    toggleMultiShipment,
     canContinue,
-    canContinueSingleShipment,
     submit,
     createNewAddress,
     setCreateNewAddress,
     editAddress,
     setEditAddress,
-    isPersonalAddressAllowed,
+    addressDetails,
     orgAddressDetails,
     selectShipment,
-    checkboxesActive,
-    handleSelectShipmentChangeForCheckboxes,
-    cancelMultipleSelection,
-    tempItemsList,
-    itemsMap,
     selectedItems,
     orderItems,
-    handleSelectShipmentChangeForSingleItem,
-    selectAllCheckboxes,
-    clickCheckbox,
+    handleSingleSelect,
+    checkMultiSelect,
     cancelSelectShipment,
     confirmShipInfo,
-    isDisabled,
     handleMultiSelect,
+    selShipInfo,
+    setSelShipInfo,
+    updateAddress,
+    global,
   } = useShipping();
   return (
     <StyledPaper className="vertical-padding-2 horizontal-padding-2">
@@ -100,11 +89,8 @@ const Shipping: React.FC = (props: any) => {
                 <StyledGrid item>
                   <StyledTypography variant="h4" component="p">
                     {selectedItems.length > 1
-                      ? t("Shipping.Labels.SelectedCount", {
-                          selected: selectedItems.length,
-                          all: orderItems.length,
-                        })
-                      : selectedItems[0].name}
+                      ? t("Shipping.Labels.SelectedCount", { selected: selectedItems.length, all: orderItems.length })
+                      : selectedItems[0]?.name}
                   </StyledTypography>
                 </StyledGrid>
               </>
@@ -120,8 +106,14 @@ const Shipping: React.FC = (props: any) => {
                 <StyledGrid item>
                   <StyledSwitch
                     checked={useMultipleShipment}
-                    setChecked={handleMultipleShipmentChange}
+                    setChecked={toggleMultiShipment}
                     label={t("Shipping.Labels.UseMultiple")}
+                    disabled={
+                      orderItems?.length === 1 ||
+                      (useMultipleShipment &&
+                        global.usableAddrs.__all?.list.length > 0 &&
+                        (global.commonAddrs.length === 0 || global.commonMethods.length === 0))
+                    }
                   />
                 </StyledGrid>
               </>
@@ -147,19 +139,11 @@ const Shipping: React.FC = (props: any) => {
                 <ChevronRightIcon />
               </StyledBox>
             </StyledGrid>
-            {editAddress ? (
-              <StyledGrid item>
-                <StyledTypography variant="h4" component="p">
-                  {t("Shipping.Labels.EditAddress")}
-                </StyledTypography>
-              </StyledGrid>
-            ) : (
-              <StyledGrid item>
-                <StyledTypography variant="h4" component="p">
-                  {t("Shipping.Labels.AddNewAddress")}
-                </StyledTypography>
-              </StyledGrid>
-            )}
+            <StyledGrid item>
+              <StyledTypography variant="h4" component="p">
+                {t(`Shipping.Labels.${editAddress ? "EditAddress" : "AddNewAddress"}`)}
+              </StyledTypography>
+            </StyledGrid>
           </>
         )}
       </StyledGrid>
@@ -167,57 +151,20 @@ const Shipping: React.FC = (props: any) => {
 
       {useMultipleShipment && !selectShipment && (
         <>
-          {checkboxesActive && (
-            <StyledGrid container>
-              <StyledGrid item xs={12} md={6}>
-                <StyledBox flexDirection="row" alignItems="flex-start">
-                  <StyledIconLabel
-                    icon={<CheckOutlinedIcon color="primary" className="full-center" />}
-                    label={t("Shipping.Labels.ItemsSelected", {
-                      itemsSelected: `${tempItemsList.length}`,
-                    })}
-                  />
-                </StyledBox>
-              </StyledGrid>
-              <StyledGrid item xs={12} md={6}>
-                <StyledGrid container spacing={2} alignItems="center" justifyContent="flex-end">
-                  <StyledGrid item>
-                    <StyledButton
-                      testId="shipping-address-select-cancel"
-                      color="secondary"
-                      onClick={cancelMultipleSelection}>
-                      {t("Shipping.Actions.Cancel")}
-                    </StyledButton>
-                  </StyledGrid>
-                  <StyledGrid item>
-                    <StyledButton
-                      testId="shipping-address-select"
-                      color="primary"
-                      onClick={handleSelectShipmentChangeForCheckboxes}>
-                      {t("Shipping.Actions.SelectShippingAddress")}
-                    </StyledButton>
-                  </StyledGrid>
-                </StyledGrid>
-              </StyledGrid>
-            </StyledGrid>
-          )}
           <MultipleShipmentTable
             data={orderItems}
-            handleSelectShipmentChangeForSingleItem={handleSelectShipmentChangeForSingleItem}
-            checkboxesActive={checkboxesActive}
+            handleSingleSelect={handleSingleSelect}
             className="review-order top-margin-3"
-            selectAllCheckboxes={selectAllCheckboxes}
-            clickCheckbox={clickCheckbox}
-            itemsMap={itemsMap}
-            usableAddresses={usableShipAddresses[0] || []}
+            usableAddresses={global.usableAddrs}
             handleMultiSelect={handleMultiSelect}
+            checkMultiSelect={checkMultiSelect}
           />
           <StyledGrid container justifyContent="flex-end" className="checkout-actions">
             <StyledGrid item>
               <StyledButton
                 testId="shipping-can-continue"
                 color="primary"
-                disabled={canContinue() || checkboxesActive}
+                disabled={!canContinue()}
                 onClick={submit}
                 className="button top-margin-3">
                 {t("Shipping.Actions.Next")}
@@ -226,23 +173,21 @@ const Shipping: React.FC = (props: any) => {
           </StyledGrid>
         </>
       )}
-      {(!useMultipleShipment || (useMultipleShipment && selectShipment)) && (
+      {(!useMultipleShipment || selectShipment) && (
         <>
           <CheckoutAddress
-            usableAddresses={usableShipAddresses[0] || []}
+            usableAddresses={selShipInfo.commonAddrs ?? global.commonAddrs}
             page={CheckoutPageType.SHIPPING}
-            setSelectedAddressId={(addressId, nickName) => {
-              setSelectedShipAddressId(0, addressId, nickName);
-            }}
-            selectedAddressId={selectedShipAddressIds[0] || EMPTY_STRING}
+            setSelectedAddressId={(addressId, nickName) => updateAddress(addressId, nickName)}
+            selectedAddressId={selShipInfo.addressId}
             toggleCreateNewAddress={setCreateNewAddress}
             createNewAddress={createNewAddress}
             editAddress={editAddress}
             toggleEditAddress={setEditAddress}
-            isPersonalAddressAllowed={isPersonalAddressAllowed}
             orgAddressDetails={orgAddressDetails}
+            addressDetails={addressDetails}
           />
-          {!createNewAddress && !editAddress && (
+          {!createNewAddress && !editAddress ? (
             <>
               <StyledGrid container spacing={2}>
                 <StyledGrid item container direction="row" justifyContent="space-between" alignItems="center">
@@ -252,37 +197,31 @@ const Shipping: React.FC = (props: any) => {
                   />
                 </StyledGrid>
                 <StyledGrid item xs={12}>
-                  {isDisabled() && (
+                  {!selShipInfo.addressId ? (
                     <StyledTypography className="bottom-margin-2">
                       {t("Shipping.Msgs.SelectShippingAddress")}
                     </StyledTypography>
-                  )}
-                  <StyledFormControl variant="outlined" disabled={isDisabled()}>
+                  ) : null}
+                  <StyledFormControl variant="outlined" disabled={!selShipInfo.addressId}>
                     <StyledFormHelperText component="div">
                       <StyledTypography variant="body1">
                         <b>{t("Shipping.Labels.SelectShippingMethod")}</b>
                       </StyledTypography>
                     </StyledFormHelperText>
-                    {usableShippingMethods[0] && (
-                      <StyledRadioGroup
-                        data-testid="shipping-method-select"
-                        value={selectedShipModeIds[0] || EMPTY_STRING}
-                        onChange={(event: ChangeEvent<HTMLSelectElement>) =>
-                          setSelectedshipModeId(0, event.target.value)
-                        }
-                        name="shippingMethodModes">
-                        {usableShippingMethods[0].map((m) => (
-                          <StyledFormControlLabel
-                            key={m.shipModeId}
-                            value={m.shipModeId}
-                            control={<StyledRadio />}
-                            label={
-                              <StyledTypography variant="body2">{m.description || m.shipModeCode}</StyledTypography>
-                            }
-                          />
-                        ))}
-                      </StyledRadioGroup>
-                    )}
+                    <StyledRadioGroup
+                      data-testid="shipping-method-select"
+                      value={selShipInfo.shipModeId}
+                      onChange={(e) => setSelShipInfo({ ...selShipInfo, shipModeId: e.target.value })}
+                      name="shippingMethodModes">
+                      {(selShipInfo.commonMethods ?? global.commonMethods).map((m) => (
+                        <StyledFormControlLabel
+                          key={m.shipModeId}
+                          value={m.shipModeId}
+                          control={<StyledRadio />}
+                          label={<StyledTypography variant="body2">{m.description || m.shipModeCode}</StyledTypography>}
+                        />
+                      ))}
+                    </StyledRadioGroup>
                   </StyledFormControl>
                 </StyledGrid>
               </StyledGrid>
@@ -293,7 +232,7 @@ const Shipping: React.FC = (props: any) => {
                     <StyledButton
                       testId="single-shipping-can-continue"
                       color="primary"
-                      disabled={!canContinueSingleShipment()}
+                      disabled={!selShipInfo.addressId || !selShipInfo.shipModeId}
                       onClick={submit}
                       className="button">
                       {t("Shipping.Actions.Next")}
@@ -316,7 +255,7 @@ const Shipping: React.FC = (props: any) => {
                       testId="shipping-can-confirm"
                       color="primary"
                       onClick={confirmShipInfo}
-                      disabled={selectedShipAddressIds.length > 0 ? false : true}
+                      disabled={!selShipInfo.addressId || !selShipInfo.shipModeId}
                       className="button">
                       {t("Shipping.Actions.Confirm")}
                     </StyledButton>
@@ -324,7 +263,7 @@ const Shipping: React.FC = (props: any) => {
                 </StyledGrid>
               )}
             </>
-          )}
+          ) : null}
         </>
       )}
     </StyledPaper>

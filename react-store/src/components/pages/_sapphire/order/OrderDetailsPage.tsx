@@ -9,11 +9,10 @@
  *---------------------------------------------------
  */
 //Standard libraries
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useParams } from "react-router";
-import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../../_foundation/hooks/useSite";
@@ -24,7 +23,7 @@ import { OrderDetails } from "../../../widgets/order-details";
 import { RootReducerState } from "../../../../redux/reducers";
 import { FETCH_ORDER_DETAILS_ACTION } from "../../../../redux/actions/orderDetails";
 //UI
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import {
   StyledButton,
   StyledContainer,
@@ -56,14 +55,11 @@ function OrderDetailsPage(props: any) {
   };
   const dateFormatter = new Intl.DateTimeFormat(i18n.languages[0], dateFormatOptions);
 
-  const cancels: Canceler[] = [];
-  const CancelToken = Axios.CancelToken;
+  const controller = useMemo(() => new AbortController(), []);
 
   const payloadBase: any = {
     widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+    signal: controller.signal,
   };
 
   useEffect(() => {
@@ -82,7 +78,7 @@ function OrderDetailsPage(props: any) {
 
   React.useEffect(() => {
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

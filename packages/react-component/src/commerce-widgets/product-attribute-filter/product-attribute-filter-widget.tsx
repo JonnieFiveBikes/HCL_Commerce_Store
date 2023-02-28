@@ -12,7 +12,7 @@
 import React, { useState } from "react";
 import { kebabCase } from "lodash-es";
 //UI
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
   StyledSidebar,
   StyledTypography,

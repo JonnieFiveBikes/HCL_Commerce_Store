@@ -21,15 +21,20 @@ import "./i18n";
 //Redux
 import store from "./redux/store/index";
 //UI
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { MuiThemeProvider } from "@material-ui/core/styles";
-import { StylesProvider } from "@material-ui/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider, Theme, StyledEngineProvider } from "@mui/material";
+import { StylesProvider } from "@mui/styles";
 import { StyleSheetManager, ThemeProvider as StyledThemeProvider } from "styled-components";
 import { StyledCircularProgress } from "@hcl-commerce-store-sdk/react-component";
 import { CurrentTheme } from "./themes";
 import "./index.scss";
 import { StoreLocatorProvider } from "./_foundation/context/store-locator-context";
 import { StoreShippingModeProvider } from "./_foundation/context/store-shipping-mode-context";
+
+declare module "@mui/styles/defaultTheme" {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
 
 const rootElement = document.getElementById("root");
 
@@ -39,14 +44,16 @@ render(
       <StyleSheetManager disableCSSOMInjection={(window as any).__isPrerender__ === true}>
         <StylesProvider injectFirst>
           <StyledThemeProvider theme={CurrentTheme}>
-            <MuiThemeProvider theme={CurrentTheme}>
-              <CssBaseline />
-              <StoreLocatorProvider>
-                <StoreShippingModeProvider>
-                  <App />
-                </StoreShippingModeProvider>
-              </StoreLocatorProvider>
-            </MuiThemeProvider>
+            <StyledEngineProvider injectFirst>
+              <ThemeProvider theme={CurrentTheme}>
+                <CssBaseline />
+                <StoreLocatorProvider>
+                  <StoreShippingModeProvider>
+                    <App />
+                  </StoreShippingModeProvider>
+                </StoreLocatorProvider>
+              </ThemeProvider>
+            </StyledEngineProvider>
           </StyledThemeProvider>
         </StylesProvider>
       </StyleSheetManager>

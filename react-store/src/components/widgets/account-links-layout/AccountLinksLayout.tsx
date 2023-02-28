@@ -14,8 +14,8 @@ import { useTranslation } from "react-i18next";
 import * as ROUTES from "../../../constants/routes";
 import AccountLinksSection from "../account-links-section";
 //UI
-import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { StyledLinkBox } from "@hcl-commerce-store-sdk/react-component";
 
 function AccountLinksLayout() {

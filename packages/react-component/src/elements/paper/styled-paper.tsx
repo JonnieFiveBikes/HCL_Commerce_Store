@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import Paper from "@material-ui/core/Paper";
+import styled from "@mui/styled-engine-sc";
+import Paper from "@mui/material/Paper";
 
 const PaperWrapper = React.forwardRef((props: any, ref: any) => {
   const { classes, elevation, ...other } = props;

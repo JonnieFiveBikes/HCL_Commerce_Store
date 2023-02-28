@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import styled from "@mui/styled-engine-sc";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { dimensions } from "../../themes/variables";
 
 const headerHeight = dimensions.header.height.desktop;
@@ -29,9 +29,9 @@ const StyledSwipeableDrawer = styled(({ ...props }) => <SwipeableDrawer {...prop
     margin-top: ${headerHeight}px;
     border-top: 1px solid ${theme.palette.action.disabledBackground};
     box-shadow: 0px 3px 4px 0px ${theme.palette.text.disabled};
-    padding: ${theme.spacing(3)}px 0 ${theme.spacing(2)}px;
+    padding: ${theme.spacing(3)} 0 ${theme.spacing(2)};
 
-    ${theme.breakpoints.down("sm")} {
+    ${theme.breakpoints.down("md")} {
       margin-top: ${mobileHeaderHeight}px;
     }
   }
@@ -39,7 +39,7 @@ const StyledSwipeableDrawer = styled(({ ...props }) => <SwipeableDrawer {...prop
   .MuiDrawer-paperAnchorLeft {
     width: 75%;
     max-width: 300px;
-    padding-top: ${theme.spacing(3)}px;
+    padding-top: ${theme.spacing(3)};
   }
 
   .MuiExpansionPanel-root:before {
@@ -50,8 +50,8 @@ const StyledSwipeableDrawer = styled(({ ...props }) => <SwipeableDrawer {...prop
     padding: 0;
 
     &:not(.level-1) {
-      min-height: ${theme.spacing(4)}px;
-      height: ${theme.spacing(4)}px;
+      min-height: ${theme.spacing(4)};
+      height: ${theme.spacing(4)};
     }
   }
 
@@ -80,10 +80,10 @@ const StyledSwipeableDrawer = styled(({ ...props }) => <SwipeableDrawer {...prop
     }
   }
 
-  ${theme.breakpoints.down("sm")} {
+  ${theme.breakpoints.down("md")} {
     .MuiMenuItem-root {
-      padding: 0 ${theme.spacing(1)}px;
-      min-height: ${theme.spacing(4)}px;
+      padding: 0 ${theme.spacing(1)};
+      min-height: ${theme.spacing(4)};
 
       &:hover {
         background: $${theme.palette.action.disabled};
@@ -100,7 +100,7 @@ const StyledSwipeableDrawer = styled(({ ...props }) => <SwipeableDrawer {...prop
     }
 
     .MuiIconButton-root {
-      padding: ${theme.spacing(1)}px;
+      padding: ${theme.spacing(1)};
     }
   }
   `}

@@ -9,10 +9,9 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
 import { Navigate } from "react-router-dom";
 import getDisplayName from "react-display-name";
@@ -32,7 +31,7 @@ import {
   StyledFormHelperText,
   StyledFormControl,
 } from "@hcl-commerce-store-sdk/react-component";
-import Add from "@material-ui/icons/Add";
+import Add from "@mui/icons-material/Add";
 //Custom libraries
 import AccountSidebar from "../../widgets/account-sidebar/AccountSidebar";
 import { TitleLayout } from "../../widgets/title/TitleLayout";
@@ -43,8 +42,7 @@ import addressUtil from "../../../utils/addressUtil";
 
 const AddressBook: React.FC = (props: any) => {
   const widgetName = getDisplayName(AddressBook);
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
+  const controller = useMemo(() => new AbortController(), []);
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const loginStatus = useSelector(loginStatusSelector);
@@ -53,15 +51,13 @@ const AddressBook: React.FC = (props: any) => {
   const [type, setType] = useState<number>(0);
   const payloadBase: any = {
     widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+    signal: controller.signal,
   };
   const navigate = useNavigate();
 
   useEffect(() => {
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

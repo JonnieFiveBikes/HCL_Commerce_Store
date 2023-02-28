@@ -26,12 +26,12 @@ import * as ROUTES from "../../constants/routes";
 import { currentContractIdSelector } from "../../redux/selectors/contract";
 import * as orderActions from "../../redux/actions/order";
 import { forUserIdSelector, loginStatusSelector, userIdSelector } from "../../redux/selectors/user";
-
+import { entitledOrgSelector, activeOrgSelector } from "../../redux/selectors/organization";
 //UI
-import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import TruckIcon from "@material-ui/icons/LocalShipping";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import TruckIcon from "@mui/icons-material/LocalShipping";
 
-import CloseIcon from "@material-ui/icons/CloseOutlined";
+import CloseIcon from "@mui/icons-material/CloseOutlined";
 import {
   StyledAvatar,
   StyledGrid,
@@ -46,6 +46,7 @@ import {
   useCustomTable,
   StyledLink,
   StyledCircularProgress,
+  StyledTooltip,
 } from "@hcl-commerce-store-sdk/react-component";
 
 //GA360
@@ -54,8 +55,8 @@ import { cartSelector, orderMethodIsPickupSelector } from "../../redux/selectors
 import { useWinDimsInEM } from "./use-win-dims-in-em";
 import { STRING_TRUE, XS_MOBILE_W } from "../../constants/common";
 import { get } from "lodash-es";
-import Closed from "@material-ui/icons/ChevronRight";
-import Open from "@material-ui/icons/ExpandMoreOutlined";
+import Closed from "@mui/icons-material/ChevronRight";
+import Open from "@mui/icons-material/ExpandMoreOutlined";
 import storeUtil from "../../utils/storeUtil";
 import inventoryavailabilityService from "../apis/transaction/inventoryavailability.service";
 import { useStoreLocatorValue } from "../context/store-locator-context";
@@ -525,6 +526,10 @@ export const useOrderItemTable = (props: any) => {
         const cart = useSelector(cartSelector);
         const forUserId = useSelector(forUserIdSelector);
         const uId = useSelector(userIdSelector);
+        const entitledOrgs = useSelector(entitledOrgSelector);
+        const activeOrgId = useSelector(activeOrgSelector);
+        const sellers = useSelector(sellersSelector);
+        const { t } = useTranslation();
         const userId = forUserId ?? uId;
         const itemMemberId = rowData.xitem_memberId;
         const [clicked, setClicked] = useState<boolean>(false);
@@ -539,6 +544,7 @@ export const useOrderItemTable = (props: any) => {
           const orderItemId = item.orderItemId;
           const payload = {
             ...payloadBase,
+
             orderItemId: orderItemId,
             fetchCatentries: true,
           };
@@ -547,7 +553,8 @@ export const useOrderItemTable = (props: any) => {
 
           //GA360
           if (mySite.enableGA) {
-            AsyncCall.sendRemoveFromCartEvent(item, {
+            const storeName = mySite.storeName;
+            AsyncCall.sendRemoveFromCartEvent(item, entitledOrgs, activeOrgId, sellers, storeName, {
               enableUA: mySite.enableUA,
               enableGA4: mySite.enableGA4,
             });
@@ -561,7 +568,9 @@ export const useOrderItemTable = (props: any) => {
             style={{ padding: "0.2rem" }}
             onClick={() => removeItem(rowData)}
             data-testid={`order-remove-item-button-${rowData.partNumber}`}>
-            {miniCartView ? <CloseIcon /> : <DeleteOutlineIcon />}
+            <StyledTooltip title={t("CheckoutProfile.Delete")}>
+              {miniCartView ? <CloseIcon /> : <DeleteOutlineIcon />}
+            </StyledTooltip>
           </StyledIconButton>
         );
       };

@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
+import styled from "@mui/styled-engine-sc";
+import AccordionSummary from "@mui/material/AccordionSummary";
 
 const StyledAccordionSummary = styled(({ ...props }) => <AccordionSummary {...props} />)`
   ${({ theme }) => `
@@ -18,6 +18,10 @@ const StyledAccordionSummary = styled(({ ...props }) => <AccordionSummary {...pr
 
     &.Mui-expanded {
       min-height: initial;
+    }
+
+    .MuiAccordionSummary-expandIconWrapper {
+      padding: ${theme.spacing(1.5)} 0;
     }
 
     .MuiAccordionSummary-content {
@@ -31,7 +35,7 @@ const StyledAccordionSummary = styled(({ ...props }) => <AccordionSummary {...pr
     &.shipment-group-summary {
       align-items: flex-start;
       .MuiAccordionSummary-expandIcon {
-        margin-top: ${theme.spacing(2)}px;
+        margin-top: ${theme.spacing(2)};
         transition: none;
       }
     }

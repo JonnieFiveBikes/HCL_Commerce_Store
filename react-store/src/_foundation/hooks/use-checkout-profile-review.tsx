@@ -10,7 +10,6 @@
  */
 //Standard libraries
 import { useEffect, useState, useMemo } from "react";
-import Axios, { Canceler } from "axios";
 //Custom libraries
 
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +19,6 @@ import storeUtil from "../../utils/storeUtil";
 import { get } from "lodash-es";
 import { allowableShipModesSelector } from "../../redux/selectors/order";
 import { FETCH_ALLOWABLE_SHIPMODES_ACTION } from "../../redux/actions/order";
-import * as a from "../../redux/actions/account";
 import { localStorageUtil } from "../utils/storageUtil";
 import { SELECTED_PROFILE } from "../constants/common";
 
@@ -31,10 +29,9 @@ import { SELECTED_PROFILE } from "../constants/common";
  */
 export const useCheckoutProfileReview = (props: any): any => {
   const [profileList, setProfileList] = useState<any[]>([]);
-  const cancels: Canceler[] = [];
-  const CancelToken = Axios.CancelToken;
+  const controller = useMemo(() => new AbortController(), []);
   const payloadBase: any = {
-    cancelToken: new CancelToken((c) => cancels.push(c)),
+    signal: controller.signal,
   };
 
   const fromState = useSelector(checkoutProfileSelector);
@@ -43,10 +40,9 @@ export const useCheckoutProfileReview = (props: any): any => {
   // cleanup
   useEffect(
     () => {
-      dispatch(a.GET_ADDRESS_DETAIL_ACTION({ ...payloadBase }));
       dispatch(CPROF_FETCH_ALL_ACTION({ ...payloadBase }));
       dispatch(FETCH_ALLOWABLE_SHIPMODES_ACTION({ ...payloadBase }));
-      return () => cancels.forEach((cancel) => cancel());
+      return () => controller.abort();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []

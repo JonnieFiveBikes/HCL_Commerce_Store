@@ -19,7 +19,7 @@ import {
   StyledTextField,
   StyledGrid,
 } from "@hcl-commerce-store-sdk/react-component";
-import PaymentIcon from "@material-ui/icons/Payment";
+import PaymentIcon from "@mui/icons-material/Payment";
 import { SELECTED_PROFILE } from "../../../_foundation/constants/common";
 import { EMPTY_STRING } from "../../../constants/common";
 import storeUtil from "../../../utils/storeUtil";
@@ -108,17 +108,18 @@ const OrderPaymentInfo: React.FC<OrderPaymentInfoProps> = (props: any) => {
                   required
                   name="cvv"
                   autoFocus
+                  type="password"
                   placeholder={"cvv"}
                   value={cvv}
                   onChange={handleCvvChange}
-                  error={!(storeUtil.isNumeric(cvv.trim()) && cvv.length === 3)}
+                  error={!(storeUtil.isNumeric(cvv) && (cvv.length === 3 || cvv.length === 4))}
                   helperText={
-                    !(storeUtil.isNumeric(cvv.trim()) && cvv.length === 3)
+                    !(storeUtil.isNumeric(cvv) && (cvv.length === 3 || cvv.length === 4))
                       ? t("PaymentMethodSelection.Msgs.CVV")
                       : EMPTY_STRING
                   }
                   label={t("PaymentMethodSelection.Labels.CVV")}
-                  inputProps={{ maxLength: 3 }}
+                  inputProps={{ maxLength: 4 }}
                   fullWidth
                 />
               </StyledGrid>

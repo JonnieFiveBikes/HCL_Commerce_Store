@@ -28,6 +28,7 @@ export const ESPOT_ACTIONS = {
  * ESpot init state.
  */
 const eSpotInitstate: ESpotState = {
+  behavior: "0",
   content: {
     title: "",
     templates: [],

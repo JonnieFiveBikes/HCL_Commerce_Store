@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import Checkbox from "@material-ui/core/Checkbox";
+import styled from "@mui/styled-engine-sc";
+import Checkbox from "@mui/material/Checkbox";
 
 export const StyledCheckbox = styled(({ ...props }) => <Checkbox {...props} />)`
   ${({ theme }) => `

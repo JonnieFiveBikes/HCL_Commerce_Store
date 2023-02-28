@@ -16,14 +16,15 @@ export interface StoreLocatorMarkerProps {
   store: any;
   index: number;
   onMarkerClick: any;
+  clickedIndex: number;
 }
 
 export const StoreLocatorMarker: React.FC<StoreLocatorMarkerProps> = (props) => {
-  const { store, index, onMarkerClick } = props;
-
+  const { store, index, onMarkerClick, clickedIndex } = props;
+  const fillColor = clickedIndex === index ? "#009874" : "#6393F2";
   const googleMapSymbol: google.maps.Symbol = {
     path: "M 12,2 C 8.1340068,2 5,5.1340068 5,9 c 0,5.25 7,13 7,13 0,0 7,-7.75 7,-13 0,-3.8659932 -3.134007,-7 -7,-7 z",
-    fillColor: "#6393F2",
+    fillColor: fillColor,
     strokeWeight: 0,
     fillOpacity: 1,
     rotation: 0,

@@ -8,8 +8,8 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import Step from "@material-ui/core/Step";
+import styled from "@mui/styled-engine-sc";
+import Step from "@mui/material/Step";
 
 const StyledStep = styled(({ ...props }) => <Step {...props} />)`
   ${({ theme }) => `

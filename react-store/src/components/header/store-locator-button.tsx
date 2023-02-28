@@ -10,9 +10,9 @@
  */
 //Standard libraries
 import React from "react";
-import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import { useTranslation } from "react-i18next";
-import { Hidden } from "@material-ui/core";
+import { Hidden } from "@mui/material";
 //HCL librarie
 import {
   StyledButton,
@@ -77,7 +77,7 @@ export const StoreLocatorButton = () => {
         color="secondary">
         <StyledHeaderActions>
           <LocationOnOutlinedIcon />
-          <Hidden xsDown>
+          <Hidden smDown>
             {storeLocator.selectedStore?.storeName ? (
               <StyledTypography>{storeLocator.selectedStore?.storeName}</StyledTypography>
             ) : (

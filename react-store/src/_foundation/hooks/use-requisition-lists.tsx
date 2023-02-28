@@ -13,7 +13,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import Axios, { Canceler } from "axios";
 import { OK, CREATED } from "http-status-codes";
 import { get, isNil } from "lodash-es";
 //Redux
@@ -37,10 +36,11 @@ import {
   useTableUtils,
   StyledButton,
   StyledTypography,
+  StyledTooltip,
 } from "@hcl-commerce-store-sdk/react-component";
-import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
-import ContentCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
-import { AddShoppingCart } from "@material-ui/icons";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import ContentCopyOutlinedIcon from "@mui/icons-material/FileCopyOutlined";
+import { AddShoppingCart } from "@mui/icons-material";
 //Custom library
 import addressUtil from "../../utils/addressUtil";
 import requisitionListService from "../apis/transaction/requisitionList.service";
@@ -50,11 +50,10 @@ import orderService from "../apis/transaction/order.service";
 import { forUserIdSelector, userIdSelector } from "../../redux/selectors/user";
 
 export const useRequisitionList = (): any => {
-  const cancels: Canceler[] = [];
-  const CancelToken = Axios.CancelToken;
+  const controller = useMemo(() => new AbortController(), []);
   const payloadBase: any = {
     widget: "Requisition List Table",
-    cancelToken: new CancelToken((c) => cancels.push(c)),
+    signal: controller.signal,
   };
   const { t, i18n } = useTranslation();
   const sizes: any = PAGINATION.sizes;
@@ -134,11 +133,10 @@ export const useRequisitionList = (): any => {
 
   const columns = useMemo(() => {
     const ActionsCell = ({ rowData, ...props }) => {
-      const CancelToken = Axios.CancelToken;
-      const cancels: Canceler[] = [];
+      const controller = useMemo(() => new AbortController(), []);
       const payloadBase: any = {
         widget: "Requisition List Table",
-        cancelToken: new CancelToken((c) => cancels.push(c)),
+        signal: controller.signal,
       };
       const pageSize = props.fullTable.length;
       const disabled = userId !== rowData.orderInfo?.memberId;
@@ -316,7 +314,9 @@ export const useRequisitionList = (): any => {
             color="primary"
             onClick={() => copyList(rowData)}
             data-testid="use-requisition-content-copy-icon-button">
-            <ContentCopyOutlinedIcon />
+            <StyledTooltip title={t("RequisitionLists.CopyList")}>
+              <ContentCopyOutlinedIcon />
+            </StyledTooltip>
           </StyledIconButton>
           <StyledIconButton
             style={{ padding: "0" }}
@@ -324,14 +324,18 @@ export const useRequisitionList = (): any => {
             onClick={() => deleteList(rowData)}
             {...{ disabled }}
             data-testid="use-requisition-delete-outline-icon-button">
-            <DeleteOutlineOutlinedIcon />
+            <StyledTooltip title={t("RequisitionLists.DeleteList")}>
+              <DeleteOutlineOutlinedIcon />
+            </StyledTooltip>
           </StyledIconButton>
           <StyledIconButton
             style={{ padding: "0" }}
             color="primary"
             onClick={() => handleCopyCart(rowData)}
             data-testid="use-requisition-add-shopping-icon-button">
-            <AddShoppingCart color="primary" />
+            <StyledTooltip title={t("RequisitionLists.AddListToCart")}>
+              <AddShoppingCart color="primary" />
+            </StyledTooltip>
           </StyledIconButton>
         </div>
       );
@@ -427,7 +431,7 @@ export const useRequisitionList = (): any => {
   useEffect(() => {
     getPage({ page: 0, pageSize: pagination.pageSize });
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

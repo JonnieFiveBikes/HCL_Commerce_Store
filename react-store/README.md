@@ -3,7 +3,7 @@
 [//]: #
 [//]: # "HCL Commerce"
 [//]: #
-[//]: # "(C) Copyright HCL Technologies Limited 2020, 2021"
+[//]: # "(C) Copyright HCL Technologies Limited 2020-2022"
 [//]: #
 [//]: # "================================================="
 
@@ -29,13 +29,6 @@ within this project for details.
 
 ## Setup
 
-### Prerequisites
-
-The project can be loaded on any environment supporting Node.js development. We recommend:
-
-- Node.js LTS Version 14.16.1
-- npm 6.14.12
-
 ### Development environment Transaction Server and Search Query Server proxy config
 
 This project provides a flexible environment in which a React web developer can create pages for the store. The developer can develop
@@ -45,23 +38,26 @@ pages in the following modes:
 1.  With local Transaction and/or Search Query server by configuring proxy config file to localhost host name.
 1.  With remote Transaction and/or Search Query server by configuring proxy config file to remote host name.
 
-In the `src\setupProxy.js` file, update the following constants with the proper SEARCH_HOST server name and port number (search-query-app)
-and TRANSACTION_HOST server name and port number (ts-app). Note: this project is designed to work with only
-Elasticsearch V2 APIs. The CMC_HOST constant is for accessing admin tools inside B2B store. Please update it with CMC server name and port number. The port number differs for how we are setting up the new CMC tooling web component. If we setup the new CMC tooling web component in development (node) environment, the port number is 7443, otherwise(docker run time environment) the port number is 8000. The DX_HOST constant is for HCL Commerce - DX integration and update it with HCL DX server name and port number accordingly.
+Update (or create) your `.env.development.local` file with specifications for the following constants:
 
-```js
-// update to point to your Search Query Server (if remote docker, replace with https://<hostname or ip>:30901)
-const SEARCH_HOST = "https://localhost:30901";
+- `SEARCH_HOST`: search query app host and port (search-query-app). Note that this project is designed to work with only Elastic Search V2 APIs.
+- `TRANSACTION_HOST`: transaction server host and port (ts-app)
+- `CMC_HOST`: Used for accessing admin tools inside B2B store (host and port spec). The port number may vary depending on how the new CMC tooling web component is set up, i.e., in development (node) environment, the port number is usually 7443, otherwise (docker runtime environment) the port number is usually 8000.
 
-// update to point to your Transaction Server (if remote docker, replace with https://<hostname or ip>:5443)
-const TRANSACTION_HOST = "https://localhost";
+Refer to the `.env.development.local.template` file for a template of these and some other variables that may be specified for a development environment. A sample spec may be:
 
-// update to point to your CMC - Management centre (Replace with https://<hostname or ip>:8000 or 7443)
-const CMC_HOST = "https://localhost:8000";
+```bash
+# update to point to your Search Query Server (if remote docker, replace with https://<hostname or ip>:30901)
+SEARCH_HOST=https://localhost:30901
 
-// update to point to your HCL DX server (Replace with https://<hostname or ip>:port)
-const DX_HOST = "https://localhost";
+# update to point to your Transaction Server (if remote docker, replace with https://<hostname or ip>:5443)
+TRANSACTION_HOST=https://localhost
+
+# update to point to your CMC - Management centre (Replace with https://<hostname or ip>:8000 or 7443)
+CMC_HOST=https://localhost:8000
 ```
+
+The `src/setupProxy.js` does not need to be modified and will pick these up as environment variable definitions. If not specified, some defaults will be assumed.
 
 To complete the setup, run the following commands from the project directory:
 
@@ -71,18 +67,19 @@ Installs dependencies required for the build process. Running this command requi
 
 ## Available Scripts
 
-In the project directory, you can run the following commands:
+This package provides the following commands. Note that these may be run from this package's directory or from the workspace root by specifying the workspace name using the `-w react-store` parameter during command invocation.
 
 ### `npm start`
 
 Runs the app in development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view the application in a browser. <br>
-The default app and store is `Emerald`. To start a different app, such as Sapphire, use `npm start -- --appName <storeName>`.
+Open [http://localhost:3000](http://localhost:3000) to view the application in a browser.<br>
+The default app and store is `Emerald`. To start a different app, such as Sapphire, use `npm start -- --appName <storeName>`.<br>
+To start the app using different port and to use https, use `npm start -- --appName <storeName> --port <port> --https true`
 
 In development mode, the page reloads when you make any edits.<br>
 You can also see any lint errors in the console.
 
-To display other extended sites stores published in Commerce, pass the storeId parameter: 'https://localhost:3000?storeId=<eSite storeId>'
+To display other extended sites stores published in Commerce, pass the `storeId` parameter: `https://localhost:3000?storeId=<eSite storeId>`
 
 ### `npm run mock`
 
@@ -367,3 +364,9 @@ The locations of some files in the commerce-widgets folder have been adjusted. A
 - moved `src/_foundation/hooks/use-espot-helper.tsx` to `src/components/commerce-widgets/e-marketing-spot-widget/hooks/use-espot-helper.tsx`
 - moved `src/_foundation/hooks/use-espot.tsx` to `src/components/commerce-widgets/e-marketing-spot-widget/hooks/use-espot.tsx`
 - moved `src/components/commerce-widgets/e-marketing-spot-widget.tsx` to `src/components/commerce-widgets/e-marketing-spot-widget/e-marketing-spot-widget.tsx`
+
+### V9.1.11.0 to V9.1.12.0
+
+- MUI 5 upgrade
+
+  see [mui5 upgrade](docs/mui5upgrade.md) for details. It is recommended that follow those steps before trying merge the V9.1.11.0 with V9.1.12.0

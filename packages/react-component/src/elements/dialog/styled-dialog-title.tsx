@@ -9,9 +9,9 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import CloseIcon from "@material-ui/icons/Close";
+import styled from "@mui/styled-engine-sc";
+import DialogTitle from "@mui/material/DialogTitle";
+import CloseIcon from "@mui/icons-material/Close";
 import { StyledIconButton } from "../icon-button";
 
 const StyledDialogTitle = styled(({ onClickHandler, ...props }) => (
@@ -23,13 +23,13 @@ const StyledDialogTitle = styled(({ onClickHandler, ...props }) => (
   </DialogTitle>
 ))`
   ${({ theme }) => `
-    padding: ${theme.spacing(2)}px ${theme.spacing(2)}px;
+    padding: ${theme.spacing(2)} ${theme.spacing(2)};
 
     .MuiButtonBase-root {
-      padding: ${theme.spacing(1)}px;
+      padding: ${theme.spacing(1)};
       position: absolute;
-      right: ${theme.spacing(1)}px;
-      top: ${theme.spacing(1)}px;
+      right: ${theme.spacing(1)};
+      top: ${theme.spacing(1)};
 
       svg {
         fill: ${theme.palette.text.secondary};

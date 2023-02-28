@@ -11,7 +11,7 @@
 
 // Standard Libraries
 import React, { useMemo } from "react";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
+import TableSortLabel from "@mui/material/TableSortLabel";
 import { SRTh } from "../../elements/super-responsive-table";
 import { TableHeaderProps } from "../../types/super-responsive-table-types";
 import { get } from "lodash-es";
@@ -51,7 +51,7 @@ export const TableHeader: React.FC<TableHeaderProps> = (props) => {
       sortAction({ sort: { header: h, direction } });
     } else if (csPages.pageSize > 0) {
       // paginated client-side -- first sort all records
-      n = [...csPages.allRecords].sort(compFn.bind(null, { direction, tableState }));
+      n = [...csPages.allRecords].sort(compFn.bind(null, { header: h, direction, tableState }));
 
       // retain original allRecords though
       const desc = {
@@ -65,7 +65,7 @@ export const TableHeader: React.FC<TableHeaderProps> = (props) => {
       setPage(0);
     } else {
       // non-paginated client-side
-      n = [...currentData].sort(compFn.bind(null, { direction, tableState }));
+      n = [...currentData].sort(compFn.bind(null, { header: h, direction, tableState }));
       setCurrentData(n);
     }
 

@@ -13,7 +13,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 //UI
-import { ClickAwayListener } from "@material-ui/core";
+import { ClickAwayListener } from "@mui/material";
 import { StyledPaper, StyledListItemText, StyledButton, StyledGrid } from "@hcl-commerce-store-sdk/react-component";
 
 interface LanguageTogglePopperContentProps {

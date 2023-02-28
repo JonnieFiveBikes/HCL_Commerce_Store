@@ -15,8 +15,8 @@ import { render as rtlRender } from "@testing-library/react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { I18nextProvider } from "react-i18next";
-import { MuiThemeProvider } from "@material-ui/core/styles";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { BrowserRouter } from "react-router-dom";
 //custom library
 import reducerInitialState from "../../redux/reducers/initStates";
@@ -37,11 +37,13 @@ function render(
     return (
       <Provider store={store}>
         <I18nextProvider i18n={i18n}>
-          <ThemeProvider theme={currentTheme}>
-            <MuiThemeProvider theme={currentTheme}>
+          <StyledThemeProvider theme={currentTheme}>
+          <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={currentTheme}>
               <BrowserRouter>{children} </BrowserRouter>
-            </MuiThemeProvider>
-          </ThemeProvider>
+            </ThemeProvider>
+          </StyledEngineProvider>
+          </StyledThemeProvider >
         </I18nextProvider>
       </Provider>
     );

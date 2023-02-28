@@ -22,8 +22,8 @@ import {
   StyledPaper,
   StyledIcon,
 } from "@hcl-commerce-store-sdk/react-component";
-import RegisterBuyer from "@material-ui/icons/PersonOutlineOutlined";
-import RegisterOrg from "@material-ui/icons/Business";
+import RegisterBuyer from "@mui/icons-material/PersonOutlineOutlined";
+import RegisterOrg from "@mui/icons-material/Business";
 interface RegistrationB2BContext {
   cid: string;
 }

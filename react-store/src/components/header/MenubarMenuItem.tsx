@@ -10,7 +10,7 @@
  */
 //Standard libraries
 import React, { useRef } from "react";
-import { ClickAwayListener } from "@material-ui/core";
+import { ClickAwayListener } from "@mui/material";
 //style
 import { StyledBox, StyledButton, StyledTypography, StyledPopper } from "@hcl-commerce-store-sdk/react-component";
 //custom
@@ -31,13 +31,7 @@ const MenubarMenuItem = (props) => {
   };
 
   const POPPER_ID = `MENU_POPPER_${page.id}`;
-  const setWidth = (data) => {
-    const { width } = data.offsets.reference;
-    if (width > data.popper.width) {
-      data.styles.width = width;
-    }
-    return data;
-  };
+  //remove width update, since the menu title is repeated in menu item.
   const onMouseOver = () => selectMenuItem(page.id);
 
   return (
@@ -62,23 +56,20 @@ const MenubarMenuItem = (props) => {
         anchorEl={popperRef.current}
         placement="bottom-start"
         disablePortal
-        modifiers={{
-          flip: {
+        modifiers={[
+          {
+            name: "flip",
             enabled: false,
           },
-          preventOverflow: {
-            enabled: false,
-            boundariesElement: "scrollParent",
-          },
-          hide: {
+          {
+            name: "preventOverflow",
             enabled: false,
           },
-          updateWidth: {
-            enabled: true,
-            order: 875,
-            fn: setWidth,
+          {
+            name: "hide",
+            enabled: false,
           },
-        }}>
+        ]}>
         <ClickAwayListener onClickAway={handleClickAway}>
           <StyledBox>
             {page.id === "allCategories" ? (

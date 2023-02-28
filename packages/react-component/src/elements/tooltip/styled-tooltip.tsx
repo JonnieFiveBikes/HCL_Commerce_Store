@@ -8,8 +8,8 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import Tooltip from "@material-ui/core/Tooltip";
+import styled from "@mui/styled-engine-sc";
+import Tooltip from "@mui/material/Tooltip";
 import * as React from "react";
 
 const StyledTooltip = styled((props) => <Tooltip {...props} />)`

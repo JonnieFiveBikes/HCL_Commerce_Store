@@ -349,7 +349,9 @@ const initAxios = (dispatch: any) => {
 
   Axios.interceptors.request.use(
     async (request: AxiosRequestConfig) => {
-      PrerenderTimer.myTimer.setPrerenderTimer();
+      if (window["__isPrerender__"]) {
+        PrerenderTimer.myTimer.setPrerenderTimer();
+      }
       showAPIFlow(request.method, request.url, request["widget"]);
       processHeaders(request);
       //verify active storeId in localStorage.
@@ -371,7 +373,9 @@ const initAxios = (dispatch: any) => {
   );
   Axios.interceptors.response.use(
     (response: AxiosResponse) => {
-      PrerenderTimer.myTimer.setPrerenderTimer();
+      if (window["__isPrerender__"]) {
+        PrerenderTimer.myTimer.setPrerenderTimer();
+      }
       return response;
     },
     function (error) {

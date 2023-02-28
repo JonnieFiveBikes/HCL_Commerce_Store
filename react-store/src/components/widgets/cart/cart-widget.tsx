@@ -11,7 +11,10 @@
 //Custom libraries
 
 import React from "react";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import {
   StyledButton,
   StyledCheckbox,
@@ -20,8 +23,6 @@ import {
   StyledFormControlLabel,
   StyledGrid,
   StyledInputLabel,
-  StyledKeyboardDatePicker,
-  StyledMuiPickersUtilsProvider,
   StyledPaper,
   StyledProgressPlaceholder,
   StyledSelect,
@@ -35,7 +36,6 @@ import { OrderItemTable } from "../order-item-table";
 import { OrderTotalSummary } from "../order-total-summary";
 import { useTranslation } from "react-i18next";
 import { CheckoutProfileSelection } from "../checkout-profile-selection";
-import DateFnsUtils from "@date-io/date-fns";
 import { useNavigate } from "react-router";
 import { HOME } from "../../../constants/routes";
 
@@ -158,19 +158,22 @@ const CartWidget: React.FC<any> = (props: CartLayout) => {
                     {isRecurringOrder && (
                       <>
                         <StyledGrid item xs={8} sm={4} md={2} lg={2}>
-                          <StyledInputLabel shrink required id="frequency">
+                          <StyledInputLabel shrink id="frequency">
                             {t("Cart.Labels.Frequency")}
                           </StyledInputLabel>
                           <StyledSelect
                             value={recurringOrderFrequency}
                             labelId="frequency"
                             native
+                            required
                             name="frequency"
+                            variant="standard"
                             data-testid="recurring-order-frequency"
                             onChange={(event: { target: { value: any } }) =>
                               setRecurringOrderFrequency(event.target.value)
                             }
-                            fullWidth>
+                            fullWidth
+                            className="margin-top-0">
                             {frequencyOptions.map((frequency: any, index: number) => (
                               <option value={frequency.value} key={frequency.value}>
                                 {t(`${frequency.translationKey}`)}
@@ -180,21 +183,16 @@ const CartWidget: React.FC<any> = (props: CartLayout) => {
                         </StyledGrid>
 
                         <StyledGrid item xs={8} sm={4} md={2} lg={2}>
-                          <StyledMuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[locale]}>
-                            <StyledKeyboardDatePicker
-                              required
-                              disableToolbar
+                          <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[locale]}>
+                            <DatePicker
                               disablePast
-                              autoOk
-                              variant="inline"
-                              format="MM/dd/yyyy"
                               label={t("Cart.Labels.StartDate")}
                               value={recurringOrderStartDate}
                               onChange={(date: Date | null) => onDateChange(date)}
-                              onError={(error: string) => onDateError(error)}
-                              fullWidth
+                              onError={(error: any) => onDateError(error)}
+                              renderInput={(params) => <StyledTextField required variant="standard" {...params} />}
                             />
-                          </StyledMuiPickersUtilsProvider>
+                          </LocalizationProvider>
                         </StyledGrid>
                       </>
                     )}
@@ -254,6 +252,7 @@ const CartWidget: React.FC<any> = (props: CartLayout) => {
                   />
                   <StyledGrid item>
                     <StyledButton
+                      className="bottom-margin-2"
                       testId="cart-apply-promo-code"
                       onClick={(event: any) => applyPromoCode(event)}
                       id={`cart_link_2_promocode`}
@@ -288,7 +287,7 @@ const CartWidget: React.FC<any> = (props: CartLayout) => {
                   <StyledTypography variant="subtitle1" gutterBottom>
                     {t("Cart.Labels.OrderSummary")}
                   </StyledTypography>
-                  <OrderTotalSummary order={cart} />
+                  <OrderTotalSummary order={cart} estimate={true} />
                   <Divider className="vertical-margin-2" />
                   <StyledGrid item container direction="row" justifyContent="center" spacing={1}>
                     <StyledGrid item>

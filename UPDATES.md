@@ -3,7 +3,7 @@
 [//]: #
 [//]: # "HCL Commerce"
 [//]: #
-[//]: # "(C) Copyright HCL Technologies Limited 2020, 2021"
+[//]: # "(C) Copyright HCL Technologies Limited 2020-2022"
 [//]: #
 [//]: # "================================================="
 
@@ -224,6 +224,14 @@ Some file locations in the `react-store` workspace have been updated for better 
 | src/components/commerce-widgets/product-information-widget.tsx             | src/components/commerce-widgets/product-information-widget/product-information-widget.tsx                            |
 | src/components/commerce-widgets/sku-list-widget.tsx                        | src/components/commerce-widgets/sku-list-widget/sku-list-widget.tsx                                                  |
 
+### 2023/03/06 HCL Commerce Version 9.1.12 - Refreshed Store Application
+
+The React Store Application (Emerald and Sapphire) has been updated with the following enhancements:
+
+1. Marketplace Seller Self-Registration
+2. Material UI Components updated to v5
+3. Approvals Service REST Client
+
 ## Limitations
 
 The list of latest features delivered in the React Store Applications are described for Emerald:
@@ -252,8 +260,8 @@ There are specific limitations in the React store applications that developers a
    corresponding UI from Management Center from with the store UI as described here: https://help.hcltechsw.com/commerce/9.1.0/storeseparation/refs/react_b2bbuyers.html.
    A user can access these administrative tools within the store with the same session when logging in from the store's login page.
    If the same user logs in to Management Center from another browser tab or window, this action will terminate the same user's session in the store.
-   Returning to the browser window in the store UI will require relogging in to the store. To avoid such issues, consider blocking access
-   to Management Center host/port in production live environments for buyer adminstrators or buyer approvers.
+   Returning to the browser window in the store UI will require re-logging in to the store. To avoid such issues, consider blocking access
+   to Management Center host/port in production live environments for buyer administrators or buyer approvers.
 
 1. The React store provides a react component for content-recommendations that can display marketing content business objects created in Management Center.
    The React store application provides an implementation that renders sample content ads as shown in Emerald and Sapphire stores, but can utilize only a subset

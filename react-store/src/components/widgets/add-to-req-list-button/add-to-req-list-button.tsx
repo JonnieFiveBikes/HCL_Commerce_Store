@@ -17,8 +17,8 @@ import {
   StyledLink,
   StyledTooltip,
 } from "@hcl-commerce-store-sdk/react-component";
-import styled from "styled-components";
-import AddIcon from "@material-ui/icons/Add";
+import styled from "@mui/styled-engine-sc";
+import AddIcon from "@mui/icons-material/Add";
 //Standard libraries
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -37,7 +37,7 @@ import { forUserIdSelector, loginStatusSelector, userIdSelector } from "../../..
 const ValueRenderer = styled(({ children, ...props }) => <div {...props}>{children}</div>)`
   ${({ theme }) => `
   &.label {
-    color: ${theme.palette.text.disabled};
+    color: ${theme.palette.text.primary};
   }
   display: flex;
   align-items: center;
@@ -138,8 +138,6 @@ export const AddToRequisitionListButton = ({ disabled, addFn }) => {
             <StyledSelect
               style={{ maxWidth: `${XS_MOBILE_W}em` }}
               MenuProps={{
-                anchorOrigin: { vertical: "bottom", horizontal: "left" },
-                getContentAnchorEl: null,
                 PaperProps: { style: { maxHeight: "200px" } },
               }}
               value={selectedRL ?? EMPTY_STRING}
@@ -164,7 +162,7 @@ export const AddToRequisitionListButton = ({ disabled, addFn }) => {
                 <StyledLink to={REQUISITION_LISTS}>
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <AddIcon />
-                    {t("productDetail.createRL")}
+                    <StyledMenuTypography className="wrapText">{t("productDetail.createRL")}</StyledMenuTypography>
                   </div>
                 </StyledLink>
               </StyledMenuItem>

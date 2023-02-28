@@ -30,6 +30,7 @@ import FormattedPriceDisplay from "../formatted-price-display";
 import AsyncCall from "../../../_foundation/gtm/async.service";
 import storeUtil from "../../../utils/storeUtil";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
+import { sellersSelector } from "../../../redux/selectors/sellers";
 import getDisplayName from "react-display-name";
 
 interface ProductCardProps {
@@ -118,7 +119,7 @@ export default function ProductCard(props: ProductCardProps) {
     if (attribute.usage === DEFINING && attribute.values) {
       attribute.values?.forEach((attributeValue: any, index2: number) => {
         if (
-          attributeValue.image1path !== undefined &&
+          attributeValue.image1path &&
           Array.isArray(attributeValue.image1path) &&
           attributeValue.image1path.length > 0
         ) {
@@ -137,7 +138,7 @@ export default function ProductCard(props: ProductCardProps) {
               />
             );
           });
-        } else if (attributeValue.image1path !== undefined && attributeValue.image1path.length > 0) {
+        } else if (attributeValue.image1path?.length > 0) {
           swatches.push(
             <StyledSwatch
               style={{
@@ -156,14 +157,18 @@ export default function ProductCard(props: ProductCardProps) {
 
   //GA360
   const { breadcrumbs } = useBreadcrumbTrail();
+  const sellers = useSelector(sellersSelector);
   const gaProductClick = () => {
     const listerCategoryFlag = breadcrumbs.length > 0 ? true : false;
+    const storeName = mySite.storeName;
     AsyncCall.sendProductClickEvent(
       {
         product,
         index: null,
         listerFlag: listerCategoryFlag,
         breadcrumbs,
+        sellers,
+        storeName,
       },
       { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
     );

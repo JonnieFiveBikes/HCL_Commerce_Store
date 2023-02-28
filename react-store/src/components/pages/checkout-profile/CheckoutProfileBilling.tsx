@@ -13,7 +13,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 //Foundation libraries
 import { EXPIRY } from "../../../constants/order";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 //UI libraries
 import {
   StyledButton,
@@ -95,7 +95,7 @@ const CheckoutProfileBilling = (props: any) => {
 
   useEffect(() => {
     const contactList: any[] = get(cloneDeep(fromState), "contactList", []);
-    const billingList = contactList.filter((address) => address.addressType.includes("Billing"));
+    const billingList = contactList.filter((address) => address.addressType?.includes("Billing"));
     if (fromState?.addressLine && fromState?.addressType?.includes("Billing")) {
       billingList.push(addressUtil.getRegisteredInitialAddress(fromState));
     }
@@ -156,7 +156,7 @@ const CheckoutProfileBilling = (props: any) => {
                   addressFormData={editAddressFormData}
                   edit={true}
                 />
-                <StyledGrid container justifyContent="flex-end" spacing={2} className="checkout-actions">
+                <StyledGrid container justifyContent="flex-end" spacing={2} className="checkout-actions top-margin-1">
                   <StyledGrid item>
                     <StyledButton
                       testId="checkout-profile-toggle-edit-address"

@@ -11,7 +11,6 @@
 //Standard libraries
 import { useState, useEffect, useMemo, ChangeEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Axios, { Canceler } from "axios";
 import { useNavigate } from "react-router";
 import getDisplayName from "react-display-name";
 import getSymbolFromCurrency from "currency-symbol-map";
@@ -24,7 +23,7 @@ import { ACCOUNT } from "../constants/common";
 import { PAYMENT_CONFIGS } from "../../configs/order";
 import { PAYMENT, PO_NUMBER, EXPIRY, ACCOUNT_CC, CC_CVC, EXPIRE_YEAR, EXPIRE_MONTH } from "../../constants/order";
 import * as ROUTES from "../../constants/routes";
-import { IS_PERSONAL_ADDRESS_ALLOWED, STRING_TRUE, EMPTY_STRING, HYPHEN } from "../../constants/common";
+import { STRING_TRUE, EMPTY_STRING, HYPHEN } from "../../constants/common";
 import storeUtil from "../../utils/storeUtil";
 //Redux
 import { isCheckoutDisabledSelector, payMethodsSelector, cartSelector } from "../../redux/selectors/order";
@@ -74,8 +73,7 @@ export const useCheckoutPayment = (props: any) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { mySite } = useSite();
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
+  const controller = useMemo(() => new AbortController(), []);
   const {
     i18n: { language },
   } = useTranslation();
@@ -114,22 +112,15 @@ export const useCheckoutPayment = (props: any) => {
     setPONumber(newPONumber);
   };
 
-  const isPersonalAddressAllowed: string =
-    cart && cart[IS_PERSONAL_ADDRESS_ALLOWED] ? cart[IS_PERSONAL_ADDRESS_ALLOWED] : STRING_TRUE;
-
   const payloadBase: any = {
     widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+    signal: controller.signal,
   };
 
   const grandTotalforErrorMsg: string = getSymbolFromCurrency(cart.grandTotalCurrency) + parseFloat(cart.grandTotal);
 
   useEffect(() => {
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
+    return () => controller.abort();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -389,7 +380,7 @@ export const useCheckoutPayment = (props: any) => {
     if (cart?.paymentInstruction?.length > 1 && !isEditPayment) {
       return true;
     }
-    return storeUtil.isNumeric(cc_cvc?.trim());
+    return storeUtil.isNumeric(cc_cvc) && (cc_cvc.length === 3 || cc_cvc.length === 4);
   }
 
   /**
@@ -530,15 +521,9 @@ export const useCheckoutPayment = (props: any) => {
               });
             } else {
               Object.assign(body, {
-                account: EMPTY_STRING,
-                //cc_cvc: EMPTY_STRING,
-                expire_month: EMPTY_STRING,
-                expire_year: EMPTY_STRING,
-                //cc_brand: payMethod,
                 valueFromPaymentTC: STRING_TRUE,
-                //paymentTermConditionId: thisPayment.paymentTermConditionId,
-                //valueFromProfileOrder: "",
-                //orderId: ".",
+                paymentTermConditionId,
+                cc_brand: payMethodId,
               });
             }
           }
@@ -575,7 +560,6 @@ export const useCheckoutPayment = (props: any) => {
     setEditAddress,
     handleCancelNewPayment,
     currentPaymentNumber,
-    isPersonalAddressAllowed,
     isB2B,
     isPONumberRequired,
     poNumber,

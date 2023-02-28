@@ -33,16 +33,16 @@ import {
   StyledProgressPlaceholder,
   StyledLink,
 } from "@hcl-commerce-store-sdk/react-component";
-import { Divider } from "@material-ui/core";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import styled from "styled-components";
+import { Divider } from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import styled from "@mui/styled-engine-sc";
 import { forUserIdSelector } from "../../redux/selectors/user";
 
-const StyledB2BOrgSection = styled.div`
+const StyledB2BOrgSection = styled("div")`
   ${({ theme }) => `
     background: ${theme.palette.background.default};
-    padding: ${theme.spacing(2)}px;
+    padding: ${theme.spacing(2)};
   `}
 `;
 

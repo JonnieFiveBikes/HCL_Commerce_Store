@@ -8,7 +8,7 @@
  *
  *==================================================
  */
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { StyledLink } from "../link";
 import { StyledBox } from "../box";
 
@@ -41,14 +41,14 @@ export const StyledCategoryCard = styled(({ ...props }) =>
      }
    }
 
-   ${theme.breakpoints.down("sm")} {
+   ${theme.breakpoints.down("md")} {
      .category-card-text {
        &.MuiTypography-h3 {
          font-size: 1.5rem;
        }
        &.MuiTypography-subtitle2 {
          font-size: 0.9rem;
-         margin-top: ${theme.spacing(1)}px;
+         margin-top: ${theme.spacing(1)};
        }
      }
    }

@@ -23,7 +23,7 @@ import {
   StyledTypography,
   StyledButton,
 } from "@hcl-commerce-store-sdk/react-component";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 //Functional libraries
 import addressUtil from "../../../../utils/addressUtil";
 import { usePickup } from "../../../../_foundation/hooks/use-pickup";

@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import StepLabel from "@material-ui/core/StepLabel";
+import styled from "@mui/styled-engine-sc";
+import StepLabel from "@mui/material/StepLabel";
 
 const StyledStepLabel = styled((props) => <StepLabel {...props} />)`
   ${({ theme }) => `

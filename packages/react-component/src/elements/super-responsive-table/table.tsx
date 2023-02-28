@@ -8,7 +8,7 @@
  *
  *==================================================
  */
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 
 export const StyledTable = styled(Table)`
@@ -68,13 +68,13 @@ export const StyledTable = styled(Table)`
 
        .MuiAvatar-root {
          margin-left: 0;
-         width: ${theme.spacing(13)}px;
-         height: ${theme.spacing(11)}px;
+         width: ${theme.spacing(13)};
+         height: ${theme.spacing(11)};
          border: 1px solid ${theme.palette.grey[200]};
        }
 
        .qty-price-section {
-         padding-top: ${theme.spacing(2)}px;
+         padding-top: ${theme.spacing(2)};
        }
      }
 
@@ -142,7 +142,7 @@ export const StyledTr = styled(Tr)`
 export const StyledTh = styled(Th)`
   ${({ theme }) => `
      font-weight: 700;
-     padding: ${theme.spacing(1.5)}px ${theme.spacing(2)}px;
+     padding: ${theme.spacing(1.5)} ${theme.spacing(2)};
 
      @media screen and (max-width: 40em) {
        &.hideOnMobile {
@@ -156,7 +156,7 @@ export const StyledTd = styled(Td)`
   ${({ theme }) => `
      font-weight: 400;
      word-break: break-word;
-     padding: ${theme.spacing(1.5)}px ${theme.spacing(2)}px;
+     padding: ${theme.spacing(1.5)} ${theme.spacing(2)};
      > div.tdBefore {
        line-height: normal;
      }

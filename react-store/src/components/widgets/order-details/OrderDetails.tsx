@@ -38,8 +38,8 @@ import { useCheckoutProfileReview } from "../../../_foundation/hooks/use-checkou
 import { SELECTED_PROFILE } from "../../../_foundation/constants/common";
 import OrderPickupInfo from "../order-pickup-info/order-pickup-info";
 //UI
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material";
 import {
   StyledPaper,
   StyledButton,
@@ -49,8 +49,8 @@ import {
   StyledTypography,
   StyledIconLabel,
 } from "@hcl-commerce-store-sdk/react-component";
-import ReccuringOrderIcon from "@material-ui/icons/Repeat";
-import { Divider } from "@material-ui/core";
+import ReccuringOrderIcon from "@mui/icons-material/Repeat";
+import { Divider } from "@mui/material";
 
 interface OrderDetailsProps {
   order: any;
@@ -98,15 +98,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
     parentComponent,
   } = props;
   const selectedProfile = get(location, `state.${SELECTED_PROFILE}`);
-  const paymentInstruction =
-    selectedProfile && profileList.length > 0
-      ? profileList
-      : order
-      ? order.paymentInstruction
-        ? order.paymentInstruction
-        : []
-      : [];
-
+  const paymentInstruction = (selectedProfile && profileList.length ? profileList : order?.paymentInstruction) ?? [];
   const shipAsComplete = order ? order.shipAsComplete : "";
   const recurringOrderProps = {
     recurringOrderNumber,
@@ -190,7 +182,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
     if (
       selectedProfile &&
       paymentInstruction[0]?.paymentMethod !== PAYMENT.paymentMethodName.cod &&
-      !(storeUtil.isNumeric(cvv.trim()) && cvv.length === 3)
+      !(storeUtil.isNumeric(cvv) && (cvv.length === 3 || cvv.length === 4))
     ) {
       return false;
     }
@@ -299,7 +291,15 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
         <>
           {orderItems ? (
             <>
-              {orderItems[0].shipModeCode === SHIPMODE.shipModeCode.PickUp ? (
+              {orderItems.length === 0 ? (
+                <StyledGrid item xs={12}>
+                  <StyledPaper>
+                    <StyledContainer className="vertical-margin-2">
+                      <StyledTypography>{t("InprogressItems.noItems")}</StyledTypography>
+                    </StyledContainer>
+                  </StyledPaper>
+                </StyledGrid>
+              ) : orderItems[0].shipModeCode === SHIPMODE.shipModeCode.PickUp ? (
                 <OrderPickupInfo {...{ parentComponent, orderItems }} />
               ) : (
                 <OrderShippingInfo

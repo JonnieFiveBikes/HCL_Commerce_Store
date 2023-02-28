@@ -10,9 +10,8 @@
  */
 
 //Standard libraries
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router";
-import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import getDisplayName from "react-display-name";
@@ -47,7 +46,7 @@ import {
   StyledTypography,
   StyledGrid,
 } from "@hcl-commerce-store-sdk/react-component";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 
 /**
  * Add new address component
@@ -72,12 +71,7 @@ function AddAddress() {
     addressType: ADDRESS_SHIPPING,
   };
   const [newAddressFormData, setNewAddressFormData] = useState<any>(addressFormDataInit);
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
-  const payloadBase: any = {
-    widget: widgetName,
-    cancelToken: new CancelToken((c) => cancels.push(c)),
-  };
+  const controller = useMemo(() => new AbortController(), []);
   const navigate = useNavigate();
   const location: any = useLocation();
   const [locState, setLocState] = useState<any>({});
@@ -108,49 +102,46 @@ function AddAddress() {
     personContactService
       .addPersonContact({
         body: newAddressData,
-        ...payloadBase,
+        widget: widgetName,
+        signal: controller.signal,
       })
       .then((res) => res.data)
       .then((addressData) => {
         if (addressData.addressId) {
-          const { cancelToken, ...rest } = payloadBase;
-          const { nickName } = newAddressData;
-
           // re-fetch and don't cancel if returning to profile edit/creation
           dispatch(
             accountActions.GET_ADDRESS_DETAIL_ACTION({
-              ...(locState.profile ? rest : payloadBase),
+              widget: widgetName,
             })
           );
-
-          const successMessage = {
-            key: "success-message.ADD_ADDRESS_SUCCESS",
-            messageParameters: {
-              "0": newAddressData.nickName,
-            },
-          };
-          dispatch(successActions.HANDLE_SUCCESS_MESSAGE_ACTION(successMessage));
-
-          if (locState.profile) {
-            if (locState.profile.xchkout_ProfileId) {
-              navigate(CHECKOUT_PROFILE_EDIT, {
-                state: { ...locState, nickName },
-              });
-            } else {
-              navigate(CHECKOUT_PROFILE_CREATE, {
-                state: { ...locState, nickName },
-              });
-            }
-          }
         }
+      })
+      .then(() => {
+        const { nickName } = newAddressData;
+        if (locState.profile) {
+          if (locState.profile.xchkout_ProfileId) {
+            navigate(CHECKOUT_PROFILE_EDIT, {
+              state: { ...locState, nickName },
+            });
+          } else {
+            navigate(CHECKOUT_PROFILE_CREATE, {
+              state: { ...locState, nickName },
+            });
+          }
+        } else {
+          navigate(ADDRESS_BOOK_ROUTE);
+        }
+        const successMessage = {
+          key: "success-message.ADD_ADDRESS_SUCCESS",
+          messageParameters: {
+            "0": newAddressData.nickName,
+          },
+        };
+        dispatch(successActions.HANDLE_SUCCESS_MESSAGE_ACTION(successMessage));
       })
       .catch((e) => {
         console.log("Could not create new address", e);
       });
-
-    if (!locState.profile) {
-      navigate(ADDRESS_BOOK_ROUTE);
-    }
   };
 
   const cancel = () => {
@@ -170,7 +161,7 @@ function AddAddress() {
       setLocState(location.state);
     }
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

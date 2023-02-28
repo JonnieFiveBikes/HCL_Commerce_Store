@@ -12,7 +12,7 @@
 import React, { useMemo } from "react";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 //Custom libraries
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { StyledBox } from "../box";
 import { StyledProgressPlaceholder } from "../circular-progress";
 import { StyledTypography } from "../typography";
@@ -45,7 +45,7 @@ const StyledProductCard = styled(({ className, ...props }) =>
   `}
 `;
 
-const FlexWrapper = styled.div`
+const FlexWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -66,7 +66,7 @@ const CompareBox = ({ compare, product, catentryId }) => {
       <StyledFormControlLabel
         control={
           <StyledCheckbox
-            data-testid={`product-compare-${partNumber.toLowerCase()}-checkbox`}
+            data-testid={`product-compare-${partNumber?.toLowerCase()}-checkbox`}
             className="compare-checkbox"
             disabled={!!(!compare.data.checked[catentryId] && compare.data.disabled)}
             checked={!!compare.data.checked[catentryId]}

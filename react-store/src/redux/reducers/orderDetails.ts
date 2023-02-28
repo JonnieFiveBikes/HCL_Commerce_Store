@@ -48,7 +48,7 @@ const orderDetailsReducer = createReducer(initStates.orderDetails, (builder) => 
   });
   builder.addCase(FETCH_ORDER_DETAILS_SUCCESS_ACTION, (state: OrderDetailsMapReducerState | any, action: AnyAction) => {
     const { orderId, orderItem } = action.payload;
-    const { detailedOrderItems } = orderItem ? get(state, orderId, {}) : [];
+    const { detailedOrderItems = [] } = orderItem ? get(state, orderId, {}) : {};
     state[orderId] = { ...action.payload, detailedOrderItems };
   });
 
@@ -56,11 +56,11 @@ const orderDetailsReducer = createReducer(initStates.orderDetails, (builder) => 
     FETCH_ORDER_ITEM_DETAILS_SUCCESS_ACTION,
     (state: OrderDetailsMapReducerState | any, action: AnyAction) => {
       const { orderId, items } = action.payload;
-      const newAsMap = storeUtil.toMap(items ?? [], "id");
-      let detailedOrderItems: any[] = [];
+      const orderItems = state[orderId].orderItem ?? [];
+      let detailedOrderItems: any[] = orderItems;
 
-      if (items.length && items.length > 0) {
-        const orderItems: any[] = state[orderId].orderItem;
+      if (items?.length) {
+        const newAsMap = storeUtil.toMap(items, "id");
         detailedOrderItems = orderItems.map((item) => {
           const obj = {
             ...item,

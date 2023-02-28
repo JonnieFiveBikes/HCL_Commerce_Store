@@ -103,7 +103,7 @@ export const useChildCategoryGrid = (widget: Widget, page: Page) => {
       const subCategories = await categoryService
         .getV2CategoryResourcesUsingGET(parameters)
         .then((response: AxiosResponse<any>) => {
-          return response.data.contents;
+          return response.data.contents ?? [];
         });
       setCategories(subCategories);
     } catch (e) {

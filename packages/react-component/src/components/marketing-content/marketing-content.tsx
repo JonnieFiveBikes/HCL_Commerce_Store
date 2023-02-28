@@ -10,8 +10,8 @@
  */
 //standard libraries
 import React from "react";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 //local libraries
 import { StyledContainer, StyledGrid, StyledMarketingContent } from "../../elements";
 
@@ -64,8 +64,8 @@ const MarketingContent: React.FC<MarketingContentProps> = ({
   ...props
 }: any) => {
   const theme = useTheme();
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "lg"));
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "xl"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   let height = containerStyles.height.desktop;
   let padding = containerStyles.padding.desktop;

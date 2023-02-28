@@ -171,8 +171,8 @@
     "Availability": {
       "NOT_AVAIL_PICKUP": "Not available for pickup at <b>{{storeName}}</b>",
       "AVAIL_PICKUP": "In stock for pickup at <b>{{storeName}}</b>",
-      "NOT_AVAIL_DELIVERY":"Not available online for delivery",
-      "AVAIL_DELIVERY":"In stock online for delivery"
+      "NOT_AVAIL_DELIVERY": "Not available online for delivery",
+      "AVAIL_DELIVERY": "In stock online for delivery"
     }
   },
   "CheckoutAddress": {
@@ -231,7 +231,8 @@
       "SelectShippingAddressAndMethod": "Select Shipping Address and Method",
       "ChangeSelection": "Change Selection",
       "nItemsSel": "{{ n }} items selected",
-      "noItems": "No items found"
+      "noItems": "No items found",
+      "SelInvalid": "Contracts from some selected items prevent group selection. Select items with compatible contracts."
     }
   },
   "Shipping": {
@@ -412,6 +413,8 @@
     "Status_W": "Pending approval",
     "Status_V": "Partially shipped",
     "Status_X": "Order canceled",
+    "Status_RTN": "Order completed",
+    "Status_APP": "Order completed",
     "NotAvailable": "N/A",
     "OrderId": "Order Id",
     "PONumber": "Po Number",
@@ -632,6 +635,7 @@
     "_ERR_AUTHENTICATION_MINIMUMDIGITS_PASSWORD_2240": "Your password does not contain {{0}} digit(s).  Passwords must be at least {{1}} characters in length, and include {{0}} digit(s) and {{2}} letter(s).  Enter a different password.",
     "_ERR_AUTHENTICATION_USERIDMATCH_PASSWORD_2250": "Your password is the same as your logon ID. Type a password that is different from your logon ID.",
     "_ERR_AUTHENTICATION_REUSEOLD_PASSWORD_2260": "The password entered was previously used. Enter a new password.",
+    "_ERR_AUTHENTICATION_COMMON_KEYWORD_PASSWORD_2270": "The password contains a common keyword.",
     "_2040": "Type your current password in the Current Password field.",
     "_2060": "Type your password in the Password field.",
     "_2070": "Type your password in the Confirm Password field.",
@@ -644,6 +648,7 @@
     "_ERR_BAD_PARMS_2080": "The verify password you entered did not match your new password. Type your password in the Verify password field and try again.",
     "_2250": "Your password is the same as your logon ID. Type a password that is different from your logon ID.",
     "_2260": "The password entered was previously used. Enter a new password.",
+    "_2270": "The password contains a common keyword.",
     "_ERR_AUTHENTICATION_ERROR_2000": "Type a logon ID in the Logon ID field.",
     "_ERR_AUTHENTICATION_ERROR_2010": "Either the logon ID or password entered is incorrect. Enter the information again.",
     "_ERR_AUTHENTICATION_ERROR_2020": "Either the logon ID or password entered is incorrect. Enter the information again.",
@@ -712,6 +717,9 @@
     "_ERR_PASSWORD_EXPIRED_2170": "Your current password has expired. Please enter a new password.",
     "_ERR_INVALID_NAME_CMN1652E": "An object with the name \"{{0}}\" already exists. Please choose a different name and try again.",
     "_ERR_GOOGLE_MAP_NOT_SUPPORT": "Your browser does not support Google Maps.",
+    "NoCopyOrderItems": "None of the items in the order are currently available for purchase and cannot be re-ordered.",
+    "ProhibitedCharacterErrorTitle": "Prohibited characters error",
+    "ProhibitedCharacterErrorMsg" : "You have attempted to execute an action which our server has flagged as malicious. Your request will not be completed at this time.",
     "B2B": {
       "_ERR_FINDER_EXCEPTION_CMN0411E": "The logon ID that you entered is not valid. Check your entry and try again.",
       "_ERR_LOGONID_ALREDY_EXIST_2030": "The logon ID you entered already exists. Type a different logon ID and try again.",
@@ -723,6 +731,7 @@
     "ITEM_ADD_SUCCESS": "Item was added to cart. ",
     "ViewCart": "View Cart",
     "COPY_CART_SUCCESS": "Order was added to cart. ",
+    "PartialCopyOrder": "The product(s) that are currently available for purchase have been added to the shopping cart. ",
     "RecurringOrderCancelled": "The order has been successfully cancelled.",
     "ADD_ADDRESS_SUCCESS": "Your new address \"{{0}}\" has been added successfully",
     "EDIT_ADDRESS_SUCCESS": "Your address \"{{0}}\" has been updated successfully",
@@ -751,7 +760,8 @@
     "WISHLIST_ADD_SUCCESS": "Item has been successfully added to \"{{0}}\" list",
     "addItemListSuccessfully": "Successfully added {{ v }} to list",
     "addNItemsSuc": "Successfully added {{ n }} items to list",
-    "UPDATE_WISHLIST_NAME_SUCCESS": "Wishlist name has been updated to \"{{0}}\""
+    "UPDATE_WISHLIST_NAME_SUCCESS": "Wishlist name has been updated to \"{{0}}\"",
+    "SellerRegd": "The request to register this seller organization and administrator was submitted successfully."
   },
   "notFound": {
     "notFound": "<p>Sorry, we couldn&#39;t find what you are looking for.</p>\n"
@@ -840,10 +850,14 @@
     "Labels": {
       "Subtotal": "Subtotal",
       "Tax": "Tax",
+      "EstimatedTax": "Tax (estimate)",
       "Shipping": "Shipping",
+      "EstimatedShipping": "Shipping (estimate)",
       "ShippingTax": "Shipping tax",
+      "EstimatedShippingTax": "Shipping tax (estimate)",
       "Discount": "Total Discount",
-      "Total": "Total"
+      "Total": "Total",
+      "EstimatedTotal": "Total (estimate)"
     }
   },
   "PaymentMethodContainer": {
@@ -1273,7 +1287,47 @@
     "Add": "Add",
     "SKUSearch": "Type a SKU",
     "Quantity": "Quantity",
-    "EmptyRL": "The selected requisition list is empty."
+    "EmptyRL": "The selected requisition list is empty.",
+    "Refresh": "Refresh",
+    "CopyList": "Copy list",
+    "DeleteList": "Delete list",
+    "AddListToCart": "Add list to cart"
+  },
+  "SellerRegistration": {
+    "Labels": {
+      "organization": "Seller Organization",
+      "administrator": "Seller Administrator",
+      "information": "Display Information"
+    },
+    "SellerOrganizationTitle": "Tell us about your business",
+    "SellerFull": "Seller Full Name",
+    "SellerName": "Seller Name",
+    "SellerDesc": "Seller Description",
+    "Address1": "Street Address - Line 1",
+    "Address2": "Street Address - Line 2 (Optional)",
+    "Country": "Country",
+    "City": "City",
+    "State": "State / Province / Region",
+    "ZipCode": "Zip / Postal Code",
+    "Email": "Email",
+    "Next": "Next",
+    "Back": "Back",
+    "Title": "Marketplace Seller Registration",
+    "DisplayInformationTitle": "Tell us about your language preferences",
+    "DisplayInformationDesc": "This will be treated as display information. Translatable text that can be used on the storefront.",
+    "AddTranslations": "Add Translations",
+    "SellerAdminTitle": "Register to manage your account",
+    "SellerAdminDesc": "This is an initial administrator user account. More administrators can be added in the Seller Dashboard Tool.",
+    "LoginId": "Login ID",
+    "Password": "Password",
+    "Password2": "Re-enter Password",
+    "Phone": "Phone Number",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "Submit": "Submit Registration",
+    "TranslationsTitle": "Translations",
+    "TranslationsText": "Translations that are left empty will use values from the default language",
+    "Cancel": "Cancel"
   },
   "RequisitionListItems": {
     "nameForCopiedList": "Enter a name for the new list",
@@ -1328,7 +1382,10 @@
     "CurrentCart": "{{ orderId }} (Current Cart)",
     "InvalidOrderName": "The order name can contain only alphanumeric characters (A-Z, a-z, 0-9) and white spaces.",
     "searchPh": "Search for ID or description",
-    "NotActiveOrderMessage": "Order needs to be active to add products"
+    "NotActiveOrderMessage": "Order needs to be active to add products",
+    "CopyOrder": "Copy order",
+    "DeleteOrder": "Delete order",
+    "OrderDetail": "Order details"
   },
   "InprogressItems": {
     "orderItem": "ORDER ITEM",

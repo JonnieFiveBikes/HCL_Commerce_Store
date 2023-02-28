@@ -66,20 +66,18 @@ function* performClickEvent(action: any) {
 }
 
 function* performTriggerMarketing(action: any) {
-  const WCToken = yield select(wcTokenSelector);
-  if (WCToken) {
-    //only tract click with guest  of register user
-    try {
-      const params = {
-        body: action.payload,
-      };
-      if (action?.payload?.widget) {
-        params["widget"] = action.payload.widget;
-      }
-      yield eventService.triggerMarketing(params);
-    } catch (e) {
-      console.warn(e);
+  //allow the call for generic user, we have persistent cookie now.
+  try {
+    const params = {
+      body: action.payload,
+    };
+    if (action?.payload?.widget) {
+      params["widget"] = action.payload.widget;
+      delete action.payload.widget;
     }
+    yield eventService.triggerMarketing(params);
+  } catch (e) {
+    console.warn(e);
   }
 }
 

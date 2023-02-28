@@ -126,6 +126,7 @@ export const initStates: RootReducerState = {
       searchContext: "/search/resources",
       storeID: "11",
       catalogStoreID: "12001",
+      saStoreID: "12501",
       catalogID: "11501",
       defaultCurrencyID: "USD",
       defaultLanguageID: "-1",

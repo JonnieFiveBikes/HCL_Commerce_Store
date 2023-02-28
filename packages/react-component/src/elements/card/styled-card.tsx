@@ -10,9 +10,9 @@
  */
 import React, { useMemo, useState } from "react";
 import { kebabCase } from "lodash-es";
-import styled from "styled-components";
-import { Card, CardActionArea } from "@material-ui/core";
-import { Divider } from "@material-ui/core";
+import styled from "@mui/styled-engine-sc";
+import { Card, CardActionArea } from "@mui/material";
+import { Divider } from "@mui/material";
 import { StyledButton } from "../button";
 import { StyledLink } from "../link";
 import { StyledGrid } from "../grid";
@@ -31,13 +31,18 @@ const StyledCardWrapper = styled(({ ...props }) => <Card {...props} />)`
       }
     }
     &.wishlist-card {
-       .MuiTypography-body2 {
+      .MuiTypography-body2 {
         width: 66%;
         margin: 0 auto;
       }
       position:relative;
       border: 1px solid  ${theme.palette.divider};
 
+      > .MuiGrid-container > .MuiGrid-item > .MuiCardContent-root {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
     }
 
     &.address-card, &.payment-card {
@@ -62,7 +67,7 @@ const StyledCardWrapper = styled(({ ...props }) => <Card {...props} />)`
   `}
 `;
 
-const StyledConfirmOverlay = styled.div`
+const StyledConfirmOverlay = styled("div")`
   ${({ theme }) => `
       background-color: ${theme.palette.background.paper}${theme.palette.background.transparency};
       position: absolute;
@@ -122,7 +127,7 @@ const StyledCard: React.FC<StyledParameterizedCardProps> = (props: any) => {
   };
   const cardContentMain = useMemo(() => {
     return (
-      <StyledGrid item xs>
+      <StyledGrid item xs className="full-width">
         <StyledCardContent className="horizontal-padding-2 vertical-padding-2">{contentComponent}</StyledCardContent>
       </StyledGrid>
     );

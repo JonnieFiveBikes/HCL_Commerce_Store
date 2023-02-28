@@ -8,8 +8,8 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import Select from "@material-ui/core/Select";
+import styled from "@mui/styled-engine-sc";
+import Select from "@mui/material/Select";
 import React from "react";
 import { dimensions } from "../../themes/variables";
 
@@ -19,9 +19,12 @@ const SelectWrapper = React.forwardRef((props: any, ref: any) => {
 
 const StyledSelect = styled(SelectWrapper)`
   ${({ theme }) => `
+    &.margin-top-0 {
+      margin-top: 0;
+    }
     .MuiOutlinedInput-input {
-      padding: 0 ${theme.spacing(2)}px;
-      padding-right: ${theme.spacing(4)}px;
+      padding: 0 ${theme.spacing(2)};
+      padding-right: ${theme.spacing(4)};
       height: ${dimensions.searchBar.height}px;
       line-height: ${dimensions.searchBar.height}px;
       color: ${theme.palette.text.primary};

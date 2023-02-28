@@ -10,24 +10,28 @@
  */
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
-// update this point to your Search and Transaction server.
-// const SEARCH_HOST = MOCK_HOST;
-// CHANGE SEARCH_HOST to point to the Docker Search Query Service for ElasticSearch
-// for example: const SEARCH_HOST = "https://10.190.66.159:30901";
-
-const SEARCH_HOST = "https://localhost:30901";
-const TRANSACTION_HOST = "https://localhost";
-const MOCK_HOST = "http://localhost:9002";
-const CMC_HOST = "https://10.115.171.46:7443";
-const DX_HOST = "https://10.115.171.46";
-
-const useMock = () => {
-  return process.env.REACT_APP_MOCK === "true";
+// DON'T CHANGE ANYTHING HERE -- add these values in your .env.development.local file.
+//   See the .env.development.local.template file for more information
+//   At the very least, your .env.development.local file should contain something like this:
+//   SEARCH_HOST=https://10.190.66.207:30901
+//   TRANSACTION_HOST=https://10.190.66.207:6443
+const HOSTS = {
+  SEARCH_HOST: process.env.SEARCH_HOST ?? "https://127.0.0.1:30901",
+  TRANSACTION_HOST: process.env.TRANSACTION_HOST ?? "https://127.0.0.1",
+  MOCK_HOST: process.env.MOCK_HOST ?? "http://127.0.0.1:9002",
+  CMC_HOST: process.env.CMC_HOST ?? "https://127.0.0.1:7443",
+  DX_HOST: process.env.DX_HOST ?? "https://localhost",
+  GRAPHQL_HOST: process.env.GRAPHQL_HOST ?? "https://127.0.0.1:3443",
+  APPROVALS_HOST: process.env.APPROVALS_HOST ?? "https://127.0.0.1:6643",
 };
 
-const appHost = `${process.env.HTTPS === "true" ? "https" : "http"}://localhost:${
-  process.env.PORT ? process.env.PORT : 3000
-}`;
+console.log("Using values: %o", HOSTS);
+
+const { SEARCH_HOST, TRANSACTION_HOST, MOCK_HOST, CMC_HOST, DX_HOST, GRAPHQL_HOST, APPROVALS_HOST } = HOSTS;
+const isHttps = process.env.HTTPS === "true";
+
+const useMock = () => process.env.REACT_APP_MOCK === "true";
+const appHost = `${isHttps ? "https" : "http"}://127.0.0.1:${process.env.PORT || 3000}`;
 
 let searchTerm = "";
 const minPrice = "100";
@@ -102,6 +106,16 @@ const dxProxyContext = {
   ...options,
 };
 
+const graphQLContext = {
+  target: GRAPHQL_HOST,
+  ...options,
+};
+
+const approvalsContext = {
+  target: APPROVALS_HOST,
+  ...options,
+};
+
 module.exports = function (app) {
   app.use(["/search/resources/api/", "/search/resources/store/"], createProxyMiddleware(searchProxyContext));
   app.use("/wcs/resources/", createProxyMiddleware(transactionProxyContext));
@@ -120,4 +134,6 @@ module.exports = function (app) {
   );
   app.use(["/lobtools/", "/tooling/", "/sockjs-node/", "/rest/"], createProxyMiddleware(lobToolsProxyContext));
   app.use("/dx/", createProxyMiddleware(dxProxyContext));
+  app.use("/graphql", createProxyMiddleware(graphQLContext));
+  app.use("/approvals", createProxyMiddleware(approvalsContext));
 };

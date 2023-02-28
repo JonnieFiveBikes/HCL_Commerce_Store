@@ -38,7 +38,7 @@ import {
   StyledSelect,
   StyledLink,
 } from "@hcl-commerce-store-sdk/react-component";
-import Divider from "@material-ui/core/Divider";
+import Divider from "@mui/material/Divider";
 //GA360
 import AsyncCall from "../../../../_foundation/gtm/async.service";
 

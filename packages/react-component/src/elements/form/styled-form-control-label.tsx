@@ -8,14 +8,14 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import styled from "@mui/styled-engine-sc";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import React from "react";
 
 const StyledFormControlLabel = styled(({ ...props }) => <FormControlLabel {...props} />)`
   ${({ theme }) => `
     margin: 0;
-    gap: ${theme.spacing(0.75)}px;
+    gap: ${theme.spacing(0.75)};
 
     span {
       line-height: unset;

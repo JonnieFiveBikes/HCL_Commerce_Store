@@ -9,17 +9,17 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import CheckIcon from "@material-ui/icons/Check";
+import styled from "@mui/styled-engine-sc";
+import CheckIcon from "@mui/icons-material/Check";
 
-const StyledSwatchButton = styled.button`
+const StyledSwatchButton = styled("button")`
   ${({ theme }) => `
     padding: 0;
     display: inline-block;
-    width: ${theme.spacing(3)}px;
-    height: ${theme.spacing(3)}px;
-    margin-right: ${theme.spacing(1)}px;
-    margin-bottom: ${theme.spacing(1)}px;
+    width: ${theme.spacing(3)};
+    height: ${theme.spacing(3)};
+    margin-right: ${theme.spacing(1)};
+    margin-bottom: ${theme.spacing(1)};
     border-radius: 50%;
     border: 2px solid white;
     overflow: hidden;
@@ -32,8 +32,8 @@ const StyledSwatchButton = styled.button`
 
     &.product-swatch-medium,
     &.medium {
-      width: ${theme.spacing(4)}px;
-      height: ${theme.spacing(4)}px;
+      width: ${theme.spacing(4)};
+      height: ${theme.spacing(4)};
     }
 
     &.selected {
@@ -43,13 +43,13 @@ const StyledSwatchButton = styled.button`
 
       svg {
         color: white;
-        font-size: ${theme.spacing(2)}px;
+        font-size: ${theme.spacing(2)};
       }
 
       &.product-swatch-medium,
       &.medium {
         svg {
-          font-size: ${theme.spacing(2.5)}px;
+          font-size: ${theme.spacing(2.5)};
         }
       }
     }

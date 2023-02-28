@@ -9,13 +9,13 @@
  *==================================================
  */
 import React from "react";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { Slider, Slide, ButtonBack, ButtonNext, DotGroup } from "pure-react-carousel";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 // Custom libraries
 import { commonUtil } from "@hcl-commerce-store-sdk/utils";
@@ -30,8 +30,8 @@ interface ProductThumbnailSliderProps {
 
 export const ProductThumbnailSlider: React.FC<ProductThumbnailSliderProps> = ({ slidesList, chooseImage, index }) => {
   const theme = useTheme();
-  const isSm = useMediaQuery(theme.breakpoints.down("sm"));
-  const isXs = useMediaQuery(theme.breakpoints.down("xs"));
+  const isSm = useMediaQuery(theme.breakpoints.down("md"));
+  const isXs = useMediaQuery(theme.breakpoints.down("sm"));
   const mobile = isSm || isXs;
   const visibleSlides = 4;
 

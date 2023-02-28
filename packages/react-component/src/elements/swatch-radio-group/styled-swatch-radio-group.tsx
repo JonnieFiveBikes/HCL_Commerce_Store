@@ -10,7 +10,7 @@
  */
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { StyledSwatch } from "../card";
 import { StyledRadio, StyledRadioGroup } from "../radio";
 import { StyledFormControl, StyledFormControlLabel } from "../form";
@@ -133,8 +133,8 @@ const StyledSwatchRadioGroup = styled(({ ...props }) => <RadioGroupWrapper {...p
     }
 
     .MuiButtonBase-root {
-      padding-top: ${theme.spacing(0.5)}px;
-      padding-button: ${theme.spacing(0.5)}px;
+      padding-top: ${theme.spacing(0.5)};
+      padding-button: ${theme.spacing(0.5)};
     }
   `}
 `;

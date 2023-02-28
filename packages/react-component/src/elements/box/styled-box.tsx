@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import Box from "@material-ui/core/Box";
+import styled from "@mui/styled-engine-sc";
+import Box from "@mui/material/Box";
 
 const ComponentWrapper = React.forwardRef((props: any, ref: any) => {
   return <Box {...props} ref={ref} />;
@@ -43,7 +43,7 @@ export const StyledBox = styled(ComponentWrapper)`
 
     &.horizontal-scroll {
       overflow-x: auto;
-      max-width: ${window.innerWidth - theme.spacing(3)}px;
+      max-width: calc(${window.innerWidth}px -${theme.spacing(3)});
     }
   `}
 `;

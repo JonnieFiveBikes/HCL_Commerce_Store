@@ -33,13 +33,18 @@ self.addEventListener("install", function (event) {
       caches.open(CACHE_NAME).then(function (cache) {
         fetch("asset-manifest.json")
           .then((response) => {
-            response.json();
+            if (!response.ok) {
+              throw new Error("HTTP error " + response.status);
+            }
+            return response.json();
           })
           .then((assets) => {
             // We will cache initial page and the main.js
             // We could also cache assets like CSS and images
-            const urlsToCache = ["/", assets["main.js"]];
+            const urlsToCache = ["/", assets.files["main.js"]];
             cache.addAll(urlsToCache);
+          }).catch((error) => {
+            console.error("Error when adding install event listener: ", error);
           });
       })
     );

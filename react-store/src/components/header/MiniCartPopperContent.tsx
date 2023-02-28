@@ -21,7 +21,7 @@ import { PRIVATE_ORDER_TYPE } from "../../constants/order";
 import { numItemsSelector, cartSelector, orderItemsSelector } from "../../redux/selectors/order";
 import { forUserIdSelector, userIdSelector, loginStatusSelector } from "../../redux/selectors/user";
 //UI
-import { ClickAwayListener } from "@material-ui/core";
+import { ClickAwayListener } from "@mui/material";
 import { StyledMiniCartContent } from "../StyledUI";
 import { useSite } from "../../_foundation/hooks/useSite";
 

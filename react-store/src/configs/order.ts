@@ -9,7 +9,7 @@
  *==================================================
  */
 import { SUCCESS_MSG_PREFIX } from "../constants/common";
-import { N_ITEMS_ADDED } from "../constants/order";
+import { N_ITEMS_ADDED, PARTIAL_COPY_ORDER } from "../constants/order";
 //Redux
 import * as ORDER_ACTIONS from "../redux/action-types/order";
 
@@ -24,6 +24,19 @@ export const ORDER_CONFIGS = {
   sortOrderItemBy: "orderItemID",
 };
 
+/**
+ * ShipInfo request body base.
+ */
+export const SHIP_INFO = {
+  x_calculateOrder: ORDER_CONFIGS.calculateOrder,
+  x_calculationUsage: ORDER_CONFIGS.calculationUsage,
+  x_allocate: ORDER_CONFIGS.allocate,
+  x_backorder: ORDER_CONFIGS.backOrder,
+  x_remerge: ORDER_CONFIGS.remerge,
+  x_check: ORDER_CONFIGS.check,
+  orderId: ".",
+};
+
 export const PAGINATION_CONFIGS = {
   pageLimit: 10,
   pageSizeOptions: [10, 25, 50],
@@ -34,6 +47,7 @@ export const MINICART_CONFIGS = {
   itemAddSuccessMsgKeys: [
     SUCCESS_MSG_PREFIX + ORDER_ACTIONS.ITEM_ADD_SUCCESS,
     SUCCESS_MSG_PREFIX + ORDER_ACTIONS.COPY_CART_SUCCESS,
+    SUCCESS_MSG_PREFIX + PARTIAL_COPY_ORDER,
     SUCCESS_MSG_PREFIX + N_ITEMS_ADDED,
   ],
 };

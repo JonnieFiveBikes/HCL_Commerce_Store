@@ -9,8 +9,9 @@
  *==================================================
  */
 //Standard libraries	//store-packages
-import React, { lazy } from "react";
+import React, { lazy, useMemo } from "react";
 import Axios, { Canceler } from "axios";
+import { useLocation } from "react-router";
 //Foundation libraries	//Foundation libraries
 import { useSite } from "../../../../_foundation/hooks/useSite";
 import eSpotService from "../../../../_foundation/apis/transaction/eSpot.service";
@@ -35,6 +36,12 @@ function useFeaturedProductRecommendation({ widget, page }: any) {
   let eSpot: any;
   const [recommendedProductTitle, setRecommendedProductTitle] = React.useState<string>();
   const [recommendedProductContext, setRecommendedProductContext] = React.useState<any>(null);
+
+  const { search } = useLocation();
+  const searchParams = useMemo(() => {
+    return new URLSearchParams(search ?? "");
+  }, [search]);
+
   const CancelToken = Axios.CancelToken;
   const cancels: Canceler[] = [];
 
@@ -51,8 +58,35 @@ function useFeaturedProductRecommendation({ widget, page }: any) {
       storeId: storeID,
       name: eSName,
       catalogId: catalogID,
+      widget: widgetName,
+      query: {
+        DM_ReturnCatalogGroupId: true,
+        DM_FilterResults: false,
+        /**
+         * other possible eSpot parameters
+         * DM_marketingSpotBehavior: 0,1, or 2,
+         * -- Example of specifying the customer is viewing a set of product.
+         * -- The marketing activity could then display merchandising associations
+         * -- of these products.
+         * productId: "12345,67890,54321",
+         * DM_DisplayProducts: number of products to display,
+         * DM_DisplayCategories: number of categories,
+         * DM_DisplayContent: number of contents
+         * Name: value (pairs, can be cookie name and value),
+         * -- content Substitutions
+         * DM_SubstitutionName1: ${DM_SubstitutionName1}
+         * DM_SubstitutionValue1: ${DM_SubstitutionValue1}
+         * -- masked content substitutions: masked values will be masked in trace output.
+         * DM_SubstitutionMaskedName1: ${DM_SubstitutionMaskedName1}
+         * DM_SubstitutionMaskedValue1: ${DM_SubstitutionMaskedValue1}
+         */
+      },
       ...payloadBase,
     };
+    //for url parameters.
+    searchParams.forEach((value, key) => {
+      parameters.query[key] = value;
+    });
     eSpotService
       .findByName(parameters)
       .then((response) => {

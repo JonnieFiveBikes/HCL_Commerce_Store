@@ -123,6 +123,24 @@ REACT_APP_ROUTER_BASENAME={{appName}}
 
 ```
 
+#### Google API key for store locator
+
+1. To use the store locator, we need to set the google API key with the below services enabled:
+
+   Directions API
+
+   Distance Matrix API
+
+   Maps JavaScript API
+
+   Places API
+
+   Please refer to the steps mentioned here https://support.google.com/googleapi/answer/6158841?hl=en and this https://support.google.com/googleapi/answer/6158862?hl=en&ref_topic=7013279 to enable the google API key.
+
+2. Add the key to `.env`(dotEnv) file use environment variable `REACT_APP_GOOGLE_MAP_API_KEY`. i.e. `REACT_APP_GOOGLE_MAP_API_KEY=<your google API key>`
+
+3. Build your store bundle and deploy.
+
 #### Web Server rewrite for Single Page App
 
 Please refer to Create React App [Serving Apps with Client-Side Routing](https://create-react-app.dev/docs/deployment/#serving-apps-with-client-side-routing) for different deployment options and web server config.

@@ -16,10 +16,10 @@ import * as ROUTES from "../../../constants/routes";
 import AccountLinksSection from "../account-links-section";
 
 //UI
-import HistoryIcon from "@material-ui/icons/History";
-import ListIcon from "@material-ui/icons/List";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
+import HistoryIcon from "@mui/icons-material/History";
+import ListIcon from "@mui/icons-material/List";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import { StyledLinkBox } from "@hcl-commerce-store-sdk/react-component";
 
 function AccountLinksGridViewLayout() {

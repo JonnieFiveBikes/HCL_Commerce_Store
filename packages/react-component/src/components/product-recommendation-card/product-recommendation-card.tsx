@@ -43,7 +43,7 @@ export const ProductRecommendationCard: React.FC<ProductRecommendationCardProps>
   const name = props.name;
   const ribbonads = props.ribbonads;
   const price = props.price;
-  const informMarketingOfClick = props.informMarketingOfClick;
+  const onClick = props.informMarketingOfClick;
   const formattedPriceDisplay = props.formattedPriceDisplay;
   const isB2B = props.isB2B;
 
@@ -59,7 +59,7 @@ export const ProductRecommendationCard: React.FC<ProductRecommendationCardProps>
           name,
           ribbonads,
           price,
-          informMarketingOfClick,
+          onClick,
           formattedPriceDisplay,
           isB2B,
         }}

@@ -44,12 +44,15 @@ import {
 } from "../../redux/selectors/order";
 import { forUserIdSelector, loginStatusSelector } from "../../redux/selectors/user";
 import { currentContractIdSelector } from "../../redux/selectors/contract";
+import { entitledOrgSelector, activeOrgSelector } from "../../redux/selectors/organization";
+import { sellersSelector } from "../../redux/selectors/sellers";
 
 import { enUS, fr, de, it, es, ptBR, zhCN, zhTW, ja, ru, ro } from "date-fns/locale";
 //GA360
 import AsyncCall from "../../_foundation/gtm/async.service";
 import cartService from "../apis/transaction/cart.service";
 import storeUtil from "../../utils/storeUtil";
+import { ORDER_CONFIGS } from "../../configs/order";
 /**
  * Shopping cart component
  * displays order item table, order total summary and promo code section
@@ -80,6 +83,10 @@ export const useCart = () => {
   const [promoCode, setPromoCode] = useState<string>(EMPTY_STRING);
   const [promoCodeError, setPromoCodeError] = useState<boolean>(false);
   const [recurringOrderStartDateError, setRecurringOrderStartDateError] = useState<boolean>(false);
+
+  const entitledOrgs = useSelector(entitledOrgSelector);
+  const activeOrgId = useSelector(activeOrgSelector);
+  const sellers = useSelector(sellersSelector);
 
   const selectedPromoCodes: any[] = cart ? (cart.promotionCode ? cart.promotionCode : []) : [];
   const isCartLocked = (): boolean => {
@@ -166,11 +173,15 @@ export const useCart = () => {
   //GA360
   React.useEffect(() => {
     if (mySite.enableGA) {
+      const storeName = mySite.storeName;
       AsyncCall.sendCartPageViewEvent(
-        { pageTitle: storeDisplayName },
+        { pageTitle: storeDisplayName, entitledOrgs, activeOrgId, sellers, storeName },
         { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
       );
-      AsyncCall.sendViewCartEvent({ cart, orderItems }, { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 });
+      AsyncCall.sendViewCartEvent(
+        { cart, orderItems, entitledOrgs, activeOrgId, sellers, storeName },
+        { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
+      );
     }
     return () => {
       cancels.forEach((cancel) => cancel());
@@ -339,7 +350,7 @@ export const useCart = () => {
   /**
    * Proceed to checkout if cart is valid
    */
-  function checkout() {
+  async function checkout() {
     if (canContinue()) {
       if (cart && cart.orderId) {
         const recurringOrderInfo: any[] = [isRecurringOrder, recurringOrderFrequency, recurringOrderStartDate];
@@ -357,14 +368,20 @@ export const useCart = () => {
             shippingModeFromOrderProfile: 1,
           },
         };
-        cartService
-          .copyOrder(parameters)
-          .then((res) => {
-            if (res?.status === 200) {
-              navigate(`${CHECKOUT}${SLASH}${CHECKOUT_REVIEW}`, { state: { selectedProfile } });
-            }
-          })
-          .catch((e) => console.log("Couldn't copy shipping info from checkout profile"));
+
+        try {
+          let res = await cartService.copyOrder(parameters);
+
+          // also need to call calculate -- since the copy_order API doesn't
+          parameters.body = { calculationUsageId: ORDER_CONFIGS.calculationUsage.split(",") };
+          res = await cartService.calculateOrder(parameters);
+
+          if (res?.status === 200) {
+            navigate(`${CHECKOUT}${SLASH}${CHECKOUT_REVIEW}`, { state: { selectedProfile } });
+          }
+        } catch (e) {
+          console.log("Couldn't copy shipping info from checkout profile");
+        }
       } else {
         if (loginStatus) {
           navigate(CHECKOUT);

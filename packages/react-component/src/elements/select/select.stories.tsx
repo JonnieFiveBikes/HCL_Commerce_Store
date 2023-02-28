@@ -12,8 +12,8 @@ import * as React from "react";
 
 import { storiesOf } from "@storybook/react";
 
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 import { StyledSelect } from "./styled-select";
 import { StyledMenuItem } from "../menu-item";
 

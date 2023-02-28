@@ -51,7 +51,7 @@ const SellerLink = ({ breadcrumbs, sellerAttr }) => {
       dispatch(getProductListAction({ parameters, states: { selectedFacets } }));
     }
     // go to category PLP
-    navigate(category?.seo.href);
+    navigate(category.seo.href);
   };
 
   return label && !mySite?.isB2B ? (
@@ -61,7 +61,7 @@ const SellerLink = ({ breadcrumbs, sellerAttr }) => {
       t={t}
       components={[
         <StyledTypography className="product-seller" variant="body2" />,
-        category && seller ? (
+        category?.seo?.href && seller ? (
           <StyledLink to={category.seo.href} onClick={onClick} />
         ) : (
           <StyledTypography component="div" />

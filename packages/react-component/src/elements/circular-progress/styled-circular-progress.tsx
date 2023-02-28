@@ -9,13 +9,13 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import styled from "@mui/styled-engine-sc";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const CircularProgressWrapper = () => <CircularProgress />;
 
 /**
- * see `CircularProgress` @material-ui/core/CircularProgress
+ * see `CircularProgress` @mui/material/CircularProgress
  */
 const StyledCircularProgress = styled(({ ...props }) => <CircularProgressWrapper {...props} />)`
   ${({ theme }) => `

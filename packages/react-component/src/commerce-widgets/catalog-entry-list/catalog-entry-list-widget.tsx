@@ -23,6 +23,7 @@ import {
   StyledFormControl,
   StyledLink,
 } from "../../elements";
+import { commonUtil } from "@hcl-commerce-store-sdk/utils";
 
 /**
  * Catalog entry list widget
@@ -115,7 +116,7 @@ const CatalogEntryListWidget: React.FC<CatalogEntryListWidgetProps> = (props: an
               {suggestedKeywords?.map((keyword: string, index: number) => (
                 <StyledLink
                   key={keyword}
-                  to={SEARCH + "?searchTerm=" + keyword}
+                  to={`${SEARCH}?searchTerm=${commonUtil.encodeURLParts(keyword)}`}
                   className="suggestion-link"
                   id={`productGrid_a_22_${index}_${cid}`}
                   testId={`suggestedKeywords_${keyword}`}>
@@ -135,7 +136,12 @@ const CatalogEntryListWidget: React.FC<CatalogEntryListWidgetProps> = (props: an
         !selectFacetRemove && <Navigate replace to={productList[0].seo.href} />}
 
       {productListTotal > 1 ? (
-        <StyledGrid container className="bottom-margin-1" justifyContent="space-between" alignItems="center">
+        <StyledGrid
+          container
+          className="bottom-margin-4"
+          justifyContent="space-between"
+          alignItems="center"
+          spacing={2}>
           <StyledGrid item>
             <StyledTypography variant="subtitle2">
               {categoryId !== ""
@@ -167,13 +173,15 @@ const CatalogEntryListWidget: React.FC<CatalogEntryListWidgetProps> = (props: an
 
       {/* Facet selection listing */}
       {Object.keys(selectedFacets).length > 0 || priceSelected ? (
-        <StyledGrid item container direction="row" alignItems="center" className="bottom-margin-3">
-          <StyledTypography variant="body2">{translation.ProductGridLabelsfilteredBy}</StyledTypography>
+        <StyledGrid container className="bottom-margin-3" spacing={1}>
+          <StyledGrid item>
+            <StyledTypography variant="body2">{translation.ProductGridLabelsfilteredBy}</StyledTypography>
+          </StyledGrid>
           {Object.keys(selectedFacets).map((key: string, index: number) => (
             <Fragment key={key}>
               <StyledChip
                 size="medium"
-                className="left-margin-1"
+                className="left-margin-1 bottom-margin-2"
                 label={selectedFacets[key]}
                 onClick={() => onFacetRemove(key)}
                 onDelete={() => onFacetRemove(key)}
@@ -192,11 +200,17 @@ const CatalogEntryListWidget: React.FC<CatalogEntryListWidgetProps> = (props: an
             />
           )}
           {(Object.keys(selectedFacets).length > 1 || (priceSelected && Object.keys(selectedFacets).length > 0)) && (
-            <StyledButton testId="clear-all-facets" variant="text" className="left-margin-1">
-              <StyledLink onClick={(event) => onClearAll(event)} to="" className="clear-all" testId="clear-all-facets">
-                {translation.ProductGridActionsclearAll}
-              </StyledLink>
-            </StyledButton>
+            <StyledGrid item>
+              <StyledButton testId="clear-all-facets" variant="text" className="left-margin-1">
+                <StyledLink
+                  onClick={(event) => onClearAll(event)}
+                  to=""
+                  className="clear-all"
+                  testId="clear-all-facets">
+                  {translation.ProductGridActionsclearAll}
+                </StyledLink>
+              </StyledButton>
+            </StyledGrid>
           )}
         </StyledGrid>
       ) : null}

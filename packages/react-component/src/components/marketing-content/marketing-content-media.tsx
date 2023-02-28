@@ -13,7 +13,7 @@
 //standard libraries
 import React, { useRef } from "react";
 import { useDebouncedCallback } from "use-debounce";
-import { CardMedia } from "@material-ui/core";
+import { CardMedia } from "@mui/material";
 
 /**
  * Type definition for props of {@link MarketingContentMedia}

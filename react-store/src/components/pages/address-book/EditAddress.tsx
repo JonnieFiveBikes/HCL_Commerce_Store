@@ -9,10 +9,9 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
 import getDisplayName from "react-display-name";
 
@@ -35,7 +34,7 @@ import {
   StyledBreadcrumbs,
   StyledTypography,
 } from "@hcl-commerce-store-sdk/react-component";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 
 //Custom libraries
 import {
@@ -61,8 +60,7 @@ const EditAddress = (props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { mySite } = useSite();
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
+  const controller = useMemo(() => new AbortController(), []);
   let editAddressDetails: any;
   const params = useParams();
   const editAddressId = params.addressId;
@@ -70,12 +68,10 @@ const EditAddress = (props) => {
   const addressDetails = useSelector(addressDetailsSelector);
   const payloadBase: any = {
     widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
   };
   const payload = {
     ...payloadBase,
+    signal: controller.signal,
   };
   const addressFormDataInit = {
     firstName: EMPTY_STRING,
@@ -153,27 +149,29 @@ const EditAddress = (props) => {
     const requestParams = {
       nickName: updatedAddressData.nickName,
       body: updatedAddressData,
-      ...payloadBase,
+      ...payload,
     };
     personContactService
       .updatePersonContact(requestParams)
       .then((res) => res.data)
       .then((addressData) => {
         if (addressData.addressId) {
-          dispatch(GET_ADDRESS_DETAIL_ACTION(payload));
-          const successMessage = {
-            key: EDIT_SUCCESS_MSG,
-            messageParameters: {
-              "0": updatedAddressData.nickName,
-            },
-          };
-          dispatch(successActions.HANDLE_SUCCESS_MESSAGE_ACTION(successMessage));
+          dispatch(GET_ADDRESS_DETAIL_ACTION(payloadBase));
         }
+      })
+      .then(() => {
+        navigate(ADDRESS_BOOK_ROUTE);
+        const successMessage = {
+          key: EDIT_SUCCESS_MSG,
+          messageParameters: {
+            "0": updatedAddressData.nickName,
+          },
+        };
+        dispatch(successActions.HANDLE_SUCCESS_MESSAGE_ACTION(successMessage));
       })
       .catch((e) => {
         console.log("Could not update the address", e);
       });
-    navigate(ADDRESS_BOOK_ROUTE);
   };
 
   useEffect(() => {
@@ -188,7 +186,7 @@ const EditAddress = (props) => {
 
   React.useEffect(() => {
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

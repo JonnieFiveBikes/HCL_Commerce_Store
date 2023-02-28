@@ -9,17 +9,17 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { StyledTypography } from "../typography";
 import { StyledBox } from "../box/styled-box";
 
-const StyledIconWithBackground = styled.div`
+const StyledIconWithBackground = styled("div")`
   ${({ theme }) => `
     position: relative;
     flex: none;
     background-color: ${theme.palette.action.hover};
-    width: ${theme.spacing(7)}px;
-    height: ${theme.spacing(7)}px;
+    width: ${theme.spacing(7)};
+    height: ${theme.spacing(7)};
     border-radius: 50%;
     text-align: center;
 

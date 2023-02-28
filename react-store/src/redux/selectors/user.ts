@@ -9,7 +9,7 @@
  *==================================================
  */
 //Redux
-import { REGISTERED, GUEST, GENERIC } from "../../constants/uset";
+import { REGISTERED, GUEST, GENERIC } from "../../constants/user";
 import { RootReducerState } from "../reducers";
 
 const userTypeSelector = (state: RootReducerState) => {

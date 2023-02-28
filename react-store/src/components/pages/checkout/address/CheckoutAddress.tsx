@@ -9,9 +9,8 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState, useEffect } from "react";
-import Axios, { Canceler } from "axios";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import getDisplayName from "react-display-name";
 //Foundation libraries
@@ -23,7 +22,6 @@ import {
   ADDRESSLINE1,
   ADDRESSLINE2,
   EMPTY_STRING,
-  STRING_TRUE,
 } from "../../../../constants/common";
 import { AddressForm } from "../../../widgets/address-form";
 import { AddressList } from "../../../widgets/address-list";
@@ -34,10 +32,11 @@ import * as accountActions from "../../../../redux/actions/account";
 import * as successActions from "../../../../redux/actions/success";
 import * as orderActions from "../../../../redux/actions/order";
 //UI
-import { Divider } from "@material-ui/core";
-import HomeIcon from "@material-ui/icons/Home";
-import ContactsIcon from "@material-ui/icons/Contacts";
+import { Divider } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import ContactsIcon from "@mui/icons-material/Contacts";
 import { StyledGrid, StyledIconLabel, StyledButton, StyledTypography } from "@hcl-commerce-store-sdk/react-component";
+import { loginStatusSelector } from "../../../../redux/selectors/user";
 
 export enum CheckoutPageType {
   SHIPPING = "shipping",
@@ -101,23 +100,22 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
 }: CheckoutAddressProps) => {
   const widgetName = getDisplayName(CheckoutAddress);
   const dispatch = useDispatch();
-  const isPersonalAddressAllowed: string = props.isPersonalAddressAllowed
-    ? props.isPersonalAddressAllowed
-    : STRING_TRUE;
-  const orgAddressDetails: any = props.orgAddressDetails ? props.orgAddressDetails : {};
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
+  const { addressDetails, orgAddressDetails } = props;
+  const controller = useMemo(() => new AbortController(), []);
   const EDIT_SUCCESS_MSG = "success-message.EDIT_ADDRESS_SUCCESS";
   const ADD_SUCCESS_MSG = "success-message.ADD_ADDRESS_SUCCESS";
   const { addressFormData, setAddressFormData, canContinue, t, addressFormDataInit } = useCheckoutAddress(editAddress);
   const hideEdit = page === CheckoutPageType.PAYMENT; //For HC-5398
   const payloadBase: any = {
     widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+    signal: controller.signal,
   };
-
+  const regdUser = useSelector(loginStatusSelector);
+  const personalAllowed = useMemo(
+    () => !regdUser || usableAddresses?.find(({ nickName: n }) => addressDetails?.nickName === n),
+    [usableAddresses, addressDetails, regdUser]
+  );
+  const selectable = usableAddresses?.filter(addressUtil.validAddr);
   const submit = (createNew: boolean, editAddress: boolean) => {
     // Add Address
     if (createNew) {
@@ -219,9 +217,7 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
   }, [createNew, editAddress]);
 
   useEffect(() => {
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
+    return () => controller.abort();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -255,8 +251,8 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
         )}
         {!createNew && !editAddress && (
           <>
-            {((paymentChosen && page === CheckoutPageType.PAYMENT && isPersonalAddressAllowed === STRING_TRUE) ||
-              (page === CheckoutPageType.SHIPPING && isPersonalAddressAllowed === STRING_TRUE)) && (
+            {((paymentChosen && page === CheckoutPageType.PAYMENT && personalAllowed) ||
+              (page === CheckoutPageType.SHIPPING && personalAllowed)) && (
               <StyledGrid item xs={12}>
                 <StyledButton
                   testId="checkout-new-address-button"
@@ -269,18 +265,18 @@ const CheckoutAddress: React.FC<CheckoutAddressProps> = ({
                 </StyledButton>
               </StyledGrid>
             )}
-            {usableAddresses?.length > 0 && (
+            {selectable?.length > 0 && (
               <StyledGrid item xs={12}>
                 <StyledTypography className="bottom-margin-2">{t("Shipping.Msgs.UseSavedAddress")}</StyledTypography>
                 <AddressContext.Provider
                   value={{
-                    toggleEditAddress: toggleEditAddress,
+                    toggleEditAddress,
                     setEditAddressFormData: setAddressFormData,
-                    orgAddressDetails: orgAddressDetails,
+                    orgAddressDetails,
                   }}>
                   <AddressList
                     cid="shipping"
-                    addressList={usableAddresses}
+                    addressList={selectable}
                     setSelectedAddressId={setSelectedAddressId}
                     selectedAddressId={selectedAddressId || EMPTY_STRING}
                     hideEdit={hideEdit}

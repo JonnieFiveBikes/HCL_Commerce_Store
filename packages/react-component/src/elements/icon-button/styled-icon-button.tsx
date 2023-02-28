@@ -9,10 +9,10 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import IconButton from "@material-ui/core/IconButton";
+import styled from "@mui/styled-engine-sc";
+import IconButton from "@mui/material/IconButton";
 
-const StyledIconButton = styled(({ ...props }) => <IconButton {...props} />)`
+const StyledIconButton = styled(({ ...props }) => <IconButton {...{ size: "large", ...props }} />)`
   ${({ theme }) => `
     & {
     }

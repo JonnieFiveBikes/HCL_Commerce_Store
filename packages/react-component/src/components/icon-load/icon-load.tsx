@@ -12,9 +12,9 @@
 import React from "react";
 
 // UI
-import ImageRoundedIcon from "@material-ui/icons/ImageRounded";
-import AttachFileOutlinedIcon from "@material-ui/icons/AttachFileOutlined";
-import OndemandVideoOutlinedIcon from "@material-ui/icons/OndemandVideoOutlined";
+import ImageRoundedIcon from "@mui/icons-material/ImageRounded";
+import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
+import OndemandVideoOutlinedIcon from "@mui/icons-material/OndemandVideoOutlined";
 //Custom
 import { constants } from "@hcl-commerce-store-sdk/utils";
 

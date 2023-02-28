@@ -9,19 +9,19 @@
  *==================================================
  */
 import React, { Fragment } from "react";
-import styled from "styled-components";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import styled from "@mui/styled-engine-sc";
+import { useTheme } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 const StyledCarouselProvider = styled(({ ...props }) => <CarouselProvider {...props} />)`
   ${({ theme }) => `
   position: relative;
-  padding: 0 ${theme.spacing(8)}px;
-  margin-top: ${theme.spacing(3)}px;
+  padding: 0 ${theme.spacing(8)};
+  margin-top: ${theme.spacing(3)};
   height: 320px;
 
   ${theme.breakpoints.down(410)} {
@@ -44,8 +44,8 @@ const StyledCarouselProvider = styled(({ ...props }) => <CarouselProvider {...pr
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    height: ${theme.spacing(5)}px;
-    width: ${theme.spacing(5)}px;
+    height: ${theme.spacing(5)};
+    width: ${theme.spacing(5)};
     border: none;
     border-radius: 50%;
     background: none;
@@ -90,9 +90,9 @@ const StyledSlide = styled(({ ...props }) => <Slide {...props} />)`
   `}
 `;
 
-const StyledStaticSlideList = styled.div`
+const StyledStaticSlideList = styled("div")`
   ${({ theme }) => `
-    margin-top: ${theme.spacing(3)}px;
+    margin-top: ${theme.spacing(3)};
 
     display: flex;
     justify-content: center;
@@ -103,7 +103,7 @@ const StyledStaticSlideList = styled.div`
       min-width: 225px;
       display: inline-block;
       max-height: 330px;
-      margin-right: ${theme.spacing(3)}px;
+      margin-right: ${theme.spacing(3)};
     }
   `}
 `;
@@ -113,15 +113,15 @@ const StyledProductRecommendationSlider = ({ slidesList }: any) => {
   let slidesShown = 4;
   let disabledSliding = false;
 
-  if (useMediaQuery(theme.breakpoints.down("md"))) {
+  if (useMediaQuery(theme.breakpoints.down("lg"))) {
     slidesShown = 3;
   }
 
-  if (useMediaQuery(theme.breakpoints.down("sm"))) {
+  if (useMediaQuery(theme.breakpoints.down("md"))) {
     slidesShown = 2;
   }
 
-  if (useMediaQuery(theme.breakpoints.down("xs"))) {
+  if (useMediaQuery(theme.breakpoints.down("sm"))) {
     slidesShown = 1;
   }
 

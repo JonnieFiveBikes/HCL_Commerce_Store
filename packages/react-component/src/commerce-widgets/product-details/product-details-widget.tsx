@@ -18,7 +18,7 @@ import { ProductAttributes } from "../../components/product-attributes";
 import { ChipAd } from "../../components/ribbon-ad";
 import { ProductQuantity } from "../../components/product-quantity";
 import { ProductThumbnails } from "../../components/product-thumbnails";
-import Hidden from "@material-ui/core/Hidden";
+import Hidden from "@mui/material/Hidden";
 import { get } from "lodash-es";
 import { ProductImage } from "../../components";
 
@@ -129,7 +129,7 @@ export const ProductDetailsWidget: React.FC<ProductDetailsWidgetProps> = (props:
                   <StyledGrid item xs={12} md={1}>
                     <ProductThumbnails {...{ imageList: carouselImages, changeMainImage, index }} />
                   </StyledGrid>
-                  <Hidden smDown>
+                  <Hidden mdDown>
                     <StyledGrid item xs={5} className="product-image">
                       <ProductImage {...{ fullImage, alt: displayName }} />
                     </StyledGrid>

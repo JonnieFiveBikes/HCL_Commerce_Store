@@ -27,8 +27,9 @@ import { payMethodsSelector } from "../../../redux/selectors/order";
 import { addressDetailsSelector } from "../../../redux/selectors/account";
 import { organizationDetailsSelector } from "../../../redux/selectors/organization";
 //UI
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 import { StyledButton, StyledGrid } from "@hcl-commerce-store-sdk/react-component";
+import addressUtil from "../../../utils/addressUtil";
 
 interface PaymentMethodContainerProps {
   paymentInfo: PaymentInfoType;
@@ -41,7 +42,6 @@ interface PaymentMethodContainerProps {
   isValidCode: (v?: any) => boolean;
   isValidPayment: (v?: any) => boolean;
   useMultiplePayment: boolean;
-  isPersonalAddressAllowed: string;
   getMaximumPiAmount: (v?: any) => number;
   handleAddNewPayment: (v?: any, v2?: any) => void;
   handleCancelNewPayment: (v?: any) => void;
@@ -67,7 +67,6 @@ const PaymentMethodContainer: React.FC<PaymentMethodContainerProps> = (props: Pa
     isValidCode,
     isValidPayment,
     useMultiplePayment,
-    isPersonalAddressAllowed,
     getMaximumPiAmount,
     handleAddNewPayment,
     handleCancelNewPayment,
@@ -110,22 +109,15 @@ const PaymentMethodContainer: React.FC<PaymentMethodContainerProps> = (props: Pa
    * Initialize filtered billing addresses based on usable payment info
    */
   function initUsableBillingAddresses() {
-    let filterList: any[] = [];
+    const filterList: any[] = [];
     if (thisPaymentInfo && currentPaymentNumber !== null) {
       const payment = thisPaymentInfo;
       if (payment) {
         const paymentFromList = payMethods.filter((p) => p.xumet_policyId === payment.policyId)[0];
-
-        const newUsableBillAddresses = paymentFromList?.usableBillingAddress;
-
-        if (newUsableBillAddresses && newUsableBillAddresses.length > 0) {
-          filterList = filterAddresses(newUsableBillAddresses);
-          if (filterList && filterList.length > 0) {
-            filterList = filterList.concat(filterOrgAddresses(newUsableBillAddresses));
-          } else {
-            filterList = filterOrgAddresses(newUsableBillAddresses);
-          }
-        }
+        const addrList = paymentFromList?.usableBillingAddress;
+        const p = addressUtil.filterAddresses(addrList, addressDetails);
+        const o = addressUtil.filterOrgAddresses(addrList, orgAddressDetails);
+        filterList.push(...p, ...o);
       }
     }
     return filterList;
@@ -195,83 +187,6 @@ const PaymentMethodContainer: React.FC<PaymentMethodContainerProps> = (props: Pa
     updatePaymentState(newPaymentInfo, paymentNumber);
   };
 
-  /**
-   * Filter out addresses that does not have the mandatory fields for checkout
-   * @param usableAddresses List of addresses to scan
-   * @returns Filtered list of addresses
-   */
-  function filterAddresses(usableAddresses: any[]) {
-    if (usableAddresses) {
-      const filteredList = usableAddresses.filter((address) => {
-        if (address && addressDetails) {
-          if (address.addressId === addressDetails.addressId) {
-            return (
-              addressDetails.addressLine !== undefined &&
-              addressDetails.country !== undefined &&
-              addressDetails.addressLine[0] !== EMPTY_STRING &&
-              addressDetails.country !== EMPTY_STRING
-            );
-          } else if (addressDetails.contactMap && addressDetails.contactMap[address.addressId]) {
-            const adressDetailsFromContact = addressDetails.contactMap[address.addressId];
-            return (
-              adressDetailsFromContact.addressLine !== undefined &&
-              adressDetailsFromContact.country !== undefined &&
-              adressDetailsFromContact.addressLine[0] !== EMPTY_STRING &&
-              adressDetailsFromContact.country !== EMPTY_STRING
-            );
-          } else {
-            return false;
-          }
-        }
-        return false;
-      });
-      if (filteredList && filteredList.length > 0) {
-        return filteredList;
-      }
-    }
-    return [];
-  }
-
-  /**
-   * Filter out organization addresses that does not have the mandatory fields for checkout
-   * @param usableAddresses List of addresses to scan
-   * @returns Filtered list of addresses
-   */
-  function filterOrgAddresses(usableAddresses: any[]) {
-    if (usableAddresses) {
-      const filteredList = usableAddresses.filter((address) => {
-        if (address && orgAddressDetails && orgAddressDetails.contactInfo && orgAddressDetails.addressBook) {
-          if (address.addressId === orgAddressDetails.contactInfo.addressId) {
-            return (
-              orgAddressDetails.contactInfo.address1 !== undefined &&
-              orgAddressDetails.contactInfo.country !== undefined &&
-              orgAddressDetails.contactInfo.address1 !== EMPTY_STRING &&
-              orgAddressDetails.contactInfo.country !== EMPTY_STRING
-            );
-          } else {
-            for (const orgAddress of orgAddressDetails.addressBook) {
-              if (address.addressId === orgAddress.addressId) {
-                return (
-                  orgAddress.address1 !== undefined &&
-                  orgAddress.country !== undefined &&
-                  orgAddress.address1 !== EMPTY_STRING &&
-                  orgAddress.country !== EMPTY_STRING
-                );
-              }
-            }
-          }
-          return false;
-        } else {
-          return false;
-        }
-      });
-      if (filteredList && filteredList.length > 0) {
-        return filteredList;
-      }
-    }
-    return [];
-  }
-
   /** Sets the billing address id for the current payment method */
   const onBillingAddressIdChange = (newAddressId: string) => {
     const newPaymentInfo: PaymentInfoType = {
@@ -317,8 +232,8 @@ const PaymentMethodContainer: React.FC<PaymentMethodContainerProps> = (props: Pa
         createNewAddress={createNewAddress}
         editAddress={editAddress}
         toggleEditAddress={setEditAddress}
-        isPersonalAddressAllowed={isPersonalAddressAllowed}
         orgAddressDetails={orgAddressDetails}
+        addressDetails={addressDetails}
         paymentChosen={paymentChosen}
       />
 

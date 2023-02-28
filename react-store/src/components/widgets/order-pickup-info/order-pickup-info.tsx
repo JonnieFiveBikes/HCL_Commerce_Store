@@ -13,8 +13,8 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 //UI
 import { StyledGrid, StyledTypography, StyledIconLabel, StyledBox } from "@hcl-commerce-store-sdk/react-component";
-import LocalShippingIcon from "@material-ui/icons/LocalShipping";
-import HomeIcon from "@material-ui/icons/Home";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import HomeIcon from "@mui/icons-material/Home";
 //foundation libraries
 import OrderDetailSubsection from "../order-detail-subsection/OrderDetailSubsection";
 import { OrderItemTable } from "../order-item-table";

@@ -9,20 +9,20 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import Grid from "@material-ui/core/Grid";
+import styled from "@mui/styled-engine-sc";
+import Grid from "@mui/material/Grid";
 
 const ComponentWrapper = (props: any) => <Grid {...props} />;
 
 const StyledGrid = styled(ComponentWrapper)`
   ${({ theme }) => `
     &.sidebar {
-      ${theme.breakpoints.down("sm")} {
+      ${theme.breakpoints.down("md")} {
         padding: 0;
       }
     }
 
-    ${theme.breakpoints.down("xs")} {
+    ${theme.breakpoints.down("sm")} {
       &.checkout-actions {
         flex-direction: column;
 

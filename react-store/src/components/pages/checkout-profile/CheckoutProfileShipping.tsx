@@ -10,9 +10,8 @@
  */
 //Standard libraries
 import { useEffect, useState } from "react";
-import Axios, { Canceler } from "axios";
 import { Trans, useTranslation } from "react-i18next";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 import {
   StyledGrid,
   StyledPaper,
@@ -67,8 +66,7 @@ const CheckoutProfileShipping = (props) => {
   const cid = "checkout-profile-shipping";
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
+  const controller = useMemo(() => new AbortController(), []);
   const fromState = useSelector(addressDetailsSelector);
   const modes = useSelector(allowableShipModesSelector).filter(
     (shipmethods) => shipmethods.shipModeCode !== SHIPMODE.shipModeCode.PickUp
@@ -77,14 +75,14 @@ const CheckoutProfileShipping = (props) => {
   const [nnMap, setNnMap] = useState<any>({});
   const payload: any = {
     widget,
-    cancelToken: new CancelToken((c) => cancels.push(c)),
+    signal: controller.signal,
   };
 
   useEffect(() => {
     dispatch(a.GET_ADDRESS_DETAIL_ACTION({ ...payload }));
     dispatch(o.FETCH_ALLOWABLE_SHIPMODES_ACTION({ ...payload }));
 
-    return () => cancels.forEach((cancel) => cancel());
+    return () => controller.abort();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -99,7 +97,7 @@ const CheckoutProfileShipping = (props) => {
 
   useEffect(() => {
     const contactList: any[] = get(cloneDeep(fromState), "contactList", []);
-    const shippingList = contactList.filter((address) => address.addressType.includes("Shipping"));
+    const shippingList = contactList.filter((address) => address.addressType?.includes("Shipping"));
     if (fromState?.addressLine && fromState?.addressType?.includes("Shipping")) {
       shippingList.push(addressUtil.getRegisteredInitialAddress(fromState));
     }
@@ -192,7 +190,7 @@ const CheckoutProfileShipping = (props) => {
                   addressFormData={editAddressFormData}
                   edit={true}
                 />
-                <StyledGrid container justifyContent="flex-end" spacing={2} className="checkout-actions">
+                <StyledGrid container justifyContent="flex-end" spacing={2} className="checkout-actions top-margin-1">
                   <StyledGrid item>
                     <StyledButton
                       testId="checkout-profile-edit-ship-address-cancel"

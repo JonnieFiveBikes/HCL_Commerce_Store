@@ -8,15 +8,15 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import FormControl from "@material-ui/core/FormControl";
+import styled from "@mui/styled-engine-sc";
+import FormControl from "@mui/material/FormControl";
 import React from "react";
 
 const StyledFormControl = styled(({ ...props }) => <FormControl {...props} />)`
   ${({ theme }) => `
     &:not(.flex) {
       display: block;
-      margin-bottom: ${theme.spacing(2)}px;
+      margin-bottom: ${theme.spacing(2)};
 
       &:last-child {
         margin-bottom: 0;

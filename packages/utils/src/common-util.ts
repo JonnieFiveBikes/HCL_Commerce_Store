@@ -64,6 +64,17 @@ const commonUtil = {
     }
     return thumbnailImagePath;
   },
+
+  /**
+   * attempt to individually encode parts of a url that is possibly hierarchical
+   * @param url the url to analyze
+   * @returns a url with path-split parts encoded
+   */
+  encodeURLParts: (url: string) =>
+    url
+      .split("/")
+      .map((part) => encodeURIComponent(part))
+      .join("/"),
 };
 
 export { commonUtil };

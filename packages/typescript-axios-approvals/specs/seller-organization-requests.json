@@ -1,0 +1,2107 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API definitions for Seller organization requests approval service",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "http://{hostname}:{port}/approvals",
+      "description": "URL path for APIs",
+      "variables": {
+        "port": {
+          "default": "443",
+          "enum": [
+            "443",
+            "8000"
+          ]
+        },
+        "hostname": {
+          "default": "localhost",
+          "enum": [
+            "localhost",
+            "test.hostname"
+          ]
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/seller-organization-requests": {
+      "get": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Get the seller organization request records",
+        "description": "Get the seller organization request records.",
+        "operationId": "getSellerOrganizationRequests",
+        "parameters": [
+          {
+            "name": "storeId",
+            "in": "query",
+            "description": "The unique numeric ID for identifying the store",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": "31"
+          },
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Limits the results to those that match the specified search string. The search will look for matching seller organization names and submitter e-mail addresses.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "organizationName",
+            "in": "query",
+            "description": "Filter the records by seller organization name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Acmecorp"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter the records by Status",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PENDING",
+                "APPROVED",
+                "REJECTED"
+              ]
+            },
+            "example": "PENDING"
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Filter the records by date range. Specify start date",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            },
+            "example": "2018-03-20T09:12:28Z"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "Filter the records by date range. Specify end date",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            },
+            "example": "2018-03-28T09:12:28Z"
+          },
+          {
+            "name": "submitterEmail",
+            "in": "query",
+            "description": "Filter records by submitter's email",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "email"
+            },
+            "example": "submitter@acmecorp.com"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The position within the resulting dataset where the query begins returning item records. If the offset is \"5\", the records that returned begin with the sixth record that matches the query parameters. If the offset is \"0\", the records that are returned begin with the first record that matches the query parameters.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "0"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of records to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "The comma-separated set of properties that control the order of the listed items. Properties can be prefixed by either (-) to sort in descending order, or (+) to sort in ascending order. By default, properties are sorted in ascending order. For example, sort=sellerName will order the items based on the sellerName value in ascending order. <br/>Available values for sort parameter: sellerName, createdBy, createdTime, status",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The records fetched successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerOrganizationRequestCollection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Create the seller organization request",
+        "description": "Create the seller organization request",
+        "operationId": "createSellerOrganizationRequest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SellerOrganizationRequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The requested resource has been created.",
+            "headers": {
+              "Location": {
+                "description": "The URI of the seller organization request details.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      }
+    },
+    "/seller-organization-requests/{id}": {
+      "get": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Get the seller organization request",
+        "description": "Get the seller organization request",
+        "operationId": "getSellerOrganizationRequestById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerOrganizationRequest"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Update the seller organization request",
+        "description": "Update the seller organization request",
+        "operationId": "updateSellerOrganizationRequest",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SellerOrganizationPatchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "The requested completed successfully. No content is returned in the response."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Delete the seller organization request",
+        "description": "Delete the seller organization request",
+        "operationId": "deleteSellerOrganizationRequest",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The requested completed successfully. No content is returned in the response."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      }
+    },
+    "/seller-organization-requests/{id}/approve": {
+      "patch": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Approve the seller organization request",
+        "description": "Approve the seller organization request",
+        "operationId": "approveSellerOrganizationRequest",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The requested completed successfully. No content is returned in the response."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      }
+    },
+    "/seller-organization-requests/{id}/reject": {
+      "post": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Reject the seller organization request",
+        "description": "Reject the seller organization request",
+        "operationId": "rejectSellerOrganizationRequest",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The requested completed successfully. No content is returned in the response."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      }
+    },
+    "/seller-organization-requests/{id}/administrators": {
+      "get": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Get the seller organization request administrators",
+        "description": "Get the seller organization request administrator",
+        "operationId": "getSellerOrganizationRequestAdministrators",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The position within the resulting dataset where the query begins returning item records. If the offset is \"5\", the records that returned begin with the sixth record that matches the query parameters. If the offset is \"0\", the records that are returned begin with the first record that matches the query parameters.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "0"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of records to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "The comma-separated set of properties that control the order of the listed items. Properties can be prefixed by either (-) to sort in descending order, or (+) to sort in ascending order. By default, properties are sorted in ascending order. For example, sort=logonId will order the items based on the logonId value in ascending order. <br/>Available values for sort parameter: logonId, email",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record fetched successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerAdministratorCollection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Create a seller organization request administrator.",
+        "description": "Create a seller organization request administrator.",
+        "operationId": "createSellerOrganizationRequestAdministrator",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SellerAdministrator"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The seller organization request administrator is created."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      }
+    },
+    "/seller-organization-requests/{id}/administrators/{logonId}": {
+      "get": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Get a seller organization request administrator",
+        "description": "Get the seller organization request administrator",
+        "operationId": "getSellerOrganizationRequestAdministrator",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "logonId",
+            "in": "path",
+            "description": "Seller organization administrator logon id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record fetched successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerAdministrator"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Update the seller organization request administrator",
+        "description": "Update the seller organization request administrator",
+        "operationId": "updateSellerOrganizationRequestAdministrator",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "logonId",
+            "in": "path",
+            "description": "Seller organization administrator logon id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SellerAdministratorPatchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "The requested completed successfully. No content is returned in the response."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Delete the seller organization administrator",
+        "description": "Delete the seller organization administrator",
+        "operationId": "deleteSellerOrganizationRequestAdministrator",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "logonId",
+            "in": "path",
+            "description": "Seller organization administrator logon id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The requested completed successfully. No content is returned in the response."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      }
+    },
+    "/seller-organization-requests/{id}/descriptions": {
+      "get": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Get the seller organization request descriptions",
+        "description": "Get the seller organization request descriptions",
+        "operationId": "getSellerOrganizationRequestDescriptions",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "dataLanguageIds",
+            "in": "query",
+            "description": "The integer(s) for identifying the language of the seller organization request descriptions. For a list of the integers that map to the supported default languages, refer to the Knowledge Center. Multiple identifiers should be specified as a comma-separated list.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The position within the resulting dataset where the query begins returning item records. If the offset is \"5\", the records that returned begin with the sixth record that matches the query parameters. If the offset is \"0\", the records that are returned begin with the first record that matches the query parameters.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "0"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of records to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "The comma-separated set of properties that control the order of the listed items. Properties can be prefixed by either (-) to sort in descending order, or (+) to sort in ascending order. By default, properties are sorted in ascending order. For example, sort=languageId will order the items based on the languageId value in ascending order. <br/>Available values for sort parameter: languageId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record fetched successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerDescriptionCollection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Create a seller organization request description",
+        "description": "Create a seller organization request description",
+        "operationId": "createSellerOrganizationRequestDescription",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SellerDescription"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The seller organization request descriptions are created."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      }
+    },
+    "/seller-organization-requests/{id}/descriptions/{languageId}": {
+      "get": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Get the seller organization request description",
+        "description": "Get the seller organization request description",
+        "operationId": "getSellerOrganizationRequestDescriptionById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "languageId",
+            "in": "path",
+            "description": "The integer for identifying the language of the seller organization request description. For a list of the integers that map to the supported default languages, refer to the Knowledge Center.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record fetched successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerDescription"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Update the seller organization request description",
+        "description": "Update the seller organization request description",
+        "operationId": "updateSellerOrganizationRequestDescription",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "languageId",
+            "in": "path",
+            "description": "The integer for identifying the language of the seller organization request description. For a list of the integers that map to the supported default languages, refer to the Knowledge Center.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The seller organization request description body.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SellerDescription"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "The requested completed successfully. No content is returned in the response."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Delete the seller organization request description",
+        "description": "Delete the seller organization request description",
+        "operationId": "deleteSellerOrganizationRequestDescription",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "languageId",
+            "in": "path",
+            "description": "The integer for identifying the language of the seller organization request description. For a list of the integers that map to the supported default languages, refer to the Knowledge Center.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The requested completed successfully. No content is returned in the response."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      }
+    },
+    "/seller-organization-requests/{id}/comments": {
+      "get": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Get the seller organization request comments",
+        "description": "Get the seller organization request comments",
+        "operationId": "getSellerOrganizationRequestComments",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The position within the resulting dataset where the query begins returning item records. If the offset is \"5\", the records that returned begin with the sixth record that matches the query parameters. If the offset is \"0\", the records that are returned begin with the first record that matches the query parameters.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "0"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of records to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "The comma-separated set of properties that control the order of the listed items. Properties can be prefixed by either (-) to sort in descending order, or (+) to sort in ascending order. By default, properties are sorted in ascending order. For example, sort=commentedBy will order the items based on the commentedBy value in ascending order. <br/>Available values for sort parameter: commentedBy,commentedTime",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record fetched successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentCollection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Create the seller organization request comment",
+        "description": "Create the seller organization request comment",
+        "operationId": "createSellerOrganizationRequestComment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The seller organization request description is created."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      }
+    },
+    "/seller-organization-requests/{id}/comments/{commentId}": {
+      "get": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Get the seller organization request comment",
+        "description": "Get the seller organization request comment",
+        "operationId": "getSellerOrganizationRequestCommentById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "description": "The unique identifier for identifying the comment",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record fetched successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Comment"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Update the seller organization request comment",
+        "description": "Update the seller organization request comment",
+        "operationId": "updateSellerOrganizationRequestComment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "description": "The unique identifier for identifying the comment",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The seller organization request comments body.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "The requested completed successfully. No content is returned in the response."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "delete the seller organization request comment",
+        "description": "delete the seller organization request comment",
+        "operationId": "deleteSellerOrganizationRequestComment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "description": "The unique identifier for identifying the comment",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The requested completed successfully. No content is returned in the response."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      }
+    },
+    "/seller-organization-requests/{id}/marketplaces": {
+      "get": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Get the seller organization request marketplaces",
+        "description": "Get the seller organization request marketplaces",
+        "operationId": "getSellerOrganizationRequestMarketplaces",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The position within the resulting dataset where the query begins returning item records. If the offset is \"5\", the records that returned begin with the sixth record that matches the query parameters. If the offset is \"0\", the records that are returned begin with the first record that matches the query parameters.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "0"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of records to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "The comma-separated set of properties that control the order of the listed items. Properties can be prefixed by either (-) to sort in descending order, or (+) to sort in ascending order. By default, properties are sorted in ascending order. For example, sort=storeIdentifier will order the items based on the storeIdentifier value in ascending order. <br/>Available values for sort parameter: storeIdentifier",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record fetched successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerMarketplaceCollection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Create a seller organization request marketplace",
+        "description": "Create a seller organization request marketplace",
+        "operationId": "createSellerOrganizationRequestMarketplace",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SellerMarketplace"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The seller organization request descriptions are created."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      }
+    },
+    "/seller-organization-requests/{id}/marketplaces/{marketplaceId}": {
+      "get": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Get the seller organization request marketplace",
+        "description": "Get the seller organization request marketplace",
+        "operationId": "getSellerOrganizationRequestMarketplaceById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "marketplaceId",
+            "in": "path",
+            "description": "The marketplace store ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record fetched successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerMarketplace"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Delete the seller organization request marketplace",
+        "description": "Delete the seller organization request marketplace",
+        "operationId": "deleteSellerOrganizationRequestMarketplace",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "marketplaceId",
+            "in": "path",
+            "description": "The marketplace store ID.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The requested completed successfully. No content is returned in the response."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      }
+    },
+    "/seller-organization-requests/{id}/categories": {
+      "get": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Get the seller organization request categories",
+        "description": "Get the seller organization request categories",
+        "operationId": "getSellerOrganizationRequestCategories",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The position within the resulting dataset where the query begins returning item records. If the offset is \"5\", the records that returned begin with the sixth record that matches the query parameters. If the offset is \"0\", the records that are returned begin with the first record that matches the query parameters.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": "0"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of records to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "The comma-separated set of properties that control the order of the listed items. Properties can be prefixed by either (-) to sort in descending order, or (+) to sort in ascending order. By default, properties are sorted in ascending order. For example, sort=categoryId will order the items based on the categoryId value in ascending order. <br/>Available values for sort parameter: categoryId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record fetched successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerCategoryCollection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Create a seller organization request category",
+        "description": "Create a seller organization request category",
+        "operationId": "createSellerOrganizationRequestCategory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SellerCategory"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The seller organization request descriptions are created."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      }
+    },
+    "/seller-organization-requests/{id}/categories/{categoryId}": {
+      "get": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Get the seller organization request category",
+        "description": "Get the seller organization request category",
+        "operationId": "getSellerOrganizationRequestCategoryById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "The category ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record fetched successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SellerCategory"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Seller organization requests"
+        ],
+        "summary": "Delete the seller organization request category",
+        "description": "Delete the seller organization request category",
+        "operationId": "deleteSellerOrganizationRequestCategory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The seller organization registration request id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "The category ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The requested completed successfully. No content is returned in the response."
+          },
+          "400": {
+            "description": "Bad request. Some of the inputs provided to the request are not valid."
+          },
+          "401": {
+            "description": "Not authenticated. The user session is not valid."
+          },
+          "403": {
+            "description": "The user is not authorized to perform the specified request."
+          },
+          "404": {
+            "description": "The specified resource could not be found."
+          },
+          "500": {
+            "description": "Internal server error. Additional details will be contained on the server logs."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Address": {
+        "type": "object",
+        "properties": {
+          "address1": {
+            "type": "string"
+          },
+          "address2": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "zipCode": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "phone1": {
+            "type": "string"
+          },
+          "email1": {
+            "type": "string",
+            "format": "email"
+          }
+        }
+      },
+      "SellerAdministrator": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "logonId": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "SellerAdministratorPatchRequest": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "SellerAdministratorCollection": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SellerAdministrator"
+            }
+          }
+        }
+      },
+      "SellerDescription": {
+        "type": "object",
+        "properties": {
+          "languageId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "SellerDescriptionCollection": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SellerDescription"
+            }
+          }
+        }
+      },
+      "SellerMarketplace": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "identifier": {
+            "type": "string"
+          }
+        }
+      },
+      "SellerMarketplaceCollection": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SellerMarketplace"
+            }
+          }
+        }
+      },
+      "SellerCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "SellerCategoryCollection": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SellerCategory"
+            }
+          }
+        }
+      },
+      "SellerOrganizationRequestBody": {
+        "type": "object",
+        "properties": {
+          "organizationName": {
+            "type": "string"
+          },
+          "storeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "submitterEmail": {
+            "type": "string"
+          },
+          "organizationAddress": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "administrators": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SellerAdministrator"
+            }
+          },
+          "descriptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SellerDescription"
+            }
+          },
+          "marketplaces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SellerMarketplace"
+            }
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SellerCategory"
+            }
+          }
+        }
+      },
+      "SellerOrganizationRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "submitterEmail": {
+            "type": "string"
+          },
+          "organizationName": {
+            "type": "string"
+          },
+          "storeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "storeIdentifier": {
+            "type": "string"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+            "example": "2018-03-28T09:12:28Z"
+          },
+          "status": {
+            "type": "string"
+          },
+          "organizationAddress": {
+            "$ref": "#/components/schemas/Address"
+          }
+        }
+      },
+      "SellerOrganizationRequestCollection": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SellerOrganizationRequest"
+            }
+          }
+        }
+      },
+      "SellerOrganizationPatchRequest": {
+        "type": "object",
+        "properties": {
+          "organizationName": {
+            "type": "string"
+          },
+          "organizationAddress": {
+            "$ref": "#/components/schemas/Address"
+          }
+        }
+      },
+      "CommentBody": {
+        "type": "object",
+        "properties": {
+          "comment": {
+            "type": "string"
+          }
+        }
+      },
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comment": {
+            "type": "string"
+          },
+          "userId": {
+            "description": "The unique numeric ID of the user that created the comment.",
+            "type": "string"
+          },
+          "userFirstName": {
+            "description": "The first name of the user that created the comment.",
+            "type": "string"
+          },
+          "userLastName": {
+            "description": "The last name of the user that created the comment.",
+            "type": "string"
+          },
+          "userLogonId": {
+            "description": "The logon ID of the user that created the comment.",
+            "type": "string"
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+            "example": "2018-03-28T09:12:28Z"
+          }
+        }
+      },
+      "CommentCollection": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Comment"
+            }
+          }
+        }
+      }
+    }
+  }
+}

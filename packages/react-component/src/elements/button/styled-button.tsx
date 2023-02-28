@@ -9,22 +9,11 @@
  *==================================================
  */
 import React, { useCallback, useState, useEffect, useMemo } from "react";
-import styled from "styled-components";
-import MatButton, { ButtonProps } from "@material-ui/core/Button";
+import styled from "@mui/styled-engine-sc";
+import MatButton from "@mui/material/Button";
 import { debounce } from "lodash-es";
 
-type StyledButtonProps = Omit<
-  JSX.IntrinsicElements["a"] &
-    JSX.IntrinsicElements["button"] &
-    ButtonProps & {
-      testId: string;
-      component?: any;
-      to?: any;
-      onClick?: any;
-    },
-  "css"
->;
-const CustomMatButton = React.forwardRef((props: StyledButtonProps, ref: any) => {
+const CustomMatButton = React.forwardRef((props: any, ref: any) => {
   const { variant, className = "", color, testId, onClick, disabled, ...re } = props;
   const dataTestId = testId ? { "data-testid": `button-${testId}` } : {};
   const [iDisabled, setIDisabled] = useState<boolean>(false);
@@ -98,7 +87,7 @@ const StyledButton = styled(CustomMatButton)`
       display: none;
     }
 
-    .MuiAccordionSummary-expandIcon.Mui-expanded & {
+    .MuiAccordionSummary-expandIconWrapper.Mui-expanded & {
       &.accordion-show-summary {
         display: none;
       }
@@ -111,12 +100,12 @@ const StyledButton = styled(CustomMatButton)`
 
     &.MuiButtonBase-root {
       border-radius: ${theme.shape.borderRadius}px;
-      padding: ${theme.spacing(1)}px ${theme.spacing(2)}px;
+      padding: ${theme.spacing(1)} ${theme.spacing(2)};
       letter-spacing: 0.02rem;
 
       &:not(.MuiButton-text) {
         border-radius: ${theme.shape.borderRadius}px;
-        padding: ${theme.spacing(1)}px ${theme.spacing(2)}px;
+        padding: ${theme.spacing(1)} ${theme.spacing(2)};
         letter-spacing: 0.01rem;
         box-shadow: 0px 1px 2px 2px rgba(0,0,0,0.005);
 
@@ -173,7 +162,7 @@ const StyledButton = styled(CustomMatButton)`
       background: white;
       color: ${theme.palette.primary.dark};
       border: 2px solid ${theme.palette.primary.main};
-      padding: ${theme.spacing(1) - 2}px ${theme.spacing(2) - 2}px;
+      padding: calc(${theme.spacing(1)} - 2px) calc(${theme.spacing(2)} - 2px);
 
       &:hover {
         border-color: ${theme.palette.primary.dark};
@@ -188,11 +177,22 @@ const StyledButton = styled(CustomMatButton)`
       }
     }
 
+    @media screen and (max-width: 40em) {
+      &.accordion-show-summary {
+        display: none;
+      }
+
+      &.accordion-show-expanded {
+        display: none;
+      }
+    }
+
+
     &.accordion-show-expanded {
       display: none;
     }
 
-    .MuiAccordionSummary-expandIcon.Mui-expanded &{
+    .MuiAccordionSummary-expandIconWrapper.Mui-expanded &{
       &.accordion-show-summary {
         display: none;
       }
@@ -215,18 +215,21 @@ const StyledButton = styled(CustomMatButton)`
     }
 
     &.confirm-action-button {
-      border: ${theme.spacing(0.25)}px solid ${theme.palette.border.alert};
+      border: ${theme.spacing(0.25)} solid ${theme.palette.border.alert};
       color: ${theme.palette.text.alert};
     }
 
     &.cancel-action-button {
-      border: ${theme.spacing(0.25)}px solid;
+      border: ${theme.spacing(0.25)} solid;
+    }
+    &.price-go {
+      margin-top: ${theme.spacing(1)} ;
     }
 
     &.login-process-button {
-      width: ${theme.spacing(31)}px;
+      width: ${theme.spacing(31)};
       @media (max-width: 320px) {
-        width: ${theme.spacing(25.5)}px;
+        width: ${theme.spacing(25.5)};
       }
     }
     `}

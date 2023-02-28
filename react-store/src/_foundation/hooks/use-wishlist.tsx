@@ -11,24 +11,31 @@
 //Standard libraries
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
 //Redux
 import wishListService from "../../_foundation/apis/transaction/wishList.service";
+import ivSvc from "../../_foundation/apis/transaction/inventoryavailability.service";
+
 import * as successActions from "../../redux/actions/success";
 import { getWishListSelector } from "../../redux/selectors/wish-list";
 import * as wishListActions from "../../redux/actions/wish-list";
 import productsService from "../../_foundation/apis/search/products.service";
 //Custom libraries
-import { EMPTY_STRING, REG_EX } from "../../constants/common";
+import { AVAILABLE_KEY, EMPTY_STRING, REG_EX } from "../../constants/common";
 import { currentContractIdSelector } from "../../redux/selectors/contract";
 import * as orderActions from "../../redux/actions/order";
 import { GET_USER_WISHLIST_ACTION } from "../../redux/actions/wish-list";
-
-const cancels: Canceler[] = [];
-const CancelToken = Axios.CancelToken;
+import { useStoreLocatorValue } from "../context/store-locator-context";
+import { useSite } from "./useSite";
+import { get } from "lodash-es";
+import storeUtil from "../../utils/storeUtil";
+import { useStoreShippingModeValue } from "../context/store-shipping-mode-context";
+import { SHIPMODE } from "../../constants/order";
 
 export const useWishList = () => {
+  const controller = useMemo(() => {
+    return new AbortController();
+  }, []);
   const [wishListName, setWishListName] = useState<string>(EMPTY_STRING);
   const dispatch = useDispatch();
   const userWishList = useSelector(getWishListSelector);
@@ -44,6 +51,68 @@ export const useWishList = () => {
   const [emptyWishlist, setEmptyWishlist] = useState<boolean>(false);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const toggleExpand = () => setIsExpanded((prev) => !prev);
+  const { mySite } = useSite();
+
+  const storeId = mySite?.storeID ?? EMPTY_STRING;
+  const { storeLocator } = useStoreLocatorValue();
+  const { storeShippingMode } = useStoreShippingModeValue();
+  const selectedStore = useMemo(() => storeLocator.selectedStore, [storeLocator]);
+  const [ivData, setIvData] = useState<any>({});
+
+  /**
+   * Helper method to get inventory details using partNumbers and sellerIds
+   * Stores the availabilty data in inventoryMap.
+   * @param partsAndSellers array of objects container partNumber and sellerId attrs
+   */
+  const getInventory = useCallback(
+    async (partsAndSellers: any[]) => {
+      const partNumbers = partsAndSellers.map(({ partNumber }) => partNumber);
+      const sellerId = partsAndSellers.map(({ sellerId }) => sellerId);
+      const p2s = storeUtil.toMap(partsAndSellers, "partNumber");
+      const _p: Promise<any>[] = [];
+      const iv = {};
+
+      // fetch online store iv
+      let params: any = { signal: controller.signal, storeId, partNumbers, sellerId };
+      _p.push(ivSvc.getInventoryAvailabilityByPartNumber(params));
+
+      // if a store has been selected, get physical iv as well
+      if (selectedStore?.physicalStoreName) {
+        const { physicalStoreName } = selectedStore;
+        params = { signal: controller.signal, storeId, partNumbers, physicalStoreName };
+        _p.push(ivSvc.getInventoryAvailabilityByPartNumber(params));
+      }
+
+      try {
+        const _res = await Promise.all(_p);
+
+        // online or seller
+        get(_res, "[0].data.InventoryAvailability", []).forEach(
+          ({ inventoryStatus: s, partNumber, availableQuantity: quantity, onlineStoreId, x_sellerId }) => {
+            if (s === AVAILABLE_KEY && (onlineStoreId || x_sellerId === p2s[partNumber].sellerId)) {
+              const invId = `${x_sellerId}_${partNumber}`;
+              iv[invId] = { quantity, available: true };
+            }
+          }
+        );
+
+        // physical store
+        get(_res, "[1].data.InventoryAvailability", []).forEach(
+          ({ inventoryStatus: s, partNumber, availableQuantity: quantity, physicalStoreId }) => {
+            if (physicalStoreId === selectedStore.id && s === AVAILABLE_KEY) {
+              const invId = `${physicalStoreId}_${partNumber}`;
+              iv[invId] = { quantity, available: true, storeName: selectedStore.storeName };
+            }
+          }
+        );
+      } catch (e) {
+        console.log("Could not retrieve Inventory Details", e);
+      }
+
+      return iv;
+    },
+    [selectedStore, storeId, controller]
+  );
 
   const validateWishListName = useCallback((wishListName: any) => {
     const WISHLISTNAME_ALPHA_NUMERIC_SPECIAL_CHAR = REG_EX.NICKNAME_ALPHA_NUMERIC_SPECIAL_CHAR;
@@ -60,6 +129,21 @@ export const useWishList = () => {
     }
     return false;
   };
+  const userDefaultWishList = () => {
+    const DEFAULT_WISHLIST = "Default Wishlist";
+    const params = {
+      body: {
+        description: DEFAULT_WISHLIST,
+        registry: false,
+      },
+      widget,
+    };
+    try {
+      wishListService.createWishlist(params);
+    } catch (error) {
+      console.log("Error in creating default wish list", error);
+    }
+  };
 
   const createWishList = useCallback(async () => {
     const params = {
@@ -68,7 +152,7 @@ export const useWishList = () => {
         registry: false,
       },
       widget,
-      cancelToken: new CancelToken((c) => cancels.push(c)),
+      signal: controller.signal,
     };
     try {
       const res = await wishListService.createWishlist(params);
@@ -76,7 +160,7 @@ export const useWishList = () => {
         dispatch(
           wishListActions.GET_USER_WISHLIST_ACTION({
             widget,
-            cancelToken: new CancelToken((c) => cancels.push(c)),
+            signal: controller.signal,
           })
         );
         const successMessage = {
@@ -90,7 +174,7 @@ export const useWishList = () => {
     } catch (error) {
       console.log("Error in creating wish list", error);
     }
-  }, [wishListName, dispatch, widget]);
+  }, [wishListName, widget, controller.signal, dispatch]);
 
   const updateWishListName = useCallback(
     async (wishListId: string) => {
@@ -100,7 +184,7 @@ export const useWishList = () => {
           description: wishListName.trim(),
         },
         widget,
-        cancelToken: new CancelToken((c) => cancels.push(c)),
+        signal: controller.signal,
       };
       try {
         const res = await wishListService.updateWishlist(params);
@@ -113,7 +197,7 @@ export const useWishList = () => {
           dispatch(
             wishListActions.GET_USER_WISHLIST_ACTION({
               widget,
-              cancelToken: new CancelToken((c) => cancels.push(c)),
+              signal: controller.signal,
             })
           );
         }
@@ -121,7 +205,7 @@ export const useWishList = () => {
         console.log("Error in updating wish list name", error);
       }
     },
-    [dispatch, wishListName, widget]
+    [wishListName, widget, controller.signal, dispatch]
   );
 
   const getProductsData = useCallback(
@@ -136,12 +220,15 @@ export const useWishList = () => {
         const requestParameters = {
           partNumber,
           widget,
-          cancelToken: new CancelToken((c) => cancels.push(c)),
+          signal: controller.signal,
         };
         try {
           const res = await productsService.findProductsUsingGET(requestParameters);
           const products = res?.data?.contents;
           if (products) {
+            const pnSeller = products.map(({ partNumber, sellerId }) => ({ partNumber, sellerId }));
+            const iv = await getInventory(pnSeller);
+            setIvData(iv);
             setProductsData(
               products.map((p) => {
                 const _item = wishList.item.find((i) => i.partNumber === p.partNumber) ?? {};
@@ -157,7 +244,7 @@ export const useWishList = () => {
         setEmptyWishlist(true);
       }
     },
-    [widget]
+    [controller.signal, widget, getInventory]
   );
 
   const deleteWishList = useCallback(
@@ -167,12 +254,12 @@ export const useWishList = () => {
         wishListName,
         length: userWishList.length,
         widget,
-        cancelToken: new CancelToken((c) => cancels.push(c)),
+        signal: controller.signal,
       };
 
       dispatch(wishListActions.WISHLIST_DELETE_ACTION({ ...parameters }));
     },
-    [userWishList, dispatch, widget]
+    [userWishList, widget, controller.signal, dispatch]
   );
 
   const deleteWishListItem = useCallback(
@@ -183,12 +270,12 @@ export const useWishList = () => {
         productName: name,
         widget,
         deleteMsgSnackbar: showSnackbarMsg,
-        cancelToken: new CancelToken((c) => cancels.push(c)),
+        signal: controller.signal,
       };
 
       dispatch(wishListActions.WISHLIST_DELETE_ITEM_ACTION({ ...parameters }));
     },
-    [dispatch, widget]
+    [controller.signal, dispatch, widget]
   );
 
   const deleteWishListMultipleItems = useCallback(
@@ -200,7 +287,7 @@ export const useWishList = () => {
           itemId,
           productName,
           widget,
-          cancelToken: new CancelToken((c) => cancels.push(c)),
+          signal: controller.signal,
         };
         deletingArray.push(wishListService.deleteWishlist(payload));
       });
@@ -213,36 +300,48 @@ export const useWishList = () => {
           };
           dispatch(successActions.HANDLE_SUCCESS_MESSAGE_ACTION(msg));
         }
-        dispatch(GET_USER_WISHLIST_ACTION({ widget, cancelToken: new CancelToken((c) => cancels.push(c)) }));
+        dispatch(GET_USER_WISHLIST_ACTION({ widget, signal: controller.signal }));
       } catch (e) {
         console.log("Encountered an error deleting items from wish-list", e);
       }
     },
-    [dispatch, widget]
+    [controller.signal, dispatch, widget]
   );
 
   const addToCart = useCallback(
     (products) => {
-      const param = {
-        fromWishList: true,
+      const param: any = { fromWishList: true, contractId: contract, widget, signal: controller.signal };
+      const { shipModeId: modeId } =
+        storeShippingMode.find((m) => m.shipModeCode === SHIPMODE.shipModeCode.PickUp) ?? {};
+      const shipModeId: any[] = [];
+      const physicalStoreId: any[] = [];
+
+      products.forEach((p) => {
+        const online =
+          !selectedStore ||
+          ivData[`${p.sellerId}_${p.partNumber}`]?.available ||
+          !ivData[`${selectedStore.id}_${p.partNumber}`]?.available;
+        shipModeId.push(online ? null : modeId);
+        physicalStoreId.push(online ? null : selectedStore.id);
+      });
+
+      Object.assign(param, {
         products,
         partnumber: products.map(({ partNumber }) => partNumber),
         quantity: products.map((v) => "1"),
-        contractId: contract,
-        widget,
-        cancelToken: new CancelToken((c) => cancels.push(c)),
-      };
+        shipModeId,
+        physicalStoreId,
+      });
       dispatch(orderActions.ADD_ITEM_ACTION(param));
     },
-    [contract, dispatch, widget]
+    [contract, controller.signal, dispatch, widget, ivData, selectedStore, storeShippingMode]
   );
 
   useEffect(() => {
     return () => {
-      cancels.splice(0).forEach((cancel: Canceler) => {
-        cancel();
-      });
+      controller.abort();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
@@ -269,5 +368,6 @@ export const useWishList = () => {
     deleteWishListMultipleItems,
     isExpanded,
     toggleExpand,
+    userDefaultWishList,
   };
 };

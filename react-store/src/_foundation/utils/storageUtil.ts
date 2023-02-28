@@ -120,7 +120,7 @@ const storageSessionHandler = {
   },
   clearLocalStorageSessionInfo: () => {
     const currentUser = _localStorageUtil.get(constants.CURRENT_USER);
-    if (currentUser.rememberMe) {
+    if (currentUser && currentUser.rememberMe) {
       delete currentUser.WCToken;
       delete currentUser.WCTrustedToken;
       _localStorageUtil.set(constants.CURRENT_USER, currentUser, PERMANENT_STORE_DAYS);

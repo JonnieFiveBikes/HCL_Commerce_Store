@@ -9,17 +9,17 @@
  *==================================================
  */
 
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 
-export const StyledProductImage = styled.img`
+export const StyledProductImage = styled("img")`
   ${({ theme }) => `
   position: relative;
   max-height: 550px;
 
   &.thumbnail {
-    padding: ${theme.spacing(0.5)}px;
+    padding: ${theme.spacing(0.5)};
     border: solid 1px ${theme.palette.grey[300]};
-    border-radius: ${theme.spacing(0.25)}px;
+    border-radius: ${theme.spacing(0.25)};
 
     &:hover {
       cursor: pointer;

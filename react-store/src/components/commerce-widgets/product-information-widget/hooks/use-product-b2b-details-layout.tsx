@@ -38,10 +38,12 @@ import * as orderActions from "../../../../redux/actions/order";
 import * as errorActions from "../../../../redux/actions/error";
 import * as catalogActions from "../../../../redux/actions/catalog";
 import { useStoreLocatorValue } from "../../../../_foundation/context/store-locator-context";
+import { entitledOrgSelector, activeOrgSelector } from "../../../../redux/selectors/organization";
+import { sellersSelector } from "../../../../redux/selectors/sellers";
 
 //UI
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material";
 import {
   AttachmentB2BLayout,
   StyledTypography,
@@ -63,8 +65,8 @@ import { PRIVATE_ORDER_TYPE, SHIPMODE } from "../../../../constants/order";
 import { SellerLink } from "../../../widgets/seller-link";
 import { AddToRequisitionListButton } from "../../../widgets/add-to-req-list-button";
 import { HANDLE_SUCCESS_MESSAGE_ACTION } from "../../../../redux/actions/success";
-import Closed from "@material-ui/icons/ChevronRight";
-import Open from "@material-ui/icons/ExpandMoreOutlined";
+import Closed from "@mui/icons-material/ChevronRight";
+import Open from "@mui/icons-material/ExpandMoreOutlined";
 import { useStoreShippingModeValue } from "../../../../_foundation/context/store-shipping-mode-context";
 
 const OpenDrawer = () => {
@@ -206,8 +208,11 @@ const QuantityCell = ({ rowData: r, headers: h }) => {
 
 const DetailPanel = ({ rowData }) => {
   const { attributes: rawData } = rowData;
+  const { getCurrentContext } = useTableUtils();
+  const { tableState: s } = useCustomTable();
+  const drawerAttrs = get(getCurrentContext(s), "drawerAttrs", {});
   const { t } = useTranslation();
-  const ofInterest = rawData.filter((a) => a.usage === DEFINING).filter((a, i) => i > 1);
+  const ofInterest = rawData.filter(({ identifier }) => drawerAttrs[identifier]);
 
   // generate headers array
   const columns = ofInterest.map((a, i) => ({
@@ -230,6 +235,13 @@ const DetailPanel = ({ rowData }) => {
   return <D {...{ data, columns, style, t, labels: { emptyMsg: "Order.NoRecord" } }} />;
 };
 
+const DefAttrCell = ({ rowData, current }) => {
+  const id = current.keyLookup.key;
+  const attr = rowData.attributes?.find(({ identifier }) => id === identifier);
+  const value = get(attr, "values[0].value", "");
+  return <>{value}</>;
+};
+
 /**
  * B2B Product display component
  * Displays product defining atrributes, SKUs and it's availability, promotions and other product details.
@@ -249,7 +261,7 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page, props) =>
   const dispatch = useDispatch();
   const theme = useTheme();
   const widgetName = getDisplayName("ProductB2BDetailsLayout");
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const productPartNumber = get(page, "externalContext.identifier", EMPTY_STRING);
   const [productType, setProductType] = useState<string>(EMPTY_STRING);
   const [descriptiveAttributeList, setDescriptiveAttributeList] = useState<Array<object>>([]);
@@ -329,6 +341,8 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page, props) =>
   const [sellerAttr, setSellerAttr] = useState<any>(null);
   const [seller, setSeller] = useState<any>(null);
   const [catIdentifier, setCatIdentifier] = useState<string>(EMPTY_STRING);
+  const [skusByPart, setSkusByPart] = useState<any>({});
+  const [productDetailTabsChildren, setProductDetailTabsChildren] = useState<ITabs[]>([]);
 
   const panelExpanderComps = useMemo(
     () => ({
@@ -339,8 +353,8 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page, props) =>
   );
 
   // only specified for sku-list to update the custom-table context
-  const updateCTCtx = useMemo(
-    () => (k, v) => {
+  const updateCTCtx = useCallback(
+    (k, v) => {
       if (hasCTCtx) setCurrentContextValue(k, v, tableState, setTableState);
     },
     [hasCTCtx, setCurrentContextValue, tableState, setTableState]
@@ -367,6 +381,13 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page, props) =>
     const iv = get(getCurrentContext(s), `inventory.${rowData.id}`);
     return iv && rowData.buyable === STRING_TRUE ? avl : unAvl;
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const attrCalculator = useCallback(({ rowData, tableState: s, header }) => {
+    const id = header.keyLookup.key;
+    const attr = rowData.attributes?.find(({ identifier }) => id === identifier);
+    const value = get(attr, "values[0].value", "");
+    return value;
+  }, []);
 
   /**
    * Get product information from part number
@@ -470,12 +491,16 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page, props) =>
     let sel;
 
     allSkus.sort(compare);
+    setSkusByPart(storeUtil.toMap(allSkus, "partNumber"));
 
     // no need to generate headers if not required
     if (hasCTCtx) {
-      const { headers: h, needsPanel: d } = headerFn(productInfoData);
+      const { drawerAttrs, headers: h, needsPanel: d } = headerFn(productInfoData);
       setHeaders(h);
       setNeedsPanel(d);
+
+      const defnById = storeUtil.toMap(drawerAttrs, "identifier");
+      setCurrentContextValue("drawerAttrs", defnById, tableState, setTableState);
     }
 
     const { desc, defn } = getDescriptiveAndDefiningAttributes(productInfoData);
@@ -540,13 +565,13 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page, props) =>
     return { desc, defn };
   };
 
-  const headerFn = useMemo(
-    () => (root) => {
+  const headerFn = useCallback(
+    (root) => {
       const cellStyle = { verticalAlign: "middle" };
-      const defnAttrs =
-        root.attributes?.map((a, i) => ({ ...a, __origIdx: i })).filter((a) => a.usage === DEFINING) ?? [];
+      const defnAttrs: any[] = root?.attributes?.filter((a) => a.usage === DEFINING) ?? [];
       const attrSz = defnAttrs.length > 2 ? 2 : defnAttrs.length;
       let needsPanel = false;
+      let drawerAttrs: any[] = [];
 
       const headers = [
         {
@@ -559,18 +584,15 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page, props) =>
         ...Array.from({ length: attrSz }, (x, i) => ({
           title: defnAttrs[i].name,
           keyLookup: {
-            key: `attributes[${defnAttrs[i].__origIdx}].values[0].value`,
+            key: defnAttrs[i].identifier,
           },
-          display: { cellStyle },
-          sortable: {},
+          display: { cellStyle, template: DefAttrCell },
+          sortable: { fn: attrCalculator },
         })),
         {
           title: t("productDetail.Price"),
           keyLookup: { key: "phantomPrice" },
-          display: {
-            cellStyle,
-            template: PriceCell,
-          },
+          display: { cellStyle, template: PriceCell },
           sortable: { fn: priceCalculator, numeric: true },
         },
         {
@@ -594,11 +616,13 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page, props) =>
 
       if (attrSz < defnAttrs.length) {
         needsPanel = true;
+        // only keep attrs that will go in the drawer
+        drawerAttrs = defnAttrs.slice(2);
       }
 
-      return { needsPanel, headers };
+      return { drawerAttrs, needsPanel, headers };
     },
-    [t, oaCalculator, priceCalculator]
+    [t, oaCalculator, priceCalculator, attrCalculator]
   );
 
   /**
@@ -824,69 +848,19 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page, props) =>
       });
   };
 
-  const productDetailTabsChildren: ITabs[] = [];
-
-  if (productData && productData.longDescription) {
-    const descriptionElement = (
-      <>
-        <StyledTypography variant="body1" component="div">
-          {HTMLReactParser(productData.longDescription)}
-        </StyledTypography>
-      </>
-    );
-    productDetailTabsChildren.push({
-      title: translation.productDetailDescription,
-      tabContent: descriptionElement,
-    });
-  }
-  //Product Details Tab (Descriptive Attributes of product)
-  if (descriptiveAttributeList.length > 0) {
-    const tabContent = (
-      <div id={`product-details-container_${productPartNumber}`} className="product-details-container">
-        {descriptiveAttributeList.map((e: any) => (
-          <StyledTypography variant="body1" key={`li_${e.identifier}`} id={`product_attribute_${productPartNumber}`}>
-            <b
-              key={`span_name_${e.identifier}`}
-              id={`product_desc_attribute_name_${e.identifier}_${productPartNumber}`}>
-              {e.name}:
-            </b>
-            {e.values?.map((value: any) => (
-              <span id={`product_attribute_value_${value.identifier}_${productPartNumber}`} key={value.identifier}>
-                {" " + storeUtil.csValue(value.value)}
-              </span>
-            ))}
-          </StyledTypography>
-        ))}
-      </div>
-    );
-    productDetailTabsChildren.push({
-      title: translation.productDetailProductDetails,
-      tabContent,
-    });
-  }
-  if (attachmentsList.length > 0) {
-    attachmentsList.forEach((a) => {
-      a.mimeType = /^https?:\/\//.test(a.attachmentAssetPath) ? "content/url" : a.mimeType || "content/unknown";
-    });
-
-    const tabContent = <AttachmentB2BLayout {...{ attachmentsList }} />;
-    productDetailTabsChildren.push({
-      title: translation.productDetailAttachments,
-      tabContent,
-    });
-  }
-
   //GA360
   const breadcrumbs = useSelector(breadcrumbsSelector);
+  const sellers = useSelector(sellersSelector);
   useEffect(() => {
     if (mySite.enableGA) {
+      const storeName = mySite.storeName;
       if (productPartNumber && breadcrumbs.length !== 0) {
         AsyncCall.sendPDPPageViewEvent(breadcrumbs, {
           enableUA: mySite.enableUA,
           enableGA4: mySite.enableGA4,
         });
         AsyncCall.sendB2BPDPDetailViewEvent(
-          { productData, productPartNumber, breadcrumbs },
+          { productData, productPartNumber, breadcrumbs, sellers, storeName },
           { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
         );
       }
@@ -901,16 +875,26 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page, props) =>
     parseProducts();
   }, [products]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const entitledOrgs = useSelector(entitledOrgSelector);
+  const activeOrgId = useSelector(activeOrgSelector);
   useEffect(() => {
     if (addItemActionTriggered) {
       //GA360
       if (mySite.enableGA) {
-        const result = Array.from(skuAndQuantities).map((key, value) => ({
-          key,
-          value,
-        }));
+        const storeName = mySite.storeName;
+        const partAndQuantity = Array.from(skuAndQuantities).map((e: any) => ({ key: e[0], value: e[1] }));
         AsyncCall.sendB2BAddToCartEvent(
-          { cart, currentProdSelect, result, breadcrumbs },
+          {
+            cart,
+            productData,
+            skusByPart,
+            partAndQuantity,
+            breadcrumbs,
+            entitledOrgs,
+            activeOrgId,
+            sellers,
+            storeName,
+          },
           { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
         );
       }
@@ -919,11 +903,11 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page, props) =>
   }, [addItemActionTriggered, cart]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if (pdpData && pdpData.length > 0 && uniqueSkuList.length === 0) {
+    if (pdpData?.length) {
       getProduct();
       getAssociatedPromotions();
     }
-  }, [skuAndQuantities, pdpData]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [pdpData]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (uniqueSkuList.length > 0 && hasCTCtx) {
@@ -943,6 +927,62 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page, props) =>
       }
     }
   }, [topCategoriesList, products]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const productDetailTabsChildrenTemp: ITabs[] = [];
+
+    if (productData && productData.longDescription) {
+      const descriptionElement = (
+        <>
+          <StyledTypography variant="body1" component="div">
+            {HTMLReactParser(productData.longDescription)}
+          </StyledTypography>
+        </>
+      );
+      productDetailTabsChildrenTemp.push({
+        title: translation.productDetailDescription,
+        tabContent: descriptionElement,
+      });
+    }
+    //Product Details Tab (Descriptive Attributes of product)
+    if (descriptiveAttributeList.length > 0) {
+      const tabContent = (
+        <div id={`product-details-container_${productPartNumber}`} className="product-details-container">
+          {descriptiveAttributeList.map((e: any) => (
+            <StyledTypography variant="body1" key={`li_${e.identifier}`} id={`product_attribute_${productPartNumber}`}>
+              <b
+                key={`span_name_${e.identifier}`}
+                id={`product_desc_attribute_name_${e.identifier}_${productPartNumber}`}>
+                {e.name}:
+              </b>
+              {e.values?.map((value: any) => (
+                <span id={`product_attribute_value_${value.identifier}_${productPartNumber}`} key={value.identifier}>
+                  {" " + storeUtil.csValue(value.value)}
+                </span>
+              ))}
+            </StyledTypography>
+          ))}
+        </div>
+      );
+      productDetailTabsChildrenTemp.push({
+        title: translation.productDetailProductDetails,
+        tabContent,
+      });
+    }
+    if (attachmentsList.length > 0) {
+      attachmentsList.forEach((a) => {
+        a.mimeType = /^https?:\/\//.test(a.attachmentAssetPath) ? "content/url" : a.mimeType || "content/unknown";
+      });
+
+      const tabContent = <AttachmentB2BLayout {...{ attachmentsList }} />;
+      productDetailTabsChildrenTemp.push({
+        title: translation.productDetailAttachments,
+        tabContent,
+      });
+    }
+
+    setProductDetailTabsChildren(cloneDeep(productDetailTabsChildrenTemp));
+  }, [productData, attachmentsList, descriptiveAttributeList]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (catIdentifier) {

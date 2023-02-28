@@ -9,7 +9,7 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { StyledPopper } from "./styled-popper";
 
 const CustomAccountPopper = React.forwardRef((props: any, ref: any) => {
@@ -25,11 +25,11 @@ const StyledAccountPopper = styled(CustomAccountPopper)`
       }
 
       .MuiListItem-root {
-        padding: ${theme.spacing(1)}px 0;
+        padding: ${theme.spacing(1)} 0;
       }
 
       .MuiListItemIcon-root {
-        margin-right: ${theme.spacing(1)}px;
+        margin-right: ${theme.spacing(1)};
         min-width: 0;
 
         svg {
@@ -56,7 +56,7 @@ const StyledAccountPopper = styled(CustomAccountPopper)`
     }
 
     &.mini-cart-popper {
-      margin-top: ${theme.spacing(2)}px;
+      margin-top: ${theme.spacing(2)};
       text-align: left;
 
       & > .MuiPaper-root {
@@ -69,10 +69,10 @@ const StyledAccountPopper = styled(CustomAccountPopper)`
       }
 
       &[x-placement*="bottom"] .arrow{
-        border-left: ${theme.spacing(2)}px solid transparent;
-        border-right: ${theme.spacing(2)}px solid transparent;
-        border-bottom: ${theme.spacing(2)}px solid ${theme.palette.background.paper};
-        margin-top: -${theme.spacing(2)}px;
+        border-left: ${theme.spacing(2)} solid transparent;
+        border-right: ${theme.spacing(2)} solid transparent;
+        border-bottom: ${theme.spacing(2)} solid ${theme.palette.background.paper};
+        margin-top: -${theme.spacing(2)};
       }
 
       .arrow {

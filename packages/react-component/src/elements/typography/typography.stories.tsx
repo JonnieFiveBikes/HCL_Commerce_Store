@@ -11,7 +11,7 @@
 import * as React from "react";
 
 import { storiesOf } from "@storybook/react";
-import Typography from "@material-ui/core/Typography";
+import Typography from "@mui/material/Typography";
 
 const divStyle = {
   padding: "15px 20px",

@@ -22,9 +22,9 @@ import {
   StyledAccordionSummary,
   StyledLink,
 } from "@hcl-commerce-store-sdk/react-component";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material";
 //GA360
 import AsyncCall from "../../_foundation/gtm/async.service";
 
@@ -150,7 +150,7 @@ const MegaMenuColumn: React.FC<MegaMenuColumnProps> = (props: any) => {
     });
   }
 
-  const icon = useMediaQuery(theme.breakpoints.down("xs")) ? <ExpandMoreIcon /> : "";
+  const icon = useMediaQuery(theme.breakpoints.down("sm")) ? page.children ? <ExpandMoreIcon /> : "" : "";
 
   const onChange = () => {
     setActiveMenuId(activeMenuId !== id ? id : null);

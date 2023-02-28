@@ -9,6 +9,8 @@
  *==================================================
  */
 //Standard libraries
+import { useTheme } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { DirectionsRenderer, DirectionsService, GoogleMap } from "@react-google-maps/api";
 //HCL libraries
 import { StyledCircularProgress, StyledGrid, StyledPaper } from "@hcl-commerce-store-sdk/react-component";
@@ -46,12 +48,13 @@ export const StoreLocatorWidget = () => {
     expand,
     noDirectionPath,
   } = useStoreLocator();
-
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <>
       {isLoaded ? (
         <StyledGrid container justifyContent="center" alignItems="stretch" spacing={2}>
-          <StyledGrid item xs={12} md={4} style={{ height: pageHeight }}>
+          <StyledGrid item xs={12} md={4} style={{ height: isDesktop ? pageHeight : null }}>
             <StyledPaper style={{ height: "100%" }}>
               <StoreLocatorSideList
                 locator={locator}
@@ -63,6 +66,7 @@ export const StoreLocatorWidget = () => {
                 onPlacesChanged={onPlaceChanged}
                 clearSearch={clearSearch}
                 searchTextFieldRef={searchTextFieldRef}
+                clickedIndex={clickedIndex}
               />
             </StyledPaper>
           </StyledGrid>
@@ -87,7 +91,13 @@ export const StoreLocatorWidget = () => {
                 {!showDirection
                   ? locator?.storeList.map((store, index) => {
                       return (
-                        <StoreLocatorMarker key={store.id} store={store} index={index} onMarkerClick={onMarkerClick} />
+                        <StoreLocatorMarker
+                          clickedIndex={clickedIndex}
+                          key={store.id}
+                          store={store}
+                          index={index}
+                          onMarkerClick={onMarkerClick}
+                        />
                       );
                     })
                   : null}

@@ -10,7 +10,6 @@
  */
 //Standard libraries
 import React, { useEffect, useState, useCallback, useMemo } from "react";
-import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -43,16 +42,15 @@ import {
   StyledIconButton,
   StyledPagination,
 } from "@hcl-commerce-store-sdk/react-component";
-import CancelIcon from "@material-ui/icons/Cancel";
-import CloseIcon from "@material-ui/icons/Close";
-import { Divider } from "@material-ui/core";
+import CancelIcon from "@mui/icons-material/Cancel";
+import CloseIcon from "@mui/icons-material/Close";
+import { Divider } from "@mui/material";
 //Custom libraries
 import { useWishList } from "../../../_foundation/hooks/use-wishlist";
 import { WishListCard } from "./wishlist-card";
 import { useSite } from "../../../_foundation/hooks/useSite";
 import storeUtil from "../../../utils/storeUtil";
 
-const cancels: Canceler[] = [];
 const ViewWishList: React.FC = () => {
   const loginStatus = useSelector(loginStatusSelector);
   const userWishList = useSelector(getWishListSelector);
@@ -96,8 +94,8 @@ const ViewWishList: React.FC = () => {
   const widgetName = useMemo(() => {
     return getDisplayName("ViewWishList");
   }, []);
-  const CancelToken = useMemo(() => {
-    return Axios.CancelToken;
+  const controller = useMemo(() => {
+    return new AbortController();
   }, []);
   useEffect(() => {
     if (userWishList) {
@@ -111,11 +109,11 @@ const ViewWishList: React.FC = () => {
       dispatch(
         wishListActions.GET_USER_WISHLIST_ACTION({
           widget: widgetName,
-          cancelToken: new CancelToken((c) => cancels.push(c)),
+          signal: controller.signal,
         })
       );
     }
-  }, [userWishList, dispatch, getProductsData, wishListId, CancelToken, widgetName]);
+  }, [userWishList, dispatch, getProductsData, wishListId, widgetName, controller.signal]);
 
   useEffect(() => {
     setWishListName(localName);
@@ -174,10 +172,9 @@ const ViewWishList: React.FC = () => {
 
   useEffect(() => {
     return () => {
-      cancels.splice(0).forEach((cancel: Canceler) => {
-        cancel();
-      });
+      controller.abort();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [open, setOpen] = useState<boolean>(false);

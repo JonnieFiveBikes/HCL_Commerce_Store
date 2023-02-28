@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 //Custom libraries
 import MiniCartPopperContent from "./MiniCartPopperContent";
+import { MCW_NUMBER, ZERO_NUMBER } from "../../constants/common";
 //Redux
 import { numItemsSelector } from "../../redux/selectors/order";
 //UI
@@ -23,7 +24,7 @@ import {
   StyledTypography,
   StyledHeaderActions,
 } from "@hcl-commerce-store-sdk/react-component";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 interface MiniCartProps {
   id: string;
@@ -45,10 +46,10 @@ const MiniCart = React.forwardRef<HTMLButtonElement | null, MiniCartProps>((prop
 
   // keep mini-cart placement always as "bottom" and just adjust the offset from the left depending on where the anchor is
   const calcOffset = () => {
-    const mcw = 125;
+    const mcw = MCW_NUMBER;
     const left = ref?.current?.offsetLeft;
-    const rc = left < mcw ? `${mcw - left}` : "0";
-    return rc;
+    const rc = left < mcw ? mcw - left : ZERO_NUMBER;
+    return [rc, ZERO_NUMBER];
   };
   const offset = calcOffset();
 
@@ -75,23 +76,24 @@ const MiniCart = React.forwardRef<HTMLButtonElement | null, MiniCartProps>((prop
         anchorEl={ref?.current}
         onClose={handleClose}
         placement="bottom"
-        modifiers={{
-          offset: { offset },
-          flip: {
-            enabled: false,
+        modifiers={[
+          {
+            name: "offset",
+            options: {
+              offset,
+            },
           },
-          preventOverflow: {
-            enabled: false,
-            boundariesElement: "scrollParent",
-          },
-          hide: {
-            enabled: false,
-          },
-          arrow: {
+          { name: "flip", enabled: false },
+          { name: "preventOverflow", enabled: false },
+          { name: "hide", enabled: false },
+          {
+            name: "arrow",
             enabled: true,
-            element: arrowRef,
+            options: {
+              element: arrowRef,
+            },
           },
-        }}
+        ]}
         className="mini-cart-popper">
         <span className="arrow" ref={setArrowRef} />
         <MiniCartPopperContent handleClose={handleClose} />

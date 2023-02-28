@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import Accordion, { AccordionProps } from "@material-ui/core/Accordion";
+import styled from "@mui/styled-engine-sc";
+import Accordion, { AccordionProps } from "@mui/material/Accordion";
 
 interface StyledAccordionProps extends AccordionProps {
   testId: string;
@@ -25,13 +25,13 @@ const StyledAccordionWrapper = styled((props: any) => <Accordion {...props} />)`
         opacity: 1;
       }
       &.shipment-group {
-        margin: ${theme.spacing(2)}px 0;
+        margin: ${theme.spacing(2)} 0;
         border-radius: ${theme.shape.borderRadius}px;
         border: 1px solid  ${theme.palette.divider};
       }
     }
     &.shipment-group {
-      margin: ${theme.spacing(2)}px 0;
+      margin: ${theme.spacing(2)} 0;
       border-radius: ${theme.shape.borderRadius}px;
       border: 1px solid  ${theme.palette.divider};
     }

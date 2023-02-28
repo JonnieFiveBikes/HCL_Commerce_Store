@@ -8,7 +8,7 @@
  *
  ***************************************************
  */
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { CarouselProvider } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 
@@ -27,8 +27,8 @@ export const StyledCarouselProvider = styled(({ ...props }) => <CarouselProvider
 
   .carousel__back-button,
   .carousel__next-button {
-    height: ${theme.spacing(5)}px;
-    width: ${theme.spacing(5)}px;
+    height: ${theme.spacing(5)};
+    width: ${theme.spacing(5)};
     border: none;
     background: none;
     border-radius: 50%;
@@ -51,8 +51,8 @@ export const StyledCarouselProvider = styled(({ ...props }) => <CarouselProvider
     }
   }
 
-  ${theme.breakpoints.down("sm")} {
-    max-height: ${theme.spacing(50)}px;
+  ${theme.breakpoints.down("md")} {
+    max-height: ${theme.spacing(50)};
 
     .carousel__back-button,
     .carousel__next-button {
@@ -72,14 +72,14 @@ export const StyledCarouselProvider = styled(({ ...props }) => <CarouselProvider
     .carousel__dot-group {
       position: absolute;
       left: 0;
-      top: ${theme.spacing(1)}px;
+      top: ${theme.spacing(1)};
     }
 
     .carousel__dot {
-      width: ${theme.spacing(2)}px;
-      height: ${theme.spacing(2)}px;
-      border-radius: ${theme.spacing(1)}px;
-      margin: ${theme.spacing(0.5)}px;
+      width: ${theme.spacing(2)};
+      height: ${theme.spacing(2)};
+      border-radius: ${theme.spacing(1)};
+      margin: ${theme.spacing(0.5)};
       border: 1px solid ${theme.palette.grey[300]};
       background-color: ${theme.palette.grey[300]};
       transition: background-color ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeIn};

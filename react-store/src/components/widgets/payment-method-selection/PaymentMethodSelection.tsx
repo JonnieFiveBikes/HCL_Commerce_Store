@@ -20,8 +20,8 @@ import FormattedPriceDisplay from "../formatted-price-display";
 //Redux
 import { cartSelector, payMethodsSelector } from "../../../redux/selectors/order";
 //UI
-import { Divider } from "@material-ui/core";
-import PaymentIcon from "@material-ui/icons/Payment";
+import { Divider } from "@mui/material";
+import PaymentIcon from "@mui/icons-material/Payment";
 import {
   StyledGrid,
   StyledTypography,
@@ -195,7 +195,7 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = (props: Pa
                                   name="cc_cvc"
                                   value={paymentInfo.creditCardFormData?.cc_cvc}
                                   label={t("PaymentMethodSelection.Labels.CVV")}
-                                  type="tel"
+                                  type="password"
                                   onChange={(event) => handleCreditCardChange(event, currentPaymentNumber)}
                                   error={!isValidCode(paymentInfo.creditCardFormData?.cc_cvc)}
                                   helperText={

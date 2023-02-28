@@ -12,7 +12,6 @@
 //Standard libraries
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Axios, { Canceler } from "axios";
 //Foundation libraries
 import { useSite } from "./useSite";
 import fileUploadJobService from "../apis/transaction/fileUploadJob.service";
@@ -20,12 +19,12 @@ import fileUploadJobService from "../apis/transaction/fileUploadJob.service";
 import { EMPTY_STRING, PAGINATION } from "../../constants/common";
 import { get } from "lodash-es";
 import { CONSTANTS } from "../../constants/view-upload-logs-table";
-import Closed from "@material-ui/icons/ChevronRight";
-import Open from "@material-ui/icons/ExpandMoreOutlined";
-import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlineOutlined";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import RefreshIcon from "@material-ui/icons/Refresh";
-import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
+import Closed from "@mui/icons-material/ChevronRight";
+import Open from "@mui/icons-material/ExpandMoreOutlined";
+import ErrorOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 //UI
 import {
   useCustomTable,
@@ -37,6 +36,7 @@ import {
   StyledGrid,
   StyledIconButton,
   StyledProgressPlaceholder,
+  StyledTooltip,
 } from "@hcl-commerce-store-sdk/react-component";
 
 const DetailPanel = ({ rowData }) => {
@@ -47,12 +47,9 @@ const DetailPanel = ({ rowData }) => {
   const [details, setDetails] = useState<any>();
   const { mySite } = useSite();
   const storeId: string = mySite ? mySite.storeID : EMPTY_STRING;
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
+  const controller = useMemo(() => new AbortController(), []);
   const payloadBase: any = {
-    cancelToken: new CancelToken((c) => {
-      cancels.push(c);
-    }),
+    signal: controller.signal,
   };
 
   // for retrieving the open/close state of the panel/drawer
@@ -64,7 +61,7 @@ const DetailPanel = ({ rowData }) => {
 
   useEffect(() => {
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -229,13 +226,15 @@ const StatusCell = ({ rowData, ...props }) => {
   );
 };
 
-const RefreshButton = ({ getTableData }) => (
+const RefreshButton = ({ getTableData, tooltipTitle }) => (
   <StyledIconButton
     style={{ padding: 0 }}
     color="secondary"
     onClick={getTableData}
     data-testid="use-view-upload-refresh-icon-button">
-    <RefreshIcon />
+    <StyledTooltip title={tooltipTitle}>
+      <RefreshIcon />
+    </StyledTooltip>
   </StyledIconButton>
 );
 
@@ -247,13 +246,10 @@ export const useViewUploadLogs = () => {
   const cellStyle = { verticalAlign: "middle" };
   const { mySite } = useSite();
   const storeId: string = mySite ? mySite.storeID : EMPTY_STRING;
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
+  const controller = useMemo(() => new AbortController(), []);
   const payloadBase: any = {
     widget: "ViewUploadLogs",
-    cancelToken: new CancelToken((c) => {
-      cancels.push(c);
-    }),
+    signal: controller.signal,
   };
 
   const dateFormatOptions: Intl.DateTimeFormatOptions = {
@@ -275,7 +271,7 @@ export const useViewUploadLogs = () => {
 
   useEffect(() => {
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -408,7 +404,7 @@ export const useViewUploadLogs = () => {
         labels: {
           searchPlaceholder: "RequisitionLists.search",
         },
-        extraActions: [<RefreshButton {...{ getTableData }} />],
+        extraActions: [<RefreshButton {...{ getTableData, tooltipTitle: t("RequisitionLists.Refresh") }} />],
       },
     },
   };

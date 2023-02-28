@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import DialogContentText from "@material-ui/core/DialogContentText";
+import styled from "@mui/styled-engine-sc";
+import DialogContentText from "@mui/material/DialogContentText";
 
 const StyledDialogContentText = styled(({ ...props }) => <DialogContentText {...props} />)`
   && {

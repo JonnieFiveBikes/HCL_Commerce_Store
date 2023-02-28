@@ -25,8 +25,8 @@ import {
   StyledBox,
   StyledButton,
 } from "@hcl-commerce-store-sdk/react-component";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ListIcon from "@material-ui/icons/List";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ListIcon from "@mui/icons-material/List";
 import OrderDetailSubsection from "../../order-detail-subsection/OrderDetailSubsection";
 
 interface ShipmentGroupSummaryProps {

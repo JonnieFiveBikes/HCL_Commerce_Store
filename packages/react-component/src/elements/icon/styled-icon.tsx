@@ -9,7 +9,7 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 
 function StyledIcon({ icon, iconSize, backgroundSize, iconColor, backgroundColor }: any) {
   const StyledIconWrapper = styled(({ ...props }) => <div {...props} />)`

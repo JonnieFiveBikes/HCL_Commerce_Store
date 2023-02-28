@@ -17,6 +17,8 @@ import cloneDeep from "lodash/cloneDeep";
 import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
 import { isNil } from "lodash-es";
+//Foundation
+import orderService from "../../../../_foundation/apis/transaction/order.service";
 //Custom libraries
 import FormattedPriceDisplay from "../../../widgets/formatted-price-display";
 import { RECURRING_ORDERS, ORDER_DETAILS } from "../../../../constants/routes";
@@ -29,7 +31,7 @@ import { FETCH_RECURRING_ORDER_ACTION, CANCEL_RECURRING_ACTION } from "../../../
 import { ConfirmationReducerState } from "../../../../redux/reducers/reducerStateInterface";
 import { OPEN_CONFIRMATION_ACTION } from "../../../../redux/actions/confirmation";
 //UI
-import { AddShoppingCart, Cancel } from "@material-ui/icons";
+import { AddShoppingCart, Cancel } from "@mui/icons-material";
 import {
   StyledLink,
   StyledTypography,
@@ -158,8 +160,19 @@ const useRecurringOrderTable = () => {
     NotAvailable: t(`Order.NotAvailable`),
   };
 
-  const handleCopyCart = (rowData: any) => {
-    dispatch(COPY_CART_ACTION({ fromOrderId: rowData.id }));
+  const handleCopyCart = async (rowData: any) => {
+    const params = { orderId: rowData.id, ...payloadBase };
+    const response = await orderService.findByOrderId(params);
+    const totalQuantity: number = response?.data?.orderItem
+      ?.flatMap((order) => parseInt(order.quantity))
+      .reduce((previous, current) => previous + current, 0);
+    dispatch(
+      COPY_CART_ACTION({
+        fromOrderId: rowData.id,
+        errorMessage: t("error-message.NoCopyOrderItems"),
+        orderItemCount: totalQuantity ?? 0,
+      })
+    );
   };
 
   const handleCancelCart = (rowData: any) => {

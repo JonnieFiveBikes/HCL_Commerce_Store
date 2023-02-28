@@ -9,15 +9,15 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { StyledPaper } from "../paper";
 
 const StyledPDPContainer = styled(({ ...props }) => <StyledPaper {...props} />)`
   ${({ theme }) => `
-    padding: ${theme.spacing(2)}px ${theme.spacing(3)}px;
+    padding: ${theme.spacing(2)} ${theme.spacing(3)};
 
     .product-name {
-      margin-top: ${theme.spacing(2)}px;
+      margin-top: ${theme.spacing(2)};
       word-break: break-word;
     }
 
@@ -26,16 +26,16 @@ const StyledPDPContainer = styled(({ ...props }) => <StyledPaper {...props} />)`
     .product-color,
     .product-quantity,
     .product-availability {
-      margin: ${theme.spacing(2)}px 0 ${theme.spacing(1)}px;
+      margin: ${theme.spacing(2)} 0 ${theme.spacing(1)};
       font-weight: bold;
     }
 
     .product-shortDescription {
-      margin: ${theme.spacing(1)}px 0 ${theme.spacing(2)}px;
+      margin: ${theme.spacing(1)} 0 ${theme.spacing(2)};
     }
 
     .product-price-container {
-      margin-bottom: ${theme.spacing(2)}px;
+      margin-bottom: ${theme.spacing(2)};
     }
 
     .textalign {
@@ -68,7 +68,7 @@ const StyledPDPContainer = styled(({ ...props }) => <StyledPaper {...props} />)`
     }
 
     .product-price {
-      margin-right: ${theme.spacing(2)}px;
+      margin-right: ${theme.spacing(2)};
     }
 
     .strikethrough {
@@ -78,8 +78,8 @@ const StyledPDPContainer = styled(({ ...props }) => <StyledPaper {...props} />)`
     }
 
     .product-add-to-cart {
-      margin-top: ${theme.spacing(1)}px;
-      margin-bottom: ${theme.spacing(1)}px;
+      margin-top: ${theme.spacing(1)};
+      margin-bottom: ${theme.spacing(1)};
     }
 
     .product-imageB2B,

@@ -17,8 +17,8 @@ import { PaymentMethodContainer } from "../payment-method-container";
 import { PurchaseOrderNumber } from "../purchase-order-number";
 import { PaymentInfoList } from "../payment-info-list";
 //UI
-import { Divider } from "@material-ui/core";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import { Divider } from "@mui/material";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import {
   StyledBox,
   StyledButton,
@@ -41,7 +41,6 @@ const CheckoutPayment: React.FC = (props: any) => {
     setEditAddress,
     handleCancelNewPayment,
     currentPaymentNumber,
-    isPersonalAddressAllowed,
     isB2B,
     isPONumberRequired,
     poNumber,
@@ -163,7 +162,6 @@ const CheckoutPayment: React.FC = (props: any) => {
           isValidCode={isValidCode}
           isValidPayment={isValidPayment}
           useMultiplePayment={useMultiplePayment}
-          isPersonalAddressAllowed={isPersonalAddressAllowed}
           getMaximumPiAmount={getMaximumPiAmount}
           handleAddNewPayment={handleAddNewPayment}
           handleCancelNewPayment={handleCancelNewPayment}

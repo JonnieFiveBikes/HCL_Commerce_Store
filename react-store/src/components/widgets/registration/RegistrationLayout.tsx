@@ -9,11 +9,10 @@
  *==================================================
  */
 //Standard libraries
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Navigate } from "react-router-dom";
-import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
@@ -33,9 +32,10 @@ import {
   StyledGrid,
   StyledPaper,
 } from "@hcl-commerce-store-sdk/react-component";
-import Divider from "@material-ui/core/Divider";
+import Divider from "@mui/material/Divider";
 //GA360
 import AsyncCall from "../../../_foundation/gtm/async.service";
+import { useWishList } from "../../../_foundation/hooks/use-wishlist";
 
 interface RegistrationContext {
   cid: string;
@@ -59,6 +59,7 @@ function RegistrationLayout({ cid, showSignInPage, ...props }: RegistrationConte
   const [phone] = useState<string>("");
   const [receiveEmail, setReceiveEmail] = useState<boolean>(true);
   const [rememberMe, setRememberMe] = useState<boolean>(false);
+  const { userDefaultWishList } = useWishList();
 
   /**
    * Form validation function
@@ -78,14 +79,10 @@ function RegistrationLayout({ cid, showSignInPage, ...props }: RegistrationConte
     return false;
   };
 
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
-
+  const controller = useMemo(() => new AbortController(), []);
   const payloadBase: any = {
     widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+    signal: controller.signal,
   };
 
   const onRememberMeChecked = useCallback((_event: any, value: boolean) => {
@@ -108,26 +105,23 @@ function RegistrationLayout({ cid, showSignInPage, ...props }: RegistrationConte
         storeId,
         catalogId,
         preferredLanguage,
-        receiveEmail: receiveEmail,
-        receiveEmailPreference: [
-          {
-            value: receiveEmail,
-            storeID: storeId,
-          },
-        ],
+        receiveEmail: `${receiveEmail}`,
+        receiveEmailPreference: [{ value: `${receiveEmail}`, storeID: storeId }],
         challengeQuestion: "-",
         challengeAnswer: "-",
       },
       query: {},
       ...payloadBase,
     };
+
     if (rememberMe) payload.query.rememberMe = rememberMe;
+
     dispatch(userAction.registrationAction(payload));
   };
 
   useEffect(() => {
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -140,6 +134,9 @@ function RegistrationLayout({ cid, showSignInPage, ...props }: RegistrationConte
         enableGA4: mySite.enableGA4,
       });
     }
+    // default wishList per registered user.
+    userDefaultWishList();
+
     return <Navigate replace to={HOME} />;
   } else {
     return (

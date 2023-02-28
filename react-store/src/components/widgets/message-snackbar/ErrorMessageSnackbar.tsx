@@ -19,7 +19,7 @@ import { useCSRForUser } from "../../../_foundation/hooks/useCSRForUser";
 import { RESET_ERROR_ACTION } from "../../../redux/actions/error";
 import { genericErrorSelector } from "../../../redux/selectors/error";
 //UI
-import { SnackbarOrigin } from "@material-ui/core";
+import { SnackbarOrigin } from "@mui/material";
 import { forUserIdSelector } from "../../../redux/selectors/user";
 import { useEffect } from "react";
 

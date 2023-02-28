@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import Button from "@material-ui/core/Button";
-import styled from "styled-components";
+import Button from "@mui/material/Button";
+import styled from "@mui/styled-engine-sc";
 
 import { dimensions } from "../../themes/variables";
 
@@ -19,7 +19,7 @@ const searchBarHeight = dimensions.searchBar.height;
 const headerHeight = dimensions.header.height.desktop;
 const mobileHeaderHeight = dimensions.header.height.mobile;
 
-const StyledSearchBar = styled.div`
+const StyledSearchBar = styled("div")`
   ${({ theme }) => `
   position: relative;
 
@@ -33,18 +33,18 @@ const StyledSearchBar = styled.div`
     border-radius: ${theme.shape.borderRadius}px;
     background-color: ${theme.palette.background.paper};
     box-shadow: 0px 3px 4px 0px ${theme.palette.text.disabled};
-    padding: ${theme.spacing(1)}px 0;
+    padding: ${theme.spacing(1)} 0;
 
-    ${theme.breakpoints.down("sm")} {
+    ${theme.breakpoints.down("md")} {
       top: ${(mobileHeaderHeight - searchBarHeight) * 0.5 + mobileHeaderHeight}px;
     }
 
     .MuiListItem-root {
       border-radius: ${theme.shape.borderRadius}px;
-      margin-right: ${theme.spacing(1)}px;
-      margin-left: ${theme.spacing(1)}px;
-      padding-right: ${theme.spacing(1)}px;
-      padding-left: ${theme.spacing(1)}px;
+      margin-right: ${theme.spacing(1)};
+      margin-left: ${theme.spacing(1)};
+      padding-right: ${theme.spacing(1)};
+      padding-left: ${theme.spacing(1)};
     }
   }
 
@@ -56,13 +56,13 @@ const StyledSearchBar = styled.div`
     width: ${searchBarWidth}px;
     margin: 0;
 
-    ${theme.breakpoints.down("sm")} {
+    ${theme.breakpoints.down("md")} {
       width: 100%;
     }
 
     .MuiOutlinedInput-input {
       height: ${searchBarHeight}px;
-      padding-left: ${theme.spacing(2)}px;
+      padding-left: ${theme.spacing(2)};
     }
   }
 
@@ -82,11 +82,11 @@ export { StyledSearchBar };
 export const StyledSearchBarButton = styled(({ ...props }) => <Button {...props} />)`
   ${({ theme }) => `
     display: flex;
-    width: ${theme.spacing(4.5)}px;
-    height: ${theme.spacing(4.5)}px;
+    width: ${theme.spacing(4.5)};
+    height: ${theme.spacing(4.5)};
 
-    ${theme.breakpoints.down("sm")} {
-      min-width: ${theme.spacing(3)}px;
+    ${theme.breakpoints.down("md")} {
+      min-width: ${theme.spacing(3)};
       height: auto;
     }
 

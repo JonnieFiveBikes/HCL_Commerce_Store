@@ -8,8 +8,8 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import Alert from "@material-ui/lab/Alert";
+import styled from "@mui/styled-engine-sc";
+import Alert from "@mui/material/Alert";
 
 export const StyledAlert = styled(Alert)`
   border-radius: 0;

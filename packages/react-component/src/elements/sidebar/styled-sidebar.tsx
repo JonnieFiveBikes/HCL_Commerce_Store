@@ -10,12 +10,12 @@
  */
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import styled from "@mui/styled-engine-sc";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material";
+import Drawer from "@mui/material/Drawer";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 //Custom libraries
 import { StyledListItem } from "../list/styled-listitem";
@@ -32,7 +32,7 @@ const StyledSidebarWrapper = styled((props: any) => {
   ${({ theme }) => `
 
     &.product-filter{
-      margin-top:${theme.spacing(3)}px;
+      margin-top:${theme.spacing(3)};
     }
 
     .MuiList-root {
@@ -60,7 +60,7 @@ const StyledSidebarWrapper = styled((props: any) => {
     }
 
     .section-title:not(.section-heading) {
-      padding: ${theme.spacing(2)}px;
+      padding: ${theme.spacing(2)};
       border-top: 1px solid ${theme.palette.text.disabled};
       span {
         line-height: 1.3;
@@ -68,8 +68,8 @@ const StyledSidebarWrapper = styled((props: any) => {
     }
 
     .section-heading {
-      line-height: ${theme.spacing(8)}px;
-      height: ${theme.spacing(8)}px;
+      line-height: ${theme.spacing(8)};
+      height: ${theme.spacing(8)};
     }
 
     .section-link {
@@ -80,8 +80,8 @@ const StyledSidebarWrapper = styled((props: any) => {
       }
     }
     .horizontal-margin{
-      margin-left: ${theme.spacing(1)}px;
-      margin-right: ${theme.spacing(1)}px;
+      margin-left: ${theme.spacing(1)};
+      margin-right: ${theme.spacing(1)};
     }
     .price-filter{
       display: flex;
@@ -92,9 +92,9 @@ const StyledSidebarWrapper = styled((props: any) => {
 
     .section-link .MuiListItem-root,
     .section-disabled {
-        padding: 0 ${theme.spacing(2)}px;
-        height: ${theme.spacing(5)}px;
-        line-height: ${theme.spacing(5)}px;
+        padding: 0 ${theme.spacing(2)};
+        height: ${theme.spacing(5)};
+        line-height: ${theme.spacing(5)};
       }
     }
   `}
@@ -114,7 +114,7 @@ function StyledSidebar({ title, sidebarContent, linkTo, breakpoint, className, s
   const theme = useTheme();
   const [open, setOpen] = useState<boolean>(false);
   const mobileBreakpoint = breakpoint ? breakpoint : "sm";
-  const isMobile = !useMediaQuery(theme.breakpoints.up(mobileBreakpoint));
+  const isMobile = useMediaQuery(theme.breakpoints.down(mobileBreakpoint));
 
   const sidebarElement = (
     <StyledSidebarWrapper className={className} scrollable={scrollable}>

@@ -13,8 +13,8 @@ import { StyledIconButton } from "../../elements";
 import { useTableUtils } from "../../hooks";
 import { useCustomTable } from "./custom-table-context";
 import { get, set } from "lodash-es";
-import Closed from "@material-ui/icons/ChevronRight";
-import Open from "@material-ui/icons/ExpandMoreOutlined";
+import Closed from "@mui/icons-material/ChevronRight";
+import Open from "@mui/icons-material/ExpandMoreOutlined";
 import { TableConstants } from "../../types";
 
 export const PanelExpanderCell = ({ rowData, current, headers, ...props }) => {

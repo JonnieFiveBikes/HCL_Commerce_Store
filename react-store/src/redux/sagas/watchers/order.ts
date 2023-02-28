@@ -42,7 +42,7 @@ export function* watchSaga() {
   yield takeLatest(ACTIONS.PAYMETHODS_GET_REQUESTED, WORKERS.fetchPayMethods);
   yield takeLatest(ACTIONS.FETCH_ALL_ORDERS, WORKERS.getAllOrders);
   yield takeLatest(ACTIONS.FETCH_ALLOWABLE_SHIPMODES, WORKERS.getAllowableShipmodes);
-  yield takeLatest(ACTIONS.FETCH_ACTIVE_INPROGRESS_ORDER_ITEM, WORKERS.fetchActiveInprogressOrderItem);
+  yield takeLatest(ACTIONS.FETCH_ACTIVE_INPROGRESS_ORDER_ITEM, fetchInProgressOrderAndCascade);
 
   yield takeLatest(ACTIONS.REMOVE_INPROGRESS_ORDER_ITEM, removeInProgressItem);
   yield takeLatest(ACTIONS.UPDATE_INPROGRESS_ORDER_ITEM, updateInProgressItem);
@@ -68,18 +68,22 @@ function* updateShipModeAndFetchCart(action: any) {
 function* removeInProgressItem(action: any) {
   const { payload, ...nonPayload } = action;
   const { items, ...rest } = payload;
+
   for (const orderItemId of items) {
     yield call(WORKERS.removeItem, {
       ...nonPayload,
       payload: { orderItemId, ...rest },
     });
   }
-  yield call(WORKERS.fetchActiveInprogressOrderItem, action);
-  yield call(OD_WORKERS.getOrderDetails, action);
+  yield call(fetchInProgressOrderAndCascade, action);
 }
 
 function* updateInProgressItem(action: any) {
   yield call(WORKERS.updateItem, action);
+  yield call(fetchInProgressOrderAndCascade, action);
+}
+
+function* fetchInProgressOrderAndCascade(action: any) {
   yield call(WORKERS.fetchActiveInprogressOrderItem, action);
   yield call(OD_WORKERS.getOrderDetails, action);
 }

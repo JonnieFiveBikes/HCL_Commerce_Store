@@ -8,9 +8,9 @@
  *
  *==================================================
  */
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { dimensions } from "../../themes/variables";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const headerHeight = dimensions.header.height.desktop;
 const mobileHeaderHeight = dimensions.header.height.mobile;
@@ -26,14 +26,14 @@ export const StyledHeaderIcon = styled(AccountCircleIcon)`
   `}
 `;
 
-const StyledHeader = styled.header`
+const StyledHeader = styled("header")`
   ${({ theme }) => `
   background-color: ${theme.palette.background.paper};
   box-shadow: 0px 3px 4px 0px ${theme.palette.text.disabled};
   position: relative;
   z-index: 20;
 
-  ${theme.breakpoints.down("sm")} {
+  ${theme.breakpoints.down("md")} {
     position: sticky;
     top: 0;
     left: 0;
@@ -44,7 +44,7 @@ const StyledHeader = styled.header`
     height: ${headerHeight}px;
     width: auto;
 
-    ${theme.breakpoints.down("sm")} {
+    ${theme.breakpoints.down("md")} {
       height: ${mobileHeaderHeight}px;
     }
   }
@@ -60,7 +60,7 @@ const StyledHeader = styled.header`
   }
 
   .header-actionsButton {
-    padding: ${theme.spacing(1)}px;
+    padding: ${theme.spacing(1)};
 
     &.header-actionsButton-languageToggle .MuiTypography-body1 {
       line-height: 26px;
@@ -77,7 +77,7 @@ const StyledHeader = styled.header`
       height: 25px;
     }
 
-    ${theme.breakpoints.down("sm")} {
+    ${theme.breakpoints.down("md")} {
       img {
         height: 20px;
       }
@@ -91,7 +91,7 @@ const StyledHeader = styled.header`
   .header-links {
     text-align: right;
     ${theme.breakpoints.up("sm")} {
-      padding: 0 ${theme.spacing(2)}px;
+      padding: 0 ${theme.spacing(2)};
     }
   }
 
@@ -173,7 +173,7 @@ const StyledHeader = styled.header`
     box-shadow: 0px 3px 4px 0px ${theme.palette.text.disabled};
     top: ${headerHeight}px;
 
-    ${theme.breakpoints.down("sm")} {
+    ${theme.breakpoints.down("md")} {
       top: ${mobileHeaderHeight}px;
       width: 500px;
     }

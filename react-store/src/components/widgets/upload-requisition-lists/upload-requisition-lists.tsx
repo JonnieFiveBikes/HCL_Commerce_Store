@@ -31,9 +31,9 @@ import {
   StyledTypography,
   StyledTextField,
 } from "@hcl-commerce-store-sdk/react-component";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Divider } from "@material-ui/core";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Divider } from "@mui/material";
 
 /**
  * Create new order widget for inprogress orders

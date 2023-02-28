@@ -53,6 +53,8 @@ import { loginStatusSelector } from "../../../../redux/selectors/user";
 import { GetCategoriesSelector } from "../../../../redux/selectors/category";
 import { breadcrumbsSelector } from "../../../../redux/selectors/catalog";
 import { HANDLE_SUCCESS_MESSAGE_ACTION } from "../../../../redux/actions/success";
+import { sellersSelector } from "../../../../redux/selectors/sellers";
+
 //UI
 import {
   AttachmentLayout,
@@ -969,7 +971,7 @@ const useBundle = (props) => {
     [_getItems, dispatch, headers, payloadBase, rows, tableState]
   );
 
-  const Add2CartOrReqButton = useCallback(() => {
+  const add2CartOrReqButton = useMemo(() => {
     const _addToCart = () => {
       if (invalidOnline) {
         addToCart(selectedStore?.id);
@@ -984,7 +986,6 @@ const useBundle = (props) => {
       : someWithNotEnough
       ? xltn.someWithNotEnough
       : xltn.selectSomething;
-
     return (
       <>
         <StyledGrid container item xs={12} spacing={1} alignItems="center" className="button-combo">
@@ -1162,13 +1163,15 @@ const useBundle = (props) => {
     parseProducts();
   }, [products]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const sellers = useSelector(sellersSelector);
   //GA360
   useEffect(() => {
     if (addItemActionTriggered) {
       //GA360
       if (mySite.enableGA) {
+        const storeName = mySite.storeName;
         AsyncCall.sendAddToCartEvent(
-          { cart, currentSelection: rows },
+          { cart, currentSelection: rows, sellers, storeName },
           { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
         );
       }
@@ -1224,7 +1227,7 @@ const useBundle = (props) => {
     displayShortDesc,
     displayOfferPrice,
     displayListPrice,
-    addBundleButton: <Add2CartOrReqButton />,
+    addBundleButton: add2CartOrReqButton,
     productDetailTabsChildren,
     definingAttrs,
     attrStates,

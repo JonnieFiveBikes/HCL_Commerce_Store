@@ -183,10 +183,13 @@ const useProductFilter = (page: Page, extra: any) => {
 
   /**
    * Toggles the selected facet and dispatches request to get product list
+   * @param event invocation event
    * @param selection The selected facet entry's value
    * @param label The selected facet entry's label
    */
-  const onFacetChange = (selection: string, label: string) => {
+  const onFacetChange = (event: any, selection: string, label: string) => {
+    event.stopPropagation();
+    event.preventDefault();
     let newSelectedFacets = { ...selectedFacets };
     if (newSelectedFacets[selection] === undefined) {
       const newAddedSelectedFacets = {
@@ -322,25 +325,13 @@ const useProductFilter = (page: Page, extra: any) => {
    */
   const showLessButton = (facet: any) => {
     let maximumValuesToDisplay = facet?.entry?.length;
+    let allValuesReturned = false;
     if (facet && facet.extendedData) {
-      if (typeof facet.extendedData.maximumValuesToDisplay === "string") {
-        try {
-          maximumValuesToDisplay = parseInt(facet.extendedData.maximumValuesToDisplay);
-        } catch (error) {
-          console.log("Cannot parse facet maximumValuesToDisplay");
-        }
-      } else {
-        maximumValuesToDisplay = facet.extendedData.maximumValuesToDisplay;
-      }
+      maximumValuesToDisplay = Number(facet.extendedData.maximumValuesToDisplay);
+      allValuesReturned = Boolean(facet.extendedData.allValuesReturned);
     }
 
-    return (
-      facet &&
-      facet.extendedData &&
-      (facet.extendedData.allValuesReturned === true || facet.extendedData.allValuesReturned === "true") &&
-      (facet.extendedData.maximumValuesToDisplay !== -1 || facet.extendedData.maximumValuesToDisplay !== "-1") &&
-      maximumValuesToDisplay < facet.entry.length
-    );
+    return allValuesReturned === true && maximumValuesToDisplay !== -1 && maximumValuesToDisplay < facet.entry.length;
   };
 
   /**
@@ -352,6 +343,7 @@ const useProductFilter = (page: Page, extra: any) => {
     event: any, //: MouseEvent<HTMLAnchorElement>,
     facetValue: string
   ) => {
+    event.stopPropagation();
     event.preventDefault();
     const selection = facetValue + ":-1";
     let newSelectedFacetLimits = [...selectedFacetLimits];

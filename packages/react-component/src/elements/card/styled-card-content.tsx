@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import CardContent from "@material-ui/core/CardContent";
+import styled from "@mui/styled-engine-sc";
+import CardContent from "@mui/material/CardContent";
 
 const StyledCardContent = styled(({ ...props }) => <CardContent {...props} />)`
   ${({ theme }) => `

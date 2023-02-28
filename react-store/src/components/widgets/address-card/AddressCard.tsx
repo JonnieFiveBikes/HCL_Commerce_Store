@@ -12,7 +12,6 @@
 //Standard libraries
 import React, { Fragment, useEffect, useContext, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
 import getDisplayName from "react-display-name";
 
@@ -83,15 +82,11 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
   const { mySite } = useSite();
   const TOGGLE_EDIT_ADDRESS = "toggleEditAddress";
   const SET_EDIT_ADDRESS_FORM_DATA = "setEditAddressFormData";
-
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
+  const controller = useMemo(() => new AbortController(), []);
 
   const payloadBase: any = {
     widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+    signal: controller.signal,
   };
 
   const payload = {
@@ -110,7 +105,7 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
 
   useEffect(() => {
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -238,7 +233,7 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
   const headerComponent = (
     <>
       {addressData.nickName ? (
-        <StyledTypography variant="subtitle2" display="block" noWrap>
+        <StyledTypography variant="subtitle2" display="block" noWrap className="address-card-width">
           {addressData.nickName}
         </StyledTypography>
       ) : null}
@@ -251,41 +246,42 @@ const AddressCard: React.FC<AddressCardProps> = (props: any) => {
   const contentComponent = (
     <>
       {addressData.fullNameString ? (
-        <StyledTypography variant="body1" display="block" noWrap>
+        <StyledTypography variant="body1" display="block" noWrap className="address-card-width">
           {addressData.fullNameString}
         </StyledTypography>
       ) : null}
-      {addressData.addressLine &&
-        addressData.addressLine.map((line: string, index: number) => (
-          <Fragment key={line + "_" + index}>
-            {line ? (
-              <StyledTypography variant="body1" display="block" noWrap>
-                {line}
-              </StyledTypography>
-            ) : null}
-          </Fragment>
-        ))}
+      {addressData.addressLine
+        ? addressData.addressLine.map((line: string, index: number) => (
+            <Fragment key={line + "_" + index}>
+              {line ? (
+                <StyledTypography variant="body1" display="block" noWrap className="address-card-width">
+                  {line}
+                </StyledTypography>
+              ) : null}
+            </Fragment>
+          ))
+        : null}
 
       {addressData.cityStateZipString ? (
-        <StyledTypography variant="body1" display="block" noWrap>
+        <StyledTypography variant="body1" display="block" noWrap className="address-card-width">
           {addressData.cityStateZipString}
         </StyledTypography>
       ) : null}
 
       {addressData.country ? (
-        <StyledTypography variant="body1" display="block" noWrap>
+        <StyledTypography variant="body1" display="block" noWrap className="address-card-width">
           {addressData.country}
         </StyledTypography>
       ) : null}
 
       {addressData.phone1 ? (
-        <StyledTypography variant="body1" display="block" noWrap>
+        <StyledTypography variant="body1" display="block" noWrap className="address-card-width">
           {addressData.phone1}
         </StyledTypography>
       ) : null}
 
       {addressData.email1 ? (
-        <StyledTypography variant="body1" display="block" noWrap>
+        <StyledTypography variant="body1" display="block" noWrap className="address-card-width">
           {addressData.email1}
         </StyledTypography>
       ) : null}

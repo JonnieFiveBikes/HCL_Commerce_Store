@@ -9,12 +9,11 @@
  *==================================================
  */
 //Standard libraries
-import React, { useEffect, ChangeEvent } from "react";
+import React, { useEffect, ChangeEvent, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import * as ROUTES from "../../../constants/routes";
 import { OK } from "http-status-codes";
 import { useTranslation } from "react-i18next";
-import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
@@ -33,7 +32,7 @@ import {
   StyledGrid,
   StyledLink,
 } from "@hcl-commerce-store-sdk/react-component";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 //redux
 import * as successActions from "../../../redux/actions/success";
 
@@ -55,14 +54,11 @@ const ForgotPasswordLayout: React.FC = (props: any) => {
   const CodeRecieved = t("ForgotPassword.CodeRecieved");
   const isB2B = site.isB2B;
 
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
+  const controller = useMemo(() => new AbortController(), []);
 
   const payloadBase: any = {
     widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+    signal: controller.signal,
   };
 
   const handleEmail = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, type: string) => {
@@ -122,7 +118,7 @@ const ForgotPasswordLayout: React.FC = (props: any) => {
 
   useEffect(() => {
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -174,7 +170,7 @@ const ForgotPasswordLayout: React.FC = (props: any) => {
                     !addressUtil.validateEmail(email) && !isB2B ? t("ForgotPassword.Msgs.InvalidFormat") : EMPTY_STRING
                   }
                 />
-                <StyledBox className="vertical-padding-3" align="center">
+                <StyledBox className="vertical-padding-3" textAlign="center">
                   <StyledButton
                     testId="forgot-password-send-validation-code"
                     color="primary"

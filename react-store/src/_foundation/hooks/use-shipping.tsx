@@ -13,438 +13,218 @@ import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
-import { useTranslation } from "react-i18next";
-import { EMPTY_STRING, IS_PERSONAL_ADDRESS_ALLOWED, STRING_TRUE } from "../../constants/common";
+import { EMPTY_STRING } from "../../constants/common";
 import { SHIPMODE } from "../../constants/order";
 //Foundation libraries
 import { useSite } from "../../_foundation/hooks/useSite";
 import shippingInfoService from "../../_foundation/apis/transaction/shippingInfo.service";
 //Custom libraries
-import { ORDER_CONFIGS } from "../../configs/order";
+import { SHIP_INFO } from "../../configs/order";
 import * as ROUTES from "../../constants/routes";
 //Redux
 import { addressDetailsSelector } from "../../redux/selectors/account";
 import { activeOrgSelector, organizationDetailsSelector } from "../../redux/selectors/organization";
-import { shipInfosSelector, orderItemsSelector, cartSelector } from "../../redux/selectors/order";
+import { shipInfosSelector, orderItemsSelector } from "../../redux/selectors/order";
 import * as orderActions from "../../redux/actions/order";
 import * as organizationAction from "../../redux/actions/organization";
 import { currentContractIdSelector } from "../../redux/selectors/contract";
 import * as accountActions from "../../redux/actions/account";
 import { GENERIC_ERROR_ACTION } from "../../redux/actions/error";
 import { BAD_INV_ERROR } from "../../constants/errors";
+import { cloneDeep, uniqBy } from "lodash-es";
+import storeUtil from "../../utils/storeUtil";
+import addressUtil from "../../utils/addressUtil";
+import { loginStatusSelector } from "../../redux/selectors/user";
 
 const handleShipError = (error: any, dispatch) => {
   const errs = error.response?.data?.errors ?? [];
   const e = errs[0];
-  if (e && e.errorKey === BAD_INV_ERROR) {
+  if (e?.errorKey === BAD_INV_ERROR) {
     const _error = {
       errorKey: `${BAD_INV_ERROR}_DELIVERY`,
-      linkAction: {
-        url: ROUTES.CART,
-        key: "ViewCart",
-      },
+      linkAction: { url: ROUTES.CART, key: "ViewCart" },
     };
     dispatch(GENERIC_ERROR_ACTION(_error));
   }
   console.log("unable to update the shipping.", error);
 };
-
+const BLANK_SEL = { addressId: "", nickName: "", shipModeId: "" };
 export const useShipping = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { t } = useTranslation();
   const orderItems = useSelector(orderItemsSelector);
+  const byId = useMemo(() => storeUtil.toMap(orderItems, "orderItemId"), [orderItems]);
   const contractId = useSelector(currentContractIdSelector);
   const usableShipInfos: any = useSelector(shipInfosSelector);
   const addressDetails: any = useSelector(addressDetailsSelector);
+  const regdUser: any = useSelector(loginStatusSelector);
   const activeOrgId = useSelector(activeOrgSelector);
   const orgAddressDetails = useSelector(organizationDetailsSelector);
-  const cart = useSelector(cartSelector);
-  const isPersonalAddressAllowed: string =
-    cart && cart[IS_PERSONAL_ADDRESS_ALLOWED] ? cart[IS_PERSONAL_ADDRESS_ALLOWED] : STRING_TRUE;
-  const [selectedShipAddressIds, setSelectedShipAddressIds] = useState<string[]>([]);
-  const [selectedShipModeIds, setSelectedShipModeIds] = useState<string[]>([]);
+  const [selShipInfo, setSelShipInfo] = useState<any>(cloneDeep(BLANK_SEL));
   const { mySite } = useSite();
   const [useMultipleShipment, setUseMultipleShipment] = useState<boolean>(false);
   const [selectShipment, setSelectShipment] = useState<boolean>(false);
-  const [skipMultipleShipment, setSkipMultipleShipment] = useState<boolean>(false);
-  const handleMultipleShipmentChange = (event) => {
-    if (orderItems.length > 1) {
-      setUseMultipleShipment(event.target.checked);
-      setSelectedShipAddressIds([]);
-    }
-  };
-
   const [createNewAddress, setCreateNewAddress] = useState<boolean>(false);
   const [editAddress, setEditAddress] = useState<boolean>(false);
-  const usableShipAddresses = useMemo(
-    () => initUsableShippingAddresses(),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [usableShipInfos, addressDetails, orgAddressDetails]
-  );
-  const usableShippingMethods = useMemo(
-    () => initUsableShippingMethods(),
-    [usableShipInfos] // eslint-disable-line react-hooks/exhaustive-deps
-  );
-
-  const [checkboxesActive, setCheckboxesActive] = useState<boolean>(false);
-  const [selectAllCheckboxes, setSelectAllCheckboxes] = useState<boolean>(false);
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
-  const [tempItemsList, setTempItemsList] = useState<any[]>([]);
-
-  const [itemsMap, setItemsMap] = useState({});
-
+  const [global, setGlobal] = useState<any>({ usableAddrs: {}, usableMethods: {}, commonAddrs: [], commonMethods: [] });
   const CancelToken = Axios.CancelToken;
   const cancels: Canceler[] = [];
-
   const defaultCurrencyID: string = mySite ? mySite.defaultCurrencyID : EMPTY_STRING;
   const payloadBase: any = {
     currency: defaultCurrencyID,
-    contractId: contractId,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+    contractId,
+    cancelToken: new CancelToken((c) => cancels.push(c)),
   };
-  /**
-   * ShipInfo request body base.
-   */
-  const shipInfoBody = {
-    x_calculateOrder: ORDER_CONFIGS.calculateOrder,
-    x_calculationUsage: ORDER_CONFIGS.calculationUsage,
-    x_allocate: ORDER_CONFIGS.allocate,
-    x_backorder: ORDER_CONFIGS.backOrder,
-    x_remerge: ORDER_CONFIGS.remerge,
-    x_check: ORDER_CONFIGS.check,
-    orderId: ".",
+  const personalAddresses = useMemo(() => {
+    const { contactList = [] } = addressDetails ?? {};
+    return [addressDetails, contactList].flat(1).filter(Boolean);
+  }, [addressDetails]);
+
+  const orgAddresses = useMemo(() => {
+    const { contactInfo, addressBook = [] } = orgAddressDetails ?? {};
+    return [contactInfo, addressBook].flat(1).filter(Boolean);
+  }, [orgAddressDetails]);
+
+  const toggleMultiShipment = (event) => {
+    if (orderItems.length > 1) {
+      setUseMultipleShipment(event.target.checked);
+      setSelShipInfo(cloneDeep(BLANK_SEL));
+    }
   };
+
+  const filterByPersonalAndOrgAddrs = (addrList) => {
+    const p = addressUtil.filterAddresses(addrList, addressDetails);
+    const o = addressUtil.filterOrgAddresses(addrList, orgAddressDetails);
+    return [...p, ...o];
+  };
+
+  // on load, find intersecting addresses and methods for all items -- if none, force-enable multi-shipping
+  //   this applies mostly to b2b where different contracts may enforce different address
+  //   behaviour
+  useEffect(
+    () => {
+      const usableAddrs = initUsableShippingAddresses();
+      const usableMethods = initUsableShippingMethods();
+      setGlobal({
+        usableAddrs,
+        usableMethods,
+        commonAddrs: findIntersectingAddrs(orderItems, usableAddrs),
+        commonMethods: findIntersectingMethods(orderItems, usableMethods),
+      });
+      if (selectShipment) {
+        setSelShipInfo({
+          ...selShipInfo,
+          commonMethods: findIntersectingMethods(selectedItems, usableMethods),
+          commonAddrs: findIntersectingAddrs(selectedItems, usableAddrs),
+        });
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [usableShipInfos, addressDetails, orgAddressDetails]
+  );
 
   const cancelSelectShipment = () => {
-    setSelectAllCheckboxes(false);
     setSelectedItems([]);
-    setTempItemsList([]);
-    setCheckboxesActive(false);
     setSelectShipment(false);
-    setItemsMap({});
+    setSelShipInfo(cloneDeep(BLANK_SEL));
   };
 
-  async function confirmShipInfo() {
-    const orderItemsArray: any[] = [];
-    selectedItems.forEach((item) => {
-      const orderItem = orderItems.filter((orderItem) => orderItem.orderItemId === item.orderItemId)[0];
-      const orderItemId = orderItem.orderItemId;
-      const shipModeId = selectedShipModeIds[0];
-      const addressId = selectedShipAddressIds[0];
-      const orderItemJson = {
-        shipModeId: shipModeId,
-        orderItemId: orderItemId,
-        addressId: addressId,
-      };
-      orderItemsArray.push(orderItemJson);
-    });
-    const body = {
-      ...shipInfoBody,
-      orderItem: orderItemsArray,
-    };
-    const payload = {
-      ...payloadBase,
-      skipErrorSnackbar: { error: "_API_BAD_INV" },
-      body,
-    };
-
-    try {
-      await shippingInfoService.updateOrderShippingInfo(payload);
-      dispatch(orderActions.GET_CART_ACTION({ ...payloadBase, fetchCatentries: true }));
-      setSelectShipment(false);
-      setTempItemsList([]);
-      setCheckboxesActive(false);
-      setItemsMap({});
-    } catch (error) {
-      handleShipError(error, dispatch);
-    }
-  }
-
-  const handleSelectShipmentChangeForSingleItem = (items) => {
-    const selectedItem = [...selectedItems];
-    selectedItem.splice(0, selectedItems.length, items);
-    setSelectedShipAddressIds([]);
-    setSelectedshipModeId(0, items.shipModeId);
-    setSelectedItems(selectedItem);
+  const handleSelectCommon = (items) => {
+    const commonAddrs = findIntersectingAddrs(items);
+    const commonMethods = findIntersectingMethods(items);
+    setSelectedItems(items);
+    setSelShipInfo({ ...cloneDeep(BLANK_SEL), commonMethods, commonAddrs });
     setSelectShipment(true);
   };
+  const handleSingleSelect = (item) => handleSelectCommon([item]);
+  const handleMultiSelect = (itemIds) => handleSelectCommon(itemIds.map((id) => byId[id]));
 
-  /**
-   * Handles checkboxes selection logic for multiple shipment table
-   *
-   * @param evt, The orderItemId of the checkbox, on click. For CheckAll checkbox, -1
-   */
-  const clickCheckbox = (evt: any) => {
-    let itemsList: any[] = [];
-    const iMap = {};
+  const checkMultiSelect = (itemIds) => {
+    const items = itemIds.map((id) => byId[id]);
+    const addrs = findIntersectingAddrs(items);
+    const methods = findIntersectingMethods(items);
 
-    if (evt.target.value === "-1") {
-      if (evt.target.checked) {
-        orderItems.forEach((itemId) => {
-          itemsList.push(itemId.orderItemId);
-          iMap[itemId.orderItemId] = true;
-        });
-        setTempItemsList(itemsList);
-        setItemsMap(iMap);
-      } else {
-        itemsList.splice(0, itemsList.length);
-        setTempItemsList(itemsList);
-        setItemsMap(iMap);
-      }
-    } else {
-      if (evt.target.checked) {
-        setItemsMap(Object.assign(iMap, itemsMap, { [evt.target.value]: true }));
-        itemsList = tempItemsList;
-        itemsList.push(evt.target.value);
-        setTempItemsList(itemsList);
-      } else {
-        setItemsMap(Object.assign(iMap, itemsMap, { [evt.target.value]: false }));
-        itemsList = tempItemsList;
-        const index = itemsList.indexOf(evt.target.value, 0);
-        if (index > -1) {
-          itemsList.splice(index, 1);
-          setTempItemsList(itemsList);
-        }
-      }
-    }
-  };
-
-  const cancelMultipleSelection = () => {
-    setCheckboxesActive(false);
-    setSelectShipment(false);
-    setSelectAllCheckboxes(false);
-    setTempItemsList([]);
-    setItemsMap({});
+    // multi-selection is only allowed if:
+    // - guest user (this really only applies to b2c, since b2b users are always registered), OR
+    // - selected order-items have intersecting methods and addresses
+    //
+    // intersecting address and methods are necessary in b2b scenarios where two different order-items may
+    //   have been added under different contract selections that do not share the same addresses, e.g.,
+    //   one order-item may allow selection of personal addresses and the other may only allow selection
+    //   of org addresses
+    //
+    // in b2c scenarios, for logged-in users, there is always only one contract selection and the default address
+    //   for the user is always available
+    return !regdUser || (addrs.length > 0 && methods.length > 0);
   };
 
   /**
    * Initialize filtered shipping addresses based on usable shipping address list
    */
   function initUsableShippingAddresses() {
-    const _usableShippingAddresses: any[] = [];
-    if (usableShipInfos && usableShipInfos.orderItem && usableShipInfos.orderItem.length > 0) {
-      const orderItems: any[] = usableShipInfos.orderItem;
-      orderItems.forEach((item) => {
-        let _usableShippingAddressesPerItem: any[] = [];
-        _usableShippingAddressesPerItem = pushUsableShippingAddresses(
-          filterAddresses(item.usableShippingAddress),
-          _usableShippingAddressesPerItem
-        );
-        _usableShippingAddressesPerItem = pushUsableShippingAddresses(
-          filterOrgAddresses(item.usableShippingAddress),
-          _usableShippingAddressesPerItem
-        );
-        _usableShippingAddresses.push(_usableShippingAddressesPerItem);
+    const rc: any = {};
+    let all: any[] = [];
+
+    if (usableShipInfos?.orderItem?.length) {
+      usableShipInfos.orderItem.forEach(({ usableShippingAddress, orderItemId }) => {
+        const list = filterByPersonalAndOrgAddrs(usableShippingAddress);
+        rc[orderItemId] = { list, byId: storeUtil.toMap(list, "nickName") };
+        all.push(...list);
       });
-    } else if (usableShipInfos && usableShipInfos.usableShippingAddress) {
-      let _usableShippingAddressesPerItem: any[] = [];
-      _usableShippingAddressesPerItem = pushUsableShippingAddresses(
-        filterAddresses(usableShipInfos.usableShippingAddress),
-        _usableShippingAddressesPerItem
-      );
-      _usableShippingAddressesPerItem = pushUsableShippingAddresses(
-        filterOrgAddresses(usableShipInfos.usableShippingAddress),
-        _usableShippingAddressesPerItem
-      );
-
-      orderItems.forEach((item) => {
-        _usableShippingAddresses.push(_usableShippingAddressesPerItem);
-      });
-    }
-    return _usableShippingAddresses;
-  }
-
-  /**
-   * Validate address and push it to _usableShippingAddresses array
-   * @param address
-   */
-  function pushUsableShippingAddresses(address: any[], _usableShippingAddresses: any[]) {
-    if (address && address.length > 0) {
-      return _usableShippingAddresses.concat(address);
-    } else {
-      return _usableShippingAddresses;
-    }
-  }
-
-  function handleSelectShipmentChangeForCheckboxes() {
-    setSelectedShipAddressIds([]);
-    if (selectAllCheckboxes) {
-      setSelectedItems(orderItems);
-    } else {
-      setSelectedItems(tempItemsList.map((itemId) => orderItems.find((item) => item.orderItemId === itemId)));
+      all = uniqBy(all, "nickName");
+    } else if (usableShipInfos?.usableShippingAddress) {
+      const list = filterByPersonalAndOrgAddrs(usableShipInfos.usableShippingAddress);
+      const byId = storeUtil.toMap(list, "nickName");
+      orderItems.forEach(({ orderItemId }) => (rc[orderItemId] = { list, byId }));
+      all.push(...list);
     }
 
-    setSelectedshipModeId(
-      0,
-      tempItemsList.map((itemId) => orderItems.find((item) => item.orderItemId === itemId))[0].shipModeId
-    );
-
-    setSelectShipment(true);
+    rc.__all = { list: all };
+    return rc;
   }
-
-  const handleMultiSelect = (items) => {
-    setSelectedItems(items.map((itemId) => orderItems.find((item) => item.orderItemId === itemId)));
-    setSelectedshipModeId(
-      0,
-      items.map((itemId) => orderItems.find((item) => item.orderItemId === itemId))[0].shipModeId
-    );
-
-    setSelectShipment(true);
-  };
 
   /**
    * Initialize usable shipping methods from orderitems
    */
   function initUsableShippingMethods() {
-    const _usableShippingMethods: any[] = [];
-    if (usableShipInfos && usableShipInfos.orderItem && usableShipInfos.orderItem.length > 0) {
-      const orderItems: any[] = usableShipInfos.orderItem;
-      orderItems.forEach((item) => {
-        if (item.usableShippingMode) {
-          pushUsableShippingMode(
-            item.usableShippingMode.filter((mode) => mode.shipModeCode !== SHIPMODE.shipModeCode.PickUp),
-            _usableShippingMethods
-          );
-        }
-      });
-    }
-    return _usableShippingMethods;
-  }
+    const rc: any = {};
 
-  /**
-   * Validate shipping method/mode and push it to _usableShippingMethods array
-   * @param address
-   */
-  function pushUsableShippingMode(shippingMode: any[], _usableShippingMethods: any[]) {
-    if (shippingMode && shippingMode.length > 0) {
-      _usableShippingMethods.push(shippingMode);
+    if (usableShipInfos?.orderItem?.length) {
+      usableShipInfos.orderItem
+        .filter(({ usableShippingMode: u }) => u)
+        .forEach(({ usableShippingMode: u, orderItemId }) => {
+          const list = u.filter((mode) => mode.shipModeCode !== SHIPMODE.shipModeCode.PickUp);
+          rc[orderItemId] = { list, byId: storeUtil.toMap(list, "shipModeCode") };
+        });
     }
-  }
 
-  /**
-   * Filter out addresses that does not have the mandatory fields for checkout
-   * @param usableAddresses List of addresses to scan
-   * @returns Filtered list of addresses
-   */
-  function filterAddresses(usableAddresses: any[]) {
-    if (usableAddresses) {
-      const filteredList = usableAddresses.filter((address) => {
-        if (address && addressDetails) {
-          if (address.addressId === addressDetails.addressId) {
-            return (
-              addressDetails.addressLine !== undefined &&
-              addressDetails.country !== undefined &&
-              addressDetails.addressLine[0] !== EMPTY_STRING &&
-              addressDetails.country !== EMPTY_STRING
-            );
-          } else if (addressDetails.contactMap && addressDetails.contactMap[address.addressId]) {
-            const adressDetailsFromContact = addressDetails.contactMap[address.addressId];
-            return (
-              adressDetailsFromContact.addressLine !== undefined &&
-              adressDetailsFromContact.country !== undefined &&
-              adressDetailsFromContact.addressLine[0] !== EMPTY_STRING &&
-              adressDetailsFromContact.country !== EMPTY_STRING
-            );
-          } else {
-            return false;
-          }
-        }
-        return false;
-      });
-      if (filteredList && filteredList.length > 0) {
-        return filteredList;
-      }
-    }
-    return [];
-  }
-
-  /**
-   * Filter out organization addresses that does not have the mandatory fields for checkout
-   * @param usableAddresses List of addresses to scan
-   * @returns Filtered list of addresses
-   */
-  function filterOrgAddresses(usableAddresses: any[]) {
-    if (usableAddresses) {
-      const filteredList = usableAddresses.filter((address) => {
-        if (address && orgAddressDetails && orgAddressDetails.contactInfo && orgAddressDetails.addressBook) {
-          if (address.addressId === orgAddressDetails.contactInfo.addressId) {
-            return (
-              orgAddressDetails.contactInfo.address1 !== undefined &&
-              orgAddressDetails.contactInfo.country !== undefined &&
-              orgAddressDetails.contactInfo.address1 !== EMPTY_STRING &&
-              orgAddressDetails.contactInfo.country !== EMPTY_STRING
-            );
-          } else {
-            for (const orgAddress of orgAddressDetails.addressBook) {
-              if (address.addressId === orgAddress.addressId) {
-                return (
-                  orgAddress.address1 !== undefined &&
-                  orgAddress.country !== undefined &&
-                  orgAddress.address1 !== EMPTY_STRING &&
-                  orgAddress.country !== EMPTY_STRING
-                );
-              }
-            }
-          }
-          return false;
-        } else {
-          return false;
-        }
-      });
-      if (filteredList && filteredList.length > 0) {
-        return filteredList;
-      }
-    }
-    return [];
+    return rc;
   }
 
   /**
    * Sets addressId to local state and update the current order, so that available shipping
    * methods can be populated according to selected address.
-   * @param index The order item index in order
    * @param addressId
    * @param nickName, The nickName of address
    */
-  const setSelectedShipAddressId = async (index, addressId, nickName) => {
-    setSkipMultipleShipment(true);
-    const addressIds = [...selectedShipAddressIds];
-    addressIds.splice(index, 1, addressId);
-    setSelectedShipAddressIds(addressIds);
+  const updateAddress = async (addressId, nickName) => {
+    setSelShipInfo({ ...selShipInfo, addressId, nickName });
+
     if (useMultipleShipment) {
-      const orderItemsArray: any[] = [];
-      let itemChanged: boolean = false;
-      selectedItems.forEach((item) => {
-        itemChanged = true;
-        const orderItemId = item.orderItemId;
-        const orderItemJson = {
-          orderItemId: orderItemId,
-          addressId: addressId,
-        };
-        orderItemsArray.push(orderItemJson);
-      });
-      orderItems.forEach((item) => {
-        if (item.nickName !== undefined && item.nickName === nickName) {
-          itemChanged = true;
-          const orderItemId = item.orderItemId;
-          const orderItemJson = {
-            orderItemId: orderItemId,
-            addressId: addressId,
-          };
-          orderItemsArray.push(orderItemJson);
-        }
-      });
-      if (itemChanged) {
-        const body = {
-          ...shipInfoBody,
-          orderItem: orderItemsArray,
-        };
-        const payload = {
-          ...payloadBase,
-          body,
-        };
+      const orderItem: any[] = [];
+
+      // selected items' address may have changed or existing address updated
+      selectedItems.forEach(({ orderItemId }) => orderItem.push({ orderItemId, addressId }));
+
+      // non-selected items that have the same nickName might need updating
+      orderItems
+        .filter(({ nickName: nn }) => nn === nickName)
+        .forEach(({ orderItemId }) => orderItem.push({ orderItemId, addressId }));
+
+      if (orderItem.length) {
+        const body = { ...cloneDeep(SHIP_INFO), orderItem: uniqBy(orderItem, "orderItemId") };
+        const payload = { ...payloadBase, body };
         await shippingInfoService.updateOrderShippingInfo(payload);
         dispatch(orderActions.GET_CART_ACTION({ ...payloadBase }));
       }
@@ -452,43 +232,37 @@ export const useShipping = () => {
   };
 
   /**
-   * Sets shipModeId to local state, will be persisted
-   * to server when hitting the "next" button
-   * @param index item index in order
-   * @param shipModeId
-   */
-  const setSelectedshipModeId = (index, shipModeId) => {
-    const shipModeIds = [...selectedShipModeIds];
-    shipModeIds.splice(index, 1, shipModeId);
-    setSelectedShipModeIds(shipModeIds);
-  };
-
-  /**
    * Check if shopper can continue to the next step
    */
-  function canContinue() {
-    const usableAddresses: any[] = usableShipAddresses[0] || [];
-    let i = 0;
-    let res: boolean = false;
-    usableAddresses
-      .map((o) => o.addressId)
-      .forEach((a) => {
-        orderItems.forEach((item) => {
-          if (a === item.addressId) {
-            i++;
-          }
-        });
-      });
+  const canContinue = () =>
+    orderItems.every(
+      ({ nickName, orderItemId, shipModeCode }) =>
+        addressUtil.validAddr(global.usableAddrs[orderItemId]?.byId[nickName]) &&
+        global.usableMethods[orderItemId]?.byId[shipModeCode]
+    );
 
-    if (i < orderItems.length) {
-      res = true;
+  const updateFull = async (items, fetchCatentries = false) => {
+    const { shipModeId, addressId } = selShipInfo;
+    const orderItem = items.map(({ orderItemId }) => ({ shipModeId, orderItemId, addressId }));
+    const body = { ...cloneDeep(SHIP_INFO), orderItem };
+    const payload = { ...payloadBase, skipErrorSnackbar: { error: "_API_BAD_INV" }, body };
+    let rc = false;
+    try {
+      await shippingInfoService.updateOrderShippingInfo(payload);
+      dispatch(orderActions.GET_CART_ACTION({ ...payloadBase, fetchCatentries }));
+      rc = true;
+    } catch (error) {
+      handleShipError(error, dispatch);
     }
 
-    return res;
-  }
+    return rc;
+  };
 
-  function canContinueSingleShipment() {
-    return selectedShipModeIds.length > 0 && selectedShipAddressIds.length > 0;
+  async function confirmShipInfo() {
+    const rc = await updateFull(selectedItems, true);
+    if (rc) {
+      cancelSelectShipment();
+    }
   }
 
   /**
@@ -496,90 +270,75 @@ export const useShipping = () => {
    */
   async function submit() {
     if (!useMultipleShipment) {
-      const orderItemsArray: any[] = [];
-      orderItems.forEach((item) => {
-        const orderItemId = item.orderItemId;
-        const shipModeId = selectedShipModeIds[0];
-        const addressId = selectedShipAddressIds[0];
-        const orderItemJson = {
-          shipModeId: shipModeId,
-          orderItemId: orderItemId,
-          addressId: addressId,
-        };
-        orderItemsArray.push(orderItemJson);
-      });
-      const body = {
-        ...shipInfoBody,
-        orderItem: orderItemsArray,
-      };
-      const payload = {
-        ...payloadBase,
-        skipErrorSnackbar: { error: "_API_BAD_INV" },
-        body,
-      };
-      try {
-        await shippingInfoService.updateOrderShippingInfo(payload);
-        dispatch(orderActions.GET_CART_ACTION({ ...payloadBase }));
+      const rc = await updateFull(orderItems);
+      if (rc) {
         navigate(`../${ROUTES.CHECKOUT_PAYMENT}`);
-      } catch (error: any) {
-        handleShipError(error, dispatch);
       }
     } else {
       navigate(`../${ROUTES.CHECKOUT_PAYMENT}`);
     }
   }
 
+  const findIntersecting = (items, obj, key) => {
+    if (items.length === 1) {
+      return obj[items[0].orderItemId]?.list ?? [];
+    } else {
+      const list: any[] = [];
+      const n = items.length;
+      const m = {};
+      // collect all elements
+      items.forEach((item) => list.push(...(obj[item.orderItemId]?.list ?? [])));
+
+      // count instances
+      list.forEach((e) => (m[e[key]] = 1 + (m[e[key]] ?? 0)));
+
+      // return list where key-value is present in each item's usable list
+      const rc = uniqBy(
+        list.filter((e) => m[e[key]] === n),
+        key
+      );
+      return rc;
+    }
+  };
+
+  const findIntersectingAddrs = (items, addrs = global.usableAddrs) => findIntersecting(items, addrs, "nickName");
+  const findIntersectingMethods = (items, meths = global.usableMethods) =>
+    findIntersecting(items, meths, "shipModeCode");
+
+  useEffect(() => {
+    setGlobal({
+      ...global,
+      commonMethods: findIntersectingMethods(orderItems),
+      commonAddrs: findIntersectingAddrs(orderItems),
+    });
+  }, [orderItems]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    // enable multiple shipment if there are no common addresses -- but only if
+    //   there were addresses to choose from in the first place -- we will always
+    //   have some shipping methods to choose from since those are provided by server
+    //   not the user
+    if (
+      orderItems?.length > 1 &&
+      global.usableAddrs.__all?.list.length > 0 &&
+      (global.commonAddrs.length === 0 || global.commonMethods.length === 0)
+    ) {
+      setUseMultipleShipment(true);
+    } else if (
+      orderItems?.length === 1 ||
+      (personalAddresses.length === 0 && orgAddresses.length === 0 && global.usableAddrs.__all?.list.length === 0)
+    ) {
+      setUseMultipleShipment(false);
+    }
+  }, [global]); // eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     if (mySite) {
-      dispatch(
-        accountActions.GET_ADDRESS_DETAIL_ACTION({
-          ...payloadBase,
-        })
-      );
-      const param: any = {
-        storeId: mySite.storeId,
-        organizationId: activeOrgId,
-        ...payloadBase,
-      };
+      dispatch(accountActions.GET_ADDRESS_DETAIL_ACTION(payloadBase));
+      const param = { storeId: mySite.storeId, organizationId: activeOrgId, ...payloadBase };
       dispatch(organizationAction.GET_ORGANIZATION_ADDRESS_ACTION(param));
     }
   }, [mySite]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(
-    () => {
-      if (orderItems.length > 0) {
-        if (
-          (selectedShipAddressIds.length === 0 || !selectedShipAddressIds[0]) &&
-          usableShipAddresses &&
-          usableShipAddresses.length > 0
-        ) {
-          setSelectedShipAddressIds(
-            orderItems
-              .map((o) => o.addressId)
-              .filter((i: any, index: number) => {
-                return i !== undefined && usableShipAddresses[index]?.map((o) => o.addressId).includes(i);
-              })
-          );
-        }
-        if (selectedShipModeIds.length === 0 || !selectedShipModeIds[0]) {
-          setSelectedShipModeIds(
-            orderItems
-              .filter((i) => i !== undefined && i.shipModeCode !== SHIPMODE.shipModeCode.PickUp)
-              .map((o) => o.shipModeId)
-          );
-        }
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [usableShipAddresses]
-  );
-
-  useEffect(() => {
-    const bol: boolean = orderItems.some((item) => itemsMap[item.orderItemId]);
-    const allCheck: boolean = orderItems.every((item) => itemsMap[item.orderItemId] === true);
-    setCheckboxesActive(bol);
-    setSelectAllCheckboxes(allCheck);
-  }, [itemsMap]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     return () => {
@@ -588,70 +347,29 @@ export const useShipping = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const isDisabled = (): boolean => {
-    return !selectedShipAddressIds[0] || selectedShipAddressIds[0].trim() === EMPTY_STRING;
-  };
-
-  const setMultipleShipment = () => {
-    const addressIds = orderItems.map((o) => o.addressId);
-    const shipModeIds = orderItems.map((o) => o.shipModeId);
-
-    const uniqueAddressIds = addressIds.filter((v, i, a) => a.indexOf(v) === i);
-    const uniqueShipModeIds = shipModeIds.filter((v, i, a) => a.indexOf(v) === i);
-    if (useMultipleShipment === false && (uniqueAddressIds.length > 1 || uniqueShipModeIds.length > 1)) {
-      setUseMultipleShipment(true);
-    }
-  };
-
-  useEffect(() => {
-    if (!skipMultipleShipment) {
-      setMultipleShipment();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [orderItems]);
-
   return {
-    usableShipAddresses,
-    usableShippingMethods,
     useMultipleShipment,
-    setUseMultipleShipment,
-    handleMultipleShipmentChange,
+    toggleMultiShipment,
     canContinue,
-    canContinueSingleShipment,
     submit,
-    t,
     createNewAddress,
     setCreateNewAddress,
     editAddress,
     setEditAddress,
-    selectedShipAddressIds,
-    setSelectedShipAddressId,
-    selectedShipModeIds: selectedShipModeIds,
-    setSelectedshipModeId,
-    isPersonalAddressAllowed,
+    addressDetails,
     orgAddressDetails,
     selectShipment,
-    setSelectShipment,
-    shipInfoBody,
-    payloadBase,
-    dispatch,
-    checkboxesActive,
-    cancelMultipleSelection,
-    setCheckboxesActive,
-    handleSelectShipmentChangeForCheckboxes,
-    tempItemsList,
-    setTempItemsList,
-    itemsMap,
-    setItemsMap,
     selectedItems,
     orderItems,
-    handleSelectShipmentChangeForSingleItem,
-    selectAllCheckboxes,
-    clickCheckbox,
     cancelSelectShipment,
     confirmShipInfo,
-    isDisabled,
+    handleSingleSelect,
     handleMultiSelect,
+    checkMultiSelect,
+    selShipInfo,
+    setSelShipInfo,
+    updateAddress,
+    global,
   };
 };
 export default useShipping;

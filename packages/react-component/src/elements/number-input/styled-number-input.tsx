@@ -9,7 +9,7 @@
  *==================================================
  */
 import React, { useEffect } from "react";
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import NumericInput from "react-numeric-input";
 import { useDebouncedCallback } from "use-debounce";
 import { dimensions } from "../../themes/variables";
@@ -113,7 +113,7 @@ export const StyledNumberInput = styled(NumberInputWrapper)`
     input {
       border-radius: ${theme.shape.borderRadius}px;
       border: 2px solid ${theme.palette.text.disabled};
-      padding: 0 ${theme.spacing(2)}px;
+      padding: 0 ${theme.spacing(2)};
       font-weight: 500;
       color: ${theme.palette.text.primary};
       height: ${dimensions.inputFields.height}px;
@@ -167,7 +167,7 @@ export const StyledNumberInput = styled(NumberInputWrapper)`
 
       b {
           height: ${dimensions.inputFields.height / 2 - 2}px;
-          width: ${theme.spacing(3)}px;
+          width: ${theme.spacing(3)};
           right: 2px;
           background: rgba(0,0,0,0.05);
 
@@ -220,12 +220,12 @@ export const StyledNumberInput = styled(NumberInputWrapper)`
       }
 
       input {
-        padding: 0 ${theme.spacing(quantitySpinnerWidth + 1)}px;
+        padding: 0 ${theme.spacing(quantitySpinnerWidth + 1)};
         text-align: center;
       }
 
       b {
-        width: ${theme.spacing(quantitySpinnerWidth)}px;
+        width: ${theme.spacing(quantitySpinnerWidth)};
         height: auto;
         background: transparent;
         border-radius: 2px;

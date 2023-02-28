@@ -8,16 +8,16 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import { ToggleButton } from "@material-ui/lab";
+import styled from "@mui/styled-engine-sc";
+import { ToggleButton } from "@mui/material";
 import React from "react";
 
 const ComponentWrapper = (props: any) => <ToggleButton {...props} />;
 
 const StyledToggleButton = styled(ComponentWrapper)`
   ${({ theme }) => `
-    width:${theme.spacing(32.25)}px;
-    height:${theme.spacing(10)}px;
+    width:${theme.spacing(32.25)};
+    height:${theme.spacing(10)};
     background-color:white;
 
     &.Mui-selected {
@@ -26,17 +26,17 @@ const StyledToggleButton = styled(ComponentWrapper)`
     }
 
     &.MuiToggleButtonGroup-groupedHorizontal:not(:first-child) {
-      padding:${theme.spacing(1.25)}px ${theme.spacing(6)}px ${theme.spacing(1.25)}px ${theme.spacing(6)}px;
-      border: ${theme.spacing(0.125)}px solid black;
-      border-top-right-radius:${theme.spacing(0.625)}px;
-      border-bottom-right-radius:${theme.spacing(0.625)}px;
+      padding:${theme.spacing(1.25)} ${theme.spacing(6)} ${theme.spacing(1.25)} ${theme.spacing(6)};
+      border: ${theme.spacing(0.125)} solid black;
+      border-top-right-radius:${theme.spacing(0.625)};
+      border-bottom-right-radius:${theme.spacing(0.625)};
     }
 
     &.MuiToggleButtonGroup-groupedHorizontal:not(:last-child) {
-      padding:${theme.spacing(1.25)}px ${theme.spacing(6)}px ${theme.spacing(1.25)}px ${theme.spacing(6)}px;
-      border: ${theme.spacing(0.125)}px solid black;
-      border-top-left-radius:${theme.spacing(0.625)}px;
-      border-bottom-left-radius:${theme.spacing(0.625)}px;
+      padding:${theme.spacing(1.25)} ${theme.spacing(6)} ${theme.spacing(1.25)} ${theme.spacing(6)};
+      border: ${theme.spacing(0.125)} solid black;
+      border-top-left-radius:${theme.spacing(0.625)};
+      border-bottom-left-radius:${theme.spacing(0.625)};
     }
     &.MuiToggleButton-root.Mui-disabled {
       color: rgba(0, 0, 0, 0.12);

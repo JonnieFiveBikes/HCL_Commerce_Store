@@ -13,24 +13,24 @@ import GA4GTMDLService from "./gtmDataLayer.service";
 //Custom libraries
 import v2CategoryResourceService from "../../apis/search/categories.service";
 
-let PAGETITLE = "";
-let PAGEPATH = "";
-
 const GA4DataService = {
+  PAGETITLE: "",
+  PAGEPATH: "",
   setPageTitle(title: any) {
-    PAGETITLE = title; // eslint-disable-line @typescript-eslint/no-unused-vars
+    this.PAGETITLE = title; // eslint-disable-line @typescript-eslint/no-unused-vars
   },
   setPagePath(path: any) {
-    PAGEPATH = path; // eslint-disable-line @typescript-eslint/no-unused-vars
+    this.PAGEPATH = path; // eslint-disable-line @typescript-eslint/no-unused-vars
   },
-  async sendAddToCartEvent(cart, currentProdSelect, breadcrumbs) {
+  async sendAddToCartEvent(cart, currentProdSelect, breadcrumbs, sellers, storeName) {
     const cartObj = {
       grandTotal: cart.grandTotal,
       grandTotalCurrency: cart.grandTotalCurrency,
     };
-    const { id, name, partNumber, price, type } = currentProdSelect.sku;
+    const { id, name, partNumber, price, type } = currentProdSelect.sku[0];
     const productsObj: Array<object> = [];
     const currencyCode = this.getProductPrice(price).currency;
+    const marketplaceSellers = sellers.sellers;
     const obj = {
       id: id,
       name: name,
@@ -40,9 +40,10 @@ const GA4DataService = {
       category: this.getBreadCrumbsData(breadcrumbs).category,
       variant: currentProdSelect["selectedAttributes"] || "",
       quantity: currentProdSelect.quantity,
+      affiliation: marketplaceSellers?.find((s) => s.id === currentProdSelect.sku[0].sellerId)?.organizationName,
     };
     productsObj.push(obj);
-    return { cartObj, productsObj, currencyCode };
+    return { cartObj, productsObj, currencyCode, marketplaceStore: marketplaceSellers.length > 0 ? storeName : null };
   },
 
   /**
@@ -76,8 +77,10 @@ const GA4DataService = {
     return { breadcrumbLabels, category, subCategory };
   },
 
-  async sendRemoveFromCartEvent(item) {
+  async sendRemoveFromCartEvent(item, entitledOrgs, activeOrgId, sellers, storeName) {
     const { partNumber, productId, name, orderItemPrice, quantity, currency } = item;
+    const hcl_account = entitledOrgs?.find((o) => o.organizationId === activeOrgId)?.organizationName;
+    const marketplaceSellers = sellers.sellers;
     const product = {
       id: productId,
       name: name,
@@ -85,29 +88,34 @@ const GA4DataService = {
       price: parseFloat(orderItemPrice),
       quantity: parseInt(quantity),
       currency,
+      hcl_account,
+      affiliation: marketplaceSellers?.find((s) => s.id === item.sellerId)?.organizationName,
+      marketplaceStore: marketplaceSellers.length > 0 ? storeName : null,
     };
     return product;
   },
 
-  sendPurchaseEvent(cart, orderItems) {
+  sendPurchaseEvent(cart, orderItems, entitledOrgs, activeOrgId, sellers, storeName) {
     const { orderId, totalProductPrice, totalSalesTax, totalShippingTax, totalShippingCharge, totalAdjustment } = cart;
     const partNumberCatgroupMap = new Map<any, any>();
     let currency = null;
-    let productArr = orderItems.map((order) => {
-      const parentCatalogGroupID = order.parentCatalogGroupID;
+    const marketplaceSellers = sellers.sellers;
+    let productArr = orderItems.map((orderItem) => {
+      const parentCatalogGroupID = orderItem.parentCatalogGroupID;
       const arr = parentCatalogGroupID.split("/");
-      currency = order.currency;
+      currency = orderItem.currency;
       if (arr && arr.length >= 1) {
         let catgroupID = arr[arr.length - 1];
         catgroupID = catgroupID.substring(catgroupID.indexOf("_") + 1);
-        partNumberCatgroupMap.set(order.partNumber, catgroupID);
+        partNumberCatgroupMap.set(orderItem.partNumber, catgroupID);
       }
       return {
-        id: order.partNumber,
-        name: order.name,
-        price: order.unitPrice,
-        quantity: parseInt(order.quantity),
-        discount: order.totalAdjustment.value,
+        id: orderItem.partNumber,
+        name: orderItem.name,
+        price: orderItem.unitPrice,
+        quantity: parseInt(orderItem.quantity),
+        discount: orderItem.totalAdjustment.value,
+        affiliation: marketplaceSellers?.find((s) => s.id === orderItem.sellerId)?.organizationName,
       };
     });
 
@@ -128,6 +136,8 @@ const GA4DataService = {
                 name: element.name,
                 price: element.price,
                 quantity: element.quantity,
+                discount: element.discount,
+                affiliation: element.affiliation,
               };
             } else {
               return {
@@ -136,12 +146,15 @@ const GA4DataService = {
                 name: element.name,
                 price: element.price,
                 quantity: element.quantity,
+                discount: element.discount,
+                affiliation: element.affiliation,
               };
             }
           }
           return null;
         });
         productArr = null;
+        const hcl_account = entitledOrgs?.find((o) => o.organizationId === activeOrgId)?.organizationName;
         const obj = {
           purchaseId: orderId,
           totalcost: totalProductPrice,
@@ -151,6 +164,8 @@ const GA4DataService = {
           totalDiscount: totalAdjustment,
           currency: currency,
           productArrWithCategory,
+          hcl_account,
+          marketplaceStore: marketplaceSellers.length > 0 ? storeName : null,
         };
         GA4GTMDLService.measuringPurchases(obj);
       })
@@ -171,54 +186,64 @@ const GA4DataService = {
     return contentMap;
   },
 
-  async sendCheckoutEvent(cart, orderItems, step, value) {
+  async sendCheckoutEvent(cart, orderItems, step, value, entitledOrgs, activeOrgId, sellers, storeName) {
     let paymentMethod = "";
     const cartObj = {
       grandTotal: cart.grandTotal,
       grandTotalCurrency: cart.grandTotalCurrency,
     };
-
     if (cart && cart.paymentInstruction) {
       paymentMethod = cart.paymentInstruction[0].payMethodId;
     }
-
-    const productArr = orderItems.map((order) => {
+    const hcl_account = entitledOrgs?.find((o) => o.organizationId === activeOrgId)?.organizationName;
+    const marketplaceSellers = sellers.sellers;
+    const productArr = orderItems.map((orderItem) => {
       return {
-        id: order.partNumber,
-        name: order.name,
-        price: order.orderItemPrice,
-        quantity: parseInt(order.quantity),
-        currency: order.currency,
-        shippingTier: order.shipModeCode,
+        id: orderItem.partNumber,
+        name: orderItem.name,
+        price: orderItem.orderItemPrice,
+        quantity: parseInt(orderItem.quantity),
+        currency: orderItem.currency,
+        shippingTier: orderItem.shipModeCode,
+        affiliation: marketplaceSellers?.find((s) => s.id === orderItem.sellerId)?.organizationName,
       };
     });
-
-    return { cartObj, step, value, productArr, paymentMethod };
+    return {
+      cartObj,
+      step,
+      value,
+      productArr,
+      paymentMethod,
+      hcl_account,
+      marketplaceStore: marketplaceSellers.length > 0 ? storeName : null,
+    };
   },
 
-  async sendViewCartEvent(cart, orderItems) {
+  async sendViewCartEvent(cart, orderItems, entitledOrgs, activeOrgId, sellers, storeName) {
+    const hcl_account = entitledOrgs?.find((o) => o.organizationId === activeOrgId)?.organizationName;
+    const marketplaceSellers = sellers.sellers;
     const cartObj = {
       grandTotal: cart?.grandTotal,
       grandTotalCurrency: cart?.grandTotalCurrency,
     };
-    const productArr = orderItems.map((order) => {
+    const productArr = orderItems.map((orderItem) => {
       return {
-        id: order.partNumber,
-        name: order.name,
-        price: order.orderItemPrice,
-        quantity: parseInt(order.quantity),
-        currency: order.currency,
-        shippingTier: order.shipModeCode,
-        brand: order.brand,
-        category: order.category,
-        variant: order.variant,
-        coupon: order.coupon,
-        tax: order.tax,
-        discount: order.discount,
-        affiliation: order.affiliation || "Online Store",
+        id: orderItem.partNumber,
+        name: orderItem.name,
+        price: orderItem.orderItemPrice,
+        quantity: parseInt(orderItem.quantity),
+        currency: orderItem.currency,
+        shippingTier: orderItem.shipModeCode,
+        brand: orderItem.brand,
+        category: orderItem.category,
+        variant: orderItem.variant,
+        coupon: orderItem.coupon,
+        tax: orderItem.tax,
+        discount: orderItem.discount,
+        affiliation: marketplaceSellers?.find((s) => s.id === orderItem.sellerId)?.organizationName,
       };
     });
-    return { cartObj, productArr };
+    return { cartObj, productArr, hcl_account, marketplaceStore: marketplaceSellers.length > 0 ? storeName : null };
   },
 
   async sendPromotionImpression(promo) {
@@ -243,7 +268,8 @@ const GA4DataService = {
     return promoObj;
   },
 
-  async sendProductImpressionEvent(productList, listerFlag, breadcrumbs) {
+  async sendProductImpressionEvent(productList, listerFlag, breadcrumbs, sellers, storeName) {
+    const marketplaceSellers = sellers.sellers;
     const productArr = productList.map((product, index) => {
       return {
         name: product.name,
@@ -253,13 +279,19 @@ const GA4DataService = {
         list: listerFlag ? this.getBreadCrumbsData(breadcrumbs).subCategory : "Search Results",
         position: index + 1,
         currency: this.getProductPrice(product.price).currency,
+        affiliation: marketplaceSellers?.find((s) => s.id === product.sellerId)?.organizationName,
       };
     });
     const currency = productArr?.length > 0 ? productArr[0].currency : "";
-    return { productArr, currency };
+    return { productArr, currency, marketplaceStore: marketplaceSellers.length > 0 ? storeName : null };
   },
 
-  async sendProductClickEvent(product, index, listerFlag, breadcrumbs) {
+  async sendSearchPageViewEvent(productListTotal, searchTerm) {
+    return { searchTerm, productResults: productListTotal ?? 0 };
+  },
+
+  async sendProductClickEvent(product, index, listerFlag, breadcrumbs, sellers, storeName) {
+    const marketplaceSellers = sellers.sellers;
     const obj = {
       id: product.partNumber,
       name: product.name,
@@ -268,13 +300,16 @@ const GA4DataService = {
       list: listerFlag ? this.getBreadCrumbsData(breadcrumbs).subCategory : "Search Results",
       position: index + 1,
       currency: this.getProductPrice(product.price).currency,
+      affiliation: marketplaceSellers?.find((s) => s.id === product.sellerId)?.organizationName,
+      marketplaceStore: marketplaceSellers.length > 0 ? storeName : null,
     };
     return obj;
   },
 
-  async sendPDPDetailViewEvent(currentProdSelect, breadcrumbs) {
+  async sendPDPDetailViewEvent(currentProdSelect, breadcrumbs, sellers, storeName) {
     const breadcrumbLength = this.getBreadCrumbsData(breadcrumbs).breadcrumbLabels.length;
-    const { id, name, price } = currentProdSelect.sku;
+    const { id, name, price, sellerId } = currentProdSelect.sku[0];
+    const marketplaceSellers = sellers.sellers;
     const obj = {
       id: id,
       name: name,
@@ -284,35 +319,49 @@ const GA4DataService = {
       list: this.getBreadCrumbsData(breadcrumbs).breadcrumbLabels[breadcrumbLength - 2],
       quantity: currentProdSelect.quantity,
       currency: this.getProductPrice(price).currency,
+      affiliation: marketplaceSellers?.find((s) => s.id === sellerId)?.organizationName,
+      marketplaceStore: marketplaceSellers.length > 0 ? storeName : null,
     };
     return obj;
   },
 
-  async sendB2BAddToCartEvent(cart, currentProdSelect, result, breadcrumbs) {
-    const cartObj = {
-      grandTotal: cart.grandTotal,
-      grandTotalCurrency: cart.grandTotalCurrency,
-    };
+  async sendB2BAddToCartEvent(
+    cart,
+    product,
+    skusByPart,
+    partAndQuantity,
+    breadcrumbs,
+    entitledOrgs,
+    activeOrgId,
+    sellers,
+    storeName
+  ) {
+    const cartObj = { grandTotal: cart.grandTotal, grandTotalCurrency: cart.grandTotalCurrency };
     const { category, subCategory } = this.getBreadCrumbsData(breadcrumbs);
-    const price = currentProdSelect.partNumber.price;
-    const productsObj: Array<object> = [];
-    const currencyCode = this.getProductPrice(price).currency;
-    result.forEach((element) => {
-      const obj = {
-        id: element.key,
-        name: subCategory,
-        price: this.getProductPrice(price).price,
-        category: category,
-        quantity: element.value,
-      };
-      productsObj.push(obj);
-    });
-    return { cartObj, productsObj, currencyCode };
+    const currencyCode = this.getProductPrice(product.price).currency;
+    const marketplaceSellers = sellers.sellers;
+    const productsObj: any[] = partAndQuantity.map((element) => ({
+      id: element.key,
+      name: subCategory,
+      price: this.getProductPrice(skusByPart[element.key].price).price,
+      category: category,
+      quantity: element.value,
+      affiliation: marketplaceSellers?.find((s) => s.id === product.sellerId)?.organizationName,
+    }));
+    const hcl_account = entitledOrgs?.find((o) => o.organizationId === activeOrgId)?.organizationName;
+    return {
+      cartObj,
+      productsObj,
+      currencyCode,
+      hcl_account,
+      marketplaceStore: marketplaceSellers.length > 0 ? storeName : null,
+    };
   },
 
-  async sendB2BPDPDetailViewEvent(productData, productPartNumber, breadcrumbs) {
+  async sendB2BPDPDetailViewEvent(productData, productPartNumber, breadcrumbs, sellers, storeName) {
     const { breadcrumbLabels, category, subCategory } = this.getBreadCrumbsData(breadcrumbs);
     const leafCategoryForProduct = breadcrumbLabels[breadcrumbLabels.length - 2];
+    const marketplaceSellers = sellers.sellers;
     const obj = {
       id: productPartNumber,
       name: subCategory,
@@ -320,6 +369,8 @@ const GA4DataService = {
       category: category,
       list: leafCategoryForProduct,
       currency: productData ? this.getProductPrice(productData.price).currency : "",
+      affiliation: marketplaceSellers?.find((s) => s.id === productData.sellerId)?.organizationName,
+      marketplaceStore: marketplaceSellers.length > 0 ? storeName : null,
     };
     return obj;
   },

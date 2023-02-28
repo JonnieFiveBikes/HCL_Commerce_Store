@@ -9,11 +9,11 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import TextField from "@material-ui/core/TextField";
+import styled from "@mui/styled-engine-sc";
+import TextField from "@mui/material/TextField";
 import { dimensions } from "../../themes/variables";
 
-const CustomTextField = (props: any) => <TextField {...props} variant="outlined" />;
+const CustomTextField = (props: any) => <TextField variant="outlined" {...props} />;
 
 const StyledTextField = styled(CustomTextField)`
   ${({ theme }) => `
@@ -39,7 +39,8 @@ const StyledTextField = styled(CustomTextField)`
   }
 
   .MuiOutlinedInput-input {
-    padding: 0 ${theme.spacing(2)}px;
+    padding-top: 0;
+    padding-bottom: 0;
     font-weight: 500;
     color: ${theme.palette.text.primary};
     height: ${dimensions.inputFields.height}px;
@@ -48,7 +49,7 @@ const StyledTextField = styled(CustomTextField)`
   .MuiInputLabel-outlined {
     transform: none;
     position: relative;
-    margin-bottom: ${theme.spacing(1)}px;
+    margin-bottom: ${theme.spacing(1)};
     font-weight: 500;
     color: ${theme.palette.text.secondary};
     z-index: unset;

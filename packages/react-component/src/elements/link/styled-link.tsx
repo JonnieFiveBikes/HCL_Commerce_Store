@@ -8,16 +8,22 @@
  *
  *==================================================
  */
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { Link } from "react-router-dom";
 
 const LinkWrapper = (props: any) => {
   const { testId, ...rest } = props;
   const { to = "" } = props;
+  const { pathname } = to;
   let dataTestId;
 
   if (!testId) {
-    dataTestId = to ? { "data-testid": to.split("/").filter(Boolean).join("-") } : {};
+    dataTestId =
+      pathname === "" || pathname
+        ? { "data-testid": pathname.split("/").filter(Boolean).join("-") }
+        : to
+        ? { "data-testid": to.split("/").filter(Boolean).join("-") }
+        : {};
   } else {
     dataTestId = { "data-testid": `${testId}-link` };
   }

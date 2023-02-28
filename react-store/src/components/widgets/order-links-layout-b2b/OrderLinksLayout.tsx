@@ -16,11 +16,11 @@ import * as ROUTES from "../../../constants/routes";
 import AccountLinksSection from "../account-links-section";
 //UI
 import { StyledLinkBox } from "@hcl-commerce-store-sdk/react-component";
-import HistoryIcon from "@material-ui/icons/History";
-import ListIcon from "@material-ui/icons/List";
-import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
-import RepeatIcon from "@material-ui/icons/Repeat";
-import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import HistoryIcon from "@mui/icons-material/History";
+import ListIcon from "@mui/icons-material/List";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import RepeatIcon from "@mui/icons-material/Repeat";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 interface OrderLinksLayoutProps {
   isBuyerApprover?: boolean;

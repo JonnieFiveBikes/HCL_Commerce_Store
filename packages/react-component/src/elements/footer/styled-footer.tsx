@@ -8,23 +8,23 @@
  *
  *==================================================
  */
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 
-const StyledFooter = styled.footer`
+const StyledFooter = styled("footer")`
   ${({ theme }) => `
   background: ${theme.palette.text.primary};
   color: ${theme.palette.text.disabled};
-  margin-top: ${theme.spacing(7)}px;
+  margin-top: ${theme.spacing(7)};
 
-  ${theme.breakpoints.down("sm")} {
-    margin-top: ${theme.spacing(4)}px;
+  ${theme.breakpoints.down("md")} {
+    margin-top: ${theme.spacing(4)};
   }
 
   .footer-logo {
-    padding-bottom: ${theme.spacing(1)}px;
+    padding-bottom: ${theme.spacing(1)};
 
     img {
-      height: ${theme.spacing(3)}px;
+      height: ${theme.spacing(3)};
     }
   }
 
@@ -44,35 +44,35 @@ text-decoration: none;
     }
 
     div {
-      padding-top: ${theme.spacing(0.5)}px;
+      padding-top: ${theme.spacing(0.5)};
     }
   }
 
   .footer-top {
-    padding: ${theme.spacing(5)}px 0;
+    padding: ${theme.spacing(5)} 0;
 
-    ${theme.breakpoints.down("sm")} {
-      padding: ${theme.spacing(3)}px 0 ${theme.spacing(2)}px;
+    ${theme.breakpoints.down("md")} {
+      padding: ${theme.spacing(3)} 0 ${theme.spacing(2)};
     }
   }
 
   .footer-bottom {
     border-top: 1px solid #888;
-    padding: ${theme.spacing(2)}px 0;
+    padding: ${theme.spacing(2)} 0;
 
-    ${theme.breakpoints.down("sm")} {
-      padding: ${theme.spacing(1)}px 0;
+    ${theme.breakpoints.down("md")} {
+      padding: ${theme.spacing(1)} 0;
     }
   }
 
   .footer-social-link {
     background: ${theme.palette.text.secondary};
     display: inline-block;
-    height: ${theme.spacing(5)}px;
-    width: ${theme.spacing(5)}px;
+    height: ${theme.spacing(5)};
+    width: ${theme.spacing(5)};
     border-radius: 50%;
-    margin-right: ${theme.spacing(1)}px;
-    margin-top: ${theme.spacing(1)}px;
+    margin-right: ${theme.spacing(1)};
+    margin-top: ${theme.spacing(1)};
     position: relative;
     color: #ddd;
     opacity: 0.5;
@@ -82,7 +82,7 @@ text-decoration: none;
     }
 
     svg {
-      font-size: ${theme.spacing(2)}px;
+      font-size: ${theme.spacing(2)};
       position: absolute;
       top: 50%;
       left: 50%;

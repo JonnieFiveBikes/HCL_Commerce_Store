@@ -8,9 +8,7 @@
  *
  *==================================================
  */
-/**
- * Do not modify, the file is generated.
- */
+
 //Standard libraries
 import Axios, { AxiosRequestConfig, Method, AxiosPromise } from "axios";
 //Foundation libraries

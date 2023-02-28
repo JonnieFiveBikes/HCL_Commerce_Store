@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import NativeSelect from "@material-ui/core/NativeSelect";
+import styled from "@mui/styled-engine-sc";
+import NativeSelect from "@mui/material/NativeSelect";
 
 const StyledNativeSelect = styled(({ ...props }) => <NativeSelect {...props} />)`
   && {

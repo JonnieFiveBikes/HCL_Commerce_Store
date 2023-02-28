@@ -9,7 +9,7 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { StyledButton } from "../button/styled-button";
 
 export const StyledB2BLandingPageButton = styled(({ ...props }) => <StyledButton {...props} />)`

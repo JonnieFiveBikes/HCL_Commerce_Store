@@ -8,9 +8,7 @@
  *
  *==================================================
  */
-/**
- * Do not modify, the file is generated.
- */
+
 //Standard libraries
 import { AxiosPromise } from "axios";
 import i18n from "../../../i18n";
@@ -20,7 +18,7 @@ import { CartApi, ShippingInfoApi } from "@hcl-commerce-store-sdk/typescript-axi
 import { site } from "../../constants/site";
 import { CommerceEnvironment } from "../../../constants/common";
 
-const cartApiInstance = new CartApi(undefined, site.transactionContext);
+const cartApiInstance: CartApi = new CartApi(undefined, site.transactionContext);
 const shippingInfoApiInstance = new ShippingInfoApi(undefined, site.transactionContext);
 const cartService = {
   /**
@@ -377,6 +375,12 @@ const cartService = {
     const { storeId = siteInfo?.storeID, responseFormat, body, ...options } = parameters;
 
     return cartApiInstance.cartAddPreConfigurationOrderItem(storeId, responseFormat, body, options);
+  },
+
+  calculateOrder(parameters: any): AxiosPromise<any> {
+    const siteInfo = getSite();
+    const { storeId = siteInfo?.storeID, responseFormat, body, ...options } = parameters;
+    return cartApiInstance.cartCalculateOrder1(storeId, responseFormat, body, options);
   },
 };
 

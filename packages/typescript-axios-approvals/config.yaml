@@ -1,0 +1,9 @@
+generatorName: typescript-axios
+templateDir: templates
+additionalProperties:
+  npmVersion: 9.1.12
+  apiPackage: com.hcl.commerce.typescript.approvals
+  modelPackage: com.hcl.commerce.typescript.approvals
+  withSeparateModelsAndApi: true
+  npmName: "@hcl-commerce-store-sdk/typescript-axios-approvals"
+  snapshot: false

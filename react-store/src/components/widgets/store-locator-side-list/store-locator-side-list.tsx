@@ -11,10 +11,10 @@
 //Standard libraries
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { InputAdornment } from "@material-ui/core";
-import NotInterestedIcon from "@material-ui/icons/NotInterested";
-import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
-import SearchIcon from "@material-ui/icons/Search";
+import { InputAdornment } from "@mui/material";
+import NotInterestedIcon from "@mui/icons-material/NotInterested";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import SearchIcon from "@mui/icons-material/Search";
 import { getDistance } from "geolib";
 import { Autocomplete } from "@react-google-maps/api";
 //HCL libraries
@@ -43,6 +43,7 @@ export interface StoreLocatorSideListProps {
   searchBoxOnLoad: any;
   onPlacesChanged: any;
   searchTextFieldRef: any;
+  clickedIndex: any;
 }
 
 export const StoreLocatorSideList: React.FC<StoreLocatorSideListProps> = (props) => {
@@ -56,6 +57,7 @@ export const StoreLocatorSideList: React.FC<StoreLocatorSideListProps> = (props)
     onPlacesChanged,
     searchTerm,
     searchTextFieldRef,
+    clickedIndex,
   } = props;
   const { t } = useTranslation();
 
@@ -151,7 +153,7 @@ export const StoreLocatorSideList: React.FC<StoreLocatorSideListProps> = (props)
                   </StyledListItemIcon>
                   <StyledListItemText
                     primary={
-                      <StyledTypography variant="subtitle2">
+                      <StyledTypography className={clickedIndex === index ? "selected" : null} variant="subtitle2">
                         {store?.storeName}
                         {store?.id === storeLocator.selectedStore?.id && (
                           <CheckCircleRoundedIcon
@@ -163,9 +165,11 @@ export const StoreLocatorSideList: React.FC<StoreLocatorSideListProps> = (props)
                       </StyledTypography>
                     }
                     secondary={
-                      <StyledTypography variant="caption">{store?.storeFullAddress}</StyledTypography>
+                      <StyledTypography className={clickedIndex === index ? "selected" : null} variant="caption">
+                        {store?.storeFullAddress}
+                      </StyledTypography>
                     }></StyledListItemText>
-                  <StyledTypography variant="caption">
+                  <StyledTypography className={clickedIndex === index ? "selected" : null} variant="caption">
                     {getDistance(searchTerm ? locator.center : currentLocation, store?.coordinates, 100) / 1000 +
                       KILOMETERS}
                   </StyledTypography>

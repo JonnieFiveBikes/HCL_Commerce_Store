@@ -20,20 +20,20 @@ import {
   StyledMenuItem,
   StyledMenuTypography,
 } from "@hcl-commerce-store-sdk/react-component";
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { HOME } from "../../constants/routes";
 import storeUtil from "../../utils/storeUtil";
 import { useSite } from "../../_foundation/hooks/useSite";
-import StoreIcon from "@material-ui/icons/Store";
-import CloseIcon from "@material-ui/icons/Close";
+import StoreIcon from "@mui/icons-material/Store";
+import CloseIcon from "@mui/icons-material/Close";
 import { SET_SELLER_ACTION } from "../../redux/actions/sellers";
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled("div")`
   ${({ theme }) => `
     background: ${theme.palette.background.default};
-    padding: ${theme.spacing(2)}px;
+    padding: ${theme.spacing(2)};
   `}
 `;
 
@@ -100,10 +100,6 @@ export const Sellers = () => {
           <StyledSelect
             data-testid="mp-seller-select"
             style={{ maxWidth: `${XS_MOBILE_W}em` }}
-            MenuProps={{
-              anchorOrigin: { vertical: "bottom", horizontal: "left" },
-              getContentAnchorEl: null,
-            }}
             value={chosenSellers}
             renderValue={renderValue}
             displayEmpty

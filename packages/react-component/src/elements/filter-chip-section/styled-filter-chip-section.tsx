@@ -8,13 +8,13 @@
  *
  *==================================================
  */
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 
-const StyledFilterChipSection = styled.div`
+const StyledFilterChipSection = styled("div")`
   ${({ theme }) => `
     .MuiChip-root,
     .clear-all {
-      margin-left: ${theme.spacing(1.5)}px;
+      margin-left: ${theme.spacing(1.5)};
     }
 
     .clear-all {

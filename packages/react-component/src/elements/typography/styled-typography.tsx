@@ -8,8 +8,8 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import Typography from "@material-ui/core/Typography";
+import styled from "@mui/styled-engine-sc";
+import Typography from "@mui/material/Typography";
 import React from "react";
 
 const StyledTypography = styled(({ ...rest }) => <Typography {...rest} />)`
@@ -31,30 +31,33 @@ const StyledTypography = styled(({ ...rest }) => <Typography {...rest} />)`
       }
     }
     &.accounts-links-title {
-      margin: ${theme.spacing(3)}px 0 ${theme.spacing(2)}px;
+      margin: ${theme.spacing(3)} 0 ${theme.spacing(2)};
     }
     &.MuiTypography-gutterBottom {
-      margin-bottom: ${theme.spacing(1)}px;
+      margin-bottom: ${theme.spacing(1)};
     }
     &.total-discount {
       color: ${theme.palette.text.highlight};
+    }
+    &.selected {
+      color: ${theme.palette.primary.main};
     }
     .strikethrough {
       text-decoration: line-through;
       font-size: 0.9em;
       opacity: 0.8;
-      margin-right: ${theme.spacing(1)}px;
+      margin-right: ${theme.spacing(1)};
     }
 
     &.expanded-menu-bold {
       font-size: 1.15em;
       font-weight: bold;
-      margin-bottom: ${theme.spacing(1)}px;
+      margin-bottom: ${theme.spacing(1)};
     }
 
     &.expanded-menu-sub-links {
-      margin-bottom: ${theme.spacing(0.75)}px;
-      margin-top: ${theme.spacing(0.75)}px;
+      margin-bottom: ${theme.spacing(0.75)};
+      margin-top: ${theme.spacing(0.75)};
     }
 
     &.expanded-menu-text {
@@ -69,6 +72,11 @@ const StyledTypography = styled(({ ...rest }) => <Typography {...rest} />)`
       overflow-wrap: break-word;
       word-wrap: break-word;
       word-break: break-word;
+    }
+
+    &.address-card-width {
+      width: ${theme.spacing(30)};
+      padding-right: ${theme.spacing(1)};
     }
 
     &.error {
@@ -119,7 +127,7 @@ export const StyledMenuTypography = styled(({ ...props }) => <StyledTypography {
 
   &.searchBar-resultsCategory {
     color: ${theme.palette.text.secondary};
-    padding: ${theme.spacing(1)}px ${theme.spacing(2)}px;
+    padding: ${theme.spacing(1)} ${theme.spacing(2)};
 
     &.MuiTypography-body2 {
       display: block;
@@ -131,7 +139,7 @@ export const StyledMenuTypography = styled(({ ...props }) => <StyledTypography {
 
     &:not(:first-child) {
       border-top: 1px solid ${theme.palette.text.disabled};
-      padding-top: ${theme.spacing(2)}px;
+      padding-top: ${theme.spacing(2)};
     }
   }
   `}

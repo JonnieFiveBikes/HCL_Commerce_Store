@@ -9,15 +9,12 @@
  *==================================================
  */
 //Standard libraries
-import styled from "styled-components";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import styled from "@mui/styled-engine-sc";
+import Autocomplete from "@mui/material/Autocomplete";
 import { dimensions } from "../../themes/variables";
 
 export const StyledAutocomplete = styled(Autocomplete)`
   .MuiInputBase-root {
     height: ${dimensions.inputFields.height}px;
-  }
-  .MuiInputBase-input {
-    height: 0px;
   }
 `;

@@ -21,9 +21,9 @@ import ContentRecommendationWidget from "../commerce-widgets/content-recommendat
 import { SessionErrorDialog } from "../widgets/session-error-modal";
 import ConfirmationDialog from "../widgets/confirmation-dialog/ConfirmationDialog";
 //UI
-import FacebookIcon from "@material-ui/icons/Facebook";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import InstagramIcon from "@material-ui/icons/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
 import {
   StyledGrid,
   StyledContainer,

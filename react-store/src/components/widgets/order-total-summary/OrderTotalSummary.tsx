@@ -18,6 +18,7 @@ import { StyledGrid, StyledTypography } from "@hcl-commerce-store-sdk/react-comp
 
 interface OrderTotalSummaryProps {
   order: any;
+  estimate?: boolean;
 }
 
 /**
@@ -27,9 +28,10 @@ interface OrderTotalSummaryProps {
  */
 const OrderTotalSummary: React.FC<OrderTotalSummaryProps> = (props: any) => {
   const { t } = useTranslation();
-
-  const order = props.order;
+  const { order, estimate } = props;
   const { subtotal, tax, shipping, shippingTax, totalDiscounts, grandTotal } = initOrderTotalSummary();
+  const prefix = "OrderTotalSummary.Labels";
+  const estKey = estimate ? "Estimated" : "";
 
   /**
    * Initialize the summary data
@@ -65,10 +67,10 @@ const OrderTotalSummary: React.FC<OrderTotalSummaryProps> = (props: any) => {
 
   return (
     <StyledGrid container>
-      {subtotal && (
+      {subtotal ? (
         <>
           <StyledGrid item xs={6}>
-            <StyledTypography gutterBottom>{t("OrderTotalSummary.Labels.Subtotal")}</StyledTypography>
+            <StyledTypography gutterBottom>{t(`${prefix}.Subtotal`)}</StyledTypography>
           </StyledGrid>
           <StyledGrid item xs={6}>
             <StyledTypography gutterBottom align="right">
@@ -76,11 +78,11 @@ const OrderTotalSummary: React.FC<OrderTotalSummaryProps> = (props: any) => {
             </StyledTypography>
           </StyledGrid>
         </>
-      )}
-      {tax != null && (
+      ) : null}
+      {tax != null ? (
         <>
           <StyledGrid item xs={6}>
-            <StyledTypography gutterBottom>{t("OrderTotalSummary.Labels.Tax")}</StyledTypography>
+            <StyledTypography gutterBottom>{t(`${prefix}.${estKey}Tax`)}</StyledTypography>
           </StyledGrid>
           <StyledGrid item xs={6}>
             <StyledTypography gutterBottom align="right">
@@ -88,11 +90,11 @@ const OrderTotalSummary: React.FC<OrderTotalSummaryProps> = (props: any) => {
             </StyledTypography>
           </StyledGrid>
         </>
-      )}
-      {shipping != null && (
+      ) : null}
+      {shipping != null ? (
         <>
           <StyledGrid item xs={6}>
-            <StyledTypography gutterBottom>{t("OrderTotalSummary.Labels.Shipping")}</StyledTypography>
+            <StyledTypography gutterBottom>{t(`${prefix}.${estKey}Shipping`)}</StyledTypography>
           </StyledGrid>
           <StyledGrid item xs={6}>
             <StyledTypography gutterBottom align="right">
@@ -100,11 +102,11 @@ const OrderTotalSummary: React.FC<OrderTotalSummaryProps> = (props: any) => {
             </StyledTypography>
           </StyledGrid>
         </>
-      )}
-      {shippingTax != null && (
+      ) : null}
+      {shippingTax != null ? (
         <>
           <StyledGrid item xs={6}>
-            <StyledTypography gutterBottom>{t("OrderTotalSummary.Labels.ShippingTax")}</StyledTypography>
+            <StyledTypography gutterBottom>{t(`${prefix}.${estKey}ShippingTax`)}</StyledTypography>
           </StyledGrid>
           <StyledGrid item xs={6}>
             <StyledTypography gutterBottom align="right">
@@ -112,12 +114,12 @@ const OrderTotalSummary: React.FC<OrderTotalSummaryProps> = (props: any) => {
             </StyledTypography>
           </StyledGrid>
         </>
-      )}
-      {totalDiscounts !== null && totalDiscounts !== 0 && (
+      ) : null}
+      {totalDiscounts !== null && totalDiscounts !== 0 ? (
         <>
           <StyledGrid item xs={6}>
             <StyledTypography className="total-discount" gutterBottom>
-              {t("OrderTotalSummary.Labels.Discount")}
+              {t(`${prefix}.Discount`)}
             </StyledTypography>
           </StyledGrid>
           <StyledGrid item xs={6}>
@@ -126,12 +128,12 @@ const OrderTotalSummary: React.FC<OrderTotalSummaryProps> = (props: any) => {
             </StyledTypography>
           </StyledGrid>
         </>
-      )}
-      {grandTotal != null && (
+      ) : null}
+      {grandTotal != null ? (
         <>
           <StyledGrid item xs={6}>
             <StyledTypography variant="subtitle1" gutterBottom>
-              {t("OrderTotalSummary.Labels.Total")}
+              {t(`${prefix}.${estKey}Total`)}
             </StyledTypography>
           </StyledGrid>
           <StyledGrid item xs={6}>
@@ -140,7 +142,7 @@ const OrderTotalSummary: React.FC<OrderTotalSummaryProps> = (props: any) => {
             </StyledTypography>
           </StyledGrid>
         </>
-      )}
+      ) : null}
     </StyledGrid>
   );
 };

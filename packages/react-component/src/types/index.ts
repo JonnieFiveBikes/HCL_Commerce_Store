@@ -12,6 +12,7 @@ export * from "./page-layout-props";
 export * from "./super-responsive-table-types";
 
 export interface ESpotState {
+  behavior: string;
   content: {
     title: string;
     templates: any[];

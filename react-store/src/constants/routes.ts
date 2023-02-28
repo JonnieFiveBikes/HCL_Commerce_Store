@@ -10,6 +10,7 @@
  */
 
 export const HOME = "/";
+export const PROHIBITED_CHAR_ERROR_VIEW = "/ProhibitedCharacterErrorView";
 
 //Order
 export const CART = "/cart";
@@ -55,6 +56,9 @@ export const REGISTER_PROTECTED = "register";
 //only guest and generic user access
 export const GENERIC_PROTECTED = "generic";
 
+// marketplace store access and only when seller-reg access is enabled
+export const MP_SELLER_REG_PROTECTED = "marketplace-seller-reg";
+
 export const BUYER_MANAGEMENT = "/buyer-management";
 export const APPROVALS_MANAGEMENT = "/approvals-management";
 export const ORGANIZATION_MANAGEMENT = "/organization-management";
@@ -78,3 +82,5 @@ export const COMPARE_ROUTE = "/compare-products";
 export const STORE_LOCATOR = "/store-locator";
 export const DELIVERY_STEPS = ["shipping", "payment", "review"];
 export const PICKUP_STEPS = ["pickup-store", "pickup", "payment", "review"];
+
+export const SELLER_REGISTRATION = "/seller-registration";

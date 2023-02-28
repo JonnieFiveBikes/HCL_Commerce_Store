@@ -71,12 +71,12 @@ const DisplayWishList: React.FC<DisplayWishListViewProps> = (props: any) => {
   const contentComponent = (
     <>
       <StyledTypography className="shipment-group-heading wrapText">{wishList.description}</StyledTypography>
-      {wishList.item && <StyledTypography> {t("WishList.WishListItemsMessage")}</StyledTypography>}
-      <StyledGrid container spacing={1} justifyContent="flex-start">
+      {wishList.item ? <StyledTypography> {t("WishList.WishListItemsMessage")}</StyledTypography> : null}
+      <StyledGrid container spacing={1} justifyContent="flex-start" alignItems="flex-end" flex="1">
         {recentProducts.map((product) => (
           <Fragment key={product.partNumber}>
             <StyledGrid item>
-              <StyledCardMedia image={product.thumbnail} size={120} />
+              <StyledCardMedia component="img" image={product.thumbnail} size={120} />
             </StyledGrid>
           </Fragment>
         ))}

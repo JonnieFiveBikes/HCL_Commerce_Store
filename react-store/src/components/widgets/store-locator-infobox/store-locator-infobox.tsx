@@ -12,8 +12,8 @@
 import React from "react";
 import HTMLReactParser from "html-react-parser";
 import { useTranslation } from "react-i18next";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { getDistance } from "geolib";
 //HCL libraries
 import { StyledButton, StyledGrid, StyledPaper, StyledTypography } from "@hcl-commerce-store-sdk/react-component";
@@ -91,9 +91,9 @@ export const StoreLocatorInfoBox: React.FC<StoreLocatorInfoBoxProps> = (props) =
             <>
               <StyledGrid item xs={12}>
                 <StyledButton
+                  className={showDirection ? "alert-color-text-button" : ""}
                   testId="store-locator-info-box-get-directions"
                   variant="text"
-                  color="secondary"
                   onClick={getDirection}>
                   {showDirection ? t("StoreLocator.stopDirections") : t("StoreLocator.getDirections")}
                 </StyledButton>

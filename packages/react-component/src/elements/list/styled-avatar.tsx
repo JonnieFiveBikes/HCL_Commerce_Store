@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import Avatar from "@material-ui/core/Avatar";
+import styled from "@mui/styled-engine-sc";
+import Avatar from "@mui/material/Avatar";
 
 /**
  * Styled component over @material-ui

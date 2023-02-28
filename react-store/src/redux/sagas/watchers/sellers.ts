@@ -9,10 +9,11 @@
  *==================================================
  */
 import { takeLatest } from "redux-saga/effects";
-import { SELLERS_GET_ACTION, SET_SELLER_ACTION } from "../../actions/sellers";
-import { getSellers, setSeller } from "../workers/sellers";
+import { REG_SELLER_ACTION, SELLERS_GET_ACTION, SET_SELLER_ACTION } from "../../actions/sellers";
+import { getSellers, registerSeller, setSeller } from "../workers/sellers";
 
 export function* watchSaga() {
   yield takeLatest(SELLERS_GET_ACTION, getSellers);
   yield takeLatest(SET_SELLER_ACTION, setSeller);
+  yield takeLatest(REG_SELLER_ACTION, registerSeller);
 }

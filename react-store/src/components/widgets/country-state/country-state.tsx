@@ -108,6 +108,10 @@ const CountryState: React.FC<CountryStateProps> = (props: CountryStateProps) => 
               name="country"
               {...params}
               label={t("AddressForm.Labels.Country")}
+              InputProps={{
+                ...params.InputProps,
+                className: "full-width",
+              }}
             />
           )}
         />
@@ -127,6 +131,10 @@ const CountryState: React.FC<CountryStateProps> = (props: CountryStateProps) => 
               name="state"
               {...params}
               label={t("AddressForm.Labels.State")}
+              InputProps={{
+                ...params.InputProps,
+                className: "full-width",
+              }}
             />
           )}
         />

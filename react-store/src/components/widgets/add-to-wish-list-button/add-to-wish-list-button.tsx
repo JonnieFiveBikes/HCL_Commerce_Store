@@ -32,8 +32,8 @@ import {
   StyledLink,
   StyledTooltip,
 } from "@hcl-commerce-store-sdk/react-component";
-import styled from "styled-components";
-import AddIcon from "@material-ui/icons/Add";
+import styled from "@mui/styled-engine-sc";
+import AddIcon from "@mui/icons-material/Add";
 
 const ValueRenderer = styled(({ children, ...props }) => <div {...props}>{children}</div>)`
   ${({ theme }) => `
@@ -130,8 +130,6 @@ export const AddToWishListButton = ({ disabled, addFn }) => {
               ref={ref}
               style={{ maxWidth: `${XS_MOBILE_W}em`, minWidth: "180px" }}
               MenuProps={{
-                anchorOrigin: { vertical: "bottom", horizontal: "left" },
-                getContentAnchorEl: null,
                 PaperProps: {
                   style: { border: "1px solid #e0e0e0", maxHeight: "200px", width: menuWidth },
                 },

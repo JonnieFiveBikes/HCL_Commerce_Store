@@ -10,7 +10,7 @@
  */
 //Standard libraries
 import React from "react";
-import Hidden from "@material-ui/core/Hidden";
+import Hidden from "@mui/material/Hidden";
 //UI
 import { StyledGrid, StyledTypography, StyledPDPContainer, StyledTabs, PriceDisplay } from "../../elements";
 import { ProductImage } from "../../components/product-image";
@@ -121,7 +121,7 @@ export const ProductInformationWidget: React.FC<ProductInformationWidgetProps> =
           ) : null}
         </StyledGrid>
 
-        <Hidden xsDown>
+        <Hidden smDown>
           <StyledGrid item xs={6} md={5} className="product-imageB2B">
             <ProductImage {...{ fullImage: thumbnail, alt: name }} />
           </StyledGrid>

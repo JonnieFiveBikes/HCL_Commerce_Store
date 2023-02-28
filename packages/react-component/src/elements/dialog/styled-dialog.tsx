@@ -8,8 +8,8 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import Dialog from "@material-ui/core/Dialog";
+import styled from "@mui/styled-engine-sc";
+import Dialog from "@mui/material/Dialog";
 import React from "react";
 
 const StyledDialog = styled((props) => <Dialog {...props} />)`

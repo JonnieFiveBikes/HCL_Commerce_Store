@@ -32,12 +32,12 @@ import { currentContractIdSelector } from "../../../redux/selectors/contract";
 import * as catActs from "../../../redux/actions/catalog";
 import storeUtil from "../../../utils/storeUtil";
 import FormattedPriceDisplay from "../formatted-price-display";
-import CloseIcon from "@material-ui/icons/Close";
-import AddIcon from "@material-ui/icons/Add";
+import CloseIcon from "@mui/icons-material/Close";
+import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router";
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper = styled("div")`
   ${({ theme }) => `
     position: relative;
     display: flex;
@@ -68,7 +68,7 @@ const HeaderWrapper = styled.div`
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: ${theme.spacing(0.5)}px;
+      padding: ${theme.spacing(0.5)};
       color: ${theme.palette.primary.dark};
       opacity: 0.75;
 
@@ -79,9 +79,9 @@ const HeaderWrapper = styled.div`
       .icon {
         background: ${theme.palette.primary.dark};
         color: white;
-        width: ${theme.spacing(5)}px;
-        height: ${theme.spacing(5)}px;
-        border-radius: ${theme.spacing(2.5)}px;
+        width: ${theme.spacing(5)};
+        height: ${theme.spacing(5)};
+        border-radius: ${theme.spacing(2.5)};
         display: flex;
         align-items: center;
         justify-content: center;
@@ -121,7 +121,7 @@ const HeaderTemplate = ({ current }) => {
       {context.product ? (
         <>
           <StyledIconButton
-            data-testid={`product-compare-${product.partNumber.toLowerCase()}-close-button`}
+            data-testid={`product-compare-${product.partNumber?.toLowerCase()}-close-button`}
             className="closeButton"
             onClick={() => {
               delete all[product.id];
@@ -292,7 +292,7 @@ const useCompareHelper = () => {
         jsxVals.push(
           ...images.map((i, x) => (
             <StyledSwatch
-              data-testid={`product-compare-${product.partNumber.toLowerCase()}-swatch-${attrVals[x]}`}
+              data-testid={`product-compare-${product.partNumber?.toLowerCase()}-swatch-${attrVals[x]}`}
               style={{ backgroundImage: `url("${i}")` }}
               key={`${id}_${x}`}
               title={attrVals[x]}

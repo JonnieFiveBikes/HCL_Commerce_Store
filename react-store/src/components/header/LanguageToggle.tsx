@@ -25,8 +25,8 @@ import {
   StyledTypography,
   StyledHeaderActions,
 } from "@hcl-commerce-store-sdk/react-component";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Hidden } from "@material-ui/core";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Hidden } from "@mui/material";
 
 //Foundation libraries
 import { useSite } from "../../_foundation/hooks/useSite";
@@ -35,6 +35,7 @@ import { localStorageUtil } from "../../_foundation/utils/storageUtil";
 import { useSelector, useDispatch } from "react-redux";
 import { langSelector } from "../../redux/selectors/language";
 import * as lsActions from "../../redux/actions/local-storage";
+import { useLocation } from "react-router";
 
 interface LanguageToggleProps {
   id: string;
@@ -51,7 +52,7 @@ interface LanguageToggleProps {
 const LanguageToggle = React.forwardRef<HTMLButtonElement | null, LanguageToggleProps>((props: any, ref: any) => {
   const { mySite } = useSite();
   const { i18n, t } = useTranslation();
-
+  const location = useLocation();
   const { id, open, handleClick, handleClose } = props;
   const [arrowRef, setArrowRef] = useState<any>(null);
 
@@ -77,6 +78,16 @@ const LanguageToggle = React.forwardRef<HTMLButtonElement | null, LanguageToggle
     }
   }, [languageSelector]);
 
+  // there may be some language specific data in the location-state, e.g., breadcrumbs
+  //   that were put there during menu routing -- those should be cleared
+  const resetOtherLanguageData = () => {
+    const locState: any = location.state;
+    if (locState) {
+      const keys = ["breadCrumbTrailEntryView"];
+      keys.forEach((k) => delete locState[k]);
+    }
+  };
+
   // Get the selected Language as a callback from LanguageTogglePopperContent
   // when user clicks a supported language option
   const onLanguageClick = (newLangId: string) => {
@@ -88,6 +99,7 @@ const LanguageToggle = React.forwardRef<HTMLButtonElement | null, LanguageToggle
       // remove the language from set of previously rejected languages -- so that we can prompt again in future
       delete rejected[langName];
       localStorageUtil.set(URL_LANG_REJECTED, rejected);
+      resetOtherLanguageData();
 
       setLanguage(newLangId);
 
@@ -113,7 +125,7 @@ const LanguageToggle = React.forwardRef<HTMLButtonElement | null, LanguageToggle
               <ExpandMoreIcon />
             </StyledTypography>
           </Hidden>
-          <Hidden xsDown>
+          <Hidden smDown>
             <StyledTypography variant="body1" component="p">
               {languageSelector
                 ? t(`Language.${CommerceEnvironment.reverseLanguageMap[languageSelector]}`)
@@ -130,22 +142,27 @@ const LanguageToggle = React.forwardRef<HTMLButtonElement | null, LanguageToggle
         anchorEl={ref?.current}
         onClose={handleClose}
         placement="bottom-end"
-        modifiers={{
-          flip: {
+        modifiers={[
+          {
+            name: "flip",
             enabled: false,
           },
-          preventOverflow: {
-            enabled: false,
-            boundariesElement: "scrollParent",
-          },
-          hide: {
+          {
+            name: "preventOverflow",
             enabled: false,
           },
-          arrow: {
+          {
+            name: "hide",
+            enabled: false,
+          },
+          {
+            name: "arrow",
             enabled: true,
-            element: arrowRef,
+            options: {
+              element: arrowRef,
+            },
           },
-        }}>
+        ]}>
         <span className="arrow" ref={setArrowRef} />
         <LanguageTogglePopperContent
           handleClose={handleClose}

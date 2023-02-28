@@ -71,6 +71,7 @@ const GTMDLService = {
           pageCategory: pageObj.pageCategory || "",
           pageSubCategory: pageObj.pageSubCategory || "",
           listerResults: pageObj.listerResults || "",
+          hcl_account: pageObj.hcl_account,
         },
         dataLayerName: DATALAYER_NAME,
       };
@@ -161,7 +162,7 @@ const GTMDLService = {
    ** `@property {number} position ` The product's position in a list or collection (e.g. 2).
    ** `@property { number} price `  The price of a product (e.g. 29.20).
    **/
-  measureProductImpression(productArr, currencyCode) {
+  measureProductImpression(productArr, currencyCode, marketplaceStore) {
     const impressions: any = [];
 
     productArr.forEach((product) => {
@@ -174,6 +175,7 @@ const GTMDLService = {
         ...(product.variant && { variant: product.variant }),
         ...(product.list && { list: product.list }),
         ...(product.position && { position: product.position }),
+        dimension9: product.affiliation,
       };
       impressions.push(impressionObj);
     });
@@ -183,6 +185,7 @@ const GTMDLService = {
         ecommerce: {
           currencyCode: currencyCode || "",
           impressions,
+          dimension10: marketplaceStore,
         },
       },
       dataLayerName: DATALAYER_NAME,
@@ -222,6 +225,8 @@ const GTMDLService = {
                 ...(productObj.category && { category: productObj.category }),
                 ...(productObj.variant && { variant: productObj.variant }),
                 ...(productObj.position && { position: productObj.position }),
+                dimension9: productObj.affiliation,
+                dimension10: productObj.marketplaceStore,
               },
             ],
           },
@@ -262,6 +267,8 @@ const GTMDLService = {
                 ...(productObj.brand && { brand: productObj.brand }),
                 ...(productObj.category && { category: productObj.category }),
                 ...(productObj.variant && { variant: productObj.variant }),
+                dimension9: productObj.affiliation,
+                dimension10: productObj.storeName,
               },
             ],
           },
@@ -288,7 +295,7 @@ const GTMDLService = {
    ** `@property { number} quantity `  The quantity of a product (e.g. 2).
    **/
   measureAddToCart(obj) {
-    const { productsObj, currencyCode } = obj;
+    const { productsObj, currencyCode, marketplaceStore } = obj;
     if (productsObj && productsObj.length > 0) {
       let productArray: Array<object> = [];
       const NUMOFITEMS = 20;
@@ -303,6 +310,7 @@ const GTMDLService = {
             ...(item.category && { category: item.category }),
             ...(item.variant && { variant: item.variant }),
             ...(item.quantity && { quantity: item.quantity }),
+            dimension9: item.affiliation,
           };
           productArray.push(obj);
         });
@@ -314,6 +322,7 @@ const GTMDLService = {
               add: {
                 products: productArray,
               },
+              dimension10: marketplaceStore,
             },
           },
           dataLayerName: DATALAYER_NAME,
@@ -354,6 +363,8 @@ const GTMDLService = {
                 ...(productObj.cat && { category: productObj.cat }),
                 ...(productObj.variant && { variant: productObj.variant }),
                 ...(productObj.quantity && { quantity: productObj.quantity }),
+                dimension9: productObj.affiliation,
+                dimension10: productObj.marketplaceStore,
               },
             ],
           },
@@ -470,6 +481,7 @@ const GTMDLService = {
         ...(product.variant && { variant: product.variant }),
         ...(product.quantity && { quantity: product.quantity }),
         ...(product.coupon && { coupon: product.coupon }),
+        dimension9: product.affiliation,
       };
       products.push(productObj);
       list.add(productObj.category);
@@ -491,6 +503,8 @@ const GTMDLService = {
             },
             products,
           },
+          hcl_account: purchaseObj.hcl_account,
+          dimension10: purchaseObj.marketplaceStore,
         },
       },
       dataLayerName: DATALAYER_NAME,
@@ -526,6 +540,7 @@ const GTMDLService = {
         ...(product.category && { category: product.category }),
         ...(product.variant && { variant: product.variant }),
         ...(product.quantity && { quantity: product.quantity }),
+        dimension9: product.affiliation,
       };
       products.push(productObj);
     });
@@ -538,6 +553,8 @@ const GTMDLService = {
             actionField: { step: orderObj.step, option: orderObj.value },
             products,
           },
+          hcl_account: orderObj.hcl_account,
+          dimension10: orderObj.marketplaceStore,
         },
       },
       dataLayerName: DATALAYER_NAME,

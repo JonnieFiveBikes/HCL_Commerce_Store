@@ -23,6 +23,7 @@ import {
   StyledDialogActions,
   StyledButton,
   StyledTypography,
+  StyledGrid,
 } from "@hcl-commerce-store-sdk/react-component";
 import { get } from "lodash-es";
 
@@ -64,23 +65,28 @@ function ConfirmationDialog() {
         {...get(props, "root", {})}>
         <StyledDialogTitle title={t(title)} onClick={handleCancel} {...get(props, "title", {})} />
         <StyledDialogContent {...get(props, "content", {})}>
-          {template ? T : <StyledTypography>{message}</StyledTypography>}
+          {template ? T : <StyledTypography style={{ paddingTop: "16px" }}>{message}</StyledTypography>}
           <StyledDialogActions>
-            <StyledButton
-              color="secondary"
-              disabled={comms?.cancelDisabled}
-              onClick={handleCancel}
-              {...get(props, "buttons[0]", {})}>
-              {t(labels ? labels.cancel : "Confirmation.CancelButton")}
-            </StyledButton>
-
-            <StyledButton
-              color="primary"
-              disabled={comms?.okDisabled}
-              onClick={handleConfirm}
-              {...get(props, "buttons[1]", {})}>
-              <span>{t(labels ? labels.submit : "Confirmation.SubmitButton")}</span>
-            </StyledButton>
+            <StyledGrid container spacing={2} justifyContent="center" alignItems="center">
+              <StyledGrid item>
+                <StyledButton
+                  color="secondary"
+                  disabled={comms?.cancelDisabled}
+                  onClick={handleCancel}
+                  {...get(props, "buttons[0]", {})}>
+                  {t(labels ? labels.cancel : "Confirmation.CancelButton")}
+                </StyledButton>
+              </StyledGrid>
+              <StyledGrid item>
+                <StyledButton
+                  color="primary"
+                  disabled={comms?.okDisabled}
+                  onClick={handleConfirm}
+                  {...get(props, "buttons[1]", {})}>
+                  <span>{t(labels ? labels.submit : "Confirmation.SubmitButton")}</span>
+                </StyledButton>
+              </StyledGrid>
+            </StyledGrid>
           </StyledDialogActions>
         </StyledDialogContent>
       </StyledDialog>

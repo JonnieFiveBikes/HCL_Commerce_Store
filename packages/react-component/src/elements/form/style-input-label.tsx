@@ -8,13 +8,13 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import InputLabel from "@material-ui/core/InputLabel";
-import React from "react";
+import styled from "@mui/styled-engine-sc";
+import InputLabel from "@mui/material/InputLabel";
 
 const StyledInputLabel = styled(({ ...props }) => <InputLabel {...props} />)`
   ${({ theme }) => `
   font-weight: 500;
+  line-height: 1;
 
   &.MuiInputLabel-outlined {
     &.MuiInputLabel-shrink{
@@ -24,7 +24,7 @@ const StyledInputLabel = styled(({ ...props }) => <InputLabel {...props} />)`
       color: ${theme.palette.text.disabled};
     }
     position: relative;
-    margin-bottom: ${theme.spacing(1)}px;
+    margin-bottom: ${theme.spacing(1)};
     font-weight: 500;
     color: ${theme.palette.text.secondary};
     z-index: unset;

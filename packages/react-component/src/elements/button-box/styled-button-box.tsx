@@ -9,7 +9,7 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { StyledIconLabel } from "../icon-label";
 import { StyledPaper } from "../paper";
 import { StyledButton } from "../button/styled-button";
@@ -18,7 +18,7 @@ import { StyledGrid } from "../grid";
 const StyledButtonBoxWrapper = styled(({ ...props }) => <StyledPaper {...props} />)`
   ${({ theme }) => `
    display: flex;
-   padding: ${theme.spacing(2)}px;
+   padding: ${theme.spacing(2)};
 
    &.disabled {
      h6, p {

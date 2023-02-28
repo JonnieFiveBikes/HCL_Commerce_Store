@@ -30,7 +30,7 @@ export const CheckboxHeader = ({ fullTable, headers, ...props }) => {
       checked={!!s[TableConstants.HEADERS][TableConstants.CHECKBOX]}
       onChange={(e) => {
         s[TableConstants.HEADERS][TableConstants.CHECKBOX] = e.target.checked;
-        fullTable.forEach((row) => {
+        fullTable?.forEach((row) => {
           const o = getRowKey(row, headers);
           set(s, `${o}.${TableConstants.CHECKBOX}`, e.target.checked);
         });

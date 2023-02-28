@@ -9,7 +9,7 @@
  *==================================================
  */
 //Standard libraries
-import React, { Fragment } from "react";
+import React, { Fragment, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 //UI
@@ -22,8 +22,8 @@ import {
   StyledTypography,
   StyledButton,
 } from "@hcl-commerce-store-sdk/react-component";
-import { Divider } from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { Divider } from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 interface OrderDetailSubSectionProps {
   /**
@@ -44,33 +44,40 @@ interface OrderDetailSubSectionProps {
 const OrderDetailSubsection: React.FC<OrderDetailSubSectionProps> = (props) => {
   const { heading, details, actions, detailsClass } = props;
   const detailsArray = Array.isArray(details) ? details : [details];
+  const [isExpanded, setIsExpended] = useState<boolean>(true);
+  const onChange = useCallback((_event: React.SyntheticEvent, expanded: boolean) => {
+    setIsExpended(expanded);
+  }, []);
   const { t } = useTranslation();
   return (
     <StyledPaper>
-      <StyledAccordion testId={`order-shipping-details-group`} defaultExpanded={true}>
+      <StyledAccordion testId={`order-shipping-details-group`} defaultExpanded={true} onChange={onChange}>
         <StyledAccordionSummary
-          IconButtonProps={{ className: "accordion-icon-text" }}
           expandIcon={
             <>
-              <StyledButton
-                testId="order-shipping-info-show-group-details"
-                variant="text"
-                color="secondary"
-                size="small"
-                component="div"
-                className="accordion-show-summary horizontal-padding-1">
-                <StyledTypography variant="body1">{t("OrderShippingInfo.Labels.ShowGroupDetails")}</StyledTypography>
-              </StyledButton>
+              {isExpanded ? null : (
+                <StyledButton
+                  testId="order-shipping-info-show-group-details"
+                  variant="text"
+                  color="secondary"
+                  size="small"
+                  component="div"
+                  className="horizontal-padding-1">
+                  <StyledTypography variant="body1">{t("OrderShippingInfo.Labels.ShowGroupDetails")}</StyledTypography>
+                </StyledButton>
+              )}
               <ExpandMoreIcon />
-              <StyledButton
-                testId="order-shipping-info-hide-group-details"
-                variant="text"
-                color="primary"
-                size="small"
-                component="div"
-                className="accordion-show-expanded horizontal-padding-1">
-                <StyledTypography variant="body1">{t("OrderShippingInfo.Labels.HideGroupDetails")}</StyledTypography>
-              </StyledButton>
+              {isExpanded ? (
+                <StyledButton
+                  testId="order-shipping-info-hide-group-details"
+                  variant="text"
+                  color="primary"
+                  size="small"
+                  component="div"
+                  className="accordion-show-expanded horizontal-padding-1">
+                  <StyledTypography variant="body1">{t("OrderShippingInfo.Labels.HideGroupDetails")}</StyledTypography>
+                </StyledButton>
+              ) : null}
             </>
           }>
           {heading && <StyledContainer className="vertical-margin-2">{heading}</StyledContainer>}

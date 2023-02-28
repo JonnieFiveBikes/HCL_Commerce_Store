@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import styled from "@mui/styled-engine-sc";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
 
 const StyledListItemAvatar = styled(({ ...props }) => <ListItemAvatar {...props} />)`
   && {

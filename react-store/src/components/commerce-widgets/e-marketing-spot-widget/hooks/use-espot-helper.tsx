@@ -38,7 +38,7 @@ import { useLocation } from "react-router";
  * @param page the page that contains this widget.
  * @returns an eSpot object
  */
-export const useESpotHelper = (widget: Widget, page: Page): any => {
+export const useESpotHelper = (widget: Widget, page: Page) => {
   const widgetName = getDisplayName(widget.widgetName);
 
   const { mySite } = useSite();

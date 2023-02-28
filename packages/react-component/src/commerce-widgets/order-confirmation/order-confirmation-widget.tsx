@@ -14,7 +14,7 @@ import React from "react";
 //Foundation Libraries
 
 //UI
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { StyledContainer, StyledGrid, StyledIcon, StyledPaper, StyledTypography } from "../../elements";
 
 interface OrderConfirmationProps {

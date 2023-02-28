@@ -731,7 +731,7 @@ li.MuiBreadcrumbs-li:last-child {
     }
   }
   // panel-expander (icon+text)
-  > .MuiAccordionSummary-expandIcon.MuiButtonBase-root.MuiIconButton-root {
+  > .MuiAccordionSummary-expandIconWrapper.MuiButtonBase-root.MuiIconButton-root {
     margin-top: 0.25rem;
 
     > .MuiIconButton-label {
@@ -805,7 +805,7 @@ table.list-item-table {
                 display: inline-flex;
                 position: initial;
                 margin-left: calc(-100% - 10px);
-                margin-right: calc(50% + 30px);
+                width: 100%;
               }
               > span.td-inline-content {
                 display: inline-flex;
@@ -834,12 +834,13 @@ table.list-item-table {
     padding-top: 0;
 
     .MuiDialogActions-root {
-      display: flex;
-      justify-content: space-evenly;
-      flex-direction: row-reverse;
       padding-top: 0;
-      > button {
-        min-width: 150px;
+      > .MuiGrid-container {
+        flex-direction: row-reverse;
+        padding-top: 0;
+        button {
+          min-width: 150px;
+        }
       }
     }
   }
@@ -871,10 +872,9 @@ table.better-pivot {
   @media screen and (max-width: 40em) {
     > tbody > tr > td.pivoted {
       > div.tdBefore {
-        display: inline-flex;
         position: initial;
         margin-left: calc(-100% - 10px);
-        margin-right: calc(50% + 30px);
+        width: 100%;
       }
       > * {
         display: inline-flex !important;

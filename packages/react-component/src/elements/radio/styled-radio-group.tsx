@@ -9,12 +9,12 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import RadioGroup from "@material-ui/core/RadioGroup";
+import styled from "@mui/styled-engine-sc";
+import RadioGroup from "@mui/material/RadioGroup";
 
 const StyledRadioGroup = styled(({ ...props }) => <RadioGroup {...props} />)`
   ${({ theme }) => `
-    gap: ${theme.spacing(1)}px;
+    gap: ${theme.spacing(1)};
   `}
 `;
 

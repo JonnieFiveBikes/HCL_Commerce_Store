@@ -18,11 +18,11 @@ import { HOME, ONSITE_SEARCH, LISTER, PDP, CHECKOUT, CONTENT, CART } from "../..
 //Custom libraries
 import v2CategoryResourceService from "../../apis/search/categories.service";
 
-let PAGETITLE = "";
-
 const UADataService = {
+  PAGETITLE: "",
+
   setPageTitle(title: any) {
-    PAGETITLE = title;
+    this.PAGETITLE = title;
   },
   getPagePath() {
     const locationPath = window.location.pathname;
@@ -55,7 +55,7 @@ const UADataService = {
       pageCategory: HOME,
       pageSubCategory: HOME,
       pagePath: this.getPagePath(),
-      pageTitle: PAGETITLE,
+      pageTitle: this.PAGETITLE,
       ...page,
       ...this.getUserInfoFromStore(),
     };
@@ -70,7 +70,7 @@ const UADataService = {
       onsiteSearch: productListTotal > 0 ? "Successful Search" : "Zero Search",
       searchTerm,
       productResults: productListTotal,
-      pageTitle: PAGETITLE,
+      pageTitle: this.PAGETITLE,
       pagePath: this.getPagePath() + "?searchTerm=" + searchTerm,
       ...this.getUserInfoFromStore(),
     };
@@ -82,7 +82,7 @@ const UADataService = {
       pageCategory: LISTER,
       pageSubCategory: this.getBreadCrumbsData(breadcrumbs).category,
       listerResults: productListTotal,
-      pageTitle: PAGETITLE,
+      pageTitle: this.PAGETITLE,
       pagePath: this.getPagePath(),
       ...this.getUserInfoFromStore(),
     };
@@ -92,7 +92,7 @@ const UADataService = {
     const obj = {
       pageCategory: PDP,
       pageSubCategory: this.getBreadCrumbsData(breadcrumbs).category,
-      pageTitle: PAGETITLE,
+      pageTitle: this.PAGETITLE,
       pagePath: this.getPagePath(),
       ...this.getUserInfoFromStore(),
     };
@@ -100,7 +100,7 @@ const UADataService = {
   },
   async sendCheckoutPageViewEvent(pageSubCategory) {
     const obj = {
-      pageTitle: PAGETITLE,
+      pageTitle: this.PAGETITLE,
       pagePath: this.getPagePath(),
       pageCategory: CHECKOUT,
       pageSubCategory,
@@ -113,7 +113,7 @@ const UADataService = {
       pageCategory: CONTENT,
       pageSubCategory: CONTENT,
       pagePath: this.getPagePath(),
-      pageTitle: PAGETITLE,
+      pageTitle: this.PAGETITLE,
       ...this.getUserInfoFromStore(),
     };
     if (cid.toLowerCase().localeCompare(obj.pagePath.substring(1).replace("-", "").toLowerCase()) === 0) return obj;
@@ -124,8 +124,9 @@ const UADataService = {
   async sendFormCompletionEvent(eventAction) {
     return eventAction;
   },
-  async sendProductImpressionEvent(productList, listerFlag, breadcrumbs) {
+  async sendProductImpressionEvent(productList, listerFlag, breadcrumbs, sellers, storeName) {
     let currency: string = "";
+    const marketplaceSellers = sellers.sellers;
     const productarr = productList.map((product, index) => {
       currency = this.getProductPrice(product.price).currency;
       return {
@@ -135,12 +136,14 @@ const UADataService = {
         category: listerFlag ? this.getBreadCrumbsData(breadcrumbs).category : "",
         list: listerFlag ? this.getBreadCrumbsData(breadcrumbs).subCategory : "Search Results",
         position: index + 1,
+        affiliation: marketplaceSellers?.find((s) => s.id === product.sellerId)?.organizationName,
       };
     });
-    return { productarr, currency };
+    return { productarr, currency, marketplaceStore: marketplaceSellers.length > 0 ? storeName : null };
   },
 
-  async sendProductClickEvent(product, index, listerFlag, breadcrumbs) {
+  async sendProductClickEvent(product, index, listerFlag, breadcrumbs, sellers, storeName) {
+    const marketplaceSellers = sellers.sellers;
     const obj = {
       id: product.partNumber,
       name: product.name,
@@ -148,12 +151,15 @@ const UADataService = {
       category: listerFlag ? this.getBreadCrumbsData(breadcrumbs).category : "",
       list: listerFlag ? this.getBreadCrumbsData(breadcrumbs).subCategory : "Search Results",
       currency: this.getProductPrice(product.price).currency,
+      affiliation: marketplaceSellers?.find((s) => s.id === product.sellerId)?.organizationName,
+      marketplaceStore: marketplaceSellers.length > 0 ? storeName : null,
     };
     return obj;
   },
-  async sendPDPDetailViewEvent(currentProdSelect, breadcrumbs) {
+  async sendPDPDetailViewEvent(currentProdSelect, breadcrumbs, sellers, storeName) {
     const breadcrumbLength = this.getBreadCrumbsData(breadcrumbs).breadcrumbLabels.length;
-    const { id, name, price } = currentProdSelect.sku;
+    const { id, name, price, sellerId } = currentProdSelect.sku[0];
+    const marketplaceSellers = sellers.sellers;
     const obj = {
       id: id,
       name: name,
@@ -162,12 +168,15 @@ const UADataService = {
       variant: currentProdSelect["selectedAttributes"] || "",
       list: this.getBreadCrumbsData(breadcrumbs).breadcrumbLabels[breadcrumbLength - 2],
       currency: this.getProductPrice(price).currency,
+      affiliation: marketplaceSellers?.find((s) => s.id === sellerId)?.organizationName,
+      marketplaceStore: marketplaceSellers.length > 0 ? storeName : null,
     };
     return obj;
   },
-  async sendB2BPDPDetailViewEvent(productData, productPartNumber, breadcrumbs) {
+  async sendB2BPDPDetailViewEvent(productData, productPartNumber, breadcrumbs, sellers, storeName) {
     const { breadcrumbLabels, category, subCategory } = this.getBreadCrumbsData(breadcrumbs);
     const leafCategoryForProduct = breadcrumbLabels[breadcrumbLabels.length - 2];
+    const marketplaceSellers = sellers.sellers;
     const obj = {
       id: productPartNumber,
       name: subCategory,
@@ -175,6 +184,8 @@ const UADataService = {
       list: leafCategoryForProduct,
       price: productData && this.getProductPrice(productData.price).price,
       currency: productData ? this.getProductPrice(productData.price).currency : "",
+      affiliation: marketplaceSellers?.find((s) => s.id === productData.sellerId)?.organizationName,
+      marketplaceStore: marketplaceSellers.length > 0 ? storeName : null,
     };
     return obj;
   },
@@ -198,81 +209,116 @@ const UADataService = {
     };
     return promoObj;
   },
-  async sendAddToCartEvent(currentProdSelect, breadcrumbs) {
-    const { id, name, price } = currentProdSelect.sku;
+  async sendAddToCartEvent(currentProdSelect, breadcrumbs, sellers, storeName) {
+    const { id, name, price, partNumber, type } = currentProdSelect.sku[0];
     const productsObj: Array<object> = [];
     const currencyCode = this.getProductPrice(price).currency;
+    const marketplaceSellers = sellers.sellers;
     const obj = {
       id: id,
       name: name,
+      partNumber: partNumber,
+      type: type,
       price: this.getProductPrice(price).price,
       category: this.getBreadCrumbsData(breadcrumbs).category,
       variant: currentProdSelect["selectedAttributes"] || "",
       quantity: currentProdSelect.quantity,
+      affiliation: marketplaceSellers?.find((s) => s.id === currentProdSelect.sku[0].sellerId)?.organizationName,
     };
     productsObj.push(obj);
-    return { productsObj, currencyCode };
+    return { productsObj, currencyCode, marketplaceStore: marketplaceSellers.length > 0 ? storeName : null };
   },
-  async sendB2BAddToCartEvent(currentProdSelect, result, breadcrumbs) {
+
+  async sendB2BAddToCartEvent(
+    product,
+    skusByPart,
+    partAndQuantity,
+    breadcrumbs,
+    entitledOrgs,
+    activeOrgId,
+    sellers,
+    storeName
+  ) {
     const { category, subCategory } = this.getBreadCrumbsData(breadcrumbs);
-    const price = currentProdSelect.partNumber.price;
-    const productsObj: Array<object> = [];
-    const currencyCode = this.getProductPrice(price).currency;
-    result.forEach((element) => {
-      const obj = {
-        id: element.key,
-        name: subCategory,
-        price: this.getProductPrice(price).price,
-        category: category,
-        quantity: element.value,
-      };
-      productsObj.push(obj);
-    });
-    return { productsObj, currencyCode };
+    const currencyCode = this.getProductPrice(product.price).currency;
+    const marketplaceSellers = sellers.sellers;
+    const productsObj: any[] = partAndQuantity.map((element) => ({
+      id: element.key,
+      name: subCategory,
+      price: this.getProductPrice(skusByPart[element.key].price).price,
+      category: category,
+      quantity: element.value,
+      affiliation: marketplaceSellers?.find((s) => s.id === product.sellerId)?.organizationName,
+    }));
+    const hcl_account = entitledOrgs?.find((o) => o.organizationId === activeOrgId)?.organizationName;
+    return {
+      productsObj,
+      currencyCode,
+      hcl_account,
+      marketplaceStore: marketplaceSellers.length > 0 ? storeName : null,
+    };
   },
-  async sendRemoveFromCartEvent(item) {
+
+  async sendRemoveFromCartEvent(item, entitledOrgs, activeOrgId, sellers, storeName) {
     const { partNumber, name, orderItemPrice, quantity, currency } = item;
+    const hcl_account = entitledOrgs?.find((o) => o.organizationId === activeOrgId)?.organizationName;
+    const marketplaceSellers = sellers.sellers;
     const obj = {
       id: partNumber,
       name: name,
       price: parseFloat(orderItemPrice),
       quantity: parseInt(quantity),
       currency,
+      hcl_account,
+      affiliation: marketplaceSellers?.find((s) => s.id === item.sellerId)?.organizationName,
+      marketplaceStore: marketplaceSellers.length > 0 ? storeName : null,
     };
     return obj;
   },
-  async sendCheckoutEvent(cart, orderItems, step, value) {
+  async sendCheckoutEvent(cart, orderItems, step, value, entitledOrgs, activeOrgId, sellers, storeName) {
     const currency = cart.grandTotalCurrency;
-    const productArr = orderItems.map((order) => {
+    const marketplaceSellers = sellers.sellers;
+    const productArr = orderItems.map((orderItem) => {
       return {
-        id: order.partNumber,
-        name: order.name,
-        price: order.orderItemPrice,
-        quantity: parseInt(order.quantity),
+        id: orderItem.partNumber,
+        name: orderItem.name,
+        price: orderItem.orderItemPrice,
+        quantity: parseInt(orderItem.quantity),
+        affiliation: marketplaceSellers?.find((s) => s.id === orderItem.sellerId)?.organizationName,
       };
     });
-    return { step, value, productArr, currency };
+    const hcl_account = entitledOrgs?.find((o) => o.organizationId === activeOrgId)?.organizationName;
+    return {
+      step,
+      value,
+      productArr,
+      currency,
+      hcl_account,
+      marketplaceStore: marketplaceSellers.length > 0 ? storeName : null,
+    };
   },
 
   //This function has already included an async call to send request to GA
-  sendPurchaseEvent(cart, orderItems) {
+  sendPurchaseEvent(cart, orderItems, entitledOrgs, activeOrgId, sellers, storeName) {
     const { orderId, grandTotal, totalSalesTax, totalShippingTax, totalAdjustment } = cart;
     const partNumberCatgroupMap = new Map<any, any>();
     let currency = null;
-    let productArr = orderItems.map((order) => {
-      const parentCatalogGroupID = order.parentCatalogGroupID;
+    const marketplaceSellers = sellers.sellers;
+    let productArr = orderItems.map((orderItem) => {
+      const parentCatalogGroupID = orderItem.parentCatalogGroupID;
       const arr = parentCatalogGroupID.split("/");
-      currency = order.currency;
+      currency = orderItem.currency;
       if (arr && arr.length >= 1) {
         let catgroupID = arr[arr.length - 1];
         catgroupID = catgroupID.substring(catgroupID.indexOf("_") + 1);
-        partNumberCatgroupMap.set(order.partNumber, catgroupID);
+        partNumberCatgroupMap.set(orderItem.partNumber, catgroupID);
       }
       return {
-        id: order.partNumber,
-        name: order.name,
-        price: order.unitPrice,
-        quantity: parseInt(order.quantity),
+        id: orderItem.partNumber,
+        name: orderItem.name,
+        price: orderItem.unitPrice,
+        quantity: parseInt(orderItem.quantity),
+        affiliation: marketplaceSellers?.find((s) => s.id === orderItem.sellerId)?.organizationName,
       };
     });
 
@@ -294,6 +340,7 @@ const UADataService = {
                 name: element.name,
                 price: element.price,
                 quantity: element.quantity,
+                affiliation: element.affiliation,
               };
             } else {
               return {
@@ -302,12 +349,14 @@ const UADataService = {
                 name: element.name,
                 price: element.price,
                 quantity: element.quantity,
+                affiliation: element.affiliation,
               };
             }
           }
           return null;
         });
         productArr = null;
+        const hcl_account = entitledOrgs?.find((o) => o.organizationId === activeOrgId)?.organizationName;
         const obj = {
           purchaseId: orderId,
           totalcost: grandTotal,
@@ -316,6 +365,8 @@ const UADataService = {
           discount: totalAdjustment,
           currency: currency,
           productArrWithCategory,
+          hcl_account,
+          marketplaceStore: marketplaceSellers.length > 0 ? storeName : null,
         };
         GTMDLService.measuringPurchases(obj);
       })
@@ -359,12 +410,17 @@ const UADataService = {
     return contentMap;
   },
   async sendCartPageViewEvent(page) {
+    const { entitledOrgs, activeOrgId, sellers, storeName } = page;
+    const hcl_account = entitledOrgs?.find((o) => o.organizationId === activeOrgId)?.organizationName;
     const obj = {
       pageTitle: page.pageTitle,
       pagePath: this.getPagePath(),
       pageCategory: CART,
       pageSubCategory: page.pageSubCategory,
       ...this.getUserInfoFromStore(),
+      hcl_account,
+      sellers,
+      storeName,
     };
     return obj;
   },

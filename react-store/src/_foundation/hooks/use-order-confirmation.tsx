@@ -9,9 +9,8 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import Axios, { Canceler } from "axios";
 import { useLocation } from "react-router";
 import { Navigate } from "react-router-dom";
 import getDisplayName from "react-display-name";
@@ -49,14 +48,11 @@ export const useOrderConfirmation = (): any => {
   let emailList: string[] = location?.state ? location.state["emailList"] : [];
   emailList = [...new Set(emailList)];
   const emailListString = emailList.join(", ");
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
+  const controller = useMemo(() => new AbortController(), []);
 
   const payloadBase: any = {
     widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+    signal: controller.signal,
   };
 
   const param: any = {
@@ -73,7 +69,7 @@ export const useOrderConfirmation = (): any => {
     queryOrderStatus();
 
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

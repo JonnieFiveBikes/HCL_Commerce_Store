@@ -19,7 +19,7 @@ import { successSelector } from "../../../redux/selectors/success";
 import { SuccessMessageReducerState } from "../../../redux/reducers/reducerStateInterface";
 import { RESET_SUCCESS_MESSAGE_ACTION } from "../../../redux/actions/success";
 //UI
-import { SnackbarOrigin } from "@material-ui/core";
+import { SnackbarOrigin } from "@mui/material";
 import { forUserIdSelector } from "../../../redux/selectors/user";
 
 const useMessageSnackbar = () => {

@@ -25,8 +25,8 @@ import {
   StyledAccordionSummary,
   StyledAccordionDetails,
 } from "@hcl-commerce-store-sdk/react-component";
-import Add from "@material-ui/icons/Add";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Add from "@mui/icons-material/Add";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const CreateWishList: React.FC = (props: any) => {
   const {

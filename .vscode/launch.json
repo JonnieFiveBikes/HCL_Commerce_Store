@@ -5,6 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "command": "npm run build -w=react-store",
+      "name": "Run npm run build",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
       "name": "Attach by Process ID",
       "processId": "${command:PickProcess}",
       "request": "attach",

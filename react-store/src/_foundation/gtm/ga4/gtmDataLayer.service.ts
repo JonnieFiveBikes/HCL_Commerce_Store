@@ -10,6 +10,7 @@
  */
 //Standard libraries
 import TagManager from "react-gtm-module";
+
 //Foundation libraries
 import {
   GA4_EVENT_ADD_TO_CART,
@@ -23,7 +24,8 @@ import {
   GA4_EVENT_VIEW_PROMOTION,
   GA4_EVENT_VIEW_ITEM_LIST,
   GA4_EVENT_SELECT_ITEM,
-  GA_EVENT_VIEW_ITEM,
+  GA4_EVENT_VIEW_ITEM,
+  GA4_EVENT_SEARCH,
 } from "../../constants/gtm";
 
 const DATALAYER_NAME = "PageDataLayer";
@@ -52,8 +54,9 @@ const GA4GTMDLService = {
    ** `@property {string} brand ` The brand associated with the product (e.g. Baker).
    ** `@property {string} cat ` The category to which the product belongs (e.g. Furniture). Use / as a delimiter to specify up to 5-levels of hierarchy (e.g. Living Room/Furniture/Wooden Angled Chair).
    ** `@property {string} variant ` The variant of the product (e.g. Black).
-   ** `@property { number} price `  The price of a product (e.g. 29.20).
-   ** `@property { number} quantity `  The quantity of a product (e.g. 2).
+   ** `@property {number} price `  The price of a product (e.g. 29.20).
+   ** `@property {number} quantity `  The quantity of a product (e.g. 2).
+   ** `@property {string} hcl_account `The entitled account (organization ID).
    **/
   measureAddToCart(products) {
     const { cartObj } = products;
@@ -73,6 +76,8 @@ const GA4GTMDLService = {
           ...(product.price && { price: product.price }),
           ...(product.currency && { currency: product.currency }),
           ...(product.quantity && { quantity: product.quantity }),
+          affiliation: product.affiliation,
+          hclMarketplaceSeller: product.affiliation,
         });
       });
       const tagManagerArgsGA4 = {
@@ -82,6 +87,8 @@ const GA4GTMDLService = {
             currency: cartObj.grandTotalCurrency || "",
             value: grandTotal || 0,
             addToCartItems: items,
+            hcl_account: products.hcl_account,
+            hclMarketplace: products.marketplaceStore,
           },
         },
         dataLayerName: DATALAYER_NAME,
@@ -104,6 +111,7 @@ const GA4GTMDLService = {
    ** `@property {string} variant ` The variant of the product (e.g. Black).
    ** `@property { number} price `  The price of a product (e.g. 29.20).
    ** `@property { number} quantity `  The quantity of a product (e.g. 2).
+   ** `@property {string} hcl_account `The entitled account (organization ID).
    **/
   measureRemoveFromCart(productObj) {
     const cartValue: number = productObj.price;
@@ -128,8 +136,12 @@ const GA4GTMDLService = {
               ...(productObj.price && { price: productObj.price }),
               ...(productObj.currency && { currency: productObj.currency }),
               ...(productObj.quantity && { quantity: productObj.quantity }),
+              affiliation: productObj.affiliation,
+              hclMarketplaceSeller: productObj.affiliation,
             },
           ],
+          hcl_account: productObj.hcl_account,
+          hclMarketplace: productObj.marketplaceStore,
         },
       },
       dataLayerName: DATALAYER_NAME,
@@ -160,25 +172,9 @@ const GA4GTMDLService = {
    ** `@property {string} variant ` The variant of the product (e.g. Black).
    ** `@property { number} price `  The price of a product (e.g. 29.20).
    ** `@property { number} quantity `  The quantity of a product (e.g. 2).
+   ** `@property {string} hcl_account `The entitled account (organization ID).
    **/
   measuringPurchases(purchaseObj) {
-    const products: any = [];
-    const list = new Set();
-    purchaseObj.productArrWithCategory.forEach((product) => {
-      const productObj = {
-        name: product.name,
-        id: product.id,
-        ...(product.price && { price: product.price }),
-        ...(product.brand && { brand: product.brand }),
-        ...(product.category && { category: product.category }),
-        ...(product.variant && { variant: product.variant }),
-        ...(product.quantity && { quantity: product.quantity }),
-        ...(product.coupon && { coupon: product.coupon }),
-      };
-      products.push(productObj);
-      list.add(productObj.category);
-    });
-
     const items: any = [];
     const cartValue: number = purchaseObj.totalcost;
     const cartCurrency = purchaseObj.currency;
@@ -199,10 +195,11 @@ const GA4GTMDLService = {
         ...(product.currency && { currency: product.currency }),
         ...(product.tax && { tax: product.tax }),
         ...(product.discount && { discount: product.discount }),
+        affiliation: product.affiliation,
+        hclMarketplaceSeller: product.affiliation,
       };
       items.push(itemObj);
     });
-
     const tagManagerArgsGA4 = {
       dataLayer: {
         event: GA4_EVENT_PURCHASE,
@@ -213,6 +210,8 @@ const GA4GTMDLService = {
           ...(cartTax && { tax: cartTax }),
           ...(cartShipping && { shipping: cartShipping }),
           purchaseItems: items,
+          hcl_account: purchaseObj.hcl_account,
+          hclMarketplace: purchaseObj.marketplaceStore,
         },
       },
       dataLayerName: DATALAYER_NAME,
@@ -228,7 +227,7 @@ const GA4GTMDLService = {
    * `@param {any} orderObj`  object and have following properties:
    * `@property {number} step (required)` The checkout step number .
    * `@property {string} value (required)`The name of the checkout step (e.g. Shipping and Billing).
-   *
+   ** `@property {string} hcl_account `The entitled account (organization ID).
    * * `@property {any} productArr ` arry of product obj and object have following properties:
    ** `@property {string} id (required)` The product ID (e.g. LR-FNTR-0001).
    ** `@property {string} name (required)` The name of the product (e.g. Wooden Angled Chair).
@@ -256,6 +255,8 @@ const GA4GTMDLService = {
           ...(product.currency && { currency: product.currency }),
           ...(product.tax && { tax: product.tax }),
           ...(product.discount && { discount: product.discount }),
+          affiliation: product.affiliation,
+          hclMarketplaceSeller: product.affiliation,
         };
         items.push(itemObj);
       });
@@ -267,6 +268,8 @@ const GA4GTMDLService = {
             currency: cartObj.grandTotalCurrency || "",
             value: cartObj.grandTotal || 0,
             beginCheckoutItems: items,
+            hcl_account: orderObj.hcl_account,
+            hclMarketplace: orderObj.marketplaceStore,
           },
         },
         dataLayerName: DATALAYER_NAME,
@@ -292,6 +295,8 @@ const GA4GTMDLService = {
           ...(product.currency && { currency: product.currency }),
           ...(product.tax && { tax: product.tax }),
           ...(product.discount && { discount: product.discount }),
+          affiliation: product.affiliation,
+          hclMarketplaceSeller: product.affiliation,
         };
         items.push(itemObj);
       });
@@ -304,6 +309,7 @@ const GA4GTMDLService = {
             value: cartObj.grandTotal || 0,
             ...(cartShippingTier && { shipping_tier: cartShippingTier }),
             addShippingInfoItems: items,
+            hcl_account: orderObj.hcl_account,
           },
         },
         dataLayerName: DATALAYER_NAME,
@@ -327,6 +333,8 @@ const GA4GTMDLService = {
           ...(product.currency && { currency: product.currency }),
           ...(product.tax && { tax: product.tax }),
           ...(product.discount && { discount: product.discount }),
+          affiliation: product.affiliation,
+          hclMarketplaceSeller: product.affiliation,
         };
         items.push(itemObj);
       });
@@ -339,6 +347,7 @@ const GA4GTMDLService = {
             value: cartObj.grandTotal || 0,
             ...(cartPaymentType && { payment_type: cartPaymentType }),
             addPaymentInfoItems: items,
+            hcl_account: orderObj.hcl_account,
           },
         },
         dataLayerName: DATALAYER_NAME,
@@ -354,6 +363,7 @@ const GA4GTMDLService = {
    *
    * `@param {any} orderObj`  object and have following properties:
    * `@property {string} value ` The value of the cart.
+   ** `@property {string} hcl_account `The entitled account (organization ID).
    *
    * `@property {any} productArr ` arry of product obj and object have following properties:
    * `@property {string} id (required)` The product ID (e.g. LR-FNTR-0001).
@@ -380,7 +390,8 @@ const GA4GTMDLService = {
         ...(product.currency && { currency: product.currency }),
         ...(product.tax && { tax: product.tax }),
         ...(product.discount && { discount: product.discount }),
-        ...(product.affiliation && { affiliation: product.affiliation }),
+        affiliation: product.affiliation,
+        hclMarketplaceSeller: product.affiliation,
       };
       items.push(itemObj);
     });
@@ -391,6 +402,8 @@ const GA4GTMDLService = {
           currency: cartObj.grandTotalCurrency || "",
           ...(items && items.length > 0 && { viewCartItems: items }),
           value: cartObj.grandTotal || 0,
+          hcl_account: orderObj.hcl_account,
+          hclMarketplace: orderObj.marketplaceStore,
         },
       },
       dataLayerName: DATALAYER_NAME,
@@ -477,7 +490,7 @@ const GA4GTMDLService = {
    ** `@property {number} position ` The product's position in a list or collection (e.g. 2).
    ** `@property { number} price `  The price of a product (e.g. 29.20).
    **/
-  measureProductImpression(productArr, currency) {
+  measureProductImpression(productArr, currency, marketplaceStore) {
     const items: any = [];
     let itemListName: any;
     let itemListId: any;
@@ -493,6 +506,8 @@ const GA4GTMDLService = {
         ...(product.list && { item_list_name: product.list }),
         ...(product.position && { index: product.position }),
         ...(product.currency && { currency: product.currency }),
+        affiliation: product.affiliation,
+        hclMarketplaceSeller: product.affiliation,
       };
       items.push(item);
       itemListName = item.item_list_name;
@@ -506,6 +521,7 @@ const GA4GTMDLService = {
           item_list_name: itemListName,
           item_list_id: itemListId,
           viewItemListItems: items,
+          hclMarketplace: marketplaceStore,
         },
       },
       dataLayerName: DATALAYER_NAME,
@@ -546,6 +562,9 @@ const GA4GTMDLService = {
               }),
               ...(productObj.variant && { item_variant: productObj.variant }),
               ...(productObj.position && { index: productObj.position }),
+              affiliation: productObj.affiliation,
+              hclMarketplaceSeller: productObj.affiliation,
+              hclMarketplace: productObj.marketplaceStore,
             },
           ],
         },
@@ -573,7 +592,7 @@ const GA4GTMDLService = {
   measureViewOfProductDetail(productObj) {
     const tagManagerArgs = {
       dataLayer: {
-        event: GA_EVENT_VIEW_ITEM,
+        event: GA4_EVENT_VIEW_ITEM,
         ecommerce: {
           currency: productObj.currency || "",
           viewItemItems: [
@@ -589,8 +608,33 @@ const GA4GTMDLService = {
               ...(productObj.list && { item_list_name: productObj.list }),
               ...(productObj.position && { index: productObj.position }),
               ...(productObj.quantity && { quantity: productObj.quantity }),
+              affiliation: productObj.affiliation,
+              hclMarketplaceSeller: productObj.affiliation,
+              hclMarketplace: productObj.marketplaceStore,
             },
           ],
+        },
+      },
+      dataLayerName: DATALAYER_NAME,
+    };
+    TagManager.dataLayer(tagManagerArgs);
+  },
+  /**
+   * Measure search keyword
+   * `@method`
+   * `@name GTM#measureKeywordSearch`
+   *
+   * `@param {any} pageObj`  object and have following properties:
+   ** `@property {string} searchTerm `  The search Text.
+   ** `@property {number} productResults ` The total count of the products on search page.
+   **/
+  measureKeywordSearch(pageObj) {
+    const tagManagerArgs = {
+      dataLayer: {
+        event: GA4_EVENT_SEARCH,
+        ecommerce: {
+          searchTerm: pageObj.searchTerm,
+          productResults: pageObj.productResults,
         },
       },
       dataLayerName: DATALAYER_NAME,

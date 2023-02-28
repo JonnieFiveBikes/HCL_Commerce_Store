@@ -29,6 +29,7 @@ if (cmdArgs.appName.trim() === "") {
 
 const runSOption = {
   parallel: false,
+  printLabel: true,
   printName: true,
   stdout: process.stdout,
   stderr: process.stderr,

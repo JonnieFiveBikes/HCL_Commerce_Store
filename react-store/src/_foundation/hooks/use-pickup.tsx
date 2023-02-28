@@ -9,11 +9,11 @@
  *==================================================
  */
 //Standard libraries
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import getDisplayName from "react-display-name";
-import Axios, { Canceler } from "axios";
+
 //foundation libraries
 import { useSite } from "../../_foundation/hooks/useSite";
 
@@ -29,8 +29,6 @@ import { orderItemsSelector, shipInfosSelector } from "../../redux/selectors/ord
 import { GENERIC_ERROR_ACTION } from "../../redux/actions/error";
 import { BAD_INV_ERROR } from "../../constants/errors";
 import addressUtil from "../../utils/addressUtil";
-
-const cancels: Canceler[] = [];
 
 export const usePickup = () => {
   const navigate = useNavigate();
@@ -100,7 +98,9 @@ export const usePickup = () => {
   };
   const usableShipInfos: any = useSelector(shipInfosSelector);
 
-  const CancelToken = Axios.CancelToken;
+  const controller = useMemo(() => {
+    return new AbortController();
+  }, []);
   const { mySite } = useSite();
   const currency: string = mySite ? mySite.defaultCurrencyID : EMPTY_STRING;
   const userData =
@@ -140,7 +140,7 @@ export const usePickup = () => {
       widget,
       currency,
       contractId,
-      cancelToken: new CancelToken((c) => cancels.push(c)),
+      signal: controller.signal,
       body,
     };
 
@@ -176,7 +176,7 @@ export const usePickup = () => {
       widget,
       currency,
       contractId,
-      cancelToken: new CancelToken((c) => cancels.push(c)),
+      signal: controller.signal,
       skipErrorSnackbar: { error: BAD_INV_ERROR },
       body,
     };
@@ -203,10 +203,9 @@ export const usePickup = () => {
 
   useEffect(() => {
     return () => {
-      cancels.splice(0).forEach((cancel: Canceler) => {
-        cancel();
-      });
+      controller.abort();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {

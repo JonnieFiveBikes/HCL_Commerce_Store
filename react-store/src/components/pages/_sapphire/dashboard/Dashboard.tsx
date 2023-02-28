@@ -9,7 +9,7 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import Axios, { Canceler } from "axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -121,7 +121,8 @@ function Dashboard() {
       },
     },
   ];
-  return <StandardPageLayout cid="my-account-b2b" sectionOne={sectionOne} />;
+  const rc = useMemo(() => <StandardPageLayout cid="my-account-b2b" sectionOne={sectionOne} />, [buyerRole, forUserId]); // eslint-disable-line react-hooks/exhaustive-deps
+  return rc;
 }
 
 export default Dashboard;

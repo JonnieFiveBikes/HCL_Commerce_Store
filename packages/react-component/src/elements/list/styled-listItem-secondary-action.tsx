@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import styled from "@mui/styled-engine-sc";
+import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 
 const StyledListItemSecondaryAction = styled(({ ...props }) => <ListItemSecondaryAction {...props} />)`
   ${({ theme }) => `

@@ -13,14 +13,12 @@ import React, { useMemo } from "react";
 import isEmpty from "lodash/isEmpty";
 import { useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
-import getDisplayName from "react-display-name";
 //Custom libraries
 import { DEFINING, EMPTY_STRING } from "../../constants/common";
 //Redux
 import { CLICK_EVENT_TRIGGERED_ACTION } from "../../redux/actions/marketingEvent";
 //UI
 import { StyledSwatch } from "@hcl-commerce-store-sdk/react-component";
-import { ProductRecCard } from "../../components/widgets/product-recommendation-card";
 import FormattedPriceDisplay from "../../components/widgets/formatted-price-display";
 import { useSite } from "./useSite";
 import storeUtil from "../../utils/storeUtil";
@@ -38,7 +36,7 @@ export const useProductRecommendationCard = (props: any) => {
   const eSpotRoot = props.eSpotInternal;
   const eSpotDesc = props.eSpotDescInternal;
 
-  const widgetName = getDisplayName(ProductRecCard);
+  const widgetName = props.widgetName;
   const dispatch = useDispatch();
   const [attributeList, setAttributeList] = React.useState<Array<object>>();
   const [productPrice, setProductPrice] = React.useState<any>();

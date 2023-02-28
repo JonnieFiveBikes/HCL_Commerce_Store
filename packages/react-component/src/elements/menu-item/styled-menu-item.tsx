@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import MenuItem from "@material-ui/core/MenuItem";
+import styled from "@mui/styled-engine-sc";
+import MenuItem from "@mui/material/MenuItem";
 
 const CustomMenuItem = React.forwardRef((props: any, ref: any) => <MenuItem {...props} ref={ref} />);
 /**

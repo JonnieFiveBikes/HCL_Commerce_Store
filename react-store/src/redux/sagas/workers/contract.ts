@@ -36,8 +36,10 @@ export function* fetchContract(action: any) {
 
 export function* switchContract(action: any) {
   try {
-    yield call(switchContractService.changeContract, action.payload);
-    yield put(USER_CONTEXT_REQUEST_ACTION(action.payload));
+    const { callback, ...payload } = action.payload;
+    yield call(switchContractService.changeContract, payload);
+    yield put(USER_CONTEXT_REQUEST_ACTION(payload));
+    callback && callback();
   } catch (error) {
     yield put(CONTRACT_SWITCH_ERROR_ACTION(error));
   }

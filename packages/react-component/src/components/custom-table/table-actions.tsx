@@ -9,10 +9,10 @@
  *---------------------------------------------------
  */
 
-import { InputAdornment } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import SearchIcon from "@material-ui/icons/Search";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { InputAdornment } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/Search";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useMemo } from "react";
 import { debounce, get } from "lodash-es";
 import {

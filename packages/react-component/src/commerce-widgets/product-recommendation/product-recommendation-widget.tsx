@@ -11,14 +11,14 @@
 //Standard libraries
 import React from "react";
 import HTMLReactParser from "html-react-parser";
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 //UI
 import { StyledProductRecommendationSlider, StyledTypography } from "../../elements";
 import { EMarketingSpotWidgetProps } from "../../types";
 
-const StyledProductRecommendationLayout = styled.div`
+const StyledProductRecommendationLayout = styled("div")`
   ${({ theme }) => `
-    margin: ${theme.spacing(4)}px 0;
+    margin: ${theme.spacing(4)} 0;
   `}
 `;
 

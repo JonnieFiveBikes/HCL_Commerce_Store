@@ -17,8 +17,8 @@ import { OrderItemTable } from "../../order-item-table";
 import OrderDetailSubsection from "../../order-detail-subsection/OrderDetailSubsection";
 //UI
 import { StyledGrid, StyledTypography, StyledIconLabel, StyledBox } from "@hcl-commerce-store-sdk/react-component";
-import LocalShippingIcon from "@material-ui/icons/LocalShipping";
-import HomeIcon from "@material-ui/icons/Home";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import HomeIcon from "@mui/icons-material/Home";
 import { get } from "lodash-es";
 import { SELECTED_PROFILE } from "../../../../_foundation/constants/common";
 import { useLocation } from "react-router";

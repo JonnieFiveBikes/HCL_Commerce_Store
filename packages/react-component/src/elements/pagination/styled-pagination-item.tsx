@@ -8,9 +8,9 @@
  *
  *==================================================
  */
-import React from "react";
-import styled from "styled-components";
-import PaginationItem from "@material-ui/lab/PaginationItem";
+
+import styled from "@mui/styled-engine-sc";
+import PaginationItem from "@mui/material/PaginationItem";
 
 /**
  * Styled component on @material-ui

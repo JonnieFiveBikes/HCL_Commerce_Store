@@ -12,7 +12,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import Axios, { Canceler } from "axios";
 import { Trans, useTranslation } from "react-i18next";
 import { Navigate } from "react-router-dom";
 //Foundation libraries
@@ -33,10 +32,10 @@ import {
   StyledPaper,
   StyledLink,
 } from "@hcl-commerce-store-sdk/react-component";
-import Add from "@material-ui/icons/Add";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import SearchIcon from "@material-ui/icons/Search";
-import { InputAdornment } from "@material-ui/core";
+import Add from "@mui/icons-material/Add";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import SearchIcon from "@mui/icons-material/Search";
+import { InputAdornment } from "@mui/material";
 //Custom libraries
 import AccountSidebar from "../../widgets/account-sidebar/AccountSidebar";
 import { TitleLayout } from "../../widgets/title/TitleLayout";
@@ -50,12 +49,11 @@ import { FETCH_ALLOWABLE_PAYMETHODS_ACTION, FETCH_ALLOWABLE_SHIPMODES_ACTION } f
 import { EMPTY_STRING } from "../../../constants/common";
 
 const CheckoutProfiles: React.FC = (props: any) => {
-  const cancels: Canceler[] = [];
-  const CancelToken = Axios.CancelToken;
+  const controller = useMemo(() => new AbortController(), []);
   const widget = getDisplayName(CheckoutProfiles);
   const payloadBase: any = {
     widget,
-    cancelToken: new CancelToken((c) => cancels.push(c)),
+    signal: controller.signal,
   };
   const { t } = useTranslation();
   const loginStatus = useSelector(loginStatusSelector);
@@ -87,7 +85,7 @@ const CheckoutProfiles: React.FC = (props: any) => {
       dispatch(CPROF_FETCH_ALL_ACTION({ ...payloadBase }));
       dispatch(FETCH_ALLOWABLE_SHIPMODES_ACTION({ ...payloadBase }));
       dispatch(FETCH_ALLOWABLE_PAYMETHODS_ACTION({ ...payloadBase }));
-      return () => cancels.forEach((cancel) => cancel());
+      return () => controller.abort();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
@@ -126,10 +124,10 @@ const CheckoutProfiles: React.FC = (props: any) => {
     return <Navigate replace to={SIGNIN} />;
   } else {
     return (
-      <StyledContainer cid="checkout-profiles" spacing={2}>
+      <StyledContainer cid="checkout-profiles">
         <TitleLayout title={t("CheckoutProfile.TitleCreate")} cid="checkout-profiles-title" />
         <StyledGrid container spacing={2}>
-          <StyledGrid item xs={12} md={3} className="sidebar">
+          <StyledGrid item xs={12} md={3}>
             <AccountSidebar />
           </StyledGrid>
           <StyledGrid
@@ -141,7 +139,7 @@ const CheckoutProfiles: React.FC = (props: any) => {
             className="horizontal-padding-2"
             direction="column"
             wrap="nowrap">
-            <StyledGrid container className="vertical-margin-1">
+            <StyledGrid container item>
               <StyledAccordion testId={`checkout-profile-create`} style={{ flex: "1" }}>
                 <StyledAccordionSummary
                   className="horizontal-padding-2 vertical-padding-2 cprof-cr8-acrdn"
@@ -152,7 +150,7 @@ const CheckoutProfiles: React.FC = (props: any) => {
                   />
                 </StyledAccordionSummary>
                 <StyledAccordionDetails>
-                  <StyledGrid item container spacing={2} direction="row" alignItems="flex-end">
+                  <StyledGrid container spacing={2} direction="row" alignItems="flex-end">
                     <StyledGrid item xs={12} sm={6} md={5}>
                       <StyledTextField
                         fullWidth
@@ -186,40 +184,44 @@ const CheckoutProfiles: React.FC = (props: any) => {
               </StyledAccordion>
             </StyledGrid>
             {checkoutProfileList.length === 0 ? (
-              <StyledPaper
-                variant="outlined"
-                className="vertical-margin-1 vertical-padding-4 horizontal-padding-4"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}>
-                {searchTerm ? (
-                  <Trans
-                    i18nKey="CheckoutProfile.NoneFound"
-                    t={t}
-                    components={[
-                      <StyledTypography variant="h4" />,
-                      <StyledTypography />,
-                      <StyledTypography>
-                        <StyledLink to={CHECKOUT_PROFILE_CREATE} />
-                      </StyledTypography>,
-                    ]}
-                  />
-                ) : (
-                  <StyledTypography>
+              <StyledGrid item>
+                <StyledPaper
+                  variant="outlined"
+                  className="vertical-margin-1 vertical-padding-4 horizontal-padding-4"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    flexDirection: "column",
+                  }}>
+                  {searchTerm ? (
                     <Trans
-                      i18nKey="CheckoutProfile.NoProfiles"
+                      i18nKey="CheckoutProfile.NoneFound"
                       t={t}
-                      components={[<StyledLink to={CHECKOUT_PROFILE_CREATE} />]}
+                      components={[
+                        <StyledTypography variant="h4" />,
+                        <StyledTypography />,
+                        <StyledTypography>
+                          <StyledLink to={CHECKOUT_PROFILE_CREATE} />
+                        </StyledTypography>,
+                      ]}
                     />
-                  </StyledTypography>
-                )}
-              </StyledPaper>
+                  ) : (
+                    <StyledTypography>
+                      <Trans
+                        i18nKey="CheckoutProfile.NoProfiles"
+                        t={t}
+                        components={[<StyledLink to={CHECKOUT_PROFILE_CREATE} />]}
+                      />
+                    </StyledTypography>
+                  )}
+                </StyledPaper>
+              </StyledGrid>
             ) : (
-              checkoutProfileList
-                .reverse()
-                .map((profile: any, key: number) => <CheckoutProfileEach {...{ key, profile }} />)
+              checkoutProfileList.reverse().map((profile: any, key: number) => (
+                <StyledGrid key={profile?.xchkout_ProfileId} item>
+                  <CheckoutProfileEach {...{ key, profile }} />
+                </StyledGrid>
+              ))
             )}
           </StyledGrid>
         </StyledGrid>

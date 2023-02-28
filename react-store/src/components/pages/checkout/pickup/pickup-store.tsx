@@ -12,7 +12,7 @@
 import { useTranslation } from "react-i18next";
 //UI
 import { StyledGrid, StyledPaper, StyledButton } from "@hcl-commerce-store-sdk/react-component";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 import { StoreLocatorWidget } from "../../../widgets/store-locator-widget";
 //Custom libraries
 import { useStoreLocatorValue } from "../../../../_foundation/context/store-locator-context";

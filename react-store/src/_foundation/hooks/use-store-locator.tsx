@@ -9,8 +9,7 @@
  *==================================================
  */
 //Standard libraries
-import Axios, { Canceler } from "axios";
-import React from "react";
+import React, { useMemo } from "react";
 import { useDispatch } from "react-redux";
 import getDisplayName from "react-display-name";
 import { useTranslation } from "react-i18next";
@@ -32,8 +31,7 @@ import * as errorActions from "../../redux/actions/error";
 
 export const useStoreLocator = () => {
   const widgetName = getDisplayName("StoreLocatorPage");
-  const cancels: Canceler[] = [];
-  const CancelToken = Axios.CancelToken;
+  const controller = useMemo(() => new AbortController(), []);
   const { t } = useTranslation();
   const site = getSite();
   const dispatch = useDispatch();
@@ -64,9 +62,7 @@ export const useStoreLocator = () => {
 
   const payloadBase: any = {
     widget: widgetName,
-    cancelToken: new CancelToken((c) => {
-      cancels.push(c);
-    }),
+    signal: controller.signal,
   };
 
   const { isLoaded } = useJsApiLoader({
@@ -259,11 +255,10 @@ export const useStoreLocator = () => {
       );
     }
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return {
     t,
     locator,

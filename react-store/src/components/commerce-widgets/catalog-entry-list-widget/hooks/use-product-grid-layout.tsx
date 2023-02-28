@@ -38,6 +38,7 @@ import { currentContractIdSelector } from "../../../../redux/selectors/contract"
 import AsyncCall from "../../../../_foundation/gtm/async.service";
 import { SEARCH_PLP_PROFILE, SEARCH_FIND_PROFILE, STRING_TRUE } from "../../../../constants/common";
 import { selectedSellersSelector } from "../../../../redux/selectors/sellers";
+import { sellersSelector } from "../../../../redux/selectors/sellers";
 import { isEmpty } from "lodash-es";
 
 export const useProductGridLayout = (props: any) => {
@@ -66,6 +67,7 @@ export const useProductGridLayout = (props: any) => {
   const priceSelected = selectedMinPrice > -1 && selectedMaxPrice > -1;
   const widgetName = getDisplayName("ProductGridLayout");
   const suggestedKeywords = useSelector(keywordSelector);
+  const sellers = useSelector(sellersSelector);
   const paramsBase: any = {
     currency: defaultCurrencyID,
     contractId: contract ? contract : "",
@@ -161,6 +163,7 @@ export const useProductGridLayout = (props: any) => {
   const mounted = useRef(false);
   useEffect(() => {
     if (mySite.enableGA) {
+      const storeName = mySite.storeName;
       if (!mounted.current) {
         mounted.current = true;
       } else {
@@ -175,6 +178,8 @@ export const useProductGridLayout = (props: any) => {
                 productList: _productList,
                 listerFlag: false,
                 breadcrumbs,
+                sellers,
+                storeName,
               },
               { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
             );
@@ -186,7 +191,7 @@ export const useProductGridLayout = (props: any) => {
           );
           if (productListTotal > 0) {
             AsyncCall.sendProductImpressionEvent(
-              { productList: _productList, listerFlag: true, breadcrumbs },
+              { productList: _productList, listerFlag: true, breadcrumbs, sellers, storeName },
               { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
             );
           }

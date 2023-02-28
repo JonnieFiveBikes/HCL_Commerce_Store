@@ -18,7 +18,7 @@ import { useSite } from "../../../../_foundation/hooks/useSite";
 import NotFound from "../../../commerce-layouts/not-found";
 import { FETCH_ORDER_DETAILS_ACTION } from "../../../../redux/actions/orderDetails";
 import * as errorActions from "../../../../redux/actions/error";
-import { cartSelector } from "../../../../redux/selectors/order";
+import { activeInprogressOrderSelector, cartSelector } from "../../../../redux/selectors/order";
 
 import {
   StyledContainer,
@@ -34,21 +34,21 @@ import { InProgressItemsTable } from "../../../widgets/in-progress-items-table";
 
 import { useTranslation } from "react-i18next";
 
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 import * as ROUTES from "../../../../constants/routes";
 
 import { forUserIdSelector, userIdSelector } from "../../../../redux/selectors/user";
 import { CHECKOUT } from "../../../../constants/routes";
+import { SET_ACTIVE_INPROGRESS_ORDER_ACTION } from "../../../../redux/actions/order";
 
 const InprogressOrderDetailsPage = (props: any) => {
   const widget = getDisplayName(InprogressOrderDetailsPage);
   const dispatch = useDispatch();
-  const { orderId } = useParams<any>();
-
+  const { orderId = "" } = useParams<any>();
   const { mySite } = useSite();
   const { t, i18n } = useTranslation();
   const currency: string = mySite?.defaultCurrencyID ?? "";
-  const details = useSelector((s: any) => s.orderDetails[String(orderId)]);
+  const details = useSelector((s: any) => s.orderDetails[orderId]);
   const items = details?.detailedOrderItems;
   const cart = useSelector(cartSelector);
   const opts: Intl.DateTimeFormatOptions = {
@@ -66,7 +66,7 @@ const InprogressOrderDetailsPage = (props: any) => {
     cancelToken: new CancelToken((c) => cancels.push(c)),
   };
   const isDisableAddProductsButton = useMemo(() => {
-    if (cart?.orderId !== orderId?.toString()) {
+    if (cart?.orderId !== orderId) {
       return true;
     } else {
       return false;
@@ -83,6 +83,7 @@ const InprogressOrderDetailsPage = (props: any) => {
   const forUserId = useSelector(forUserIdSelector);
   const uId = useSelector(userIdSelector);
   const userId = forUserId ?? uId;
+  const ipOrder = useSelector(activeInprogressOrderSelector);
 
   useEffect(() => {
     if (orderId && currency) {
@@ -106,7 +107,12 @@ const InprogressOrderDetailsPage = (props: any) => {
         errorMessage: t("InprogressOrders.NotActiveOrderMessage"),
       };
       dispatch(errorActions.VALIDATION_ERROR_ACTION(parameters));
+    } else if (!ipOrder && cart?.orderId === orderId) {
+      // on first load, check to see if current-order is this order and inprogress-order-redux isn't
+      //   active, activate it
+      dispatch(SET_ACTIVE_INPROGRESS_ORDER_ACTION({ order: { orderId } }));
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderId, cart]);
 

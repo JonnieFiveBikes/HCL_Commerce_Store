@@ -13,7 +13,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 //Custom libraries
 //UI
-import DescriptionIcon from "@material-ui/icons/Description";
+import DescriptionIcon from "@mui/icons-material/Description";
 import { StyledGrid, StyledIconLabel } from "@hcl-commerce-store-sdk/react-component";
 
 /**

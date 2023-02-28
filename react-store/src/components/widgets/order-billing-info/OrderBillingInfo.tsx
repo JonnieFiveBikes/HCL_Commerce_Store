@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 import { AddressCard } from "../address-card";
 //UI
 import { StyledIconLabel, StyledBox } from "@hcl-commerce-store-sdk/react-component";
-import ContactsIcon from "@material-ui/icons/Contacts";
+import ContactsIcon from "@mui/icons-material/Contacts";
 
 interface OrderBillingInfoProps {
   billingInfo: any;

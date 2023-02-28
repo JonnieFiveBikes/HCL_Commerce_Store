@@ -9,17 +9,17 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { StyledCircularProgress } from "./styled-circular-progress";
 
-const StyledPlaceholder = styled.div`
+const StyledPlaceholder = styled("div")`
   ${({ theme }) => `
     background: ${theme.palette.action.disabledBackground};
     text-align: center;
   `}
 `;
 /**
- * A @material-ui/core/CircularProgress within a wrapper
+ * A @mui/material/CircularProgress within a wrapper
  * @param props
  * @returns
  */

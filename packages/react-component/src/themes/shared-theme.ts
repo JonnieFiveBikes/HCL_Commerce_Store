@@ -8,11 +8,8 @@
  *
  *==================================================
  */
+import { TypographyOptions } from "@mui/material/styles/createTypography";
 import { palette } from "./color-palette";
-
-const fontSize = 14;
-const htmlFontSize = 16;
-const coef = fontSize / 14;
 
 export const sharedOverrides = {
   MuiInput: {
@@ -34,7 +31,6 @@ export const sharedOverrides = {
   },
   typography: {
     htmlFontSize: 16,
-    pxToRem: (size: number) => `${(size / htmlFontSize) * coef}rem`,
     fontFamily: ["Roboto", '"Helvetica Neue"', "Arial", "sans-serif"].join(","),
     h1: {
       fontSize: 56,
@@ -91,7 +87,7 @@ export const sharedOverrides = {
       fontWeight: 600,
       letterSpacing: 1,
     },
-  },
+  } as TypographyOptions,
   palette: {
     text: {
       primary: palette.text.primary,

@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import Pagination from "@material-ui/lab/Pagination";
+import styled from "@mui/styled-engine-sc";
+import Pagination from "@mui/material/Pagination";
 import { dimensions } from "../../themes/variables";
 
 const buttonSize = dimensions.pagination.button;
@@ -36,7 +36,7 @@ const StyledPagination = styled(({ ...props }) => <Pagination {...props} />)`
     color: ${theme.palette.text.primary};
   }
 
-  .MuiPaginationItem-rounded {
+  .MuiPaginationItem-circulared {
     border: 2px solid ${theme.palette.action.disabled};
     height: ${buttonSize}px;
     width: ${buttonSize}px;

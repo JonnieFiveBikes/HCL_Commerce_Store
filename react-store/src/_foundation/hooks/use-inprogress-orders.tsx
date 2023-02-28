@@ -15,10 +15,10 @@ import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useNavigate } from "react-router-dom";
-import { OK } from "http-status-codes";
 //Redux
 import { getSite, useSite } from "./useSite";
 import { site } from "../constants/site";
+import { OK } from "http-status-codes";
 import {
   GET_CART_ACTION,
   FETCH_ALL_ORDERS_ACTION,
@@ -44,11 +44,12 @@ import {
   StyledRadio,
   StyledTextField,
   StyledLink,
+  StyledTooltip,
 } from "@hcl-commerce-store-sdk/react-component";
 
-import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
-import ContentCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
-import GoToOrderDetailsOutlinedIcon from "@material-ui/icons/ChevronRight";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import ContentCopyOutlinedIcon from "@mui/icons-material/FileCopyOutlined";
+import GoToOrderDetailsOutlinedIcon from "@mui/icons-material/ChevronRight";
 import { EMPTY_STRING, PAGINATION } from "../../constants/common";
 import { forUserIdSelector, userIdSelector } from "../../redux/selectors/user";
 import { get } from "lodash-es";
@@ -85,6 +86,7 @@ const ActionsCell = ({ rowData, ...props }) => {
   const siteInfo = getSite();
   const storeId = siteInfo?.storeID as string;
   const cancels: Canceler[] = [];
+  const { t } = useTranslation();
   const CancelToken = Axios.CancelToken;
   const payloadBase: any = {
     widget: "Inprogress Orders Table",
@@ -225,7 +227,9 @@ const ActionsCell = ({ rowData, ...props }) => {
         disabled={rowData.orderInfo.buyerId === userId ? false : true}
         onClick={() => copyOrder(rowData)}
         data-testid="use-inprogress-content-copy-icon-button">
-        <ContentCopyOutlinedIcon />
+        <StyledTooltip title={t("InprogressOrders.CopyOrder")}>
+          <ContentCopyOutlinedIcon />
+        </StyledTooltip>
       </StyledIconButton>
       <StyledIconButton
         style={{ padding: "0" }}
@@ -233,14 +237,18 @@ const ActionsCell = ({ rowData, ...props }) => {
         disabled={rowData.orderInfo.buyerId === userId ? false : true}
         onClick={() => deleteOrder(rowData)}
         data-testid="use-inprogress-delete-outline-icon-button">
-        <DeleteOutlineOutlinedIcon />
+        <StyledTooltip title={t("InprogressOrders.DeleteOrder")}>
+          <DeleteOutlineOutlinedIcon />
+        </StyledTooltip>
       </StyledIconButton>
       <StyledIconButton
         style={{ padding: "0" }}
         color="primary"
         onClick={() => goToOrder(rowData)}
         data-testid="use-inprogress-goto-order-outline-icon-button">
-        <GoToOrderDetailsOutlinedIcon />
+        <StyledTooltip title={t("InprogressOrders.OrderDetail")}>
+          <GoToOrderDetailsOutlinedIcon />
+        </StyledTooltip>
       </StyledIconButton>
     </div>
   );
@@ -252,22 +260,31 @@ const TogglerCell = ({ rowData, fullTable, headers, ...props }) => {
   const cancels: Canceler[] = [];
   const CancelToken = Axios.CancelToken;
   const currency: string = mySite?.defaultCurrencyID ?? "";
+  const ipOrder = useSelector(activeInprogressOrderSelector);
+
+  const payload: any = {
+    orderId: rowData.orderId,
+    currency: currency,
+    skipErrorSnackbar: true,
+    widget: "Inprogress Orders Table",
+    cancelToken: new CancelToken((c) => cancels.push(c)),
+  };
   const toggleOrderActivation = (isCurrentCart, rowData) => {
     if (!isCurrentCart) {
-      const payload: any = {
-        orderId: rowData.orderId,
-        currency: currency,
-        skipErrorSnackbar: true,
-        widget: "Inprogress Orders Table",
-        cancelToken: new CancelToken(function executor(c) {
-          cancels.push(c);
-        }),
-      };
       dispatch(SET_ACTIVE_INPROGRESS_ORDER_ACTION({ order: rowData }));
       dispatch(FETCH_ACTIVE_INPROGRESS_ORDER_ITEM_ACTION(payload));
     }
   };
   const cart = useSelector(cartSelector);
+
+  // on first load, check to see if current-order is same as current-row and inprogress-order-redux isn't
+  //   active, activate it
+  useEffect(() => {
+    if (!ipOrder && cart?.orderId === rowData?.orderId) {
+      dispatch(SET_ACTIVE_INPROGRESS_ORDER_ACTION({ order: rowData }));
+      dispatch(FETCH_ACTIVE_INPROGRESS_ORDER_ITEM_ACTION(payload));
+    }
+  }, [cart, rowData]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <StyledRadio
@@ -418,7 +435,7 @@ export const useInprogressOrders = (): any => {
       day: "numeric",
     };
     const fmt = new Intl.DateTimeFormat(i18n.languages[0], opts);
-    const r = get(fromState, "Order", []).map((e) => ({
+    const r = get(fromState, "Order", [] as any[]).map((e) => ({
       status: e.orderStatus,
       orderId: e.orderId,
       orderDescription: e.orderDescription,

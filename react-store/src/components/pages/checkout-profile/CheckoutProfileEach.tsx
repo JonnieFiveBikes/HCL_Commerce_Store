@@ -26,10 +26,10 @@ import {
   StyledIconButton,
   StyledIcon,
 } from "@hcl-commerce-store-sdk/react-component";
-import { Divider } from "@material-ui/core";
-import Delete from "@material-ui/icons/Delete";
-import EditOutlined from "@material-ui/icons/EditOutlined";
-import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlineOutlined";
+import { Divider } from "@mui/material";
+import Delete from "@mui/icons-material/Delete";
+import EditOutlined from "@mui/icons-material/EditOutlined";
+import ErrorOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import getDisplayName from "react-display-name";
 import { useDispatch, useSelector } from "react-redux";
 import { CPROF_DELETE_ACTION } from "../../../redux/actions/checkout-profile";
@@ -102,7 +102,7 @@ export const CheckoutProfileEach: React.FC<CheckoutProfileEachProps> = ({ profil
   };
 
   return (
-    <StyledGrid container className="vertical-margin-1">
+    <StyledGrid container>
       <StyledAccordion testId={`checkout-profile-${p.xchkout_ProfileName}`} style={{ flex: "1" }}>
         <StyledAccordionSummary className="horizontal-padding-2 vertical-padding-2">
           <StyledGrid container direction="column">

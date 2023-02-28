@@ -10,11 +10,10 @@
  */
 //Standard libraries
 import React, { useCallback, useMemo } from "react";
-import styled from "styled-components";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import styled from "@mui/styled-engine-sc";
 import { debounce } from "lodash-es";
 import { SearchOption } from "./search-option";
-import { StyledButton, StyledGrid, StyledNumberInput, StyledTextField } from "../../elements";
+import { StyledAutocomplete, StyledButton, StyledGrid, StyledNumberInput, StyledTextField } from "../../elements";
 
 const MySI = styled(StyledNumberInput)`
   min-width: 150px;
@@ -139,13 +138,13 @@ const SearchAndAdd: React.FC<any> = ({
   return (
     <StyledGrid container alignItems="center">
       <StyledGrid item className="left-margin-1 bottom-margin-1" xs={12} sm={6}>
-        <Autocomplete
+        <StyledAutocomplete
           data-testid="search-and-add-search"
           value={value}
           freeSolo
           onInputChange={onInputChange}
           onChange={onChange}
-          getOptionSelected={getOptionSelected}
+          isOptionEqualToValue={getOptionSelected}
           getOptionLabel={getOptionLabel}
           options={options}
           filterOptions={filterOptions}

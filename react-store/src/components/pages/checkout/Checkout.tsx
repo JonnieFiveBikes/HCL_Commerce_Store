@@ -11,7 +11,6 @@
 //Standard libraries
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Axios, { Canceler } from "axios";
 import { useTranslation } from "react-i18next";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import getDisplayName from "react-display-name";
@@ -32,6 +31,8 @@ import {
 } from "../../../redux/selectors/order";
 import { currentContractIdSelector } from "../../../redux/selectors/contract";
 import { RESET_ACTIVE_INPROGRESS_ORDER_ACTION } from "../../../redux/actions/order";
+import { entitledOrgSelector, activeOrgSelector } from "../../../redux/selectors/organization";
+import { sellersSelector } from "../../../redux/selectors/sellers";
 //UI
 import {
   StyledContainer,
@@ -66,8 +67,7 @@ const Checkout: React.FC = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { mySite, storeDisplayName } = useSite();
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
+  const controller = useMemo(() => new AbortController(), []);
   const orderMethodIsPickup = useSelector(orderMethodIsPickupSelector);
   const [visited, setVisited] = useState(-1);
   const stepsRoutes = {
@@ -100,9 +100,7 @@ const Checkout: React.FC = () => {
     currency: defaultCurrencyID,
     contractId: contractId,
     widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+    signal: controller.signal,
   };
 
   const extraProps: any = useMemo(() => {
@@ -156,8 +154,12 @@ const Checkout: React.FC = () => {
 
   //GA360: checkout process and  purchase event
   const orderItems = useSelector(orderItemsSelector);
+  const entitledOrgs = useSelector(entitledOrgSelector);
+  const activeOrgId = useSelector(activeOrgSelector);
+  const sellers = useSelector(sellersSelector);
   useEffect(() => {
     if (mySite.enableGA) {
+      const storeName = mySite.storeName;
       AsyncCall.sendCheckoutPageViewEvent(
         { pageSubCategory: steps[activeStep], pathname: location.pathname },
         { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
@@ -166,19 +168,19 @@ const Checkout: React.FC = () => {
       switch (step) {
         case 1:
           AsyncCall.sendCheckoutEvent(
-            { cart, orderItems, step, value: steps[0] },
+            { cart, orderItems, step, value: steps[0], entitledOrgs, activeOrgId, sellers, storeName },
             { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
           );
           break;
         case 2:
           AsyncCall.sendCheckoutEvent(
-            { cart, orderItems, step, value: steps[1] },
+            { cart, orderItems, step, value: steps[1], entitledOrgs, activeOrgId, sellers, storeName },
             { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
           );
           break;
         case 3:
           AsyncCall.sendCheckoutEvent(
-            { cart, orderItems, step, value: steps[2] },
+            { cart, orderItems, step, value: steps[2], entitledOrgs, activeOrgId, sellers, storeName },
             { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
           );
           break;
@@ -188,9 +190,7 @@ const Checkout: React.FC = () => {
   }, [activeStep]);
 
   useEffect(() => {
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
+    return () => controller.abort();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -14,7 +14,7 @@ import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 //UI
 import { StyledTypography, StyledCard, StyledGrid, StyledCardMedia } from "@hcl-commerce-store-sdk/react-component";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import FormattedPriceDisplay from "../../widgets/formatted-price-display";
 
 interface WishListCardProps {
@@ -64,11 +64,11 @@ const WishListCard: React.FC<WishListCardProps> = (props: any) => {
           <CheckCircleIcon color="primary" />
         </div>
       ) : null}
-      <StyledGrid container direction="column" justifyContent="center" alignItems="center">
+      <StyledGrid container direction="column" justifyContent="center" alignItems="stretch">
         <StyledGrid item>
           <StyledCardMedia image={product.thumbnail} />
         </StyledGrid>
-        <StyledGrid item xs={12}>
+        <StyledGrid item>
           <StyledTypography align="center">{product.name}</StyledTypography>
         </StyledGrid>
         <StyledGrid item>

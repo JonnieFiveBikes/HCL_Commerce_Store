@@ -8,9 +8,7 @@
  *
  *==================================================
  */
-/**
- * Do not modify, the file is generated.
- */
+
 //Standard libraries
 import { AxiosPromise } from "axios";
 import i18n from "../../../i18n";

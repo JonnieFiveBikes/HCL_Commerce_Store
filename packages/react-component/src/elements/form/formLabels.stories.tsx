@@ -12,7 +12,7 @@ import * as React from "react";
 
 import { storiesOf } from "@storybook/react";
 
-import FormLabel from "@material-ui/core/FormLabel";
+import FormLabel from "@mui/material/FormLabel";
 
 storiesOf("Components/Inputs/FormLabel", module).add("Basic example", () => (
   <FormLabel component="legend">What's for lunch?</FormLabel>

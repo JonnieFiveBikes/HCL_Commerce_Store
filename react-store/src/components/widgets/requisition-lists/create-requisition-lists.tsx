@@ -31,9 +31,9 @@ import {
   StyledFormHelperText,
   useCustomTable,
 } from "@hcl-commerce-store-sdk/react-component";
-import Add from "@material-ui/icons/Add";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Divider } from "@material-ui/core";
+import Add from "@mui/icons-material/Add";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Divider } from "@mui/material";
 
 /**
  * Create new Requisition List widget for Requisition Lists

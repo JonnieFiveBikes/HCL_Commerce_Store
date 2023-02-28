@@ -19,7 +19,7 @@ import { PaymentInfoCard } from "../payment-info-card";
 //Redux
 import { cartSelector } from "../../../redux/selectors/order";
 //UI
-import PaymentIcon from "@material-ui/icons/Payment";
+import PaymentIcon from "@mui/icons-material/Payment";
 import { StyledGrid, StyledIconLabel, StyledButton, StyledTypography } from "@hcl-commerce-store-sdk/react-component";
 
 interface PaymentInfoListProps {

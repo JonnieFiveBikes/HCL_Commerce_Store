@@ -12,7 +12,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
 import cloneDeep from "lodash/cloneDeep";
 //Foundation libraries
@@ -25,13 +24,15 @@ import { ORDER_STATUS } from "../../constants/order";
 //Redux
 import * as errorActions from "../../redux/actions/error";
 //UI
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {
   PriceDisplay,
+  StyledBox,
   StyledButton,
   StyledLink,
   StyledTypography,
   TableColumnDef,
+  StyledTooltip,
 } from "@hcl-commerce-store-sdk/react-component";
 import OrderHistoryPage from "../../components/pages/_sapphire/order/OrderHistoryPage";
 import { useSite } from "./useSite";
@@ -57,8 +58,7 @@ export const useOrderHistoryTable = (props?) => {
   const noPoString = t(`Order.${noPO}`);
   const { mySite } = useSite();
 
-  const CancelToken = Axios.CancelToken;
-  let cancels: Canceler[] = [];
+  const controller = useMemo(() => new AbortController(), []);
 
   const columns = useMemo(() => {
     const lang = i18n.languages[0];
@@ -70,31 +70,20 @@ export const useOrderHistoryTable = (props?) => {
     };
     const dateFormatter = new Intl.DateTimeFormat(i18n.languages[0], dateFormatOptions);
 
-    const statusLookup = mySite.isB2B
-      ? {
-          N: t(`Order.Status_N`),
-          M: t(`Order.Status_M`),
-          A: t(`Order.Status_A`),
-          B: t(`Order.Status_B`),
-          C: t(`Order.Status_C`),
-          R: t(`Order.Status_R`),
-          S: t(`Order.Status_S`),
-          D: t(`Order.Status_D`),
-          F: t(`Order.Status_F`),
-          G: t(`Order.Status_G`),
-          L: t(`Order.Status_L`),
-          W: t(`Order.Status_W`),
-        }
-      : {
-          M: t(`Order.Status_M`),
-          B: t(`Order.Status_B`),
-          R: t(`Order.Status_R`),
-          S: t(`Order.Status_S`),
-          D: t(`Order.Status_D`),
-          F: t(`Order.Status_F`),
-          G: t(`Order.Status_G`),
-          L: t(`Order.Status_L`),
-        };
+    const statusLookup = {
+      N: t(`Order.Status_N`),
+      M: t(`Order.Status_M`),
+      A: t(`Order.Status_A`),
+      B: t(`Order.Status_B`),
+      C: t(`Order.Status_C`),
+      R: t(`Order.Status_R`),
+      S: t(`Order.Status_S`),
+      D: t(`Order.Status_D`),
+      F: t(`Order.Status_F`),
+      G: t(`Order.Status_G`),
+      L: t(`Order.Status_L`),
+      W: t(`Order.Status_W`),
+    };
     const asFilter = Object.entries(statusLookup)
       .map(([key, value]) => ({
         key,
@@ -156,7 +145,7 @@ export const useOrderHistoryTable = (props?) => {
         filters: asFilter,
         display: {
           template: ({ rowData, ...props }) => {
-            const oStatus = statusLookup[rowData.orderStatus];
+            const oStatus = t(`Order.Status_${rowData.orderStatus}`);
             const groups = rowData.orderItem?.reduce((m, v) => {
               m[v.orderItemStatus] = 1;
               return m;
@@ -175,12 +164,14 @@ export const useOrderHistoryTable = (props?) => {
         display: {
           template: ({ rowData, ...props }) => {
             return (
-              <PriceDisplay
-                min={rowData.grandTotal}
-                currency={rowData.grandTotalCurrency}
-                language={lang}
-                message={priceMsg}
-              />
+              <StyledBox>
+                <PriceDisplay
+                  min={rowData.grandTotal}
+                  currency={rowData.grandTotalCurrency}
+                  language={lang}
+                  message={priceMsg}
+                />
+              </StyledBox>
             );
           },
         },
@@ -193,12 +184,17 @@ export const useOrderHistoryTable = (props?) => {
         display: {
           template: ({ rowData, headers, ...props }) => {
             const h = headers[headers.length - 1];
+            const totalQuantity: number = rowData.orderItem
+              ?.flatMap((order) => parseInt(order.quantity))
+              .reduce((previous, current) => previous + current, 0);
             const handleReOrder = () => {
               dispatch(
                 COPY_CART_ACTION({
                   fromOrderId: rowData.orderId,
                   widget: widgetName,
-                  cancelToken: new CancelToken((c) => cancels.push(c)),
+                  signal: controller.signal,
+                  errorMessage: t("error-message.NoCopyOrderItems"),
+                  orderItemCount: totalQuantity,
                 })
               );
             };
@@ -212,7 +208,9 @@ export const useOrderHistoryTable = (props?) => {
                   </StyledTypography>
                 )}
                 <StyledLink to={`${ORDER_DETAILS}/${rowData.orderId}`} state={{ from }}>
-                  <ArrowForwardIosIcon />
+                  <StyledTooltip title={t("InprogressOrders.OrderDetail")}>
+                    <ArrowForwardIosIcon />
+                  </StyledTooltip>
                 </StyledLink>
               </div>
             );
@@ -243,19 +241,23 @@ export const useOrderHistoryTable = (props?) => {
       filters = state.filters;
     }
 
-    const r = await getOrderHistories({ filters, pageSize, page, search });
-    // need to fetch order-items to determine cumulative status (seller-specific)
-    await getOrderItems(r);
+    try {
+      const r = await getOrderHistories({ filters, pageSize, page, search });
+      // need to fetch order-items to determine cumulative status (seller-specific)
+      await getOrderItems(r);
 
-    setState({
-      ...state,
-      pgSz: pageSize,
-      offset: page === 0 ? 0 : page * pageSize,
-      data: r.data,
-      count: r.totalCount,
-      search,
-      filters,
-    });
+      setState({
+        ...state,
+        pgSz: pageSize,
+        offset: page === 0 ? 0 : page * pageSize,
+        data: r.data ?? [],
+        count: r.totalCount,
+        search,
+        filters,
+      });
+    } catch (e) {
+      console.log("Error in getting order histories and order item details", e);
+    }
   };
 
   React.useEffect(() => {
@@ -265,15 +267,13 @@ export const useOrderHistoryTable = (props?) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const statusQuery = "N,M,A,B,C,R,S,D,F,G,L,W";
+  const statusQuery = "N,M,A,B,C,R,S,D,F,G,L,W,APP,RTN";
   const getPONumber = (buyerPONumber: string) => {
     if (buyerPONumber) {
       return cartService
         .getBuyerPurchaseOrderDataBean({
           buyerPurchaseOrderId: buyerPONumber,
-          cancelToken: new CancelToken(function executor(c) {
-            cancels.push(c);
-          }),
+          signal: controller.signal,
           widget: widgetName,
         })
         .then((r) => r.data)
@@ -294,13 +294,13 @@ export const useOrderHistoryTable = (props?) => {
 
   const getOrderItems = async (container) => {
     let count = 0;
-    const ids = container.data.map((o) => o.orderId);
+    const ids = container.data?.map((o) => o.orderId);
 
     // do 5 at a time
     const blocks = chunk(ids, 5);
     const x = blocks.map(async (block) => {
       const p = block.map((orderId) => {
-        const payload: any = { widget: widgetName, cancelToken: new CancelToken((c) => cancels.push(c)), orderId };
+        const payload: any = { widget: widgetName, signal: controller.signal, orderId };
         return orderService.findByOrderId(payload);
       });
       const r = await Promise.all(p);
@@ -310,103 +310,88 @@ export const useOrderHistoryTable = (props?) => {
     await Promise.all(x);
   };
 
-  const getOrderHistories = (query) => {
+  const getOrderHistories = async (query) => {
     const pageSize = query.pageSize;
     const pageNumber = query.page + 1;
     const byStatus = get(query.filters, CONSTANTS.orderStatus, {});
     const checkedStatuses = Object.entries(byStatus)
       .filter(([k, v]) => v)
       .map(([k, v]) => k);
-    const filterStatus = checkedStatuses.join(",").trim();
+    const csvStatuses = checkedStatuses.join(",").trim();
+    const filterStatus = checkedStatuses.includes(ORDER_STATUS.Closed)
+      ? [csvStatuses, ORDER_STATUS.LockedByAppeasement, ORDER_STATUS.LockedByReturn].join(",")
+      : csvStatuses;
     const status = filterStatus === "" ? statusQuery : filterStatus;
     const search = query.search || "";
-    const pArray: Promise<any>[] = [];
+    const pArray: any[] = [];
     const result: any = { page: pageNumber - 1 };
     let _ors: any[] = [];
     const NUMERIC = REG_EX.NUMERIC;
-    cancels = [];
     const payload = {
       widget: widgetName,
-      cancelToken: new CancelToken((c) => cancels.push(c)),
+      signal: controller.signal,
     };
     if (search && search.trim() !== "" && NUMERIC.test(search)) {
-      return orderService
-        .findByOrderId({
+      try {
+        const findByOrderId: any = await orderService.findByOrderId({
           orderId: search.trim(),
           ...cloneDeep(payload),
-        })
-        .then((response) => response.data)
-        .then((o) => {
-          o.id = o.orderId;
-          result["totalCount"] = 1;
-          _ors.push(o);
-          pArray.push(getPONumber(o.buyerPONumber));
-          return Promise.all(pArray);
-        })
-        .then((res) => {
-          res.forEach((r, i) => {
-            _ors[i].purchaseOrderNumber = r.value;
-          });
-          return _ors;
-        })
-        .catch((e) => {
-          //error case set to empty array
-          result["totalCount"] = 0;
-          return [];
-        })
-        .then((o) => {
-          result["data"] = o;
-          return result;
         });
+        const order = findByOrderId?.data;
+        order.id = findByOrderId?.data?.orderId;
+        result["totalCount"] = 1;
+        _ors.push(order);
+        pArray.push(getPONumber(order.buyerPONumber));
+        pArray.forEach((r, i) => {
+          _ors[i].purchaseOrderNumber = r.value;
+        });
+        result["data"] = _ors;
+        return result;
+      } catch (e) {
+        console.log("Error in getting order details by order id search", e);
+        result["totalCount"] = 0;
+        return result;
+      }
     } else {
       if (!NUMERIC.test(search) && search !== "") {
         const parameters: any = { errorMessage: t("Order.InvalidOrderId") };
         dispatch(errorActions.VALIDATION_ERROR_ACTION(parameters));
       }
-      return orderService
-        .findByStatus({
+      try {
+        const orderByStatus = await orderService.findByStatus({
           status,
           pageSize,
           pageNumber,
           ...cloneDeep(payload),
-        })
-        .then((response) => response.data)
-        .then((d) => {
-          result["totalCount"] = parseInt(d.recordSetTotal);
-          _ors = d.Order || [];
-          _ors.forEach((o) => {
-            o.id = o.orderId;
-            pArray.push(getPONumber(o.buyerPONumber));
-          });
-          return Promise.all(pArray);
-        })
-        .then((res) => {
-          res.forEach((r, i) => {
-            _ors[i].purchaseOrderNumber = r.value;
-          });
-          return _ors;
-        })
-        .catch((e) => {
-          //error case set to empty array
-          result["totalCount"] = 0;
-          return [];
-        })
-        .then((o) => {
-          result["data"] = o;
-          return result;
         });
+        const poArray: any[] = [];
+        result["totalCount"] = parseInt(orderByStatus?.data?.recordSetTotal);
+        _ors = orderByStatus?.data?.Order || [];
+        _ors.forEach((o) => {
+          o.id = o.orderId;
+          poArray.push(getPONumber(o.buyerPONumber));
+        });
+        poArray.forEach((r, i) => {
+          _ors[i].purchaseOrderNumber = r.value;
+        });
+        result["data"] = _ors;
+        return result;
+      } catch (e) {
+        console.log("Error in getting order details find by status service call", e);
+        result["totalCount"] = 0;
+        return result;
+      }
     }
   };
 
   useEffect(() => {
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
-    cancels,
     columns,
     data: state.data,
     t,

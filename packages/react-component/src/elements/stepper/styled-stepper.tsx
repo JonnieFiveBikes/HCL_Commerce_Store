@@ -8,18 +8,19 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import Stepper from "@material-ui/core/Stepper";
+import styled from "@mui/styled-engine-sc";
+import Stepper from "@mui/material/Stepper";
 import React from "react";
 
 const StyledStepper = styled(({ ...props }) => <Stepper {...props} />)`
   ${({ theme }) => `
-    ${theme.breakpoints.down("sm")} {
-      padding: ${theme.spacing(1)}px ${theme.spacing(2)}px;
+    padding: ${theme.spacing(3)};
+    ${theme.breakpoints.down("md")} {
+      padding: ${theme.spacing(1)} ${theme.spacing(2)};
       display: block;
 
       .MuiStepLabel-root {
-        padding: ${theme.spacing(1)}px 0;
+        padding: ${theme.spacing(1)} 0;
       }
     }
   `}

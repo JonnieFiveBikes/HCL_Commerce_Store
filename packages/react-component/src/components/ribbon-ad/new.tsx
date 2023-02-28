@@ -8,7 +8,7 @@
  *
  ***************************************************
  */
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 const StarRibbon = styled(({ scale, ...props }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 67 67" width="30%" {...props} />
 ))`
@@ -21,7 +21,7 @@ const StarRibbon = styled(({ scale, ...props }) => (
     pointer-events: none;
 
     &.b2b-pdp {
-      ${theme.breakpoints.down("xs")} {
+      ${theme.breakpoints.down("sm")} {
         right: calc(-15% + 1vmin);
       }
       ${theme.breakpoints.up("md")} {

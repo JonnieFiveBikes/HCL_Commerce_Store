@@ -8,7 +8,7 @@
  *
  *==================================================
  */
-import { createTheme } from "@material-ui/core";
+import { createTheme } from "@mui/material";
 import { sharedOverrides, merge, responsiveFontSizes } from "./shared-theme";
 import { palette } from "./color-palette";
 

@@ -10,12 +10,12 @@
  */
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import styled from "@mui/styled-engine-sc";
+import AppBar from "@mui/material/AppBar";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 
-const StyledTabsWrapper = styled.div`
+const StyledTabsWrapper = styled("div")`
   ${({ theme }) => `
     .MuiAppBar-root {
       box-shadow: none;
@@ -27,7 +27,7 @@ const StyledTabsWrapper = styled.div`
       font-weight: 500;
       color: ${theme.palette.text.primary};
       min-width: auto;
-      padding: 0 ${theme.spacing(2)}px;
+      padding: 0 ${theme.spacing(2)};
     }
 
     .MuiTabs-indicator {
@@ -42,12 +42,12 @@ const StyledTabsWrapper = styled.div`
   `}
 `;
 
-const StyledTabsPanel = styled.div`
+const StyledTabsPanel = styled("div")`
   ${({ theme }) => `
-    padding: ${theme.spacing(2)}px;
+    padding: ${theme.spacing(2)};
 
     ul {
-      margin-left: ${theme.spacing(2)}px;
+      margin-left: ${theme.spacing(2)};
     }
   `}
 `;

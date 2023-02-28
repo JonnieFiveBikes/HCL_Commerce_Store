@@ -37,10 +37,12 @@ export function* getEntitledOrg(action: any) {
 
 export function* switchOrg(action: any) {
   try {
-    yield call(switchOrganizationService.changeOrganization, action.payload);
-    yield put(FETCHING_CART_ACTION(action.payload));
-    yield put(USER_CONTEXT_REQUEST_ACTION(action.payload));
-    yield put(FETCH_CONTRACT_REQUESTED_ACTION(action.payload));
+    const { callback, ...payload } = action.payload;
+    yield call(switchOrganizationService.changeOrganization, payload);
+    yield put(FETCHING_CART_ACTION(payload));
+    yield put(USER_CONTEXT_REQUEST_ACTION(payload));
+    yield put(FETCH_CONTRACT_REQUESTED_ACTION(payload));
+    callback && callback();
   } catch (e) {
     yield put(ORG_SWITCH_ERROR_ACTION(e));
   }
@@ -48,8 +50,7 @@ export function* switchOrg(action: any) {
 
 export function* getOrganizationDetails(action: any) {
   try {
-    const payload = action.payload;
-    const response = yield call(organizationService.findByOrganizationId, payload);
+    const response = yield call(organizationService.findByOrganizationId, action.payload);
     yield put(GET_ORGANIZATION_ADDRESS_SUCCESS_ACTION(response.data));
   } catch (e) {
     yield put(GET_ORGANIZATION_ADDRESS_ERROR_ACTION(e));

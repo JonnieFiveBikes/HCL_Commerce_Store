@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import Switch from "@material-ui/core/Switch";
+import styled from "@mui/styled-engine-sc";
+import Switch from "@mui/material/Switch";
 import { StyledFormGroup, StyledFormControlLabel } from "../form";
 interface CustomSwitchProps {
   checked: boolean;

@@ -190,6 +190,7 @@ export interface SiteInfo {
   defaultLanguageID: string;
   defaultCurrencyID: string;
   catalogStoreID: string;
+  saStoreID: string;
   searchContext: string;
   transactionContext?: string;
   dxContext?: string;

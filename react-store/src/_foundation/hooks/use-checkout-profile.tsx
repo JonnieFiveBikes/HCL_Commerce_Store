@@ -12,7 +12,6 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import Axios, { Canceler } from "axios";
 //Common libraries
 import * as ROUTES from "../../constants/routes";
 import * as a from "../../redux/actions/checkout-profile";
@@ -49,10 +48,9 @@ export interface CheckoutProfileType extends PersonCheckoutProfileCheckoutProfil
 export const useCheckoutProfile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const cancels: Canceler[] = [];
-  const CancelToken = Axios.CancelToken;
+  const controller = useMemo(() => new AbortController(), []);
   const payloadBase: any = {
-    cancelToken: new CancelToken((c) => cancels.push(c)),
+    signal: controller.signal,
   };
   const fromState = useSelector(checkoutProfileSelector);
   const [editAddressFormData, setEditAddressFormData] = useState<any>({});

@@ -24,6 +24,7 @@ const EditAddress = lazy(() => import("../components/pages/address-book/EditAddr
 const AddAddress = lazy(() => import("../components/pages/address-book/AddAddress"));
 const SearchResults = lazy(() => import("../components/pages/search-results/SearchResults"));
 const StoreLocator = lazy(() => import("../components/pages/store-locator/store-locator"));
+const ProhibitedCharactersErrorView = lazy(() => import("../components/pages/error-view/prohibited-characters-error"));
 
 //checkout
 const Shipping = lazy(() => import("../components/pages/checkout/shipping/Shipping"));
@@ -70,6 +71,8 @@ const RequisitionListDetailsPage = lazy(
 const ViewUploadLogs = lazy(() => import("../components/pages/_sapphire/requisition-lists/ViewUploadLogs"));
 
 const Compare = lazy(() => import("../components/pages/compare/compare"));
+
+const SellerRegistration = lazy(() => import("../components/pages/_sapphire/seller-registration/seller-registration"));
 
 const CheckoutRouteConfig = [
   {
@@ -129,6 +132,13 @@ const B2BRouteConfig: any[] = [
     element: <SignIn />,
   },
   {
+    key: ROUTES.PROHIBITED_CHAR_ERROR_VIEW,
+    path: ROUTES.PROHIBITED_CHAR_ERROR_VIEW,
+    exact: true,
+    isProtected: ROUTES.GENERIC_PROTECTED,
+    element: <ProhibitedCharactersErrorView />,
+  },
+  {
     key: ROUTES.FORGOT_PASSWORD,
     path: ROUTES.FORGOT_PASSWORD,
     exact: true,
@@ -148,6 +158,13 @@ const B2BRouteConfig: any[] = [
     exact: true,
     isProtected: ROUTES.GENERIC_PROTECTED,
     element: <BuyerUserRegistration />,
+  },
+  {
+    key: ROUTES.SELLER_REGISTRATION,
+    path: ROUTES.SELLER_REGISTRATION,
+    exact: true,
+    isProtected: ROUTES.MP_SELLER_REG_PROTECTED,
+    element: <SellerRegistration />,
   },
   {
     key: ROUTES.CHECKOUT_PROFILE_CREATE,
@@ -302,6 +319,13 @@ const B2CRouteConfig: any[] = [
     element: <SignIn />,
   },
   {
+    key: ROUTES.PROHIBITED_CHAR_ERROR_VIEW,
+    path: ROUTES.PROHIBITED_CHAR_ERROR_VIEW,
+    exact: true,
+    isProtected: ROUTES.GENERIC_PROTECTED,
+    element: <ProhibitedCharactersErrorView />,
+  },
+  {
     key: ROUTES.FORGOT_PASSWORD,
     path: ROUTES.FORGOT_PASSWORD,
     exact: true,
@@ -325,6 +349,13 @@ const B2CRouteConfig: any[] = [
     path: ROUTES.CHECKOUT_PROFILES,
     isProtected: ROUTES.REGISTER_PROTECTED,
     element: <CheckoutProfiles />,
+  },
+  {
+    key: ROUTES.SELLER_REGISTRATION,
+    path: ROUTES.SELLER_REGISTRATION,
+    exact: true,
+    isProtected: ROUTES.MP_SELLER_REG_PROTECTED,
+    element: <SellerRegistration />,
   },
   {
     key: ROUTES.ACCOUNT,

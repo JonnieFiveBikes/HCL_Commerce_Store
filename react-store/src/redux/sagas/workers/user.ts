@@ -29,6 +29,7 @@ import {
   GUEST_LOGIN_SUCCESS_ACTION,
   LOGON_AND_CHANGE_PASSWORD_FAIL_ACTION,
 } from "../../actions/user";
+import { WISHLIST_RESET_ACTION } from "../../actions/wish-list";
 import { userLastUpdatedSelector } from "../../selectors/user";
 import { USER_CONTEXT_REQUEST_SUCCESS_ACTION } from "../../actions/context";
 import { ENTITLED_ORG_ACTION } from "../../actions/organization";
@@ -109,10 +110,12 @@ export function* logout(action: any) {
   try {
     yield call(loginIdentity.logout, payload);
     yield put(LOGOUT_SUCCESS_ACTION(payload));
+    yield put(WISHLIST_RESET_ACTION());
   } catch (error) {
     yield put({ type: ACTIONS.LOGOUT_ERROR, error });
     //still need to clear user token, event though logout fail to avoid infinite loop
     yield put(LOGOUT_SUCCESS_ACTION(payload));
+    yield put(WISHLIST_RESET_ACTION());
   }
 }
 

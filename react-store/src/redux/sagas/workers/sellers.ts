@@ -9,13 +9,23 @@
  *---------------------------------------------------
  */
 import { Configuration, MarketplaceSellerApi } from "@hcl-commerce-store-sdk/typescript-axios-transaction";
+import {
+  Configuration as ApCfg,
+  SellerOrganizationRequestsApi,
+} from "@hcl-commerce-store-sdk/typescript-axios-approvals";
 import { get } from "lodash-es";
 import { call, put } from "redux-saga/effects";
-import { CommerceEnvironment } from "../../../constants/common";
+import { CommerceEnvironment, SUCCESS_MSG_PREFIX } from "../../../constants/common";
 import { getSite } from "../../../_foundation/hooks/useSite";
 
-import { SELLERS_GET_SUCCESS_ACTION, SET_SELLER_SUCCESS_ACTION } from "../../actions/sellers";
+import {
+  REG_SELLER_FAILURE_ACTION,
+  REG_SELLER_SUCCESS_ACTION,
+  SELLERS_GET_SUCCESS_ACTION,
+  SET_SELLER_SUCCESS_ACTION,
+} from "../../actions/sellers";
 import i18n from "../../../i18n";
+import { HANDLE_SUCCESS_MESSAGE_ACTION } from "../../actions/success";
 
 export function* getSellers(action: any) {
   const site: any = getSite();
@@ -39,5 +49,21 @@ export function* setSeller(action: any) {
     yield put(SET_SELLER_SUCCESS_ACTION({ sellers }));
   } catch (error) {
     yield put(SET_SELLER_SUCCESS_ACTION({ sellers: null }));
+  }
+}
+
+export function* registerSeller(action: any) {
+  const site: any = getSite();
+  const storeId = site?.storeID ?? "";
+  const { payload = {} } = action;
+  const { body = {}, widget, callback } = payload;
+  const api = new SellerOrganizationRequestsApi(new ApCfg(), site.approvalsContext);
+  try {
+    const response = yield call(api.createSellerOrganizationRequest.bind(api), { ...body, storeId });
+    yield put(REG_SELLER_SUCCESS_ACTION({ widget, response }));
+    callback();
+    yield put(HANDLE_SUCCESS_MESSAGE_ACTION({ key: `${SUCCESS_MSG_PREFIX}SellerRegd` }));
+  } catch (error) {
+    yield put(REG_SELLER_FAILURE_ACTION({ widget, response: { error } }));
   }
 }

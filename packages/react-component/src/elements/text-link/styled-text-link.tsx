@@ -9,7 +9,7 @@
  *==================================================
  */
 
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { StyledButton } from "../button";
 
 export const StyledTextLink = styled(({ ...props }) => (

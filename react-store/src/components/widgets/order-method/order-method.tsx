@@ -28,7 +28,7 @@ import {
 import { DELIVERY, PICKUP } from "../../../constants/order";
 import { useNavigate } from "react-router";
 import { CHECKOUT_SHIPPING, CHECKOUT_PICKUP_STORE } from "../../../constants/routes";
-import { useMediaQuery, useTheme } from "@material-ui/core";
+import { useMediaQuery, useTheme } from "@mui/material";
 import { SHIPMODE } from "../../../constants/order";
 
 const OrderMethod: React.FC = () => {
@@ -37,7 +37,7 @@ const OrderMethod: React.FC = () => {
   const orderMethodIsPickup = useSelector(orderMethodIsPickupSelector);
   const dispatch = useDispatch();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const handleAlignment = (_event, newAlignment) => {
     if (newAlignment === PICKUP) {
       dispatch(orderActions.ORDER_METHOD_SET_PICKUP_ACTION(null));

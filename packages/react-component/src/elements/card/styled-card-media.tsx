@@ -9,14 +9,13 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import CardMedia from "@material-ui/core/CardMedia";
+import styled from "@mui/styled-engine-sc";
+import CardMedia from "@mui/material/CardMedia";
 import { dimensions } from "../../themes/variables";
 
 const thumbnailSize = dimensions.productCard.thumbnail;
 
 const StyledCardMedia = styled(({ ...props }) => <CardMedia {...props} />)`
-  width: ${(props) => props.size ?? thumbnailSize}px;
   height: ${(props) => props.size ?? thumbnailSize}px;
   margin: 20px auto 10px;
   background-size: contain;

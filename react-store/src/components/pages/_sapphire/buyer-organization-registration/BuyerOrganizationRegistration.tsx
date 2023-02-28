@@ -45,7 +45,7 @@ import {
   StyledStepLabel,
   StyledLink,
 } from "@hcl-commerce-store-sdk/react-component";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 //GA360
 import AsyncCall from "../../../../_foundation/gtm/async.service";
 

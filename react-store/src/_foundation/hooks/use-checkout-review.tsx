@@ -11,7 +11,6 @@
 //Standard libraries
 import { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Axios, { Canceler } from "axios";
 import { useNavigate, useLocation } from "react-router";
 import getDisplayName from "react-display-name";
 //Foundation libraries
@@ -32,7 +31,8 @@ import {
   isCheckoutDisabledSelector,
   isRecurringOrderDisabledSelector,
 } from "../.././redux/selectors/order";
-import { GET_ADDRESS_DETAIL_ACTION } from "../.././redux/actions/account";
+import { entitledOrgSelector, activeOrgSelector } from "../../redux/selectors/organization";
+import { sellersSelector } from "../../redux/selectors/sellers";
 import { GET_CART_ACTION } from "../.././redux/actions/order";
 import { RESET_CART_ACTION } from "../.././redux/actions/order";
 //GA360
@@ -52,6 +52,9 @@ export const useCheckoutReview = (props: any): any => {
   const cart = useSelector(cartSelector);
   const orderItems = useSelector(orderItemsSelector);
   const isCheckoutDisabled = useSelector(isCheckoutDisabledSelector);
+  const entitledOrgs = useSelector(entitledOrgSelector);
+  const activeOrgId = useSelector(activeOrgSelector);
+  const sellers = useSelector(sellersSelector);
   let isRecurringOrder: boolean = false;
   let recurringOrderFrequency: string = "0";
   let recurringOrderStartDate: string = "";
@@ -73,8 +76,7 @@ export const useCheckoutReview = (props: any): any => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { mySite } = useSite();
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
+  const controller = useMemo(() => new AbortController(), []);
   const location: any = useLocation();
   const usingProfile = get(location, `state.${SELECTED_PROFILE}`);
 
@@ -84,16 +86,14 @@ export const useCheckoutReview = (props: any): any => {
     currency: defaultCurrencyID,
     contractId: contractId,
     widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+    signal: controller.signal,
   };
 
   useEffect(() => {
     if (mySite) {
       dispatch(GET_CART_ACTION({ ...payloadBase, fetchCatentries: true }));
-      //Refresh address list to get any new shipping/billing addresses created
-      dispatch(GET_ADDRESS_DETAIL_ACTION({ ...payloadBase }));
+      // no need to refresh addresses here -- the useCheckoutProfileReview hook call
+      //   to the CPROF_FETCH_ALL_ACTION will take care of it
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mySite, locale]);
@@ -102,9 +102,7 @@ export const useCheckoutReview = (props: any): any => {
     setTimeout(() => {
       window.scrollTo(0, 0);
     });
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
+    return () => controller.abort();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -189,6 +187,7 @@ export const useCheckoutReview = (props: any): any => {
       localStorageUtil.remove(ACCOUNT + "-" + PO_NUMBER + "-" + cart.orderId);
       //GA360
       if (mySite.enableGA) {
+        const storeName = mySite.storeName;
         AsyncCall.sendCheckoutPageViewEvent(
           {
             pageSubCategory: "Order Confirmation",
@@ -196,7 +195,10 @@ export const useCheckoutReview = (props: any): any => {
           },
           { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
         );
-        AsyncCall.sendPurchaseEvent({ cart, orderItems }, { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 });
+        AsyncCall.sendPurchaseEvent(
+          { cart, orderItems, entitledOrgs, activeOrgId, sellers, storeName },
+          { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
+        );
       }
     }
   }

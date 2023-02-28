@@ -18,15 +18,16 @@ import {
   StyledLink,
 } from "@hcl-commerce-store-sdk/react-component";
 import { useCallback, useEffect, useRef, useState } from "react";
-import ExpandLessIcon from "@material-ui/icons/ArrowDropUp";
-import ExpandMoreIcon from "@material-ui/icons/ArrowDropDown";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
-import Hidden from "@material-ui/core/Hidden";
+import ExpandLessIcon from "@mui/icons-material/ArrowDropUp";
+import ExpandMoreIcon from "@mui/icons-material/ArrowDropDown";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material";
+import MatButton from "@mui/material/Button";
+import Hidden from "@mui/material/Hidden";
 import { useWinDimsInEM } from "../../../_foundation/hooks/use-win-dims-in-em";
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { useTranslation } from "react-i18next";
-import CloseIcon from "@material-ui/icons/Close";
+import CloseIcon from "@mui/icons-material/Close";
 import storeUtil from "../../../utils/storeUtil";
 import { useSite } from "../../../_foundation/hooks/useSite";
 import { EMPTY_STRING } from "../../../constants/common";
@@ -40,13 +41,14 @@ const Price = ({ obj }) => {
 };
 
 const OutlinedButton = styled(({ children, ...props }) => (
-  <StyledButton size="small" variant="outlined" color="default" {...props}>
+  <MatButton size="large" variant="outlined" {...props}>
     {children}
-  </StyledButton>
+  </MatButton>
 ))`
   ${({ theme }) => `
     border-color: rgba(0,0,0,0.7);
     background-color: rgba(0,0,0,0.15);
+    color: ${theme.palette.common.white};
 
     &:hover {
       background-color: rgba(100, 100, 100, 1);
@@ -108,7 +110,7 @@ const BarContent = styled(({ children, ...props }) => <StyledContainer {...props
   `}
 `;
 
-const StickyDiv = styled.div`
+const StickyDiv = styled("div")`
   ${(props) => `
     display: inline;
     position: sticky;
@@ -116,7 +118,7 @@ const StickyDiv = styled.div`
   `}
 `;
 
-const DrawerDiv = styled.div`
+const DrawerDiv = styled("div")`
   ${(props) => `
     position: absolute;
     top: auto;
@@ -132,17 +134,17 @@ const ThumbBox = styled(({ children, ...props }) => (
   ${({ theme }) => `
     position: relative;
     display: flex;
-    padding: ${theme.spacing(1)}px;
-    gap: ${theme.spacing(1)}px;
+    padding: ${theme.spacing(1)};
+    gap: ${theme.spacing(1)};
     align-items: center;
 
     .closeIcon {
       position: absolute;
-      right: ${theme.spacing(1)}px;
-      top: ${theme.spacing(1)}px;
+      right: ${theme.spacing(1)};
+      top: ${theme.spacing(1)};
       padding: 0;
-      width: ${theme.spacing(3)}px;
-      height: ${theme.spacing(3)}px;
+      width: ${theme.spacing(3)};
+      height: ${theme.spacing(3)};
       color: ${theme.palette.text.secondary};
 
       &:hover {
@@ -163,9 +165,9 @@ const ThumbBox = styled(({ children, ...props }) => (
       border: 1px dashed ${theme.palette.common.black};
 
       img {
-        padding: ${theme.spacing(1)}px;
-        width: ${theme.spacing(10)}px;
-        height: ${theme.spacing(10)}px;
+        padding: ${theme.spacing(1)};
+        width: ${theme.spacing(10)};
+        height: ${theme.spacing(10)};
         max-height: 100%;
         max-width: 100%;
       }
@@ -194,7 +196,7 @@ export const CompareCollectorWidget = (props) => {
   const [open, setOpen] = useState(false);
   const [once, setOnce] = useState(false);
   const theme = useTheme();
-  const offset = useMediaQuery(theme.breakpoints.down("sm")) ? `${theme.spacing(3)}px` : `${theme.spacing(6)}px`;
+  const offset = useMediaQuery(theme.breakpoints.down("lg")) ? theme.spacing(3) : theme.spacing(6);
   const anchorRef = useRef<HTMLDivElement>(null);
   const [edges, setEdges] = useState<any>({});
   const { w_px } = useWinDimsInEM();
@@ -274,7 +276,7 @@ export const CompareCollectorWidget = (props) => {
                   {data.storage.filter(Boolean).map((obj, i) => (
                     <ThumbBox key={i} xs={12 / data.max} className="thumb">
                       <StyledIconButton
-                        data-testid={`button-product-compare-${obj.partNumber.toLowerCase()}-close`}
+                        data-testid={`button-product-compare-${obj.partNumber?.toLowerCase()}-close`}
                         className="closeIcon"
                         color="primary"
                         onClick={remove.bind(this, obj)}>
@@ -287,7 +289,7 @@ export const CompareCollectorWidget = (props) => {
                             <Price {...{ obj }} />
                           </StyledTypography>
                         </Hidden>
-                        <Hidden mdDown>
+                        <Hidden lgDown>
                           <StyledTypography variant="subtitle1" className="price">
                             <Price {...{ obj }} />
                           </StyledTypography>

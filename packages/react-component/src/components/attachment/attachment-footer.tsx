@@ -17,7 +17,7 @@ import { kebabCase } from "lodash-es";
 import { StyledButton, StyledCardActions, StyledGrid } from "../../elements";
 
 // UI libraries
-import GetAppRoundedIcon from "@material-ui/icons/GetAppRounded";
+import GetAppRoundedIcon from "@mui/icons-material/GetAppRounded";
 
 /**
  * displays list of Attachment

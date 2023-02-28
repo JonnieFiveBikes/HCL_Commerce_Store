@@ -92,6 +92,9 @@ export const ORDER_STATUS = {
   Shipped: "S",
   PendingApproval: "W",
   Canceled: "X",
+  Closed: "D",
+  LockedByReturn: "RTN",
+  LockedByAppeasement: "APP",
 };
 
 export const ACCOUNT_CC = "account";
@@ -107,3 +110,5 @@ export const N_ITEMS_ADDED = "addedNSuccessfully";
 
 export const DELIVERY = "delivery";
 export const PICKUP = "pickup";
+
+export const PARTIAL_COPY_ORDER = "PartialCopyOrder";

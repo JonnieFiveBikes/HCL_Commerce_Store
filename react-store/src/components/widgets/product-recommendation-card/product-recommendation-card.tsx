@@ -16,6 +16,7 @@ import { useProductRecommendationCard } from "../../../_foundation/hooks/use-pro
 //ui
 import { ProductRecommendationCard } from "@hcl-commerce-store-sdk/react-component";
 import { useSite } from "../../../_foundation/hooks/useSite";
+import { getDisplayName } from "@mui/utils";
 
 /**
  * Product recommendation card
@@ -33,6 +34,7 @@ const ProductRecCard = ({ renderingContext }: any) => {
       eSpotDescInternal,
       eSpotInternal,
       productInternal,
+      widgetName: getDisplayName(ProductRecCard),
     });
   const seoUrl = product.seo?.href;
   const thumbnail = product.thumbnail;

@@ -17,22 +17,9 @@ import {
   storageSessionHandler,
   windowRegistryHandler,
   storageStoreIdHandler,
-} from "../../../_foundation/utils/storageUtil";
-import {
-  WC_PREVIEW_TOKEN,
-  NEW_PREVIEW_SESSION,
-  LANGID,
-  LOCALE,
-  SHOW_API_FLOW,
-} from "../../../_foundation/constants/common";
-import {
-  GTM_ID,
-  GTM_AUTH,
-  GTM_PREVIEW,
-  GA_VERSIONS,
-  GA_VERSION_UA,
-  GA_VERSION_GA4,
-} from "../../../_foundation/constants/gtm";
+} from "../../utils/storageUtil";
+import { WC_PREVIEW_TOKEN, NEW_PREVIEW_SESSION, LANGID, LOCALE, SHOW_API_FLOW } from "../../constants/common";
+import { GTM_ID, GTM_AUTH, GTM_PREVIEW, GA_VERSIONS, GA_VERSION_UA, GA_VERSION_GA4 } from "../../constants/gtm";
 //custom library
 import { SiteInfo } from "../../../redux/reducers/reducerStateInterface";
 import { CommerceEnvironment } from "../../../constants/common";
@@ -127,122 +114,77 @@ export class SiteInfoService {
     }
   }
 
-  private initializeSite(s: SiteInfoArgs): Promise<SiteInfo> {
-    const _site: SiteInfoArgs = Object.assign({}, s);
-    //GA360
-    let gtmID: string, gtmAuth: string, gtmPreview: string, gaVersions: string;
+  private assign(target: SiteInfo, source) {
+    const { storeID } = target;
+    const { relatedStores: rel = [] } = source;
+
+    // GA360
+    const gtmID = source.userData[GTM_ID];
+    const gtmAuth = source.userData[GTM_AUTH];
+    const gtmPreview = source.userData[GTM_PREVIEW];
+    const gaVersions = source.userData[GA_VERSIONS];
+
+    if (gtmID && gtmAuth && gtmPreview) {
+      const enableUA = gaVersions?.includes(GA_VERSION_UA) ?? false;
+      const enableGA4 = gaVersions?.includes(GA_VERSION_GA4) ?? false;
+      Object.assign(target, { enableGA: true, enableUA, enableGA4, gtmID, gtmAuth, gtmPreview });
+    }
+
+    // -4 is catalog-asset-store
+    const caStore = rel.find(({ relationshipType: r, relatedStoreId: s }) => r === "-4" && s !== storeID);
+    // -11 is storefront-asset-store
+    const saStore = rel.find(({ relationshipType: r, relatedStoreId: s }) => r === "-11" && s !== storeID);
+
+    Object.assign(target, {
+      storeName: source.identifier,
+      catalogStoreID: caStore?.relatedStoreId,
+      saStoreID: saStore?.relatedStoreId,
+      catalogID: source.defaultCatalog?.at(0)?.catalogIdentifier?.uniqueID,
+      defaultCurrencyID: source.supportedCurrencies?.defaultCurrency,
+      defaultLanguageID: source.supportedLanguages?.defaultLanguageId,
+      storeType: source.storeType,
+      isB2B: source.storeType === this.B2B || source.storeType === this.BMH,
+      storeCfg: source,
+      supportedLanguages: source.supportedLanguages?.supportedLanguages ?? [],
+      supportedCurrencies: source.supportedCurrencies?.supportedCurrencies ?? [],
+    });
+  }
+
+  private async initializeSite(s: SiteInfoArgs): Promise<SiteInfo> {
+    const _site = Object.assign({}, s) as SiteInfo;
 
     let storeId = typeof window["HCL_STORE_ID"] === undefined ? undefined : window["HCL_STORE_ID"];
     if (!storeId) {
       storeId = storageStoreIdHandler.getStoreId4Initialization();
     }
-    if (!storeId) {
-      //no store ID, lookup default name first.
-      return this.getStoreData({ ..._site })
-        .then((cfg: any) => {
-          _site.storeID = cfg.storeId;
-          _site.inventorySystem = cfg.inventorySystem;
-          return this.getOnlineStoreData({
-            ..._site,
-          });
-        })
-        .then((storeCfg: any) => {
-          const caStore = storeCfg.relatedStores.find(
-            (s: any) => s.relationshipType === "-4" && s.relatedStoreId !== _site.storeID
-          ); // -4 is catalog-asset-store
-          //GA360
-          gtmID = storeCfg.userData[GTM_ID];
-          gtmAuth = storeCfg.userData[GTM_AUTH];
-          gtmPreview = storeCfg.userData[GTM_PREVIEW];
-          gaVersions = storeCfg.userData[GA_VERSIONS];
-          if (gtmID && gtmAuth && gtmPreview) {
-            _site.enableGA = true;
-            if (gaVersions) {
-              _site.enableUA = gaVersions.includes(GA_VERSION_UA);
-              _site.enableGA4 = gaVersions.includes(GA_VERSION_GA4);
-            } else {
-              _site.enableUA = false;
-              _site.enableGA4 = false;
-            }
-            _site.gtmID = gtmID;
-            _site.gtmAuth = gtmAuth;
-            _site.gtmPreview = gtmPreview;
-          }
-          _site.storeName = storeCfg.identifier;
-          _site.storeID = storeCfg.storeId;
-          _site.catalogStoreID = caStore.relatedStoreId;
-          _site.catalogID = storeCfg.defaultCatalog[0].catalogIdentifier?.uniqueID;
-          _site.defaultCurrencyID = storeCfg.supportedCurrencies.defaultCurrency;
-          _site.defaultLanguageID = storeCfg.supportedLanguages.defaultLanguageId;
-          _site.storeType = storeCfg.storeType;
-          _site.isB2B = _site.storeType === this.B2B || _site.storeType === this.BMH;
-          _site.storeCfg = storeCfg;
-          _site.supportedLanguages = storeCfg.supportedLanguages.supportedLanguages;
-          _site.supportedCurrencies = storeCfg.supportedCurrencies.supportedCurrencies;
 
-          this.initStorage(_site as SiteInfo);
-          return _site as SiteInfo;
-        });
-    } else {
-      //has storeId, use StoreId.
-      _site.storeID = storeId;
-      return this.getOnlineStoreData({
-        ..._site,
-      }).then((storeCfg: any) => {
-        const caStore = storeCfg.relatedStores.find(
-          (s: any) => s.relationshipType === "-4" && s.relatedStoreId !== _site.storeID
-        ); // -4 is catalog-asset-store
-        //GA360
-        gtmID = storeCfg.userData[GTM_ID];
-        gtmAuth = storeCfg.userData[GTM_AUTH];
-        gtmPreview = storeCfg.userData[GTM_PREVIEW];
-        gaVersions = storeCfg.userData[GA_VERSIONS];
-        if (gtmID && gtmAuth && gtmPreview) {
-          _site.enableGA = true;
-          if (gaVersions) {
-            _site.enableUA = gaVersions.includes(GA_VERSION_UA);
-            _site.enableGA4 = gaVersions.includes(GA_VERSION_GA4);
-          } else {
-            _site.enableUA = false;
-            _site.enableGA4 = false;
-          }
-          _site.gtmID = gtmID;
-          _site.gtmAuth = gtmAuth;
-          _site.gtmPreview = gtmPreview;
-        }
-        _site.storeName = storeCfg.identifier;
-        _site.storeID = storeCfg.storeId;
-        _site.catalogStoreID = caStore.relatedStoreId;
-        _site.catalogID = storeCfg.defaultCatalog[0].catalogIdentifier?.uniqueID;
-        _site.defaultCurrencyID = storeCfg.supportedCurrencies.defaultCurrency;
-        _site.defaultLanguageID = storeCfg.supportedLanguages.defaultLanguageId;
-        _site.storeType = storeCfg.storeType;
-        _site.isB2B = _site.storeType === this.B2B || _site.storeType === this.BMH;
-        _site.storeCfg = storeCfg;
-        _site.supportedLanguages = storeCfg.supportedLanguages.supportedLanguages;
-        _site.supportedCurrencies = storeCfg.supportedCurrencies.supportedCurrencies;
-        return this.getStoreData({ ..._site }).then((cfg: any) => {
-          _site.inventorySystem = cfg.inventorySystem;
-          this.initStorage(_site as SiteInfo);
-          return _site as SiteInfo;
-        });
-      });
+    let cfg;
+    if (!storeId) {
+      cfg = await this.getStoreData(_site); // no store ID, lookup default name first.
+      storeId = cfg.storeId;
     }
+
+    _site.storeID = storeId;
+    const storeCfg = await this.getOnlineStoreData(_site);
+    this.assign(_site, storeCfg);
+
+    if (!cfg) {
+      cfg = await this.getStoreData(_site);
+    }
+
+    _site.inventorySystem = cfg.inventorySystem;
+    this.initStorage(_site);
+    return _site;
   }
 
-  private getStoreData(s: any | SiteInfo) {
+  private getStoreData(s: SiteInfoArgs) {
     const config: AxiosRequestConfig = {
-      params: {
-        q: "findByStoreIdentifier",
-        storeIdentifier: s.storeName,
-      },
+      params: { q: "findByStoreIdentifier", storeIdentifier: s.storeName },
     };
     return Axios.get(`${s.transactionContext}/store/0/adminLookup`, config).then((r) => r.data.resultList[0]);
   }
 
-  private getOnlineStoreData(s: any | SiteInfo) {
-    return Axios.get(`${s.transactionContext}/store/${s.storeID}/online_store`).then((r) => {
-      return r.data.resultList[0];
-    });
+  private getOnlineStoreData(s: SiteInfoArgs) {
+    return Axios.get(`${s.transactionContext}/store/${s.storeID}/online_store`).then((r) => r.data.resultList[0]);
   }
 }

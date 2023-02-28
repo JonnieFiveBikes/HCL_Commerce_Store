@@ -9,12 +9,11 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Navigate } from "react-router-dom";
-import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
@@ -39,7 +38,7 @@ import {
   StyledFormControlLabel,
   StyledCheckbox,
 } from "@hcl-commerce-store-sdk/react-component";
-import Divider from "@material-ui/core/Divider";
+import Divider from "@mui/material/Divider";
 //GA360
 import AsyncCall from "../../../_foundation/gtm/async.service";
 
@@ -74,14 +73,11 @@ function SignInLayout({ cid, hideRegistrationPage, ...props }: SignInContext) {
   const noAccountMsg = checkoutFlow ? t("SignIn.CheckoutAsGuestMsg") : t("SignIn.noAccount");
   const registerButton = checkoutFlow ? t("SignIn.CheckoutAsGuestButton") : t("SignIn.registerNow");
 
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
+  const controller = useMemo(() => new AbortController(), []);
 
   const payloadBase: any = {
     widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+    signal: controller.signal,
   };
   /**
    * Form validation function
@@ -124,10 +120,10 @@ function SignInLayout({ cid, hideRegistrationPage, ...props }: SignInContext) {
         logonId: email,
         logonPassword,
       },
+      ...(rememberMe && { query: { rememberMe } }),
       checkoutFn,
       ...payloadBase,
     };
-    if (rememberMe) payload.query.rememberMe = rememberMe;
     dispatch(userAction.LOGIN_REQUESTED_ACTION(payload));
   };
   const handleLogonAndChangePasswordSubmit = (props: any) => {
@@ -183,7 +179,7 @@ function SignInLayout({ cid, hideRegistrationPage, ...props }: SignInContext) {
   useEffect(() => {
     return () => {
       dispatch(RESET_ERROR_ACTION());
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -320,7 +316,7 @@ function SignInLayout({ cid, hideRegistrationPage, ...props }: SignInContext) {
               <StyledTypography variant="body1" color="primary" className="vertical-margin-1">
                 <StyledLink to={FORGOT_PASSWORD}>{t("SignIn.ForgotPassword")}</StyledLink>
               </StyledTypography>
-              <StyledBox align="center">
+              <StyledBox textAlign="center">
                 <StyledButton
                   testId="sign-in-submit"
                   type="submit"

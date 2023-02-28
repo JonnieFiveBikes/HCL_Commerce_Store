@@ -43,6 +43,7 @@ import FormattedPriceDisplay from "../../../widgets/formatted-price-display";
 import { loginStatusSelector } from "../../../../redux/selectors/user";
 import * as wishListActions from "../../../../redux/actions/wish-list";
 import * as successActions from "../../../../redux/actions/success";
+import { sellersSelector } from "../../../../redux/selectors/sellers";
 
 //UI
 import { AttachmentLayout, StyledTypography, ITabs } from "@hcl-commerce-store-sdk/react-component";
@@ -818,13 +819,14 @@ const useProductDetails = (page: Page) => {
 
   //GA360
   const breadcrumbs = useSelector(breadcrumbsSelector);
-
+  const sellers = useSelector(sellersSelector);
   useEffect(() => {
     if (addItemActionTriggered) {
       //GA360
       if (mySite.enableGA) {
+        const storeName = mySite.storeName;
         AsyncCall.sendAddToCartEvent(
-          { cart, currentSelection, breadcrumbs },
+          { cart, currentSelection, breadcrumbs, sellers, storeName },
           { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
         );
       }
@@ -834,13 +836,14 @@ const useProductDetails = (page: Page) => {
 
   useEffect(() => {
     if (mySite.enableGA) {
+      const storeName = mySite.storeName;
       if (currentSelection && breadcrumbs.length !== 0) {
         AsyncCall.sendPDPPageViewEvent(breadcrumbs, {
           enableUA: mySite.enableUA,
           enableGA4: mySite.enableGA4,
         });
         AsyncCall.sendPDPDetailViewEvent(
-          { currentProdSelect: currentSelection, breadcrumbs },
+          { currentProdSelect: currentSelection, breadcrumbs, sellers, storeName },
           { enableUA: mySite.enableUA, enableGA4: mySite.enableGA4 }
         );
       }

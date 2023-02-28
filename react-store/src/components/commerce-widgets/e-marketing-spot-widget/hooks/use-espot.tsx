@@ -22,8 +22,10 @@ import {
   ESpotState,
   StyledButton,
   StyledContainer,
+  StyledGrid,
   StyledLink,
   StyledProgressPlaceholder,
+  StyledTypography,
 } from "@hcl-commerce-store-sdk/react-component";
 import { constants, marketingConstants } from "@hcl-commerce-store-sdk/utils";
 //redux
@@ -38,6 +40,93 @@ import { ESPOT_ACTIONS, useESpotValue } from "./espot-context";
 import { useESpotHelper } from "./use-espot-helper";
 import { useSite } from "../../../../_foundation/hooks/useSite";
 import { CommerceEnvironment, EMPTY_STRING, SLASH } from "../../../../constants/common";
+import { cartSelector } from "../../../../redux/selectors/order";
+
+const COMPONENT_CONST = {
+  grid: "Grid",
+  typography: "Typography",
+  container: "Container",
+};
+//typography
+const typographyPrefix = "MuiTypography-";
+const typographyAlignPrefix = `${typographyPrefix}align`;
+const variants = [
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "subtitle1",
+  "subtitle2",
+  "body1",
+  "body2",
+  "caption",
+  "button",
+  "overline",
+];
+//container
+const containerPrefix = "MuiContainer-";
+//grid
+const gridPrefix = "MuiGrid-";
+const gridItem = `${gridPrefix}item`;
+const gridContainer = `${gridPrefix}container`;
+const gridBreakPointXS = `${gridPrefix}grid-xs-`;
+const gridBreakPointMD = `${gridPrefix}grid-md-`;
+const gridBreakPointSM = `${gridPrefix}grid-sm-`;
+const gridBreakPointLG = `${gridPrefix}grid-lg-`;
+const gridBreakPointXL = `${gridPrefix}grid-xl-`;
+
+// minimum support for MUI Container, Grid and Typography
+const findMuiComponentAttributes = (classNames: string[]) => {
+  const result: any = {};
+
+  for (const _s of classNames) {
+    const s = _s.trim();
+    if (s.indexOf(typographyAlignPrefix) === 0) {
+      result.component = COMPONENT_CONST.typography;
+      result.align = s.substring(typographyAlignPrefix.length).toLowerCase();
+    } else if (s.indexOf(typographyPrefix) === 0) {
+      result.component = COMPONENT_CONST.typography;
+      const _variantCandidate = s.substring(typographyPrefix.length);
+      if (variants.includes(_variantCandidate)) {
+        result.variant = _variantCandidate;
+      }
+    } else if (s.indexOf(containerPrefix) === 0) {
+      result.component = COMPONENT_CONST.container;
+    } else if (s.indexOf(gridPrefix) === 0) {
+      result.component = COMPONENT_CONST.grid;
+      if (s.indexOf(gridContainer) === 0) {
+        result.container = true;
+      } else if (s.indexOf(gridItem) === 0) {
+        result.item = true;
+      } else if (s.indexOf(gridBreakPointXS) === 0) {
+        result.xs = Number(s.substring(gridBreakPointXL.length));
+      } else if (s.indexOf(gridBreakPointSM) === 0) {
+        result.sm = Number(s.substring(gridBreakPointSM.length));
+      } else if (s.indexOf(gridBreakPointMD) === 0) {
+        result.md = Number(s.substring(gridBreakPointMD.length));
+      } else if (s.indexOf(gridBreakPointLG) === 0) {
+        result.sm = Number(s.substring(gridBreakPointLG.length));
+      }
+    }
+  }
+  return result;
+};
+
+const parseStyle = (styles: string) => {
+  if (styles) {
+    const style: any = {};
+    styles.split(";").forEach((s) => {
+      if (s) {
+        const sl = s.split(":");
+        style[sl[0].trim()] = sl[1].replace("px", "").trim();
+      }
+    });
+    return style;
+  }
+  return null;
+};
 
 /**
  * The hook for processing eSpot data.
@@ -53,6 +142,7 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
   const { mySite } = useSite();
   const { eSpot, dispatch: dispatchESpot } = useESpotValue();
   const contract = useSelector(currentContractIdSelector);
+  const cart = useSelector(cartSelector);
   const { emsName } = widget.properties || {};
   const [productRecommendedList, setProductRecommendedList] = React.useState<any[]>(() => []);
   const [recommendedProductTitle, setRecommendedProductTitle] = React.useState<string>(EMPTY_STRING);
@@ -60,6 +150,7 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
   const catalogID: string = mySite ? mySite.catalogID : EMPTY_STRING;
   const CancelToken = Axios.CancelToken;
   let eSpotData: ESpotState = {
+    behavior: "0",
     content: {
       title: EMPTY_STRING,
       templates: [],
@@ -266,31 +357,72 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
     }
 
     const replace = (node: DOMNode): any => {
-      if (node instanceof Element && node.type === "tag" && node.name === "a") {
-        return (
-          <StyledLink
-            {...(content.contentUrl === SLASH ? { testId: `${content.eSpotName}` } : {})}
-            key={`content_${content.contentId}`}
-            to={content.contentUrl}
-            onClick={(event) => performClick(event, { eSpotDesc: content })}>
-            {node.children && domToReact(node.children, { replace })}
-          </StyledLink>
-        );
-      } else if (node instanceof Element && node.type === "tag" && node.name === "button") {
-        const { class: className, tabindex, ...attrs } = node.attribs;
-        const tabIndex = Number(tabindex);
-        return (
-          <StyledButton
-            testId={`content-${content.contentId}`}
-            variant="contained"
-            color="secondary"
-            {...{ className, tabIndex, ...attrs }}>
-            {node.children && domToReact(node.children)}
-          </StyledButton>
-        );
-      } else {
-        return;
+      let rc: JSX.Element | null = null;
+
+      if (node instanceof Element && node.type === "tag") {
+        if (node.name === "a") {
+          const { href = "" } = node.attribs;
+          const acceptableHref = href && !href.startsWith("http");
+
+          if (acceptableHref || content.contentUrl) {
+            const { id, class: className, tabindex, style: _style, ...attrs } = node.attribs;
+            const tabIndex = tabindex != null ? Number(tabindex) : null;
+            const key = `content-a-${content.contentId}-${id ?? Math.random().toString()}`;
+            const to = acceptableHref ? href : content.contentUrl; // prefer <a>'s original href over the content's url
+            const testId = to === SLASH ? content.eSpotName : "";
+            const onClick = (event) => performClick(event, { eSpotDesc: { ...content, contentUrl: to } });
+            const style = parseStyle(_style);
+
+            rc = (
+              <StyledLink {...{ to, onClick, key, testId, className, tabIndex, style, ...attrs }}>
+                {node.children && domToReact(node.children, { replace })}
+              </StyledLink>
+            );
+          }
+        } else if (node.name === "button") {
+          const { id, class: className, tabindex, style: _style, ...attrs } = node.attribs;
+          const tabIndex = tabindex != null ? Number(tabindex) : null;
+          const style = parseStyle(_style);
+
+          rc = (
+            <StyledButton
+              testId={`content-${content.contentId}-${id ?? Math.random().toString()}`}
+              variant="contained"
+              color="secondary"
+              {...{ className, tabIndex, style, ...attrs }}>
+              {node.children && domToReact(node.children)}
+            </StyledButton>
+          );
+        } else {
+          const { class: className = "", style: _style, ...attrs } = node.attribs;
+          const _result = findMuiComponentAttributes(className.split(" "));
+          if (_result) {
+            const { component, ...result } = _result;
+            const style = parseStyle(_style);
+            if (component === COMPONENT_CONST.typography && (result.variant || result.align)) {
+              rc = (
+                <StyledTypography {...result} component={node.name} {...{ className, style, ...attrs }}>
+                  {node.children && domToReact(node.children, { replace })}
+                </StyledTypography>
+              );
+            } else if (component === COMPONENT_CONST.container) {
+              rc = (
+                <StyledContainer {...{ className, style, ...attrs }}>
+                  {node.children && domToReact(node.children, { replace })}
+                </StyledContainer>
+              );
+            } else if (component === COMPONENT_CONST.grid) {
+              rc = (
+                <StyledGrid {...result} {...{ className, style, ...attrs }}>
+                  {node.children && domToReact(node.children, { replace })}
+                </StyledGrid>
+              );
+            }
+          }
+        }
       }
+
+      return rc;
     };
 
     if (content.contentFormatId === marketingConstants.CONTENT_FORMAT_ID.EXTERNAL) {
@@ -340,8 +472,10 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
   };
 
   const processMarketingSpotData = async (eSpotRoot: any) => {
-    const { eSpotName } = eSpotRoot;
-    eSpotData = (eSpotRoot.baseMarketingSpotActivityData || []).reduce(
+    const { eSpotName, behavior = "0" } = eSpotRoot;
+    const _eSpotData = eSpotRoot.baseMarketingSpotActivityData ?? [];
+
+    eSpotData = _eSpotData.reduce(
       (a, c) => {
         if (c.baseMarketingSpotDataType === marketingConstants.MARKETING_SPOT_DATA_TYPE.CONTENT) {
           a.content.templates.push({
@@ -373,6 +507,7 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
         return a;
       },
       {
+        behavior,
         content: {
           title: EMPTY_STRING,
           templates: [],
@@ -389,6 +524,7 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
         },
       }
     );
+
     eSpotData.content.title = eSpotRoot.marketingSpotDataTitle
       ? eSpotRoot.marketingSpotDataTitle[0].marketingContentDescription[0].marketingText
       : EMPTY_STRING;
@@ -405,7 +541,6 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
       setRecommendedProductTitle(eSpotData.catEntry.title || "");
       await processProductRecommendation(eSpotData.catEntry.catEntries);
     }
-
     const dxPromise: Promise<
       | {
           dxContentId: string;
@@ -456,6 +591,17 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, mySite, emsName]);
+
+  React.useEffect(() => {
+    if (mySite && page && emsName && eSpot.behavior === "1") {
+      let pageName = page.name;
+      if (page.externalContext?.identifier) {
+        pageName = page.externalContext.identifier;
+      }
+      processESpot(pageName);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cart]);
 
   React.useEffect(() => {
     return () => {

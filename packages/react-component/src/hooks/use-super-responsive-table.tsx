@@ -68,7 +68,7 @@ export const useTableUtils = () => {
 
   const updateSelection = ({ t, h, s, f }) => {
     let c = 0;
-    t.forEach((r) => {
+    t?.forEach((r) => {
       if (getValueForCell(TableConstants.CHECKBOX, r, h, s)) {
         ++c;
       }
@@ -96,7 +96,8 @@ export const useTableUtils = () => {
     return keys;
   };
 
-  const paginateArray = (allRecords: Array<any>, pageSize: number) => {
+  const paginateArray = (inputRecords: Array<any>, pageSize: number) => {
+    const allRecords = inputRecords ?? [];
     const numPages = Math.ceil(allRecords.length / pageSize);
     const paginated = chunk(allRecords, pageSize);
     const rc: ClientSidePagination = {

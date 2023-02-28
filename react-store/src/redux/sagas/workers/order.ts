@@ -21,6 +21,7 @@ import { CommerceEnvironment, EMPTY_STRING, RF_JSON, SUCCESS_MSG_PREFIX } from "
 //Redux
 import * as ACTIONS from "../../action-types/order";
 import { HANDLE_SUCCESS_MESSAGE_ACTION } from "../../actions/success";
+import { VALIDATION_ERROR_ACTION } from "../../actions/error";
 import { CART } from "../../../constants/routes";
 import {
   COPY_CART_SUCCESS_ACTION,
@@ -44,37 +45,75 @@ import { localStorageUtil } from "../../../_foundation/utils/storageUtil";
 import { LOCALE, SELLER_PARAM } from "../../../_foundation/constants/common";
 import { activeInprogressOrderSelector } from "../../selectors/order";
 import { get } from "lodash-es";
-import { N_ITEMS_ADDED } from "../../../constants/order";
+import { N_ITEMS_ADDED, PARTIAL_COPY_ORDER } from "../../../constants/order";
 
 export function* copyCart(action: AnyAction) {
   try {
-    const { fromOrderId } = action.payload;
+    const { payload } = action;
+    let beforeCopyCartQuantity: number = 0;
+    let afterCopyCartQuantity: number = 0;
+    try {
+      const beforeCopyParameters = {
+        ...payload,
+        sortOrderItemBy: ORDER_CONFIGS.sortOrderItemBy,
+      };
+      const beforeCopyResponseCart = yield call(cartService.getCart, { ...beforeCopyParameters });
+      beforeCopyCartQuantity =
+        beforeCopyResponseCart?.data?.orderItem
+          ?.flatMap((order) => parseInt(order.quantity))
+          .reduce((previous, current) => previous + current, 0) ?? 0;
+    } catch (e) {
+      console.log("error in getting cart", e);
+      beforeCopyCartQuantity = 0;
+    }
     const activeInprogressOrder = yield select(activeInprogressOrderSelector);
-    const payload = action.payload;
-    const params = {
+    const { fromOrderId: fromOrderId_1, widget, orderItemCount, errorMessage } = payload;
+    const params: any = {
       body: {
-        fromOrderId_1: fromOrderId,
+        fromOrderId_1,
         toOrderId: activeInprogressOrder ? activeInprogressOrder.orderId : ".**.",
         copyOrderItemId_1: "*",
       },
     };
-    if (payload.widget) {
-      params["widget"] = payload.widget;
+    if (widget) {
+      params["widget"] = widget;
     }
-    const response = yield call(cartService.copyOrder, params);
-    yield put(
-      COPY_CART_SUCCESS_ACTION({
-        response,
-      })
-    );
+    let response = yield call(cartService.copyOrder, params);
+    try {
+      const afterCopyParameters = {
+        ...payload,
+        sortOrderItemBy: ORDER_CONFIGS.sortOrderItemBy,
+      };
 
-    const b2b = getSite()?.isB2B;
-    const link = !b2b ? { url: CART, textKey: `${SUCCESS_MSG_PREFIX}ViewCart` } : undefined;
-    const successMessage = {
-      key: SUCCESS_MSG_PREFIX + COPY_CART_SUCCESS_ACTION.type,
-      link,
-    };
-    yield put(HANDLE_SUCCESS_MESSAGE_ACTION(successMessage));
+      const afterCopyResponseCart = yield call(cartService.getCart, { ...afterCopyParameters });
+      afterCopyCartQuantity =
+        afterCopyResponseCart?.data?.orderItem
+          ?.flatMap((order) => parseInt(order.quantity))
+          .reduce((previous, current) => previous + current, 0) ?? 0;
+    } catch (e) {
+      console.log("error in getting cart", e);
+      afterCopyCartQuantity = 0;
+    }
+    if (afterCopyCartQuantity > (beforeCopyCartQuantity ?? 0)) {
+      // also need to call calculate -- since the copy_order API doesn't
+      params.body["calculationUsageId"] = ORDER_CONFIGS.calculationUsage.split(",");
+      response = yield call(cartService.calculateOrder, params);
+
+      yield put(COPY_CART_SUCCESS_ACTION({ response }));
+
+      const b2b = getSite()?.isB2B;
+      const link = !b2b ? { url: CART, textKey: `${SUCCESS_MSG_PREFIX}ViewCart` } : undefined;
+      const successMessage =
+        afterCopyCartQuantity === beforeCopyCartQuantity + orderItemCount
+          ? {
+              key: SUCCESS_MSG_PREFIX + COPY_CART_SUCCESS_ACTION.type,
+              link,
+            }
+          : { key: SUCCESS_MSG_PREFIX + PARTIAL_COPY_ORDER, link };
+      yield put(HANDLE_SUCCESS_MESSAGE_ACTION(successMessage));
+    } else {
+      yield put(VALIDATION_ERROR_ACTION({ errorMessage }));
+    }
   } catch (e) {
     yield put(COPY_CART_ERROR_ACTION(e));
   }
@@ -149,6 +188,7 @@ export function* addItem(action: any) {
           orderId: ".",
           x_calculateOrder: ORDER_CONFIGS.calculateOrder,
           orderItem: _orderItems,
+          x_calculationUsage: ORDER_CONFIGS.calculationUsage,
           x_inventoryValidation: ORDER_CONFIGS.inventoryValidation,
         },
       };
@@ -220,9 +260,17 @@ export function* removeItem(action: any) {
       x_calculateOrder: ORDER_CONFIGS.calculateOrder,
       x_calculationUsage: ORDER_CONFIGS.calculationUsage,
       orderItemId,
+      x_inventoryValidation: ORDER_CONFIGS.inventoryValidation,
+      orderItem: [
+        {
+          quantity: "0",
+          orderItemId: orderItemId,
+        },
+      ],
     };
 
-    const response = yield call(cartService.deleteOrderItem, { body, widget });
+    const response = yield call(cartService.updateOrderItem, { body, widget });
+
     yield put({ type: ACTIONS.ITEM_REMOVE_SUCCESS, response, payload });
   } catch (error) {
     yield put({ type: ACTIONS.ITEM_REMOVE_ERROR, error });
@@ -252,6 +300,7 @@ export function* updateItem(action: any) {
     };
 
     const response = yield call(cartService.updateOrderItem, { widget, body });
+
     yield put({ type: ACTIONS.ITEM_UPDATE_SUCCESS, response, payload });
   } catch (error) {
     yield put({ type: ACTIONS.ITEM_UPDATE_ERROR, error });

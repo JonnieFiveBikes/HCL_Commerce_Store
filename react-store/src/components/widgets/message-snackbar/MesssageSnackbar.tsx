@@ -13,7 +13,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import HTMLReactParser from "html-react-parser";
 //UI
-import { SnackbarOrigin } from "@material-ui/core";
+import { SnackbarOrigin } from "@mui/material";
 import { StyledSnackbar, StyledAlert, StyledLink } from "@hcl-commerce-store-sdk/react-component";
 
 interface MessageSnackbarProperty {

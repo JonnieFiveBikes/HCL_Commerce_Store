@@ -9,12 +9,12 @@
  *==================================================
  */
 
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { StyledButton, StyledGrid } from "@hcl-commerce-store-sdk/react-component";
 import { useTranslation } from "react-i18next";
 import { kebabCase } from "lodash-es";
 
-const Overlay = styled.div`
+const Overlay = styled("div")`
   ${({ theme }) => `
       background-color: ${theme.palette.background.paper}${theme.palette.background.transparency};
       position: absolute;

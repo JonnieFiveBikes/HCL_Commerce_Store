@@ -49,4 +49,5 @@ export const GA4_EVENT_VIEW_PROMOTION = "GA4_view_promotion";
 export const GA4_EVENT_SELECT_PROMOTION = "GA4_select_promotion";
 export const GA4_EVENT_VIEW_ITEM_LIST = "GA4_view_item_list";
 export const GA4_EVENT_SELECT_ITEM = "GA4_select_item";
-export const GA_EVENT_VIEW_ITEM = "GA4_view_item";
+export const GA4_EVENT_SEARCH = "GA4_search";
+export const GA4_EVENT_VIEW_ITEM = "GA4_view_item";

@@ -8,25 +8,25 @@
  *
  *==================================================
  */
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 
-export const StyledHeaderActions = styled.div`
+export const StyledHeaderActions = styled("div")`
   ${({ theme }) => `
     color: ${theme.palette.text.secondary};
     height: 100%;
 
-    ${theme.breakpoints.down("sm")} {
+    ${theme.breakpoints.down("md")} {
       .MuiSvgIcon-root {
         color: ${theme.palette.text.secondary};
         vertical-align: middle;
-        font-size: ${theme.spacing(1)}px;
+        font-size: ${theme.spacing(1)};
       }
     }
 
     .MuiSvgIcon-root {
       color: ${theme.palette.text.secondary};
       vertical-align: middle;
-      font-size: ${theme.spacing(3)}px;
+      font-size: ${theme.spacing(3)};
     }
 
     &:hover {

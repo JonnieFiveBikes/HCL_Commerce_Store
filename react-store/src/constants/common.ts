@@ -51,6 +51,13 @@ ADDRESS_TYPE_MAP.set(ADDRESS_SHIPPING, "AddressBook.ShippingLabel");
 ADDRESS_TYPE_MAP.set(ADDRESS_BILLING, "AddressBook.BillingLabel");
 ADDRESS_TYPE_MAP.set(ADDRESS_SHIPPING_BILLING, "AddressBook.ShippingBillingLabel");
 
+export interface SellerTranslatedInfo {
+  langId: string;
+  sellerName: string;
+  sellerDescription: string;
+  isDefault: boolean;
+  shown?: boolean;
+}
 //keycodes
 export const KEY_CODES = {
   UP: 38,
@@ -222,3 +229,6 @@ export const ACOMP = {
 };
 export const PICKUP_PREFIX = "pickup_";
 export const MP_ENABLED = "hcl.marketplace.enabled";
+export const MP_SELLER_REG_ENABLED = "hcl.marketplace.self-registration";
+export const MCW_NUMBER = 125;
+export const ZERO_NUMBER = 0;

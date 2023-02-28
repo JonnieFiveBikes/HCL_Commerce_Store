@@ -8,8 +8,8 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import Snackbar from "@material-ui/core/Snackbar";
+import styled from "@mui/styled-engine-sc";
+import Snackbar from "@mui/material/Snackbar";
 import React from "react";
 
 const StyledSnackbar = styled(({ ...props }) => <Snackbar {...props} />)`

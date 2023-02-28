@@ -8,8 +8,8 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import Radio from "@material-ui/core/Radio";
+import styled from "@mui/styled-engine-sc";
+import Radio from "@mui/material/Radio";
 import React from "react";
 
 const StyledRadio = styled(({ ...props }) => <Radio {...props} />)`

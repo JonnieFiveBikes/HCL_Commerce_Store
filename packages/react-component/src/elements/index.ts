@@ -52,7 +52,6 @@ export * from "./form";
 export * from "./header";
 export * from "./header-actions";
 export * from "./iframe";
-export * from "./pickers";
 export * from "./popover";
 export * from "./popper";
 export * from "./product-image";

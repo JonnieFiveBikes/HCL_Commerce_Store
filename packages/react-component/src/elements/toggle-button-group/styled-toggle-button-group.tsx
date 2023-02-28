@@ -8,8 +8,8 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import { ToggleButtonGroup } from "@material-ui/lab";
+import styled from "@mui/styled-engine-sc";
+import { ToggleButtonGroup } from "@mui/material";
 import React from "react";
 
 const ComponentWrapper = (props: any) => <ToggleButtonGroup {...props} />;

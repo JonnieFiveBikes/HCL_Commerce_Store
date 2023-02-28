@@ -9,7 +9,7 @@
  ***************************************************
  */
 
-import styled from "styled-components";
+import styled from "@mui/styled-engine-sc";
 import { StyledChip } from "../../elements/chip";
 
 const ChipAd = styled(({ identifier, value: label, className: c = "", ...props }) => {

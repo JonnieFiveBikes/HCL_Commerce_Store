@@ -9,8 +9,8 @@
  *==================================================
  */
 import React from "react";
-import styled from "styled-components";
-import Chip from "@material-ui/core/Chip";
+import styled from "@mui/styled-engine-sc";
+import Chip from "@mui/material/Chip";
 
 export const StyledChip = styled(({ ...props }) => <Chip {...props} />)`
   ${({ theme }) => `

@@ -39,6 +39,15 @@ const AsyncCall = {
           console.log(error);
         });
     }
+    if (enableGA4) {
+      GA4DataService.sendSearchPageViewEvent(productListTotal, searchTerm)
+        .then((obj) => {
+          GA4GTMDLService.measureKeywordSearch(obj);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   },
   sendListerPageViewEvent({ productListTotal, breadcrumb }, { enableUA, enableGA4 }) {
     if (enableUA) {
@@ -107,31 +116,31 @@ const AsyncCall = {
         });
     }
   },
-  sendProductImpressionEvent({ productList, listerFlag, breadcrumbs }, { enableUA, enableGA4 }) {
+  sendProductImpressionEvent({ productList, listerFlag, breadcrumbs, sellers, storeName }, { enableUA, enableGA4 }) {
     if (enableUA) {
-      UADataService.sendProductImpressionEvent(productList, listerFlag, breadcrumbs)
+      UADataService.sendProductImpressionEvent(productList, listerFlag, breadcrumbs, sellers, storeName)
         .then((obj) => {
-          const { productarr, currency } = obj;
-          GTMDLService.measureProductImpression(productarr, currency);
+          const { productarr, currency, marketplaceStore } = obj;
+          GTMDLService.measureProductImpression(productarr, currency, marketplaceStore);
         })
         .catch((error) => {
           console.log(error);
         });
     }
     if (enableGA4) {
-      GA4DataService.sendProductImpressionEvent(productList, listerFlag, breadcrumbs)
+      GA4DataService.sendProductImpressionEvent(productList, listerFlag, breadcrumbs, sellers, storeName)
         .then((obj) => {
-          const { productArr, currency } = obj;
-          GA4GTMDLService.measureProductImpression(productArr, currency);
+          const { productArr, currency, marketplaceStore } = obj;
+          GA4GTMDLService.measureProductImpression(productArr, currency, marketplaceStore);
         })
         .catch((error) => {
           console.log(error);
         });
     }
   },
-  sendProductClickEvent({ product, index, listerFlag, breadcrumbs }, { enableUA, enableGA4 }) {
+  sendProductClickEvent({ product, index, listerFlag, breadcrumbs, sellers, storeName }, { enableUA, enableGA4 }) {
     if (enableUA) {
-      UADataService.sendProductClickEvent(product, index, listerFlag, breadcrumbs)
+      UADataService.sendProductClickEvent(product, index, listerFlag, breadcrumbs, sellers, storeName)
         .then((obj) => {
           GTMDLService.measureProductClick(obj);
         })
@@ -140,7 +149,7 @@ const AsyncCall = {
         });
     }
     if (enableGA4) {
-      GA4DataService.sendProductClickEvent(product, index, listerFlag, breadcrumbs)
+      GA4DataService.sendProductClickEvent(product, index, listerFlag, breadcrumbs, sellers, storeName)
         .then((obj) => {
           GA4GTMDLService.measureProductClick(obj);
         })
@@ -149,10 +158,10 @@ const AsyncCall = {
         });
     }
   },
-  sendPDPDetailViewEvent({ currentProdSelect, breadcrumbs }, { enableUA, enableGA4 }) {
+  sendPDPDetailViewEvent({ currentProdSelect, breadcrumbs, sellers, storeName }, { enableUA, enableGA4 }) {
     if (currentProdSelect?.sku?.id || currentProdSelect?.sku?.name) {
       if (enableUA) {
-        UADataService.sendPDPDetailViewEvent(currentProdSelect, breadcrumbs)
+        UADataService.sendPDPDetailViewEvent(currentProdSelect, breadcrumbs, sellers, storeName)
           .then((obj) => {
             GTMDLService.measureViewOfProductDetail(obj);
           })
@@ -161,7 +170,7 @@ const AsyncCall = {
           });
       }
       if (enableGA4) {
-        GA4DataService.sendPDPDetailViewEvent(currentProdSelect, breadcrumbs)
+        GA4DataService.sendPDPDetailViewEvent(currentProdSelect, breadcrumbs, sellers, storeName)
           .then((obj) => {
             GA4GTMDLService.measureViewOfProductDetail(obj);
           })
@@ -171,9 +180,12 @@ const AsyncCall = {
       }
     }
   },
-  sendB2BPDPDetailViewEvent({ productData, productPartNumber, breadcrumbs }, { enableUA, enableGA4 }) {
+  sendB2BPDPDetailViewEvent(
+    { productData, productPartNumber, breadcrumbs, sellers, storeName },
+    { enableUA, enableGA4 }
+  ) {
     if (enableUA) {
-      UADataService.sendB2BPDPDetailViewEvent(productData, productPartNumber, breadcrumbs)
+      UADataService.sendB2BPDPDetailViewEvent(productData, productPartNumber, breadcrumbs, sellers, storeName)
         .then((obj) => {
           GTMDLService.measureViewOfProductDetail(obj);
         })
@@ -182,7 +194,7 @@ const AsyncCall = {
         });
     }
     if (enableGA4) {
-      GA4DataService.sendB2BPDPDetailViewEvent(productData, productPartNumber, breadcrumbs)
+      GA4DataService.sendB2BPDPDetailViewEvent(productData, productPartNumber, breadcrumbs, sellers, storeName)
         .then((obj) => {
           GA4GTMDLService.measureViewOfProductDetail(obj);
         })
@@ -233,7 +245,12 @@ const AsyncCall = {
   },
   sendAddToCartEvent(payload, { enableUA, enableGA4 }) {
     if (enableUA) {
-      UADataService.sendAddToCartEvent(payload.currentSelection, payload.breadcrumbs)
+      UADataService.sendAddToCartEvent(
+        payload.currentSelection,
+        payload.breadcrumbs,
+        payload.sellers,
+        payload.storeName
+      )
         .then((obj) => {
           GTMDLService.measureAddToCart(obj);
         })
@@ -242,7 +259,13 @@ const AsyncCall = {
         });
     }
     if (enableGA4) {
-      GA4DataService.sendAddToCartEvent(payload.cart, payload.currentSelection, payload.breadcrumbs)
+      GA4DataService.sendAddToCartEvent(
+        payload.cart,
+        payload.currentSelection,
+        payload.breadcrumbs,
+        payload.sellers,
+        payload.storeName
+      )
         .then((obj) => {
           GA4GTMDLService.measureAddToCart(obj);
         })
@@ -251,35 +274,43 @@ const AsyncCall = {
         });
     }
   },
-  sendB2BAddToCartEvent({ cart, currentProdSelect, result, breadcrumbs }, { enableUA, enableGA4 }) {
+  sendB2BAddToCartEvent(
+    { cart, productData, skusByPart, partAndQuantity, breadcrumbs, entitledOrgs, activeOrgId, sellers, storeName },
+    { enableUA, enableGA4 }
+  ) {
     if (enableUA) {
-      const p = Promise.resolve("B2B");
-      p.then((v) => {
-        return UADataService.sendB2BAddToCartEvent(currentProdSelect, result, breadcrumbs);
-      })
-        .then((obj) => {
-          GTMDLService.measureAddToCart(obj);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      UADataService.sendB2BAddToCartEvent(
+        productData,
+        skusByPart,
+        partAndQuantity,
+        breadcrumbs,
+        entitledOrgs,
+        activeOrgId,
+        sellers,
+        storeName
+      )
+        .then((obj) => GTMDLService.measureAddToCart(obj))
+        .catch((error) => console.log(error));
     }
     if (enableGA4) {
-      const p = Promise.resolve("B2B");
-      p.then((v) => {
-        return GA4DataService.sendB2BAddToCartEvent(cart, currentProdSelect, result, breadcrumbs);
-      })
-        .then((obj) => {
-          GA4GTMDLService.measureAddToCart(obj);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      GA4DataService.sendB2BAddToCartEvent(
+        cart,
+        productData,
+        skusByPart,
+        partAndQuantity,
+        breadcrumbs,
+        entitledOrgs,
+        activeOrgId,
+        sellers,
+        storeName
+      )
+        .then((obj) => GA4GTMDLService.measureAddToCart(obj))
+        .catch((error) => console.log(error));
     }
   },
-  sendRemoveFromCartEvent(item, { enableUA, enableGA4 }) {
+  sendRemoveFromCartEvent(item, entitledOrgs, activeOrgId, sellers, storeName, { enableUA, enableGA4 }) {
     if (enableUA) {
-      UADataService.sendRemoveFromCartEvent(item)
+      UADataService.sendRemoveFromCartEvent(item, entitledOrgs, activeOrgId, sellers, storeName)
         .then((obj) => {
           GTMDLService.measureRemoveFromCart(obj);
         })
@@ -288,7 +319,7 @@ const AsyncCall = {
         });
     }
     if (enableGA4) {
-      GA4DataService.sendRemoveFromCartEvent(item)
+      GA4DataService.sendRemoveFromCartEvent(item, entitledOrgs, activeOrgId, sellers, storeName)
         .then((obj) => {
           GA4GTMDLService.measureRemoveFromCart(obj);
         })
@@ -297,9 +328,12 @@ const AsyncCall = {
         });
     }
   },
-  sendCheckoutEvent({ cart, orderItems, step, value }, { enableUA, enableGA4 }) {
+  sendCheckoutEvent(
+    { cart, orderItems, step, value, entitledOrgs, activeOrgId, sellers, storeName },
+    { enableUA, enableGA4 }
+  ) {
     if (enableUA) {
-      UADataService.sendCheckoutEvent(cart, orderItems, step, value)
+      UADataService.sendCheckoutEvent(cart, orderItems, step, value, entitledOrgs, activeOrgId, sellers, storeName)
         .then((obj) => {
           GTMDLService.measureCheckout(obj);
         })
@@ -308,7 +342,7 @@ const AsyncCall = {
         });
     }
     if (enableGA4) {
-      GA4DataService.sendCheckoutEvent(cart, orderItems, step, value)
+      GA4DataService.sendCheckoutEvent(cart, orderItems, step, value, entitledOrgs, activeOrgId, sellers, storeName)
         .then((obj) => {
           GA4GTMDLService.measureCheckout(obj);
         })
@@ -319,17 +353,17 @@ const AsyncCall = {
   },
   sendPurchaseEvent(purchaseObj, { enableUA, enableGA4 }) {
     //sendPurchaseEvent is an async call
-    const { cart, orderItems } = purchaseObj;
+    const { cart, orderItems, entitledOrgs, activeOrgId, sellers, storeName } = purchaseObj;
     if (enableUA) {
-      UADataService.sendPurchaseEvent(cart, orderItems);
+      UADataService.sendPurchaseEvent(cart, orderItems, entitledOrgs, activeOrgId, sellers, storeName);
     }
     if (enableGA4) {
-      GA4DataService.sendPurchaseEvent(cart, orderItems);
+      GA4DataService.sendPurchaseEvent(cart, orderItems, entitledOrgs, activeOrgId, sellers, storeName);
     }
   },
-  sendViewCartEvent({ cart, orderItems }, { enableUA, enableGA4 }) {
+  sendViewCartEvent({ cart, orderItems, entitledOrgs, activeOrgId, sellers, storeName }, { enableUA, enableGA4 }) {
     if (enableGA4) {
-      GA4DataService.sendViewCartEvent(cart, orderItems)
+      GA4DataService.sendViewCartEvent(cart, orderItems, entitledOrgs, activeOrgId, sellers, storeName)
         .then((obj) => {
           GA4GTMDLService.measureViewCart(obj);
         })

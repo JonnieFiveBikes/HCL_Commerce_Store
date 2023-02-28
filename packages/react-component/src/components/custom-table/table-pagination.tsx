@@ -9,11 +9,11 @@
  *==================================================
  */
 
-import styled from "styled-components";
-import ArrowBackIcon from "@material-ui/icons/NavigateBefore";
-import ArrowForwardIcon from "@material-ui/icons/NavigateNext";
-import LastPageIcon from "@material-ui/icons/LastPage";
-import FirstPageIcon from "@material-ui/icons/FirstPage";
+import styled from "@mui/styled-engine-sc";
+import ArrowBackIcon from "@mui/icons-material/NavigateBefore";
+import ArrowForwardIcon from "@mui/icons-material/NavigateNext";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
 import { useEffect, useMemo } from "react";
 import { useCustomTable } from "./custom-table-context";
 import { StyledGrid, StyledIconButton, StyledMenuItem, StyledMenuTypography, StyledSelect } from "../../elements";
@@ -94,7 +94,8 @@ const ComponentWrapper: React.FC<PaginationProps> = (props: any) => {
               doPage(0, pgSz);
             }
           }}
-          fullWidth>
+          fullWidth
+          variant="standard">
           {sizes?.map(({ size: s, label }) => (
             <StyledMenuItem key={s} value={s}>
               <StyledMenuTypography variant="body1" className={s === pageSize ? "active" : ""} title={t(label)}>
@@ -105,47 +106,54 @@ const ComponentWrapper: React.FC<PaginationProps> = (props: any) => {
         </StyledSelect>
       </StyledGrid>
       <StyledGrid item xs={12} sm="auto" container alignItems="center" justifyContent="center" className="width--auto">
-        <StyledIconButton
-          color="secondary"
-          size="small"
-          disabled={totalRecords === 0 || page === 0}
-          onClick={() => doPage(0, pageSize)}
-          data-testid="table-pagination-first-page-icon-button">
-          <FirstPageIcon />
-        </StyledIconButton>
+        <StyledGrid container item xs="auto" sm="auto" justifyContent="flex-start">
+          <StyledIconButton
+            color="secondary"
+            size="small"
+            disabled={totalRecords === 0 || page === 0}
+            onClick={() => doPage(0, pageSize)}
+            data-testid="table-pagination-first-page-icon-button">
+            <FirstPageIcon fontSize="small" />
+          </StyledIconButton>
 
-        <StyledIconButton
-          color="secondary"
-          size="small"
-          disabled={totalRecords === 0 || page === 0}
-          onClick={() => doPage(page - 1, pageSize)}
-          data-testid="table-actions-back-icon-button">
-          <ArrowBackIcon />
-        </StyledIconButton>
+          <StyledIconButton
+            color="secondary"
+            size="small"
+            disabled={totalRecords === 0 || page === 0}
+            onClick={() => doPage(page - 1, pageSize)}
+            data-testid="table-actions-back-icon-button">
+            <ArrowBackIcon fontSize="small" />
+          </StyledIconButton>
+        </StyledGrid>
 
-        {t(labels.ofTotalCount, {
-          from: totalRecords === 0 ? 0 : recordOffset + 1,
-          to: totalRecords === 0 ? 0 : pageSize + recordOffset > totalRecords ? totalRecords : pageSize + recordOffset,
-          total: totalRecords,
-        })}
+        <StyledGrid container item xs sm="auto" justifyContent="center" style={{ textAlign: "center" }}>
+          {t(labels.ofTotalCount, {
+            from: totalRecords === 0 ? 0 : recordOffset + 1,
+            to:
+              totalRecords === 0 ? 0 : pageSize + recordOffset > totalRecords ? totalRecords : pageSize + recordOffset,
+            total: totalRecords,
+          })}
+        </StyledGrid>
 
-        <StyledIconButton
-          color="secondary"
-          size="small"
-          disabled={totalRecords === 0 || page === totalPages - 1}
-          onClick={() => doPage(page + 1, pageSize)}
-          data-testid="table-actions-forward-icon-button">
-          <ArrowForwardIcon />
-        </StyledIconButton>
+        <StyledGrid container item xs="auto" sm="auto" justifyContent="flex-end">
+          <StyledIconButton
+            color="secondary"
+            size="small"
+            disabled={totalRecords === 0 || page === totalPages - 1}
+            onClick={() => doPage(page + 1, pageSize)}
+            data-testid="table-actions-forward-icon-button">
+            <ArrowForwardIcon fontSize="small" />
+          </StyledIconButton>
 
-        <StyledIconButton
-          color="secondary"
-          size="small"
-          disabled={totalRecords === 0 || page === totalPages - 1}
-          onClick={() => doPage(totalPages - 1, pageSize)}
-          data-testid="table-actions-last-page-icon-button">
-          <LastPageIcon />
-        </StyledIconButton>
+          <StyledIconButton
+            color="secondary"
+            size="small"
+            disabled={totalRecords === 0 || page === totalPages - 1}
+            onClick={() => doPage(totalPages - 1, pageSize)}
+            data-testid="table-actions-last-page-icon-button">
+            <LastPageIcon fontSize="small" />
+          </StyledIconButton>
+        </StyledGrid>
       </StyledGrid>
     </StyledGrid>
   );
@@ -156,7 +164,7 @@ const Pagination = styled(ComponentWrapper)`
     min-height: 60px;
 
     .MuiButton-root{
-      padding: ${theme.spacing(1)}px;
+      padding: ${theme.spacing(1)};
       min-width: unset;
     }
   `}

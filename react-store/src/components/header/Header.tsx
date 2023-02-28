@@ -50,16 +50,15 @@ import { currentContractIdSelector } from "../../redux/selectors/contract";
 import { successSelector } from "../../redux/selectors/success";
 import { SuccessMessageReducerState } from "../../redux/reducers/reducerStateInterface";
 //UI
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
-import { ClickAwayListener } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import StoreIcon from "@material-ui/icons/Store";
-import { Hidden } from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { ClickAwayListener, useTheme } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import StoreIcon from "@mui/icons-material/Store";
+import { Hidden } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   StyledAccountPopper,
   StyledButton,
@@ -125,11 +124,11 @@ const MarketplacePopper = ({ sellerConfig }) => {
         open={open}
         anchorEl={btnRef.current}
         placement="bottom-end"
-        modifiers={{
-          flip: { enabled: false },
-          preventOverflow: { enabled: true, boundariesElement: "scrollParent" },
-          hide: { enabled: false },
-        }}
+        modifiers={[
+          { name: "flip", enabled: false },
+          { name: "preventOverflow", enabled: true },
+          { name: "hide", enabled: false },
+        ]}
         className="account-popper">
         <ClickAwayListener onClickAway={onClickAway}>
           <StyledPaper className="vertical-padding-1 horizontal-padding-1">
@@ -208,7 +207,7 @@ const Header: React.FC<HeaderProps> = (props: any) => {
   const payload = {
     ...payloadBase,
   };
-
+  const navHome = () => navigate(ROUTES.HOME);
   const storeLocatorDispach = useStoreLocatorValue().dispatch;
 
   const handleMyAccountClick = () => {
@@ -251,10 +250,10 @@ const Header: React.FC<HeaderProps> = (props: any) => {
     dispatch(
       ORG_SWITCH_ACTION({
         query: { activeOrgId: String(orgId) },
+        callback: navHome,
         ...payload,
       })
     );
-    navigate(ROUTES.HOME);
   };
 
   const handleContractChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -264,10 +263,10 @@ const Header: React.FC<HeaderProps> = (props: any) => {
     dispatch(
       CONTRACT_SWITCH_ACTION({
         query: { contractId: String(conId) },
+        callback: navHome,
         ...payloadBase,
       })
     );
-    navigate(ROUTES.HOME);
   };
 
   const handleLogout = (event) => {
@@ -283,7 +282,7 @@ const Header: React.FC<HeaderProps> = (props: any) => {
     if (!userLoggedIn && userPreviousLoggedIn.current) {
       setMyAccountPopperOpen(false);
       setMiniCartPopperOpen(false);
-      navigate(ROUTES.HOME);
+      navHome();
     }
     userPreviousLoggedIn.current = userLoggedIn;
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -396,7 +395,7 @@ const Header: React.FC<HeaderProps> = (props: any) => {
                     </div>
                   </StyledGrid>
                 )}
-                <Hidden smDown>
+                <Hidden mdDown>
                   <StyledGrid item data-testid="search-bar-desktop-largetablet-element">
                     <SearchBar
                       showSearchBar={showSearchBar}
@@ -476,18 +475,20 @@ const Header: React.FC<HeaderProps> = (props: any) => {
                       anchorEl={myAccountElRef.current}
                       onClose={handleMyAccountPopperClose}
                       placement={w <= 40 ? "bottom" : "bottom-end"}
-                      modifiers={{
-                        flip: {
+                      modifiers={[
+                        {
+                          name: "flip",
                           enabled: false,
                         },
-                        preventOverflow: {
-                          enabled: false,
-                          boundariesElement: "scrollParent",
-                        },
-                        hide: {
+                        {
+                          name: "preventOverflow",
                           enabled: false,
                         },
-                      }}
+                        {
+                          name: "hide",
+                          enabled: false,
+                        },
+                      ]}
                       className="account-popper">
                       <ClickAwayListener onClickAway={handleMyAccountPopperClose}>
                         <StyledPaper className="horizontal-padding-2">
@@ -551,7 +552,7 @@ const Header: React.FC<HeaderProps> = (props: any) => {
           </Hidden>
         )}
 
-        <Hidden smDown>
+        <Hidden mdDown>
           <ExpandedMenu pages={topCategories} />
         </Hidden>
 

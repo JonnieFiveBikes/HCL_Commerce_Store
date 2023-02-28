@@ -8,8 +8,8 @@
  *
  *==================================================
  */
-import styled from "styled-components";
-import ListItemText from "@material-ui/core/ListItemText";
+import styled from "@mui/styled-engine-sc";
+import ListItemText from "@mui/material/ListItemText";
 import React from "react";
 
 const StyledListItemText = styled(({ ...props }) => <ListItemText {...props} />)`

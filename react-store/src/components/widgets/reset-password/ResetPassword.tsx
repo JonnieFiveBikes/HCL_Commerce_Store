@@ -9,13 +9,12 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent, useMemo } from "react";
 import * as ROUTES from "../../../constants/routes";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { OK } from "http-status-codes";
 import { useTranslation } from "react-i18next";
-import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
 //Foundation libraries
 import { useSite } from "../../../_foundation/hooks/useSite";
@@ -33,7 +32,7 @@ import {
   StyledLink,
   StyledBox,
 } from "@hcl-commerce-store-sdk/react-component";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 //redux
 import * as successActions from "../../../redux/actions/success";
 
@@ -56,14 +55,13 @@ function ResetPassword(props) {
   const contentText = t("ResetPassword.ContentText");
   const isB2B = site.isB2B;
   const dispatch = useDispatch();
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
+
+  const controller = useMemo(() => new AbortController(), []);
 
   const payloadBase: any = {
     widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+
+    signal: controller.signal,
   };
 
   const handleValidationCodeChange = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, type: string) => {
@@ -152,7 +150,7 @@ function ResetPassword(props) {
 
   useEffect(() => {
     return () => {
-      cancels.forEach((cancel) => cancel());
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -236,7 +234,7 @@ function ResetPassword(props) {
               </StyledTypography>
             </StyledGrid>
             <StyledGrid item xs={12}>
-              <StyledBox align="center">
+              <StyledBox textAlign="center">
                 <StyledButton
                   testId="reset-password-resend-verification-code"
                   color="secondary"

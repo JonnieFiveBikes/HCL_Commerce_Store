@@ -17,6 +17,7 @@ import { terser } from "rollup-plugin-terser";
 import svgr from "@svgr/rollup";
 import pkg from "./package.json";
 import json from "@rollup/plugin-json";
+import alias from "@rollup/plugin-alias";
 
 const env = process.env.NODE_ENV;
 const extensions = [".js", "jsx", ".ts", "tsx"];
@@ -37,6 +38,9 @@ const outputs = [
   },
 ];
 const plugins = [
+  alias({
+    entries: [{ find: "@mui/styled-engine", replacement: "@mui/styled-engine-sc" }],
+  }),
   nodeResolve({ extensions }),
   babel({
     extensions,

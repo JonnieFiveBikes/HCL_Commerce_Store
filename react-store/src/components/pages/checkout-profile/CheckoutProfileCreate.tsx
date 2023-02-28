@@ -58,12 +58,12 @@ const CheckoutProfileCreate: React.FC = (props: any) => {
       )}
 
       <StyledGrid container spacing={2}>
-        <StyledGrid item xs={12} md={3} className="sidebar">
+        <StyledGrid item xs={12} md={3}>
           <AccountSidebar />
         </StyledGrid>
 
         <StyledGrid container item xs={12} md={9} spacing={2} direction="column">
-          <StyledGrid container className="vertical-margin-1">
+          <StyledGrid item>
             <StyledPaper style={{ flex: "1" }}>
               <StyledStepper activeStep={activeStep}>
                 <StyledStep key="Shipping">
@@ -75,7 +75,9 @@ const CheckoutProfileCreate: React.FC = (props: any) => {
               </StyledStepper>
             </StyledPaper>
           </StyledGrid>
-          {landed ? activeStep === 0 ? <CheckoutProfileShipping /> : <CheckoutProfileBilling /> : null}
+          {landed ? (
+            <StyledGrid item>{activeStep === 0 ? <CheckoutProfileShipping /> : <CheckoutProfileBilling />}</StyledGrid>
+          ) : null}
         </StyledGrid>
       </StyledGrid>
     </StyledContainer>

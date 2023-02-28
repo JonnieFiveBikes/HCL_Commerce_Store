@@ -9,7 +9,7 @@
  *==================================================
  */
 //Standard libraries
-import React, { ChangeEvent, useEffect } from "react";
+import React, { ChangeEvent, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { OK } from "http-status-codes";
 import { useTranslation } from "react-i18next";
@@ -38,10 +38,15 @@ import {
   StyledMenuTypography,
   StyledLink,
 } from "@hcl-commerce-store-sdk/react-component";
-import { InputAdornment, ClickAwayListener } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import SearchIcon from "@material-ui/icons/Search";
+import { InputAdornment, ClickAwayListener } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/Search";
+import { commonUtil } from "@hcl-commerce-store-sdk/utils";
 
+type CategorySuggestion = {
+  fullPath: string;
+  url: string;
+};
 const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, closeSearchBar }) => {
   const widgetName = getDisplayName(SearchBar);
   const contractId = useSelector(currentContractIdSelector);
@@ -61,19 +66,26 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
   const [input, setInput] = React.useState("");
   const [nameList, setNameList] = React.useState<Array<string>>([]);
   const [index, setIndex] = React.useState(0);
-  let nameListIndex = 1;
   const { mySite } = useSite();
   const dispatch = useDispatch();
   const [showKeywords, setShowKeywords] = React.useState(false);
   const [showCategories, setShowCategories] = React.useState(false);
   const [showBrands, setShowBrands] = React.useState(false);
   const [showSellers, setShowSellers] = React.useState(false);
-  const [categories, setCategories] = React.useState<Array<string>>([]);
+  const [categories, setCategories] = React.useState<Array<CategorySuggestion>>([]);
   const [brands, setBrands] = React.useState<Array<string>>([]);
   const [sellers, setSellers] = React.useState<Array<string>>([]);
-  const [categoriesUrl, setCategoriesUrl] = React.useState<Map<any, any>>(() => new Map());
-
   const [inputDisabled, setinputDisabled] = React.useState(true);
+
+  const getSuggestions = useCallback(
+    (name, index, url?) => ({
+      ...cloneDeep(CommerceEnvironment.suggestionSkeleton),
+      name,
+      arrIndex: `${index}`,
+      url: url ?? `${SEARCH}?${SEARCHTERM}=${commonUtil.encodeURLParts(name)}`,
+    }),
+    []
+  );
 
   const clearSuggestions = () => {
     setIndex(0);
@@ -124,28 +136,22 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
       const parameters: any = {
         responseFormat: "application/json",
         suggestType: ["Category", "Brand", "Seller"],
-
-        contractId: contractId,
-        catalogId: catalogId,
+        contractId,
+        catalogId,
         ...payloadBase,
       };
       siteContentService
         .findSuggestionsUsingGET(parameters)
         .then((res) => {
           if (res.status === OK) {
-            const categoriesResponse = res?.data?.suggestionView[0]?.entry;
-            const brandsResponse = res?.data?.suggestionView[1]?.entry;
-            const sellersResponse = res?.data?.suggestionView[2]?.entry;
-            if (categoriesResponse) {
-              generateCategoriesList(categoriesResponse);
-              generateCategoriesURL(categoriesResponse);
-            }
-            if (brandsResponse) {
-              generateBrandsList(brandsResponse);
-            }
-            if (sellersResponse) {
-              generateSellersList(sellersResponse);
-            }
+            const categoriesResponse = res?.data?.suggestionView[0]?.entry ?? [];
+            const brandsResponse = res?.data?.suggestionView[1]?.entry ?? [];
+            const sellersResponse = res?.data?.suggestionView[2]?.entry ?? [];
+
+            setCategories(categoriesResponse.map(({ fullPath, seo }) => ({ fullPath, url: seo?.href ?? "" })));
+            setBrands(brandsResponse?.map((i) => i.name));
+            setSellers(sellersResponse?.map((i) => i.name));
+
             setinputDisabled(false);
           }
         })
@@ -173,28 +179,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const generateCategoriesList = (categoriesResponse: any[]) => {
-    const lists = categoriesResponse.map((i) => i.fullPath);
-    setCategories(lists);
-  };
-  const generateBrandsList = (brandsResponse: any[]) => {
-    const lists = brandsResponse.map((i) => i.name);
-    setBrands(lists);
-  };
-  const generateSellersList = (sellersResponse: any[]) => {
-    const lists = sellersResponse.map((i) => i.name);
-    setSellers(lists);
-  };
-
-  const generateCategoriesURL = (categoriesResponse: any[]) => {
-    const categoriesUrl = new Map();
-    for (let i = 0; i < categoriesResponse.length; i++) {
-      const url = categoriesResponse[i].seo ? categoriesResponse[i].seo.href : "";
-      categoriesUrl.set(categoriesResponse[i].fullPath, url);
-    }
-    setCategoriesUrl(categoriesUrl);
-  };
-
   const handleLookAheadSearch = (event: ChangeEvent, type: string) => {
     event.persist();
 
@@ -214,10 +198,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
         const parameters: any = {
           responseFormat: "application/json",
           storeId: storeID,
-          term: searchTerm,
+          term: "*",
           limit: KEYWORD_LIMIT,
           contractId: contractId,
           catalogId: catalogId,
+          query: { searchTerm },
           ...payloadBase,
         };
 
@@ -225,9 +210,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
           if (res.status === OK) {
             const keywordSuggestions = res?.data.suggestionView[0].entry;
             if (keywordSuggestions) {
-              const list: string[] = [];
-              generateSuggestionList(keywordSuggestions, searchTerm, list);
-              generateCatgoriesBrandAndSellersSuggestions(searchTerm, list);
+              const list = generateSuggestions(keywordSuggestions, searchTerm);
               setNameList(list);
             }
           }
@@ -238,71 +221,43 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
     clearSuggestions();
   };
 
-  const generateCatgoriesBrandAndSellersSuggestions = (userInput: string, listTemp: string[]) => {
+  const generateSuggestions = (kwSuggestions: any[], userInput: string) => {
+    let nameListIndex = 1;
     const regex = new RegExp(userInput, "ig");
-    const matchedCategories = categories?.filter((e) => e.match(regex)).slice(0, 4);
-    const lists = matchedCategories.map((suggestion) => {
-      const suggestionSkeleton = cloneDeep(CommerceEnvironment.suggestionSkeleton);
-      suggestionSkeleton.arrIndex = nameListIndex.toString();
-      suggestionSkeleton.id = "";
-      suggestionSkeleton.name = suggestion;
-      suggestionSkeleton.url = categoriesUrl.get(suggestion);
-      nameListIndex++;
-      listTemp.push(suggestion);
-      return suggestionSkeleton;
-    });
-    setCategorySuggestions(lists);
+
+    const keywords = kwSuggestions.map(({ term }) => getSuggestions(term, nameListIndex++));
+
+    const matchedCategories = categories
+      .filter(({ fullPath }) => fullPath.match(regex))
+      .slice(0, 4)
+      .map(({ fullPath, url }) => getSuggestions(fullPath, nameListIndex++, url));
+
+    const matchedBrands = brands
+      .filter((e) => e.match(regex))
+      .slice(0, 4)
+      .map((brand) => getSuggestions(brand, nameListIndex++));
+
+    const matchedSellers = sellers
+      .filter((e) => e.match(regex))
+      .slice(0, 4)
+      .map((seller) => getSuggestions(seller, nameListIndex++));
+
+    setKeywordSuggestions(keywords);
+    setCategorySuggestions(matchedCategories);
+    setBrandSuggestions(matchedBrands);
+    setSellerSuggestions(matchedSellers);
+
+    setShowKeywords(true);
     setShowCategories(true);
-
-    const matchedBrands = brands?.filter((e) => e.match(regex)).slice(0, 4);
-    const lists2 = matchedBrands.map((suggestion) => {
-      const suggestionSkeleton = cloneDeep(CommerceEnvironment.suggestionSkeleton);
-      suggestionSkeleton.arrIndex = nameListIndex.toString();
-      suggestionSkeleton.id = "";
-      suggestionSkeleton.name = suggestion;
-      suggestionSkeleton.url = SEARCH + "?" + SEARCHTERM + "=" + suggestion;
-      nameListIndex++;
-      listTemp.push(suggestion);
-      return suggestionSkeleton;
-    });
-    setBrandSuggestions(lists2);
     setShowBrands(true);
-
-    if (sellers.length > 0) {
-      const matchedSellers = sellers?.filter((e) => e.match(regex)).slice(0, 4);
-      const lists3 = matchedSellers.map((suggestion) => {
-        const suggestionSkeleton = cloneDeep(CommerceEnvironment.suggestionSkeleton);
-        suggestionSkeleton.arrIndex = nameListIndex.toString();
-        suggestionSkeleton.id = "";
-        suggestionSkeleton.name = suggestion;
-        suggestionSkeleton.url = SEARCH + "?" + SEARCHTERM + "=" + suggestion;
-        nameListIndex++;
-        listTemp.push(suggestion);
-        return suggestionSkeleton;
-      });
-      setSellerSuggestions(lists3);
+    if (sellers.length) {
       setShowSellers(true);
     }
-  };
 
-  const generateSuggestionList = (keywordSuggestions: any[], userInput: string, listTemp: string[]) => {
-    listTemp.push(userInput);
-    const listTemp2: string[] = [];
+    const terms = keywords.map(({ name }) => name);
+    setKeywordsToLocalStorage(terms);
 
-    const lists = keywordSuggestions.map((suggestion) => {
-      const suggestionSkeleton = cloneDeep(CommerceEnvironment.suggestionSkeleton);
-      suggestionSkeleton.arrIndex = nameListIndex.toString();
-      suggestionSkeleton.id = "";
-      suggestionSkeleton.name = suggestion.term;
-      suggestionSkeleton.url = SEARCH + "?" + SEARCHTERM + "=" + suggestion.term;
-      listTemp.push(suggestion.term);
-      listTemp2.push(suggestion.term);
-      nameListIndex++;
-      return suggestionSkeleton;
-    });
-    setKeywordSuggestions(lists);
-    setKeywordsToLocalStorage(listTemp2);
-    setShowKeywords(true);
+    return [userInput, ...terms, ...[matchedCategories, matchedBrands, matchedSellers].flat(1).map(({ name }) => name)];
   };
 
   const callRegex = (str: string) => {
@@ -351,15 +306,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
     props.preventDefault();
     clearSuggestions();
 
-    if (input && input.trim() !== "") {
+    if (input?.trim()) {
       let url = "";
       const storeID = mySite.storeID;
       const searchTerm = input.trim();
-      const parameters: any = {
-        storeId: storeID,
-        searchTerm: searchTerm,
-        ...payloadBase,
-      };
+      const parameters: any = { storeId: storeID, searchTerm, ...payloadBase };
       searchDisplayService
         .getSearchDisplayView(parameters)
         .then((res) => {
@@ -374,8 +325,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
           }
         })
         .catch((e) => {
-          url = SEARCH + "?" + SEARCHTERM + "=" + searchTerm;
-          redirectTo(url);
+          console.log("Error in getSearchDisplayView API call", e);
         });
     }
   };

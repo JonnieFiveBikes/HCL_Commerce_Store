@@ -16,8 +16,8 @@ import * as ROUTES from "../../../constants/routes";
 import AdministrativeToolsLinksSection from "../administrative-tools-link-section/AdministrativeToolsLinkSection";
 //UI
 import { StyledLinkBox } from "@hcl-commerce-store-sdk/react-component";
-import OrganizationIcon from "@material-ui/icons/PeopleAlt";
-import PersonAdd from "@material-ui/icons/PersonAdd";
+import OrganizationIcon from "@mui/icons-material/PeopleAlt";
+import PersonAdd from "@mui/icons-material/PersonAdd";
 
 function AdministrativeToolsLayout() {
   const { t } = useTranslation();

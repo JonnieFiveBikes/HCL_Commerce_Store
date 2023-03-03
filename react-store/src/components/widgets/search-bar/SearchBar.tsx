@@ -42,11 +42,14 @@ import { InputAdornment, ClickAwayListener } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 import { commonUtil } from "@hcl-commerce-store-sdk/utils";
+import storeUtil from "../../../utils/storeUtil";
+import { SUGGESTIONS } from "../../../_foundation/constants/common";
 
 type CategorySuggestion = {
   fullPath: string;
   url: string;
 };
+
 const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, closeSearchBar }) => {
   const widgetName = getDisplayName(SearchBar);
   const contractId = useSelector(currentContractIdSelector);
@@ -135,7 +138,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
       const catalogId = mySite?.catalogID;
       const parameters: any = {
         responseFormat: "application/json",
-        suggestType: ["Category", "Brand", "Seller"],
+        suggestType: SUGGESTIONS.All,
         contractId,
         catalogId,
         ...payloadBase,
@@ -144,9 +147,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
         .findSuggestionsUsingGET(parameters)
         .then((res) => {
           if (res.status === OK) {
-            const categoriesResponse = res?.data?.suggestionView[0]?.entry ?? [];
-            const brandsResponse = res?.data?.suggestionView[1]?.entry ?? [];
-            const sellersResponse = res?.data?.suggestionView[2]?.entry ?? [];
+            const root = res?.data?.suggestionView ?? [];
+            const asMap = storeUtil.toMap(root, "identifier");
+            const categoriesResponse = asMap[SUGGESTIONS.Category]?.entry ?? [];
+            const brandsResponse = asMap[SUGGESTIONS.Brand]?.entry ?? [];
+            const sellersResponse = asMap[SUGGESTIONS.Seller]?.entry ?? [];
 
             setCategories(categoriesResponse.map(({ fullPath, seo }) => ({ fullPath, url: seo?.href ?? "" })));
             setBrands(brandsResponse?.map((i) => i.name));

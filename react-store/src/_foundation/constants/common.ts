@@ -81,3 +81,9 @@ export const DEFAULT_LOCATION = {
   lat: 43.653217,
   lng: -79.383181,
 };
+export const SUGGESTIONS = {
+  All: ["Category", "Brand", "Seller"],
+  Category: "Category",
+  Brand: "Brand",
+  Seller: "Seller",
+};

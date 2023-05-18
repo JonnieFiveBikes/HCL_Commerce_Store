@@ -1,8 +1,9 @@
 {
   "layout": {
     "id": "3074457345618271107",
-    "name": "Home Page Layout",
+    "name": "HomePageLayout",
     "containerName": "home-page",
+    "isStoreDefault": true,
     "startDate": null,
     "endDate": null,
     "priority": 0,
@@ -13,7 +14,7 @@
         "widgets": [
           {
             "id": "3074457345618261611",
-            "name": "content-recommendation-widget",
+            "name": "HomePageBannerWidget",
             "widgetName": "content-recommendation-widget",
             "sequence": 0,
             "properties": {
@@ -28,7 +29,7 @@
         "widgets": [
           {
             "id": "3074457345618261612",
-            "name": "Content Recommendation Widget",
+            "name": "HomePageFreeDelivery",
             "widgetName": "content-recommendation-widget",
             "sequence": 0,
             "properties": {
@@ -37,7 +38,7 @@
           },
           {
             "id": "3074457345618261613",
-            "name": "Catalog Entry Recommendation Widget",
+            "name": "HomePageProductRecommendation",
             "widgetName": "catalog-entry-recommendation-widget",
             "sequence": 1,
             "properties": {
@@ -46,7 +47,7 @@
           },
           {
             "id": "3074457345618261614",
-            "name": "Content Recommendation Widget",
+            "name": "HomePagePromotion",
             "widgetName": "content-recommendation-widget",
             "sequence": 2,
             "properties": {
@@ -55,7 +56,7 @@
           },
           {
             "id": "3074457345618261615",
-            "name": "Featured Product Recommendation Widget",
+            "name": "HomePageFeaturedProductRecommendation",
             "widgetName": "featured-product-recommendation-widget",
             "sequence": 3,
             "properties": {
@@ -64,7 +65,7 @@
           },
           {
             "id": "3074457345618261616",
-            "name": "Category Recommendation Widget",
+            "name": "HomePageCategoryRecommendation",
             "widgetName": "category-recommendation-widget",
             "sequence": 4,
             "properties": {

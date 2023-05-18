@@ -1,6 +1,6 @@
 {
   "name": "hcl-commerce-store-sdk",
-  "version": "9.1.12",
+  "version": "9.1.13",
   "description": "HCL Commerce React Store SDK",
   "resolutions": {
     "browserslist": "4.17.0",

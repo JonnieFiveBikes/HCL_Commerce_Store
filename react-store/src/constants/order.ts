@@ -28,6 +28,11 @@ export const PAYMENT = {
     visa: "VISA",
     amex: "AMEX",
   },
+  ccMethods: {
+    MasterCard: true,
+    VISA: true,
+    AMEX: true,
+  },
 };
 
 export const RECURRING_ORDER_OPTIONS = [

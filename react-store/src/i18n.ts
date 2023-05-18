@@ -40,13 +40,9 @@ i18n
         : "/locales/{{lng}}/{{ns}}.json",
     },
 
-    fallbackLng: {
-      default: ["en-US"],
-    },
-    lng: "en-US",
     //debug: true,
     load: "currentOnly",
-
+    fallbackLng: false,
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },

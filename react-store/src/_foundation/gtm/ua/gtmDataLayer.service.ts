@@ -304,7 +304,7 @@ const GTMDLService = {
         productObjs.forEach((item) => {
           const obj = {
             name: item.name,
-            id: item.id,
+            id: item.partNumber,
             ...(item.price && { price: item.price }),
             ...(item.brand && { brand: item.brand }),
             ...(item.category && { category: item.category }),
@@ -357,7 +357,7 @@ const GTMDLService = {
             products: [
               {
                 name: productObj.name,
-                id: productObj.id,
+                id: productObj.partNumber,
                 ...(productObj.price && { price: productObj.price }),
                 ...(productObj.brand && { brand: productObj.brand }),
                 ...(productObj.cat && { category: productObj.cat }),
@@ -471,6 +471,10 @@ const GTMDLService = {
   measuringPurchases(purchaseObj) {
     const products: any = [];
     const list = new Set();
+    let cartTax: string = purchaseObj.salesTax;
+    if (purchaseObj.salesTax && purchaseObj.shippingTax) {
+      cartTax = String(Number(cartTax) + Number(purchaseObj.shippingTax));
+    }
     purchaseObj.productArrWithCategory.forEach((product) => {
       const productObj = {
         name: product.name,
@@ -496,7 +500,7 @@ const GTMDLService = {
               id: purchaseObj.purchaseId,
               affiliation: purchaseObj.affiliation || "Online Store",
               revenue: purchaseObj.totalcost || 0,
-              tax: purchaseObj.tax || 0,
+              tax: cartTax || 0,
               shipping: purchaseObj.shippingcost || 0,
               coupon: purchaseObj.discount || "",
               list: Array.from(list),

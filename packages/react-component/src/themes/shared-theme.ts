@@ -113,6 +113,7 @@ export const sharedOverrides = {
       dark: palette.divider.dark,
       alert: palette.border.alert,
     },
+    info: palette.info,
   },
   shape: {
     borderRadius: 6,

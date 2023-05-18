@@ -1,6 +1,6 @@
 {
   "name": "@hcl-commerce-store-sdk/react-component",
-  "version": "9.1.12",
+  "version": "9.1.13",
   "private": true,
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
@@ -19,7 +19,7 @@
     "npm": ">=8.0.0"
   },
   "scripts": {
-    "build:production": "npm run clean && npm run build:dev",
+    "build:production": "npm run clean && rollup -c",
     "build:dev": "rollup -c",
     "clean": "rimraf dist",
     "format": "prettier --write \"**/*.{js,ts,tsx}\" ",
@@ -54,7 +54,7 @@
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",
-    "@hcl-commerce-store-sdk/utils": "9.1.12",
+    "@hcl-commerce-store-sdk/utils": "9.1.13",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.4",
     "@mui/styled-engine-sc": "^5.8.0",
@@ -106,7 +106,7 @@
     "styled-components": "^5.3.5"
   },
   "peerDependencies": {
-    "@hcl-commerce-store-sdk/utils": "9.1.12",
+    "@hcl-commerce-store-sdk/utils": "9.1.13",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.4",
     "@mui/styled-engine-sc": "^5.8.0",

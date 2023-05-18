@@ -22,27 +22,8 @@ import { defaultStates } from "../../reducers/initStates";
 import { sessionErrorSelector } from "../../selectors/error";
 //Foundation libraries
 import { getSite } from "../../../_foundation/hooks/useSite";
+import { ResponseError as Error } from "_foundation/types/response-error";
 let handlingError = false;
-
-type Error = {
-  isAxiosError: boolean;
-  config: {
-    url: string;
-    method: string;
-  };
-  response: {
-    status: number;
-    data: {
-      errorCode?: string;
-      errorMessage?: string;
-      code?: string;
-      errors: {
-        errorCode: string;
-        errorKey: string;
-      }[];
-    };
-  };
-};
 
 const isApprovalError = (e: Error) => {
   let rc = false;

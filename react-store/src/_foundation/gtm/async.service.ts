@@ -159,7 +159,7 @@ const AsyncCall = {
     }
   },
   sendPDPDetailViewEvent({ currentProdSelect, breadcrumbs, sellers, storeName }, { enableUA, enableGA4 }) {
-    if (currentProdSelect?.sku?.id || currentProdSelect?.sku?.name) {
+    if (currentProdSelect?.sku && currentProdSelect.sku[0]?.id) {
       if (enableUA) {
         UADataService.sendPDPDetailViewEvent(currentProdSelect, breadcrumbs, sellers, storeName)
           .then((obj) => {

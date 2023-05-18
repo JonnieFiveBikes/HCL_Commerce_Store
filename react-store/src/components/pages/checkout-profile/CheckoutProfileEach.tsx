@@ -37,6 +37,7 @@ import { ConfirmationOverlay } from "../../StyledUI";
 import { CheckoutProfileType } from "../../../_foundation/hooks/use-checkout-profile";
 import { allowableShipModesSelector } from "../../../redux/selectors/order";
 import storeUtil from "../../../utils/storeUtil";
+import { PAYMENT } from "../../../constants/order";
 
 interface CheckoutProfileEachProps {
   profile: CheckoutProfileType;
@@ -143,7 +144,7 @@ export const CheckoutProfileEach: React.FC<CheckoutProfileEachProps> = ({ profil
                   {t(`CheckoutProfile.payMethods.${p.billingData.payment_method.value}`)}
                 </StyledTypography>
 
-                {p.billingData.payment_method.value !== "COD" ? (
+                {PAYMENT.ccMethods[p.billingData.payment_method.value] ? (
                   <StyledTypography>{p.billingData.account.value}</StyledTypography>
                 ) : null}
               </StyledGrid>

@@ -3,6 +3,7 @@
     "id": "12507",
     "name": "OrderConfirmationPageLayout",
     "containerName": "order-confirmation-page",
+    "isStoreDefault": true,
     "slots": [
       {
         "id": "2",

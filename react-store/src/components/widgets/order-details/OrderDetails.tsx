@@ -9,14 +9,12 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
 import { useLocation } from "react-router";
 import { get } from "lodash-es";
 //Foundation libraries
-import cartService from "../../../_foundation/apis/transaction/cart.service";
 import paymentInstructionService from "../../../_foundation/apis/transaction/paymentInstruction.service";
 
 //Custom libraries
@@ -49,8 +47,9 @@ import {
   StyledTypography,
   StyledIconLabel,
 } from "@hcl-commerce-store-sdk/react-component";
-import ReccuringOrderIcon from "@mui/icons-material/Repeat";
+import RecurringOrderIcon from "@mui/icons-material/Repeat";
 import { Divider } from "@mui/material";
+import { resolvePurchaseOrder } from "_foundation/utils/purchaseOrder";
 
 interface OrderDetailsProps {
   order: any;
@@ -76,10 +75,11 @@ interface OrderDetailsProps {
  * @param props
  */
 const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
+  const controller = useMemo(() => new AbortController(), []);
   const location: any = useLocation();
   const { profileList } = useCheckoutProfileReview(props);
   const [clicked, setClicked] = useState<boolean>(false);
-  const widgetName = getDisplayName(OrderDetails);
+  const widget = getDisplayName(OrderDetails);
   const isRecurringOrder = props.isRecurringOrder ? props.isRecurringOrder : false;
   const recurringOrderNumber = props.recurringOrderNumber ? props.recurringOrderNumber : null;
   const orderSchedule = props.orderSchedule ? props.orderSchedule : null;
@@ -111,31 +111,17 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
 
   const { t } = useTranslation();
   const theme = useTheme();
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
   const sm = !useMediaQuery(theme.breakpoints.up("sm"));
   const fullWidth = sm ? { fullWidth: true } : {};
-
   const payloadBase: any = {
-    widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
+    widget,
+    signal: controller.signal,
   };
 
-  const resolvePONumber = () => {
-    if (props.poNumber === undefined && order && order.buyerPONumber) {
-      cartService
-        .getBuyerPurchaseOrderDataBean({
-          buyerPurchaseOrderId: order.buyerPONumber,
-          ...payloadBase,
-        })
-        .then((r) => r.data)
-        .then((d2) => {
-          if (d2.resultList[0] && d2.resultList[0].purchaseOrderNumber) {
-            setPONumber(d2.resultList[0].purchaseOrderNumber);
-          }
-        });
+  const resolvePONumber = async () => {
+    if (props.poNumber === undefined && order?.buyerPONumber) {
+      const po = await resolvePurchaseOrder(order.buyerPONumber, payloadBase);
+      setPONumber(po);
     }
   };
 
@@ -181,7 +167,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
   const isValidCvv = () => {
     if (
       selectedProfile &&
-      paymentInstruction[0]?.paymentMethod !== PAYMENT.paymentMethodName.cod &&
+      PAYMENT.ccMethods[paymentInstruction[0]?.paymentMethod] &&
       !(storeUtil.isNumeric(cvv) && (cvv.length === 3 || cvv.length === 4))
     ) {
       return false;
@@ -269,12 +255,11 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [order?.buyerPONumber]);
 
-  useEffect(() => {
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
+  useEffect(
+    () => () => controller.abort(),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    []
+  );
 
   return (
     <StyledGrid container spacing={2}>
@@ -351,7 +336,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = (props: any) => {
                       <StyledGrid item xs={12} md={3}>
                         <StyledIconLabel
                           variant="h6"
-                          icon={<ReccuringOrderIcon color="primary" />}
+                          icon={<RecurringOrderIcon color="primary" />}
                           label={t("RecurringOrderInfo.Title")}
                         />
                       </StyledGrid>

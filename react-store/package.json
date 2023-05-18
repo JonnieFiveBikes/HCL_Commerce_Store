@@ -1,6 +1,6 @@
 {
   "name": "hcl-commerce-react-store",
-  "version": "9.1.12",
+  "version": "9.1.13",
   "private": true,
   "engines": {
     "node": ">=16.0.0",
@@ -29,10 +29,10 @@
   },
   "dependencies": {
     "@date-io/date-fns": "2.14.0",
-    "@hcl-commerce-store-sdk/react-component": "9.1.12",
-    "@hcl-commerce-store-sdk/typescript-axios-es": "9.1.12",
-    "@hcl-commerce-store-sdk/typescript-axios-transaction": "9.1.12",
-    "@hcl-commerce-store-sdk/utils": "9.1.12",
+    "@hcl-commerce-store-sdk/react-component": "9.1.13",
+    "@hcl-commerce-store-sdk/typescript-axios-es": "9.1.13",
+    "@hcl-commerce-store-sdk/typescript-axios-transaction": "9.1.13",
+    "@hcl-commerce-store-sdk/utils": "9.1.13",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.5",
     "@mui/styled-engine-sc": "^5.8.0",

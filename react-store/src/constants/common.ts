@@ -174,6 +174,8 @@ export const DISCOVER_FEATURE = "Discover";
 
 export const CARD_NUMBER_MASK_CHAR = "*";
 
+export const MANUFACTURER = "manufacturer";
+
 //Requisition List, inprogress order
 export const PRIVATE_ORDER = "private";
 export const SHARED_ORDER = "shared";

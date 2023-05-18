@@ -30,6 +30,7 @@ import { CurrentTheme } from "./themes";
 import "./index.scss";
 import { StoreLocatorProvider } from "./_foundation/context/store-locator-context";
 import { StoreShippingModeProvider } from "./_foundation/context/store-shipping-mode-context";
+import { PreviewInfoProvider } from "./_foundation/preview/context/preview-info-context";
 
 declare module "@mui/styles/defaultTheme" {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -47,11 +48,13 @@ render(
             <StyledEngineProvider injectFirst>
               <ThemeProvider theme={CurrentTheme}>
                 <CssBaseline />
-                <StoreLocatorProvider>
-                  <StoreShippingModeProvider>
-                    <App />
-                  </StoreShippingModeProvider>
-                </StoreLocatorProvider>
+                <PreviewInfoProvider>
+                  <StoreLocatorProvider>
+                    <StoreShippingModeProvider>
+                      <App />
+                    </StoreShippingModeProvider>
+                  </StoreLocatorProvider>
+                </PreviewInfoProvider>
               </ThemeProvider>
             </StyledEngineProvider>
           </StyledThemeProvider>

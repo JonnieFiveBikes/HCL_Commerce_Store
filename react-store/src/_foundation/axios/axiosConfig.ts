@@ -39,7 +39,7 @@ import { PrerenderTimer } from "./../utils/prerenderTimer";
 import { CommerceEnvironment, SELLER_STORAGE_KEY } from "../../constants/common";
 //Redux
 import { WATCH_AXIOS_ERROR_ACTION } from "../../redux/actions/error";
-import { GUEST_LOGIN_SUCCESS_ACTION } from "../../redux/actions/user";
+import { GUEST_LOGIN_FETCH_CART_ACTION, GUEST_LOGIN_SUCCESS_ACTION } from "../../redux/actions/user";
 import { API_CALL_ACTION } from "../../redux/actions/api";
 
 const GUEST_IDENTITY: string = "guestidentity";
@@ -336,6 +336,7 @@ const processGuestLogon = async (request: AxiosRequestConfig) => {
           const rememberMe =
             process.env.REACT_APP_PERSISTENT_SESSION?.toLowerCase() === "true" ? { rememberMe: true } : {};
           dispatch(GUEST_LOGIN_SUCCESS_ACTION({ ...currentUser, ...payload, ...rememberMe }));
+          dispatch(GUEST_LOGIN_FETCH_CART_ACTION({ url: request.url, ...currentUser, ...payload, ...rememberMe }));
         })
         .catch((error) => {
           throw error;

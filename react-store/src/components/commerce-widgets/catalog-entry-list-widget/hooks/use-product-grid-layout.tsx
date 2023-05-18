@@ -11,6 +11,7 @@
 //Standard libraries
 import { useEffect, ChangeEvent, MouseEvent, useRef, useMemo, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import Axios, { Canceler } from "axios";
 //Foundation libraries
 import { useSite } from "../../../../_foundation/hooks/useSite";
@@ -36,7 +37,13 @@ import * as catalogActions from "../../../../redux/actions/catalog";
 import { currentContractIdSelector } from "../../../../redux/selectors/contract";
 //GA360
 import AsyncCall from "../../../../_foundation/gtm/async.service";
-import { SEARCH_PLP_PROFILE, SEARCH_FIND_PROFILE, STRING_TRUE } from "../../../../constants/common";
+import {
+  SEARCH_PLP_PROFILE,
+  SEARCH_FIND_PROFILE,
+  STRING_TRUE,
+  STRING_FALSE,
+  MANUFACTURER,
+} from "../../../../constants/common";
 import { selectedSellersSelector } from "../../../../redux/selectors/sellers";
 import { sellersSelector } from "../../../../redux/selectors/sellers";
 import { isEmpty } from "lodash-es";
@@ -44,6 +51,9 @@ import { isEmpty } from "lodash-es";
 export const useProductGridLayout = (props: any) => {
   const categoryId = props.categoryId;
   const searchTerm = props.searchTerm;
+  const location: any = useLocation();
+  const params = new URLSearchParams(location?.search);
+  const manufacturer = params?.get(MANUFACTURER) ?? STRING_FALSE;
   const dispatch = useDispatch();
   const cancels: Canceler[] = [];
   const { mySite } = useSite();
@@ -122,7 +132,7 @@ export const useProductGridLayout = (props: any) => {
   }
 
   if (searchTerm !== "") {
-    paramsBase["searchTerm"] = searchTerm;
+    paramsBase["searchTerm"] = manufacturer === STRING_TRUE ? "*" : searchTerm;
   }
 
   const productList = useMemo(() => {
@@ -147,7 +157,10 @@ export const useProductGridLayout = (props: any) => {
       const parameters = { ...paramsBase };
       const query = !isEmpty(selectedFacets) ? { facet: Object.keys(selectedFacets) } : {};
       const states = !isEmpty(selectedFacets) ? { selectedFacets } : undefined;
-      Object.assign(query, { profileName: isEmpty(parameters.searchTerm) ? SEARCH_PLP_PROFILE : SEARCH_FIND_PROFILE });
+      Object.assign(query, {
+        profileName: isEmpty(parameters.searchTerm) ? SEARCH_PLP_PROFILE : SEARCH_FIND_PROFILE,
+        ...(manufacturer === STRING_TRUE && { manufacturer: searchTerm }),
+      });
       Object.assign(parameters, { query });
 
       dispatch(catalogActions.getProductListAction({ parameters, selectedSellers, states }));
@@ -346,7 +359,10 @@ export const useProductGridLayout = (props: any) => {
     states: any
   ) => {
     const { widget, cancelToken, ...query } = paramsBase;
-    Object.assign(query, { profileName: isEmpty(query.searchTerm) ? SEARCH_PLP_PROFILE : SEARCH_FIND_PROFILE });
+    Object.assign(query, {
+      profileName: isEmpty(query.searchTerm) ? SEARCH_PLP_PROFILE : SEARCH_FIND_PROFILE,
+      ...(manufacturer === STRING_TRUE && { manufacturer: searchTerm }),
+    });
 
     const selectedFacetsArray = Object.keys(selectedFacets);
     if (selectedFacetsArray.length > 0) {

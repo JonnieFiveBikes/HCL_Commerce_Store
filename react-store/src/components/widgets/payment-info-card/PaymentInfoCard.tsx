@@ -339,7 +339,7 @@ const PaymentInfoCard: React.FC<PaymentInfoCardProps> = (props: any) => {
       className={`payment-card ${
         isValidPaymentList &&
         !isValidPaymentList() &&
-        paymentInfo?.payMethodId !== PAYMENT.paymentMethodName.cod &&
+        PAYMENT.ccMethods[paymentInfo?.payMethodId] &&
         (account.includes(CARD_NUMBER_MASK_CHAR) || account === EMPTY_STRING)
           ? "error-card-selected"
           : EMPTY_STRING

@@ -96,7 +96,7 @@ const GA4DataService = {
   },
 
   sendPurchaseEvent(cart, orderItems, entitledOrgs, activeOrgId, sellers, storeName) {
-    const { orderId, totalProductPrice, totalSalesTax, totalShippingTax, totalShippingCharge, totalAdjustment } = cart;
+    const { orderId, grandTotal, totalSalesTax, totalShippingTax, totalShippingCharge, totalAdjustment } = cart;
     const partNumberCatgroupMap = new Map<any, any>();
     let currency = null;
     const marketplaceSellers = sellers.sellers;
@@ -157,7 +157,7 @@ const GA4DataService = {
         const hcl_account = entitledOrgs?.find((o) => o.organizationId === activeOrgId)?.organizationName;
         const obj = {
           purchaseId: orderId,
-          totalcost: totalProductPrice,
+          totalcost: grandTotal,
           salesTax: totalSalesTax,
           shippingTax: totalShippingTax,
           shippingcost: totalShippingCharge,
@@ -308,10 +308,10 @@ const GA4DataService = {
 
   async sendPDPDetailViewEvent(currentProdSelect, breadcrumbs, sellers, storeName) {
     const breadcrumbLength = this.getBreadCrumbsData(breadcrumbs).breadcrumbLabels.length;
-    const { id, name, price, sellerId } = currentProdSelect.sku[0];
+    const { partNumber, name, price, sellerId } = currentProdSelect.sku[0];
     const marketplaceSellers = sellers.sellers;
     const obj = {
-      id: id,
+      id: partNumber,
       name: name,
       price: this.getProductPrice(price).price,
       category: this.getBreadCrumbsData(breadcrumbs).category,
@@ -337,12 +337,12 @@ const GA4DataService = {
     storeName
   ) {
     const cartObj = { grandTotal: cart.grandTotal, grandTotalCurrency: cart.grandTotalCurrency };
-    const { category, subCategory } = this.getBreadCrumbsData(breadcrumbs);
+    const { category } = this.getBreadCrumbsData(breadcrumbs);
     const currencyCode = this.getProductPrice(product.price).currency;
     const marketplaceSellers = sellers.sellers;
     const productsObj: any[] = partAndQuantity.map((element) => ({
-      id: element.key,
-      name: subCategory,
+      partNumber: element.key,
+      name: skusByPart[element.key].name,
       price: this.getProductPrice(skusByPart[element.key].price).price,
       category: category,
       quantity: element.value,

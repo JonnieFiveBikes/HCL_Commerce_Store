@@ -3,6 +3,7 @@
     "id": "3074457345618271199",
     "name": "Not Found Layout",
     "containerName": "not-found",
+    "isStoreDefault": true,
     "startDate": null,
     "endDate": null,
     "priority": 0,

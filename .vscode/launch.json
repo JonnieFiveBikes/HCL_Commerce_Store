@@ -16,13 +16,6 @@
       "request": "attach",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node"
-    },
-    {
-      "type": "pwa-node",
-      "request": "launch",
-      "name": "Launch Program",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${file}"
     }
   ]
 }

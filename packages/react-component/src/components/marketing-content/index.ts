@@ -13,3 +13,4 @@ export * from "./marketing-content-button";
 export * from "./marketing-content-media";
 export * from "./marketing-content-text";
 export * from "./marketing-content";
+export * from "./content-helper";

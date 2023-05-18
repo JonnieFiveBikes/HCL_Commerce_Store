@@ -43,4 +43,10 @@ export const palette = {
   disabled: {
     background: "#F0F4F7",
   },
+  info: {
+    main: "#0288D1",
+    light: "#99C2E1",
+    dark: "#01579B",
+    contrastText: "#FFFFFF",
+  },
 };

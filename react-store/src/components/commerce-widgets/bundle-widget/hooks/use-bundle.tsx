@@ -1166,7 +1166,8 @@ const useBundle = (props) => {
   const sellers = useSelector(sellersSelector);
   //GA360
   useEffect(() => {
-    if (addItemActionTriggered) {
+    // wait for cart to physically show up before doing the GA/GTM event
+    if (addItemActionTriggered && cart?.orderId) {
       //GA360
       if (mySite.enableGA) {
         const storeName = mySite.storeName;

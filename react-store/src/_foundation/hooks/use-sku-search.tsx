@@ -33,15 +33,16 @@ const useSKUSearch = () => {
       catalogId: mySite.catalogID,
     };
   }, [mySite.catalogID, mySite.storeID, contract]);
-  const fetchSKUSearchResult = async (_term: string) => {
+
+  const fetchSKUSearchResult = async (searchTerm: string) => {
     const param: any = {
       ...payloadBase,
-      searchTerm: _term,
       searchType: 200,
       profileName: "IBM_findNavigationSuggestion_PartNumber",
       pageSize: 4,
       pageNumber: 1,
       options: {
+        query: { searchTerm },
         widget: "useSKUSearch",
         cancelToken: new CancelToken((c) => cancels.push(c)),
       },
@@ -49,11 +50,9 @@ const useSKUSearch = () => {
 
     const {
       storeId,
-      searchTerm,
       pageSize,
       pageNumber,
       searchType,
-      term,
       contractId,
       langId,
       termsSort,
@@ -67,11 +66,11 @@ const useSKUSearch = () => {
       new Configuration({ basePath: site.searchContext })
     ).findProductSuggestionsBySearchTerm(
       storeId,
-      searchTerm,
+      "*",
       pageSize,
       pageNumber,
       searchType,
-      term,
+      true,
       contractId,
       langId,
       termsSort,

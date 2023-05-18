@@ -26,6 +26,7 @@ import { PAGE_TYPE } from "../constants/common";
 import AsyncCall from "../gtm/async.service";
 import { useSite } from "./useSite";
 import { SLOTID } from "../../constants/common";
+import { PreviewWidgetInfoFrame } from "../preview/widget";
 
 interface UseLayoutProps extends LayoutProps {
   WrappedComponent: React.ComponentType<PageLayoutProps>;
@@ -66,7 +67,11 @@ const useLayout = ({ page, slots, WrappedComponent, ...props }: UseLayoutProps) 
         return {
           key: `slot-${slotId}-${widget.id}`,
           CurrentComponent: () => {
-            return <Widget {...{ widget, page }} cid={widget.id} />;
+            return (
+              <PreviewWidgetInfoFrame widget={{ ...widget, dataId: page?.externalContext?.identifier || "" }}>
+                <Widget {...{ widget, page }} cid={widget.id} />
+              </PreviewWidgetInfoFrame>
+            );
           },
         };
       });

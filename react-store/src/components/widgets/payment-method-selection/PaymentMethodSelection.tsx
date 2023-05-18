@@ -118,7 +118,7 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = (props: Pa
                       />
 
                       {paymentInfo &&
-                        paymentInfo.payMethodId !== PAYMENT.paymentMethodName.cod &&
+                        PAYMENT.ccMethods[paymentInfo.payMethodId] &&
                         paymentInfo.policyId === payment.xumet_policyId &&
                         paymentInfo.paymentTermConditionId === EMPTY_STRING && (
                           <>

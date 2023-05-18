@@ -37,7 +37,7 @@ export const CategoryRecommendationWidget: React.FC<EMarketingSpotWidgetProps> =
           )}
         </>
       )}
-      <StyledGrid container spacing={2} className="vertical-padding-2">
+      <StyledGrid container spacing={2} className="vertical-margin-2">
         {category.categories?.map((e: any) => (
           <StyledGrid
             item

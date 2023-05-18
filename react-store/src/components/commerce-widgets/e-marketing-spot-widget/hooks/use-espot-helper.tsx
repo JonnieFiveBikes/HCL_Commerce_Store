@@ -96,15 +96,13 @@ export const useESpotHelper = (widget: Widget, page: Page) => {
     searchParams.forEach((value, key) => {
       parameters.query[key] = value;
     });
-    let eSpotRoot;
     try {
       const res = await eSpotService.findByName(parameters);
-      eSpotRoot = res.data.MarketingSpotData[0];
+      return res.data.MarketingSpotData;
     } catch (e) {
       console.log("espot helper", e);
-      eSpotRoot = null;
+      return null;
     }
-    return eSpotRoot;
   };
 
   const allowGAEvent = (eSpotRoot) => !DISABLED_ESPOT_LIST.includes(eSpotRoot.eSpotName);

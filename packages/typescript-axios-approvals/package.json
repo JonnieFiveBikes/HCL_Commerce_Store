@@ -1,6 +1,6 @@
 {
   "name": "@hcl-commerce-store-sdk/typescript-axios-approvals",
-  "version": "9.1.12",
+  "version": "9.1.13",
   "private": true,
   "description": "OpenAPI client for @hcl-commerce-store-sdk/typescript-axios-approvals",
   "author": "OpenAPI-Generator Contributors",

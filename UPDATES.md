@@ -232,6 +232,12 @@ The React Store Application (Emerald and Sapphire) has been updated with the fol
 2. Material UI Components updated to v5
 3. Approvals Service REST Client
 
+### 2023/05/18 HCL Commerce Version 9.1.13 - Refreshed Store Application
+
+The React Store Application has been updated with the following enhancements:
+
+1. Store Preview Overlays for use with Management Center Preview tooling
+
 ## Limitations
 
 The list of latest features delivered in the React Store Applications are described for Emerald:

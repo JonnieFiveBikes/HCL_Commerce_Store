@@ -9,11 +9,10 @@
  *==================================================
  */
 //Standard libraries
-import React, { ChangeEvent, useCallback, useEffect } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { OK } from "http-status-codes";
 import { useTranslation } from "react-i18next";
-import Axios, { Canceler } from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import getDisplayName from "react-display-name";
 import cloneDeep from "lodash/cloneDeep";
@@ -37,6 +36,8 @@ import {
   StyledSearchBar,
   StyledMenuTypography,
   StyledLink,
+  StyledAvatar,
+  StyledTypography,
 } from "@hcl-commerce-store-sdk/react-component";
 import { InputAdornment, ClickAwayListener } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -44,19 +45,17 @@ import SearchIcon from "@mui/icons-material/Search";
 import { commonUtil } from "@hcl-commerce-store-sdk/utils";
 import storeUtil from "../../../utils/storeUtil";
 import { SUGGESTIONS } from "../../../_foundation/constants/common";
-
-type CategorySuggestion = {
-  fullPath: string;
-  url: string;
-};
+import { debounce } from "lodash-es";
 
 const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, closeSearchBar }) => {
-  const widgetName = getDisplayName(SearchBar);
+  const widget = useMemo(() => getDisplayName(SearchBar), []);
+  const controller = useMemo(() => new AbortController(), []);
   const contractId = useSelector(currentContractIdSelector);
   const [keywordSuggestions, setKeywordSuggestions] = React.useState<Array<any>>([]);
   const [categorySuggestions, setCategorySuggestions] = React.useState<Array<any>>([]);
   const [brandSuggestions, setBrandSuggestions] = React.useState<Array<any>>([]);
   const [sellerSuggestions, setSellerSuggestions] = React.useState<Array<any>>([]);
+  const [productSuggestions, setProductSuggestions] = React.useState<Array<any>>([]);
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location: any = useLocation();
@@ -66,6 +65,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
   const categoryTitle = t("SearchBar.CategoryTitle");
   const brandTitle = t("SearchBar.BrandTitle");
   const sellerTitle = t("SearchBar.SellerTitle");
+  const productTitle = t("SearchBar.ProductsTitle");
   const [input, setInput] = React.useState("");
   const [nameList, setNameList] = React.useState<Array<string>>([]);
   const [index, setIndex] = React.useState(0);
@@ -75,32 +75,31 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
   const [showCategories, setShowCategories] = React.useState(false);
   const [showBrands, setShowBrands] = React.useState(false);
   const [showSellers, setShowSellers] = React.useState(false);
-  const [categories, setCategories] = React.useState<Array<CategorySuggestion>>([]);
-  const [brands, setBrands] = React.useState<Array<string>>([]);
-  const [sellers, setSellers] = React.useState<Array<string>>([]);
-  const [inputDisabled, setinputDisabled] = React.useState(true);
+  const [showProducts, setShowProducts] = React.useState(false);
 
   const getSuggestions = useCallback(
-    (name, index, url?) => ({
+    (name, index, url?, thumbnail?, isManufacturer = false) => ({
       ...cloneDeep(CommerceEnvironment.suggestionSkeleton),
       name,
       arrIndex: `${index}`,
-      url: url ?? `${SEARCH}?${SEARCHTERM}=${commonUtil.encodeURLParts(name)}`,
+      url: url ?? `${SEARCH}?${SEARCHTERM}=${commonUtil.encodeURLParts(name)}&manufacturer=${isManufacturer}`,
+      thumbnail,
     }),
     []
   );
 
-  const clearSuggestions = () => {
+  const clearSuggestions = useCallback(() => {
     setIndex(0);
     setKeywordSuggestions([]);
     setCategorySuggestions([]);
     setBrandSuggestions([]);
     setSellerSuggestions([]);
+    setProductSuggestions([]);
     setShowKeywords(false);
     setShowCategories(false);
     setShowBrands(false);
     setShowSellers(false);
-  };
+  }, []);
 
   const clearSuggestionsAndUpdateInputField = (str: string) => {
     clearSuggestions();
@@ -116,56 +115,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
     setInput("");
   };
 
-  const clearKeywords = () => {
-    dispatch(searchActions.KEYWORDS_RESET_ACTION(""));
-  };
-
-  const setKeywordsToLocalStorage = (list: string[]) => {
-    dispatch(searchActions.KEYWORDS_UPDATED_ACTION(list));
-  };
-  const CancelToken = Axios.CancelToken;
-  const cancels: Canceler[] = [];
-
-  const payloadBase: any = {
-    widget: widgetName,
-    cancelToken: new CancelToken(function executor(c) {
-      cancels.push(c);
-    }),
-  };
-
-  useEffect(() => {
-    if (mySite && contractId) {
-      const catalogId = mySite?.catalogID;
-      const parameters: any = {
-        responseFormat: "application/json",
-        suggestType: SUGGESTIONS.All,
-        contractId,
-        catalogId,
-        ...payloadBase,
-      };
-      siteContentService
-        .findSuggestionsUsingGET(parameters)
-        .then((res) => {
-          if (res.status === OK) {
-            const root = res?.data?.suggestionView ?? [];
-            const asMap = storeUtil.toMap(root, "identifier");
-            const categoriesResponse = asMap[SUGGESTIONS.Category]?.entry ?? [];
-            const brandsResponse = asMap[SUGGESTIONS.Brand]?.entry ?? [];
-            const sellersResponse = asMap[SUGGESTIONS.Seller]?.entry ?? [];
-
-            setCategories(categoriesResponse.map(({ fullPath, seo }) => ({ fullPath, url: seo?.href ?? "" })));
-            setBrands(brandsResponse?.map((i) => i.name));
-            setSellers(sellersResponse?.map((i) => i.name));
-
-            setinputDisabled(false);
-          }
-        })
-        .catch((e) => {
-          console.warn("fail to get category, brand and seller suggestions.");
-        });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mySite, t, contractId]);
+  const clearKeywords = useCallback(() => dispatch(searchActions.KEYWORDS_RESET_ACTION("")), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const payloadBase = useMemo(() => ({ widget, signal: controller.signal }), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const setKeywordsToLocalStorage = useCallback(
+    (list: string[]) => dispatch(searchActions.KEYWORDS_UPDATED_ACTION(list)),
+    [] // eslint-disable-line react-hooks/exhaustive-deps
+  );
 
   useEffect(() => {
     const queryString = location.search;
@@ -177,93 +132,103 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
-  useEffect(() => {
-    return () => {
-      cancels.forEach((cancel) => cancel());
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleLookAheadSearch = (event: ChangeEvent, type: string) => {
+  const handleLookAheadSearch = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     event.persist();
-
-    const element = event.currentTarget as HTMLInputElement;
-
-    setInput(element.value);
-    retrieveSuggestions(element.value);
+    const term = event.currentTarget.value ?? "";
+    setInput(term);
+    retrieveSuggestions(term.trim());
   };
 
-  const retrieveSuggestions = (searchTerm: any) => {
-    searchTerm = searchTerm.trim();
-    if (searchTerm.length > 1) {
-      setTimeout(function () {
-        const storeID = mySite.storeID;
-        const catalogId = mySite.catalogID;
+  const generateSuggestions = useCallback(
+    (suggestions: any[], userInput: string) => {
+      let nameListIndex = 1;
+      const regex = new RegExp(userInput, "ig");
 
-        const parameters: any = {
-          responseFormat: "application/json",
-          storeId: storeID,
-          term: "*",
-          limit: KEYWORD_LIMIT,
-          contractId: contractId,
-          catalogId: catalogId,
-          query: { searchTerm },
-          ...payloadBase,
-        };
+      const root = suggestions ?? [];
+      const asMap = storeUtil.toMap(root, "identifier");
 
-        siteContentService.findKeywordSuggestionsByTermUsingGET(parameters).then((res) => {
+      const keywordSuggestions = asMap[SUGGESTIONS.Keyword]?.entry ?? [];
+      const categorySuggestions = asMap[SUGGESTIONS.Category]?.entry ?? [];
+      const brandSuggestions = asMap[SUGGESTIONS.Brand]?.entry?.map((brand) => brand.name) ?? [];
+      const sellerSuggestions = asMap[SUGGESTIONS.Seller]?.entry?.map((seller) => seller.name) ?? [];
+      const productSuggestion = asMap[SUGGESTIONS.Product]?.entry ?? [];
+
+      const matchedKeywords = keywordSuggestions.map(({ term }) => getSuggestions(term, nameListIndex++));
+
+      const matchedCategories = categorySuggestions
+        .filter(({ fullPath }) => fullPath.match(regex))
+        .slice(0, 4)
+        .map(({ fullPath, seo }) => getSuggestions(fullPath, nameListIndex++, seo?.href));
+
+      const matchedBrands = brandSuggestions
+        .filter((e) => e.match(regex))
+        .slice(0, 4)
+        .map((brand) => getSuggestions(brand, nameListIndex++, null, null, true));
+
+      const matchedSellers = sellerSuggestions
+        .filter((e) => e.match(regex))
+        .slice(0, 4)
+        .map((seller) => getSuggestions(seller, nameListIndex++));
+
+      const matchedProducts = productSuggestion
+        .slice(0, 4)
+        .map(({ name, seo, thumbnail }) => getSuggestions(name, nameListIndex++, seo?.href, thumbnail));
+
+      setKeywordSuggestions(matchedKeywords);
+      setCategorySuggestions(matchedCategories);
+      setBrandSuggestions(matchedBrands);
+      setSellerSuggestions(matchedSellers);
+      setProductSuggestions(matchedProducts);
+
+      setShowKeywords(true);
+      setShowCategories(true);
+      setShowBrands(true);
+      if (sellerSuggestions.length) {
+        setShowSellers(true);
+      }
+
+      const terms = matchedKeywords.map(({ name }) => name);
+      setKeywordsToLocalStorage(terms);
+      setShowProducts(true);
+
+      return [
+        userInput,
+        ...terms,
+        ...[matchedCategories, matchedBrands, matchedSellers, matchedProducts].flat(1).map(({ name }) => name),
+      ];
+    },
+    [] // eslint-disable-line react-hooks/exhaustive-deps
+  );
+
+  const retrieveSuggestions = useMemo(
+    () =>
+      debounce(async (searchTerm: string) => {
+        if (searchTerm.length > 1) {
+          const storeID = mySite.storeID;
+          const catalogId = mySite.catalogID;
+
+          const parameters: any = {
+            responseFormat: "application/json",
+            storeId: storeID,
+            suggestType: SUGGESTIONS.All,
+            limit: KEYWORD_LIMIT,
+            contractId,
+            catalogId,
+            query: { searchTerm },
+            ...payloadBase,
+          };
+
+          clearKeywords();
+          clearSuggestions();
+          const res = await siteContentService.findSuggestionsUsingGET(parameters);
           if (res.status === OK) {
-            const keywordSuggestions = res?.data.suggestionView[0].entry;
-            if (keywordSuggestions) {
-              const list = generateSuggestions(keywordSuggestions, searchTerm);
-              setNameList(list);
-            }
+            const list = generateSuggestions(res?.data?.suggestionView, searchTerm);
+            setNameList(list);
           }
-        });
-      }, 300);
-    }
-    clearKeywords();
-    clearSuggestions();
-  };
-
-  const generateSuggestions = (kwSuggestions: any[], userInput: string) => {
-    let nameListIndex = 1;
-    const regex = new RegExp(userInput, "ig");
-
-    const keywords = kwSuggestions.map(({ term }) => getSuggestions(term, nameListIndex++));
-
-    const matchedCategories = categories
-      .filter(({ fullPath }) => fullPath.match(regex))
-      .slice(0, 4)
-      .map(({ fullPath, url }) => getSuggestions(fullPath, nameListIndex++, url));
-
-    const matchedBrands = brands
-      .filter((e) => e.match(regex))
-      .slice(0, 4)
-      .map((brand) => getSuggestions(brand, nameListIndex++));
-
-    const matchedSellers = sellers
-      .filter((e) => e.match(regex))
-      .slice(0, 4)
-      .map((seller) => getSuggestions(seller, nameListIndex++));
-
-    setKeywordSuggestions(keywords);
-    setCategorySuggestions(matchedCategories);
-    setBrandSuggestions(matchedBrands);
-    setSellerSuggestions(matchedSellers);
-
-    setShowKeywords(true);
-    setShowCategories(true);
-    setShowBrands(true);
-    if (sellers.length) {
-      setShowSellers(true);
-    }
-
-    const terms = keywords.map(({ name }) => name);
-    setKeywordsToLocalStorage(terms);
-
-    return [userInput, ...terms, ...[matchedCategories, matchedBrands, matchedSellers].flat(1).map(({ name }) => name)];
-  };
+        }
+      }, 300),
+    [contractId, generateSuggestions, mySite] // eslint-disable-line react-hooks/exhaustive-deps
+  );
 
   const callRegex = (str: string) => {
     const regex2 = new RegExp(">", "ig");
@@ -360,6 +325,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
 
   const toggleSearchBar = () => setShowSearchBar(!showSearchBar);
 
+  useEffect(() => () => controller.abort(), []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <ClickAwayListener onClickAway={clickAway}>
       <StyledSearchBar>
@@ -370,11 +337,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
             autoFocus
             autoComplete="off"
             type="text"
-            disabled={inputDisabled}
             placeholder={searchField}
             value={input}
             name="searchTerm"
-            onChange={(e) => handleLookAheadSearch(e, "searchTerm")}
+            onChange={handleLookAheadSearch}
             onKeyDown={onKeyDown}
             InputProps={{
               endAdornment: (
@@ -494,6 +460,41 @@ const SearchBar: React.FC<SearchBarProps> = ({ showSearchBar, openSearchBar, clo
                           id={`megamenu_department_${e.id}`}
                           title={e.name}>
                           {e.name}
+                        </StyledMenuTypography>
+                      </StyledMenuItem>
+                    </StyledLink>
+                  ))}
+                </>
+              ) : null}
+
+              {showProducts ? (
+                <>
+                  <StyledMenuTypography variant="body2" className="searchBar-resultsCategory">
+                    {productTitle}
+                  </StyledMenuTypography>
+                  {productSuggestions?.map((e: any, i: number) => (
+                    <StyledLink
+                      key={`product-${i}`}
+                      testId={`product-${e.name.toLowerCase()}`}
+                      to={e.url}
+                      onClick={(evt) => clearSuggestionsAndUpdateInputField(e.name)}>
+                      <StyledMenuItem>
+                        <StyledAvatar
+                          style={{
+                            margin: "0 0.5rem 0 0",
+                            border: "1px solid lightgray",
+                            borderRadius: "0",
+                          }}
+                          alt={e.name}
+                          src={e.thumbnail}
+                        />
+                        <StyledMenuTypography
+                          className={e.arrIndex === index ? "active" : ""}
+                          component="div"
+                          key={e.arrIndex}
+                          id={`megamenu_department_${e.id}`}
+                          title={e.name}>
+                          <StyledTypography className="wrapText">{e.name}</StyledTypography>
                         </StyledMenuTypography>
                       </StyledMenuItem>
                     </StyledLink>

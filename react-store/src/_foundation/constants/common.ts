@@ -82,8 +82,10 @@ export const DEFAULT_LOCATION = {
   lng: -79.383181,
 };
 export const SUGGESTIONS = {
-  All: ["Category", "Brand", "Seller"],
+  All: ["Category", "Brand", "Seller", "Product", "Keyword"],
   Category: "Category",
   Brand: "Brand",
   Seller: "Seller",
+  Product: "Product",
+  Keyword: "Keyword",
 };

@@ -22,12 +22,21 @@ import {
 import { USER_CONTEXT_REQUEST_ACTION } from "../../actions/context";
 import { contractSelector, currentEntitledContractsSelector } from "../../selectors/contract";
 import { loginStatusSelector } from "../../selectors/user";
+import { getSite } from "../../../_foundation/hooks/useSite";
+import { isEmpty } from "lodash-es";
 
 export function* fetchContract(action: any) {
   try {
     const { userContext, ...payload } = action.payload;
-    const response = yield call(contractService.findEligible, payload);
-    yield put(FETCH_CONTRACT_SUCCESS_ACTION({ ...response.data }));
+    const siteInfo = getSite();
+    const existing = yield select(contractSelector);
+
+    // in B2C envs, the contract is always the same -- we don't need to re-fetch
+    if (siteInfo?.isB2B || isEmpty(existing)) {
+      const response = yield call(contractService.findEligible, payload);
+      yield put(FETCH_CONTRACT_SUCCESS_ACTION({ ...response.data }));
+    }
+
     yield* preSelectContract(payload, userContext);
   } catch (error) {
     yield put(FETCH_CONTRACT_ERROR_ACTION(error));

@@ -1,8 +1,9 @@
 {
   "layout": {
     "id": "3074457345618271107",
-    "name": "Product List Page Layout",
+    "name": "ProductListingPageLayout",
     "containerName": "product-listing-page",
+    "isStoreDefault": true,
     "startDate": null,
     "endDate": null,
     "priority": 0,
@@ -13,7 +14,7 @@
         "widgets": [
           {
             "id": "3074457345618261611",
-            "name": "Breadcrumb Trail Widget",
+            "name": "BreadcrumbTrail",
             "widgetName": "breadcrumb-trail-widget",
             "sequence": 0
           }
@@ -25,7 +26,7 @@
         "widgets": [
           {
             "id": "3074457345618261612",
-            "name": "Facet Navigation Widget",
+            "name": "FacetNavigation",
             "widgetName": "facet-navigation-widget",
             "sequence": 0
           }
@@ -37,7 +38,7 @@
         "widgets": [
           {
             "id": "3074457345618261613",
-            "name": "Catalog Entry List Widget",
+            "name": "CatalogEntryList",
             "widgetName": "catalog-entry-list-widget",
             "sequence": 0
           }

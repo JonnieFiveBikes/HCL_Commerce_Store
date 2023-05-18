@@ -12,7 +12,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 //Foundation libraries
-import { EXPIRY } from "../../../constants/order";
+import { EXPIRY, PAYMENT } from "../../../constants/order";
 import { Divider } from "@mui/material";
 //UI libraries
 import {
@@ -220,7 +220,7 @@ const CheckoutProfileBilling = (props: any) => {
               </StyledSelect>
             </StyledFormControl>
           </StyledGrid>
-          {cProf?.billingData?.payment_method?.value !== "COD" && (
+          {PAYMENT.ccMethods[cProf?.billingData?.payment_method?.value] ? (
             <>
               <StyledGrid item xs={12}>
                 <StyledTextField
@@ -291,7 +291,7 @@ const CheckoutProfileBilling = (props: any) => {
                 </StyledFormControl>
               </StyledGrid>
             </>
-          )}
+          ) : null}
         </StyledGrid>
       </StyledGrid>
       <Divider className="top-margin-3 bottom-margin-3" />

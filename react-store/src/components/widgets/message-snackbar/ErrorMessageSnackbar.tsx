@@ -98,8 +98,7 @@ const useErrorMessageSnackbar = () => {
   useEffect(() => {
     if (errorMessage && forUserId) {
       // useEffect is already async -- no need to use setTimeout
-      const w = window.top ?? window;
-      w.scrollTo(0, 0);
+      window["topOrSelf"] && window["topOrSelf"].scrollTo(0, 0);
     }
   }, [errorMessage, forUserId]);
 

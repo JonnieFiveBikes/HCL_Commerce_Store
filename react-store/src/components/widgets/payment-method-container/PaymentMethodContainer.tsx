@@ -167,7 +167,7 @@ const PaymentMethodContainer: React.FC<PaymentMethodContainerProps> = (props: Pa
       policyId: payment?.xumet_policyId,
       title: payment?.description,
     };
-    if (paymentTCId && paymentTCId !== EMPTY_STRING && payment.payMethodId !== PAYMENT.paymentMethodName.cod) {
+    if (paymentTCId && paymentTCId !== EMPTY_STRING && PAYMENT.ccMethods[payment.payMethodId]) {
       const formData: CreditCardFormDataType = {
         account: EMPTY_STRING,
         expire_month: EMPTY_STRING,

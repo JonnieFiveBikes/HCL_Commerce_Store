@@ -27,6 +27,7 @@ import addressUtil from "../../utils/addressUtil";
 import personContactService from "../apis/transaction/personContact.service";
 import * as accountActions from "../../redux/actions/account";
 import * as successActions from "../../redux/actions/success";
+import { PAYMENT } from "../../constants/order";
 
 //Foundation libraries
 export interface CheckoutProfileBilling {
@@ -137,7 +138,7 @@ export const useCheckoutProfile = () => {
     return (
       !editAddress &&
       (useShippingAddressForBilling || cProf.billing_nickName) &&
-      (p === "COD" || (p && !invalidCC(cProf.billingData, true) && y && m && !inPast))
+      (!PAYMENT.ccMethods[p] || (p && !invalidCC(cProf.billingData, true) && y && m && !inPast))
     );
   };
 
@@ -189,7 +190,7 @@ export const useCheckoutProfile = () => {
       "billing_"
     );
     const pm = get(cProf, "billingData.payment_method.value");
-    const cod = pm === "COD";
+    const isCreditCard = PAYMENT.ccMethods[pm];
 
     Object.assign(body, {
       profileName: cProf.xchkout_ProfileName,
@@ -205,7 +206,7 @@ export const useCheckoutProfile = () => {
       Object.assign(body, { userId });
     }
 
-    if (!cod) {
+    if (isCreditCard) {
       Object.assign(body, {
         pay_account: get(cProf, "billingData.account.value"),
         pay_expire_month: get(cProf, "billingData.expire_month.value"),

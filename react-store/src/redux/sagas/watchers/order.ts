@@ -18,8 +18,8 @@ import * as OD_WORKERS from "../workers/orderDetails";
 import { FETCHING_CART_ACTION, COPY_CART_SUCCESS_ACTION, GET_CART_ACTION } from "../../actions/order";
 import {
   LOGIN_SUCCESS_ACTION,
-  GUEST_LOGIN_SUCCESS_ACTION,
   INIT_USER_FROM_STORAGE_SUCCESS_ACTION,
+  GUEST_LOGIN_FETCH_CART_ACTION,
 } from "../../actions/user";
 
 /**
@@ -31,9 +31,10 @@ export function* watchSaga() {
   yield takeLatest(ACTIONS.COPY_CART, WORKERS.copyCart);
   yield takeLatest(ACTIONS.ITEM_REMOVE_REQUESTED, removeItemAndFetchCart);
   yield takeLatest(
-    [FETCHING_CART_ACTION, GET_CART_ACTION, LOGIN_SUCCESS_ACTION, GUEST_LOGIN_SUCCESS_ACTION, COPY_CART_SUCCESS_ACTION],
+    [FETCHING_CART_ACTION, GET_CART_ACTION, LOGIN_SUCCESS_ACTION, COPY_CART_SUCCESS_ACTION],
     WORKERS.fetchCart
   );
+  yield takeLatest(GUEST_LOGIN_FETCH_CART_ACTION, conditionallyFetchCart);
   yield takeLatest(INIT_USER_FROM_STORAGE_SUCCESS_ACTION, WORKERS.initFromStorageFetchCart);
   yield takeLatest(ACTIONS.ITEM_UPDATE_REQUESTED, updateItemAndFetchCart);
   yield takeLatest([ACTIONS.SHIPINFO_GET_REQUESTED], WORKERS.fetchShipInfo);
@@ -48,6 +49,27 @@ export function* watchSaga() {
   yield takeLatest(ACTIONS.UPDATE_INPROGRESS_ORDER_ITEM, updateInProgressItem);
 
   yield takeLatest(ACTIONS.FETCH_ALLOWABLE_PAYMETHODS, WORKERS.getAllowablePaymethods);
+}
+
+/**
+ * Avoid fetching cart if guest-login was already triggered by some cart action
+ *
+ * Realistically, this can only be the add-to-cart action, but we check for cart
+ *   context in the url that triggered the guest-login action here to be sure
+ *
+ * We can do this because all cart-actions are proceeded by a fetch-cart action anyway
+ *   and this particular action would've yielded a 404 in the first place
+ *
+ * @param action redux action
+ */
+function* conditionallyFetchCart(action: any) {
+  const { payload, ...otherAction } = action;
+  const { url, ...other } = payload;
+
+  // fetch cart only if non-cart action triggered the guest-login
+  if (!url.match(/\bcart\b/)) {
+    yield call(WORKERS.fetchCart, { ...otherAction, payload: other });
+  }
 }
 
 function* removeItemAndFetchCart(action: any) {

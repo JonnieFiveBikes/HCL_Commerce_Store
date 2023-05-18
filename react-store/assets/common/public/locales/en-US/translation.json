@@ -577,7 +577,9 @@
       "VISA": "VISA Credit Card",
       "MasterCard": "MasterCard Credit Card",
       "AMEX": "American Express Credit Card",
-      "COD": "Cash on delivery"
+      "COD": "Cash on delivery",
+      "BillMeLater": "Bill me later",
+      "PayLater": "Pay later"
     }
   },
   "ChildPimCategories": {
@@ -719,7 +721,7 @@
     "_ERR_GOOGLE_MAP_NOT_SUPPORT": "Your browser does not support Google Maps.",
     "NoCopyOrderItems": "None of the items in the order are currently available for purchase and cannot be re-ordered.",
     "ProhibitedCharacterErrorTitle": "Prohibited characters error",
-    "ProhibitedCharacterErrorMsg" : "You have attempted to execute an action which our server has flagged as malicious. Your request will not be completed at this time.",
+    "ProhibitedCharacterErrorMsg": "You have attempted to execute an action which our server has flagged as malicious. Your request will not be completed at this time.",
     "B2B": {
       "_ERR_FINDER_EXCEPTION_CMN0411E": "The logon ID that you entered is not valid. Check your entry and try again.",
       "_ERR_LOGONID_ALREDY_EXIST_2030": "The logon ID you entered already exists. Type a different logon ID and try again.",
@@ -1067,6 +1069,7 @@
     "CategoryTitle": "CATEGORY",
     "BrandTitle": "BRAND",
     "SellerTitle": "SELLER",
+    "ProductsTitle": "PRODUCTS",
     "Clear": "Clear search"
   },
   "SessionError": {

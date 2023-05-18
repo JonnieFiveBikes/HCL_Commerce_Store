@@ -24,10 +24,16 @@
       "path": "./packages/react-component"
     },
     {
+      "path": "./packages/typescript-axios-approvals"
+    },
+    {
       "path": "./packages/typescript-axios-es"
     },
     {
       "path": "./packages/typescript-axios-transaction"
+    },
+    {
+      "path": "./packages/utils"
     }
   ]
 }

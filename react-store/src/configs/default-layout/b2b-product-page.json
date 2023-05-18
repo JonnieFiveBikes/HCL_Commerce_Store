@@ -1,8 +1,9 @@
 {
   "layout": {
     "id": "3074457345618271107",
-    "name": "Product B2B Page Layout",
+    "name": "B2BProductPageLayout",
     "containerName": "b2b-product-page",
+    "isStoreDefault": true,
     "startDate": null,
     "endDate": null,
     "priority": 0,
@@ -13,7 +14,7 @@
         "widgets": [
           {
             "id": "3074457345618261611",
-            "name": "Breadcrumb Trail Widget",
+            "name": "BreadcrumbTrail",
             "widgetName": "breadcrumb-trail-widget",
             "sequence": 0
           }
@@ -25,7 +26,7 @@
         "widgets": [
           {
             "id": "3074457345618261612",
-            "name": "Product Information Widget",
+            "name": "ProductInformation",
             "widgetName": "product-information-widget",
             "sequence": 0
           }
@@ -37,7 +38,7 @@
         "widgets": [
           {
             "id": "3074457345618261613",
-            "name": "Attribute Filter Widget",
+            "name": "AttributeFilter",
             "widgetName": "attribute-filter-widget",
             "sequence": 0
           }
@@ -49,7 +50,7 @@
         "widgets": [
           {
             "id": "3074457345618261614",
-            "name": "SKU List Widget",
+            "name": "SKUList",
             "widgetName": "sku-list-widget",
             "sequence": 0
           }
@@ -61,7 +62,7 @@
         "widgets": [
           {
             "id": "3074457345618261615",
-            "name": "Merchandising Association Widget",
+            "name": "MerchandisingAssociation",
             "widgetName": "merchandising-association-widget",
             "sequence": 0
           }

@@ -66,7 +66,7 @@ const GA4GTMDLService = {
     if (productObj && productObj.length > 0) {
       productObj.forEach((product) => {
         items.push({
-          item_id: product.id,
+          item_id: product.partNumber,
           item_name: product.name,
           ...(product.brand && { item_brand: product.brand }),
           ...(product.category && { item_category: product.category }),
@@ -124,7 +124,7 @@ const GA4GTMDLService = {
           ...(cartValue && { value: cartValue }),
           removeFromCartItems: [
             {
-              item_id: productObj.id,
+              item_id: productObj.partNumber,
               item_name: productObj.name,
               ...(productObj.brand && { item_brand: productObj.brand }),
               ...(productObj.category && {
@@ -178,7 +178,10 @@ const GA4GTMDLService = {
     const items: any = [];
     const cartValue: number = purchaseObj.totalcost;
     const cartCurrency = purchaseObj.currency;
-    const cartTax: number = purchaseObj.salesTax;
+    let cartTax: string = purchaseObj.salesTax;
+    if (purchaseObj.salesTax && purchaseObj.shippingTax) {
+      cartTax = String(Number(cartTax) + Number(purchaseObj.shippingTax));
+    }
     const cartShipping: number = purchaseObj.shippingcost;
     const cartTransactionId = purchaseObj.purchaseId;
     purchaseObj.productArrWithCategory.forEach((product) => {

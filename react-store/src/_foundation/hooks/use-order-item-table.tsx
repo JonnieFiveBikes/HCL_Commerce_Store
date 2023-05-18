@@ -54,7 +54,7 @@ import AsyncCall from "../../_foundation/gtm/async.service";
 import { cartSelector, orderMethodIsPickupSelector } from "../../redux/selectors/order";
 import { useWinDimsInEM } from "./use-win-dims-in-em";
 import { STRING_TRUE, XS_MOBILE_W } from "../../constants/common";
-import { get } from "lodash-es";
+import { get, isEmpty } from "lodash-es";
 import Closed from "@mui/icons-material/ChevronRight";
 import Open from "@mui/icons-material/ExpandMoreOutlined";
 import storeUtil from "../../utils/storeUtil";
@@ -206,6 +206,7 @@ export const useOrderItemTable = (props: any) => {
   const { storeLocator } = useStoreLocatorValue();
   const selectedStore = useMemo(() => storeLocator.selectedStore, [storeLocator]);
   const [availability, setAvailability] = useState<Availability>();
+  const [timestamps, setTimestamps] = useState<Record<string, string>>({});
 
   const getInventory = async (pnMap: PartNumberMap) => {
     let physicalStoreInventory: any[] = [];
@@ -307,7 +308,6 @@ export const useOrderItemTable = (props: any) => {
   const pagination = !readOnly && !miniCartView;
   const handleMiniCartClose = props.handleMiniCartClose !== undefined ? props.handleMiniCartClose : null;
   const { seller } = props;
-
   /**
    * Initialize quantity data per order item
    * @returns quantities object for each order item
@@ -316,7 +316,7 @@ export const useOrderItemTable = (props: any) => {
     const newData: any = {};
     const pnMap: PartNumberMap = {};
     if (dataProps) {
-      //get all inventories
+      // get all inventories
       dataProps.forEach((oi) => {
         const { partNumber, fulfillmentCenterOwnerId } = oi;
         if (sellers?.sellers?.some((s) => s.id === fulfillmentCenterOwnerId)) {
@@ -730,8 +730,20 @@ export const useOrderItemTable = (props: any) => {
     }),
     []
   );
+
   useEffect(() => {
-    setQuantityList(initQuantityData());
+    // the order-items may just have had cosmetic updates, i.e., had attributes or some product-info attached --
+    //   check to see if they've actually changed
+    const needsUpdate =
+      isEmpty(timestamps) ||
+      Object.keys(timestamps).length !== dataProps.length ||
+      !dataProps.every((oi) => oi.lastUpdateDate === timestamps[oi.orderItemId]);
+
+    // quantity update required
+    if (needsUpdate) {
+      setTimestamps(dataProps.reduce((stamps, oi) => ({ ...stamps, [oi.orderItemId]: oi.lastUpdateDate }), {}));
+      setQuantityList(initQuantityData());
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataProps]);
 

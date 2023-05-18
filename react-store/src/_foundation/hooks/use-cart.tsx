@@ -9,7 +9,7 @@
  *==================================================
  */
 //Standard libraries
-import React, { useState, useEffect, MouseEvent, ChangeEvent, KeyboardEvent, useMemo, useCallback } from "react";
+import { useState, useEffect, MouseEvent, ChangeEvent, KeyboardEvent, useMemo, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import { useNavigate } from "react-router";
@@ -76,8 +76,8 @@ export const useCart = () => {
   const [selectedProfile, setSelectedProfile] = useState<string>(
     localStorageUtil.get(SELECTED_PROFILE) ?? EMPTY_STRING
   );
-
-  const isFetching = useSelector(isFetchingSelector);
+  const [isFetching, setFetching] = useState<boolean>(true);
+  const cartBeingFetched = useSelector(isFetchingSelector);
   const loginStatus = useSelector(loginStatusSelector);
   const [partitionedBySellers, setPartBySellers] = useState<any[]>([]);
   const [promoCode, setPromoCode] = useState<string>(EMPTY_STRING);
@@ -129,7 +129,7 @@ export const useCart = () => {
   }, [recurringOrderDetails]);
 
   useEffect(() => {
-    if (mySite && contractId && defaultCurrencyID) {
+    if (contractId && defaultCurrencyID) {
       if (cart && cart.resourceName !== RESOURCE_NAME_CART) {
         const cartPayload: any = {
           orderId: cart?.orderId,
@@ -165,13 +165,16 @@ export const useCart = () => {
         };
         dispatch(orderActions.FETCHING_CART_ACTION({ ...payload }));
       }
+    } else {
+      // site is in some weird state, so just mark the page ready since there's nothing else we can really do
+      setFetching(false);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mySite, contractId, defaultCurrencyID]);
+  }, [contractId, defaultCurrencyID]);
 
   //GA360
-  React.useEffect(() => {
+  useEffect(() => {
     if (mySite.enableGA) {
       const storeName = mySite.storeName;
       AsyncCall.sendCartPageViewEvent(
@@ -396,6 +399,12 @@ export const useCart = () => {
     const parts = storeUtil.partitionBySellers(orderItems, storeDisplayName, mySite);
     setPartBySellers(parts);
   }, [orderItems]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    // intent here is to indicate when fetching is done -- so if the cart is still being
+    //   fetched, keep old value (`prev`), otherwise set to `cartBeingFetched`
+    setFetching((prev) => (cartBeingFetched ? prev : !!cartBeingFetched));
+  }, [cartBeingFetched]);
 
   return {
     isFetching,

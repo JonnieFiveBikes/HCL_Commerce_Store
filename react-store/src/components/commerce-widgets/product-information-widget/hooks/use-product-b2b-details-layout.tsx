@@ -878,7 +878,8 @@ export const useProductB2BDetailsLayout = (widget: Widget, page: Page, props) =>
   const entitledOrgs = useSelector(entitledOrgSelector);
   const activeOrgId = useSelector(activeOrgSelector);
   useEffect(() => {
-    if (addItemActionTriggered) {
+    // wait for cart to physically show up before doing the GA/GTM event
+    if (addItemActionTriggered && cart?.orderId) {
       //GA360
       if (mySite.enableGA) {
         const storeName = mySite.storeName;

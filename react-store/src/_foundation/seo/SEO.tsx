@@ -35,6 +35,7 @@ import { CommerceEnvironment } from "../../constants/common";
 import * as lsActions from "../../redux/actions/local-storage";
 import { OPEN_CONFIRMATION_ACTION } from "../../redux/actions/confirmation";
 import { withProductContext } from "../context/product-context";
+import { LayoutInfo, postMessageIfInPreview } from "../utils/preview";
 
 const SEO: React.FC = (props: any) => {
   const widgetName = getDisplayName(SEO);
@@ -137,6 +138,11 @@ const SEO: React.FC = (props: any) => {
   const ActiveC = useMemo(() => {
     if (seoConfig && seoConfig[identifier]) {
       const c = seoConfig[identifier];
+      const layout: LayoutInfo = {
+        data: { ...c },
+        action: "PREVIEW_LAYOUT_INITIALIZED",
+      };
+      postMessageIfInPreview({ layout });
       const token = c.tokenName;
       return token === PRODUCT_TOKEN
         ? withProductContext(lazy(() => import(`../../components/commerce-layouts/${c.layout.containerName}`)))
@@ -184,7 +190,7 @@ const SEO: React.FC = (props: any) => {
     [seoConfig, identifier, site, ActiveC]
   );
 
-  return <>{!first ? <ActiveComponent /> : <StyledProgressPlaceholder className="vertical-padding-20" />}</>;
+  return !first ? <ActiveComponent /> : <StyledProgressPlaceholder className="vertical-padding-20" />;
 };
 
 export default SEO;

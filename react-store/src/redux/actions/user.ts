@@ -21,6 +21,7 @@ const SESSION_ERROR_LOGIN_ERROR_ACTION = createAction<any, string>(ACTIONTYPES.S
 const LOGOUT_SUCCESS_ACTION = createAction<any, string>(ACTIONTYPES.LOGOUT_SUCCESS);
 
 const GUEST_LOGIN_SUCCESS_ACTION = createAction<any, string>(ACTIONTYPES.GUEST_LOGIN_SUCCESS);
+const GUEST_LOGIN_FETCH_CART_ACTION = createAction<any, string>(ACTIONTYPES.GUEST_LOGIN_FETCH_CART);
 const loginErrorAction = createAction<any, string>(ACTIONTYPES.LOGIN_ERROR);
 const registrationAction = createAction<any, string>(ACTIONTYPES.REGISTRATION_REQUESTED);
 const REGISTRATION_SUCCESS_ACTION = createAction<any, string>(ACTIONTYPES.REGISTRATION_SUCCESS);
@@ -45,6 +46,7 @@ export {
   LOGOUT_REQUESTED_ACTION,
   LOGOUT_SUCCESS_ACTION,
   GUEST_LOGIN_SUCCESS_ACTION,
+  GUEST_LOGIN_FETCH_CART_ACTION,
   loginErrorAction,
   registrationAction,
   REGISTRATION_SUCCESS_ACTION,

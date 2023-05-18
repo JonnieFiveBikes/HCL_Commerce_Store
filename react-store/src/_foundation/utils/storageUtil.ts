@@ -19,6 +19,19 @@ const basename = process.env.REACT_APP_ROUTER_BASENAME || "";
 const _localStorageUtil = getLocalStorageUtil(basename);
 const _sessionStorageUtil = getSessionStorageUtil(basename);
 
+const isInForUserSession = () => {
+  try {
+    return (
+      window.parent === window.top &&
+      window.top !== window.self &&
+      window.parent.location.pathname.toLocaleLowerCase().endsWith(constants.SHOP_ON_BEHALF_PATH)
+    );
+  } catch (e) {
+    console.log("window parent or top not accessible");
+    return false;
+  }
+};
+
 const storageSessionHandler = {
   /**
    * Save current user to storage
@@ -47,10 +60,7 @@ const storageSessionHandler = {
   getCurrentUserAndLoadAccount: (): any => {
     //forUserSession
     const _forUser = _sessionStorageUtil.get(constants.FOR_USER_SESSION);
-    const _inForUserSession =
-      window.parent === window.top &&
-      window.top !== window.self &&
-      window.parent.location.pathname.toLocaleLowerCase().endsWith(constants.SHOP_ON_BEHALF_PATH);
+    const _inForUserSession = isInForUserSession();
     if (_forUser !== null && _inForUserSession) {
       return _forUser;
     }
@@ -143,10 +153,7 @@ const windowRegistryHandler = {
    */
   registerWindow: () => {
     const _forUser = _sessionStorageUtil.get(constants.FOR_USER_SESSION);
-    const _inForUserSession =
-      window.parent === window.top &&
-      window.top !== window.self &&
-      window.parent.location.pathname.toLocaleLowerCase().endsWith(constants.SHOP_ON_BEHALF_PATH);
+    const _inForUserSession = isInForUserSession();
     if (_forUser === null || !_inForUserSession) {
       const windowId: string = Date.now().toString();
       _sessionStorageUtil.set(constants.WINDOW_ID, windowId);
@@ -162,10 +169,7 @@ const windowRegistryHandler = {
    */
   unRegisterWindow: () => {
     const _forUser = _sessionStorageUtil.get(constants.FOR_USER_SESSION);
-    const _inForUserSession =
-      window.parent === window.top &&
-      window.top !== window.self &&
-      window.parent.location.pathname.toLocaleLowerCase().endsWith(constants.SHOP_ON_BEHALF_PATH);
+    const _inForUserSession = isInForUserSession();
     if (_forUser === null || !_inForUserSession) {
       const windowCounter: string[] = _localStorageUtil.get(constants.WINDOW_COUNTER) || [];
       storageSessionHandler.replicateSession();

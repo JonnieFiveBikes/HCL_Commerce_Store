@@ -11,7 +11,7 @@
 //standard libraries
 import HTMLReactParser, { DOMNode, Element, domToReact } from "html-react-parser";
 import Axios, { Canceler } from "axios";
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import getDisplayName from "react-display-name";
 import { useTranslation } from "react-i18next";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
@@ -19,6 +19,7 @@ import { useSelector } from "react-redux";
 //hcl packages.
 import {
   AttachmentLayout,
+  COMPONENT_CONST,
   ESpotState,
   StyledButton,
   StyledContainer,
@@ -26,6 +27,8 @@ import {
   StyledLink,
   StyledProgressPlaceholder,
   StyledTypography,
+  findMuiComponentAttributes,
+  parseStyle,
 } from "@hcl-commerce-store-sdk/react-component";
 import { constants, marketingConstants } from "@hcl-commerce-store-sdk/utils";
 //redux
@@ -41,92 +44,8 @@ import { useESpotHelper } from "./use-espot-helper";
 import { useSite } from "../../../../_foundation/hooks/useSite";
 import { CommerceEnvironment, EMPTY_STRING, SLASH } from "../../../../constants/common";
 import { cartSelector } from "../../../../redux/selectors/order";
-
-const COMPONENT_CONST = {
-  grid: "Grid",
-  typography: "Typography",
-  container: "Container",
-};
-//typography
-const typographyPrefix = "MuiTypography-";
-const typographyAlignPrefix = `${typographyPrefix}align`;
-const variants = [
-  "h1",
-  "h2",
-  "h3",
-  "h4",
-  "h5",
-  "h6",
-  "subtitle1",
-  "subtitle2",
-  "body1",
-  "body2",
-  "caption",
-  "button",
-  "overline",
-];
-//container
-const containerPrefix = "MuiContainer-";
-//grid
-const gridPrefix = "MuiGrid-";
-const gridItem = `${gridPrefix}item`;
-const gridContainer = `${gridPrefix}container`;
-const gridBreakPointXS = `${gridPrefix}grid-xs-`;
-const gridBreakPointMD = `${gridPrefix}grid-md-`;
-const gridBreakPointSM = `${gridPrefix}grid-sm-`;
-const gridBreakPointLG = `${gridPrefix}grid-lg-`;
-const gridBreakPointXL = `${gridPrefix}grid-xl-`;
-
-// minimum support for MUI Container, Grid and Typography
-const findMuiComponentAttributes = (classNames: string[]) => {
-  const result: any = {};
-
-  for (const _s of classNames) {
-    const s = _s.trim();
-    if (s.indexOf(typographyAlignPrefix) === 0) {
-      result.component = COMPONENT_CONST.typography;
-      result.align = s.substring(typographyAlignPrefix.length).toLowerCase();
-    } else if (s.indexOf(typographyPrefix) === 0) {
-      result.component = COMPONENT_CONST.typography;
-      const _variantCandidate = s.substring(typographyPrefix.length);
-      if (variants.includes(_variantCandidate)) {
-        result.variant = _variantCandidate;
-      }
-    } else if (s.indexOf(containerPrefix) === 0) {
-      result.component = COMPONENT_CONST.container;
-    } else if (s.indexOf(gridPrefix) === 0) {
-      result.component = COMPONENT_CONST.grid;
-      if (s.indexOf(gridContainer) === 0) {
-        result.container = true;
-      } else if (s.indexOf(gridItem) === 0) {
-        result.item = true;
-      } else if (s.indexOf(gridBreakPointXS) === 0) {
-        result.xs = Number(s.substring(gridBreakPointXL.length));
-      } else if (s.indexOf(gridBreakPointSM) === 0) {
-        result.sm = Number(s.substring(gridBreakPointSM.length));
-      } else if (s.indexOf(gridBreakPointMD) === 0) {
-        result.md = Number(s.substring(gridBreakPointMD.length));
-      } else if (s.indexOf(gridBreakPointLG) === 0) {
-        result.sm = Number(s.substring(gridBreakPointLG.length));
-      }
-    }
-  }
-  return result;
-};
-
-const parseStyle = (styles: string) => {
-  if (styles) {
-    const style: any = {};
-    styles.split(";").forEach((s) => {
-      if (s) {
-        const sl = s.split(":");
-        style[sl[0].trim()] = sl[1].replace("px", "").trim();
-      }
-    });
-    return style;
-  }
-  return null;
-};
+import { usePreviewWidgetInfoValue } from "../../../../_foundation/preview/context/preview-info-context";
+import { isInManagedPreview } from "../../../../_foundation/utils/preview";
 
 /**
  * The hook for processing eSpot data.
@@ -134,7 +53,7 @@ const parseStyle = (styles: string) => {
  * @param page the page that contains this widget.
  * @returns an eSpot object
  */
-export const useESpot = (widget: Widget, page: Page): ESpotState => {
+export const useESpot = (widget: Widget, page: Page): { eSpot: ESpotState; marketingSpotData: any } => {
   const { initESpot, allowGAEvent, performClick, processDxContent } = useESpotHelper(widget, page);
   const widgetName = getDisplayName(widget.widgetName);
   const { t } = useTranslation();
@@ -146,6 +65,7 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
   const { emsName } = widget.properties || {};
   const [productRecommendedList, setProductRecommendedList] = React.useState<any[]>(() => []);
   const [recommendedProductTitle, setRecommendedProductTitle] = React.useState<string>(EMPTY_STRING);
+  const [marketingSpotData, setMarketingSpotData] = React.useState<any[]>([]);
   const storeID: string = mySite ? mySite.storeID : EMPTY_STRING;
   const catalogID: string = mySite ? mySite.catalogID : EMPTY_STRING;
   const CancelToken = Axios.CancelToken;
@@ -170,8 +90,10 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
   const cancels: Canceler[] = [];
 
   const processESpot = async (pageName: string) => {
-    const eSpotRoot = await initESpot(pageName);
-    if (eSpotRoot) {
+    const _eSpot = await initESpot(pageName);
+    setMarketingSpotData(_eSpot);
+    if (_eSpot) {
+      const eSpotRoot = _eSpot[0];
       processMarketingSpotData(eSpotRoot);
       //GA360
       if (mySite.enableGA && eSpotRoot.baseMarketingSpotActivityData && allowGAEvent(eSpotRoot)) {
@@ -623,7 +545,7 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productRecommendedList]);
 
-  return eSpot;
+  return { eSpot, marketingSpotData };
 };
 
 /**
@@ -634,6 +556,12 @@ export const useESpot = (widget: Widget, page: Page): ESpotState => {
 export const withUseESpot =
   (Component: React.ComponentType<any>): React.FC<WidgetProps> =>
   ({ widget, page, ...props }: WidgetProps) => {
-    const eSpot = useESpot(widget, page);
+    const { eSpot, marketingSpotData } = useESpot(widget, page);
+    const { setWidgetInfo } = usePreviewWidgetInfoValue();
+    useEffect(() => {
+      if (isInManagedPreview() && setWidgetInfo) {
+        setWidgetInfo({ marketingSpotData });
+      }
+    }, [marketingSpotData, setWidgetInfo]);
     return <Component eSpot={eSpot} {...props}></Component>;
   };

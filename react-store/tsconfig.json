@@ -18,7 +18,8 @@
     "allowJs": false,
     "noImplicitAny": false,
     "noFallthroughCasesInSwitch": true,
-    "composite": true
+    "composite": true,
+    "baseUrl": "./src"
   },
   "include": ["src", "src/**/*.json"]
 }

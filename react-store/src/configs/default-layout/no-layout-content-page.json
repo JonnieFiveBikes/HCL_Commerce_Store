@@ -3,6 +3,7 @@
     "id": "3074457345618271108",
     "name": "Content Page Without Layout",
     "containerName": "home-page",
+    "isStoreDefault": true,
     "startDate": null,
     "endDate": null,
     "priority": 0,

@@ -65,3 +65,7 @@ We recommend Visual Studio Code (VS Code)
 
 1.  Gitlens: https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens
 2.  Code formatting: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+
+### Change History
+
+- see [UPDATES](UPDATES.md)

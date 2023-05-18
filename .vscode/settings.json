@@ -42,5 +42,6 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "eslint.workingDirectories": ["./react-store", "packages/react-component", "packages/utils"]
+  "eslint.workingDirectories": ["./react-store", "packages/react-component", "packages/utils"],
+  "cSpell.words": ["COMMS", "PAGEPATH", "PAGETITLE"],
 }

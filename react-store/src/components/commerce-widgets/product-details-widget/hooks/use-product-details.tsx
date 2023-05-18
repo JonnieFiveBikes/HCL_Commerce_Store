@@ -821,7 +821,8 @@ const useProductDetails = (page: Page) => {
   const breadcrumbs = useSelector(breadcrumbsSelector);
   const sellers = useSelector(sellersSelector);
   useEffect(() => {
-    if (addItemActionTriggered) {
+    // wait for cart to physically show up before doing the GA/GTM event
+    if (addItemActionTriggered && cart?.orderId) {
       //GA360
       if (mySite.enableGA) {
         const storeName = mySite.storeName;

@@ -158,11 +158,7 @@ const orderReducer = createReducer(initStates.order, (builder) => {
       const cardsList: any[] = [];
       const cashList: any[] = [];
       for (const payment of response.usablePaymentInformation) {
-        if (
-          payment.paymentMethodName === PAYMENT.paymentMethodName.amex ||
-          payment.paymentMethodName === PAYMENT.paymentMethodName.mc ||
-          payment.paymentMethodName === PAYMENT.paymentMethodName.visa
-        ) {
+        if (PAYMENT.ccMethods[payment.paymentMethodName]) {
           cardsList.push(payment);
         } else if (payment.paymentMethodName === PAYMENT.paymentMethodName.cod) {
           cashList.push(payment);

@@ -13,6 +13,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import Axios, { Canceler } from "axios";
 import getDisplayName from "react-display-name";
+import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 //Foundation libraries
 import { useSite } from "../../../../_foundation/hooks/useSite";
@@ -31,7 +32,13 @@ import { currentContractIdSelector } from "../../../../redux/selectors/contract"
 import { Page, WidgetProps } from "../../../../_foundation/constants/seo-config";
 import FormattedPriceDisplay from "../../../widgets/formatted-price-display";
 import { selectedSellersSelector } from "../../../../redux/selectors/sellers";
-import { SEARCH_FIND_PROFILE, SEARCH_PLP_PROFILE } from "../../../../constants/common";
+import {
+  SEARCH_FIND_PROFILE,
+  SEARCH_PLP_PROFILE,
+  STRING_TRUE,
+  STRING_FALSE,
+  MANUFACTURER,
+} from "../../../../constants/common";
 import { isEmpty } from "lodash-es";
 
 /**
@@ -74,6 +81,9 @@ const useProductFilter = (page: Page, extra: any) => {
     }
   }, [page]);
   const searchTerm: string = extra?.searchTerm ? extra.searchTerm : "";
+  const location: any = useLocation();
+  const params = new URLSearchParams(location?.search);
+  const manufacturer = params?.get(MANUFACTURER) ?? STRING_FALSE;
 
   const dispatch = useDispatch();
 
@@ -113,7 +123,7 @@ const useProductFilter = (page: Page, extra: any) => {
     delete paramsBase["orderBy"];
   }
   if (searchTerm !== "") {
-    paramsBase["searchTerm"] = searchTerm;
+    paramsBase["searchTerm"] = manufacturer === STRING_TRUE ? "*" : searchTerm;
   }
 
   useEffect(() => {
@@ -121,7 +131,10 @@ const useProductFilter = (page: Page, extra: any) => {
       const parameters = { ...paramsBase };
       const query = !isEmpty(selectedFacets) ? { facet: Object.keys(selectedFacets) } : {};
       const states = !isEmpty(selectedFacets) ? { selectedFacets } : undefined;
-      Object.assign(query, { profileName: isEmpty(parameters.searchTerm) ? SEARCH_PLP_PROFILE : SEARCH_FIND_PROFILE });
+      Object.assign(query, {
+        profileName: isEmpty(parameters.searchTerm) ? SEARCH_PLP_PROFILE : SEARCH_FIND_PROFILE,
+        ...(manufacturer === STRING_TRUE && { manufacturer: searchTerm }),
+      });
       Object.assign(parameters, { query });
       dispatch(catalogActions.getProductListAction({ parameters, selectedSellers, states }));
     }
@@ -377,7 +390,10 @@ const useProductFilter = (page: Page, extra: any) => {
   ) => {
     const parameters = {
       ...paramsBase,
-      query: { profileName: isEmpty(paramsBase.searchTerm) ? SEARCH_PLP_PROFILE : SEARCH_FIND_PROFILE },
+      query: {
+        profileName: isEmpty(paramsBase.searchTerm) ? SEARCH_PLP_PROFILE : SEARCH_FIND_PROFILE,
+        ...(manufacturer === STRING_TRUE && { manufacturer: searchTerm }),
+      },
     };
     const { query } = parameters;
 

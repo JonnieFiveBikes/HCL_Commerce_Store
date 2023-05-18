@@ -160,20 +160,24 @@ export function* getSEO(action: any) {
     if (pageType) {
       const isB2B = getSite()?.isB2B;
       const isProductSKU = pageType === PAGE_TYPE.ITEM_PAGE ? seoconfig.isProductSKU ?? STRING_TRUE : STRING_TRUE;
-      if (!seoconfig.layout) {
+      if (!seoconfig.layout?.id) {
+        // with changes done in defect HC-27897 in both query and transaction server
+        // we will probably always has layout but sometimes empty.
         if (
           isB2B &&
           (pageType === PAGE_TYPE.PRODUCT_PAGE ||
             pageType === PAGE_TYPE.ITEM_PAGE ||
             pageType === PAGE_TYPE.VARIANT_PAGE)
         ) {
-          seoconfig.layout =
-            isProductSKU === STRING_FALSE ? ProductPageLayoutJson.layout : B2BProductPageLayoutJson.layout;
+          seoconfig.layout = Object.assign(
+            seoconfig.layout ?? {},
+            isProductSKU === STRING_FALSE ? ProductPageLayoutJson.layout : B2BProductPageLayoutJson.layout
+          );
         } else {
           if (tokenName === STATIC_PAGES_TOKEN && MANAGED_STATIC_PAGES.includes(tokenExternalValue)) {
-            seoconfig.layout = layouts[tokenExternalValue].layout;
+            seoconfig.layout = Object.assign(seoconfig.layout ?? {}, layouts[tokenExternalValue].layout);
           } else {
-            seoconfig.layout = layouts[pageType].layout;
+            seoconfig.layout = Object.assign(seoconfig.layout ?? {}, layouts[pageType].layout);
           }
         }
       }

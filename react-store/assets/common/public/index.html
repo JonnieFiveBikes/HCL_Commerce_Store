@@ -11,16 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script>
-      //setup prerender for crawler
-      window.prerenderReady = false;
-      if (
-        typeof navigator !== "undefined" &&
-        (navigator.userAgent.includes("Prerender") || navigator.userAgent.includes("prerender"))
-      ) {
-        window.__isPrerender__ = true;
-      }
-    </script>
+    <script src="%PUBLIC_URL%/prerender-check.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Tell the browser it's a PWA -->
@@ -57,7 +48,6 @@
       }
 
       .navbar {
-        //background-color: #01C8E5;
         text-align: center;
       }
 
@@ -83,31 +73,6 @@
       </div>
       <p class="page-info"></p>
     </div>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function () {
-          navigator.serviceWorker
-            .register("%PUBLIC_URL%/worker.js")
-            .then(
-              function (registration) {
-                console.log("Worker registration successful", registration.scope);
-              },
-              function (err) {
-                console.log("Worker registration failed", err);
-              }
-            )
-            .catch(function (err) {
-              console.log(err);
-            });
-        });
-      } else {
-        console.log("Service Worker is not supported by browser.");
-      }
-      const storeviewURL = new URL(window.location.href);
-      const storeId = storeviewURL.searchParams.get("storeId");
-      if (storeId && storeId !== "") {
-        window.HCL_STORE_ID = storeId;
-      }
-    </script>
+    <script src="%PUBLIC_URL%/top-accessor.js"></script>
   </body>
 </html>

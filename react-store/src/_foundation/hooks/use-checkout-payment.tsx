@@ -149,7 +149,7 @@ export const useCheckoutPayment = (props: any) => {
 
         const creditCardFormData = { ...CREDITCARDFORMDATA_INIT };
 
-        if (payMethodId !== PAYMENT.paymentMethodName.cod) {
+        if (PAYMENT.ccMethods[payMethodId]) {
           if (pi.protocolData) {
             const pdAccount = pi.protocolData.find((pd) => pd.name === ACCOUNT_CC);
             const pdMonth = pi.protocolData.find((pd) => pd.name === EXPIRE_MONTH);
@@ -406,7 +406,7 @@ export const useCheckoutPayment = (props: any) => {
     if (paymentInfo.paymentTermConditionId !== EMPTY_STRING) {
       return true;
     }
-    if (paymentInfo.payMethodId !== PAYMENT.paymentMethodName.cod) {
+    if (PAYMENT.ccMethods[paymentInfo.payMethodId]) {
       if (paymentInfo.paymentTermConditionId === EMPTY_STRING) {
         for (const key in paymentInfo.creditCardFormData) {
           if (paymentInfo.creditCardFormData[key]?.trim() === EMPTY_STRING) {
@@ -510,7 +510,7 @@ export const useCheckoutPayment = (props: any) => {
           const { payMethodId, piAmount, addressId: billing_address_id, paymentTermConditionId } = thisPayment;
 
           const body: any = { piAmount, billing_address_id, payMethodId };
-          if (payMethodId !== PAYMENT.paymentMethodName.cod) {
+          if (PAYMENT.ccMethods[payMethodId]) {
             if (paymentTermConditionId === EMPTY_STRING) {
               Object.assign(body, {
                 account: thisPayment.creditCardFormData.account.trim(),

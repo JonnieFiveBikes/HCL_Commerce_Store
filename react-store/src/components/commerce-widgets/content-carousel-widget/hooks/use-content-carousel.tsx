@@ -9,7 +9,7 @@
  *==================================================
  */
 //standard libraries
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import HTMLReactParser, { Element, domToReact, DOMNode } from "html-react-parser";
 import Axios, { Canceler } from "axios";
@@ -32,10 +32,13 @@ import eSpotService from "../../../../_foundation/apis/transaction/eSpot.service
 //custom
 import { currentContractIdSelector } from "../../../../redux/selectors/contract";
 import { EMPTY_STRING } from "../../../../constants/common";
+import { usePreviewWidgetInfoValue } from "../../../../_foundation/preview/context/preview-info-context";
+import { isInManagedPreview } from "../../../../_foundation/utils/preview";
 
 export const useContentCarousel = (widget: Widget, page: Page) => {
   const ESPOT_TYPE_PAGE_SPECIFIC: string = "local";
   const [slideList, setSlideList] = React.useState<Array<any>>([]);
+  const [marketingSpotData, setMarketingSpotData] = React.useState<any[]>([]);
   const { emsName, emsType, interval, isPlaying, playDirection, infinite } = widget.properties || {};
   const controls = {
     interval: parseInt(interval),
@@ -75,7 +78,9 @@ export const useContentCarousel = (widget: Widget, page: Page) => {
     eSpotService
       .findByName(parameters)
       .then((res) => {
-        const eSpotRoot = res.data.MarketingSpotData[0];
+        const eSpot = res.data.MarketingSpotData;
+        setMarketingSpotData(eSpot);
+        const eSpotRoot = eSpot[0];
         processMarketingContent(eSpotRoot);
         //GA360
         if (mySite.enableGA && eSpotRoot.baseMarketingSpotActivityData && allowGAEvent(eSpotRoot)) {
@@ -199,6 +204,7 @@ export const useContentCarousel = (widget: Widget, page: Page) => {
   return {
     slideList,
     controls,
+    marketingSpotData,
   };
 };
 
@@ -211,7 +217,11 @@ export const useContentCarousel = (widget: Widget, page: Page) => {
 export const withContentCarouselWidget =
   (WrapComponent: React.ComponentType<any>): React.FC<WidgetProps> =>
   ({ widget, page, ...props }) => {
-    const { slideList, controls } = useContentCarousel(widget, page);
+    const { slideList, controls, marketingSpotData } = useContentCarousel(widget, page);
+    const { setWidgetInfo } = usePreviewWidgetInfoValue();
+    useEffect(() => {
+      setWidgetInfo && isInManagedPreview() && setWidgetInfo({ marketingSpotData });
+    }, [marketingSpotData, setWidgetInfo]);
     return (
       <>
         {slideList && slideList.length > 0 && <WrapComponent {...{ slideList, controls }} {...props}></WrapComponent>}

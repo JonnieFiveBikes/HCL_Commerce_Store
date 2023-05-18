@@ -11,6 +11,5 @@ build.gradle
 .gradle/
 distributions/
 build/
-httpd.conf
 build.gradle
 **/.rollup.cache/

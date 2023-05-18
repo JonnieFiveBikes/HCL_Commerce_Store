@@ -16,7 +16,6 @@ import getDisplayName from "react-display-name";
 import cloneDeep from "lodash/cloneDeep";
 //Foundation libraries
 import orderService from "../apis/transaction/order.service";
-import cartService from "../apis/transaction/cart.service";
 //Custom libraries
 import { ORDER_DETAILS, ORDER_HISTORY } from "../../constants/routes";
 import { PAGINATION, REG_EX } from "../../constants/common";
@@ -39,6 +38,7 @@ import { useSite } from "./useSite";
 import { CONSTANTS } from "../../constants/order-history-table";
 import { chunk, get, isNil } from "lodash-es";
 import { COPY_CART_ACTION } from "../../redux/actions/order";
+import { resolvePurchaseOrder } from "_foundation/utils/purchaseOrder";
 
 export const useOrderHistoryTable = (props?) => {
   const sizes: any = useMemo(() => cloneDeep(PAGINATION.sizes), []);
@@ -268,27 +268,13 @@ export const useOrderHistoryTable = (props?) => {
   }, []);
 
   const statusQuery = "N,M,A,B,C,R,S,D,F,G,L,W,APP,RTN";
-  const getPONumber = (buyerPONumber: string) => {
+  const getPONumber = async (buyerPONumber: string) => {
     if (buyerPONumber) {
-      return cartService
-        .getBuyerPurchaseOrderDataBean({
-          buyerPurchaseOrderId: buyerPONumber,
-          signal: controller.signal,
-          widget: widgetName,
-        })
-        .then((r) => r.data)
-        .then((d2) => {
-          if (d2.resultList[0] && d2.resultList[0].purchaseOrderNumber) {
-            return {
-              buyerPONumber: [buyerPONumber],
-              value: d2.resultList[0].purchaseOrderNumber,
-            };
-          } else {
-            return { buyerPONumber: [buyerPONumber], value: noPoString };
-          }
-        });
+      const payload = { signal: controller.signal, widget: widgetName };
+      const po = await resolvePurchaseOrder(buyerPONumber, payload);
+      return po;
     } else {
-      return Promise.resolve({ buyerPONumber: "none", value: noPoString });
+      return noPoString;
     }
   };
 
@@ -323,9 +309,7 @@ export const useOrderHistoryTable = (props?) => {
       : csvStatuses;
     const status = filterStatus === "" ? statusQuery : filterStatus;
     const search = query.search || "";
-    const pArray: any[] = [];
     const result: any = { page: pageNumber - 1 };
-    let _ors: any[] = [];
     const NUMERIC = REG_EX.NUMERIC;
     const payload = {
       widget: widgetName,
@@ -335,17 +319,14 @@ export const useOrderHistoryTable = (props?) => {
       try {
         const findByOrderId: any = await orderService.findByOrderId({
           orderId: search.trim(),
-          ...cloneDeep(payload),
+          ...payload,
         });
         const order = findByOrderId?.data;
         order.id = findByOrderId?.data?.orderId;
         result["totalCount"] = 1;
-        _ors.push(order);
-        pArray.push(getPONumber(order.buyerPONumber));
-        pArray.forEach((r, i) => {
-          _ors[i].purchaseOrderNumber = r.value;
-        });
-        result["data"] = _ors;
+        const po = await getPONumber(order.buyerPONumber);
+        order.purchaseOrderNumber = po;
+        result["data"] = [order];
         return result;
       } catch (e) {
         console.log("Error in getting order details by order id search", e);
@@ -362,17 +343,14 @@ export const useOrderHistoryTable = (props?) => {
           status,
           pageSize,
           pageNumber,
-          ...cloneDeep(payload),
+          ...payload,
         });
-        const poArray: any[] = [];
         result["totalCount"] = parseInt(orderByStatus?.data?.recordSetTotal);
-        _ors = orderByStatus?.data?.Order || [];
-        _ors.forEach((o) => {
-          o.id = o.orderId;
-          poArray.push(getPONumber(o.buyerPONumber));
-        });
-        poArray.forEach((r, i) => {
-          _ors[i].purchaseOrderNumber = r.value;
+        const _ors: any[] = orderByStatus?.data?.Order || [];
+        const rc = await Promise.all(_ors.map((o) => getPONumber(o.buyerPONumber)));
+        _ors.forEach((order, i) => {
+          order.id = order.orderId;
+          order.purchaseOrderNumber = rc[i];
         });
         result["data"] = _ors;
         return result;
@@ -384,12 +362,11 @@ export const useOrderHistoryTable = (props?) => {
     }
   };
 
-  useEffect(() => {
-    return () => {
-      controller.abort();
-    };
+  useEffect(
+    () => () => controller.abort(),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    []
+  );
 
   return {
     columns,

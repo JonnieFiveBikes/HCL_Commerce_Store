@@ -202,7 +202,7 @@ const UADataService = {
     }
   },
   async sendPromotionClick(promo) {
-    const { contentId, contentName } = promo.baseMarketingSpotActivityData[0];
+    const { contentId, contentName } = promo;
     const promoObj = {
       id: contentId,
       name: contentName,

@@ -75,6 +75,29 @@ jobs:
         GITHUB_SHA: ${{ github.sha }}
         SONAR_LINKS_CI: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         SONAR_ANALYSIS_BUILDURL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+  
+  ASOCscan:
+      name: AppScan on Cloud SAST Scan
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Get Token
+        id: curl
+        run: |
+          response=$(curl --location 'https://cloud.appscan.com/api/V2/Account/ApiKeyLogin' --header 'Content-Type: application/json' --data '{ "KeyId": "${{ secrets.ASOC_KEY }}", "KeySecret": "${{ secrets.ASOC_SECRET }}" }')
+          token=$(echo "$response" | jq -r '.Token')
+          echo "::set-output name=token::$token"
+      - name: UploadFile
+        id: upfile
+        run: |
+          respons=$(curl --location 'https://cloud.appscan.com/api/v2/FileUpload' --header "Authorization: Bearer ${{ steps.curl.outputs.token }}" --form 'fileToUpload=@demo.irx')
+          fileId=$(echo "$respons" | jq -r '.FileId')
+          echo "::set-output name=fileId::$fileId"
+      - name: Run Scan
+        id: runScan
+        run: |
+          curl --location 'https://cloud.appscan.com/api/v2/Scans/StaticAnalyzer' --header 'Content-Type: application/json' --header "Authorization: Bearer ${{ steps.curl.outputs.token }}" --data "{\"FullyAutomatic\": true,\"ApplicationFileId\": \"${{ steps.upfile.outputs.fileId }}\",\"ScanName\": \"Scan ${{ github.run_number }}\",\"EnableMailNotification\": true,\"Locale\": \"en-US\",\"AppId\": \"${{ secrets.ASOC_APPID }}\",\"Execute\": true,\"Personal\": false,\"Comment\": \"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}"
 
 
   

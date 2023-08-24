@@ -122,7 +122,7 @@ jobs:
       - name: UploadFile
         id: upfile
         run: |
-          respons=$(curl --location 'https://cloud.appscan.com/api/v2/FileUpload' --header "Authorization: Bearer ${{ steps.curl.outputs.token }}" --form 'fileToUpload=reports/*.irx')
+          respons=$(curl --location 'https://cloud.appscan.com/api/v2/FileUpload' --header "Authorization: Bearer ${{ steps.curl.outputs.token }}" --form 'fileToUpload=main/*.irx')
           fileId=$(echo "$respons" | jq -r '.FileId')
           echo "::set-output name=fileId::$fileId"
       - name: Run Scan

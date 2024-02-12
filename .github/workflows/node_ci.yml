@@ -76,60 +76,7 @@ jobs:
         SONAR_LINKS_CI: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         SONAR_ANALYSIS_BUILDURL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
   
-  ASOCscan:
-      name: AppScan on Cloud SAST Scan
-      runs-on: ubuntu-latest
-      steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          path: main
-      - name: Checkout ASoC SAST Repo
-        uses: actions/checkout@v2
-        with:
-          repository: jonniefivebikes/asoc-sast-linux
-          path: asoc
-      - name: Check Python Version
-        run: |
-          python3 --version
-        shell: bash
-      # Check working directory
-      - name: Show Working Directory
-        run: |
-          pwd
-        shell: bash
-      # Runs AppScan Step
-      - name: Perform HCL AppScan Security Analysis
-        env:
-          ASOC_KEY: ${{ secrets.ASOC_KEY }}
-          ASOC_SECRET: ${{ secrets.ASOC_SECRET }}
-          ASOC_SCAN_NAME: Automated Scan from Github Actions
-          ASOC_APPID: ${{ secrets.ASOC_APPID }}
-          ASOC_TARGET_DIR: main
-          ASOC_WAIT: True
-          SONAR_ANALYSIS_BUILDURL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          
-        run: |
-          python3 asoc/RunSAST.py
-        shell: bash
-        
-      - name: Get Token
-        id: curl
-        run: |
-          response=$(curl --location 'https://cloud.appscan.com/api/V2/Account/ApiKeyLogin' --header 'Content-Type: application/json' --data '{ "KeyId": "${{ secrets.ASOC_KEY }}", "KeySecret": "${{ secrets.ASOC_SECRET }}" }')
-          token=$(echo "$response" | jq -r '.Token')
-          echo "::set-output name=token::$token"
-      - name: UploadFile
-        id: upfile
-        run: |
-          respons=$(curl --location 'https://cloud.appscan.com/api/v2/FileUpload' --header "Authorization: Bearer ${{ steps.curl.outputs.token }}" --form 'fileToUpload=main/*.irx')
-          fileId=$(echo "$respons" | jq -r '.FileId')
-          echo "::set-output name=fileId::$fileId"
-      - name: Run Scan
-        id: runScan
-        run: |
-          curl --location 'https://cloud.appscan.com/api/v2/Scans/StaticAnalyzer' --header 'Content-Type: application/json' --header "Authorization: Bearer ${{ steps.curl.outputs.token }}" --data "{\"FullyAutomatic\": true,\"ApplicationFileId\": \"${{ steps.upfile.outputs.fileId }}\",\"ScanName\": \"Scan ${{ github.run_number }}\",\"EnableMailNotification\": true,\"Locale\": \"en-US\",\"AppId\": \"${{ secrets.ASOC_APPID }}\",\"Execute\": true,\"Personal\": false,\"Comment\": \"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}"
-
+  
 
   
   

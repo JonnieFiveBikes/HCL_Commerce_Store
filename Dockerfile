@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM node:16.20.2
+FROM node:16.20.2-slim
 #ENV NODE_ENV=production
 #ENV HUSKY_SKIP_INSTALL=1
 

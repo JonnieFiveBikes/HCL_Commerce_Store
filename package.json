@@ -20,7 +20,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "pretty-quick": "pretty-quick",
     "prepare": "is-ci || husky install",
-    "preinstall": "npx npm-force-resolutions"
+    "preinstall": "npx npm-force-resolutions",
+    "artifactregistry-login": "npx google-artifactregistry-auth"
   },
   "workspaces": [
     "packages/utils",

@@ -1,0 +1,85 @@
+name: Node.js CI 
+
+on: [push]
+
+env:
+  CI: false 
+  
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+    env:
+      CI: false 
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps:
+    - uses: actions/checkout@v3
+    - run: sed -i "s/9.1.6/9.1.6-${GITHUB_RUN_NUMBER}/g" package.json
+    - name: Set up Cloud SDK
+      uses: 'google-github-actions/auth@v2'
+      with:
+        credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm install
+    - run: npm run build
+    - run: npm pack  
+    - run: npm run artifactregistry-login
+    - run: npm publish hclsoftware-hcl-commerce-react-store-9.1.6-${GITHUB_RUN_NUMBER}.tgz --registry=https://us-central1-npm.pkg.dev/hcldevops/hcldevops/
+ 
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - 
+        name: Build the Docker image
+        run: |
+           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/emerald:9.1.6-${GITHUB_RUN_NUMBER} --label build.url=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} .
+      - 
+        name: Push the Docker Image
+        run: |
+           docker push ${{ secrets.DOCKERHUB_USERNAME }}/emerald:9.1.6-${GITHUB_RUN_NUMBER}
+  sonarQubeTrigger:
+    name: SonarQube Trigger
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: SonarQube Scan
+      uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
+        BUILD_NUMBER: ${{ github.run_number }}
+        GITHUB_SHA: ${{ github.sha }}
+        SONAR_LINKS_CI: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        SONAR_ANALYSIS_BUILDURL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+  
+  
+
+  
+  
+
+
+

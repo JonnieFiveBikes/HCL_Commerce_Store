@@ -18,7 +18,7 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
     - uses: actions/checkout@v3
-    - run: sed -i "s/9.1.6/9.1.6-${GITHUB_RUN_NUMBER}/g" package.json
+    - run: sed -i "s/9.1.13/9.1.13-${GITHUB_RUN_NUMBER}/g" package.json
     - name: Set up Cloud SDK
       uses: 'google-github-actions/auth@v2'
       with:
@@ -29,10 +29,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install
-    - run: npm run build
+    - run: npm run build:dev -ws --if-present
     - run: npm pack  
     - run: npm run artifactregistry-login
-    - run: npm publish hclsoftware-hcl-commerce-react-store-9.1.6-${GITHUB_RUN_NUMBER}.tgz --registry=https://us-central1-npm.pkg.dev/hcldevops/hcldevops/
+    - run: npm publish hclsoftware-hcl-commerce-react-store-9.1.13-${GITHUB_RUN_NUMBER}.tgz --registry=https://us-central1-npm.pkg.dev/hcldevops/hcldevops/
  
   docker:
     runs-on: ubuntu-latest
@@ -56,11 +56,11 @@ jobs:
       - 
         name: Build the Docker image
         run: |
-           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/emerald:9.1.6-${GITHUB_RUN_NUMBER} --label build.url=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} .
+           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/emerald:9.1.13-${GITHUB_RUN_NUMBER} --label build.url=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} .
       - 
         name: Push the Docker Image
         run: |
-           docker push ${{ secrets.DOCKERHUB_USERNAME }}/emerald:9.1.6-${GITHUB_RUN_NUMBER}
+           docker push ${{ secrets.DOCKERHUB_USERNAME }}/emerald:9.1.13-${GITHUB_RUN_NUMBER}
   sonarQubeTrigger:
     name: SonarQube Trigger
     runs-on: ubuntu-latest

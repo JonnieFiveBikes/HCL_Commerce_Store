@@ -12,8 +12,8 @@ WORKDIR /app
 #COPY ["package.json", "package-lock.json*", "./"]
 
 COPY . .
-#RUN npm install --include=dev
-#RUN npm run build:dev -ws --if-present
+RUN npm install
+RUN npm run build:dev -ws --if-present
 
 #CMD [ "npm", "run mock" ]
 EXPOSE 3000

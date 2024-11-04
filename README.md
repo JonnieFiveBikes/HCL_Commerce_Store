@@ -7,7 +7,7 @@
 [//]: #
 [//]: # "================================================="
 
-# HCL Commerce store development kit
+# HCL Commerce store development kit test
 
 Headless Storefront SDK using NPM workspaces
 

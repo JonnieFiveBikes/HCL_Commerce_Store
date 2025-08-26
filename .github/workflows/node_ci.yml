@@ -6,33 +6,7 @@ env:
   CI: false 
   
 jobs:
-  build:
-
-    runs-on: ubuntu-20.04
-    env:
-      CI: false 
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-    steps:
-    - uses: actions/checkout@v3
-    - run: sed -i "s/9.1.13/9.1.13-${GITHUB_RUN_NUMBER}/g" package.json
-    - name: Set up Cloud SDK
-      uses: 'google-github-actions/auth@v2'
-      with:
-        credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm install
-    - run: npm run build:dev -ws --if-present
-    - run: npm pack  
-    - run: echo "y" | npm run artifactregistry-login
-    - run: npm publish hcl-commerce-store-sdk-9.1.13-${GITHUB_RUN_NUMBER}.tgz --registry=https://us-central1-npm.pkg.dev/hcldevops/hcldevops/
+  
  
   docker:
     runs-on: ubuntu-latest

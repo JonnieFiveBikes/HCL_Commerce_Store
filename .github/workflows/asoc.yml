@@ -54,7 +54,7 @@ jobs:
           python3 asoc/RunSAST.py
         shell: bash
         
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: hcl_appscan_results
           path: reports/
